@@ -1,0 +1,13 @@
+.cache/
+.venv/
+__pycache__/
+*.pyc
+logs/
+runs/
+outputs/
+checkpoints/
+*.bundle
+*.tar.gz
+*.partial
+.env
+!.env.example

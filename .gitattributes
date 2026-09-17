@@ -1,0 +1,11 @@
+* text=auto eol=lf
+vendor/** -text
+vendor/README.md text eol=lf
+vendor/manifest.json text eol=lf
+*.pt binary
+*.onnx binary
+*.dae binary
+*.STL binary
+*.obj binary
+*.a binary
+*.so binary

@@ -1,0 +1,59 @@
+b2w_controllers:
+  ros__parameters:
+    use_sim_time: true
+
+    policy.package: b2w_controllers
+    policy.relative_path: policy/policy_force_new.onnx
+    policy.path: ""
+
+    topics.odometry: /dlio/odom_node/odom
+    topics.cmd_vel: /path_manager/path_manager_ros/nav_vel
+    topics.joint_state: /joint_states
+
+    joint_model.names: [FL_hip_joint, FR_hip_joint, RL_hip_joint, RR_hip_joint,
+                        FL_thigh_joint, FR_thigh_joint, RL_thigh_joint, RR_thigh_joint,
+                        FL_calf_joint, FR_calf_joint, RL_calf_joint, RR_calf_joint,
+                        FL_foot_joint, FR_foot_joint, RL_foot_joint, RR_foot_joint]
+
+    joint_model.command_topics: [/FL_hip_joint_position_cmd, /FR_hip_joint_position_cmd,
+                                 /RL_hip_joint_position_cmd, /RR_hip_joint_position_cmd,
+                                 /FL_thigh_joint_position_cmd, /FR_thigh_joint_position_cmd,
+                                 /RL_thigh_joint_position_cmd, /RR_thigh_joint_position_cmd,
+                                 /FL_calf_joint_position_cmd, /FR_calf_joint_position_cmd,
+                                 /RL_calf_joint_position_cmd, /RR_calf_joint_position_cmd,
+                                 /FL_foot_joint_velocity_cmd, /FR_foot_joint_velocity_cmd,
+                                 /RL_foot_joint_velocity_cmd, /RR_foot_joint_velocity_cmd]
+
+    joint_model.reorder_indices: [0, 4, 8, 12,
+                                  1, 5, 9, 13,
+                                  2, 6, 10, 14,
+                                  3, 7, 11, 15]
+
+    joint_model.default_positions: [0.0, 0.0, 0.0, 0.0,
+                                    0.4, 0.4, 0.4, 0.4,
+                                   -1.3, -1.3, -1.3, -1.3,
+                                    0.0, 0.0, 0.0, 0.0]
+
+    joint_model.scales.non_foot: 0.5
+    joint_model.scales.foot: 5.0
+    joint_model.publish_joint_array: true
+
+    environment.profile: default
+    environment.base_position: [0.0, 0.0, 0.0]
+    environment.base_orientation_rpy: [0.0, 0.0, 0.0]
+
+    environment.profiles.default.default_joint_positions: [0.0, 0.0, 0.0, 0.0,
+                                                           0.4, 0.4, 0.4, 0.4,
+                                                          -1.3, -1.3, -1.3, -1.3,
+                                                           0.0, 0.0, 0.0, 0.0]
+
+    environment.profiles.default.base_position: [0.0, 0.0, 0.0]
+    environment.profiles.default.base_orientation_rpy: [0.0, 0.0, 0.0]
+
+    environment.profiles.crouched.default_joint_positions: [0.0, 0.0, 0.0, 0.0,
+                                                            0.6, 0.6, 0.6, 0.6,
+                                                           -1.6, -1.6, -1.6, -1.6,
+                                                           -0.15, -0.15, -0.15, -0.15]
+
+    environment.profiles.crouched.base_position: [0.0, 0.0, -0.05]
+    environment.profiles.crouched.base_orientation_rpy: [0.0, 0.0, 0.0]
