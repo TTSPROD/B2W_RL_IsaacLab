@@ -3,7 +3,7 @@
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 
-## Состояние на 17 сентября 2026
+## Состояние на 18 сентября 2026
 
 - Локальный Windows 11 / RTX 4070 Ti прошёл GPU smoke, PPO/resume и throughput
   qualification. Выбран режим двух процессов по 4096 сред: **63,9 тыс. переходов/с
@@ -15,16 +15,23 @@
   последующее сравнение yaw weight 1,5 / 3,0 дало single-policy pass у обеих групп.
 - Физическая диагностика готовых control/yaw2x/reference: у каждого 100/100
   без отказа и tracking pass. По заранее заданному правилу выбран weight 1,5.
-- Идёт контролируемая серия seeds 45/46/47 с нуля: 4096 сред × 2500 updates,
-  pure yaw mix 0,25. Seeds 45/46 обучаются параллельно, 47 стартует следом.
-  Итоговая приёмка требует отдельных nominal и bounded physical оценок всех трёх.
+- Серия seeds 45/46/47 завершена: 4096 сред × 2500 updates на seed,
+  pure yaw mix 0,25; checkpoints и exports проверены. На новых nominal/bounded
+  наборах результаты без отказа: **45 — 91/91, 46 — 94/90, 47 — 92/89 из 100**;
+  reference — 100/100 на обоих. Порог ≥99/100 не достигнут. Все 53 первых
+  отказа новых политик — calf-контакты при yaw, без первых падений.
+  Разные истории [восстановления](docs/FLAT_RECOVERY.md) дополнительно
+  ограничивают контролируемое сравнение.
+- Следующий шаг: разбор контактов и затем заранее зафиксированный эксперимент
+  с равным бюджетом для постоянного mix и staged upstream→mix на новых cases.
+  Flat gate открыт; переход к Rough не разрешён.
 - Rough/stairs, server runtime, sim2sim и аппаратные испытания не квалифицированы.
   Zero-action PD stand также не прошёл проверку; это отдельный открытый gate.
 
-[Результаты и активные jobs](docs/TRAINING_PROGRESS.md) ·
+[Журнал результатов](docs/TRAINING_PROGRESS.md) ·
 [План обучения и критерии](docs/PROJECT_PLAN.md) ·
-[Протокол текущей квалификации](docs/FLAT_QUALIFICATION.md) ·
-[Датированный статус](docs/results/2026-09-17-flat-qualification-status.json)
+[Итог квалификации](docs/FLAT_QUALIFICATION.md) ·
+[Датированный результат](docs/results/2026-09-18-flat-qualification-final.json)
 
 ## Документы и запуск
 
@@ -51,7 +58,7 @@ python -m unittest discover -s skills/github-dns-bypass/tests -v
 
 Для всех CPU policy tests нужны torch и PyYAML из локального runtime;
 без них соответствующие tests пропускаются. Последний локальный результат:
-1290 vendor-файлов, 30 project tests и 23 DNS tests passed.
+1290 vendor-файлов, 37 project tests и 23 DNS tests passed.
 Лёгкий CI без torch/PyYAML пропускает 8 policy, 3 yaw-sampling и 3 physical-readback tests;
 проверки конфигурации физических вариаций выполняются и без Isaac Sim.
 

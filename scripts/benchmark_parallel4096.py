@@ -5,7 +5,7 @@ outputs, >=15% device VRAM headroom and >=10% aggregate wall throughput gain.
 """
 from __future__ import annotations
 from pathlib import Path
-import json,os,shutil,subprocess,sys,time,traceback
+import json,os,shutil,subprocess,sys,time,traceback,math
 sys.dont_write_bytecode=True
 from b2w_runtime import PROJECT_ROOT as ROOT,configure_process
 from benchmark_b2w import (write_json,sha256,utc_now,device_sample,host_sample,
@@ -16,10 +16,20 @@ OUT=ROOT/'logs/benchmarks/dual4096_20260917'
 PYTHON=str(ROOT/'.venv/Scripts/python.exe')
 
 
-def run_pair(specs,phase,report,save,timeout,benchmark=False):
+def vram_headroom_breached(measured, minimum):
+    if not math.isfinite(minimum) or not 0 < minimum < 1:
+        raise ValueError('VRAM headroom limit must be finite and between0and1')
+    if not math.isfinite(measured) or not 0 <= measured <= 1:
+        raise ValueError('Invalid measured VRAM headroom')
+    return measured < minimum
+
+
+def run_pair(specs,phase,report,save,timeout,benchmark=False,minimum_gpu_headroom=.15):
+    vram_headroom_breached(1., minimum_gpu_headroom)
     import psutil
     directory=OUT/phase;directory.mkdir(exist_ok=False)
-    data={'status':'starting','started_utc':utc_now(),'runs':[],'resources':{}}
+    data={'status':'starting','started_utc':utc_now(),'runs':[],'resources':{},
+          'minimum_gpu_headroom_fraction':minimum_gpu_headroom if benchmark else None}
     report[phase]=data;save()
     processes=[];streams=[];started=time.monotonic()
     samples=[]
@@ -51,8 +61,8 @@ def run_pair(specs,phase,report,save,timeout,benchmark=False):
                 try:row.update(device_sample('nvidia-smi'))
                 except Exception as exc:row['telemetry_error']=str(exc)
                 samples.append(row);resource.write(json.dumps(row)+'\n');resource.flush()
-                if benchmark and row.get('gpu_headroom_fraction',1)<.15:
-                    raise RuntimeError('Benchmark crossed 15% VRAM headroom limit')
+                if benchmark and vram_headroom_breached(row.get('gpu_headroom_fraction',1), minimum_gpu_headroom):
+                    raise RuntimeError(f'Benchmark crossed {minimum_gpu_headroom:.0%} VRAM headroom limit')
                 if time.monotonic()-started>timeout:raise TimeoutError(f'{phase} exceeded {timeout}s')
                 time.sleep(5)
         data['status']='processes_completed'

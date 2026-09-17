@@ -32,8 +32,7 @@ $env:OMNI_KIT_ACCEPT_EULA = 'YES'
 конфигурации квалификации нужны также --pure_yaw_fraction .25
 --yaw_tracking_weight 1.5 и новый уникальный run_name. Seed/run_name выбираются для
 конкретного плана. 2500 × 4096 × 24 = 245 760 000 transitions.
-До запуска учитывать уже активные jobs; не добавлять этот пример к двум текущим
-тренировкам. --max_iterations означает новые updates данного запуска, а не
+До запуска проверять активные jobs; не запускать пример поверх другой тренировки. --max_iterations означает новые updates данного запуска, а не
 желаемый глобальный checkpoint index. Resume сохраняет model/optimizer, но
 переинициализирует simulator/RNG и не является побитовым продолжением.
 
@@ -103,3 +102,21 @@ replay_reference_b2w.py принимает --physical_profile nominal (default) 
 bounded_v1. physical_evaluation.py включает ограниченные startup variations
 и проверяет реальные PhysX/actuator properties, диапазоны, finite и persistence.
 Координатор проверяет совпадение физических samples между политиками.
+
+## Восстановление после VRAM guard
+
+run_flat_recovery.py продолжает только сохранённый failed job17.09.2026:
+45/46 по899updates от model_1600, затем47 с нуля1601+resume899.
+Одна тренировка4096 за раз, прежний15%headroom, проверки checkpoints/TB/source
+и автоматические export/evaluations. Исходные отчёты не перезаписываются.
+[Пересмотренный протокол](../docs/FLAT_RECOVERY.md).
+
+run_flat_recovery_parallel.py принимает активный seed45 через Windows process
+handle без перезапуска, останавливает только проверенный прежний координатор
+и добавляет46. После обоих продолжает47 и оценки. Предыдущая очередь помечается
+handed_off; повторный seed46 запрещён. Source snapshots и exit codes сохраняются.
+
+run_flat_headroom5.py — завершённая очередь после второй остановки:45/46
+от1900/1700 на599/799updates, затем47 и оценки. Явно задаёт
+minimum_gpu_headroom=.05; default run_pair остаётся.15. Не объявляет
+разные restart histories контролируемой приёмкой. [Итог серии](../docs/results/2026-09-18-flat-qualification-final.json): все три новых seeds не прошли Flat gate.

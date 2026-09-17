@@ -1,5 +1,20 @@
 # Инфраструктура и синхронизация
 
+**Итог на 18 сентября 2026, 00:11 МСК:** локальная Flat-серия seeds 45/46/47
+завершена; все три checkpoints/exports проверены, но nominal/bounded оценки
+дали 91/91, 94/90 и 92/89 из 100 при пороге ≥99. Reference — 100/100 на обоих
+профилях. Flat gate открыт; Rough не запускался. Последняя параллельная часть
+работала с запрошенным порогом свободной VRAM 5%, фактический минимум 20,40%,
+telemetry errors 0. Полный job:
+`logs/qualification_runs/flat_headroom5_20260917/job.json`;
+[итоговый снимок](results/2026-09-18-flat-qualification-final.json) и
+[протокол восстановления](FLAT_RECOVERY.md). Ниже — исторические записи.
+
+**Обновление 21:32 МСК:** по запросу пользователя seeds45/46 снова работают
+параллельно. Seed45 передан без перезапуска; текущий статус —
+`logs/qualification_runs/flat_three_seed_parallel_recovery_20260917/job.json`.
+Бюджеты, restartboundary1600 и порог VRAM15% прежние; [подробности](FLAT_RECOVERY.md).
+
 ## Разделение данных
 
 | Назначение | Путь |
@@ -30,11 +45,17 @@
 [Итоги](YAW_REWARD_ABLATION.md): обе группы прошли single-policy thresholds;
 по заранее заданному правилу для повторения выбран weight 1,5 / mix 0,25.
 
-Текущий координатор — scripts/run_flat_qualification.py, состояние —
+После остановки 21:00:59 МСК по запасу VRAM 14,42% использовался координатор —
+scripts/run_flat_recovery.py; статус:
+logs/qualification_runs/flat_three_seed_recovery_20260917/job.json.
+Запуск 21:26:10 МСК, по одному4096-env trainer; [протокол](FLAT_RECOVERY.md).
+
+Исходный координатор — scripts/run_flat_qualification.py, его историческое состояние —
 logs/qualification_runs/flat_three_seed_20260917/job.json; оценки —
 logs/qualification/flat_three_seed_20260917/. Очередь запущена в 19:31:30 МСК, supervisor PID 11652. [Протокол](FLAT_QUALIFICATION.md):
 reference regression, bounded physical diagnostics и fresh smoke уже пройдены.
-С 19:36:09 МСК обучаются fresh seeds 45/46 параллельно; 47 стартует после них.
+С 19:36:09 до 21:00:59 МСК обучались fresh seeds 45/46 параллельно; seed 47
+к моменту остановки не запускался.
 Каждый: 4096 сред × 2500 updates. [Датированный статус](results/2026-09-17-flat-qualification-status.json).
 Координаторы используют конкретные локальные артефакты и не являются командами
 после чистого clone. Source snapshots, protocol и hashes сохраняются при запуске.
