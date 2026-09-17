@@ -2,54 +2,58 @@
 
 ## Разделение данных
 
-GitHub: `https://github.com/TTSPROD/B2W_RL_IsaacLab`.
-Локальный проект: `C:\Users\ra.suragin\Documents\ChatGPT\B2W_RL_IsaacLab`.
-Сервер: `user@10.126.161.7`, новый каталог `/home/user/projects/B2W_RL_IsaacLab`.
+| Назначение | Путь |
+|---|---|
+| GitHub | `https://github.com/TTSPROD/B2W_RL_IsaacLab` |
+| Текущий настольный ПК | `D:\Work\GitProjects\B2W_RL_IsaacLab` |
+| Исходный ноутбук | `C:\Users\ra.suragin\Documents\ChatGPT\B2W_RL_IsaacLab` |
+| Выделенная серверная копия | `user@10.126.161.7:/home/user/projects/B2W_RL_IsaacLab` |
+| Только transfer bundles | `/home/user/.cache/B2W_RL_IsaacLab-sync` |
 
-Предыдущие B2W проекты не открывать и не использовать. Глобальные драйверы/пакеты и чужие jobs не менять. Runtime, caches, logs и окружение нового проекта держать в его каталоге; исключение — transfer bundles в выделенном `/home/user/.cache/B2W_RL_IsaacLab-sync`. Logs/checkpoints не коммитить. В Git держать маленькие эталонные политики; новые большие checkpoints — в отдельном artifact store с manifest/hash, выбор хранилища позже.
+Предыдущие B2W проекты не открывать и не использовать. Глобальные драйверы и пакеты, чужие jobs не менять. Runtime, caches, logs и окружение нового проекта держать в его каталоге; серверные записи разрешены только в двух выделенных путях выше.
 
-## Обследование 2026-09-17
+В Git сохраняются код, документация, runtime lock и vendor manifest с hashes/licenses. Logs, новые training checkpoints, `.venv`, `.runtime` и caches не коммитятся. Маленькие исходные эталонные политики остаются частью зафиксированных vendor snapshots. Новым checkpoints нужен отдельный artifact store с manifest/SHA256; постоянное хранилище ещё не выбрано. Синхронизация Git сама по себе не переносит локальный runtime или результаты обучения.
 
-Локально: Windows11 Enterprise build26200, Intel i9-14900HX (24 cores/32 threads), 31.6GiB RAM, RTX4080 Laptop12282MiB, driver616.92; свободно примерно361GiB на C и1.50TiB на D. Найден `D:\isaacsim51`: Python3.11.9, IsaacSim5.1.0.0, torch2.7.0+cu128, rsl-rl-lib3.1.2. Установленные IsaacLab distributions ссылаются editable-path на другой локальный проект, поэтому это не считается чистым/воспроизводимым runtime нового проекта. Его код и конфиги в новый проект не переносились. Создать отдельное окружение на этапе0.
+## Текущая вычислительная площадка — 17 сентября 2026
 
-Визуальная проверка IsaacSim/sim2sim выполняется локально. По запросу пользователя локальный headless training — первый кандидат; сервер пока синхронизированная копия и возможный ресурс после квалификации. См. [решение по вычислениям](COMPUTE_DECISION.md).
+Настольный ПК: Windows 11 Pro build 26200, AMD Ryzen 9 5900X (12 ядер / 24 потока), 31.9 GiB RAM, RTX 4070 Ti 12 282 MiB, driver 616.92. До установки на D было свободно около 528 GiB; это исторический замер, не текущее свободное место. Отдельное окружение проекта: Python 3.11.13, Isaac Sim 5.1.0, Isaac Lab v2.3.2, RSL-RL 3.1.2. Версии и воспроизводимая установка — в [DESKTOP_SETUP.md](DESKTOP_SETUP.md).
 
-Пользователь также располагает отдельным настольным ПК с RTX4070Ti12GB, RAM32GB, Windows11 и Ubuntu26.04: его рассматриваем первым для длительных тренировок. Адрес доступа и CPU пока не предоставлены; к нему не подключались, настройки не меняли. Для Sim5.1 опубликованы Ubuntu22.04/24.04 и Windows11; Ubuntu26.04 не считать проверенной конфигурацией.
+**Локальный headless Flat квалифицирован для зафиксированного runtime.** Пройдены Compatibility Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048. Первый seed 42 завершил 5 000 PPO updates; sustained-профиль покрывает 9 624 s без telemetry errors. Затем benchmark двух одновременных запусков по 4096 сред дал 63 907.87 transitions/s суммарно, +67.32% к короткому наблюдению 2×2048, peak VRAM 9 583 MiB и минимальный запас 21.98%.
 
-Ubuntu22.04.5, kernel5.15.0-191, Xeon6527P (96 logical CPUs), RAM503GiB, disk free~1.6TiB. Четыре Hopper GPU, PCI10de:233f, NVML `NVIDIA Graphics Device`, 95830MiB каждая, driver580.178.04. На момент чтения VRAM занята примерно26/80/26/80GiB. Git, Python3.10, rsync и Docker29.4.1 доступны. Существующие Python environments и проекты намеренно не исследовались.
+На снимке **17 сентября, 13:56 МСК**, seeds 43/44 продолжаются параллельно на одной GPU по 4096 сред; длительная проверка этого режима ещё не завершена. Текущий координатор — `scripts/benchmark_parallel4096.py`, статус — `logs/benchmarks/dual4096_20260917/job.json`. Скрипты координаторов привязаны к выполненным запускам и их локальным артефактам; они не являются командами запуска после чистого clone. [Сценарии скриптов](../scripts/README.md).
 
-Isaac runtime не установлен этим bootstrap и не проверен. Python3.10 системы не подходит для выбранного Sim5.1 runtime (нужен отдельный Python3.11). Поддержка RT/Vulkan не подтверждена; см. gate0 плана.
+Технический результат не равен качеству политики: seed 42 получил 96/100 эпизодов без падения или неразрешённого контакта при пороге ≥99%, reference — 100/100. У seeds 43/44 были resume и смена PPO batch; их нельзя представлять как строго одинаковую с seed 42 серию из трёх seeds. [Протоколы и ограничения](TRAINING_PROGRESS.md), [решение по вычислениям](COMPUTE_DECISION.md).
 
-## GitHub без системного DNS
+Rough, Stairs, GUI/rendering и sim2sim этим результатом не квалифицированы. Ubuntu 26.04 на настольном ПК не использовалась и не входит в опубликованную матрицу Isaac Sim 5.1. Старые проекты и сервер в локальных тренировках не используются.
 
-На настольном ПК с RTX4070Ti GitHub доступен штатно (подтверждено пользователем). Там использовать обычные `git clone/fetch/push`; устанавливать или вызывать DNS-bypass skill не требуется. Ниже описан только обход для машин, где DNS действительно не работает (исходный ноутбук/сервер).
+## Историческое обследование других машин
 
-См. [skill](../skills/github-dns-bypass/SKILL.md). Скрипт получает текущие A-record через HTTPS DoH и передаёт IP только текущей Git/curl операции, сохраняя hostname/TLS verification. Не меняет hosts и global Git config. Git Credential Manager на Windows содержит аккаунт TTSPROD; секреты не входят в репозиторий. SSH key для сервера не означает наличие GitHub SSH-доступа.
+**Исходный ноутбук:** Windows 11 Enterprise build 26200, Intel i9-14900HX (24 ядра / 32 потока), 31.6 GiB RAM, RTX 4080 Laptop 12 282 MiB, driver 616.92. При обследовании свободно примерно 361 GiB на C и 1.50 TiB на D. Найденный `D:\isaacsim51` содержал Python 3.11.9, Isaac Sim 5.1.0.0, torch 2.7.0+cu128 и RSL-RL 3.1.2. Установленный Isaac Lab ссылался через editable-path на другой проект; этот runtime и код не использовались в новом B2W. Для работы на ноутбуке нужен отдельный runtime нового проекта.
 
-Windows Git в этой среде поддерживает `schannel`; не задавать `openssl`, не проверив поддержку. Из ограниченной sandbox schannel и SSH credential access могут не работать: это ограничение процесса, не признак неисправного DNS workaround.
+**Сервер:** Ubuntu 22.04.5, kernel 5.15.0-191, Xeon 6527P (96 logical CPUs), RAM 503 GiB, около 1.6 TiB свободного диска при обследовании. Четыре Hopper GPU, PCI `10de:233f`, NVML `NVIDIA Graphics Device`, по 95 830 MiB, driver 580.178.04. В момент обследования VRAM была занята примерно на 26/80/26/80 GiB; текущая занятость не проверялась. Git, Python 3.10, rsync и Docker 29.4.1 доступны. Существующие environments и проекты не исследовались.
 
-## Начальная синхронизация
+Серверный Isaac runtime этим проектом не установлен и не квалифицирован. Для Sim 5.1 требуется отдельный Python 3.11. RT/Vulkan capabilities не подтверждены; объём VRAM и поддержка CUDA не заменяют gate 0 плана. Перед любым серверным training нужен отдельный hardware/runtime smoke и проверка доступного ресурса. Автоматически занимать четыре GPU запрещено.
 
-Для первого переноса используется `git bundle`: содержимое зафиксированного commit передаётся SCP в новый каталог и клонируется локально на сервере. Это не требует GitHub credentials на сервере. После синхронизации проверить equality локального/GitHub/server SHA и `vendor_materials.py verify`.
+## GitHub и DNS
 
-Повторяемая синхронизация: `scripts/sync_server.ps1`. Скрипт не удаляет файлы; существующую копию принимает только с тем же origin, чистым tracked состоянием и допускает только fast-forward. Незакоммиченные изменения и расхождение истории требуют отдельного решения, а не reset/force.
+На настольном ПК GitHub доступен штатно: использовать обычные `git clone/fetch/push`. DNS workaround применять только после подтверждённой ошибки DNS, согласно [github-dns-bypass](../skills/github-dns-bypass/SKILL.md).
 
-Git2.34.1 на сервере игнорирует `http.curloptResolve`. Для него использовать `python3 skills/github-dns-bypass/scripts/github_dns.py --git-transport proxy git fetch origin`: временный loopback CONNECT tunnel соединяется с полученным через DoH адресом, а Git сохраняет TLS-проверку имени GitHub. На новом Windows Git работает стандартный transport `resolve`. Для push с сервера потребуются отдельно настроенные credentials; локальный push через существующий GCM — предпочтительный путь. Не копировать секреты на сервер.
+Навык получает текущие A-record через HTTPS DoH и передаёт IP только текущей Git/curl операции, сохраняя hostname и TLS verification. Он не меняет hosts или global Git config. Существующая авторизация сохраняется; секреты не входят в репозиторий и не копируются на сервер. SSH key сервера не означает GitHub SSH-доступ.
 
-## Размещение навыка
+Windows Git в проверенной среде поддерживает `schannel`; не задавать `openssl`, не проверив поддержку. Ограниченная sandbox может блокировать schannel/SSH credential access: это ограничение процесса, а не подтверждение неисправного DNS.
 
-Версионируемая исходная копия: `skills/github-dns-bypass/`. Локальная установка: `C:\Users\ra.suragin\.codex\skills\github-dns-bypass`. На сервере копия доступна внутри проекта и указана в AGENTS.md; глобальное окружение сервера не изменяется.
+Git 2.34.1 на обследованном сервере игнорирует `http.curloptResolve`. Только при неработающем DNS там используется `python3 skills/github-dns-bypass/scripts/github_dns.py --git-transport proxy git fetch origin`: временный loopback CONNECT tunnel соединяется с DoH-адресом, TLS проверяет имя GitHub. На новом Windows Git используется transport `resolve`. Предпочтительный push — локально через существующие credentials.
 
-## План запуска baseline после квалификации
+## Синхронизация Git и серверной копии
 
-Следующие команды — будущая установка/проверка, сейчас не выполнялись. Нужен отдельный совместимый Isaac Lab runtime и проверка полной зависимости robot_lab; vendor содержит зафиксированный B2W reference, а не установленную среду. На Windows native robot_lab требует отдельной проверки зависимостей, включая pinocchio/cusrl из upstream setup.py; не выполнять слепой install поверх существующего окружения.
+Перед синхронизацией проверить рабочее дерево и ветки. Изменения фиксировать обычным commit, получить актуальный `origin/main` и интегрировать без reset/force push. Расхождение истории и незакоммиченные чужие изменения сохранять и разрешать явно. После push проверить совпадение локального `main` и `origin/main`; состояние серверной копии указывать отдельно только после фактической проверки.
 
-```bash
-# Inside the dedicated Python 3.11 + Isaac Sim/Lab v2.3.2 environment:
-python -m pip install -e vendor/robot_lab/source/robot_lab
-python vendor/robot_lab/scripts/tools/list_envs.py
-python vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py \
-  --task RobotLab-Isaac-Velocity-Flat-Unitree-B2W-v0 --headless --num_envs 1024
-```
+Для серверного переноса используется `git bundle`: содержимое commit передаётся SCP в выделенный cache и импортируется в новый проект. Скрипт `scripts/sync_server.ps1` не удаляет файлы; существующую копию принимает только с тем же origin, чистым tracked состоянием и допускает только fast-forward. Наличие локального/GitHub commit не означает автоматического обновления сервера. При выполнении серверной синхронизации проверить равенство локального/GitHub/server SHA и `vendor_materials.py verify`.
 
-Перед запуском убедиться, что необходимые asset references разрешаются; другие роботы намеренно исключены из vendor. Никакой training job не должен автоматически занимать все четыре GPU.
+Версионируемая копия DNS-навыка находится в `skills/github-dns-bypass/`; на сервере используется эта копия внутри проекта. Историческая локальная установка на исходном ноутбуке: `C:\Users\ra.suragin\.codex\skills\github-dns-bypass`. Глобальное серверное окружение не меняется.
+
+## Локальные launchers и артефакты
+
+Используются отдельная `.venv` и `scripts/smoke_b2w.py`, `scripts/train_b2w.py`, `scripts/benchmark_b2w.py`. B2W-only bootstrap подключает нужные upstream задачи без широкого discovery и зависимостей других роботов. В `vendor/` ничего не устанавливать и не адаптировать.
+
+Manifest сохраняет конфигурации, runtime, source hashes и checkpoints; launch sources записываются в `params/source`, `progress.json` — после каждого update. Для результата требуются также фактический exit code и проверка артефактов; наличие checkpoint не доказывает успешное завершение или качество управления. Текущие координаторы и логи перечислены в [TRAINING_PROGRESS.md](TRAINING_PROGRESS.md).

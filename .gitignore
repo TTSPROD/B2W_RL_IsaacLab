@@ -11,3 +11,4 @@ checkpoints/
 *.partial
 .env
 !.env.example
+.runtime/

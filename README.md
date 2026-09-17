@@ -1,27 +1,56 @@
 # B2W RL · Isaac Lab
 
-Проект воспроизводимого обучения Unitree B2W: **flat → rough → stairs → промышленные лестницы**, затем перенос через Unitree SDK2.
+Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
+затем поэтапный перенос через Unitree SDK2.
 
-Сейчас подготовлены план, зафиксированные upstream-материалы, исходные политики и инструменты работы без GitHub DNS. Новая политика ещё не обучалась. Первый кандидат для headless обучения — отдельный настольный ПК с RTX 4070 Ti 12 GB и Windows 11; ноутбук RTX 4080 Laptop используется для разработки/проверок. Сервер сохраняется как синхронизированная копия и кандидат для масштабирования после проверки совместимости.
+## Состояние на 17 сентября 2026
 
-- [План и критерии готовности](docs/PROJECT_PLAN.md)
-- [Исследование обучения](docs/research/training_sources.md)
-- [Исследование деплоя](docs/research/deployment_sources.md)
-- [Сервер и синхронизация](docs/INFRASTRUCTURE.md)
-- [Локальное обучение или сервер](docs/COMPUTE_DECISION.md)
-- [Вендорские материалы и лицензии](vendor/README.md)
-- [Навык push/merge без DNS](skills/github-dns-bypass/SKILL.md)
+- Локальный Windows 11 / RTX 4070 Ti прошёл GPU smoke, PPO/resume и throughput
+  qualification. Выбран режим двух процессов по 4096 сред: **63,9 тыс. переходов/с
+  суммарно, +67,3%** относительно измеренного 2×2048.
+- Seed 42 завершён и экспортирован, но **Flat gate не пройден: 96/100** эпизодов
+  без падений/неразрешённого контакта против 100/100 у скачанного reference.
+  Слабое место — повороты на месте.
+- Seeds 43/44 продолжаются на 4096 с автоматическим экспортом и оценкой после
+  завершения. Batch/resume истории различаются: текущая серия не заменяет
+  контролируемую приёмку трёх training seeds.
+- Rough/stairs, server runtime, sim2sim и аппаратные испытания не квалифицированы.
+  Zero-action PD stand также не прошёл проверку; это отдельный открытый gate.
 
-## Быстрая проверка без Isaac Sim
+[Результаты и активные jobs](docs/TRAINING_PROGRESS.md) ·
+[План обучения и критерии](docs/PROJECT_PLAN.md) ·
+[Компактный снимок доказательств](docs/results/2026-09-17.json)
 
-```bash
+## Документы и запуск
+
+- [Настройка настольного ПК](docs/DESKTOP_SETUP.md)
+- [Каталог scripts и границы воспроизведения](scripts/README.md)
+- [Выбор вычислительного режима](docs/COMPUTE_DECISION.md)
+- [Контракт политики](docs/POLICY_CONTRACT.md)
+- [Сопоставление физических моделей](docs/ROBOT_MODEL_COMPARISON.md)
+- [Инфраструктура и синхронизация](docs/INFRASTRUCTURE.md)
+- [Исходное исследование обучения](docs/research/training_sources.md)
+- [Исходное исследование деплоя](docs/research/deployment_sources.md)
+- [Vendor, upstream commits и лицензии](vendor/README.md)
+- [Обход DNS GitHub при реальном DNS-сбое](skills/github-dns-bypass/SKILL.md)
+
+## Проверка без Isaac Sim
+
+~~~bash
 python scripts/vendor_materials.py verify
 python -m unittest discover -s tests -v
 python -m unittest discover -s skills/github-dns-bypass/tests -v
-```
+~~~
 
-Базовый кандидат стека: robot_lab **v2.3.2**, Isaac Lab **v2.3.2**, Isaac Sim **5.1.0**, Python **3.11**, RSL-RL **3.1.2**. Это совместимый по upstream матрице baseline, а не утверждение о проверке на нашем сервере. Версии PyTorch/CUDA и контейнер фиксируются после проверки GPU.
+Для всех CPU policy tests нужны torch и PyYAML из локального runtime;
+без них соответствующие tests пропускаются. Последний локальный результат:
+1290 vendor-файлов, 15 project tests и 23 DNS tests passed.
 
-Оригинальная политика `rl_sar/policy/b2w/robot_lab/policy.pt` хранится вместе с конфигурацией. Загрузка весов не даёт совместимости с произвольным observation/action layout.
+Закреплённый стек: robot_lab v2.3.2, Isaac Lab v2.3.2, Isaac Sim 5.1.0,
+Python 3.11.13, RSL-RL 3.1.2, PyTorch 2.7.0+cu128, TensorDict 0.11.0.
+Runtime lock находится в requirements/. Логи, новые checkpoints, .venv и caches
+исключены из Git; свежий clone не содержит артефактов текущего обучения.
 
-Исходный код проекта и third-party материалы имеют разные правовые основания: лицензии upstream сохранены рядом с материалами. Общая лицензия для нового кода владельцем пока не выбрана.
+Исходный код проекта и third-party материалы имеют разные правовые основания:
+лицензии upstream сохранены рядом с материалами. Общая лицензия для нового кода
+владельцем пока не выбрана. Симуляторные тесты не разрешают управление реальным роботом.
