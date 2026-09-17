@@ -22,6 +22,8 @@ Isaac runtime не установлен этим bootstrap и не провер�
 
 ## GitHub без системного DNS
 
+На настольном ПК с RTX4070Ti GitHub доступен штатно (подтверждено пользователем). Там использовать обычные `git clone/fetch/push`; устанавливать или вызывать DNS-bypass skill не требуется. Ниже описан только обход для машин, где DNS действительно не работает (исходный ноутбук/сервер).
+
 См. [skill](../skills/github-dns-bypass/SKILL.md). Скрипт получает текущие A-record через HTTPS DoH и передаёт IP только текущей Git/curl операции, сохраняя hostname/TLS verification. Не меняет hosts и global Git config. Git Credential Manager на Windows содержит аккаунт TTSPROD; секреты не входят в репозиторий. SSH key для сервера не означает наличие GitHub SSH-доступа.
 
 Windows Git в этой среде поддерживает `schannel`; не задавать `openssl`, не проверив поддержку. Из ограниченной sandbox schannel и SSH credential access могут не работать: это ограничение процесса, не признак неисправного DNS workaround.
