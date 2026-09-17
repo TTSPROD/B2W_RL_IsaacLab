@@ -7,7 +7,7 @@ description: Fetch, push, merge and download GitHub resources when local or remo
 
 Use `scripts/github_dns.py` with Python 3.9+ and Git. Resolve addresses afresh for each invocation. The helper contacts Cloudflare (`1.1.1.1`) or Google (`8.8.8.8`) over HTTPS with the original provider hostname for certificate validation and SNI. It then connects to GitHub addresses while retaining GitHub's TLS identity. These are DNS bootstrap addresses, not pinned GitHub addresses.
 
-The helper changes no persistent configuration. Git receives `http.curloptResolve` and direct-connection settings only for that invocation; Python downloads also connect directly. It needs outbound HTTPS to the DNS providers and GitHub. Do not edit `hosts`, disable certificate verification, switch GitHub URLs to IP addresses, or paste secrets into commands/logs. Existing Git credential helpers supply authentication; never inspect or print their stored tokens.
+The helper changes no persistent configuration. By default Git receives `http.curloptResolve` and direct-connection settings only for that invocation; Python downloads also connect directly. It needs outbound HTTPS to the DNS providers and GitHub. Do not edit `hosts`, disable certificate verification, switch GitHub URLs to IP addresses, or paste secrets into commands/logs. Existing Git credential helpers supply authentication; never inspect or print their stored tokens.
 
 Run commands from the intended checkout. The examples use the repository copy of the skill; for an installed copy, substitute its absolute script path. Use `python3` instead of `python` on Linux if needed.
 
@@ -15,6 +15,7 @@ Run commands from the intended checkout. The examples use the repository copy of
 python skills/github-dns-bypass/scripts/github_dns.py resolve github.com
 python skills/github-dns-bypass/scripts/github_dns.py git ls-remote https://github.com/OWNER/REPOSITORY.git HEAD
 python skills/github-dns-bypass/scripts/github_dns.py git fetch origin
+python skills/github-dns-bypass/scripts/github_dns.py --git-transport proxy git fetch origin
 python skills/github-dns-bypass/scripts/github_dns.py download https://raw.githubusercontent.com/OWNER/REPOSITORY/COMMIT/FILE OUTPUT
 python skills/github-dns-bypass/scripts/github_dns.py download https://codeload.github.com/OWNER/REPOSITORY/zip/COMMIT OUTPUT.zip --sha256 EXPECTED_SHA256
 ```
@@ -24,6 +25,10 @@ Use `git -- -C PATH ...` when forwarding Git options through the CLI parser. Dow
 Git URLs must use `https://github.com/...`, not SSH. Inspect both `git remote -v` and `git remote get-url --push origin` before mutations, including configured push URLs and URL rewrites. Preserve existing remote settings unless changing them is part of the task. An explicit HTTPS URL can be passed to `fetch`, `ls-remote`, or `push` instead. Repository-specific proxy/TLS settings can override generic Git settings: inspect and diagnose these if the helper still fails; do not disable verification.
 
 The Git TLS backend stays unchanged by default. If a Windows Git build supports OpenSSL and Schannel fails, use `--ssl-backend openssl` **before** `git`. Some Windows builds support only Schannel; an “unsupported SSL backend” error is not a DNS error. A sandbox may lack credential access even when the same verified HTTPS command works with authorized execution outside that sandbox.
+
+Older Git builds, including the tested server's Git 2.34.1, may silently ignore `http.curloptResolve`. If `resolve` works but Git still reports “Could not resolve host”, use `--git-transport proxy` **before** `git`. This explicit fallback starts an ephemeral HTTP CONNECT listener on `127.0.0.1`, forwards only `github.com:443` to freshly resolved public IPs, and passes its URL to Git via per-command `http.proxy`. It removes `NO_PROXY`/`no_proxy` only from the child environment. Git still performs the TLS handshake, SNI and certificate verification end to end; the tunnel forwards encrypted bytes unchanged and does not install a CA. The listener, active sockets and worker threads close when Git exits. It cannot proxy LFS storage, API hosts or arbitrary destinations. Use the separate download command for supported public asset URLs.
+
+Select this transport before a mutation. The helper never automatically reruns a failed push with another transport; reconcile remote state first as described below.
 
 ## Push and merge
 

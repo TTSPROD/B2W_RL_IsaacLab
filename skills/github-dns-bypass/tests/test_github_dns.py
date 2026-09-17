@@ -6,6 +6,7 @@ import io
 import json
 import os
 from pathlib import Path
+import socket
 import ssl
 import tempfile
 import unittest
@@ -222,6 +223,124 @@ class GitTests(unittest.TestCase):
             with mock.patch.object(dns.subprocess, "run", return_value=mock.Mock(returncode=128)) as run:
                 self.assertEqual(dns.run_git(["push", "origin", "HEAD:refs/heads/topic"]), 128)
         run.assert_called_once()
+
+    def test_proxy_transport_is_temporary_and_does_not_retry_git(self):
+        with mock.patch.object(dns, "resolve", return_value=["1.1.1.1"]):
+            with mock.patch.object(dns.subprocess, "run", return_value=mock.Mock(returncode=128)) as run:
+                with mock.patch.dict(os.environ, {"NO_PROXY": "*", "no_proxy": "github.com"}):
+                    result = dns.run_git(["push", "origin", "HEAD:refs/heads/topic"], git_transport="proxy")
+        self.assertEqual(result, 128)
+        run.assert_called_once()
+        command = run.call_args.args[0]
+        proxy_setting = next(value for value in command if value.startswith("http.proxy="))
+        self.assertTrue(proxy_setting.startswith("http.proxy=http://127.0.0.1:"))
+        self.assertIn("http.sslVerify=true", command)
+        self.assertFalse(any("curloptResolve" in value for value in command))
+        self.assertFalse(any(key.lower() == "no_proxy" for key in run.call_args.kwargs["env"]))
+        port = int(proxy_setting.rsplit(":", 1)[1])
+        with socket.socket() as probe:
+            probe.settimeout(1)
+            self.assertNotEqual(probe.connect_ex(("127.0.0.1", port)), 0)
+
+
+class ProxyTests(unittest.TestCase):
+    def client(self, proxy):
+        sock = socket.socket()
+        self.addCleanup(sock.close)
+        sock.settimeout(2)
+        sock.connect(proxy.server.server_address)
+        return sock
+
+    @staticmethod
+    def read_exact(sock, size):
+        result = b""
+        while len(result) < size:
+            data = sock.recv(size - len(result))
+            if not data:
+                raise AssertionError("Socket closed before all bytes arrived")
+            result += data
+        return result
+
+    @staticmethod
+    def read_header(sock):
+        result = b""
+        while not result.endswith(b"\r\n\r\n"):
+            data = sock.recv(1)
+            if not data:
+                raise AssertionError("Socket closed before CONNECT response")
+            result += data
+        return result
+
+    def test_rejects_other_destinations_and_methods_without_network(self):
+        requests = (
+            (b"CONNECT evil.example:443 HTTP/1.1", b"403"),
+            (b"CONNECT github.com:80 HTTP/1.1", b"403"),
+            (b"CONNECT github.com.evil.example:443 HTTP/1.1", b"403"),
+            (b"GET https://github.com/ HTTP/1.1", b"405"),
+            (b"CONNECT github.com:443", b"400"),
+        )
+        with dns.GitHubConnectProxy(["1.1.1.1"]) as proxy:
+            with mock.patch.object(dns.socket, "create_connection") as connect:
+                for request, code in requests:
+                    with self.subTest(request=request):
+                        client = self.client(proxy)
+                        client.sendall(request + b"\r\n\r\n")
+                        self.assertIn(code, self.read_header(client).split(b"\r\n", 1)[0])
+                        client.close()
+            connect.assert_not_called()
+
+    def test_tls_records_are_forwarded_byte_for_byte_in_both_directions(self):
+        upstream, remote = socket.socketpair()
+        self.addCleanup(upstream.close)
+        self.addCleanup(remote.close)
+        remote.settimeout(2)
+        initial_record = b"\x16\x03\x01\x00\x09opaqueTLS"
+        reply_record = b"\x16\x03\x03\x00\x0aopaqueReply"
+        with dns.GitHubConnectProxy(["1.1.1.1"]) as proxy:
+            with mock.patch.object(dns.socket, "create_connection", return_value=upstream) as connect:
+                client = self.client(proxy)
+                client.sendall(b"CONNECT github.com:443 HTTP/1.1\r\nHost: github.com:443\r\n\r\n" + initial_record)
+                self.assertIn(b"200 Connection Established", self.read_header(client))
+                self.assertEqual(self.read_exact(remote, len(initial_record)), initial_record)
+                remote.sendall(reply_record)
+                self.assertEqual(self.read_exact(client, len(reply_record)), reply_record)
+                connect.assert_called_once_with(("1.1.1.1", 443), 20)
+                client.shutdown(socket.SHUT_WR)
+                self.assertEqual(remote.recv(1), b"")
+                remote.sendall(b"final")
+                remote.shutdown(socket.SHUT_WR)
+                self.assertEqual(self.read_exact(client, 5), b"final")
+                self.assertEqual(client.recv(1), b"")
+
+    def test_context_exit_closes_listener_tunnels_and_threads(self):
+        upstream, remote = socket.socketpair()
+        self.addCleanup(upstream.close)
+        self.addCleanup(remote.close)
+        remote.settimeout(2)
+        with mock.patch.object(dns.socket, "create_connection", return_value=upstream):
+            with dns.GitHubConnectProxy(["1.1.1.1"]) as proxy:
+                client = self.client(proxy)
+                client.sendall(b"CONNECT github.com:443 HTTP/1.1\r\n\r\n")
+                self.assertIn(b"200", self.read_header(client))
+                self.assertTrue(proxy.thread.is_alive())
+                self.assertEqual(len(proxy.server.active_sockets), 2)
+        self.assertFalse(proxy.thread.is_alive())
+        self.assertEqual(proxy.server.active_sockets, set())
+        self.assertEqual(list(proxy.server._threads), [])
+        self.assertEqual(remote.recv(1), b"")
+        self.assertEqual(client.recv(1), b"")
+
+    def test_unreachable_upstream_returns_502(self):
+        with dns.GitHubConnectProxy(["1.1.1.1", "8.8.8.8"]) as proxy:
+            with mock.patch.object(dns.socket, "create_connection", side_effect=OSError("unreachable")) as connect:
+                client = self.client(proxy)
+                client.sendall(b"CONNECT github.com:443 HTTP/1.1\r\n\r\n")
+                self.assertIn(b"502", self.read_header(client))
+                self.assertEqual(connect.call_count, 2)
+
+    def test_rejects_non_public_upstream_address(self):
+        with self.assertRaises(dns.BypassError):
+            dns.GitHubConnectProxy(["127.0.0.1"])
 
 
 if __name__ == "__main__":

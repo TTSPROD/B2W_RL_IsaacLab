@@ -34,7 +34,7 @@ Windows Git в этой среде поддерживает `schannel`; не з�
 
 Повторяемая синхронизация: `scripts/sync_server.ps1`. Скрипт не удаляет файлы; существующую копию принимает только с тем же origin, чистым tracked состоянием и допускает только fast-forward. Незакоммиченные изменения и расхождение истории требуют отдельного решения, а не reset/force.
 
-На сервере возможен read-only `python3 skills/github-dns-bypass/scripts/github_dns.py git fetch origin`; для push потребуются отдельно настроенные credentials. Локальный push через существующий GCM — предпочтительный путь. Не копировать секреты на сервер.
+Git2.34.1 на сервере игнорирует `http.curloptResolve`. Для него использовать `python3 skills/github-dns-bypass/scripts/github_dns.py --git-transport proxy git fetch origin`: временный loopback CONNECT tunnel соединяется с полученным через DoH адресом, а Git сохраняет TLS-проверку имени GitHub. На новом Windows Git работает стандартный transport `resolve`. Для push с сервера потребуются отдельно настроенные credentials; локальный push через существующий GCM — предпочтительный путь. Не копировать секреты на сервер.
 
 ## Размещение навыка
 

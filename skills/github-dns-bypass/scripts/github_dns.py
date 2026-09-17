@@ -12,11 +12,15 @@ import json
 import os
 from pathlib import Path
 import re
+import select
 import socket
+import socketserver
 import ssl
 import subprocess
 import sys
 import tempfile
+import threading
+import time
 from urllib.parse import urlencode, urljoin, urlsplit
 
 
@@ -201,29 +205,187 @@ def download(url, output, timeout=20, expected_sha256=None):
     return {"output": str(target), "bytes": count, "sha256": digest.hexdigest(), "url": final_url}
 
 
-def build_git_command(args, addresses, ssl_backend=None):
-    if not args:
-        raise BypassError("Pass Git arguments after 'git', for example: git ls-remote origin")
+def public_ipv4_addresses(addresses):
     ips = [str(ipaddress.IPv4Address(address)) for address in addresses]
     if not ips or any(not ipaddress.ip_address(ip).is_global for ip in ips):
         raise BypassError("Git requires at least one public IPv4 address")
+    return ips
+
+
+class _ConnectHandler(socketserver.BaseRequestHandler):
+    """A byte tunnel: no TLS termination, certificates, or HTTP request logging."""
+
+    def reject(self, code, reason):
+        self.request.sendall(("HTTP/1.1 %d %s\r\nConnection: close\r\n"
+                              "Content-Length: 0\r\n\r\n" % (code, reason)).encode("ascii"))
+
+    def handle(self):
+        client = self.request
+        upstream = None
+        self.server.track(client)
+        try:
+            client.settimeout(self.server.connect_timeout)
+            header = b""
+            while b"\r\n\r\n" not in header:
+                chunk = client.recv(4096)
+                if not chunk:
+                    return
+                header += chunk
+                if len(header) > 16384:
+                    self.reject(431, "Request Header Fields Too Large")
+                    return
+            request_head, initial_payload = header.split(b"\r\n\r\n", 1)
+            fields = request_head.split(b"\r\n", 1)[0].split()
+            if len(fields) != 3 or fields[2] not in (b"HTTP/1.0", b"HTTP/1.1"):
+                self.reject(400, "Bad Request")
+                return
+            if fields[0] != b"CONNECT":
+                self.reject(405, "Method Not Allowed")
+                return
+            if fields[1].lower() != b"github.com:443":
+                self.reject(403, "Forbidden")
+                return
+            for ip in self.server.addresses:
+                if self.server.stopping.is_set():
+                    return
+                try:
+                    upstream = socket.create_connection((ip, 443), self.server.connect_timeout)
+                    self.server.track(upstream)
+                    break
+                except OSError:
+                    continue
+            if upstream is None:
+                self.reject(502, "Bad Gateway")
+                return
+            client.sendall(b"HTTP/1.1 200 Connection Established\r\n\r\n")
+            if initial_payload:
+                upstream.sendall(initial_payload)
+            readers = [client, upstream]
+            last_activity = time.monotonic()
+            while readers and not self.server.stopping.is_set():
+                remaining = self.server.idle_timeout - (time.monotonic() - last_activity)
+                if remaining <= 0:
+                    return
+                ready, _, _ = select.select(readers, [], [], min(1.0, remaining))
+                for source in ready:
+                    peer = upstream if source is client else client
+                    data = source.recv(65536)
+                    if not data:
+                        readers.remove(source)
+                        try:
+                            peer.shutdown(socket.SHUT_WR)
+                        except OSError:
+                            pass
+                    else:
+                        # Git/libcurl supplies and verifies TLS. Ciphertext is
+                        # copied unchanged; this process has no TLS session keys.
+                        peer.sendall(data)
+                    last_activity = time.monotonic()
+        except (OSError, ValueError):
+            # A closed Git process, idle peer or TLS rejection simply closes its
+            # tunnel. Never print proxy headers, credentials, or packet contents.
+            pass
+        finally:
+            self.server.untrack(client)
+            if upstream is not None:
+                self.server.untrack(upstream)
+                upstream.close()
+
+
+class _ConnectServer(socketserver.ThreadingTCPServer):
+    daemon_threads = False
+    block_on_close = True
+
+    def __init__(self, addresses, timeout, idle_timeout):
+        self.addresses = addresses
+        self.connect_timeout = timeout
+        self.idle_timeout = idle_timeout
+        self.stopping = threading.Event()
+        self.active_sockets = set()
+        self.active_lock = threading.Lock()
+        super().__init__(("127.0.0.1", 0), _ConnectHandler)
+
+    def track(self, sock):
+        with self.active_lock:
+            if self.stopping.is_set():
+                sock.close()
+            else:
+                self.active_sockets.add(sock)
+
+    def untrack(self, sock):
+        with self.active_lock:
+            self.active_sockets.discard(sock)
+
+    def close_tunnels(self):
+        with self.active_lock:
+            sockets = list(self.active_sockets)
+        for sock in sockets:
+            try:
+                sock.shutdown(socket.SHUT_RDWR)
+            except OSError:
+                pass
+            sock.close()
+
+
+class GitHubConnectProxy:
+    """Ephemeral localhost CONNECT proxy for Git without curloptResolve support."""
+
+    def __init__(self, addresses, timeout=20, idle_timeout=300):
+        self.addresses = public_ipv4_addresses(addresses)
+        self.timeout = timeout
+        self.idle_timeout = idle_timeout
+        self.server = None
+        self.thread = None
+
+    def __enter__(self):
+        self.server = _ConnectServer(self.addresses, self.timeout, self.idle_timeout)
+        self.thread = threading.Thread(target=self.server.serve_forever,
+                                       kwargs={"poll_interval": 0.05}, name="github-connect-proxy")
+        self.thread.start()
+        self.url = "http://127.0.0.1:%d" % self.server.server_address[1]
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.server.stopping.set()
+        self.server.shutdown()
+        self.server.close_tunnels()
+        # ThreadingTCPServer joins all request threads after their sockets close.
+        self.server.server_close()
+        self.thread.join()
+
+
+def build_git_command(args, addresses, ssl_backend=None, proxy_url=None):
+    if not args:
+        raise BypassError("Pass Git arguments after 'git', for example: git ls-remote origin")
+    ips = public_ipv4_addresses(addresses)
     # Empty curloptResolve resets inherited static mappings. A comma-separated
     # IP list lets libcurl try addresses without re-executing a mutating command.
-    command = ["git", "-c", "http.sslVerify=true", "-c", "http.proxy=",
-               "-c", "http.curloptResolve=", "-c",
-               "http.curloptResolve=github.com:443:" + ",".join(ips)]
+    command = ["git", "-c", "http.sslVerify=true", "-c", "http.proxy=" + (proxy_url or "")]
+    if proxy_url is None:
+        command += ["-c", "http.curloptResolve=", "-c",
+                    "http.curloptResolve=github.com:443:" + ",".join(ips)]
     if ssl_backend:
         command += ["-c", "http.sslBackend=" + ssl_backend]
     return command + list(args)
 
 
-def run_git(args, timeout=20, ssl_backend=None):
+def run_git(args, timeout=20, ssl_backend=None, git_transport="resolve"):
     # Do not automatically retry subprocesses: a failed transport can still mean
     # that an upstream push completed. The skill describes reconciliation first.
     args = args[1:] if args and args[0] == "--" else args
-    command = build_git_command(args, resolve("github.com", timeout=timeout), ssl_backend)
+    addresses = resolve("github.com", timeout=timeout)
     environment = os.environ.copy()
     environment.pop("GIT_SSL_NO_VERIFY", None)
+    if git_transport == "proxy":
+        for key in list(environment):
+            if key.lower() == "no_proxy":
+                environment.pop(key)
+        with GitHubConnectProxy(addresses, timeout=timeout) as proxy:
+            command = build_git_command(args, addresses, ssl_backend, proxy_url=proxy.url)
+            return subprocess.run(command, env=environment, check=False).returncode
+    if git_transport != "resolve":
+        raise BypassError("Unknown Git transport: " + str(git_transport))
+    command = build_git_command(args, addresses, ssl_backend)
     return subprocess.run(command, env=environment, check=False).returncode
 
 
@@ -232,6 +394,8 @@ def main(argv=None):
     parser.add_argument("--timeout", type=float, default=20, help="Per-socket timeout in seconds (default: 20)")
     parser.add_argument("--ssl-backend", choices=("openssl", "schannel"),
                         help="Optional Git TLS backend, only if supported by this Git build")
+    parser.add_argument("--git-transport", choices=("resolve", "proxy"), default="resolve",
+                        help="Use proxy for older Git builds that ignore http.curloptResolve")
     subparsers = parser.add_subparsers(dest="mode", required=True)
     resolver = subparsers.add_parser("resolve", help="Print verified DoH IPv4 answers")
     resolver.add_argument("host")
@@ -251,7 +415,8 @@ def main(argv=None):
             print(json.dumps(download(args.url, args.output, timeout=args.timeout,
                                       expected_sha256=args.sha256), ensure_ascii=False))
         elif args.mode == "git":
-            return run_git(args.args, timeout=args.timeout, ssl_backend=args.ssl_backend)
+            return run_git(args.args, timeout=args.timeout, ssl_backend=args.ssl_backend,
+                           git_transport=args.git_transport)
         return 0
     except (BypassError, OSError, ValueError, http.client.HTTPException) as exc:
         print("github-dns-bypass: " + str(exc), file=sys.stderr)
