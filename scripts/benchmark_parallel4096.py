@@ -25,13 +25,17 @@ def run_pair(specs,phase,report,save,timeout,benchmark=False):
     samples=[]
     try:
         for spec in specs:
-            checkpoint=ROOT/spec['checkpoint']
-            if sha256(checkpoint)!=spec['checkpoint_sha256']:raise RuntimeError('Resume checkpoint changed')
-            label=f'dual4096_{phase}_seed{spec["seed"]}_20260917'
+            checkpoint=ROOT/spec['checkpoint'] if spec.get('checkpoint') else None
+            if checkpoint is not None and sha256(checkpoint)!=spec['checkpoint_sha256']:
+                raise RuntimeError('Resume checkpoint changed')
+            label=spec.get('run_name') or f'dual4096_{phase}_seed{spec["seed"]}_20260917'
+            arm=spec.get('arm', f'seed{spec["seed"]}')
             command=[PYTHON,'-B','-u','scripts/train_b2w.py','--headless','--device','cuda:0',
                      '--num_envs',str(spec['num_envs']),'--seed',str(spec['seed']),
-                     '--max_iterations',str(spec['iterations']),'--resume',str(checkpoint),'--run_name',label]
-            stream=(directory/f'seed{spec["seed"]}_console.log').open('w',encoding='utf-8');streams.append(stream)
+                     '--max_iterations',str(spec['iterations']),'--run_name',label]
+            if checkpoint is not None:command += ['--resume',str(checkpoint)]
+            command += spec.get('extra_args', [])
+            stream=(directory/f'{arm}_console.log').open('w',encoding='utf-8');streams.append(stream)
             child=subprocess.Popen(command,cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
             owned=psutil.Process(child.pid);processes.append((child,owned))
             data['runs'].append({**spec,'label':label,'command':command,'pid':child.pid,'status':'running','external_exit_code':None})
@@ -43,7 +47,7 @@ def run_pair(specs,phase,report,save,timeout,benchmark=False):
                 if benchmark and any(code not in (None,0) for code in codes):
                     raise RuntimeError('One benchmark process failed; stopping its paired benchmark')
                 row={'utc':utc_now(),'elapsed_seconds':time.monotonic()-started,
-                     'processes':{str(spec['seed']):host_sample(proc,psutil) for spec,(_,proc) in zip(specs,processes)}}
+                     'processes':{str(spec.get('arm',spec['seed'])):host_sample(proc,psutil) for spec,(_,proc) in zip(specs,processes)}}
                 try:row.update(device_sample('nvidia-smi'))
                 except Exception as exc:row['telemetry_error']=str(exc)
                 samples.append(row);resource.write(json.dumps(row)+'\n');resource.flush()
@@ -78,7 +82,12 @@ def run_pair(specs,phase,report,save,timeout,benchmark=False):
                 raise RuntimeError('Training workload mismatch')
             if manifest['starting_runner_iteration']!=run['starting_runner_iteration'] or manifest['ending_runner_iteration']!=run['starting_runner_iteration']+run['iterations']-1:
                 raise RuntimeError('Resume iteration mismatch')
-            if manifest['resume']['sha256']!=run['checkpoint_sha256']:raise RuntimeError('Manifest resume hash mismatch')
+            if run.get('checkpoint'):
+                if manifest['resume']['sha256']!=run['checkpoint_sha256']:raise RuntimeError('Manifest resume hash mismatch')
+            elif manifest['resume'] is not None:
+                raise RuntimeError('Fresh qualification run unexpectedly resumed a checkpoint')
+            for key,value in run.get('expected_manifest', {}).items():
+                if manifest.get(key)!=value:raise RuntimeError(f'Training manifest mismatch: {key}')
             run['checkpoint_validation']=validate_checkpoints(manifest_path.parent,manifest)
             run['timings']=validate_tensorboard(manifest_path.parent,manifest,run['iterations'],10)
             final=manifest_path.parent/f'model_{manifest["ending_runner_iteration"]}.pt'

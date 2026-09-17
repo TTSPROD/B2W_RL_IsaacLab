@@ -1,11 +1,18 @@
 # Контракт B2W 57 → 16: CPU и live Isaac
 
 Проверено 17 сентября 2026. CPU export parity и live observation/action parity
-в Isaac выполнены, включая финальную обученную политику seed 42. Контракт
+в Isaac выполнены для reference, seeds 42/43/44 и завершённых yaw-абляций. Контракт
 проверен частично: saturation и аппаратный mapping остаются открытыми,
 `stage_1_complete=false`. Исходники `vendor/` не изменены.
 
 ## Выполненные проверки
+
+Дополнение после исходной проверки seed 42: оба финальных reward checkpoints
+прошли экспорт на 295 входах с max error 0. Их bounded_v1 replay и reference
+прошли 100/100 без отказа и tracking gate; live observation/action checks
+выполнялись на каждом шаге. [Итог reward](results/2026-09-17-yaw-reward-final.json),
+[физические diagnostics](results/2026-09-17-flat-qualification-preflight.json).
+Ниже численные данные seed 42 сохранены как отдельный исторический результат.
 
 - `scripts/check_policy_contract.py`: 39 fixtures — neutral/reset, каждый
   сустав по позиции и скорости, вращение колёс, ±yaw command, ±roll, stop
@@ -137,8 +144,9 @@ Inf, quaternion и age >20 ms относятся к локальному offline
 Следующие gates:
 
 1. Для каждого нового финального checkpoint повторить CPU export и live parity,
-   затем Flat100. Завершить сравнение training seeds 42/43/44 и отдельную
-   оценку физической randomization; seed 42 quality gate остаётся непройденным.
+   затем Flat100. Для seeds 42/43/44 и yaw-абляций это выполнено;
+   следующая приёмка — fresh seeds 45/46/47 на nominal и bounded_v1.
+   Seed 42 quality gate остаётся непройденным.
 2. Разрешить clipping/history различия в deployment adapter вне `vendor/`
    и проверить saturation, reset и invalid-input fixtures на его реальном коде.
 3. На основе выполненного [сравнения моделей](ROBOT_MODEL_COMPARISON.md)

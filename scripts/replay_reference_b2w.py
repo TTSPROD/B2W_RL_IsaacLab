@@ -14,6 +14,7 @@ from check_stand_b2w import _nominal_cfg
 from smoke_b2w import _check_tensors, _gpu_evidence, _write_report
 
 from flat_evaluation import SCENARIOS, make_cases, summarize
+from physical_evaluation import PROFILES, configure_physical_evaluation, physical_evidence
 
 
 def main():
@@ -22,7 +23,9 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--num_envs', type=int, default=16)
     parser.add_argument('--suite', choices=('diagnostic', 'flat100'), default='diagnostic')
+    parser.add_argument('--reward_diagnostics', action='store_true', help='Record weighted reward components; diagnostic only')
     parser.add_argument('--seed', type=int, default=2026)
+    parser.add_argument('--physical_profile', choices=PROFILES, default='nominal')
     parser.add_argument('--duration_s', type=float, default=20.)
     parser.add_argument('--settle_s', type=float, default=2.)
     parser.add_argument('--policy', type=Path, default=PROJECT_ROOT / 'vendor/rl_sar/policy/b2w/robot_lab/policy.pt')
@@ -48,7 +51,7 @@ def main():
         'policy_path': str(policy_path.relative_to(PROJECT_ROOT)),
         'policy_sha256': hashlib.sha256(policy_path.read_bytes()).hexdigest(),
         'source_sha256': {name: hashlib.sha256((PROJECT_ROOT / name).read_bytes()).hexdigest()
-                          for name in ('scripts/replay_reference_b2w.py', 'scripts/check_stand_b2w.py', 'scripts/b2w_runtime.py', 'scripts/flat_evaluation.py')},
+                          for name in ('scripts/replay_reference_b2w.py', 'scripts/check_stand_b2w.py', 'scripts/b2w_runtime.py', 'scripts/flat_evaluation.py', 'scripts/physical_evaluation.py')},
         'new_policy_trained_by_this_script': False, 'release_acceptance_test': False,
         'suite': args.suite, 'evaluation_seed': args.seed, 'num_envs': args.num_envs, 'duration_s': args.duration_s, 'settle_s': args.settle_s,
         'reset_count_during_replay': 0,
@@ -71,6 +74,7 @@ def main():
         torch.set_num_threads(4)
         cfg = make_flat_env_cfg(num_envs=args.num_envs, device=args.device, seed=args.seed, headless=True)
         report['disabled_events'] = _nominal_cfg(cfg)
+        report['physical_profile'] = configure_physical_evaluation(cfg, args.physical_profile)
         cfg.scene.env_spacing = 25.
         cfg.episode_length_s = args.duration_s + args.settle_s + 1.
         dt, decimation = cfg.sim.dt, cfg.decimation
@@ -98,6 +102,7 @@ def main():
         base.scene.reset()
         base.scene.write_data_to_sim()
         base.scene.update(dt=0.)
+        report['physical_evidence'] = physical_evidence(base)
         policy_ids, policy_names = robot.find_joints(cfg.joint_names, preserve_order=True)
         if policy_names != cfg.joint_names:
             raise RuntimeError('Policy joint order mismatch')
@@ -119,7 +124,10 @@ def main():
         previous_action = torch.zeros((n, 16), device=device)
         failed = torch.zeros(n, dtype=torch.bool, device=device)
         failure_events = []
+        reward_sum = torch.zeros((n, len(base.reward_manager.active_terms)), device=device)
         error_sum = torch.zeros((n, 3), device=device)
+        actual_sum = torch.zeros_like(error_sum)
+        command_sum = torch.zeros_like(error_sum)
         valid_sum = torch.zeros_like(error_sum)
         valid_count = torch.zeros(n, device=device)
         stop_sum = torch.zeros_like(error_sum)
@@ -195,10 +203,22 @@ def main():
                         failure_events.append({'env': idx, 'scenario': SCENARIOS[idx % 8][0],
                             'time_s': step * policy_dt + (substep + 1) * dt,
                             'reasons': [reason for reason, flags in failures.items() if bool(flags[idx])],
-                            'tilt_deg': float(tilt[idx]), 'height_m': float(height[idx]), 'contact_n': float(contact[idx])})
+                            'tilt_deg': float(tilt[idx]), 'height_m': float(height[idx]), 'contact_n': float(contact[idx]),
+                            'contact_bodies': {sensor.body_names[b]: float(torch.linalg.vector_norm(sensor.data.net_forces_w[idx, b]))
+                                               for b in body_ids if float(torch.linalg.vector_norm(sensor.data.net_forces_w[idx, b])) > 1.},
+                            'command_vx_vy_yaw': command[idx].tolist(),
+                            'actual_vx_vy_yaw': torch.cat((robot.data.root_lin_vel_b[idx, :2], robot.data.root_ang_vel_b[idx, 2:3])).tolist(),
+                            'joint_positions_policy_order': robot.data.joint_pos[idx, policy_ids].tolist(),
+                            'applied_torques_policy_order': robot.data.applied_torque[idx, policy_ids].tolist()})
                     failed |= new_failure
+                if args.reward_diagnostics:
+                    base.reward_manager.compute(dt=policy_dt)
+                    if step >= settle_steps:
+                        reward_sum += base.reward_manager._step_reward
                 if step >= settle_steps:
                     actual = torch.cat((robot.data.root_lin_vel_b[:, :2], robot.data.root_ang_vel_b[:, 2:3]), 1)
+                    actual_sum += actual
+                    command_sum += command
                     squared = (actual - command).square()
                     error_sum += squared
                     valid_sum += squared * (~failed)[:, None]
@@ -212,12 +232,20 @@ def main():
                                   first_failures=failure_events, live_observation_max_error=obs_max_error)
                     _write_report(report_path, report)
                     print(f'[REPLAY] {step + 1}/{settle_steps + measure_steps}; failures={int(failed.sum())}', flush=True)
+        after = physical_evidence(base)
+        if after['properties_sha256'] != report['physical_evidence']['properties_sha256']:
+            raise RuntimeError('Physical properties changed during replay')
+        report['physical_evidence']['persistent_through_replay'] = True
+        report['physical_evidence']['end_properties_sha256'] = after['properties_sha256']
         rms = (error_sum / measure_steps).sqrt()
         results = []
         for i in range(n):
             tracking = bool((rms[i, :2] <= .2).all() and rms[i, 2] <= .25)
             results.append({'env': i, 'scenario': SCENARIOS[i % 8][0], 'no_fall_or_body_contact': not bool(failed[i]),
                 'tracking_threshold_met': tracking, 'rms_vx_vy_yaw': rms[i].tolist(),
+                'mean_actual_vx_vy_yaw': (actual_sum[i] / measure_steps).tolist(),
+                'mean_command_vx_vy_yaw': (command_sum[i] / measure_steps).tolist(),
+                'signed_tracking_bias_vx_vy_yaw': ((actual_sum[i] - command_sum[i]) / measure_steps).tolist(),
                 'valid_tracking_samples': int(valid_count[i]),
                 'rms_before_failure': (valid_sum[i] / valid_count[i]).sqrt().tolist() if valid_count[i] else None,
                 'stop_last_quarter_rms': (stop_sum[i] / stop_count[i]).sqrt().tolist() if stop_count[i] else None,
@@ -232,10 +260,19 @@ def main():
                       observation_saturation_mismatch_steps=saturation_observation_steps,
                       raw_action_saturation_steps=action_saturation_steps,
                       training_randomization_evaluated=False,
+                      bounded_physical_randomization_evaluated=args.physical_profile == 'bounded_v1',
                       interpretation='Completed diagnostic with individual outcomes; 100 episodes/3 seeds, randomization and sim2sim remain untested')
+        if args.reward_diagnostics:
+            report['weighted_reward_rate_by_scenario'] = {
+                scenario[0]: dict(zip(base.reward_manager.active_terms,
+                                     (reward_sum[scenario_ids == index].mean(0) / measure_steps).tolist()))
+                for index, scenario in enumerate(SCENARIOS)}
+            report['reward_diagnostics_note'] = 'Weighted terms per second, sampled after each policy step, measurement window including failed episodes; nominal replay without reset.'
         report['summary'] = summarize(results)
         if args.suite == 'flat100':
-            report['interpretation'] = '100 or more held-out command/initial-pose episodes for one policy. Three independently trained seeds, physical randomization and sim2sim remain separate gates.'
+            report['scope'] = 'heldout_commands_initial_pose_and_' + args.physical_profile
+            report['interpretation'] = 'One policy, 100 or more command/initial-pose episodes; physical coverage is exactly the recorded profile. Three training seeds, wider randomization and sim2sim are separate gates.'
+            report['summary']['confidence_note'] = 'Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability.'
         exit_code = 0
     except BaseException as exc:
         report.update(status='failed', error=f'{type(exc).__name__}: {exc}', traceback=traceback.format_exc())

@@ -30,12 +30,14 @@ Rough, Stairs, GUI/rendering, Ubuntu 26.04 и сервер требуют отд
 Zero-action PD stand ранее не прошёл; active reference replay прошёл.
 Качество политики не выводится из длительности обучения или успешного benchmark.
 
-Снимок **17 сентября, 13:56 МСК**: seeds 43/44 работают параллельно по 4096 сред,
-каждый выполнил 86 новых updates после benchmark. Длительный 2×4096 ещё не завершён.
-Статус: `logs/benchmarks/dual4096_20260917/job.json`; прогресс — `progress.json`
-соответствующих runs. После окончания координатор выполняет export/parity
-и evaluations 100×20 s. Из-за смены batch и resume текущие seeds 42/43/44 не являются
-строго одинаковой серией для release acceptance.
+Seeds 43/44 и две последующие yaw-абляции завершены с технической валидацией.
+Оба reward-варианта прошли single-policy nominal gates; физические diagnostics
+готовых control/yaw2x/reference также дали 100/100 без отказа и tracking pass.
+Идёт [контролируемая квалификация](FLAT_QUALIFICATION.md): fresh seeds 45/46
+параллельно, затем 47; по 4096 сред × 2500 updates.
+Статус: `logs/qualification_runs/flat_three_seed_20260917/job.json`;
+[снимок прогресса](results/2026-09-17-flat-qualification-status.json). Исторические seeds 42/43/44 имели разную
+batch/resume историю и не заменяют приёмку новой серии.
 
 [Подробные результаты](TRAINING_PROGRESS.md), [выбор режима и ограничения измерений](COMPUTE_DECISION.md),
 [сохранённый снимок результатов](results/2026-09-17.json).
@@ -75,6 +77,9 @@ Zero-action PD stand ранее не прошёл; active reference replay пр�
 Зависимости `pinocchio` и `cusrl[all]` относятся к другим сценариям robot_lab и
 не включены в этот профиль RSL-RL. PPO, модель робота, rewards, observations,
 randomization и physics dt берутся из зафиксированного B2W upstream.
+Описанные в протоколах pure-yaw commands и yaw weight override реализованы
+отдельно в scripts; текущая серия использует mix 0,25 и штатный вес yaw 1,5.
+Ограниченный physical evaluation profile не меняет training randomization.
 
 Установка пакетов сама по себе не подтверждает работу симулятора. 12 GiB VRAM
 меньше опубликованного общего требования Lab в 16 GB; пригодность конкретного
@@ -131,8 +136,8 @@ normalizers, optimizer и adaptive learning rate. Simulator, randomization/curri
 Смена `num_envs` меняет PPO batch, поэтому бюджет считать в transitions, а не
 сравнивать номера checkpoints напрямую.
 
-Для текущих seeds после benchmark запланировано 2 089 новых updates у seed 43
-и 2 189 у seed 44. С сохранённым опытом каждый получит 245 710 848 transitions;
+В завершённой исходной серии после benchmark выполнено 2 089 новых updates
+у seed 43 и 2 189 у seed 44. С сохранённым опытом каждый получил 245 710 848 transitions;
 отклонение от цели — 49 152, ровно 0.02%, из-за округления до целого update.
 Benchmark updates засчитаны в бюджет.
 

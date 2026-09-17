@@ -1,0 +1,125 @@
+# Контролируемая квалификация Flat — 17 сентября 2026
+
+Снимок **17 сентября 2026, 20:10:40 МСК**: seeds 45/46 обучаются с нуля,
+соответственно **691/2500** и **692/2500** updates; seed 47 ожидает своей очереди.
+4096 сред, rollout 24, yaw weight 1,5, pure_yaw_fraction=0,25; resume отсутствует.
+ETA пары около **21:40 МСК**, всей очереди ориентировочно **22:45–23:15 МСК**.
+Скорость одиночного seed 47 ещё не измерена; это прогноз на момент снимка.
+[Машиночитаемый статус](results/2026-09-17-flat-qualification-status.json) фиксирует counters, скорость и ресурсы;
+текущий job.json может быть новее. Приёмка трёх seeds ещё не завершена.
+
+Очередь запущена **17 сентября 2026 в 19:31:30 МСК**, supervisor PID 11652.
+Nominal regression пройден: максимальное отличие всех episode RMS равно 0.
+Физические diagnostics control/yaw2x/reference завершены: у каждого 100/100 без
+отказа и single-policy gate pass; одинаковые physical digests, свойства сохранены.
+[Снимок предварительных проверок](results/2026-09-17-flat-qualification-preflight.json).
+Smoke без resume пройден: 12 updates, exit 0, checkpoint/TensorBoard finite.
+**Seeds 45/46 обучаются с 19:36:09 МСК**; подтверждены по 4096 сред, rollout 24,
+resume=None, start iteration 0, mix 0,25 и yaw weight 1,5. Seed 47 в очереди.
+Приёмка трёх новых training seeds ещё не завершена.
+Фактические этапы, время и ошибки сохраняются в
+logs/qualification_runs/flat_three_seed_20260917/job.json.
+
+[Завершённая абляция yaw-награды](YAW_REWARD_ABLATION.md) дала single-policy pass
+у обеих групп. Заранее заданное правило выбирает неизменённый yaw weight **1,5**
+для проверки на независимых seeds. Pure yaw mix **0,25** сохраняется.
+Результаты yaw2x также публикуются; отбор по лучшему увиденному hold-out запрещён.
+
+## Зафиксированное обучение
+
+| Параметр | Значение |
+|---|---|
+| Training seeds | 45, 46, 47 |
+| Инициализация | С нуля: новые model и optimizer; без resume |
+| Среды / rollout | 4096 / 24 |
+| Бюджет каждого seed | 2500 PPO updates = 245 760 000 transitions |
+| Общий бюджет | 737 280 000 transitions |
+| Порядок | 45 и 46 параллельно; после пары 47 отдельно |
+| Commands | 0,25 нестоячих resamples заменены pure yaw, модуль U[0,2; 0,5], оба знака; standing 2%, resampling 10 s |
+| Yaw reward | track_ang_vel_z_exp.weight=1,5 |
+| Остальное | Зафиксированные upstream rewards, physics, PPO, training reset/randomization |
+| Финальная политика | model_2499.pt каждого seed; без выбора лучшего промежуточного checkpoint |
+
+Command generator использует training seed + 73001; одинаковая схема
+случайности и reset, разные seeds. Физические траектории не обязаны быть побитово
+воспроизводимыми. Manifest, env/agent YAML, source snapshots и hashes обязательны.
+
+Mix с начала обучения отличается от прежней последовательности upstream → mix →
+продолжение. Это проверка воспроизводимости выбранной конфигурации с равным бюджетом,
+а не точная реплика успешной траектории. Если 2500 updates недостаточно для
+сходимости, результат фиксируется как непрохождение; автоматического продления нет.
+
+## Порядок проверок
+
+1. До нового обучения: повторить nominal reference на прежнем eval 20260919,
+   проверить отсутствие регрессии evaluator против сохранённого результата.
+2. Последовательно проверить existing control, yaw2x и reference на **bounded_v1,
+   eval seed 20260920**, по 100 эпизодов. Это диагностика, не final hold-out
+   и не основание менять выбранный reward после наблюдения.
+3. Выполнить отдельный smoke без resume: 16 сред, 12 updates (не входит в приёмку).
+   Затем обучить seeds 45/46, затем 47. Проверить внешний exit, конечность
+   checkpoint/optimizer/TensorBoard, SHA256 и export parity каждого финала.
+4. Проверить каждый новый seed и reference на **nominal / 20261001** и
+   **bounded_v1 / 20261002**, по 100 эпизодов на профиль. Профили, seeds,
+   бюджет и правила выбора заморожены до запуска.
+5. Опубликовать отдельные исходы каждого training seed и профиля, p95/max,
+   контакты, RMS каждого семейства и доверительные интервалы. Промежуточные
+   оценки и повторный подбор по этим наборам не предусмотрены.
+
+Все оценки последовательные. Reference скачан из закреплённого rl_sar и
+не обучен в этом проекте. Смена evaluation seed проверяет commands/начальную позу;
+физические свойства проверяет только явно заданный bounded_v1.
+
+## Ограниченный физический профиль bounded_v1
+
+Профиль применяется один раз через штатные Isaac Lab startup events после
+отключения training events в _nominal_cfg. В течение replay нет reset/interval
+randomization; номинальная ветка остаётся без физических вариаций.
+
+| Свойство | Диапазон и способ |
+|---|---|
+| Материал всех collision shapes робота | static friction U[0,6; 1,0], dynamic U[0,5; 0,8], затем dynamic=min(dynamic, static); restitution=0 |
+| Материалы | 64 случайных buckets, назначение каждому shape |
+| Масса всех тел | Множитель U[0,9; 1,1] отдельно на тело и среду |
+| Инерция | Масштабируется согласованно с массой штатным recompute_inertia |
+| Kp / Kd всех суставов | Независимые множители U[0,9; 1,1]; нулевые gains остаются нулевыми |
+| Исключено | COM, observation noise, latency, pushes |
+
+Это начальные инженерные диапазоны для симуляционной проверки устойчивости,
+а не измеренные допуски реального робота и не полный sim2real gate.
+Training randomization новым evaluation-профилем не меняется.
+
+После явного сброса начальной позы и после replay проверяется readback свойств
+PhysX и actuator tensors. Сохраняются диапазоны, per-env свидетельства и digest
+всех свойств; digest должен сохраняться в течение replay и совпадать между
+политиками на одном evaluation seed/profile. Неприменённые изменения, неверные
+диапазоны, потеря свойств при reset или несовпадение digest — технический провал,
+который нельзя выдавать за nominal pass.
+
+## Критерий и границы результата
+
+Каждый из трёх training seeds должен отдельно пройти **оба** профиля:
+≥99/100 эпизодов без падения или неколёсного контакта, pooled RMS каждого семейства
+vx/vy ≤0,20 m/s, yaw ≤0,25 rad/s. Средние по seeds или профилям не заменяют
+индивидуального pass. Episode tracking pass count публикуется отдельно;
+основной tracking gate — pooled RMS каждого семейства.
+
+Evaluator: 2 s active-policy settling + 20 s измерений; sticky failures с t=0
+на каждом physics step, без auto-reset. Stand tilt ≤15°, moving tilt ≤45°,
+root height 0,4–0,8 m, non-wheel contact ≤1 N. Все p95/max публикуются.
+Reference проходит те же cases и thresholds; его поведение помогает отличать
+регрессию среды от недостатка обученной политики.
+
+Нет автоматического расширения бюджета, выбора новой конфигурации, перехода
+к Rough, sim2sim или запуска робота. Открытые отдельные gates: шум/задержки,
+pushes, физическая эквивалентность MuJoCo, clipping при насыщении, hardware signs
+и стендовые проверки.
+
+## Артефакты
+
+- Координатор: scripts/run_flat_qualification.py.
+- Протокол, job, source snapshots и training stages:
+  logs/qualification_runs/flat_three_seed_20260917/.
+- Export, diagnostic и qualification evaluations:
+  logs/qualification/flat_three_seed_20260917/.
+- Крупные logs/checkpoints/runtime остаются локальными, вне Git.

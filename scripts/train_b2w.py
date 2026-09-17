@@ -53,12 +53,18 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--run_name", default="", help="Optional letters/digits/dashes/underscores log suffix.")
     parser.add_argument("--resume", type=Path, help="Explicit checkpoint inside this project; restores optimizer too.")
+    parser.add_argument("--pure_yaw_fraction", type=float, default=None, help="Optional Flat command ablation: fraction of non-standing resamples; 0 is instrumented upstream control.")
+    parser.add_argument("--yaw_tracking_weight", type=float, default=None, help="Optional single-factor ablation of track_ang_vel_z_exp weight; default preserves upstream.")
     parser.add_argument("--torch_num_threads", type=int, default=4, help="CPU threads; does not change PPO parameters.")
     app_launcher_class.add_app_launcher_args(parser)
     args = parser.parse_args()
     for name in ("num_envs", "max_iterations", "torch_num_threads"):
         if getattr(args, name) < 1:
             parser.error(f"--{name} must be positive")
+    if args.pure_yaw_fraction is not None and not 0. <= args.pure_yaw_fraction <= 1.:
+        parser.error("--pure_yaw_fraction must be in [0, 1]")
+    if args.yaw_tracking_weight is not None and (not math.isfinite(args.yaw_tracking_weight) or args.yaw_tracking_weight <= 0.):
+        parser.error("--yaw_tracking_weight must be finite and positive")
     if not re.fullmatch(r"[A-Za-z0-9_-]{0,64}", args.run_name):
         parser.error("--run_name must contain at most 64 letters, digits, dashes or underscores")
     if not re.fullmatch(r"cuda(?::\d+)?", args.device):
@@ -103,6 +109,8 @@ def main() -> None:
             "load_optimizer": True,
             "note": "Model/optimizer restart; simulator, curriculum and RNG state are reinitialized.",
         },
+        "pure_yaw_fraction": args.pure_yaw_fraction,
+        "yaw_tracking_weight_override": args.yaw_tracking_weight,
         "policy_quality_evaluated": False,
         "checkpoints": [],
     }
@@ -137,6 +145,13 @@ def main() -> None:
         env_cfg = make_flat_env_cfg(
             num_envs=args.num_envs, device=args.device, seed=args.seed, headless=args.headless
         )
+        if args.pure_yaw_fraction is not None:
+            from b2w_yaw_commands import MeasuredYawVelocityCommand
+            env_cfg.commands.base_velocity.class_type = MeasuredYawVelocityCommand
+            env_cfg.commands.base_velocity.pure_yaw_fraction = args.pure_yaw_fraction
+        if args.yaw_tracking_weight is not None:
+            env_cfg.rewards.track_ang_vel_z_exp.weight = args.yaw_tracking_weight
+        manifest["effective_yaw_tracking_weight"] = env_cfg.rewards.track_ang_vel_z_exp.weight
         env_cfg.log_dir = str(log_dir)
         agent_cfg = load_cfg_from_registry(FLAT_TASK, "rsl_rl_cfg_entry_point")
         agent_cfg.seed = args.seed
@@ -171,14 +186,14 @@ def main() -> None:
             "isaaclab_commit": git_revision(PROJECT_ROOT / ".runtime" / "IsaacLab"),
             "source_sha256": {
                 name: sha256(PROJECT_ROOT / name)
-                for name in ("scripts/train_b2w.py", "scripts/b2w_runtime.py", "vendor/manifest.json")
+                for name in ("scripts/train_b2w.py", "scripts/b2w_runtime.py", "scripts/b2w_yaw_commands.py", "scripts/yaw_command_sampling.py", "vendor/manifest.json")
             },
         }
         write_json(log_dir / "runtime.json", runtime)
         # Preserve actual local launch code even before it is committed.
         source_dir = log_dir / "params" / "source"
         source_dir.mkdir()
-        for name in ("train_b2w.py", "b2w_runtime.py"):
+        for name in ("train_b2w.py", "b2w_runtime.py", "b2w_yaw_commands.py", "yaw_command_sampling.py"):
             shutil.copyfile(PROJECT_ROOT / "scripts" / name, source_dir / name)
 
         # Preserve a reference to the raw environment even if wrapper initialization fails.
@@ -219,6 +234,10 @@ def main() -> None:
                     "collection_seconds": locs["collection_time"],
                     "learning_seconds": locs["learn_time"],
                     "losses": losses,
+                    "command_distribution": (
+                        env.unwrapped.command_manager.get_term("base_velocity").distribution_snapshot()
+                        if args.pure_yaw_fraction is not None else None
+                    ),
                     "learning_rate": float(self.alg.learning_rate),
                     "policy_quality_evaluated": False,
                 })

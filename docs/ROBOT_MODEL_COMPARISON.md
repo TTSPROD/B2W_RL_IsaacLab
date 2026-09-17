@@ -77,8 +77,13 @@ Flat100 100/100 без падений/запрещённых контактов,
 84/100. **Качество seed 42 не прошло Flat gate.** Успешное удержание активной
 политикой не закрывает неуспех механического zero-action stand.
 
-В Flat100 менялись команды и начальные позы; физическая randomization,
-сопоставление трёх training seeds и MuJoCo replay остаются отдельными проверками.
+В исходном Flat100 seed 42 менялись команды и начальные позы. Позднее
+bounded_v1 диагностика готовых control/yaw2x/reference проверила friction,
+mass/inertia и actuator gains: каждый получил 100/100 без отказа и tracking pass.
+Readback и одинаковые properties digests подтвердили применённую физику.
+[Отчёт](results/2026-09-17-flat-qualification-preflight.json). Это инженерные
+диапазоны, не измеренные параметры робота; COM/noise/latency/pushes исключены.
+Приёмка трёх fresh training seeds и MuJoCo replay остаются открытыми.
 Источники: `logs/qualification/reference_replay_20260917.json`,
 `logs/qualification/flat_seed42_final/{nominal_replay,flat100,reference_flat100}.json`.
 Пути и хэши проверенного экспорта: [POLICY_CONTRACT.md](POLICY_CONTRACT.md).

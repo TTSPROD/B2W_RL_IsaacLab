@@ -20,7 +20,24 @@
 
 **Локальный headless Flat квалифицирован для зафиксированного runtime.** Пройдены Compatibility Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048. Первый seed 42 завершил 5 000 PPO updates; sustained-профиль покрывает 9 624 s без telemetry errors. Затем benchmark двух одновременных запусков по 4096 сред дал 63 907.87 transitions/s суммарно, +67.32% к короткому наблюдению 2×2048, peak VRAM 9 583 MiB и минимальный запас 21.98%.
 
-На снимке **17 сентября, 13:56 МСК**, seeds 43/44 продолжаются параллельно на одной GPU по 4096 сред; длительная проверка этого режима ещё не завершена. Текущий координатор — `scripts/benchmark_parallel4096.py`, статус — `logs/benchmarks/dual4096_20260917/job.json`. Скрипты координаторов привязаны к выполненным запускам и их локальным артефактам; они не являются командами запуска после чистого clone. [Сценарии скриптов](../scripts/README.md).
+Продолжения seeds 43/44 и последующая абляция команд завершены. У последней:
+289 resource samples, telemetry errors 0, peak VRAM 9518 MiB, минимальный запас
+22,50%, максимум 66 °C. Режим 2×4096 подтверждён несколькими завершёнными runs.
+
+Абляция yaw-награды завершена 17 сентября в 18:17:25 МСК: по 1000 updates,
+обе группы и все восемь evaluations exit 0. Пара работала 2951,7 s,
+582 samples без telemetry errors, peak GPU 9632 MiB, запас ≥21,58%, максимум 63 °C.
+[Итоги](YAW_REWARD_ABLATION.md): обе группы прошли single-policy thresholds;
+по заранее заданному правилу для повторения выбран weight 1,5 / mix 0,25.
+
+Текущий координатор — scripts/run_flat_qualification.py, состояние —
+logs/qualification_runs/flat_three_seed_20260917/job.json; оценки —
+logs/qualification/flat_three_seed_20260917/. Очередь запущена в 19:31:30 МСК, supervisor PID 11652. [Протокол](FLAT_QUALIFICATION.md):
+reference regression, bounded physical diagnostics и fresh smoke уже пройдены.
+С 19:36:09 МСК обучаются fresh seeds 45/46 параллельно; 47 стартует после них.
+Каждый: 4096 сред × 2500 updates. [Датированный статус](results/2026-09-17-flat-qualification-status.json).
+Координаторы используют конкретные локальные артефакты и не являются командами
+после чистого clone. Source snapshots, protocol и hashes сохраняются при запуске.
 
 Технический результат не равен качеству политики: seed 42 получил 96/100 эпизодов без падения или неразрешённого контакта при пороге ≥99%, reference — 100/100. У seeds 43/44 были resume и смена PPO batch; их нельзя представлять как строго одинаковую с seed 42 серию из трёх seeds. [Протоколы и ограничения](TRAINING_PROGRESS.md), [решение по вычислениям](COMPUTE_DECISION.md).
 

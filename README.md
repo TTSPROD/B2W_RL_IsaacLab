@@ -11,18 +11,25 @@
 - Seed 42 завершён и экспортирован, но **Flat gate не пройден: 96/100** эпизодов
   без падений/неразрешённого контакта против 100/100 у скачанного reference.
   Слабое место — повороты на месте.
-- Seeds 43/44 продолжаются на 4096 с автоматическим экспортом и оценкой после
-  завершения. Batch/resume истории различаются: текущая серия не заменяет
-  контролируемую приёмку трёх training seeds.
+- Seeds 43/44 завершены: оба 96/100 без отказа. Абляция команд не улучшила yaw;
+  последующее сравнение yaw weight 1,5 / 3,0 дало single-policy pass у обеих групп.
+- Физическая диагностика готовых control/yaw2x/reference: у каждого 100/100
+  без отказа и tracking pass. По заранее заданному правилу выбран weight 1,5.
+- Идёт контролируемая серия seeds 45/46/47 с нуля: 4096 сред × 2500 updates,
+  pure yaw mix 0,25. Seeds 45/46 обучаются параллельно, 47 стартует следом.
+  Итоговая приёмка требует отдельных nominal и bounded physical оценок всех трёх.
 - Rough/stairs, server runtime, sim2sim и аппаратные испытания не квалифицированы.
   Zero-action PD stand также не прошёл проверку; это отдельный открытый gate.
 
 [Результаты и активные jobs](docs/TRAINING_PROGRESS.md) ·
 [План обучения и критерии](docs/PROJECT_PLAN.md) ·
-[Компактный снимок доказательств](docs/results/2026-09-17.json)
+[Протокол текущей квалификации](docs/FLAT_QUALIFICATION.md) ·
+[Датированный статус](docs/results/2026-09-17-flat-qualification-status.json)
 
 ## Документы и запуск
 
+- [Эксперимент команд](docs/YAW_ABLATION.md) и [yaw-награды](docs/YAW_REWARD_ABLATION.md)
+- [Сравнение rewards с открытыми исследованиями](docs/REWARD_RESEARCH.md)
 - [Настройка настольного ПК](docs/DESKTOP_SETUP.md)
 - [Каталог scripts и границы воспроизведения](scripts/README.md)
 - [Выбор вычислительного режима](docs/COMPUTE_DECISION.md)
@@ -44,7 +51,9 @@ python -m unittest discover -s skills/github-dns-bypass/tests -v
 
 Для всех CPU policy tests нужны torch и PyYAML из локального runtime;
 без них соответствующие tests пропускаются. Последний локальный результат:
-1290 vendor-файлов, 15 project tests и 23 DNS tests passed.
+1290 vendor-файлов, 30 project tests и 23 DNS tests passed.
+Лёгкий CI без torch/PyYAML пропускает 8 policy, 3 yaw-sampling и 3 physical-readback tests;
+проверки конфигурации физических вариаций выполняются и без Isaac Sim.
 
 Закреплённый стек: robot_lab v2.3.2, Isaac Lab v2.3.2, Isaac Sim 5.1.0,
 Python 3.11.13, RSL-RL 3.1.2, PyTorch 2.7.0+cu128, TensorDict 0.11.0.

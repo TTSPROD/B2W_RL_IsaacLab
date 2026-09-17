@@ -1,0 +1,118 @@
+{
+  "started_utc": "2026-09-17T16:31:30.471625+00:00",
+  "supervisor_pid": 11652,
+  "protocol": {
+    "training_seeds": [
+      45,
+      46,
+      47
+    ],
+    "resume": null,
+    "num_envs": 4096,
+    "updates_per_seed": 2500,
+    "rollout_steps": 24,
+    "transitions_per_seed": 245760000,
+    "total_transitions": 737280000,
+    "final_checkpoint_iteration": 2499,
+    "pure_yaw_fraction": 0.25,
+    "yaw_tracking_weight": 1.5,
+    "execution": "45/46 simultaneously, then 47 alone; evaluations serial",
+    "selection": "Both prior arms passed; retain unchanged yaw weight 1.5 pending replication",
+    "limitation": "Mix from scratch tests configuration reproducibility, not the successful prior multi-stage training trajectory. Budget fixed, no automatic extension.",
+    "evaluation_seeds": {
+      "nominal": 20261001,
+      "bounded_v1": 20261002
+    },
+    "diagnostic_physical_seed": 20260920,
+    "profiles": {
+      "nominal": {
+        "profile": "nominal",
+        "randomized": false,
+        "event_mode": null
+      },
+      "bounded_v1": {
+        "profile": "bounded_v1",
+        "randomized": true,
+        "event_mode": "startup",
+        "scope": "engineering robustness screen, not measured hardware tolerances",
+        "material": {
+          "asset": "robot",
+          "bodies": "all",
+          "num_buckets": 64,
+          "static_friction_uniform": [
+            0.6,
+            1.0
+          ],
+          "dynamic_friction_uniform_before_consistency_clamp": [
+            0.5,
+            0.8
+          ],
+          "dynamic_friction_transform": "min(sampled_dynamic, sampled_static)",
+          "restitution": 0.0,
+          "sampling": "64 material buckets sampled once, assigned per collision shape"
+        },
+        "mass": {
+          "bodies": "all",
+          "scale_uniform": [
+            0.9,
+            1.1
+          ],
+          "recompute_inertia": true,
+          "sampling": "independent per environment and body"
+        },
+        "actuator_gains": {
+          "joints": "all",
+          "kp_scale_uniform": [
+            0.9,
+            1.1
+          ],
+          "kd_scale_uniform": [
+            0.9,
+            1.1
+          ],
+          "sampling": "independent per environment, joint and gain; zero gains stay zero"
+        },
+        "excluded": [
+          "COM",
+          "latency",
+          "pushes",
+          "observation_noise"
+        ]
+      }
+    },
+    "episodes_per_profile_per_policy": 100,
+    "settle_s": 2,
+    "measurement_s": 20,
+    "gate": "Each seed/profile independently: >=99/100 no sticky failure; each scenario pooled vx/vy RMS <=.2, yaw RMS <=.25; all episode p95/max retained.",
+    "failure_accounting": "Every physics substep from t=0, no reset or recovery credit",
+    "diagnostic_quality_failure": "Record and continue frozen qualification; technical failure stops queue",
+    "promotion": "No automatic Rough, sim2sim, or hardware acceptance",
+    "evaluation_cases_sha256": {
+      "20260919": "714441126eaa5d1639684933539721ff82500cc8c72f4c7529adc9235154d6c0",
+      "20260920": "df86d872692e36e68d04e5082a0ffe1f8f654e8931dd5e7b3aee220705be3743",
+      "20261001": "65d758e3e4663863ec6cf7ffe02ef30be26697ffe2587b26eb77808a078860a3",
+      "20261002": "a596d18a0b47a597f1ebd325adaf40f7221dd54e960a36376dd0052e593c4d9b"
+    }
+  },
+  "source_sha256": {
+    "run_flat_qualification.py": "7fa6c681b55037897b3f16cf15c3288241974f7aa65e719b650dcc3c6ec78507",
+    "train_b2w.py": "5fe1fab54257b9d87960199317522dcb6e61337f23e9392aa0806d51219c291d",
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "benchmark_parallel4096.py": "b1c5ebd4f6f08cdbaf1ba6a04fa6f534e75434d18c7e2dfc5c7db8849ecae973",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "replay_reference_b2w.py": "c588e754ffea3f3f693867ef9337adcbd347d4005200fa82f58121290e25e6b8",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859"
+  },
+  "schema_version": 1,
+  "snapshot_status": "evaluating_diagnostic_control_bounded_v1_20260920",
+  "training_started_at_snapshot": false,
+  "release_acceptance_complete": false,
+  "full_protocol_path": "logs/qualification_runs/flat_three_seed_20260917/protocol.json"
+}
