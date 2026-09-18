@@ -1,6 +1,27 @@
 # План проекта B2W
 
-План пересмотрен 18 сентября 2026 по завершённой квалификации Flat. [Отчёт о результатах](TRAINING_PROGRESS.md) и [итоговый снимок](results/2026-09-18-flat-qualification-final.json) фиксируют полученные метрики; полный локальный job — `logs/qualification_runs/flat_headroom5_20260917/job.json`.
+**Снимок 18 сентября, 15:12:52 МСК:** seeds 49/50 завершили первые 2500 updates
+с exit 0 и проверкой артефактов. Выполняется вторая часть: **2596/4000** и
+**2597/4000** соответственно; seed 51 ещё не запущен, evaluations — 0/8.
+Исходники активной очереди совпадают с frozen SHA256. [Датированный снимок](results/2026-09-18-staged-qualification-status.json).
+Ноутбук прошёл техническую [квалификацию](LAPTOP_WORKER.md), но обучение ему
+не назначено. По последнему уточнению пользователя очередь остаётся на ПК:
+49/50 параллельно до 4000, затем 51 отдельно. [Сервер проверен](SERVER_PERFORMANCE.md),
+к Isaac Lab не допущен. Качество seeds 49/50/51 пока не оценено.
+
+**Текущий этап 18 сентября 2026:** [повторение staged на трёх новых seeds](STAGED_QUALIFICATION.md)
+49/50/51. Каждый обучается с нуля: 2500 updates upstream + 1500 mix 0,25,
+4096 сред, weight 1,5, один плановый restart после 2500. Seeds 49/50 параллельно,
+затем 51 отдельно; VRAM reserve 5%. Новые nominal/bounded hold-outs 20261201/02.
+Статус: `logs/qualification_runs/flat_staged_seeds49_51_20260918/job.json`.
+
+Основание — завершённый [development experiment seed 48](results/2026-09-18-flat-schedule-final.json):
+staged прошёл оба профиля (100/100 без отказов и все сценарные tracking gates),
+constant не прошёл (99/100 nominal, 92/100 bounded, также ошибки tracking).
+Последняя оценка staged восстановлена после исчезновения evaluator/coordinator;
+причина неизвестна, обучение не перезапускалось, исходные артефакты сохранены.
+Успех одного seed не закрывает Flat gate: требуется отдельный pass каждого из
+трёх новых seeds на обоих профилях. Автоматического перехода к Rough нет.
 
 ## Подтверждённое состояние
 
@@ -18,7 +39,8 @@
 | Flat seeds 43/44 | Завершены, exports/parity пройдены; оба 96/100 без отказа, tracking 78/100 и 82/100 | Исходные checkpoints не прошли Flat; последующие абляции опубликованы отдельно |
 | Абляция команд | Mix: 99/100 и 100/100 без отказа, но yaw RMS 0,280–0,318; control: 93/100 и 95/100 | Критерий улучшения не выполнен; парное продолжение завершено отдельной абляцией rewards |
 | Абляция yaw-награды | Оба single-policy gates пройдены на трёх диагностических наборах; control 299/300 без отказа, yaw2x 300/300; yaw2x улучшил yaw RMS на 32–48% | Успех продолжения одного checkpoint не перенёсся на обучение с нуля за 2500 updates |
-| Flat seeds 45/46/47 | 2500 updates/seed и экспорт завершены; nominal 91/94/92 из 100, bounded_v1 91/90/89 из 100 без отказа при пороге ≥99; reference 100/100 на обоих профилях | Конфигурация weight 1,5 / mix 0,25 за этот бюджет отклонена; разобрать контакты при yaw и ошибку vx seed 46, затем проверить новую гипотезу на новых наборах |
+| Flat seeds 45/46/47 | 2500 updates/seed и экспорт завершены; nominal 91/94/92 из 100, bounded_v1 91/90/89 из 100 без отказа при пороге ≥99; reference 100/100 на обоих профилях | Конфигурация за этот бюджет отклонена; диагностика и seed48 schedule experiment завершены, выполняется staged-повторение 49/50/51 |
+| Flat staged seed 48 | 4000 updates, export проверен; nominal/bounded по 100/100 без отказов и все tracking gates пройдены | Повторение на seeds 49/50/51 с новыми hold-outs; один seed не является приёмкой |
 | Rough / Stairs / SDK | Реализация и приёмка не выполнены | Переход только после соответствующих gates ниже |
 
 Восстановленная серия завершилась 18 сентября в 00:11:22 МСК. В последней
@@ -133,33 +155,37 @@ Flat: seeds 43/44 завершены и проверены одним evaluator;
    lateral vy и negative yaw RMS превышают сценарные пороги, хотя общий
    pooled RMS часто проходит. [Итог](results/2026-09-18-flat-qualification-final.json).
    **Weight 1,5 / mix 0,25 при 2500 updates с нуля отклонён.**
-8. Следующий P0 — анализ без нового обучения: сопоставить первый calf-контакт
-   с yaw command/actual, положением и скоростью ног/колёс, tilt, высотой,
-   actions/targets, torque, slip и насыщением. Сверить training penalty за
-   undesired contacts с критерием evaluator: наличие штрафа при отключённом
-   illegal_contact termination может допускать краткие касания, но это пока
-   гипотеза. Проверить по сохранённым checkpoints и training curves, есть ли
-   улучшение к концу 2500 updates.
-   Сравнение со старым успешным продолжением control/yaw2x — диагностическое:
-   у него другой стартовый checkpoint и больший накопленный бюджет. Наборы
-   20261001/02 уже раскрыты и больше не служат hold-out для выбора конфигурации.
-9. Если диагностика не выявит ошибку модели/evaluator, предварительно
-   зарегистрировать парное сравнение на одном новом training seed: постоянный
-   mix 0,25 против staged upstream→mix при одинаковых 4000 updates,
-   4096 средах, weight 1,5 и одинаковых плановых границах restart.
-   Кандидатный staged schedule: 2500 updates upstream commands и 1500 mix;
-   сравнивать только на новых development cases, включая оба физических
-   профиля, направление yaw и calf contacts. Запуски последовательные, чтобы
-   снизить риск VRAM-stop. Это проверка эффекта schedule при равном бюджете,
-   не итоговая приёмка. При провале обеих групп новую гипотезу о yaw reward,
-   контактах или физике оформить отдельно. Прежний yaw2x — гипотеза,
-   не подтверждённая конфигурация обучения с нуля.
-10. Если парный эксперимент даст кандидат с полным development pass,
-    заморозить его schedule, бюджет и новые не просмотренные nominal/bounded
-    evaluation seeds. Обучить три других независимых seeds с одинаковым
-    протоколом и без незапланированных restart, затем требовать отдельный pass
-    каждого seed/profile и публиковать сценарные RMS, p95/max и контакты.
-    Rough остаётся закрыт до приёмки Flat.
+8. Выполнена [диагностика сохранённых результатов](results/2026-09-18-flat-diagnosis.json).
+   Первые отказы — задние голени: RL_calf при positive yaw (45), RR_calf при
+   negative yaw (8). Raw-action saturation и live observation/target errors — 0.
+   Порог undesired contacts совпадает с evaluator (1 N), но train имеет penalty
+   −1 и не завершает эпизод; evaluator фиксирует sticky failure на каждом substep.
+   В последних 300 updates training tracking улучшается у всех трёх seeds;
+   seed 46 остаётся хуже по tracking и contact penalty. Его nominal backward
+   RMS vx 0,370 м/с, stand bias vx +0,139 м/с. Это не доказательство причины
+   или достаточности простого продления. Ошибка модели/evaluator не установлена;
+   torque saturation и slip требуют отдельной временной диагностики, если новая
+   гипотеза не сработает. Наборы 20261001/02 теперь только диагностические.
+9. Зафиксирован [development experiment](FLAT_SCHEDULE_ABLATION.md): новый seed 48,
+   4096 сред, rollout 24, weight 1,5, по 4000 updates / 393 216 000 transitions.
+   Constant mix 0,25 против staged 2500 upstream + 1500 mix; у обеих групп
+   restart после 2500 updates с восстановлением optimizer/adaptive LR.
+   По запросу ускорения запуски параллельные (2 × 4096); constant передан без
+   restart. VRAM reserve 5% по последнему выбору пользователя.
+   Smoke проверяет оба расписания и resume до основного запуска. Конечные
+   model_3999 оцениваются на новых nominal 20261101 / bounded_v1 20261102,
+   по 100 эпизодов вместе с reference. Только pass обоих профилей даёт кандидат
+   для будущего повторения; если проходят обе группы, выбрать constant.
+   При двух провалах — отдельная гипотеза rewards/contacts, без автопродления.
+   Промежуточные checkpoints не выбирать, Rough автоматически не запускать.
+10. Разрешено и зарегистрировано [повторение staged](STAGED_QUALIFICATION.md):
+    fresh seeds 49/50/51, по 4000 updates с расписанием 2500 upstream + 1500 mix.
+    Одинаковые optimizer resumes после 2500, новые cases 20261201/02.
+    Seeds 49/50 выполняются параллельно, seed 51 отдельно. После проверки всех
+    артефактов reference и каждый seed оцениваются на обоих профилях.
+    Требуется pass каждого seed/profile, никакого усреднения провалов.
+    Приёмка относится к этим Flat-профилям; Rough требует отдельного этапа.
+
 
 Reward tracking скорости/yaw и penalties за мощность, torque, резкие действия,
 bad contacts, ориентацию и limits сохраняются upstream, кроме явно описанного
@@ -178,7 +204,7 @@ Blind policy рассматривать как первый baseline, а не о
 
 ## Быстрое и экономное обучение
 
-1. Для текущего Flat использовать проверенный режим 2×4096 на локальном ПК. Исходный одиночный sweep 256–2048 и двойной benchmark 4096 выполнены; новые большие sweep отложить до оценки качества. Для Rough заново проверить память/throughput, поскольку Flat-измерения на него не переносятся. Сервер/8192 остаются отдельным экспериментом после квалификации.
+1. Для обычных независимых Flat runs доступен проверенный режим 2×4096 на локальном ПК; текущий schedule experiment по запросу пользователя также переведён в 2×4096 с мониторингом VRAM и передачей первого trainer без restart. Исходный одиночный sweep 256–2048 и двойной benchmark 4096 выполнены; новые большие sweep отложить до оценки качества. Для Rough заново проверить память/throughput, поскольку Flat-измерения на него не переносятся. Сервер/8192 остаются отдельным экспериментом после квалификации.
 2. Фиксировать physics dt, policy dt, solver/contact параметры и real-time limits. Ускорение не должно менять задачу или скрывать GPU fallback.
 3. Короткие smoke runs → baseline по 3 seeds → только обоснованные ablations. Начинать с стандартных PPO defaults; сохранять checkpoint, optimizer, curriculum state и нормализацию.
 4. На нескольких GPU сначала независимые seeds/абляции, после — сравнить distributed PPO. Размер общего batch и изменение числа сред явно фиксировать; четыре GPU не означают ускорение в четыре раза.
@@ -219,9 +245,9 @@ FSM: idle → acquire low-level control → stand preparation → policy → sto
 ## Ближайший backlog
 
 - P0: завершено и отклонено — Flat seeds 45/46/47, по 2500 updates, export parity и оба заранее зафиксированных профиля. Ни один seed не достиг ≥99/100; [итог](results/2026-09-18-flat-qualification-final.json).
-- P0: разобрать 53 calf-контакта при yaw, сценарные RMS и ошибку vx seed 46; проверить training curves и насыщение действий. Использованные evaluation seeds перевести в диагностику.
-- P1: после диагностики зафиксировать парный development эксперимент constant mix против staged upstream→mix на равных 4000 updates и новых cases; без автоматического продления или выбора промежуточного checkpoint.
-- P1: только после development pass — новая сопоставимая серия трёх seeds и отдельные новые hold-outs. Flat gate открыт до индивидуального прохождения nominal и bounded каждым seed.
+- P0: диагностика сохранённых контактов, сценарных RMS, raw-action clipping и training tails завершена. Torque saturation и slip не исключены; измерить отдельно при необходимости следующей гипотезы.
+- P0: schedule experiment завершён, выбран staged; выполнить [трёхseed-повторение](STAGED_QUALIFICATION.md), без автопродления и выбора промежуточных checkpoints.
+- P0: Flat gate остаётся открыт до индивидуального прохождения nominal и bounded seeds 49/50/51. После завершения зафиксировать все показатели и решение по серии.
 - P1: завершить контракт насыщения и таблицу actuator/contact/geometry; training URDF использовать как вычислительный reference для планируемой MuJoCo-адаптации, не как подтверждённую модель реального робота.
 - P1: отдельно разобраться с zero-action stand; измерить аппаратные limits, firmware/SDK modes и геометрию конкретного B2W до hardware gates.
 - P2: после Flat acceptance — actor-only warm start Rough, новый throughput/memory benchmark и held-out terrain evaluation; затем stairs up/down и regression.

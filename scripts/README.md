@@ -28,9 +28,10 @@ $env:OMNI_KIT_ACCEPT_EULA = 'YES'
 .venv/Scripts/python.exe -B scripts/train_b2w.py --headless --device cuda:0 --num_envs 4096 --seed 45 --max_iterations 2500 --run_name flat_fixed4096
 ~~~
 
-Это пример upstream-команды, не выполненный эксперимент. Для выбранной
-конфигурации квалификации нужны также --pure_yaw_fraction .25
---yaw_tracking_weight 1.5 и новый уникальный run_name. Seed/run_name выбираются для
+Это пример upstream-команды, не выполненный эксперимент. Для исторической
+квалификации 45/46/47 использовались также --pure_yaw_fraction .25
+--yaw_tracking_weight 1.5. Текущий staged-протокол задаёт 2500 upstream + 1500 mix;
+для него используется зарегистрированный coordinator ниже. Нужен уникальный run_name. Seed/run_name выбираются для
 конкретного плана. 2500 × 4096 × 24 = 245 760 000 transitions.
 До запуска проверять активные jobs; не запускать пример поверх другой тренировки. --max_iterations означает новые updates данного запуска, а не
 желаемый глобальный checkpoint index. Resume сохраняет model/optimizer, но
@@ -120,3 +121,39 @@ run_flat_headroom5.py — завершённая очередь после вт�
 от1900/1700 на599/799updates, затем47 и оценки. Явно задаёт
 minimum_gpu_headroom=.05; default run_pair остаётся.15. Не объявляет
 разные restart histories контролируемой приёмкой. [Итог серии](../docs/results/2026-09-18-flat-qualification-final.json): все три новых seeds не прошли Flat gate.
+
+## Flat schedule experiment (18 сентября 2026)
+
+`diagnose_flat_qualification.py` сохраняет проверку первичных отчётов и последних
+окон TensorBoard в `docs/results/2026-09-18-flat-diagnosis.json`.
+`run_flat_schedule_ablation.py` выполняет frozen seed48 comparison: constant mix
+против 2500 upstream + 1500 mix, обе группы с matched restart и final-only evaluation.
+Протокол: [FLAT_SCHEDULE_ABLATION.md](../docs/FLAT_SCHEDULE_ABLATION.md).
+Это локальный coordinator с зависимостью от существующих диагностических артефактов.
+
+## Staged Flat qualification (18 сентября 2026)
+
+`run_staged_qualification.py` выполняет fresh seeds 49/50/51 с расписанием
+2500 upstream + 1500 mix, одинаковым restart и новыми evaluation cases.
+Seeds 49/50 параллельны, затем 51 отдельно. Протокол:
+[STAGED_QUALIFICATION.md](../docs/STAGED_QUALIFICATION.md).
+
+## Дополнительные инструменты 18 сентября
+
+| Script | Фактическое назначение / состояние |
+|---|---|
+| run_flat_schedule_parallel.py | Выполненная передача seed48 constant без restart и параллельное staged-сравнение; серия завершена |
+| finish_flat_schedule_evaluation.py | Выполненное восстановление последнего evaluator seed48 без нового обучения |
+| schedule_parallel_handoff.py | Win32 handles, проверка принадлежности процесса и фактических exit codes |
+| connect_laptop_key.ps1 | Интерактивная установка существующего публичного ключа; пароль вводится только в SSH, ключ не хранится в Git |
+| laptop_training_transport.py | SSH/SCP только в назначенный Windows project; пути/учётная запись привязаны к текущей инфраструктуре |
+| laptop_seed51_worker.py | Первичная квалификация ноутбука выполнена; основной seed51 не назначался |
+| qualify_laptop_pcores.py / laptop_pcore_runtime.py | Выполненный повторный benchmark с affinity P-ядер только у процесса и детей |
+| run_staged_laptop_parallel.py | Подготовленный, не выполненный end-to-end перенос fresh seed51; не запускать поверх нынешней очереди |
+| run_staged_tail_parallel.py / laptop_staged_tail_worker.py | Подготовленный перенос seed50 после2500; окно текущей очереди уже пройдено, перенос не выполнялся |
+| server_cuda_probe.cpp | GPU0 D2D пройден; cuBLAS init timeout. Synthetic CUDA, не Isaac/PPO benchmark |
+
+[Квалификация ноутбука](../docs/LAPTOP_WORKER.md),
+[замеры сервера](../docs/SERVER_PERFORMANCE.md). Подготовленные handoff scripts
+зависят от локальных артефактов, исходных хешей и конкретного состояния очереди;
+публикация в Git не означает разрешение или успешный запуск.

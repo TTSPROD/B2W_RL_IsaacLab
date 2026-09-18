@@ -145,7 +145,8 @@ Inf, quaternion и age >20 ms относятся к локальному offline
 
 1. Для каждого нового финального checkpoint повторить CPU export и live parity,
    затем Flat100. Для seeds 42/43/44 и yaw-абляций это выполнено;
-   следующая приёмка — fresh seeds 45/46/47 на nominal и bounded_v1.
+   для 45/46/47 и seed48 schedule experiment parity также проверена. Следующая
+   приёмка — [staged seeds 49/50/51](STAGED_QUALIFICATION.md) на новых nominal/bounded cases.
    Seed 42 quality gate остаётся непройденным.
 2. Разрешить clipping/history различия в deployment adapter вне `vendor/`
    и проверить saturation, reset и invalid-input fixtures на его реальном коде.

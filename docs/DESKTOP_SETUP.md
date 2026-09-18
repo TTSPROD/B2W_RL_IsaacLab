@@ -33,10 +33,11 @@ Zero-action PD stand ранее не прошёл; active reference replay пр�
 Seeds 43/44 и две последующие yaw-абляции завершены с технической валидацией.
 Оба reward-варианта прошли single-policy nominal gates; физические diagnostics
 готовых control/yaw2x/reference также дали 100/100 без отказа и tracking pass.
-Идёт [контролируемая квалификация](FLAT_QUALIFICATION.md): fresh seeds 45/46
-параллельно, затем 47; по 4096 сред × 2500 updates.
-Статус: `logs/qualification_runs/flat_three_seed_20260917/job.json`;
-[снимок прогресса](results/2026-09-17-flat-qualification-status.json). Исторические seeds 42/43/44 имели разную
+Серия [45/46/47](FLAT_QUALIFICATION.md) завершена с провалом gates. После
+успешного staged development seed 48 выполняется [серия 49/50/51](STAGED_QUALIFICATION.md):
+4000 updates на seed (2500 upstream + 1500 mix), сначала пара 49/50, затем 51.
+Статус: `logs/qualification_runs/flat_staged_seeds49_51_20260918/job.json`;
+[снимок 18 сентября](results/2026-09-18-staged-qualification-status.json). Исторические seeds 42/43/44 имели разную
 batch/resume историю и не заменяют приёмку новой серии.
 
 [Подробные результаты](TRAINING_PROGRESS.md), [выбор режима и ограничения измерений](COMPUTE_DECISION.md),
@@ -78,7 +79,7 @@ batch/resume историю и не заменяют приёмку новой �
 не включены в этот профиль RSL-RL. PPO, модель робота, rewards, observations,
 randomization и physics dt берутся из зафиксированного B2W upstream.
 Описанные в протоколах pure-yaw commands и yaw weight override реализованы
-отдельно в scripts; текущая серия использует mix 0,25 и штатный вес yaw 1,5.
+отдельно в scripts; текущая staged-серия использует mix 0 → 0,25 после 2500 updates и вес yaw 1,5.
 Ограниченный physical evaluation profile не меняет training randomization.
 
 Установка пакетов сама по себе не подтверждает работу симулятора. 12 GiB VRAM

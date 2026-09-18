@@ -108,5 +108,5 @@ peak GPU 9632 MiB, минимальный запас 21,58%, максимум 63
 Последующая bounded_v1 диагностика control/yaw2x/reference завершена: каждый
 получил 100/100 без отказа и tracking pass.
 [Отчёт](results/2026-09-17-flat-qualification-preflight.json).
-Идёт независимое обучение seeds 45/46/47; их приёмка ещё не завершена.
-[Протокол Flat qualification](FLAT_QUALIFICATION.md).
+Серия [45/46/47](FLAT_QUALIFICATION.md) завершена: все quality gates провалены.
+После успешного staged seed 48 идёт [повторение 49/50/51](STAGED_QUALIFICATION.md).

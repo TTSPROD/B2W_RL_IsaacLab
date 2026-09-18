@@ -156,5 +156,6 @@ export и evaluator sources.
 контролируемых training seeds и отдельная проверка physical randomization.
 Flat остаётся незакрытым; переход к Rough не следует из этих результатов.
 Последующая [абляция yaw-награды](YAW_REWARD_ABLATION.md) завершена;
-теперь идёт [квалификация трёх seeds](FLAT_QUALIFICATION.md).
+серия [45/46/47](FLAT_QUALIFICATION.md) завершена с провалом gates. После
+успешного staged seed 48 идёт [повторение 49/50/51](STAGED_QUALIFICATION.md).
 Исторический вывод этого command-эксперимента сохраняется. В vendor изменений нет.

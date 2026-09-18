@@ -3,41 +3,38 @@
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 
-## Состояние на 18 сентября 2026
+## Состояние на 18 сентября 2026, 15:12 МСК
 
-- Локальный Windows 11 / RTX 4070 Ti прошёл GPU smoke, PPO/resume и throughput
-  qualification. Выбран режим двух процессов по 4096 сред: **63,9 тыс. переходов/с
-  суммарно, +67,3%** относительно измеренного 2×2048.
-- Seed 42 завершён и экспортирован, но **Flat gate не пройден: 96/100** эпизодов
-  без падений/неразрешённого контакта против 100/100 у скачанного reference.
-  Слабое место — повороты на месте.
-- Seeds 43/44 завершены: оба 96/100 без отказа. Абляция команд не улучшила yaw;
-  последующее сравнение yaw weight 1,5 / 3,0 дало single-policy pass у обеих групп.
-- Физическая диагностика готовых control/yaw2x/reference: у каждого 100/100
-  без отказа и tracking pass. По заранее заданному правилу выбран weight 1,5.
-- Серия seeds 45/46/47 завершена: 4096 сред × 2500 updates на seed,
-  pure yaw mix 0,25; checkpoints и exports проверены. На новых nominal/bounded
-  наборах результаты без отказа: **45 — 91/91, 46 — 94/90, 47 — 92/89 из 100**;
-  reference — 100/100 на обоих. Порог ≥99/100 не достигнут. Все 53 первых
-  отказа новых политик — calf-контакты при yaw, без первых падений.
-  Разные истории [восстановления](docs/FLAT_RECOVERY.md) дополнительно
-  ограничивают контролируемое сравнение.
-- Следующий шаг: разбор контактов и затем заранее зафиксированный эксперимент
-  с равным бюджетом для постоянного mix и staged upstream→mix на новых cases.
-  Flat gate открыт; переход к Rough не разрешён.
-- Rough/stairs, server runtime, sim2sim и аппаратные испытания не квалифицированы.
-  Zero-action PD stand также не прошёл проверку; это отдельный открытый gate.
+- **Обучение продолжается на RTX 4070 Ti:** staged seeds 49/50 — 2596/4000
+  и 2597/4000 updates; seed 51 ждёт. На каждом 4096 сред и один плановый
+  restart: 2500 upstream + 1500 mix 0,25. Итоговые 8 evaluations ещё не начаты.
+- Seed 48: staged прошёл nominal и bounded — по **100/100 без отказов и все
+  tracking gates**. Constant не прошёл. Это один development seed; Flat gate
+  остаётся открыт до проверки каждого из новых seeds 49/50/51.
+- Предыдущая серия 45/46/47 не прошла gates: nominal/bounded без отказов
+  **91/91, 94/90, 92/89 из 100**. Диагностика calf-контактов и эксперимент
+  расписания завершены; результаты сохранены.
+- **RTX 4080 Laptop квалифицирован:** physics 10 000 шагов, PPO/resume и
+  210-update benchmark; 38,0 тыс. transitions/s на P-ядрах. Основное обучение
+  не назначено, очередь по уточнению пользователя остаётся на ПК.
+- **Сервер проверен:** 4 Hopper GPU по 95 830 MiB. GPU0 D2D — 1,752 TB/s
+  чтения+записи; SGEMM timeout при инициализации cuBLAS. Проектного Isaac runtime
+  и Vulkan loader нет; скорость Isaac Lab не измерена, server gate не пройден.
+- Rough/stairs, sim2sim, GUI и аппаратные испытания не квалифицированы.
+  Zero-action PD stand остаётся отдельным открытым gate.
 
-[Журнал результатов](docs/TRAINING_PROGRESS.md) ·
-[План обучения и критерии](docs/PROJECT_PLAN.md) ·
-[Итог квалификации](docs/FLAT_QUALIFICATION.md) ·
-[Датированный результат](docs/results/2026-09-18-flat-qualification-final.json)
+[Текущий снимок](docs/results/2026-09-18-staged-qualification-status.json) ·
+[Протокол серии](docs/STAGED_QUALIFICATION.md) ·
+[Результат seed 48](docs/FLAT_SCHEDULE_ABLATION.md) ·
+[План и критерии](docs/PROJECT_PLAN.md) · [Журнал](docs/TRAINING_PROGRESS.md)
 
 ## Документы и запуск
 
 - [Эксперимент команд](docs/YAW_ABLATION.md) и [yaw-награды](docs/YAW_REWARD_ABLATION.md)
 - [Сравнение rewards с открытыми исследованиями](docs/REWARD_RESEARCH.md)
 - [Настройка настольного ПК](docs/DESKTOP_SETUP.md)
+- [Квалификация ноутбука и статус очереди](docs/LAPTOP_WORKER.md)
+- [Производительность и ограничения сервера](docs/SERVER_PERFORMANCE.md)
 - [Каталог scripts и границы воспроизведения](scripts/README.md)
 - [Выбор вычислительного режима](docs/COMPUTE_DECISION.md)
 - [Контракт политики](docs/POLICY_CONTRACT.md)
@@ -58,7 +55,8 @@ python -m unittest discover -s skills/github-dns-bypass/tests -v
 
 Для всех CPU policy tests нужны torch и PyYAML из локального runtime;
 без них соответствующие tests пропускаются. Последний локальный результат:
-1290 vendor-файлов, 37 project tests и 23 DNS tests passed.
+1290 vendor-файлов, **58 project tests и 23 DNS tests passed** (18 сентября).
+Минимальный прогон без site-packages: 58 tests, 14 ожидаемых skips.
 Лёгкий CI без torch/PyYAML пропускает 8 policy, 3 yaw-sampling и 3 physical-readback tests;
 проверки конфигурации физических вариаций выполняются и без Isaac Sim.
 

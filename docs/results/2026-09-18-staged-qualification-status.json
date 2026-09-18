@@ -1,0 +1,182 @@
+{
+  "captured_utc": "2026-09-18T12:12:52.386292+00:00",
+  "job": "logs\\qualification_runs\\flat_staged_seeds49_51_20260918\\job.json",
+  "job_sha256": "036cfcf4cde473405507dc0c25910bd8630ae67116790f7d5aaa6a7e2fc5eb2b",
+  "status": "train_pair_1",
+  "source_sha256": {
+    "run_flat_schedule_ablation.py": "6ba004d29461c6468de3b3878386cc1e326183a2164c92b4b506c46e526f7bde",
+    "train_b2w.py": "5fe1fab54257b9d87960199317522dcb6e61337f23e9392aa0806d51219c291d",
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "benchmark_parallel4096.py": "129ba37110a42f493ae2dd537550fb4f9fc3a49a9fadac2258191b66cbb857dc",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "replay_reference_b2w.py": "c588e754ffea3f3f693867ef9337adcbd347d4005200fa82f58121290e25e6b8",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859",
+    "run_staged_qualification.py": "cd67a5d9a29b3ea1409afe564ea6648f2b00baa7f5387a142cbbebb8719d430a"
+  },
+  "source_hashes_match": true,
+  "training": {
+    "train_pair_0": {
+      "status": "validated",
+      "started_utc": "2026-09-18T09:59:25.082328+00:00",
+      "runs": [
+        {
+          "seed": 49,
+          "num_envs": 4096,
+          "iterations": 2500,
+          "starting_runner_iteration": 0,
+          "pid": 13888,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-323347_flat_staged_seeds49_51_20260918_seed49_0\\manifest.json"
+        },
+        {
+          "seed": 50,
+          "num_envs": 4096,
+          "iterations": 2500,
+          "starting_runner_iteration": 0,
+          "pid": 2812,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\manifest.json"
+        }
+      ]
+    },
+    "train_pair_1": {
+      "status": "running",
+      "started_utc": "2026-09-18T12:07:00.760680+00:00",
+      "runs": [
+        {
+          "seed": 49,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "pid": 11452,
+          "status": "running",
+          "external_exit_code": null
+        },
+        {
+          "seed": 50,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "pid": 28364,
+          "status": "running",
+          "external_exit_code": null
+        }
+      ]
+    }
+  },
+  "evaluation_count": 0,
+  "export_count": 0,
+  "release_acceptance_complete": false,
+  "queue_reassigned": false,
+  "progress": {
+    "2026-09-18_09-59-25-323347_flat_staged_seeds49_51_20260918_seed49_0": {
+      "updated_utc": "2026-09-18T12:02:23.823134+00:00",
+      "iteration": 2499,
+      "updates_completed_this_run": 2500,
+      "updates_requested_this_run": 2500,
+      "transitions_this_run": 245760000,
+      "collection_seconds": 2.6003880500793457,
+      "learning_seconds": 0.25354599952697754,
+      "losses": {
+        "value_function": 0.0396777743473649,
+        "surrogate": -0.004623661129153333,
+        "entropy": 21.45182685852051
+      },
+      "command_distribution": {
+        "env_command_steps": 245760000,
+        "standing_fraction": 0.020127278645833333,
+        "pure_yaw_abs_gt_005_fraction": 0.026159033203125,
+        "positive_pure_yaw_fraction": 0.010775187174479168,
+        "negative_pure_yaw_fraction": 0.015383846028645834,
+        "mean_abs_yaw_rad_s": 0.28971634583796063,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 0.0002562890625000001,
+      "policy_quality_evaluated": false
+    },
+    "2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0": {
+      "updated_utc": "2026-09-18T12:06:42.386077+00:00",
+      "iteration": 2499,
+      "updates_completed_this_run": 2500,
+      "updates_requested_this_run": 2500,
+      "transitions_this_run": 245760000,
+      "collection_seconds": 1.88751220703125,
+      "learning_seconds": 0.17603278160095215,
+      "losses": {
+        "value_function": 0.08485782369971276,
+        "surrogate": -0.0039528933819383385,
+        "entropy": 22.552240753173827
+      },
+      "command_distribution": {
+        "env_command_steps": 245760000,
+        "standing_fraction": 0.02017818603515625,
+        "pure_yaw_abs_gt_005_fraction": 0.027168391927083334,
+        "positive_pure_yaw_fraction": 0.00892225341796875,
+        "negative_pure_yaw_fraction": 0.018246138509114582,
+        "mean_abs_yaw_rad_s": 0.31716140227690337,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 0.0002562890625000001,
+      "policy_quality_evaluated": false
+    },
+    "2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed49_1": {
+      "updated_utc": "2026-09-18T12:12:51.624225+00:00",
+      "iteration": 2595,
+      "updates_completed_this_run": 96,
+      "updates_requested_this_run": 1500,
+      "transitions_this_run": 9437184,
+      "collection_seconds": 2.844515562057495,
+      "learning_seconds": 0.24802660942077637,
+      "losses": {
+        "value_function": 0.03857782334089279,
+        "surrogate": -0.0034320669539738445,
+        "entropy": 20.296345138549803
+      },
+      "command_distribution": {
+        "env_command_steps": 9437184,
+        "standing_fraction": 0.021226988898383245,
+        "pure_yaw_abs_gt_005_fraction": 0.26496092478434247,
+        "positive_pure_yaw_fraction": 0.13457679748535156,
+        "negative_pure_yaw_fraction": 0.13038412729899088,
+        "mean_abs_yaw_rad_s": 0.2499767534706431,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 0.0002562890625000001,
+      "policy_quality_evaluated": false
+    },
+    "2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed50_1": {
+      "updated_utc": "2026-09-18T12:12:50.791556+00:00",
+      "iteration": 2596,
+      "updates_completed_this_run": 97,
+      "updates_requested_this_run": 1500,
+      "transitions_this_run": 9535488,
+      "collection_seconds": 2.7507641315460205,
+      "learning_seconds": 0.24013805389404297,
+      "losses": {
+        "value_function": 0.06870763059705495,
+        "surrogate": 0.0003276075469329953,
+        "entropy": 21.799085426330567
+      },
+      "command_distribution": {
+        "env_command_steps": 9535488,
+        "standing_fraction": 0.017805066714991408,
+        "pure_yaw_abs_gt_005_fraction": 0.26813908213192655,
+        "positive_pure_yaw_fraction": 0.13488937325493985,
+        "negative_pure_yaw_fraction": 0.13324970887698667,
+        "mean_abs_yaw_rad_s": 0.2549292690079032,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 2.2500000000000008e-05,
+      "policy_quality_evaluated": false
+    }
+  }
+}
