@@ -6,9 +6,11 @@
 **Flat ещё не принят.** Контактная абляция −3/−6 завершена 19 сентября 2026
 без нового кандидата: число отказов выросло с 14 до 20. Успешный seed 49
 сохранён без дообучения. [Итог опыта](docs/CONTACT6_ABLATION.md).
-**Подготовлен reference transfer:** перенос actor эталона, новый critic,
-короткая PPO-адаптация seeds 52/53 с ранней оценкой без автопродления.
-Запуск и результат ещё не подтверждены. [Протокол](docs/REFERENCE_TRANSFER.md).
+**Reference transfer запущен19.09 в19:51:04 МСК:** seeds52/53 по4096 сред,
+подтверждены28/27 updates critic calibration; actor drift0.
+Smoke/resume/export и оба контрольных профиля пройдены. Качество дообученных
+политик ещё не оценено. [Снимок запуска](docs/results/2026-09-19-reference-transfer-launch.json),
+[протокол](docs/REFERENCE_TRANSFER.md).
 Текущая очередь и критерии решения ведутся в
 [журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
 

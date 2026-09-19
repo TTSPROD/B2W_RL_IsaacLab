@@ -1,8 +1,9 @@
 # План проекта B2W
 
 Актуализирован 19 сентября 2026. Цель — воспроизводимое полезное управление B2W
-по Flat, затем Rough/обычным лестницам и отдельно sim2real. Следующий запуск:
-[reference transfer](REFERENCE_TRANSFER.md), подготовлен к запуску после Git push.
+по Flat, затем Rough/обычным лестницам и отдельно sim2real. Текущий запуск:
+[reference transfer](REFERENCE_TRANSFER.md) после Git push начат и подтверждён
+[датированным снимком](results/2026-09-19-reference-transfer-launch.json).
 Фактическое состояние и результаты — в [журнале](TRAINING_PROGRESS.md).
 Flat release gate пока не закрыт; seed49 сохранён как прошедший локальный кандидат.
 

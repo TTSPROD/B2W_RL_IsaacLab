@@ -2,8 +2,16 @@
 
 **19.09.2026: reward sweeps завершены без кандидата.**
 [Повторная проверка артефактов и решение](results/2026-09-19-strategy-review.json).
-Подготовлен [reference transfer](REFERENCE_TRANSFER.md); основной запуск ещё
-не подтверждён. [Актуальный план](PROJECT_PLAN.md), [исследование](REWARD_RESEARCH.md).
+**Reference transfer начат19.09, снимок19:51:04 МСК:** seeds52/53,
+28/27 updates из50 critic calibration,4096 сред каждый; losses конечны,
+actor drift0. GPU smoke2+resume2 и export пройдены. Reference и seed49 прошли
+оба новых профиля: reference100/100, seed49 nominal99/100 и bounded100/100.
+[Снимок запуска](results/2026-09-19-reference-transfer-launch.json),
+[протокол](REFERENCE_TRANSFER.md), [план](PROJECT_PLAN.md), [исследование](REWARD_RESEARCH.md).
+Новые политики ещё не прошли milestone evaluations; это подтверждённый запуск,
+не законченный training и не Flat release. Исторический protocol сохраняется
+неизменным для проверки hashes. GitHub CI success;104 CPU tests pass,
+лёгкий104-test прогон с29 ожидаемыми skips,23 DNS tests pass,1290 vendor files verified.
 Seed49 и reference сохраняются неизменными. Flat release gate открыт.
 
 ## Что установлено
@@ -59,8 +67,8 @@ seeds52/53, общий pretrained lineage, 4096 сред каждый.
 Job: logs/transfer/flat_reference_transfer_20260919/job.json.
 
 Зарегистрированный [протокол](REFERENCE_TRANSFER.md) фиксирует все параметры,
-cases, stops и правило выбора. До подтверждённого прогресса статус «подготовлен»;
-после запуска здесь сохраняется датированный snapshot. Автопродления нет.
+cases, stops и правило выбора. Фактический старт подтверждён снимком выше. Статусы в job.json меняются
+по мере исполнения; snapshot фиксирует указанный момент. Автопродления нет.
 
 ## Инфраструктура и открытые gates
 
@@ -84,5 +92,5 @@ Git содержит код, документацию, небольшие рез
 Training checkpoints, runtime, caches, TensorBoard остаются локально вне Git;
 постоянный artifact store ещё не выбран. Git push не синхронизирует их на другие машины.
 
-Проверки текущего изменения будут записаны в launch snapshot.
+Проверки текущего изменения записаны в launch snapshot.
 Исторические counts тестов относятся к датированным запускам, а не к нынешнему HEAD.
