@@ -1,0 +1,147 @@
+{
+  "verified_at": "2026-09-19T18:55:35.945785+00:00",
+  "job": "logs\\transfer\\flat_reference_qualification_20260919_resume1\\job.json",
+  "status": "batch54_to_350",
+  "source_commit": "5c482f0c5d8981a60bff595ce6e74d5fa012794f",
+  "runs": [
+    {
+      "seed": 54,
+      "pid": 17384,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-508380_flat_reference_qualification_20260919_resume1_s54_stage2\\manifest.json",
+      "progress": {
+        "updated_utc": "2026-09-19T18:55:34.477164+00:00",
+        "iteration": 163,
+        "updates_completed_this_run": 14,
+        "updates_requested_this_run": 200,
+        "transitions_this_run": 1376256,
+        "collection_seconds": 2.8390278816223145,
+        "learning_seconds": 0.24594545364379883,
+        "losses": {
+          "value_function": 0.11971666403114796,
+          "surrogate": 0.011009785960777663,
+          "entropy": -14.138346672058105
+        },
+        "command_distribution": {
+          "env_command_steps": 1376256,
+          "standing_fraction": 0.019438970656622024,
+          "pure_yaw_abs_gt_005_fraction": 0.26329621814546134,
+          "positive_pure_yaw_fraction": 0.12804376511346727,
+          "negative_pure_yaw_fraction": 0.13525245303199404,
+          "mean_abs_yaw_rad_s": 0.28901687783322166,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.0001,
+        "reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.04800049588084221,
+          "raw_action_max_abs": 0.2807549238204956,
+          "mean_gaussian_kl": 1.843238115310669,
+          "leg_target_rms_rad": 0.0077914767898619175,
+          "wheel_target_rms_rad_s": 0.37363943457603455,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "training_phase": "ppo",
+        "policy_quality_evaluated": false
+      },
+      "recipe_check": {
+        "environment_and_agent_match_development": true,
+        "allowed_metadata_changes": [
+          "seed",
+          "log_dir",
+          "run_name",
+          "verified-own-seed load_run"
+        ]
+      },
+      "resume": {
+        "path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-312728_flat_reference_qualification_20260919_s54_stage1\\model_149.pt",
+        "sha256": "68c685834d284c524a57db95cd8618d066477898366d0aa40d557a82065d0a2f",
+        "load_optimizer": true,
+        "note": "Model/optimizer restart; simulator, curriculum and RNG state are reinitialized."
+      }
+    },
+    {
+      "seed": 55,
+      "pid": 16780,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-515890_flat_reference_qualification_20260919_resume1_s55_stage2\\manifest.json",
+      "progress": {
+        "updated_utc": "2026-09-19T18:55:33.351033+00:00",
+        "iteration": 165,
+        "updates_completed_this_run": 16,
+        "updates_requested_this_run": 200,
+        "transitions_this_run": 1572864,
+        "collection_seconds": 2.4017908573150635,
+        "learning_seconds": 0.22384953498840332,
+        "losses": {
+          "value_function": 0.08544086068868637,
+          "surrogate": 0.02310292194597423,
+          "entropy": -14.138346672058105
+        },
+        "command_distribution": {
+          "env_command_steps": 1572864,
+          "standing_fraction": 0.020281473795572918,
+          "pure_yaw_abs_gt_005_fraction": 0.2635682423909505,
+          "positive_pure_yaw_fraction": 0.1306584676106771,
+          "negative_pure_yaw_fraction": 0.13290977478027344,
+          "mean_abs_yaw_rad_s": 0.27363680757116526,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.0001,
+        "reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.049640536308288574,
+          "raw_action_max_abs": 0.3236110210418701,
+          "mean_gaussian_kl": 1.971346139907837,
+          "leg_target_rms_rad": 0.009953525848686695,
+          "wheel_target_rms_rad_s": 0.2895689606666565,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "training_phase": "ppo",
+        "policy_quality_evaluated": false
+      },
+      "recipe_check": {
+        "environment_and_agent_match_development": true,
+        "allowed_metadata_changes": [
+          "seed",
+          "log_dir",
+          "run_name",
+          "verified-own-seed load_run"
+        ]
+      },
+      "resume": {
+        "path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-317232_flat_reference_qualification_20260919_s55_stage1\\model_149.pt",
+        "sha256": "5bb36ad50a75bd832a9d464e71adeea6526706a8386bcf83d0693294e8921f14",
+        "load_optimizer": true,
+        "note": "Model/optimizer restart; simulator, curriculum and RNG state are reinitialized."
+      }
+    }
+  ],
+  "all_frozen_hashes_verified": true,
+  "remaining_training_transitions_at_restart": 73728000,
+  "latest_gpu_sample": {
+    "utc": "2026-09-19T18:55:34.445089+00:00",
+    "elapsed_seconds": 71.18700000000536,
+    "processes": {
+      "seed54": {
+        "process_tree_rss_bytes": 6694645760,
+        "process_tree_count": 3,
+        "system_available_ram_bytes": 7777136640,
+        "system_total_ram_bytes": 34277982208
+      },
+      "seed55": {
+        "process_tree_rss_bytes": 6707683328,
+        "process_tree_count": 4,
+        "system_available_ram_bytes": 7777226752,
+        "system_total_ram_bytes": 34277982208
+      }
+    },
+    "gpu_total_mib": 12282.0,
+    "gpu_used_mib": 10113.0,
+    "gpu_utilization_percent": 93.0,
+    "gpu_temperature_c": 55.0,
+    "gpu_headroom_fraction": 0.176599902296043
+  },
+  "minimum_headroom_so_far": 0.1714704445530044,
+  "cpu_tests_passed": 113,
+  "flat_transfer_accepted": false,
+  "eta_moscow": "22:25-22:35 estimate"
+}

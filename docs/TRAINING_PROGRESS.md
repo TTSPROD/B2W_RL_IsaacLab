@@ -26,7 +26,11 @@
 по собственному parent/hash/seed, затем сравнивать все обучающие параметры.
 Checkpoints50/150 повторно проверены. Продолжить54/55 от model_149 ещё200 updates,
 затем56 fresh50+100+200. Уже выполненные150 не повторяются; бюджет, параметры,
-новые evaluation cases и thresholds неизменны. Новый запуск готовится.
+новые evaluation cases и thresholds неизменны. **Возобновлено21:54 МСК.**
+Первые PPO updates после150 выполнены обоими trainers; фактические env/agent configs
+совпадают с успешным upright stage после проверки собственного load_run.
+[Проверка запуска и GPU](results/2026-09-19-reference-qualification-resume-launch.json).
+Обновлённый ETA итогов22:25–22:35 МСК; возможна ранняя остановка guards.
 Flat transfer gate открыт до итоговых шести passes; Rough ещё не запускался.
 
 Исходный recovery-only final остановлен20:06:06 МСК: drift seed53 был0,25163
