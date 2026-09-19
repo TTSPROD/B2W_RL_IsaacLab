@@ -17,10 +17,13 @@
 навыка на раскрытых development cases, не доказанное превосходство reference.
 Минимальный запас VRAM17,90%, peak10084 MiB,64°C, telemetry errors0.
 
-Следующая очередь подготовлена: [квалификация seeds54/55/56](REFERENCE_QUALIFICATION.md)
+Следующая очередь запущена19.09 в21:29 МСК: [квалификация seeds54/55/56](REFERENCE_QUALIFICATION.md)
 с двумя новыми наборами cases, точный successful lineage50 recovery critic +
 100 recovery PPO +200 upright PPO. На каждый350 updates, всего103219200 transitions.
 54/55 параллельно, затем56; только итоговые checkpoints, без перебора и продления.
+Первые обновления обоих trainers проверены: critic warmup, drift0, конечные losses,
+configs совпадают с успешным stage; [снимок запуска](results/2026-09-19-reference-qualification-launch.json).
+Ориентир окончания с оценками22:10–22:20 МСК; это оценка, guards могут остановить раньше.
 Flat transfer gate открыт до завершения этой проверки; Rough ещё не запускался.
 
 Исходный recovery-only final остановлен20:06:06 МСК: drift seed53 был0,25163

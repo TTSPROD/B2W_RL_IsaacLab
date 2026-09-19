@@ -97,7 +97,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 |---|---|---|
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
-| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development2/2 пройден; квалификация54/55/56 подготовлена |
+| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development2/2 пройден; квалификация54/55/56 запущена |
 | Rough | Отдельный GPU smoke; performance curriculum и Flat regression | Не запускался |
 | Stairs | Удержанные семейства up/down, размеры геометрии | Не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |

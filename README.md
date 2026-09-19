@@ -7,7 +7,7 @@
 nominal/bounded_v1 —100/100, scenario tracking в порогах.
 [Проверенный итог](docs/results/2026-09-19-reference-upright-final.json).
 Успешный режим:50 critic +100 PPO с recovery reset, затем200 PPO с upright reset.
-Flat transfer gate ещё открыт: подготовлена [квалификация трёх новых seeds54/55/56](docs/REFERENCE_QUALIFICATION.md)
+Flat transfer gate ещё открыт: запущена [квалификация трёх новых seeds54/55/56](docs/REFERENCE_QUALIFICATION.md)
 на двух новых наборах cases. Reference/seed49 и финалы52/53 сохранены.
 Текущая очередь и критерии решения ведутся в
 [журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
