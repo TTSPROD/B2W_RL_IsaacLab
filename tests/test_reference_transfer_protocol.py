@@ -5,6 +5,8 @@ import tempfile
 from pathlib import Path
 import sys
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 import run_reference_transfer as m
@@ -18,6 +20,34 @@ def passing_results(controls=False):
 
 
 class ReferenceTransferProtocolTests(unittest.TestCase):
+    def test_idle_guard_exempts_only_own_coordinator_redirector_ancestors(self):
+        class FakeProcess:
+            def __init__(self, pid, script):
+                self.pid = pid
+                self.command = ['python.exe', '-B', '-u', script]
+                self.info = {'pid': pid, 'name': 'python.exe', 'cmdline': self.command}
+            def cmdline(self): return self.command
+            def cwd(self): return str(m.ROOT)
+            def name(self): return 'python.exe'
+        parent = FakeProcess(41, 'scripts/run_reference_transfer.py')
+        current = FakeProcess(42, 'scripts/run_reference_transfer.py')
+        sibling = FakeProcess(43, 'scripts/run_reference_transfer.py')
+        trainer = FakeProcess(44, 'scripts/train_b2w.py')
+        fake = SimpleNamespace(Process=lambda pid: SimpleNamespace(parents=lambda: [parent]),
+                               process_iter=lambda fields: [parent, current],
+                               NoSuchProcess=ProcessLookupError, AccessDenied=PermissionError)
+        with patch.dict(sys.modules, {'psutil': fake}), patch.object(m.os, 'getpid', return_value=42):
+            m.assert_idle_project()
+            for blocked in (sibling, trainer):
+                with self.subTest(pid=blocked.pid):
+                    fake.process_iter = lambda fields: [parent, current, blocked]
+                    with self.assertRaisesRegex(RuntimeError, str(blocked.pid)):
+                        m.assert_idle_project()
+            fake.Process = lambda pid: SimpleNamespace(parents=lambda: [trainer])
+            fake.process_iter = lambda fields: [trainer, current]
+            with self.assertRaisesRegex(RuntimeError, '44'):
+                m.assert_idle_project()
+
     def test_stage_resources_reject_telemetry_gaps_and_low_headroom(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / 'resources.jsonl'

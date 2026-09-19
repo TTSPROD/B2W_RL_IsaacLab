@@ -172,9 +172,26 @@ def verify_evaluation(result, policy_hash, profile, cases, properties):
 def assert_idle_project():
     import psutil
     active = []
+    own_pid = os.getpid()
+    owned_launchers = {own_pid}
+    coordinator = Path(__file__).resolve()
+    # Windows venv python.exe can remain as a redirector parent while its child
+    # executes this coordinator. Exempt only our own Python ancestors that run
+    # this exact script; a sibling coordinator or trainer must still block.
+    for ancestor in psutil.Process(own_pid).parents():
+        try:
+            command = ancestor.cmdline()
+            if ('python' not in ancestor.name().casefold() or len(command) < 2
+                    or '-c' in command[1:] or '-m' in command[1:]):
+                continue
+            script = next((arg for arg in command[1:] if not arg.startswith('-')), None)
+            if script is not None and (Path(ancestor.cwd()) / script).resolve() == coordinator:
+                owned_launchers.add(ancestor.pid)
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
     root = str(ROOT.resolve()).casefold()
     for process in psutil.process_iter(['pid', 'name', 'cmdline']):
-        if process.pid == os.getpid() or 'python' not in (process.info['name'] or '').casefold():
+        if process.pid in owned_launchers or 'python' not in (process.info['name'] or '').casefold():
             continue
         try:
             command = ' '.join(process.info['cmdline'] or [])
