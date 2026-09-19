@@ -112,3 +112,11 @@ raw reward разных конфигураций не сравнивать ка�
 По [отдельному протоколу](REFERENCE_RESUME.md) меняется только reset roll/pitch;
 штрафы и drift threshold не повышаются. Это не доказывает сохранение recovery
 из перевёрнутой позы и не закрывает release gate.
+
+### Проверенный результат19.09,21:04 МСК
+
+Reference transfer52/53 с продолжением upright после150 достиг350: все4
+development evaluations100/100 и scenario tracking pass. Это основание
+зафиксировать режим для [трёх новых seeds](REFERENCE_QUALIFICATION.md),
+а не доказательство превосходства reference или готовности к Rough.
+[Итог с hashes](results/2026-09-19-reference-upright-final.json).

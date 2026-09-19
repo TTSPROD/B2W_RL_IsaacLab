@@ -3,15 +3,12 @@
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 
-**Flat ещё не принят.** Контактная абляция −3/−6 завершена 19 сентября 2026
-без нового кандидата: число отказов выросло с 14 до 20. Успешный seed 49
-сохранён без дообучения. [Итог опыта](docs/CONTACT6_ABLATION.md).
-**Reference transfer прошёл gates на150 updates, затем остановлен drift guard.**
-Причина проверена: превышение было до PPO-update в recovery-состояниях.
-Запущено [продолжение с upright reset](docs/REFERENCE_RESUME.md) от сохранённых
-checkpoints: снимок19.09,20:52:20 МСК —177/177 cumulative updates.
-[Проверка запуска](docs/results/2026-09-19-reference-upright-launch.json).
-Лимит0,25 и оценочные пороги сохранены; итог новых политик ещё не измерен.
+**Reference transfer прошёл итог350 на seeds52/53:** все четыре оценки
+nominal/bounded_v1 —100/100, scenario tracking в порогах.
+[Проверенный итог](docs/results/2026-09-19-reference-upright-final.json).
+Успешный режим:50 critic +100 PPO с recovery reset, затем200 PPO с upright reset.
+Flat transfer gate ещё открыт: подготовлена [квалификация трёх новых seeds54/55/56](docs/REFERENCE_QUALIFICATION.md)
+на двух новых наборах cases. Reference/seed49 и финалы52/53 сохранены.
 Текущая очередь и критерии решения ведутся в
 [журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
 

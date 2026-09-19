@@ -23,7 +23,14 @@
 | vendor_materials.py | Верификация/управление manifest pinned materials; vendor policy см. AGENTS.md |
 | sync_server.ps1 | Отдельная разрешённая синхронизация выделенного server project; не вызывается обычным Git push |
 
-## Подготовленный reference transfer
+## Текущая квалификация reference transfer
+
+`run_reference_qualification.py`: seeds54/55/56, по50+100+200 updates,
+upright reset только после150. Новые cases только для финалов350;
+[замороженный протокол](../docs/REFERENCE_QUALIFICATION.md). Бюджет103219200 transitions.
+Статус — в журнале. Исходные координаторы ниже сохраняют историю development.
+
+## Исходный reference transfer
 
 Актуальный [протокол](../docs/REFERENCE_TRANSFER.md): общий pretrained actor
 reference, fresh critic/optimizer у seeds 52/53, по 4096 сред. На каждый seed

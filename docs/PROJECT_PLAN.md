@@ -1,14 +1,12 @@
 # План проекта B2W
 
 Актуализирован 19 сентября 2026. Цель — воспроизводимое полезное управление B2W
-по Flat, затем Rough/обычным лестницам и отдельно sim2real. Reference transfer
-прошёл update150 gates, затем остановился на drift после restart.
-[Диагностика и зарегистрированное продолжение](REFERENCE_RESUME.md):
-изменить только reset roll/pitch на±0,1 рад, ещё200 updates от model_149.
-Порог drift0,25 и все Flat gates сохраняются. Продолжение
-[запущено и проверено](results/2026-09-19-reference-upright-launch.json).
-Фактическое состояние и результаты — в [журнале](TRAINING_PROGRESS.md).
-Flat release gate пока не закрыт; seed49 сохранён как прошедший локальный кандидат.
+по Flat, затем Rough/обычным лестницам и отдельно sim2real.
+Reference transfer seeds52/53 завершён19.09 в21:04:52 МСК: все4 final350
+оценки100/100 и tracking pass. [Проверенный итог](results/2026-09-19-reference-upright-final.json).
+Следующий шаг — [три новых fine-tuning seeds54/55/56](REFERENCE_QUALIFICATION.md),
+тот же успешный режим50+100+200 и два новых набора cases. Flat transfer gate
+остаётся открытым до шести отдельных passes. Состояние — в [журнале](TRAINING_PROGRESS.md).
 
 ## Почему меняем подход
 
@@ -37,7 +35,8 @@ Reference и seed49 уже показали безопасный Flat на пр�
 Описанный ниже цикл50+100+200 дошёл до150 и прошёл все4 evaluations100/100.
 Последний stage остановлен. Превышение drift seed53 существовало до его первого
 PPO-update; upright resume smoke на обоих seeds прошёл при прежнем лимите.
-Действующий план продолжения — [REFERENCE_RESUME](REFERENCE_RESUME.md).
+Продолжение [REFERENCE_RESUME](REFERENCE_RESUME.md) завершено успешно на350.
+Текущий протокол — [REFERENCE_QUALIFICATION](REFERENCE_QUALIFICATION.md).
 Исторический recipe ниже сохраняет происхождение parent checkpoints.
 
 1. Проверить reference actor 57→16, Identity normalizer и точную загрузку.
@@ -98,7 +97,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 |---|---|---|
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
-| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Продолжение от150 updates запущено |
+| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development2/2 пройден; квалификация54/55/56 подготовлена |
 | Rough | Отдельный GPU smoke; performance curriculum и Flat regression | Не запускался |
 | Stairs | Удержанные семейства up/down, размеры геометрии | Не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |

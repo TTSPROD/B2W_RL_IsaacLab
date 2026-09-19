@@ -143,11 +143,12 @@ def milestone_decision(results, cumulative_updates):
             'release_accepted': False, 'fresh_from_scratch_acceptance': False}
 
 
-def verify_evaluation(result, policy_hash, profile, cases, properties):
+def verify_evaluation(result, policy_hash, profile, cases, properties, evaluation_seed=None):
+    expected_seed = EVALUATIONS[profile] if evaluation_seed is None else evaluation_seed
     evidence = result['physical_evidence']
     if (result['status'] != 'completed' or result['physics_steps_completed'] != 4400
             or result['policy_sha256'] != policy_hash
-            or result['evaluation_seed'] != EVALUATIONS[profile] or result['num_envs'] != 100
+            or result['evaluation_seed'] != expected_seed or result['num_envs'] != 100
             or result['physical_profile']['profile'] != profile or result['cases'] != cases
             or len(result['results']) != 100 or not evidence['applied_properties_verified']
             or not evidence['persistent_through_replay']

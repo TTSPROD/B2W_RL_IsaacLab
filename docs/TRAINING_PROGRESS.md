@@ -1,22 +1,33 @@
 # Результаты обучения B2W
 
-**19.09.2026: исходный transfer остановился20:06:06 МСК.**
-На150 updates оба seeds52/53 прошли nominal/bounded: все4 оценки100/100 и
-tracking в порогах. Final350 не достигнут; исходный job остаётся failed.
-[Сохранённый итог](results/2026-09-19-reference-transfer-final.json).
+**19.09.2026,21:04:52 МСК: upright continuation завершён успешно.**
+Оба seeds52/53 достигли350 updates; все четыре nominal/bounded_v1 оценки
+прошли100/100 и scenario tracking. Hashes source/checkpoints/exports/reports
+проверены; actor отличается от reference, critic обновлён, std0,1 сохранён.
+[Полный итог](results/2026-09-19-reference-upright-final.json).
 
-Причина проверена: drift seed53 на restart-состояниях0,25163 до PPO-update,
-0,25031 после; guard0,25 сработал корректно. При upright reset диагностика
-обоих seeds завершилась exit0 с drift ниже порога.
-Подготовлено [ограниченное продолжение](REFERENCE_RESUME.md): ещё200 updates/seed
-от исходных model_149, только reset roll/pitch±0,1; rewards/PPO/guard не меняются.
-**Продолжение запущено:** снимок19.09,20:52:20 МСК —177/177 cumulative updates,
-оба4096-env trainer активны, drift ниже0,25, hashes источников совпадают.
-[Подтверждённый запуск](results/2026-09-19-reference-upright-launch.json).
-Результат final350 ещё не оценен.
+| Policy/profile | Safe | Худший scenario RMS vx/vy/yaw |
+|---|---|---|
+|52 nominal|100/100|0,07497 /0,16763 /0,14924|
+|52 bounded_v1|100/100|0,08183 /0,15839 /0,16734|
+|53 nominal|100/100|0,05856 /0,15219 /0,16517|
+|53 bounded_v1|100/100|0,06424 /0,15036 /0,19387|
 
-Seed49/reference и исходные checkpoints сохраняются. Flat release gate открыт.
-История старта первоначальной очереди: [snapshot](results/2026-09-19-reference-transfer-launch.json).
+Пороги0,20/0,20/0,25 выполнены отдельно в каждом семействе. Это сохранение
+навыка на раскрытых development cases, не доказанное превосходство reference.
+Минимальный запас VRAM17,90%, peak10084 MiB,64°C, telemetry errors0.
+
+Следующая очередь подготовлена: [квалификация seeds54/55/56](REFERENCE_QUALIFICATION.md)
+с двумя новыми наборами cases, точный successful lineage50 recovery critic +
+100 recovery PPO +200 upright PPO. На каждый350 updates, всего103219200 transitions.
+54/55 параллельно, затем56; только итоговые checkpoints, без перебора и продления.
+Flat transfer gate открыт до завершения этой проверки; Rough ещё не запускался.
+
+Исходный recovery-only final остановлен20:06:06 МСК: drift seed53 был0,25163
+до update и0,25031 после при guard0,25. [Исходный failed job](results/2026-09-19-reference-transfer-final.json)
+не переписан. Успешное продолжение началось от model_149; failed/probe updates
+отброшены, единственная MDP-поправка — reset roll/pitch±0,1 рад после150.
+[Диагностика/протокол](REFERENCE_RESUME.md). Reference/seed49 и все родители сохранены.
 
 ## Что установлено
 
