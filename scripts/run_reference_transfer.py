@@ -169,12 +169,12 @@ def verify_evaluation(result, policy_hash, profile, cases, properties):
     return summary
 
 
-def assert_idle_project():
+def assert_idle_project(coordinator_path=None):
     import psutil
     active = []
     own_pid = os.getpid()
     owned_launchers = {own_pid}
-    coordinator = Path(__file__).resolve()
+    coordinator = Path(coordinator_path or __file__).resolve()
     # Windows venv python.exe can remain as a redirector parent while its child
     # executes this coordinator. Exempt only our own Python ancestors that run
     # this exact script; a sibling coordinator or trainer must still block.

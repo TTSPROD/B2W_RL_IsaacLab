@@ -102,3 +102,13 @@ Replay --reward_diagnostics без training overrides и с post-failure averagi
 не измеряет реальные вклады contact−3/height−10 при обучении.
 Для анализа причин нужны согласованные pre-failure окна и effective weights×dt;
 raw reward разных конфигураций не сравнивать как качество управления.
+
+
+## Проверенная поправка19.09 после update150
+
+Оба seeds прошли4 Flat gates100/100 после150 updates. При restart guard сработал
+на drift, уже превышавшем0,25 до нового PPO-update. Диагностика matched states
+и отдельный upright resume подтвердили роль reset distribution в этом событии.
+По [отдельному протоколу](REFERENCE_RESUME.md) меняется только reset roll/pitch;
+штрафы и drift threshold не повышаются. Это не доказывает сохранение recovery
+из перевёрнутой позы и не закрывает release gate.

@@ -149,6 +149,25 @@ class ReferenceTransferTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             transfer.initialize_reference(self.policy, reference, self.observations)
 
+    def test_upright_curriculum_changes_only_reset_roll_and_pitch(self):
+        from types import SimpleNamespace
+        import copy
+        params = {"pose_range": {"x": (-.5, .5), "z": (0., .2), "yaw": (-3.14, 3.14),
+                                "roll": (-3.14, 3.14), "pitch": (-3.14, 3.14)},
+                  "velocity_range": {"roll": (-.5, .5), "x": (-.5, .5)}}
+        before = copy.deepcopy(params)
+        cfg = SimpleNamespace(events=SimpleNamespace(randomize_reset_base=SimpleNamespace(params=params)))
+        change = transfer.apply_flat_upright_reset(cfg)
+        self.assertEqual(params["pose_range"]["roll"], (-.1, .1))
+        self.assertEqual(params["pose_range"]["pitch"], (-.1, .1))
+        self.assertEqual(len(change["changed_fields"]), 2)
+        normalized = copy.deepcopy(params)
+        for key in ("roll", "pitch"):
+            normalized["pose_range"][key] = before["pose_range"][key]
+        self.assertEqual(normalized, before)
+        with self.assertRaises(ValueError):
+            transfer.apply_flat_upright_reset(cfg)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,9 +1,11 @@
 # План проекта B2W
 
 Актуализирован 19 сентября 2026. Цель — воспроизводимое полезное управление B2W
-по Flat, затем Rough/обычным лестницам и отдельно sim2real. Текущий запуск:
-[reference transfer](REFERENCE_TRANSFER.md) после Git push начат и подтверждён
-[датированным снимком](results/2026-09-19-reference-transfer-launch.json).
+по Flat, затем Rough/обычным лестницам и отдельно sim2real. Reference transfer
+прошёл update150 gates, затем остановился на drift после restart.
+[Диагностика и зарегистрированное продолжение](REFERENCE_RESUME.md):
+изменить только reset roll/pitch на±0,1 рад, ещё200 updates от model_149.
+Порог drift0,25 и все Flat gates сохраняются.
 Фактическое состояние и результаты — в [журнале](TRAINING_PROGRESS.md).
 Flat release gate пока не закрыт; seed49 сохранён как прошедший локальный кандидат.
 
@@ -29,7 +31,13 @@ Reference и seed49 уже показали безопасный Flat на пр�
 Обучение с нуля остаётся исследовательской веткой и больше не является
 обязательным условием получения прикладной политики.
 
-## Следующий ограниченный цикл
+## Исходный reference transfer и продолжение
+
+Описанный ниже цикл50+100+200 дошёл до150 и прошёл все4 evaluations100/100.
+Последний stage остановлен. Превышение drift seed53 существовало до его первого
+PPO-update; upright resume smoke на обоих seeds прошёл при прежнем лимите.
+Действующий план продолжения — [REFERENCE_RESUME](REFERENCE_RESUME.md).
+Исторический recipe ниже сохраняет происхождение parent checkpoints.
 
 1. Проверить reference actor 57→16, Identity normalizer и точную загрузку.
    Сохранить seed49 и исходную reference неизменными. CPU smoke, GPU

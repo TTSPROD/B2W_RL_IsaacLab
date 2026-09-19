@@ -198,3 +198,17 @@ def initialize_reference(policy, path, observations, fixed_std: float = .1):
         "policy_quality_evaluated": False,
     }
     return teacher, metadata
+
+def apply_flat_upright_reset(env_cfg):
+    """Change only roll/pitch reset orientation for the explicit Flat curriculum."""
+    params = env_cfg.events.randomize_reset_base.params
+    pose = params["pose_range"]
+    before = copy.deepcopy(pose)
+    for key in ("roll", "pitch"):
+        _require(tuple(pose[key]) == (-3.14, 3.14), "Expected pinned recovery reset range")
+    pose["roll"] = (-.1, .1)
+    pose["pitch"] = (-.1, .1)
+    return {"before_pose_range": before, "after_pose_range": copy.deepcopy(pose),
+            "changed_fields": ["events.randomize_reset_base.params.pose_range.roll",
+                               "events.randomize_reset_base.params.pose_range.pitch"],
+            "scope": "Flat upright-start curriculum; no recovery capability qualification"}

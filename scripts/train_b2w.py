@@ -54,6 +54,8 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
     parser.add_argument("--run_name", default="", help="Optional letters/digits/dashes/underscores log suffix.")
     parser.add_argument("--resume", type=Path, help="Explicit checkpoint inside this project; restores optimizer too.")
     parser.add_argument("--reference_init", type=Path, help="Conservative transfer from a project TorchScript actor; allows matching transfer resume.")
+    parser.add_argument("--flat_upright_resets", action="store_true", help="Flat transfer curriculum: reset roll/pitch within +/-0.1 rad; preserves other reset fields.")
+    parser.add_argument("--reference_update_probe", action="store_true", help="Record reference drift before/after PPO on identical rollout-end states.")
     parser.add_argument("--critic_warmup_updates", type=int, default=50, help="Cumulative transfer updates with actor frozen.")
     parser.add_argument("--reference_drift_limit", type=float, default=0.25, help="Stop transfer if raw-action RMS drift exceeds this limit.")
     parser.add_argument("--pure_yaw_fraction", type=float, default=None, help="Optional Flat command ablation: fraction of non-standing resamples; 0 is instrumented upstream control.")
@@ -102,6 +104,10 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
             parser.error("Transfer requires positive warmup and finite positive drift limit")
         if any(value is not None for value in (args.yaw_tracking_weight, args.undesired_contact_weight, args.base_height_weight)):
             parser.error("Reference transfer preserves upstream rewards; do not combine reward overrides")
+    if args.flat_upright_resets and args.reference_init is None:
+        parser.error("--flat_upright_resets requires --reference_init")
+    if args.reference_update_probe and args.reference_init is None:
+        parser.error("--reference_update_probe requires --reference_init")
     return args
 
 
@@ -140,6 +146,7 @@ def main() -> None:
         "base_height_weight_override": args.base_height_weight,
         "base_height_form_requested": args.base_height_form,
         "reference_transfer": None,
+        "flat_upright_resets": args.flat_upright_resets,
         "policy_quality_evaluated": False,
         "checkpoints": [],
     }
@@ -174,6 +181,9 @@ def main() -> None:
         env_cfg = make_flat_env_cfg(
             num_envs=args.num_envs, device=args.device, seed=args.seed, headless=args.headless
         )
+        if args.flat_upright_resets:
+            from reference_transfer import apply_flat_upright_reset
+            manifest["reset_orientation_change"] = apply_flat_upright_reset(env_cfg)
         if args.pure_yaw_fraction is not None:
             from b2w_yaw_commands import MeasuredYawVelocityCommand
             env_cfg.commands.base_velocity.class_type = MeasuredYawVelocityCommand
@@ -278,6 +288,7 @@ def main() -> None:
         manifest["policy_dt"] = env_cfg.sim.dt * env_cfg.decimation
         manifest["num_steps_per_env"] = agent_cfg.num_steps_per_env
         teacher = None
+        update_probe = {}
         class MonitoredRunner(OnPolicyRunner):
             """Record progress and fail on non-finite data without changing PPO."""
 
@@ -294,6 +305,34 @@ def main() -> None:
                     from reference_transfer import measure_reference_drift, set_actor_trainable
                     drift = measure_reference_drift(self.alg.policy, teacher, locs["obs"])
                     manifest["reference_transfer"]["latest_drift"] = drift
+                    if args.reference_update_probe:
+                        probe_obs = self.alg.policy.get_actor_obs(locs["obs"])
+                        if not torch.equal(probe_obs, update_probe["observations"]):
+                            raise RuntimeError("PPO update probe observations changed")
+                        with torch.no_grad():
+                            after_actions = self.alg.policy.act_inference(locs["obs"])
+                            action_change = after_actions - update_probe["before_actions"]
+                        diagnostic = {
+                            "iteration": locs["it"],
+                            "before_update_reference_drift": update_probe["before_drift"],
+                            "after_update_reference_drift": drift,
+                            "same_observations": True,
+                            "update_action_rms": float(action_change.square().mean().sqrt()),
+                            "update_action_max_abs": float(action_change.abs().max()),
+                            "gravity_z_mean": float(probe_obs[:, 5].mean()),
+                            "not_upright_fraction": float((probe_obs[:, 5] > -.5).float().mean()),
+                            "mean_abs_yaw_command": float(probe_obs[:, 8].abs().mean()),
+                        }
+                        write_json(log_dir / "reference_update_probe.json", diagnostic)
+                        if locs["it"] == locs["start_iter"] or drift["raw_action_rms"] > args.reference_drift_limit:
+                            torch.save({
+                                "diagnostic": diagnostic,
+                                "observations": probe_obs.detach().cpu(),
+                                "before_actions": update_probe["before_actions"].detach().cpu(),
+                                "after_actions": after_actions.detach().cpu(),
+                                "reference_actions": teacher(probe_obs).detach().cpu(),
+                                "actor_state_dict": {k: v.detach().cpu() for k, v in self.alg.policy.actor.state_dict().items()},
+                            }, log_dir / f'reference_update_{locs["it"]}.pt')
                     write_json(log_dir / "reference_drift.json", {"iteration": locs["it"], **drift})
                     if drift["raw_action_rms"] > args.reference_drift_limit:
                         raise RuntimeError(f"Reference action drift exceeded registered limit: {drift}")
@@ -351,6 +390,8 @@ def main() -> None:
                     raise RuntimeError("Resume must belong to the same reference transfer lineage")
                 if transfer["critic_warmup_updates"] != args.critic_warmup_updates or transfer["drift_limit"] != args.reference_drift_limit:
                     raise RuntimeError("Transfer protocol changed on resume")
+                if parent.get("flat_upright_resets", False) and not args.flat_upright_resets:
+                    raise RuntimeError("Do not silently revert an upright transfer checkpoint to recovery resets")
                 if parent["seed"] != args.seed or parent["pure_yaw_fraction"] != args.pure_yaw_fraction:
                     raise RuntimeError("Transfer seed/command distribution changed on resume")
                 if runner.alg.learning_rate != 1e-4:
@@ -362,9 +403,22 @@ def main() -> None:
                             critic_warmup_updates=args.critic_warmup_updates,
                             drift_limit=args.reference_drift_limit,
                             learning_rate=1e-4, clip_param=0.1, entropy_coef=0.0,
-                            fixed_action_std=0.1, shared_pretrained_lineage=True)
+                            fixed_action_std=0.1, shared_pretrained_lineage=True,
+                            flat_upright_resets=args.flat_upright_resets)
             manifest["reference_transfer"] = transfer
             set_actor_trainable(runner.alg.policy, runner.current_learning_iteration >= args.critic_warmup_updates)
+        if args.reference_update_probe:
+            from reference_transfer import measure_reference_drift
+            original_compute_returns = runner.alg.compute_returns
+            def compute_returns_with_probe(obs):
+                original_compute_returns(obs)
+                with torch.no_grad():
+                    update_probe["observations"] = runner.alg.policy.get_actor_obs(obs).detach().clone()
+                    update_probe["before_actions"] = runner.alg.policy.act_inference(obs).detach().clone()
+                    update_probe["before_drift"] = measure_reference_drift(runner.alg.policy, teacher, obs)
+            runner.alg.compute_returns = compute_returns_with_probe
+            manifest["reference_transfer"]["update_probe_enabled"] = True
+            manifest["reference_transfer"]["initial_reference_drift"] = measure_reference_drift(runner.alg.policy, teacher, observations)
         manifest["starting_learning_rate"] = float(runner.alg.learning_rate)
         manifest["starting_runner_iteration"] = runner.current_learning_iteration
         manifest["status"] = "training"

@@ -206,3 +206,14 @@ model_2499,1500 новых updates/ветвь,4096 сред. Smoke/resume, пр�
 различия env.yaml, source/decision hashes, VRAM guard5%,4exports и10evaluations.
 Не запускать повторно в существующий каталог; не менять frozen исходники.
 [Протокол](../docs/CONTACT6_ABLATION.md), журнал `logs/ablations/lower_l1_followup.json`.
+
+## Диагностика resume и продолжение upright
+
+- diagnose_reference_resume.py: два отброшенных однократных updates от model_149;
+  --upright повторяет их с reset roll/pitch±0,1, прежний drift guard.
+- train_b2w.py --reference_update_probe: passive pre/post measurements на тех же
+  observations; --flat_upright_resets: единственное изменение orientation reset.
+- run_reference_upright_resume.py:200 updates/seed от проверенных150, затем
+  exports и4 evaluations. [Протокол](../docs/REFERENCE_RESUME.md).
+
+Исходный failed job и протокол сохраняются; retry не переписывает историю.

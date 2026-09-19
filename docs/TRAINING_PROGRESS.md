@@ -1,18 +1,19 @@
 # Результаты обучения B2W
 
-**19.09.2026: reward sweeps завершены без кандидата.**
-[Повторная проверка артефактов и решение](results/2026-09-19-strategy-review.json).
-**Reference transfer начат19.09, снимок19:51:04 МСК:** seeds52/53,
-28/27 updates из50 critic calibration,4096 сред каждый; losses конечны,
-actor drift0. GPU smoke2+resume2 и export пройдены. Reference и seed49 прошли
-оба новых профиля: reference100/100, seed49 nominal99/100 и bounded100/100.
-[Снимок запуска](results/2026-09-19-reference-transfer-launch.json),
-[протокол](REFERENCE_TRANSFER.md), [план](PROJECT_PLAN.md), [исследование](REWARD_RESEARCH.md).
-Новые политики ещё не прошли milestone evaluations; это подтверждённый запуск,
-не законченный training и не Flat release. Исторический protocol сохраняется
-неизменным для проверки hashes. GitHub CI success;104 CPU tests pass,
-лёгкий104-test прогон с29 ожидаемыми skips,23 DNS tests pass,1290 vendor files verified.
-Seed49 и reference сохраняются неизменными. Flat release gate открыт.
+**19.09.2026: исходный transfer остановился20:06:06 МСК.**
+На150 updates оба seeds52/53 прошли nominal/bounded: все4 оценки100/100 и
+tracking в порогах. Final350 не достигнут; исходный job остаётся failed.
+[Сохранённый итог](results/2026-09-19-reference-transfer-final.json).
+
+Причина проверена: drift seed53 на restart-состояниях0,25163 до PPO-update,
+0,25031 после; guard0,25 сработал корректно. При upright reset диагностика
+обоих seeds завершилась exit0 с drift ниже порога.
+Подготовлено [ограниченное продолжение](REFERENCE_RESUME.md): ещё200 updates/seed
+от исходных model_149, только reset roll/pitch±0,1; rewards/PPO/guard не меняются.
+Запуск этой новой очереди пока не подтверждён.
+
+Seed49/reference и исходные checkpoints сохраняются. Flat release gate открыт.
+История старта первоначальной очереди: [snapshot](results/2026-09-19-reference-transfer-launch.json).
 
 ## Что установлено
 
@@ -57,18 +58,16 @@ CPU export parity295 входов max error0.
 Его не дообучают и не перезаписывают. Reference имеет проверенный motor skill,
 но скачан; новый transfer должен отдельно доказать updates и качество.
 
-## Следующая очередь
+## Продолжение от150 updates
 
-Метод: imported actor + свежий critic,50 frozen-actor updates, затем100+200 PPO;
-seeds52/53, общий pretrained lineage, 4096 сред каждый.
-Максимум68 812 800 transitions,4+12 baseline/milestone evaluations.
-До них — отдельный discarded smoke train/resume и export.
-При раннем отказе оставшиеся stages не запускаются.
-Job: logs/transfer/flat_reference_transfer_20260919/job.json.
+[REFERENCE_RESUME](REFERENCE_RESUME.md): seeds52/53 от исходных model_149,
+по200 новых updates с roll/pitch reset±0,1 рад. Порог drift0,25 сохраняется.
+Два успешных upright resume probes отброшены; из их weights не продолжаем.
+Предыдущие failed/probe transitions отражены отдельно от основного бюджета.
 
-Зарегистрированный [протокол](REFERENCE_TRANSFER.md) фиксирует все параметры,
-cases, stops и правило выбора. Фактический старт подтверждён снимком выше. Статусы в job.json меняются
-по мере исполнения; snapshot фиксирует указанный момент. Автопродления нет.
+[Решение и matched pre/post данные](results/2026-09-19-reference-resume-decision.json).
+Job: logs/transfer/flat_reference_upright_resume_20260919/job.json.
+Исходный job завершён с failed; новая очередь не переписывает этот результат.
 
 ## Инфраструктура и открытые gates
 
