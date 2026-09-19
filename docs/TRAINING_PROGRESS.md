@@ -17,14 +17,17 @@
 навыка на раскрытых development cases, не доказанное превосходство reference.
 Минимальный запас VRAM17,90%, peak10084 MiB,64°C, telemetry errors0.
 
-Следующая очередь запущена19.09 в21:29 МСК: [квалификация seeds54/55/56](REFERENCE_QUALIFICATION.md)
-с двумя новыми наборами cases, точный successful lineage50 recovery critic +
-100 recovery PPO +200 upright PPO. На каждый350 updates, всего103219200 transitions.
-54/55 параллельно, затем56; только итоговые checkpoints, без перебора и продления.
-Первые обновления обоих trainers проверены: critic warmup, drift0, конечные losses,
-configs совпадают с успешным stage; [снимок запуска](results/2026-09-19-reference-qualification-launch.json).
-Ориентир окончания с оценками22:10–22:20 МСК; это оценка, guards могут остановить раньше.
-Flat transfer gate открыт до завершения этой проверки; Rough ещё не запускался.
+Квалификация54/55/56 остановилась19.09 в21:37:39 МСК после успешных150 updates
+у54/55. Train exits0, telemetry errors0, drift0,06959/0,05920. Ошибка оркестратора:
+сравнение agent.yaml ошибочно требовало одинаковый load_run у разных seeds.
+[Исходный failed report](results/2026-09-19-reference-qualification-final.json) сохранён.
+
+[Исправление и продолжение](REFERENCE_QUALIFICATION_RESUME.md): проверять load_run
+по собственному parent/hash/seed, затем сравнивать все обучающие параметры.
+Checkpoints50/150 повторно проверены. Продолжить54/55 от model_149 ещё200 updates,
+затем56 fresh50+100+200. Уже выполненные150 не повторяются; бюджет, параметры,
+новые evaluation cases и thresholds неизменны. Новый запуск готовится.
+Flat transfer gate открыт до итоговых шести passes; Rough ещё не запускался.
 
 Исходный recovery-only final остановлен20:06:06 МСК: drift seed53 был0,25163
 до update и0,25031 после при guard0,25. [Исходный failed job](results/2026-09-19-reference-transfer-final.json)

@@ -6,7 +6,8 @@ Reference transfer seeds52/53 завершён19.09 в21:04:52 МСК: все4 f
 оценки100/100 и tracking pass. [Проверенный итог](results/2026-09-19-reference-upright-final.json).
 Следующий шаг — [три новых fine-tuning seeds54/55/56](REFERENCE_QUALIFICATION.md),
 тот же успешный режим50+100+200 и два новых набора cases. Flat transfer gate
-остаётся открытым до шести отдельных passes. Состояние — в [журнале](TRAINING_PROGRESS.md).
+остаётся открытым до шести отдельных passes. После технической остановки на150
+у54/55 — [возобновление без повторного обучения](REFERENCE_QUALIFICATION_RESUME.md). Состояние — в [журнале](TRAINING_PROGRESS.md).
 
 ## Почему меняем подход
 
@@ -97,7 +98,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 |---|---|---|
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
-| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development2/2 пройден; квалификация54/55/56 запущена |
+| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development2/2 пройден;54/55 на150, исправлен coordinator resume |
 | Rough | Отдельный GPU smoke; performance curriculum и Flat regression | Не запускался |
 | Stairs | Удержанные семейства up/down, размеры геометрии | Не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |

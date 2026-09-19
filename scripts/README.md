@@ -28,6 +28,8 @@
 `run_reference_qualification.py`: seeds54/55/56, по50+100+200 updates,
 upright reset только после150. Новые cases только для финалов350;
 [замороженный протокол](../docs/REFERENCE_QUALIFICATION.md). Бюджет103219200 transitions.
+`--resume-validated-prefix` продолжает только подтверждённую техническую остановку
+после150 у54/55; собственные parent hashes проверяются, бюджет не повторяется.
 Статус — в журнале. Исходные координаторы ниже сохраняют историю development.
 
 ## Исходный reference transfer

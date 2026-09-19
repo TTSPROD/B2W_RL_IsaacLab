@@ -31,6 +31,60 @@ class ReferenceQualificationTests(unittest.TestCase):
             with self.subTest(seed=seed, segment=segment), self.assertRaises(ValueError):
                 m.training_spec(seed, segment, value)
 
+    def test_resume_paths_are_semantic_and_other_recipe_changes_still_fail(self):
+        import json, tempfile
+        from unittest.mock import patch
+        try:
+            import yaml
+        except ImportError:
+            self.skipTest('PyYAML unavailable')
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            runs = []
+            agents = []
+            for seed in (52, 54):
+                parent = root / f'parent{seed}'
+                current = root / f'current{seed}'
+                parent.mkdir(); (current / 'params').mkdir(parents=True)
+                checkpoint = parent / 'model_49.pt'; checkpoint.write_bytes(f'weights{seed}'.encode())
+                digest = m.sha256(checkpoint)
+                (parent / 'manifest.json').write_text(json.dumps({'seed': seed}))
+                manifest = current / 'manifest.json'
+                manifest.write_text(json.dumps({'seed': seed, 'resume': {'path': str(checkpoint),
+                    'sha256': digest, 'load_optimizer': True}}))
+                agent = {'seed': seed, 'run_name': str(seed), 'resume': True,
+                         'load_run': str(parent), 'load_checkpoint': 'model_49.pt',
+                         'algorithm': {'learning_rate': .0001}, 'max_iterations': 100}
+                (current / 'params/agent.yaml').write_text(yaml.safe_dump(agent))
+                (current / 'params/env.yaml').write_text(yaml.safe_dump({'seed': seed, 'log_dir': str(current), 'dt': .005}))
+                runs.append({'seed': seed, 'checkpoint': str(checkpoint), 'checkpoint_sha256': digest,
+                             'training_manifest': str(manifest)})
+                agents.append(agent)
+            def save_agent():
+                (Path(runs[1]['training_manifest']).parent / 'params/agent.yaml').write_text(yaml.safe_dump(agents[1]))
+            with patch.object(m.base, 'project_file', side_effect=lambda p: Path(p).resolve()):
+                self.assertTrue(m.verify_recipe(runs[1], runs[0])['environment_and_agent_match_development'])
+                agents[1]['load_run'] = agents[0]['load_run']; save_agent()
+                with self.assertRaisesRegex(ValueError, 'own-seed parent'):
+                    m.verify_recipe(runs[1], runs[0])
+                agents[1]['load_run'] = str(Path(runs[1]['checkpoint']).parent)
+                agents[1]['algorithm']['learning_rate'] = .001; save_agent()
+                with self.assertRaisesRegex(ValueError, 'algorithm'):
+                    m.verify_recipe(runs[1], runs[0])
+                agents[1]['algorithm']['learning_rate'] = .0001; save_agent()
+                runs[1]['seed'] = 55
+                with self.assertRaisesRegex(ValueError, 'own-seed parent'):
+                    m.verify_recipe(runs[1], runs[0])
+
+    def test_resume_rejects_quality_failure_or_started_final(self):
+        from unittest.mock import patch
+        value = {'status': 'failed', 'error': "Recipe differs from successful development agent.yaml: ['load_run']",
+                 'evaluations': {}, 'exports': {}}
+        for variant in ({**value, 'status': 'stopped_quality_gate'}, {**value, 'batch54_to_350': {}},
+                        {**value, 'evaluations': {'seed54_nominal': {}}}, {**value, 'batch56_to_50': {}}):
+            with patch.object(m, 'read', return_value=variant), self.assertRaisesRegex(RuntimeError, 'documented'):
+                m.validate_completed_prefix([])
+
     def test_new_evaluation_seed_is_enforced(self):
         from unittest.mock import patch
         summary = {'episodes': 100, 'no_fall_count': 100, 'by_scenario': {
