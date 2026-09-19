@@ -3,68 +3,57 @@
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 
-## Состояние на 18 сентября 2026, 15:12 МСК
+**Flat ещё не принят.** Контактная абляция −3/−6 завершена 19 сентября 2026
+без нового кандидата: число отказов выросло с 14 до 20. Успешный seed 49
+сохранён без дообучения. [Итог опыта](docs/CONTACT6_ABLATION.md).
+**Подготовлен reference transfer:** перенос actor эталона, новый critic,
+короткая PPO-адаптация seeds 52/53 с ранней оценкой без автопродления.
+Запуск и результат ещё не подтверждены. [Протокол](docs/REFERENCE_TRANSFER.md).
+Текущая очередь и критерии решения ведутся в
+[журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
 
-- **Обучение продолжается на RTX 4070 Ti:** staged seeds 49/50 — 2596/4000
-  и 2597/4000 updates; seed 51 ждёт. На каждом 4096 сред и один плановый
-  restart: 2500 upstream + 1500 mix 0,25. Итоговые 8 evaluations ещё не начаты.
-- Seed 48: staged прошёл nominal и bounded — по **100/100 без отказов и все
-  tracking gates**. Constant не прошёл. Это один development seed; Flat gate
-  остаётся открыт до проверки каждого из новых seeds 49/50/51.
-- Предыдущая серия 45/46/47 не прошла gates: nominal/bounded без отказов
-  **91/91, 94/90, 92/89 из 100**. Диагностика calf-контактов и эксперимент
-  расписания завершены; результаты сохранены.
-- **RTX 4080 Laptop квалифицирован:** physics 10 000 шагов, PPO/resume и
-  210-update benchmark; 38,0 тыс. transitions/s на P-ядрах. Основное обучение
-  не назначено, очередь по уточнению пользователя остаётся на ПК.
-- **Сервер проверен:** 4 Hopper GPU по 95 830 MiB. GPU0 D2D — 1,752 TB/s
-  чтения+записи; SGEMM timeout при инициализации cuBLAS. Проектного Isaac runtime
-  и Vulkan loader нет; скорость Isaac Lab не измерена, server gate не пройден.
-- Rough/stairs, sim2sim, GUI и аппаратные испытания не квалифицированы.
-  Zero-action PD stand остаётся отдельным открытым gate.
+Headless Flat технически квалифицирован на Windows / RTX 4070 Ti, в том числе
+два одновременных запуска по 4096 сред. RTX 4080 Laptop прошёл отдельную
+квалификацию; сервер к Isaac Lab не допущен. Rough/stairs, GUI, sim2sim,
+zero-action PD stand и аппаратные испытания имеют отдельные незакрытые gates.
 
-[Текущий снимок](docs/results/2026-09-18-staged-qualification-status.json) ·
-[Протокол серии](docs/STAGED_QUALIFICATION.md) ·
-[Результат seed 48](docs/FLAT_SCHEDULE_ABLATION.md) ·
-[План и критерии](docs/PROJECT_PLAN.md) · [Журнал](docs/TRAINING_PROGRESS.md)
+## Документы
 
-## Документы и запуск
+| Что нужно | Документ |
+|---|---|
+| Текущий результат, очередь и история опытов | [TRAINING_PROGRESS](docs/TRAINING_PROGRESS.md) |
+| Следующее решение, бюджет и критерии приёмки | [PROJECT_PLAN](docs/PROJECT_PLAN.md) |
+| Исследования и выбор подхода к обучению | [REWARD_RESEARCH](docs/REWARD_RESEARCH.md) |
+| Установка и команды запуска | [DESKTOP_SETUP](docs/DESKTOP_SETUP.md), [каталог scripts](scripts/README.md) |
+| Выбор вычислительного режима | [COMPUTE_DECISION](docs/COMPUTE_DECISION.md) |
+| Пути, Git и синхронизация | [INFRASTRUCTURE](docs/INFRASTRUCTURE.md) |
+| Другие машины | [LAPTOP_WORKER](docs/LAPTOP_WORKER.md), [SERVER_PERFORMANCE](docs/SERVER_PERFORMANCE.md) |
+| Контракт и физическая модель | [POLICY_CONTRACT](docs/POLICY_CONTRACT.md), [ROBOT_MODEL_COMPARISON](docs/ROBOT_MODEL_COMPARISON.md) |
+| Исходные исследования | [Обучение](docs/research/training_sources.md), [деплой](docs/research/deployment_sources.md) |
+| Upstream commits, hashes и лицензии | [Vendor](vendor/README.md) |
 
-- [Эксперимент команд](docs/YAW_ABLATION.md) и [yaw-награды](docs/YAW_REWARD_ABLATION.md)
-- [Сравнение rewards с открытыми исследованиями](docs/REWARD_RESEARCH.md)
-- [Настройка настольного ПК](docs/DESKTOP_SETUP.md)
-- [Квалификация ноутбука и статус очереди](docs/LAPTOP_WORKER.md)
-- [Производительность и ограничения сервера](docs/SERVER_PERFORMANCE.md)
-- [Каталог scripts и границы воспроизведения](scripts/README.md)
-- [Выбор вычислительного режима](docs/COMPUTE_DECISION.md)
-- [Контракт политики](docs/POLICY_CONTRACT.md)
-- [Сопоставление физических моделей](docs/ROBOT_MODEL_COMPARISON.md)
-- [Инфраструктура и синхронизация](docs/INFRASTRUCTURE.md)
-- [Исходное исследование обучения](docs/research/training_sources.md)
-- [Исходное исследование деплоя](docs/research/deployment_sources.md)
-- [Vendor, upstream commits и лицензии](vendor/README.md)
-- [Обход DNS GitHub при реальном DNS-сбое](skills/github-dns-bypass/SKILL.md)
+Протоколы завершённых опытов и датированные JSON в `docs/results/` сохраняются
+как свидетельства. Их промежуточные PID и статусы не описывают текущую очередь.
 
 ## Проверка без Isaac Sim
 
-~~~bash
-python scripts/vendor_materials.py verify
-python -m unittest discover -s tests -v
-python -m unittest discover -s skills/github-dns-bypass/tests -v
-~~~
+```powershell
+.\.venv\Scripts\python.exe scripts\vendor_materials.py verify
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s skills/github-dns-bypass/tests -v
+```
 
 Для всех CPU policy tests нужны torch и PyYAML из локального runtime;
-без них соответствующие tests пропускаются. Последний локальный результат:
-1290 vendor-файлов, **58 project tests и 23 DNS tests passed** (18 сентября).
-Минимальный прогон без site-packages: 58 tests, 14 ожидаемых skips.
-Лёгкий CI без torch/PyYAML пропускает 8 policy, 3 yaw-sampling и 3 physical-readback tests;
-проверки конфигурации физических вариаций выполняются и без Isaac Sim.
+без них часть проверок пропускается. Датированные результаты проверок
+сохраняются вместе с протоколами опытов; число tests меняется с кодом.
 
 Закреплённый стек: robot_lab v2.3.2, Isaac Lab v2.3.2, Isaac Sim 5.1.0,
 Python 3.11.13, RSL-RL 3.1.2, PyTorch 2.7.0+cu128, TensorDict 0.11.0.
-Runtime lock находится в requirements/. Логи, новые checkpoints, .venv и caches
-исключены из Git; свежий clone не содержит артефактов текущего обучения.
+Runtime lock находится в `requirements/`. Логи, новые checkpoints, `.venv`,
+`.runtime` и caches исключены из Git; свежий clone не содержит результатов обучения.
 
-Исходный код проекта и third-party материалы имеют разные правовые основания:
-лицензии upstream сохранены рядом с материалами. Общая лицензия для нового кода
-владельцем пока не выбрана. Симуляторные тесты не разрешают управление реальным роботом.
+При подтверждённом DNS-сбое GitHub использовать
+[github-dns-bypass](skills/github-dns-bypass/SKILL.md), сохраняя TLS и авторизацию.
+Предыдущие B2W проекты не используются. Лицензии upstream сохранены рядом с
+материалами; общая лицензия нового кода пока не выбрана. Симуляторные проверки
+не разрешают управление реальным роботом.

@@ -123,6 +123,33 @@ Targets: 12 позиций в rad = default `[0,0.8,-1.5]` ×4 + action ×
 `[0.125,0.25,0.25]` ×4; 4 скорости колёс в rad/s = action ×5.
 Physics dt 0.005 s, decimation 4, policy 50 Hz.
 
+## Reference transfer: подготовленный путь адаптации
+
+`reference_transfer.py` переносит только actor из зафиксированного
+`vendor/rl_sar/policy/b2w/robot_lab/policy.pt` в новую RSL-RL policy.
+ABI сохраняется: 57→16, MLP `[512,256,128]`, ELU, `Identity` normalizer,
+тот же порядок суставов и action scales. Critic (Flat input 60) и optimizer
+создаются заново; исходный reference не содержит их training state.
+
+Это адаптация pretrained actor, не обучение с нуля и не точный resume
+исходного PPO rl_sar. Один только импорт скачанной политики не считается
+выполненным локальным обучением. Seeds 52/53 разделяют один начальный actor;
+различаются новые critic/RNG, поэтому это seeds адаптации общего reference.
+
+План включает 50 updates только critic при замороженном actor, затем 100 PPO
+и ещё 200 PPO updates. После каждого stage выполняется development-оценка;
+следующий stage допускается только по заранее заданному правилу. Фиксированные std 0,1, LR 1e−4, clip 0,1 и entropy 0
+относятся к этому протоколу. Rewards и policy ABI не меняются.
+[Точные условия](REFERENCE_TRANSFER.md).
+
+Импорт требует проверки архитектуры, ключей/форм/конечности tensors, Identity,
+SHA256 reference и parity на синтетических и фактических observations.
+Resume adaptation должен сохранять обученный actor/critic/optimizer и не
+копировать reference actor повторно. CPU-проверки нового пути и smoke сами
+по себе не устанавливают качество; фактические результаты записываются в
+[TRAINING_PROGRESS](TRAINING_PROGRESS.md). Для каждого результата остаются
+отдельными gates экспорт, live parity и policy evaluation.
+
 ## Несовпадения и оставшиеся gates
 
 **Saturation parity не проходит.** `rl_sar` масштабирует observation, затем
@@ -145,8 +172,10 @@ Inf, quaternion и age >20 ms относятся к локальному offline
 
 1. Для каждого нового финального checkpoint повторить CPU export и live parity,
    затем Flat100. Для seeds 42/43/44 и yaw-абляций это выполнено;
-   для 45/46/47 и seed48 schedule experiment parity также проверена. Следующая
-   приёмка — [staged seeds 49/50/51](STAGED_QUALIFICATION.md) на новых nominal/bounded cases.
+   для 45/46/47, seed48 schedule experiment и
+   [staged seeds 49/50/51](STAGED_QUALIFICATION.md) parity также проверена.
+   Staged-серия завершена, общий quality gate не пройден: только seed 49
+   прошёл nominal и bounded. Parity не заменяет качество политики.
    Seed 42 quality gate остаётся непройденным.
 2. Разрешить clipping/history различия в deployment adapter вне `vendor/`
    и проверить saturation, reset и invalid-input fixtures на его реальном коде.

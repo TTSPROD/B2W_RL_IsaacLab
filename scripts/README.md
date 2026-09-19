@@ -11,7 +11,9 @@
 | setup_desktop.ps1 | Настройка отдельного Windows runtime; сам не запускает обучение |
 | b2w_runtime.py | Общие project paths/caches, headless настройки и B2W-only registration |
 | smoke_b2w.py | GPU PhysX/Fabric smoke; техническая проверка, не качество policy |
-| train_b2w.py | Flat PPO; число сред, seed, updates, явный project-local resume; сохраняет configs/source/manifest/progress |
+| train_b2w.py | Flat PPO; project-local resume либо opt-in reference transfer; сохраняет configs/source/manifest/progress |
+| reference_transfer.py | Строгий импорт совместимого reference actor, проверка Identity/ABI/parity, actor freeze и диагностика drift |
+| run_reference_transfer.py | Ограниченная adaptation-очередь seeds 52/53: critic warmup, ранняя оценка и условный остаток бюджета; отдельный протокол |
 | benchmark_b2w.py | Последовательный throughput sweep; не тест качества и не параллельный benchmark |
 | check_stand_b2w.py | Zero-action PD stand без auto-reset; отдельный механический gate |
 | check_policy_contract.py | CPU fixtures и экспорт реального project checkpoint через закреплённый exporter |
@@ -21,21 +23,29 @@
 | vendor_materials.py | Верификация/управление manifest pinned materials; vendor policy см. AGENTS.md |
 | sync_server.ps1 | Отдельная разрешённая синхронизация выделенного server project; не вызывается обычным Git push |
 
-Пример самостоятельной новой Flat тренировки после настройки runtime:
+## Подготовленный reference transfer
 
-~~~powershell
-$env:OMNI_KIT_ACCEPT_EULA = 'YES'
-.venv/Scripts/python.exe -B scripts/train_b2w.py --headless --device cuda:0 --num_envs 4096 --seed 45 --max_iterations 2500 --run_name flat_fixed4096
-~~~
+Актуальный [протокол](../docs/REFERENCE_TRANSFER.md): общий pretrained actor
+reference, fresh critic/optimizer у seeds 52/53, по 4096 сред. На каждый seed
+50 critic-only updates, затем 100 PPO и ещё 200 PPO updates. После каждого
+stage выполняется development evaluation; следующий stage разрешён только
+при прохождении раннего правила. Автопродления бюджета нет.
+Rewards сохранены upstream, pure-yaw mix 0,25; fixed std 0,1, LR 1e−4,
+clip 0,1, entropy 0. Это проверка адаптации, не обучение с нуля.
+Статус фактического запуска — в [журнале](../docs/TRAINING_PROGRESS.md).
 
-Это пример upstream-команды, не выполненный эксперимент. Для исторической
-квалификации 45/46/47 использовались также --pure_yaw_fraction .25
---yaw_tracking_weight 1.5. Текущий staged-протокол задаёт 2500 upstream + 1500 mix;
-для него используется зарегистрированный coordinator ниже. Нужен уникальный run_name. Seed/run_name выбираются для
-конкретного плана. 2500 × 4096 × 24 = 245 760 000 transitions.
-До запуска проверять активные jobs; не запускать пример поверх другой тренировки. --max_iterations означает новые updates данного запуска, а не
-желаемый глобальный checkpoint index. Resume сохраняет model/optimizer, но
-переинициализирует simulator/RNG и не является побитовым продолжением.
+`train_b2w.py --reference_init <project-policy.pt>` включает перенос actor;
+`--critic_warmup_updates 50` задаёт число начальных updates с замороженным actor,
+`--reference_drift_limit 0.25` — остановку при превышении raw-action RMS drift
+на одинаковых фактических observations. Синтетическая parity и drift не заменяют
+поведенческую оценку. Флаги reward overrides в этом протоколе не используются.
+
+`--max_iterations` означает новые updates данного запуска. Продолжение после
+раннего gate использует `--resume` и тот же transfer contract; actor не
+инициализируется reference-весами повторно. Simulator/RNG после resume
+запускаются заново. Координатор хранит source/protocol hashes и фактические exits;
+повторный запуск в существующий output запрещён. Команды исторических опытов
+ниже не продолжают эту очередь и требуют собственных локальных артефактов.
 
 Для оценки flat100 нужны --suite flat100 --num_envs 100, 20 s измерения и 2 s
 settling. --policy должен указывать на экспорт внутри проекта, --report — в
@@ -149,11 +159,50 @@ Seeds 49/50 параллельны, затем 51 отдельно. Проток
 | laptop_training_transport.py | SSH/SCP только в назначенный Windows project; пути/учётная запись привязаны к текущей инфраструктуре |
 | laptop_seed51_worker.py | Первичная квалификация ноутбука выполнена; основной seed51 не назначался |
 | qualify_laptop_pcores.py / laptop_pcore_runtime.py | Выполненный повторный benchmark с affinity P-ядер только у процесса и детей |
-| run_staged_laptop_parallel.py | Подготовленный, не выполненный end-to-end перенос fresh seed51; не запускать поверх нынешней очереди |
-| run_staged_tail_parallel.py / laptop_staged_tail_worker.py | Подготовленный перенос seed50 после2500; окно текущей очереди уже пройдено, перенос не выполнялся |
+| run_staged_laptop_parallel.py | Исторический, не выполненный end-to-end перенос fresh seed51; повторное назначение требует нового протокола |
+| run_staged_tail_parallel.py / laptop_staged_tail_worker.py | Подготовленный перенос seed50 после2500; окно серии 49/50/51 уже пройдено, перенос не выполнялся |
 | server_cuda_probe.cpp | GPU0 D2D пройден; cuBLAS init timeout. Synthetic CUDA, не Isaac/PPO benchmark |
 
 [Квалификация ноутбука](../docs/LAPTOP_WORKER.md),
 [замеры сервера](../docs/SERVER_PERFORMANCE.md). Подготовленные handoff scripts
 зависят от локальных артефактов, исходных хешей и конкретного состояния очереди;
 публикация в Git не означает разрешение или успешный запуск.
+
+## Завершённые диагностика и абляции 18–19 сентября
+
+| Script | Назначение |
+|---|---|
+| run_staged_yaw_diagnostics.py / analyze_staged_yaw.py | Завершённая пассивная диагностика staged seeds 49/50/51 и reference |
+| yaw_trace.py / yaw_trace_analysis.py | Запись физического trace и анализ с проверкой provenance |
+| run_contact_weight_ablation.py | Завершённая парная абляция −1/−3; локальные parent checkpoints |
+| run_contact_yaw_diagnostics.py / analyze_contact_yaw.py | Завершённые replay и анализ contact−3 controls |
+| run_height_weight_ablation.py | Завершённая парная абляция симметричного height L2 |
+| b2w_height_rewards.py | Opt-in lower-L1 term вне vendor; не включается в reference transfer |
+
+`run_height_yaw_diagnostics.py` воспроизводит восемь оценок завершённого опыта
+control/height10 seeds50/51 и проверяет четыре сохранённые reference/seed49 traces.
+Политики, cases, source/report/trace hashes и physical digests должны совпадать;
+новые результаты записываются отдельно. Повторный запуск в существующий каталог
+запрещён. Скрипт требует локальных артефактов и не является fresh-clone командой.
+
+`analyze_height_yaw.py` после завершения replay сравнивает одинаковые интервалы
+до более раннего первого отказа, отдельные предконтактные окна и training tails.
+Пять reward terms реконструируются из trace и фактического training config;
+calf contact — явно ограниченный proxy, не полный undesired_contacts reward.
+Первичные файлы и [протокол](../docs/HEIGHT_DIAGNOSIS.md) сохраняются; результат
+сам по себе не закрывает независимую Flat приёмку.
+
+`run_height_floor_ablation.py` — завершённый lower-L1 опыт после height
+диагностики: две пары seeds50/51,1500 новых updates/arm от исходных model_2499.
+`train_b2w.py --base_height_form lower_l1 --base_height_weight -10` явно включает
+локальный term `b2w_height_rewards.py`; без этих флагов defaults сохранены.
+Нельзя повторно запускать coordinator в существующий output или менять frozen
+исходники активной очереди. [Протокол](../docs/HEIGHT_FLOOR_ABLATION.md).
+
+
+`run_contact6_ablation.py` — завершённый опыт contact−3/−6 после
+завершения lower-L1. Height terms выключены; seed50 и51 по две ветви от исходных
+model_2499,1500 новых updates/ветвь,4096 сред. Smoke/resume, проверка единственного
+различия env.yaml, source/decision hashes, VRAM guard5%,4exports и10evaluations.
+Не запускать повторно в существующий каталог; не менять frozen исходники.
+[Протокол](../docs/CONTACT6_ABLATION.md), журнал `logs/ablations/lower_l1_followup.json`.

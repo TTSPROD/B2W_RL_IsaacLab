@@ -1,121 +1,104 @@
-# Награды колёсноногих роботов: сравнение с B2W Flat
+# Практики обучения колёсноногих роботов и решение для B2W
 
-Проверено 17 сентября 2026 по первоисточникам и публичному коду. Это исследовательская
-записка; найденные внешние реализации в этом проекте не запускались. Внешние
-ссылки main отражают просмотренный код, а не фиксируют неизменный commit.
+Исследование обновлено19.09.2026 по первичным публикациям и коду.
+Внешние системы здесь не запускались. Их успех не доказывает эффективность
+наших численных параметров. [Следующий протокол](REFERENCE_TRANSFER.md).
 
-## Наш фактический вариант
+## Вывод из наших экспериментов
 
-Источник: vendor/robot_lab/.../config/wheeled/unitree_b2w/rough_env_cfg.py,
-flat_env_cfg.py, velocity_env_cfg.py и mdp/rewards.py; локальные изменения —
-scripts/train_b2w.py и scripts/b2w_yaw_commands.py.
+Успех staged seed48 не повторился во всей49/50/51 серии.
+Contact−3:23→14 отказов; height L2−10 и lower-L1:14→23;
+contact−6:14→20. Последний помог seed50, но ухудшил seed51 до85/98 safe.
+[Полный журнал и источники](TRAINING_PROGRESS.md).
+Четыре серии по589 824 000 transitions не дали общего кандидата.
 
-| Компонент | B2W Flat |
+Диагностика установила малый зазор/просадку перед calf contact; это корреляция.
+Нет подтверждённого объяснения через постоянное leg-torque saturation.
+Изменение высоты не исправило ситуацию и ухудшило tracking.
+[Staged](STAGED_DIAGNOSIS.md), [парная высота](HEIGHT_DIAGNOSIS.md).
+
+Upstream допускает recovery: reset roll/pitch±3,14, contact termination
+отключён. Flat приёмка считает любой non-wheel contact>1 N отказом.
+Это возможное несовпадение оптимизируемого поведения и цели. Оно требует отдельной
+проверки, а не одновременной смены rewards/reset/termination.
+
+У нас уже есть два полезных ориентира: reference и собственный seed49,
+прошедшие локальные Flat-профили. Приоритет меняется с random-init/reward
+sweeps на сохранение и дообучение проверенного motor skill.
+
+## Что действительно опубликовано
+
+| Первоисточник | Подтверждённый подход | Решение для нас |
+|---|---|---|
+| [Unitree RL Lab](https://github.com/unitreerobotics/unitree_rl_lab) |Официальный IsaacLab framework; в просмотренном README Go2/H1/G1 |Готовый официальный рецепт B2W там не заявлен |
+| [Unitree B2-W](https://www.unitree.com/b2-w/) |Характеристики и демонстрации продукта |Видео не раскрывают воспроизводимый reward/curriculum/optimizer |
+| [ETH/Swiss-Mile,2024](https://arxiv.org/html/2405.01792v1) |Privileged teacher→DAgger student, terrain curriculum;12 leg positions+4 wheel velocities,50 Hz |Сохранить текущую параметризацию; переиспользовать навык |
+| [Parkour in the Wild §2.3](https://arxiv.org/html/2505.11164v1#S2.SS3) |Naive RL fine-tuning деградирует; помогают low exploration, conservative PPO и frozen-actor critic pretraining |Основное обоснование короткого reference transfer; другая платформа, параметры выбираем сами |
+| [MUJICA, Go2-W,2026](https://arxiv.org/html/2605.13058v1) |History GRU, velocity/clearance/contact estimation, asymmetric reward/cost critics, constrained P3O; curriculum и multi-seed оценка |Перспективно для Rough, но это смена ABI/алгоритма и большой training budget |
+| [ATRos, Go2-W](https://arxiv.org/html/2510.09980v1) |Terrain/command curriculum, dynamics randomization, proprioceptive estimation |Недостаточно опубликованных формул для копирования numerical reward recipe |
+| [FLORES](https://arxiv.org/html/2507.22345v1) |B2W переставляет ноги при поворотах; FLORES имеет front steering joints |Не копировать их steering/default pose на другую механику |
+| [Not Only Rewards But Also Constraints](https://arxiv.org/html/2308.12517v3) |Отдельные физические constraints сокращают reward engineering |Возможный следующий метод после transfer, не очередное усиление penalty |
+| [CaT](https://arxiv.org/abs/2403.18765) |Constraint violations влияют на прекращение будущей награды |Отдельная проверяемая ветка; не эквивалент обычному reset на contact |
+
+MUJICA и Swiss-Mile — исследования на других роботах/задачах.
+DAgger полезен для переноса между observation spaces и объединения экспертов.
+При нашем точно совпадающем57→16 actor прямой импорт сохраняет навык без
+предварительного обучения копии по labels. Critic/optimizer reference отсутствуют:
+их нужно обучить, а не считать загруженными.
+
+No-nonwheel — наш Flat критерий. Swiss-Mile показывает knee-assisted climbing,
+MUJICA рассматривает segment contacts при climbing/recovery.
+Не выдавать запрет всех неколёсных контактов за мировой стандарт parkour.
+
+## Исходные rewards B2W Flat
+
+Pinned vendor является источником формул; адаптации только вне vendor.
+
+| Компонент | Upstream |
 |---|---|
-| Tracking XY | 3 × exp(−||ошибка XY||²/0,25), с множителем upright |
-| Tracking yaw | 1,5 × exp(−ошибка yaw²/0,25); завершённая экспериментальная группа yaw2x имела вес 3 |
-| Вертикальный корпус | upward: 3 × (1−g_z)²; максимум 12 при g_z=−1 |
-| Отдельный штраф наклона / высоты | Оба отключены |
-| Поза ног | joint_pos_penalty −1; stand_still −2; diagonal joint_mirror −0,05 |
-| Усилия / мощность | Στ² × −1e−5 и Σ|τ·qdot| × −1e−5, только 12 суставов ног |
-| Колёса | Ускорение −2,5e−10; отдельные wheel torque/velocity/power penalties отключены |
-| Плавность | Первая разность действий −0,01; второй разности нет |
-| Контакты | Неколёсные контакты −1; превышение wheel force 100 N × −1,5e−4 |
-| Gait / feet slide | Отключены |
+| XY/yaw tracking |3 /1,5, exponential; upright multiplier |
+| Upward |3×(1−g_z)²; большой постоянный уровень сам по себе не доказывает доминирования градиента |
+| Height/orientation |Отдельные terms отключены |
+| Поза |joint_pos−1, stand_still−2, diagonal mirror−0,05 |
+| Leg effort/power |Στ² иΣ|τ·qdot| по12 legs, вес−1e−5 |
+| Wheels |acceleration−2,5e−10; отдельные power/torque penalties отключены |
+| Плавность |Первая разность actions−0,01, второй нет |
+| Non-wheel contact |−1; wheel force excess100 N×−1,5e−4 |
 
-Upright multiplier = clamp(−g_z,0,0,7)/0,7. Поэтому отсутствие отдельного
-flat_orientation_l2 не означает отсутствия стабилизации корпуса. У upward
-большой постоянный уровень возле вертикали: сам по себе максимум12 против yaw1,5
-не доказывает доминирования в обучении. Важны изменения награды при изменении
-поведения, распределение состояний и связанные penalties.
+Upright=clamp(−g_z,0,0,7)/0,7. Stand-still/joint-pos используют норму команды
+с yaw: pure yaw не ошибочно считается остановкой. Однако pose penalty может
+мешать необходимой перестановке ног — это гипотеза, не найденный bug.
 
-Stand-still и joint_pos_penalty проверяют норму всех трёх компонент команды:
-чистый yaw не принимается за нулевую команду. Однако штраф отклонения позы
-остаётся и при движении. Это возможный компромисс между неподвижной стойкой
-и перестановкой ног, а не установленная причина наших ошибок.
+[Swiss-Mile appendix](https://arxiv.org/html/2405.01792v1) включает height band,
+first/second differences, knee limits и survival; веса нельзя переносить
+без масштаба робота, dt и распределения состояний.
+[FLORES config](https://raw.githubusercontent.com/ZhichengSong6/FLORES/main/code/HIM_FLORES/mdog_config.py)
+и [reward code](https://raw.githubusercontent.com/ZhichengSong6/FLORES/main/code/HIM_FLORES/mdog_robot.py)
+различают low-XY/yaw, включают power всех16 и clipping суммарной награды;
+это не эквивалент нашего простого weight override.
+[Сторонний Go2W config](https://raw.githubusercontent.com/XinLang2019/Wheel_Legged_Gym/main/legged_gym/legged_gym/envs/go2w/go2w_config.py)
+также использует XY:yaw3:1,5. Малый relative yaw weight сам по себе не объясняет
+неуспех B2W. Это не официальный код Unitree.
 
-## Проверенные внешние схемы
+## Зарегистрированное решение
 
-### ETH / Swiss-Mile, Science Robotics 2024
+Reference actor →50 critic-only updates →100+200 native PPO.
+Два seeds52/53, std0,1 fixed, LR1e−4 fixed, clip0,1, entropy0.
+Сохраняем rewards/physics/reset/57→16, command mix0,25.
+Ранние evaluations50/150/350; провал останавливает очередь.
+Это гипотеза переноса, без teacher penalty или новой PPO реализации.
 
-Низкоуровневые rewards включают tracking XY/yaw, подавление вертикальной скорости
-и roll/pitch, отдельную ориентацию, высоту 0,55±0,05 м, torque, скорость/ускорение
-12 leg joints, первую и вторую разность joint targets, knee limits, non-wheel
-contacts и survival. При почти нулевой XY-команде формула XY tracking меняется.
-Yaw — exp(−2·error²). В перечисленном наборе нет отдельного slip penalty.
-[Приложение, формулы14–25](https://arxiv.org/html/2405.01792v1).
+Бюджет2×350 вместо4×1500 меньше в8,57 раза; ускорение получения принятой
+политики пока не измерено. Critic calibration и последующие actor updates
+должны подтверждаться checkpoints/optimizer/finite telemetry.
+Импорт reference и пройденный smoke не называются новой обученной политикой.
 
-Для нас существенны самостоятельная высота с допустимой полосой и второй
-порядок плавности; веса и архитектуру переносить напрямую нельзя.
+Если final350 сохраняет Flat —3 новых fine-tuning seeds, новые cases и frozen
+recipe. Если нет — анализ drift/critic/recovery mismatch до следующей очереди.
+Гипотезы upright reset или явных safety costs рассматриваются по одной.
+Исторические unsuccessful weights не становятся новыми defaults.
 
-### FLORES: статья и открытый код
-
-В статье front hip-roll заменён hip-yaw для руления. В опытах на круговых
-траекториях B2W переставляет ноги; FLORES использует передние рулевые суставы.
-Таблица I задаёт XY/yaw8/4, static/dynamic pose, height, power, torque и
-две разности действий. Orientation в статье −0,2.
-[Статья, Table I и раздел IV-B](https://arxiv.org/html/2507.22345v1).
-
-В опубликованном config: XY/yaw8/4, orientation−1, height+2 с целью0,6 м,
-power−5e−5, action rate−0,01 и second difference−0,01. Суммарная отрицательная
-награда обрезается до нуля. Это отличается от нашей суммы без такого clipping.
-[Config](https://raw.githubusercontent.com/ZhichengSong6/FLORES/main/code/HIM_FLORES/mdog_config.py).
-Отличие orientation статьи и кода сохранено явно.
-
-В реализации при ||command_XY||²<0,1 yaw reward равен −error_yaw², иначе
-exp(−error_yaw²/0,25). Условие включает чистые повороты, но не ограничено ими.
-Power суммируется по всем16суставам. Torque penalty также зависит от команды
-и отключается на чистом yaw. Это не эквивалент простой замене веса.
-[Reward functions, строки1126–1202](https://raw.githubusercontent.com/ZhichengSong6/FLORES/main/code/HIM_FLORES/mdog_robot.py).
-
-### Go2W / Wheel_Legged_Gym
-
-Публичная реализация имеет XY/yaw3/1,5 — как наша исходная конфигурация.
-Orientation−0,5, height−10 с целью0,4 м, torque−3e−4, action rate−0,01,
-hip-default−0,5; активны feet-air-time и stumble.
-[Config](https://raw.githubusercontent.com/XinLang2019/Wheel_Legged_Gym/main/legged_gym/legged_gym/envs/go2w/go2w_config.py).
-
-Torque суммируется по всем суставам. Stand-still смотрит только на XY, поэтому
-его штраф действует и при чистом yaw. Такая логика не является рекомендацией:
-наш вариант различает остановку и поворот по всем трём компонентам.
-[Функции](https://raw.githubusercontent.com/XinLang2019/Wheel_Legged_Gym/main/legged_gym/legged_gym/envs/go2w/go2w_robot.py).
-Это сторонний код, не официальная рекомендация Unitree и не проверенная здесь
-политика. Go2W отличается от B2W массой, геометрией и приводами.
-
-### Что нельзя извлечь из ATRos
-
-Авторы заявляют energy-aware и дополнительные wheel rewards, но раздел reward
-в просмотренном тексте не даёт полного списка формул и весов. Поэтому ATRos
-не использован как источник численных коэффициентов.
-[ATRos, раздел III-A](https://arxiv.org/html/2510.09980v1).
-
-## Вывод для наших экспериментов
-
-1. Исходное соотношение XY:yaw2:1 встречается в обоих проверенных configs:
-   малый относительный yaw weight сам по себе не объясняет проблему.
-   Завершённая абляция 1,5/3,0 подтвердила улучшение yaw RMS на 32–48%,
-   но обе группы прошли пороги. По заранее заданному правилу для трёх fresh seeds
-   выбран исходный вес 1,5 при mix 0,25. [Результаты](YAW_REWARD_ABLATION.md).
-2. Если независимая квалификация выявит недоворот при хорошей устойчивости, возможный
-   исследовательский кандидат — отдельная форма yaw reward для чистых поворотов
-   либо ослабление pose penalty в этом режиме. Это два разных эксперимента;
-   одновременно их менять нельзя. Выбирать по signed bias и reward breakdown.
-3. При повторяющейся просадке с calf-contact имеет смысл отдельно проверить
-   height band. Простое добавление orientation будет дублировать уже имеющийся
-   upright incentive, поэтому сначала нужен разбор фактических наклонов.
-4. Для мощности колёс сначала собрать диагностические τ·qdot и потребление.
-   Усиление энергосбережения может ухудшить yaw, а не исправить его.
-5. Отсутствие отдельного slip term встречается и во внешних схемах. Нельзя
-   автоматически включать обычный foot-slide: движение колеса при качении
-   нормально. Wheel slip требует скорости точки контакта, геометрии колеса
-   и направления качения; боковое проскальзывание при некоторых манёврах
-   тоже необходимо оценивать в контексте механики, а не запрещать вслепую.
-
-Последние пункты — наши инженерные гипотезы на основании сравнения, не
-доказанные улучшения. Сопоставлять коэффициенты следует вместе с формулой,
-единицами, dt, clipping, охватом суставов, termination и архитектурой.
-Проверка качества остаётся общей: RMS каждого сценария и sticky non-wheel/fall
-failures. После провала [45/46/47](FLAT_QUALIFICATION.md) и успешного schedule
-experiment seed 48 идёт [staged-повторение 49/50/51](STAGED_QUALIFICATION.md);
-новые формы reward в неё не добавляются. Исследование не является основанием
-менять замороженную конфигурацию или подбирать её по приёмочным наборам.
+Replay --reward_diagnostics без training overrides и с post-failure averaging
+не измеряет реальные вклады contact−3/height−10 при обучении.
+Для анализа причин нужны согласованные pre-failure окна и effective weights×dt;
+raw reward разных конфигураций не сравнивать как качество управления.

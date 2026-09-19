@@ -25,23 +25,12 @@ Rough, Stairs, GUI/rendering, Ubuntu 26.04 и сервер требуют отд
 | Финальный экспорт seed 42 | 295 fixture/random inputs, CPU max abs error 0 |
 | Flat quality seed 42 | Не пройден: 96/100 без падений/неразрешённых контактов при пороге ≥99%; reference 100/100 |
 
-Все четыре первых отказа seed 42 — неколёсные контакты в positive yaw, а не
-четыре подтверждённых падения. Есть и превышения tracking thresholds в yaw.
 Zero-action PD stand ранее не прошёл; active reference replay прошёл.
-Качество политики не выводится из длительности обучения или успешного benchmark.
-
-Seeds 43/44 и две последующие yaw-абляции завершены с технической валидацией.
-Оба reward-варианта прошли single-policy nominal gates; физические diagnostics
-готовых control/yaw2x/reference также дали 100/100 без отказа и tracking pass.
-Серия [45/46/47](FLAT_QUALIFICATION.md) завершена с провалом gates. После
-успешного staged development seed 48 выполняется [серия 49/50/51](STAGED_QUALIFICATION.md):
-4000 updates на seed (2500 upstream + 1500 mix), сначала пара 49/50, затем 51.
-Статус: `logs/qualification_runs/flat_staged_seeds49_51_20260918/job.json`;
-[снимок 18 сентября](results/2026-09-18-staged-qualification-status.json). Исторические seeds 42/43/44 имели разную
-batch/resume историю и не заменяют приёмку новой серии.
-
-[Подробные результаты](TRAINING_PROGRESS.md), [выбор режима и ограничения измерений](COMPUTE_DECISION.md),
-[сохранённый снимок результатов](results/2026-09-17.json).
+Техническая квалификация не закрывает Flat quality gate. Текущая очередь,
+результаты и история policy evaluations — в [TRAINING_PROGRESS](TRAINING_PROGRESS.md),
+следующий эксперимент и gates — в [PROJECT_PLAN](PROJECT_PLAN.md).
+[Выбор режима и ограничения измерений](COMPUTE_DECISION.md),
+[снимок инфраструктурных результатов](results/2026-09-17.json).
 
 ## Первичная подготовка — исторический снимок
 
@@ -78,8 +67,8 @@ batch/resume историю и не заменяют приёмку новой �
 Зависимости `pinocchio` и `cusrl[all]` относятся к другим сценариям robot_lab и
 не включены в этот профиль RSL-RL. PPO, модель робота, rewards, observations,
 randomization и physics dt берутся из зафиксированного B2W upstream.
-Описанные в протоколах pure-yaw commands и yaw weight override реализованы
-отдельно в scripts; текущая staged-серия использует mix 0 → 0,25 после 2500 updates и вес yaw 1,5.
+Экспериментальные overrides команд и rewards реализуются отдельно в scripts;
+точные значения фиксируются протоколом опыта и launch manifest.
 Ограниченный physical evaluation profile не меняет training randomization.
 
 Установка пакетов сама по себе не подтверждает работу симулятора. 12 GiB VRAM
@@ -103,7 +92,7 @@ caches, training logs или checkpoints; установка и проверки
 
 Команды ниже — примеры для отдельного запуска из корня проекта в PowerShell.
 Они не продолжают текущие координаторы и не нужны для чтения статуса.
-Перед новым GPU workload учитывать ресурсы уже работающих двух trainers.
+Перед новым GPU workload проверить занятость ресурсов и актуальную очередь.
 Активация venv не требуется.
 
 ```powershell
@@ -118,17 +107,10 @@ $env:OMNI_KIT_ACCEPT_EULA = 'YES'
 .\.venv\Scripts\python.exe scripts\benchmark_b2w.py --num_envs 256 512 1024 2048 --iterations 210 --warmup 10 --seed 42
 ```
 
-Пример **нового** Flat run на 4096 средах с бюджетом 245 760 000 transitions:
-
-```powershell
-.\.venv\Scripts\python.exe scripts\train_b2w.py --headless --num_envs 4096 --max_iterations 2500 --seed 45 --run_name flat_4096_from_scratch_seed45
-```
-
-Это шаблон, а не уже выполненный эксперимент или команда управления текущей
-очередью. Для контролируемой следующей серии использовать одинаковые env count,
-бюджет, конфигурацию и протокол запуска на трёх seeds. Двойной 4096 уже проверен
-на конкретных продолжениях seeds 43/44; автоматизация этой миграции с путями к
-их checkpoints не является готовым fresh-clone launcher. [Назначение скриптов](../scripts/README.md).
+Полноценное обучение запускать по актуальному протоколу из
+[плана](PROJECT_PLAN.md). Координаторы завершённых опытов привязаны к их
+локальным checkpoints и не являются fresh-clone launchers.
+[Назначение скриптов](../scripts/README.md).
 
 `--resume logs/rsl_rl/.../model_N.pt` принимает checkpoint внутри проекта;
 `--max_iterations` задаёт число **новых** updates. Восстанавливаются веса,
@@ -136,11 +118,6 @@ normalizers, optimizer и adaptive learning rate. Simulator, randomization/curri
 и RNG запускаются заново: это не побитово идентичное продолжение эпизода.
 Смена `num_envs` меняет PPO batch, поэтому бюджет считать в transitions, а не
 сравнивать номера checkpoints напрямую.
-
-В завершённой исходной серии после benchmark выполнено 2 089 новых updates
-у seed 43 и 2 189 у seed 44. С сохранённым опытом каждый получил 245 710 848 transitions;
-отклонение от цели — 49 152, ровно 0.02%, из-за округления до целого update.
-Benchmark updates засчитаны в бюджет.
 
 Реальный робот этим окружением не управляется. Rough, sim2sim и hardware gates
 описаны в [плане](PROJECT_PLAN.md).

@@ -1,0 +1,95 @@
+{
+  "registered_utc": "2026-09-19T13:15:20.936575+00:00",
+  "next_experiment": "contact_weight_minus3_vs_minus6_height_disabled",
+  "diagnosis_report": "docs/results/2026-09-19-height-floor-final.json",
+  "diagnosis_report_sha256": "150e2fe4b5de51fcc7d4c912f1e183ccc12168f3f1dd9dd63017680054f65aef",
+  "source_job": "logs\\ablations\\flat_height_floor_dev50_51_20260919\\job.json",
+  "source_job_sha256": "ef876aab170c2c0c1f163c9d6896d594cb01ed556bd423142b0f835c9cc768b8",
+  "historical_trace_job": "logs/diagnostics/height_yaw_diagnostics_20260919/job.json",
+  "trace_job_sha256": "2227d7b520eccca3efcdb3795006c456da3e592e148d72516b27b4c0ef2e35fd",
+  "findings": {
+    "floor_failures": 23,
+    "control_failures": 14,
+    "all_37_first_failures": "rear calf contacts during pure yaw",
+    "controls_exactly_repeat_previous": {
+      "seed50_control_nominal_20261201": true,
+      "seed50_control_bounded_v1_20261202": true,
+      "seed51_control_nominal_20261201": true,
+      "seed51_control_bounded_v1_20261202": true
+    },
+    "matched_failure_cases": {
+      "seed50_nominal": {
+        "common": [
+          4,
+          5,
+          13,
+          28,
+          29,
+          36,
+          53,
+          60,
+          76,
+          77,
+          85,
+          93
+        ],
+        "fixed": [],
+        "new": [
+          45
+        ]
+      },
+      "seed50_bounded_v1": {
+        "common": [
+          13,
+          69
+        ],
+        "fixed": [],
+        "new": [
+          4,
+          12,
+          20,
+          28,
+          60,
+          85,
+          93
+        ]
+      },
+      "seed51_nominal": {
+        "common": [],
+        "fixed": [],
+        "new": [
+          36
+        ]
+      },
+      "seed51_bounded_v1": {
+        "common": [],
+        "fixed": [],
+        "new": []
+      }
+    },
+    "earlier_contact_minus1_vs_minus3_failures": [
+      23,
+      14
+    ]
+  },
+  "hypothesis": "Test whether a stronger direct non-wheel contact penalty (-6 versus -3) reduces remaining calf contacts without losing per-scenario tracking. Both height forms are disabled. Earlier -1 to -3 reduced failures; height L2 and lower-L1 did not yield a candidate.",
+  "limitations": [
+    "First-failure records show contact identity, not causal pre-contact dynamics.",
+    "Prior passive traces apply to repeated controls and previous L2 policies, not unrecorded lower-L1 trajectories.",
+    "No measured optimal weight or monotonic response; -6 is a registered twofold probe, not a proven improvement.",
+    "Repeated disclosed development seeds/cases are not release acceptance."
+  ],
+  "seeds": [
+    50,
+    51
+  ],
+  "weights": {
+    "control": -3.0,
+    "contact6": -6.0
+  },
+  "parent_iteration": 2499,
+  "updates_per_arm": 1500,
+  "num_envs": 4096,
+  "rollout": 24,
+  "selection": "Reference passes both profiles; prefer controls if both pass both; otherwise contact6 must pass all4 seed/profile gates and have fewer failures. No extension or intermediate selection."
+}

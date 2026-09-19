@@ -53,8 +53,14 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--run_name", default="", help="Optional letters/digits/dashes/underscores log suffix.")
     parser.add_argument("--resume", type=Path, help="Explicit checkpoint inside this project; restores optimizer too.")
+    parser.add_argument("--reference_init", type=Path, help="Conservative transfer from a project TorchScript actor; allows matching transfer resume.")
+    parser.add_argument("--critic_warmup_updates", type=int, default=50, help="Cumulative transfer updates with actor frozen.")
+    parser.add_argument("--reference_drift_limit", type=float, default=0.25, help="Stop transfer if raw-action RMS drift exceeds this limit.")
     parser.add_argument("--pure_yaw_fraction", type=float, default=None, help="Optional Flat command ablation: fraction of non-standing resamples; 0 is instrumented upstream control.")
     parser.add_argument("--yaw_tracking_weight", type=float, default=None, help="Optional single-factor ablation of track_ang_vel_z_exp weight; default preserves upstream.")
+    parser.add_argument("--undesired_contact_weight", type=float, default=None, help="Optional negative weight for undesired_contacts; default preserves upstream.")
+    parser.add_argument("--base_height_weight", type=float, default=None, help="Optional negative height-reward weight at fixed Flat target 0.60m; default preserves disabled term.")
+    parser.add_argument("--base_height_form", choices=("l2", "lower_l1"), default="l2", help="Explicit height-reward form; requires --base_height_weight for lower_l1.")
     parser.add_argument("--torch_num_threads", type=int, default=4, help="CPU threads; does not change PPO parameters.")
     app_launcher_class.add_app_launcher_args(parser)
     args = parser.parse_args()
@@ -65,6 +71,12 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
         parser.error("--pure_yaw_fraction must be in [0, 1]")
     if args.yaw_tracking_weight is not None and (not math.isfinite(args.yaw_tracking_weight) or args.yaw_tracking_weight <= 0.):
         parser.error("--yaw_tracking_weight must be finite and positive")
+    if args.undesired_contact_weight is not None and (not math.isfinite(args.undesired_contact_weight) or args.undesired_contact_weight >= 0.):
+        parser.error("--undesired_contact_weight must be finite and negative")
+    if args.base_height_weight is not None and (not math.isfinite(args.base_height_weight) or args.base_height_weight >= 0.):
+        parser.error("--base_height_weight must be finite and negative")
+    if args.base_height_form != "l2" and args.base_height_weight is None:
+        parser.error("--base_height_form lower_l1 requires --base_height_weight")
     if not re.fullmatch(r"[A-Za-z0-9_-]{0,64}", args.run_name):
         parser.error("--run_name must contain at most 64 letters, digits, dashes or underscores")
     if not re.fullmatch(r"cuda(?::\d+)?", args.device):
@@ -77,6 +89,19 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
             parser.error("--resume must point inside this B2W_RL_IsaacLab project")
         if not args.resume.is_file():
             parser.error(f"Checkpoint does not exist: {args.resume}")
+        parent_manifest = args.resume.parent / "manifest.json"
+        if parent_manifest.is_file():
+            parent_data = json.loads(parent_manifest.read_text(encoding="utf-8"))
+            if parent_data.get("reference_transfer") and args.reference_init is None:
+                parser.error("A transfer checkpoint requires --reference_init to preserve its training protocol")
+    if args.reference_init is not None:
+        args.reference_init = (PROJECT_ROOT / args.reference_init).resolve()
+        if not args.reference_init.is_relative_to(PROJECT_ROOT.resolve()) or not args.reference_init.is_file():
+            parser.error("--reference_init must be an existing file inside this project")
+        if args.critic_warmup_updates < 1 or not math.isfinite(args.reference_drift_limit) or args.reference_drift_limit <= 0:
+            parser.error("Transfer requires positive warmup and finite positive drift limit")
+        if any(value is not None for value in (args.yaw_tracking_weight, args.undesired_contact_weight, args.base_height_weight)):
+            parser.error("Reference transfer preserves upstream rewards; do not combine reward overrides")
     return args
 
 
@@ -111,6 +136,10 @@ def main() -> None:
         },
         "pure_yaw_fraction": args.pure_yaw_fraction,
         "yaw_tracking_weight_override": args.yaw_tracking_weight,
+        "undesired_contact_weight_override": args.undesired_contact_weight,
+        "base_height_weight_override": args.base_height_weight,
+        "base_height_form_requested": args.base_height_form,
+        "reference_transfer": None,
         "policy_quality_evaluated": False,
         "checkpoints": [],
     }
@@ -151,6 +180,34 @@ def main() -> None:
             env_cfg.commands.base_velocity.pure_yaw_fraction = args.pure_yaw_fraction
         if args.yaw_tracking_weight is not None:
             env_cfg.rewards.track_ang_vel_z_exp.weight = args.yaw_tracking_weight
+        if args.undesired_contact_weight is not None:
+            env_cfg.rewards.undesired_contacts.weight = args.undesired_contact_weight
+        height_term = env_cfg.rewards.base_height_l2
+        if args.base_height_weight is not None:
+            from isaaclab.managers import RewardTermCfg, SceneEntityCfg
+            if args.base_height_form == "lower_l1":
+                from b2w_height_rewards import base_height_lower_l1
+                if height_term is not None:
+                    raise RuntimeError("Lower-L1 ablation requires the disabled upstream Flat height term")
+                height_term = RewardTermCfg(
+                    func=base_height_lower_l1, weight=args.base_height_weight,
+                    params={"target_height": 0.60},
+                )
+                env_cfg.rewards.base_height_lower_l1 = height_term
+            else:
+                from robot_lab.tasks.manager_based.locomotion.velocity import mdp
+                # Preserve the original opt-in upstream L2 experiment exactly.
+                height_term = RewardTermCfg(
+                    func=mdp.base_height_l2, weight=args.base_height_weight,
+                    params={"target_height": 0.60,
+                            "asset_cfg": SceneEntityCfg("robot", body_names=[env_cfg.base_link_name]),
+                            "sensor_cfg": None},
+                )
+                env_cfg.rewards.base_height_l2 = height_term
+        manifest["effective_base_height_form"] = "disabled" if height_term is None else args.base_height_form
+        manifest["effective_base_height_weight"] = 0.0 if height_term is None else height_term.weight
+        manifest["effective_base_height_target_m"] = None if height_term is None else height_term.params["target_height"]
+        manifest["effective_undesired_contact_weight"] = env_cfg.rewards.undesired_contacts.weight
         manifest["effective_yaw_tracking_weight"] = env_cfg.rewards.track_ang_vel_z_exp.weight
         env_cfg.log_dir = str(log_dir)
         agent_cfg = load_cfg_from_registry(FLAT_TASK, "rsl_rl_cfg_entry_point")
@@ -161,6 +218,12 @@ def main() -> None:
         agent_cfg.resume = args.resume is not None
         # Explicitly preserve the upstream blind actor / privileged critic mapping.
         agent_cfg.obs_groups = {"policy": ["policy"], "critic": ["critic"]}
+        if args.reference_init is not None:
+            agent_cfg.policy.init_noise_std = 0.1
+            agent_cfg.algorithm.learning_rate = 1.0e-4
+            agent_cfg.algorithm.schedule = "fixed"
+            agent_cfg.algorithm.clip_param = 0.1
+            agent_cfg.algorithm.entropy_coef = 0.0
         if args.resume is not None:
             agent_cfg.load_run = str(args.resume.parent)
             agent_cfg.load_checkpoint = args.resume.name
@@ -186,14 +249,14 @@ def main() -> None:
             "isaaclab_commit": git_revision(PROJECT_ROOT / ".runtime" / "IsaacLab"),
             "source_sha256": {
                 name: sha256(PROJECT_ROOT / name)
-                for name in ("scripts/train_b2w.py", "scripts/b2w_runtime.py", "scripts/b2w_yaw_commands.py", "scripts/yaw_command_sampling.py", "vendor/manifest.json")
+                for name in ("scripts/train_b2w.py", "scripts/b2w_runtime.py", "scripts/b2w_yaw_commands.py", "scripts/yaw_command_sampling.py", "scripts/b2w_height_rewards.py", "scripts/reference_transfer.py", "vendor/manifest.json")
             },
         }
         write_json(log_dir / "runtime.json", runtime)
         # Preserve actual local launch code even before it is committed.
         source_dir = log_dir / "params" / "source"
         source_dir.mkdir()
-        for name in ("train_b2w.py", "b2w_runtime.py", "b2w_yaw_commands.py", "yaw_command_sampling.py"):
+        for name in ("train_b2w.py", "b2w_runtime.py", "b2w_yaw_commands.py", "yaw_command_sampling.py", "b2w_height_rewards.py", "reference_transfer.py"):
             shutil.copyfile(PROJECT_ROOT / "scripts" / name, source_dir / name)
 
         # Preserve a reference to the raw environment even if wrapper initialization fails.
@@ -214,6 +277,7 @@ def main() -> None:
         manifest["decimation"] = env_cfg.decimation
         manifest["policy_dt"] = env_cfg.sim.dt * env_cfg.decimation
         manifest["num_steps_per_env"] = agent_cfg.num_steps_per_env
+        teacher = None
         class MonitoredRunner(OnPolicyRunner):
             """Record progress and fail on non-finite data without changing PPO."""
 
@@ -225,6 +289,17 @@ def main() -> None:
                     if not bool(torch.isfinite(value).all()):
                         raise RuntimeError(f"Non-finite observations after rollout: {key}")
                 super().log(locs, *log_args, **log_kwargs)
+                drift = None
+                if teacher is not None:
+                    from reference_transfer import measure_reference_drift, set_actor_trainable
+                    drift = measure_reference_drift(self.alg.policy, teacher, locs["obs"])
+                    manifest["reference_transfer"]["latest_drift"] = drift
+                    write_json(log_dir / "reference_drift.json", {"iteration": locs["it"], **drift})
+                    if drift["raw_action_rms"] > args.reference_drift_limit:
+                        raise RuntimeError(f"Reference action drift exceeded registered limit: {drift}")
+                    if locs["it"] < args.critic_warmup_updates and drift["raw_action_max_abs"] > 1e-5:
+                        raise RuntimeError("Frozen actor changed during critic calibration")
+                    set_actor_trainable(self.alg.policy, locs["it"] + 1 >= args.critic_warmup_updates)
                 write_json(log_dir / "progress.json", {
                     "updated_utc": datetime.now(timezone.utc).isoformat(),
                     "iteration": locs["it"],
@@ -239,6 +314,8 @@ def main() -> None:
                         if args.pure_yaw_fraction is not None else None
                     ),
                     "learning_rate": float(self.alg.learning_rate),
+                    "reference_drift": drift,
+                    "training_phase": ("critic_calibration" if teacher is not None and locs["it"] < args.critic_warmup_updates else "ppo"),
                     "policy_quality_evaluated": False,
                 })
 
@@ -263,6 +340,31 @@ def main() -> None:
             if len(resumed_rates) != 1:
                 raise RuntimeError(f"Expected one shared PPO learning rate, got {sorted(resumed_rates)}")
             runner.alg.learning_rate = resumed_rates.pop()
+        if args.reference_init is not None:
+            from reference_transfer import initialize_reference, load_reference_teacher, set_actor_trainable
+            if args.resume is None:
+                teacher, transfer = initialize_reference(runner.alg.policy, args.reference_init, observations)
+            else:
+                parent = json.loads((args.resume.parent / "manifest.json").read_text(encoding="utf-8"))
+                transfer = parent.get("reference_transfer")
+                if not transfer or transfer["reference_sha256"] != sha256(args.reference_init):
+                    raise RuntimeError("Resume must belong to the same reference transfer lineage")
+                if transfer["critic_warmup_updates"] != args.critic_warmup_updates or transfer["drift_limit"] != args.reference_drift_limit:
+                    raise RuntimeError("Transfer protocol changed on resume")
+                if parent["seed"] != args.seed or parent["pure_yaw_fraction"] != args.pure_yaw_fraction:
+                    raise RuntimeError("Transfer seed/command distribution changed on resume")
+                if runner.alg.learning_rate != 1e-4:
+                    raise RuntimeError("Transfer optimizer learning rate changed")
+                teacher = load_reference_teacher(args.reference_init, agent_cfg.device)
+                transfer["resume_from"] = str(args.resume.relative_to(PROJECT_ROOT))
+            transfer.update(reference_sha256=sha256(args.reference_init),
+                            reference_path=str(args.reference_init.relative_to(PROJECT_ROOT)),
+                            critic_warmup_updates=args.critic_warmup_updates,
+                            drift_limit=args.reference_drift_limit,
+                            learning_rate=1e-4, clip_param=0.1, entropy_coef=0.0,
+                            fixed_action_std=0.1, shared_pretrained_lineage=True)
+            manifest["reference_transfer"] = transfer
+            set_actor_trainable(runner.alg.policy, runner.current_learning_iteration >= args.critic_warmup_updates)
         manifest["starting_learning_rate"] = float(runner.alg.learning_rate)
         manifest["starting_runner_iteration"] = runner.current_learning_iteration
         manifest["status"] = "training"

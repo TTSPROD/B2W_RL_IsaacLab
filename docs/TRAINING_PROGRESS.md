@@ -1,324 +1,88 @@
-# Результаты и продолжение обучения B2W
+# Результаты обучения B2W
 
-**Снимок 18 сентября, 15:12:52 МСК:** seeds 49/50 завершили первые 2500 updates
-с exit 0 и проверкой артефактов. Выполняется вторая часть: **2596/4000** и
-**2597/4000** соответственно; seed 51 ещё не запущен, evaluations — 0/8.
-Исходники активной очереди совпадают с frozen SHA256. [Датированный снимок](results/2026-09-18-staged-qualification-status.json).
-Ноутбук прошёл техническую [квалификацию](LAPTOP_WORKER.md), но обучение ему
-не назначено. По последнему уточнению пользователя очередь остаётся на ПК:
-49/50 параллельно до 4000, затем 51 отдельно. [Сервер проверен](SERVER_PERFORMANCE.md),
-к Isaac Lab не допущен. Качество seeds 49/50/51 пока не оценено.
+**19.09.2026: reward sweeps завершены без кандидата.**
+[Повторная проверка артефактов и решение](results/2026-09-19-strategy-review.json).
+Подготовлен [reference transfer](REFERENCE_TRANSFER.md); основной запуск ещё
+не подтверждён. [Актуальный план](PROJECT_PLAN.md), [исследование](REWARD_RESEARCH.md).
+Seed49 и reference сохраняются неизменными. Flat release gate открыт.
 
-**История запуска 18 сентября, 12:59 МСК:** пользователь разрешил продолжить обучение.
-Зарегистрировано [повторение staged](STAGED_QUALIFICATION.md): fresh seeds 49/50/51,
-4000 updates на каждом (2500 upstream + 1500 mix), одинаковый плановый restart.
-Seeds 49/50 параллельно по 4096 сред, затем 51 отдельно; VRAM reserve 5%.
-Новые hold-outs nominal 20261201 и bounded_v1 20261202. Job:
-`logs/qualification_runs/flat_staged_seeds49_51_20260918/job.json`.
-**Запуск подтверждён:** seeds 49/50 выполняют PPO updates, оба с нуля на 4096
-средах. [Снимок запуска](results/2026-09-18-staged-qualification-launch.json)
-фиксирует PID, счётчики, source/protocol hashes и ресурсы. 51 тест прошёл.
-Качество новых seeds пока не оценено. Ниже — история предыдущего эксперимента.
+## Что установлено
 
+| Опыт | Результат | Решение и источник |
+|---|---|---|
+| Seed42,5000 updates |96/100 safe,4 calf contacts; reference100/100 |Flat не пройден; [baseline](results/2026-09-17.json) |
+| Seeds43/44 |По96/100 safe; yaw RMS выше0,25 |[Исходная серия и yaw mix](YAW_ABLATION.md) |
+| Command mix seed44 |Safety99/100 и100/100, yaw RMS0,280–0,318 |Чаще yaw помогает контактам, но не закрывает tracking |
+| Yaw weight1,5/3 |Оба single-policy gates; yaw2x улучшил yaw RMS32–48% |[Протокол](YAW_REWARD_ABLATION.md); правило выбрало control |
+| Fresh45/46/47,2500 |Nominal91/94/92; bounded91/90/89 safe |[Отказ](FLAT_QUALIFICATION.md); разные restart histories |
+| Schedule seed48,4000 |Staged100/100 на обоих, constant99/92 |[Один development seed](FLAT_SCHEDULE_ABLATION.md) |
+| Staged49/50/51,4000 |Safe nominal100/88/96, bounded100/93/100 |Только49 прошёл оба; [серия](STAGED_QUALIFICATION.md) |
+| Contact−1/−3,50/51 |Отказы23→14;−3 safe50:88/98,51:100/100 |[Кандидата нет](CONTACT_WEIGHT_ABLATION.md) |
+| Height L2 0/−10 |Отказы14→23; variant50:85/93,51:99/100 |[Кандидата нет](HEIGHT_WEIGHT_ABLATION.md) |
+| Height lower-L1 |Отказы14→23; variant50:87/91,51:99/100 |[Кандидата нет](HEIGHT_FLOOR_ABLATION.md) |
+| Contact−3/−6 |Отказы14→20;−6 safe50:98/99,51:85/98 |[Кандидата нет](CONTACT6_ABLATION.md) |
 
-**Итог 18 сентября, 12:49 МСК:** эксперимент seed 48 завершён. Staged прошёл
-nominal и bounded_v1: по 100/100 без отказов и по 100/100 tracking; оба сценарных
-gate пройдены. Constant: 99/100 и 92/100 без отказов; оба gate не пройдены.
-Обе группы завершили 4000 updates, checkpoints/optimizer/TensorBoard и export
-проверены. Последняя оценка прервалась вместе с координатором по неизвестной
-причине; повторена на том же export, cases и physical profile с exit 0 и проверкой
-digest. Обучение не перезапускалось. [Полный итог](results/2026-09-18-flat-schedule-final.json).
-Выбран staged для будущего повторения на трёх новых независимых training seeds;
-это пока один development seed, общий Flat release gate не закрыт. Очередь завершена.
+Safe — отсутствие падения/запрещённого контакта; числа не заменяют tracking gate.
+Четыре последние серии по4×1500 новых updates от исходных staged model_2499;
+они не являются последовательным дообучением финалов.
+Controls в последних сериях точно воспроизвели прежние оценки.
 
+Последний contact6 завершён19.09 в18:53:57 МСК:4 train,4 exports/parity,
+10 evaluations с exit0. [Итог и23 verified artifacts](results/2026-09-19-contact6-final.json).
+У seed50 nominal yaw RMS0,32453>0,25; у seed51 nominal negative-yaw
+vx RMS0,24745>0,20. Все20 отказов variant — rear-calf contacts при pure yaw.
+Это не20 доказанных падений. Монотонной пользы усиления contact penalty нет.
 
-**Обновление 18 сентября, параллельное ускорение:** constant передан без restart
-(trainer PID 23476), staged запущен рядом (PID 13688), по 4096 сред каждый.
-[Подтверждённый снимок передачи и скорости](results/2026-09-18-flat-schedule-parallel-launch.json).
-Новый supervisor PID 11912; текущий job:
-`logs/ablations/flat_schedule_parallel_seed48_20260918/job.json`.
-Бюджет 4000 updates на группу и restart после 2500 сохранены; evaluations после
-обучения последовательные. Порог свободной VRAM 5%. Первоначальные записи ниже
-сохранены как история. Старый coordinator остановлен, его trainer продолжает работу.
+## Диагностика и сохранённые навыки
 
+[Staged diagnosis](STAGED_DIAGNOSIS.md), [contact replay](results/2026-09-19-contact-yaw-diagnosis.json),
+[height matched analysis](HEIGHT_DIAGNOSIS.md) связывают отказы с малым зазором
+голеней и просадкой. Постоянное leg torque saturation не подтверждено в
+исследованных окнах; clearance — геометрический proxy, не точное расстояние
+collision meshes. Контактный history3/decimation4 пропускает часть событий,
+но не объясняет большинство прежних отказов. Причинность contact6 regression
+не установлена отдельным matched replay.
 
-**Новый этап 18 сентября:** по запросу пользователя подготовлена последовательная
-[абляция расписания команд seed 48](FLAT_SCHEDULE_ABLATION.md), constant против
-staged, по 4000 updates на 4096 средах, одинаковый restart после 2500.
-Диагностика предыдущей серии сохранена в
-[JSON](results/2026-09-18-flat-diagnosis.json). Запуск включает smoke/resume,
-контроль VRAM (5%), проверку артефактов и новые nominal/bounded evaluations.
-Фактический статус: `logs/ablations/flat_schedule_seed48_20260918/job.json`.
-**Подтверждено 09:11:11 МСК:** четыре smoke train/resume сегмента прошли
-с exit 0; основное обучение constant запущено на 4096 средах, seed 48.
-В снимке 21/2500 updates первого сегмента; supervisor PID 18884,
-trainer PID 23476. [Снимок запуска](results/2026-09-18-flat-schedule-launch.json).
-Качество новой политики ещё не оценено.
+Seed49 прошёл оба профиля100/100, worst yaw RMS0,21230/0,20578,
+CPU export parity295 входов max error0.
+[Артефакты и hashes](STAGED_QUALIFICATION.md#сохранённый-кандидат-seed49).
+Его не дообучают и не перезаписывают. Reference имеет проверенный motor skill,
+но скачан; новый transfer должен отдельно доказать updates и качество.
 
+## Следующая очередь
 
-**Итог на 18 сентября 2026, 00:11:22 МСК:** обучение Flat seeds 45/46/47
-завершено: каждый получил model_2499.pt после 2500 updates и 245 760 000
-transitions. Все три training exits — 0, конечность checkpoints/optimizer и
-TensorBoard проверена; CPU export parity — 295 входов и max abs error 0 для
-каждого. Все восемь оценок также завершились с exit 0. [Итоговый JSON](results/2026-09-18-flat-qualification-final.json)
-содержит SHA256 checkpoints/exports/reports, Wilson95, p95/max, сценарные
-метрики и ссылки на локальные первичные отчёты.
+Метод: imported actor + свежий critic,50 frozen-actor updates, затем100+200 PPO;
+seeds52/53, общий pretrained lineage, 4096 сред каждый.
+Максимум68 812 800 transitions,4+12 baseline/milestone evaluations.
+До них — отдельный discarded smoke train/resume и export.
+При раннем отказе оставшиеся stages не запускаются.
+Job: logs/transfer/flat_reference_transfer_20260919/job.json.
 
-| Политика | Nominal 20261001: без отказа / tracking | Bounded 20261002: без отказа / tracking | Pooled RMS vx nominal / bounded, м/с |
-|---|---:|---:|---:|
-| Reference | 100/100 · 100/100 | 100/100 · 99/100 | 0,050 / 0,051 |
-| Seed 45 | 91/100 · 77/100 | 91/100 · 74/100 | 0,094 / 0,125 |
-| Seed 46 | 94/100 · 44/100 | 90/100 · 21/100 | **0,230 / 0,271** |
-| Seed 47 | 92/100 · 74/100 | 89/100 · 66/100 | 0,098 / 0,111 |
+Зарегистрированный [протокол](REFERENCE_TRANSFER.md) фиксирует все параметры,
+cases, stops и правило выбора. До подтверждённого прогресса статус «подготовлен»;
+после запуска здесь сохраняется датированный snapshot. Автопродления нет.
 
-**Flat gate не пройден ни одним новым seed ни на одном профиле:** требуется
-≥99/100 без падения или неколёсного контакта и pooled RMS vx/vy ≤0,20 м/с,
-yaw ≤0,25 рад/с. Все 53 первых отказа в шести оценках — контакты calf с
-поверхностью при поворотах на месте (45 positive yaw, 8 negative yaw), а не
-доказанные падения; у seed 46 дополнительно нарушен порог pooled vx в обоих
-профилях. Reference прошёл оба профиля. Свойства bounded_v1 проверены
-readback и сохранили одинаковый digest у всех политик; live observation/target
-error и raw-action saturation — 0. Истории restart различаются: seed 45 после
-1600/1900, seed 46 после 1600/1700, seed 47 после 1600; поэтому эта серия
-не закрывает строго контролируемую приёмку трёх одинаково проведённых seeds.
-На момент этого итога следующий шаг был диагностикой и новым экспериментом.
-Оба завершены позднее 18 сентября; актуальная staged-серия указана в начале журнала.
-Автоматического продолжения обучения и перехода к Rough нет.
+## Инфраструктура и открытые gates
 
-**Ниже — исторические записи 17 сентября; их статусы и ETA уже не действуют.**
+Desktop Flat headless2×4096:63 907,87 transitions/s в коротком benchmark,
++67,32% относительно2×2048. Это throughput, не скорость сходимости.
+Runtime/VRAM/сервер/ноутбук описаны один раз в [INFRASTRUCTURE](INFRASTRUCTURE.md)
+и [COMPUTE_DECISION](COMPUTE_DECISION.md). Сервер в этих обучениях не участвовал.
 
-**Актуально с21:55 МСК:** по запросу пользователя свободный запас VRAM снижен
-до **5%**; seeds45/46 параллельно продолжаются от model_1900/model_1700.
-Текущий job: `logs/qualification_runs/flat_headroom5_20260917/job.json`.
-Истории restart теперь различаются; контролируемая приёмка трёх seeds остаётся
-открыта. [Протокол восстановления](FLAT_RECOVERY.md). Ниже прежние датированные записи.
+Zero-action PD:16/16 отказов около0,79 s; это не тест активной политики.
+[Policy contract](POLICY_CONTRACT.md): nominal parity пройдена,
+saturation и hardware mapping не закрыты. [Модели](ROBOT_MODEL_COMPARISON.md):
+MuJoCo тяжелее training URDF на4,750435 kg, различаются COM/inertia/limits.
+Rough/Stairs/GUI/sim2sim/SDK/hardware не выполнены и не следуют из Flat pass.
 
-**Обновление 21:32 МСК:** по запросу пользователя seeds45/46 снова работают
-параллельно. Seed45 передан без перезапуска; текущий статус —
-`logs/qualification_runs/flat_three_seed_parallel_recovery_20260917/job.json`.
-Бюджеты, restartboundary1600 и порог VRAM15% прежние; [подробности](FLAT_RECOVERY.md).
+## Доказательства и хранение
 
-**Обновление 21:26 МСК:** после остановки по VRAM начата [последовательная
-очередь восстановления](FLAT_RECOVERY.md). Seeds 45/46 продолжаются от model_1600;
-у seed 47 предусмотрен такой же restart. Общий сохраняемый бюджет не изменён.
-Ниже датированные снимки до остановки; их ETA больше не действует.
+Датированные JSON и исторические протоколы сохраняют source hashes, конкретные
+paths, process exits, restart histories, failed runs и ограничения.
+Они не являются текущими заданиями. [Инструменты](../scripts/README.md).
+Git содержит код, документацию, небольшие результаты и immutable vendor.
+Training checkpoints, runtime, caches, TensorBoard остаются локально вне Git;
+постоянный artifact store ещё не выбран. Git push не синхронизирует их на другие машины.
 
-Снимок **17 сентября 2026, 20:10:40 МСК**: seeds 45/46 обучаются с нуля,
-соответственно **691/2500** и **692/2500** updates; seed 47 ожидает своей очереди.
-4096 сред, rollout 24, yaw weight 1,5, pure_yaw_fraction=0,25; resume отсутствует.
-ETA пары около **21:40 МСК**, всей очереди ориентировочно **22:45–23:15 МСК**.
-Скорость одиночного seed 47 ещё не измерена; это прогноз на момент снимка.
-[Машиночитаемый статус](results/2026-09-17-flat-qualification-status.json) фиксирует counters, скорость и ресурсы;
-текущий job.json может быть новее. Приёмка трёх seeds ещё не завершена.
-
-Последний завершённый этап — [предварительные проверки квалификации](results/2026-09-17-flat-qualification-preflight.json):
-nominal regression, физические diagnostics и smoke с нуля.
-[Абляция yaw-награды](results/2026-09-17-yaw-reward-final.json) завершена ранее в 18:17:25 МСК.
-Ниже сохранён отдельный исторический снимок **13:58:12 МСК**; его
-[машиночитаемые результаты](results/2026-09-17.json) не переписываются.
-[Актуальный план](PROJECT_PLAN.md) задаёт дальнейшие gates; фактический прогресс
-нового запуска определяется job.json, а не датой открытия документа.
-
-## Последние результаты и продолжение
-
-Абляция команд завершена **17 сентября 2026, 16:22:26 МСК**.
-Control / mix: по 500 updates и 49 152 000 transitions. Все технические проверки,
-exports и шесть evaluations завершены с exit 0.
-
-| Вариант | Без падений/неколёсных контактов (два набора) | Tracking episodes | Yaw RMS + / − на 20260917 | Yaw RMS + / − на 20260918 |
-|---|---|---|---|---|
-| Control | 93/100; 95/100 | 94/100; 94/100 | 0,190 / 0,243 | 0,229 / 0,246 |
-| Mix | 99/100; 100/100 | 81/100; 82/100 | 0,318 / 0,280 | 0,318 / 0,283 |
-
-Mix сократил контакты, но не выполнил критерий yaw-улучшения; обе группы не прошли
-Flat. [Итог абляции](YAW_ABLATION.md),
-[машиночитаемые результаты](results/2026-09-17-yaw-ablation-final.json).
-Временная доля pure yaw |yaw|>0,05: control 2,454%, mix 26,058%.
-
-[Абляция веса yaw-награды](YAW_REWARD_ABLATION.md) завершена
-**17 сентября в 18:17:25 МСК**. По 1000 новых updates / 98 304 000 transitions
-на группу от mix model_3099, weight 1,5 / 3,0. Оба training exits 0,
-checkpoint/optimizer/TensorBoard и exports проверены; parity 295 входов, max error 0.
-Все восемь оценок завершены.
-
-| Вариант | Без отказа: eval 17 / 18 / 19 | Tracking episodes | Yaw RMS по направлениям |
-|---|---|---|---|
-| Control 1,5 | 99 / 100 / 100 | 99 / 100 / 98 | 0,183–0,215 rad/s |
-| Yaw2x 3,0 | 100 / 100 / 100 | 98 / 100 / 99 | 0,112–0,127 rad/s |
-
-Обе группы прошли single-policy пороги; yaw2x выполнил критерий улучшения.
-По заранее заданному правилу **для независимого повторения выбран control 1,5**,
-с pure_yaw_fraction=0,25. [Итоговый JSON](results/2026-09-17-yaw-reward-final.json)
-фиксирует решение, hashes и полные сценарные метрики. Исторический launch JSON сохранён.
-Пара: 2951,7 s, peak GPU 9632 MiB, минимальный запас 21,58%, максимум 63 °C,
-582 samples, telemetry errors 0.
-
-[Очередь Flat qualification](FLAT_QUALIFICATION.md) запущена **19:31:30 МСК**:
-сначала evaluator regression и bounded physical diagnostics, затем fresh seeds
-45/46/47 с нуля, 4096 сред × 2500 updates, frozen nominal/physical hold-outs.
-Supervisor PID 11652; статус последующих этапов:
-logs/qualification_runs/flat_three_seed_20260917/job.json.
-Nominal regression воспроизведён точно; физическая диагностика готовых control,
-yaw2x и reference дала 100/100 без отказа и gate pass у каждого.
-[Подробности](results/2026-09-17-flat-qualification-preflight.json).
-Smoke с нуля прошёл 12 updates. С **19:36:09 МСК** seeds 45/46 обучаются
-параллельно (4096 сред, rollout 24, без resume); seed 47 следует за ними.
-Три новых controlled seeds ещё не приняты; Flat gate остаётся открыт.
-
-Seeds 43/44 исходной серии завершились с проверками и оценками в 15:37:42 МСК:
-оба 96/100 без отказа, tracking 78/100 и 82/100. Диагностика seed 44
-воспроизвела четыре FR_calf-контакта. Более ранние таблицы ниже исторические.
-
-## Историческое состояние на 13:58:12 МСК
-
-**Seeds 43 и 44 продолжают обучение параллельно, по 4096 сред на одной RTX 4070 Ti.**
-Их качество ещё не оценено. Seed 42 завершён, но не прошёл Flat quality gate.
-Текущий локальный источник истины: logs/benchmarks/dual4096_20260917/job.json;
-консоли и ресурсы находятся в его подкаталоге continuation/.
-
-| Seed | Индекс PPO в снимке | Переходов с учётом сохранённых сегментов | Плановый итог |
-|---|---:|---:|---:|
-| 43 | 730 | 52 150 272 | 245 710 848 |
-| 44 | 531 | 42 418 176 | 245 710 848 |
-
-Seed 43 продолжен от benchmark model_610: стартовый индекс 611, 2089 новых updates,
-плановый финальный индекс 2699. Seed 44 продолжен от model_410: старт 411,
-2189 updates, финальный индекс 2599. Сохранены optimizer и adaptive learning rate;
-simulator/RNG при resume запущены заново. Успешные benchmark updates входят в бюджет.
-
-Цель каждого seed — 245 760 000 transitions. При batch 4096 × 24 остаток округлён
-вниз: 245 710 848, на 49 152 (ровно 0,02%) меньше цели. После смены числа сред
-PPO iteration нельзя сравнивать напрямую с прежними 5000 updates на 2048.
-
-Ориентир при перезапуске в 13:51 МСК составлял около 1 ч 50 мин обучения плюс
-экспорт/evaluation; это историческая оценка, не текущий ETA.
-После завершения обоих процессов координатор последовательно проверит
-checkpoints/optimizer/TensorBoard, выполнит экспорт/parity и 100 × 20 s evaluations.
-Ожидаемые локальные отчёты: logs/qualification/dual4096_20260917/seed43/ и seed44/.
-До их появления финальную политику нельзя считать испытанной.
-
-## Измеренная производительность
-
-| Режим | База времени | Переходов/с | Пик всей GPU |
-|---|---|---:|---:|
-| 256 сред, один seed | PPO collection + learning, 200 updates | 3 675 | 3441 MiB |
-| 512 сред, один seed | То же | 6 110 | 3555 MiB |
-| 1024 среды, один seed | То же | 12 270 | 4065 MiB |
-| 2048 сред, один seed | То же | 22 568 | 4542 MiB |
-| 2×2048, seeds 43/44 | Общее wall-time окно 292,2 s; 111/116 updates | 38 195 суммарно | См. локальную телеметрию |
-| 2×4096, seeds 43/44 | Общее wall-time окно 597,2 s; 190/199 updates | **63 908 суммарно** | **9583 MiB** |
-
-У двойного benchmark 4096 оба процесса завершились с exit 0, по 210 updates,
-первые 10 исключены: на каждый run проверены 200 измеренных updates.
-Общее окно дополнительно исключает хвост, где второй процесс уже завершён.
-Минимальный запас VRAM — 21,98%, максимальная температура — 65 °C;
-ошибок телеметрии, NaN/Inf и несовпадений checkpoint SHA256 не было.
-
-**Прирост суммарного throughput — 67,3%.** Baseline 2×2048 был более коротким,
-а состояния обучения менялись. Это измеренное эксплуатационное сравнение,
-не строго контролируемое исследование сходимости. Нельзя смешивать single-run
-PPO timers с агрегированным wall-time throughput или обещать тот же time-to-quality.
-
-Для 4096 конфигурации среды изменились только scene.num_envs и log_dir.
-Physics dt = 0,005 s, policy = 50 Hz, rollout = 24; upstream rewards и PPO
-гиперпараметры сохранены. Batch и число optimizer updates на равный бюджет
-переходов изменились. Сравнение YAML и детали: logs/benchmarks/dual4096_20260917/.
-
-Длительный профиль seed 42 на 2048 уже завершён: 9624 s, 1895 samples,
-пик GPU 4444 MiB, максимум 61 °C, peak process-tree RSS 5,47 GiB,
-минимум доступной RAM 13,48 GiB. Длительный профиль 2×4096 ещё собирается.
-Все GPU memory counters относятся к устройству целиком.
-
-## Качество seed 42 и reference
-
-Seed 42 завершился в 12:57:56 МСК, exit 0: 5000 updates и 245 760 000 transitions.
-Финальный model_4999.pt имеет SHA256
-282e2ed8930c5d17a747ceae3ff8457ddb015df70b90029f98463ace564e902b.
-Веса/optimizer конечны; проверены 158 070 TensorBoard scalars.
-Экспорт через закреплённый Isaac Lab exporter прошёл 295 fixture/random inputs
-на CPU с max abs error = 0.
-
-| Политика | Без падений/неразрешённого контакта | Эпизоды с tracking в порогах | Pooled RMS vx / vy / yaw |
-|---|---:|---:|---|
-| Обученная seed 42, model_4999 | **96/100** | 84/100 | 0,112 / 0,066 / 0,121 |
-| Скачанный rl_sar reference | 100/100 | 100/100 | 0,050 / 0,071 / 0,076 |
-
-**Flat gate seed 42 не пройден:** требуется ≥99% без отказа. Все четыре первых
-отказа — контакт неколёсной части при positive yaw; tilt/height в момент первого
-отказа оставались в порогах. Это нельзя называть четырьмя доказанными падениями.
-Positive yaw pooled RMS vx = 0,214 m/s > 0,20; negative yaw RMS yaw = 0,255 rad/s
-> 0,25. Опубликованы индивидуальные отклонения backward/lateral и p95/max.
-Общий средний RMS не скрывает провал отдельного семейства.
-
-Wilson95 для доли без отказа: seed 42 — 90,16–98,43%, reference — 96,30–100%.
-Эти интервалы описывают выборку сценариев, не разброс training seeds.
-
-Обе политики прошли один и тот же suite: eval seed 20260917, 100 случаев,
-8 семейств команд; |vx| 0,2–0,5 m/s, |vy| 0,15–0,3 m/s обоих знаков,
-|yaw| 0,2–0,5 rad/s, stand и forward/backward→stop на середине измерения.
-Начальный yaw ±π, offsets ног ±0,025 rad. Активная policy работает 2 s settling
-и затем 20 s измерения, всего 4400 physics steps. Sticky failures проверяются
-с t=0 на каждом шаге физики; auto-reset нет. Live observation/action-target
-errors = 0, внешние exits = 0. Physical randomization, noise и pushes отключены;
-это только часть release acceptance.
-
-Локальные отчёты: logs/qualification/flat_seed42_final/ — flat100.json,
-reference_flat100.json, nominal_replay.json, external_exits.json, export/ и
-sustained_profile.json. Короткий nominal replay дал 15/16 у обученной политики
-и 16/16 у reference. Reference скачан из закреплённого upstream, не обучен нами.
-
-## Стойка, контракт и физическая модель
-
-Zero-action nominal PD дважды не прошёл проверку: 16/16 сред, первый неколёсный
-контакт на 0,79 s, высота около 0,454 m, tilt около 13,35°. RL calf опустился
-примерно до −2,07 rad при target −1,5 rad и коснулся земли. Пороги не ослаблялись,
-auto-reset отсутствовал. Это просадка default targets, а не тест обученной policy.
-Локальные отчёты: logs/qualification/stand_20260917.json и stand_diagnostic_20260917.json.
-
-[Контракт политики](POLICY_CONTRACT.md): nominal CPU/live parity проверены;
-clipping при насыщении и аппаратные signs/order остаются открыты.
-[Сравнение моделей](ROBOT_MODEL_COMPARISON.md): training URDF совпадает с unitree_ros;
-MuJoCo тяжелее на 4,750435 kg, различаются COM/inertia и calf limits. Сопоставлены
-17 rigid bodies после merge fixed joints с сохранением массы. Vendor не изменён.
-MuJoCo adaptation, contact/kinematic equivalence и аппаратные torque-speed curves
-ещё не проверены.
-
-## Происхождение серии и следующие шаги
-
-1. Seed 42: 210 benchmark updates + 4790 после optimizer resume на 2048.
-2. Seed 43 запущен с нуля на 2048; seed 44 добавлен параллельно. При замене
-   координатора seed 43 не перезапускался.
-3. Для двойного 4096 benchmark процессы остановлены на model_400 и model_200:
-   удержаны 401 и 201 updates соответственно, незасохранённых updates потеряно 0.
-4. Оба выполнили ещё 210 updates на 4096, затем продолжились от model_610/model_410.
-   Прежние координаторы помечены как передавшие управление; их очереди не активны.
-
-Поэтому исторические seeds 42/43/44 — диагностическая серия с разными batch/resume
-историями, а не три сопоставимых trials для итоговой приёмки.
-Исходные runs и две yaw-абляции завершены. Последовавшая серия 45/46/47
-по [протоколу](FLAT_QUALIFICATION.md) завершена с провалом gates. Текущий этап —
-[staged seeds 49/50/51](STAGED_QUALIFICATION.md). Исторический набор уже использован
-для диагностики и не остаётся нетронутым
-при последующем подборе. Rough/stairs, sim2sim, SDK и реальные испытания не выполнены.
-
-## Проверки и хранение
-
-Проверено 18 сентября перед публикацией: 1290 vendor-файлов из 6 pinned sources;
-58 project CPU tests и 23 DNS skill tests passed. Прогон без site-packages:
-58 tests, 14 ожидаемых skips. Test mock resume не требует установленного torch. GitHub CI без Isaac/GPU
-выполняет лёгкие проверки; torch-зависимые tests там пропускаются при отсутствии
-зависимостей. Это не замена локального CPU export test или GPU evaluation.
-
-В Git входят датированные JSON снимки исходного baseline, yaw-абляций и
-[текущей квалификации](results/2026-09-17-flat-qualification-status.json), документы,
-launchers, tests и runtime lock. Большие logs/checkpoints/runtime остаются
-локальными и исключены из Git. Выбор artifact store остаётся открытым.
-Observed hashes относятся к байтам файлов в исходном запуске; текстовые файлы
-Git может нормализовать по правилам .gitattributes. Нормализованные hashes
-bootstrap metadata выделены отдельно в requirements/desktop-runtime.json.
-
-[Каталог scripts](../scripts/README.md) разделяет переиспользуемые launchers
-и одноразовые координаторы, которым нужны локальные артефакты конкретной серии.
-Сервер не участвовал в training/evaluation сериях. Его отдельный CUDA-тест
-18 сентября описан в [SERVER_PERFORMANCE.md](SERVER_PERFORMANCE.md). Прежние
-проекты не использовались.
+Проверки текущего изменения будут записаны в launch snapshot.
+Исторические counts тестов относятся к датированным запускам, а не к нынешнему HEAD.

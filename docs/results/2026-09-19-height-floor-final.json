@@ -1,0 +1,5877 @@
+{
+  "checked_utc": "2026-09-19T13:14:12.730578+00:00",
+  "job": "logs\\ablations\\flat_height_floor_dev50_51_20260919\\job.json",
+  "job_sha256": "ef876aab170c2c0c1f163c9d6896d594cb01ed556bd423142b0f835c9cc768b8",
+  "status": "completed_training_evaluation_and_comparison",
+  "finished_utc": "2026-09-19T11:36:32.049210+00:00",
+  "comparison": {
+    "decision": "no_candidate_new_diagnosis_required",
+    "selected_for_future_replication": null,
+    "per_arm_profile_pass": {
+      "reference": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed50_control": {
+        "nominal": false,
+        "bounded_v1": false
+      },
+      "seed50_floorl1": {
+        "nominal": false,
+        "bounded_v1": false
+      },
+      "seed51_control": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed51_floorl1": {
+        "nominal": true,
+        "bounded_v1": true
+      }
+    },
+    "failures_control": 14,
+    "failures_floorl1": 23,
+    "release_accepted": false,
+    "automatic_fresh_training": false,
+    "automatic_extension": false,
+    "automatic_rough_promotion": false,
+    "limitation": "Two selected failing development seeds resumed at2500; disclosed cases. Not fresh-seed acceptance."
+  },
+  "verified_artifacts": [
+    {
+      "path": "logs\\ablations\\flat_height_floor_dev50_51_20260919\\job.json",
+      "sha256": "ef876aab170c2c0c1f163c9d6896d594cb01ed556bd423142b0f835c9cc768b8"
+    },
+    {
+      "path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-636898_flat_height_floor_dev50_51_20260919_s50_control\\model_3999.pt",
+      "sha256": "4765466ed51476062cafa518c113998bb2adba0efdaca884cf3204ddcdb1072d"
+    },
+    {
+      "path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-637898_flat_height_floor_dev50_51_20260919_s50_floorl1\\model_3999.pt",
+      "sha256": "1b8d2b774357fb5fb0dabd3fb35bfb05d42ce53b8200328e2c2b0473b1b90561"
+    },
+    {
+      "path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_control\\model_3999.pt",
+      "sha256": "7cbce191f4ab667550cf3a1a09e68997c76d30b41f315e94248a70a3ed4ecc2f"
+    },
+    {
+      "path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_floorl1\\model_3999.pt",
+      "sha256": "02cf3d629ba21348249fa50a28b8f220091e6659e06d50549cd3e36a48c633dc"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control\\export\\report.json",
+      "sha256": "615589fcb293eb0ee9a6bf388bb49c231e5135da632f63cd9da9aeee4e9d79d9"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control\\export\\policy-contract-export\\policy.pt",
+      "sha256": "9741b99997f3efa610e64598e3dadfceff0af68884a948107119245ffb047c65"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1\\export\\report.json",
+      "sha256": "47dc63377b5d54daee60cfbc35f64abf9048ecaa344a1618430e1883764d320f"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1\\export\\policy-contract-export\\policy.pt",
+      "sha256": "6eb3235f6fdbc47afdd654a913db0e8a0b4be4cc66a00ec1a3bbb4449318b217"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control\\export\\report.json",
+      "sha256": "316f2611190803b482df5b81bba71ef077afcba96e6e73506f66cdffcec9ed5d"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control\\export\\policy-contract-export\\policy.pt",
+      "sha256": "158b6540b1d9333d76d05b43bebf6bbbfac4b0584542d914d65edfd2846d742b"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1\\export\\report.json",
+      "sha256": "9a8e5eb50ce7c903f5c11b15cafe4e29802e17fe50467843ce257ae2ed6fbed7"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1\\export\\policy-contract-export\\policy.pt",
+      "sha256": "8f6dca65e9af9bdb4a99e3f3d45214633d7b880ff721c3c35a2c197f7ddef6e8"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\reference_nominal_20261201.json",
+      "sha256": "0bb048c3190c27d58089a98d36ef2057c0defe09e0a8093967f2a07de827b415"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\reference_bounded_v1_20261202.json",
+      "sha256": "90465890b3b7429329f3baf6e665254b96214358b5ae15130088b3cedc487440"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control_nominal_20261201.json",
+      "sha256": "957d48bc55fb757a10249d0cff5084e26965b1fd0d099ee8cfc1a215a77326a2"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control_bounded_v1_20261202.json",
+      "sha256": "09d6aeed0ee90a5750582d71f5219a478927816bc2643760e6c957bc5151c648"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1_nominal_20261201.json",
+      "sha256": "17aff6ea487ac82f38d84984a588ec82202b7bdb82f7bc42a817eab57f01232e"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1_bounded_v1_20261202.json",
+      "sha256": "9aed6d52e8829880980ad9297452c036855ec23a20edd323087ca928b9d1a04c"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control_nominal_20261201.json",
+      "sha256": "007be99f5a99d11040ef092160db5f53b77a48fcf4dd1bdfa39c319210dde333"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control_bounded_v1_20261202.json",
+      "sha256": "1148506c4fb8e843db431684bc033b93daed93994c6936f716d2b29dee84568f"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1_nominal_20261201.json",
+      "sha256": "003ac14c57049d6c645e4911d4566d90d397e032df8a4e01d211b7bafff3ad86"
+    },
+    {
+      "path": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1_bounded_v1_20261202.json",
+      "sha256": "d86c843b75faf4e1d5cd76a4954a6799e9b955833495bbf2c28a736ad80032d7"
+    }
+  ],
+  "verified_artifact_count": 23,
+  "all_exits_zero": true,
+  "source_and_saved_snapshots_verified": true,
+  "exports": {
+    "seed50_control": {
+      "name": "export_seed50_control",
+      "status": "completed",
+      "started_utc": "2026-09-19T11:26:22.687507+00:00",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/check_policy_contract.py",
+        "--training-checkpoint",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-636898_flat_height_floor_dev50_51_20260919_s50_control\\model_3999.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control\\export\\report.json"
+      ],
+      "timeout_seconds": 600,
+      "pid": 19172,
+      "external_exit_code": 0,
+      "finished_utc": "2026-09-19T11:26:26.258218+00:00",
+      "wall_seconds": 3.562999999994645,
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control\\export\\report.json",
+      "report_sha256": "615589fcb293eb0ee9a6bf388bb49c231e5135da632f63cd9da9aeee4e9d79d9",
+      "export_sha256": "9741b99997f3efa610e64598e3dadfceff0af68884a948107119245ffb047c65"
+    },
+    "seed50_floorl1": {
+      "name": "export_seed50_floorl1",
+      "status": "completed",
+      "started_utc": "2026-09-19T11:26:26.294726+00:00",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/check_policy_contract.py",
+        "--training-checkpoint",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-637898_flat_height_floor_dev50_51_20260919_s50_floorl1\\model_3999.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1\\export\\report.json"
+      ],
+      "timeout_seconds": 600,
+      "pid": 6012,
+      "external_exit_code": 0,
+      "finished_utc": "2026-09-19T11:26:29.433582+00:00",
+      "wall_seconds": 3.125,
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1\\export\\report.json",
+      "report_sha256": "47dc63377b5d54daee60cfbc35f64abf9048ecaa344a1618430e1883764d320f",
+      "export_sha256": "6eb3235f6fdbc47afdd654a913db0e8a0b4be4cc66a00ec1a3bbb4449318b217"
+    },
+    "seed51_control": {
+      "name": "export_seed51_control",
+      "status": "completed",
+      "started_utc": "2026-09-19T11:26:29.468095+00:00",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/check_policy_contract.py",
+        "--training-checkpoint",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_control\\model_3999.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control\\export\\report.json"
+      ],
+      "timeout_seconds": 600,
+      "pid": 12648,
+      "external_exit_code": 0,
+      "finished_utc": "2026-09-19T11:26:32.610372+00:00",
+      "wall_seconds": 3.1410000000032596,
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control\\export\\report.json",
+      "report_sha256": "316f2611190803b482df5b81bba71ef077afcba96e6e73506f66cdffcec9ed5d",
+      "export_sha256": "158b6540b1d9333d76d05b43bebf6bbbfac4b0584542d914d65edfd2846d742b"
+    },
+    "seed51_floorl1": {
+      "name": "export_seed51_floorl1",
+      "status": "completed",
+      "started_utc": "2026-09-19T11:26:32.645881+00:00",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/check_policy_contract.py",
+        "--training-checkpoint",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_floorl1\\model_3999.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1\\export\\report.json"
+      ],
+      "timeout_seconds": 600,
+      "pid": 2480,
+      "external_exit_code": 0,
+      "finished_utc": "2026-09-19T11:26:35.780085+00:00",
+      "wall_seconds": 3.125,
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1\\export\\report.json",
+      "report_sha256": "9a8e5eb50ce7c903f5c11b15cafe4e29802e17fe50467843ce257ae2ed6fbed7",
+      "export_sha256": "8f6dca65e9af9bdb4a99e3f3d45214633d7b880ff721c3c35a2c197f7ddef6e8"
+    }
+  },
+  "training": {
+    "train_seed50": {
+      "status": "validated",
+      "started_utc": "2026-09-19T08:54:58.355985+00:00",
+      "runs": [
+        {
+          "arm": "control",
+          "seed": 50,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "run_name": "flat_height_floor_dev50_51_20260919_s50_control",
+          "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+          "extra_args": [
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3"
+          ],
+          "expected_manifest": {
+            "seed": 50,
+            "num_steps_per_env": 24,
+            "pure_yaw_fraction": 0.25,
+            "effective_yaw_tracking_weight": 1.5,
+            "effective_undesired_contact_weight": -3.0,
+            "effective_base_height_weight": 0.0,
+            "effective_base_height_form": "disabled",
+            "effective_base_height_target_m": null,
+            "starting_learning_rate": 0.0002562890625000001
+          },
+          "label": "flat_height_floor_dev50_51_20260919_s50_control",
+          "command": [
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+            "-B",
+            "-u",
+            "scripts/train_b2w.py",
+            "--headless",
+            "--device",
+            "cuda:0",
+            "--num_envs",
+            "4096",
+            "--seed",
+            "50",
+            "--max_iterations",
+            "1500",
+            "--run_name",
+            "flat_height_floor_dev50_51_20260919_s50_control",
+            "--resume",
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3"
+          ],
+          "pid": 4852,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-636898_flat_height_floor_dev50_51_20260919_s50_control\\manifest.json",
+          "checkpoint_validation": {
+            "status": "passed",
+            "checkpoints": [
+              {
+                "path": "model_2500.pt",
+                "sha256": "c52d0206c9314c2b9daae8edfb3079abf181562ba6e0cceab3af50475919bd13",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2600.pt",
+                "sha256": "d55207a9778c3a18408626eafe07cebd4ba56e6f44f602c8ba4e8c2a15ac33b1",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2700.pt",
+                "sha256": "7b7a284f37016426908779573e8dc0fff401ee3427b50fab9fd322284b6c6665",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2800.pt",
+                "sha256": "bb0f9e6cb67193af3c209b98874e0b8671962c282138096bc19c5fa232c52ed6",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2900.pt",
+                "sha256": "93e9c9c117c47b604d7ec6eb632f6424ed18d64226bb523763f10705a4bf1214",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3000.pt",
+                "sha256": "8c1d75c161a729eaab218428c12bfc75d217d505edd21baba080d88ff7092502",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3100.pt",
+                "sha256": "6dd19309374251f830e5b8f87b0bc770e57f3438df389d6c1c81605f1c031c22",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3200.pt",
+                "sha256": "4e6927388d7359be33b06fda6fac5e2fddc58891a8a05136a834377d95bc40bf",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3300.pt",
+                "sha256": "b384e1f2dc43f5d40b6703a5b5795b4fee8e6f3aeb508d02540e5314f304a7f7",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3400.pt",
+                "sha256": "5d2bd17ed7c01c5eb8d618bc977e48830dbbcdaefe3abb4a6fe727e8f63f3eeb",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3500.pt",
+                "sha256": "9e4c20111d654294a54729412d46f19e1195e2112fa24be5824c3e2735d8f2df",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3600.pt",
+                "sha256": "7aca493de880fbba9852b82d80ed6c7c454eacae7b2ab94a17cd38f79e228ab6",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3700.pt",
+                "sha256": "92bdc9774c7810193f625a048ee45cf109bef880811eacffd97447938bff9efc",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3800.pt",
+                "sha256": "2e14572f0bb11cf21863a87a2654be587b34ea68588f6743c52a46b7b7fdc8a7",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3900.pt",
+                "sha256": "3233141de4167a1149c219b5f27f500fa5e3112d994347410445e65792f104e5",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3999.pt",
+                "sha256": "4765466ed51476062cafa518c113998bb2adba0efdaca884cf3204ddcdb1072d",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              }
+            ],
+            "load_device": "cpu"
+          },
+          "timings": {
+            "finite_scalar_count": 49500,
+            "warmup_updates_excluded": 10,
+            "measured_updates": 1490,
+            "meets_200_measured_update_requirement": true,
+            "transitions_per_update": 98304,
+            "measured_transitions": 146472960,
+            "rollout_seconds": 4062.9955468177795,
+            "learning_seconds": 454.8611822128296,
+            "ppo_timed_seconds": 4517.856729030609,
+            "mean_rollout_seconds_per_update": 2.726842648870993,
+            "mean_learning_seconds_per_update": 0.30527596121666417,
+            "mean_seconds_per_update": 3.032118610087657,
+            "median_seconds_per_update": 3.0306453704833984,
+            "transitions_per_second": 32420.89530170394,
+            "rollout_transitions_per_second": 36050.48499615526,
+            "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+            "measured_event_wall_seconds": 4595.120728731155,
+            "event_wall_transitions_per_second": 31875.758798712865
+          },
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-636898_flat_height_floor_dev50_51_20260919_s50_control\\model_3999.pt",
+          "final_checkpoint_sha256": "4765466ed51476062cafa518c113998bb2adba0efdaca884cf3204ddcdb1072d",
+          "ending_runner_iteration": 3999
+        },
+        {
+          "arm": "floorl1",
+          "seed": 50,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "run_name": "flat_height_floor_dev50_51_20260919_s50_floorl1",
+          "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+          "extra_args": [
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3",
+            "--base_height_weight",
+            "-10.0",
+            "--base_height_form",
+            "lower_l1"
+          ],
+          "expected_manifest": {
+            "seed": 50,
+            "num_steps_per_env": 24,
+            "pure_yaw_fraction": 0.25,
+            "effective_yaw_tracking_weight": 1.5,
+            "effective_undesired_contact_weight": -3.0,
+            "effective_base_height_weight": -10.0,
+            "effective_base_height_form": "lower_l1",
+            "effective_base_height_target_m": 0.6,
+            "starting_learning_rate": 0.0002562890625000001
+          },
+          "label": "flat_height_floor_dev50_51_20260919_s50_floorl1",
+          "command": [
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+            "-B",
+            "-u",
+            "scripts/train_b2w.py",
+            "--headless",
+            "--device",
+            "cuda:0",
+            "--num_envs",
+            "4096",
+            "--seed",
+            "50",
+            "--max_iterations",
+            "1500",
+            "--run_name",
+            "flat_height_floor_dev50_51_20260919_s50_floorl1",
+            "--resume",
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3",
+            "--base_height_weight",
+            "-10.0",
+            "--base_height_form",
+            "lower_l1"
+          ],
+          "pid": 27204,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-637898_flat_height_floor_dev50_51_20260919_s50_floorl1\\manifest.json",
+          "checkpoint_validation": {
+            "status": "passed",
+            "checkpoints": [
+              {
+                "path": "model_2500.pt",
+                "sha256": "71ba3cca9ee53864a06360994581c48ca6976aba2490daf32801ab0b7ae2b726",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2600.pt",
+                "sha256": "80ba49c395c3f0d8c94edfc04e97586b9b967418efd16cf6a342348d3567df8b",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2700.pt",
+                "sha256": "4ca2f3bf545d883e59be6bf7853a88ee6a64f7e55b9700bc9b0ca0a1bedf05d9",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2800.pt",
+                "sha256": "56968e901cabfebb77bd692c131b2e514e4b21e45f23ca1d305a57252cb833fd",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2900.pt",
+                "sha256": "0bbf03443aba56295ed750f7c8575822d9dc052cfd5e65893200781cc916c74b",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3000.pt",
+                "sha256": "749c9f117955033db0bbf242c5ec06e52a5801c326606fa3bbb0b583d9353a72",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3100.pt",
+                "sha256": "2e50871a6a391e7e52b382d421e729c0cbbc0f1b34a80ae07287e102985f0b0d",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3200.pt",
+                "sha256": "19b5c6acb282bdaa4dfa769cd93539a9dda69949d3f6c9072d69499be6fe8be8",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3300.pt",
+                "sha256": "1dd9e4ebc1d47959e38c6d696742a6e671c94ac9fc8cc44a34f5c35480d58ee3",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3400.pt",
+                "sha256": "621c712d41c295f829ede49271976d525325ada55803a823ebf82e43ee73488a",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3500.pt",
+                "sha256": "980d18c82c67890e13df531504851dd696da59826d2fad5ef73deda66a482932",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3600.pt",
+                "sha256": "36117406e1fc943381b686b9518ca7973294e0d4a20f523da320febf521ca869",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3700.pt",
+                "sha256": "1abbe930ec93723a465834272241af03edffd9e31b36970b318dce44cd5540b6",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3800.pt",
+                "sha256": "be511eb030ceb21d8453cb8b1b273bc65ce0dada848d65b70fbc855aadf58da1",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3900.pt",
+                "sha256": "541edef33bf1ef7c308cbda2a5a7de848ebb23d2f3e2b2a7340975235298aa89",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3999.pt",
+                "sha256": "1b8d2b774357fb5fb0dabd3fb35bfb05d42ce53b8200328e2c2b0473b1b90561",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              }
+            ],
+            "load_device": "cpu"
+          },
+          "timings": {
+            "finite_scalar_count": 51000,
+            "warmup_updates_excluded": 10,
+            "measured_updates": 1490,
+            "meets_200_measured_update_requirement": true,
+            "transitions_per_update": 98304,
+            "measured_transitions": 146472960,
+            "rollout_seconds": 4037.646581172943,
+            "learning_seconds": 461.99151611328125,
+            "ppo_timed_seconds": 4499.638097286224,
+            "mean_rollout_seconds_per_update": 2.7098299202502973,
+            "mean_learning_seconds_per_update": 0.31006142021025584,
+            "mean_seconds_per_update": 3.0198913404605534,
+            "median_seconds_per_update": 3.017009973526001,
+            "transitions_per_second": 32552.16460371319,
+            "rollout_transitions_per_second": 36276.81548033096,
+            "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+            "measured_event_wall_seconds": 4579.396401643753,
+            "event_wall_transitions_per_second": 31985.210965232058
+          },
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-637898_flat_height_floor_dev50_51_20260919_s50_floorl1\\model_3999.pt",
+          "final_checkpoint_sha256": "1b8d2b774357fb5fb0dabd3fb35bfb05d42ce53b8200328e2c2b0473b1b90561",
+          "ending_runner_iteration": 3999
+        }
+      ],
+      "resources": {
+        "samples": 918,
+        "telemetry_errors": 0,
+        "peak_gpu_used_mib": 9662.0,
+        "minimum_gpu_headroom_fraction": 0.2133203061390653,
+        "peak_gpu_temperature_c": 62.0,
+        "minimum_system_available_ram_bytes": 10406559744
+      },
+      "minimum_gpu_headroom_fraction": 0.05,
+      "finished_utc": "2026-09-19T10:12:45.053880+00:00",
+      "wall_seconds": 4666.264999999999,
+      "paired_configuration_check": {
+        "only_env_differences": [
+          "log_dir",
+          "rewards.base_height_lower_l1"
+        ],
+        "height_form": "lower_l1",
+        "height_weight": -10.0,
+        "height_target_m": 0.6
+      }
+    },
+    "train_seed51": {
+      "status": "validated",
+      "started_utc": "2026-09-19T10:12:47.644713+00:00",
+      "runs": [
+        {
+          "arm": "control",
+          "seed": 51,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "run_name": "flat_height_floor_dev50_51_20260919_s51_control",
+          "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_13-21-49-478799_flat_staged_seeds49_51_20260918_seed51_0\\model_2499.pt",
+          "checkpoint_sha256": "1ae577294c380b2964bdfb85b0869dce3342c4fb604227899fa994b006e29122",
+          "extra_args": [
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3"
+          ],
+          "expected_manifest": {
+            "seed": 51,
+            "num_steps_per_env": 24,
+            "pure_yaw_fraction": 0.25,
+            "effective_yaw_tracking_weight": 1.5,
+            "effective_undesired_contact_weight": -3.0,
+            "effective_base_height_weight": 0.0,
+            "effective_base_height_form": "disabled",
+            "effective_base_height_target_m": null,
+            "starting_learning_rate": 0.00011390625000000003
+          },
+          "label": "flat_height_floor_dev50_51_20260919_s51_control",
+          "command": [
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+            "-B",
+            "-u",
+            "scripts/train_b2w.py",
+            "--headless",
+            "--device",
+            "cuda:0",
+            "--num_envs",
+            "4096",
+            "--seed",
+            "51",
+            "--max_iterations",
+            "1500",
+            "--run_name",
+            "flat_height_floor_dev50_51_20260919_s51_control",
+            "--resume",
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_13-21-49-478799_flat_staged_seeds49_51_20260918_seed51_0\\model_2499.pt",
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3"
+          ],
+          "pid": 27428,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_control\\manifest.json",
+          "checkpoint_validation": {
+            "status": "passed",
+            "checkpoints": [
+              {
+                "path": "model_2500.pt",
+                "sha256": "9f0ebbe95521c568e3f18f77a189d1382c015416b9889f463d4c5e7bc2cde303",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2600.pt",
+                "sha256": "e3f2a9d6b43e57e7800a6f62385a3fe07ddd178239d9d605d1288e550ff7bebd",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2700.pt",
+                "sha256": "dcb091e2d00950ade8f06ee438f2e56698ecf1723e714f135ad408a05311cf9c",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2800.pt",
+                "sha256": "0f502bcd84b328b10a5509bb454b5310c293cf4185feb797864b2bd004e1e14c",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2900.pt",
+                "sha256": "02917ba8ce5e949aaba1ff73333775a45d9e21209e75105050e102c7bf8a8a70",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3000.pt",
+                "sha256": "d45646e8638302a9d2f19d55c6baf6c4ccfef32ccbebe50728dfdb7b014d12f0",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3100.pt",
+                "sha256": "a3815afb2305e23fb7c4a6a9d2dabd0fdbce4c748a65edc9c279b809c1f7a30e",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3200.pt",
+                "sha256": "e646789eca50f3f313180a90971c9ae7ff4322f86b30ac657cb892e6f47d8361",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3300.pt",
+                "sha256": "9013981d5e1f337613d86f86171c384f13c613c0e0420846f69097e5fa23d8ae",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3400.pt",
+                "sha256": "422daff45eb0d91223bf36c7f51a826e4b6d58a62a43bb77682909d8270e4fd1",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3500.pt",
+                "sha256": "2898ae080291eabdd624e2a9988fceffdffb4c3d488953edc71a89be7cbbdc57",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3600.pt",
+                "sha256": "4161c1e52dabf665666408a6415e4be854902744d9472c5ef5c4f7c5851f7782",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3700.pt",
+                "sha256": "c8a6b364a30e60deb6d53f92a7c7050ca9e13d2cc3954895b44f2e1974acfca6",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3800.pt",
+                "sha256": "1c8031ba23a007d6572b49b2408eee1e7ac8b99e9783640d6119bd48e063af18",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3900.pt",
+                "sha256": "3ea0f56ef4b2eebea8fe29c7f13f993ed6fa2fedfa118c005547814f2230192e",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3999.pt",
+                "sha256": "7cbce191f4ab667550cf3a1a09e68997c76d30b41f315e94248a70a3ed4ecc2f",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              }
+            ],
+            "load_device": "cpu"
+          },
+          "timings": {
+            "finite_scalar_count": 49500,
+            "warmup_updates_excluded": 10,
+            "measured_updates": 1490,
+            "meets_200_measured_update_requirement": true,
+            "transitions_per_update": 98304,
+            "measured_transitions": 146472960,
+            "rollout_seconds": 3872.746983528137,
+            "learning_seconds": 407.35559272766113,
+            "ppo_timed_seconds": 4280.102576255798,
+            "mean_rollout_seconds_per_update": 2.599159049347743,
+            "mean_learning_seconds_per_update": 0.2733930152534638,
+            "mean_seconds_per_update": 2.872552064601207,
+            "median_seconds_per_update": 2.870111584663391,
+            "transitions_per_second": 34221.83403093424,
+            "rollout_transitions_per_second": 37821.463840263765,
+            "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+            "measured_event_wall_seconds": 4346.659667015076,
+            "event_wall_transitions_per_second": 33697.821136428065
+          },
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_control\\model_3999.pt",
+          "final_checkpoint_sha256": "7cbce191f4ab667550cf3a1a09e68997c76d30b41f315e94248a70a3ed4ecc2f",
+          "ending_runner_iteration": 3999
+        },
+        {
+          "arm": "floorl1",
+          "seed": 51,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "run_name": "flat_height_floor_dev50_51_20260919_s51_floorl1",
+          "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_13-21-49-478799_flat_staged_seeds49_51_20260918_seed51_0\\model_2499.pt",
+          "checkpoint_sha256": "1ae577294c380b2964bdfb85b0869dce3342c4fb604227899fa994b006e29122",
+          "extra_args": [
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3",
+            "--base_height_weight",
+            "-10.0",
+            "--base_height_form",
+            "lower_l1"
+          ],
+          "expected_manifest": {
+            "seed": 51,
+            "num_steps_per_env": 24,
+            "pure_yaw_fraction": 0.25,
+            "effective_yaw_tracking_weight": 1.5,
+            "effective_undesired_contact_weight": -3.0,
+            "effective_base_height_weight": -10.0,
+            "effective_base_height_form": "lower_l1",
+            "effective_base_height_target_m": 0.6,
+            "starting_learning_rate": 0.00011390625000000003
+          },
+          "label": "flat_height_floor_dev50_51_20260919_s51_floorl1",
+          "command": [
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+            "-B",
+            "-u",
+            "scripts/train_b2w.py",
+            "--headless",
+            "--device",
+            "cuda:0",
+            "--num_envs",
+            "4096",
+            "--seed",
+            "51",
+            "--max_iterations",
+            "1500",
+            "--run_name",
+            "flat_height_floor_dev50_51_20260919_s51_floorl1",
+            "--resume",
+            "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_13-21-49-478799_flat_staged_seeds49_51_20260918_seed51_0\\model_2499.pt",
+            "--pure_yaw_fraction",
+            ".25",
+            "--yaw_tracking_weight",
+            "1.5",
+            "--undesired_contact_weight",
+            "-3",
+            "--base_height_weight",
+            "-10.0",
+            "--base_height_form",
+            "lower_l1"
+          ],
+          "pid": 15788,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_floorl1\\manifest.json",
+          "checkpoint_validation": {
+            "status": "passed",
+            "checkpoints": [
+              {
+                "path": "model_2500.pt",
+                "sha256": "5b09661910a1bd1f5f17cdcc9c1b978b4fe60d11273fd772e91981b7c5a47c8d",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2600.pt",
+                "sha256": "0af2cd77dfb54d117c03763d804d14eeb354ef6ed938f9cc4df5379cf2a44522",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2700.pt",
+                "sha256": "b040a65474c400c5e4a99f5cbf1400a6d3f0b3fdeee85a2e03b2226bde05220b",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2800.pt",
+                "sha256": "61bf0b0f6a49799e0407a7a9894cee026b6136d01112ffb7e2b8b39ecf950eae",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_2900.pt",
+                "sha256": "ae42d87de97fb15b3d67687e797f54f126e3ec12088fe5fa59ae11af47dd4c1f",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3000.pt",
+                "sha256": "ac4a32dd55b34a5dd2d283ac47facea7d8dcd2a53a2f17d04de94b8313e97664",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3100.pt",
+                "sha256": "3b7ca95f9ffb6c01791053ca38c09cc5127c0e5d244df677686731599ec1d626",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3200.pt",
+                "sha256": "1568f0e91f0d82d1c44bcfc458abcfd22b13e78eebabb9c69059169239283ebc",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3300.pt",
+                "sha256": "a492250d70fded6d8de67eb4627c031215e96e8b371376f817caa63bccd96006",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3400.pt",
+                "sha256": "e64f3d000c7c27b970afe3f7b4e31e64e1f86d77623f76e2f073c4f0d4e415c4",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3500.pt",
+                "sha256": "c367b88334216502b586bba46dc15784edb50dcc91df7c562af95eaa72a248ab",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3600.pt",
+                "sha256": "dc59134fe618eec39204acdfe71a145e2c019c8a667f23847a7da28ef6d918f2",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3700.pt",
+                "sha256": "924f0da5eaad15e1a06d24b6d67f235b424b242f9e822117a3b31bd71b2b3e4e",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3800.pt",
+                "sha256": "fe682a836f5cee25d89f99aa8ae5b4fb149d15edae8d410ad31f91007fb58f3d",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3900.pt",
+                "sha256": "a5ac2c585a5a812de0c9a789986c385c2948a1c74134d8343015c8271195052d",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              },
+              {
+                "path": "model_3999.pt",
+                "sha256": "02cf3d629ba21348249fa50a28b8f220091e6659e06d50549cd3e36a48c633dc",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 51
+                }
+              }
+            ],
+            "load_device": "cpu"
+          },
+          "timings": {
+            "finite_scalar_count": 51000,
+            "warmup_updates_excluded": 10,
+            "measured_updates": 1490,
+            "meets_200_measured_update_requirement": true,
+            "transitions_per_update": 98304,
+            "measured_transitions": 146472960,
+            "rollout_seconds": 3862.280300617218,
+            "learning_seconds": 408.30052614212036,
+            "ppo_timed_seconds": 4270.580826759338,
+            "mean_rollout_seconds_per_update": 2.5921344299444415,
+            "mean_learning_seconds_per_update": 0.2740271987531009,
+            "mean_seconds_per_update": 2.8661616286975424,
+            "median_seconds_per_update": 2.8623229265213013,
+            "transitions_per_second": 34298.13553280729,
+            "rollout_transitions_per_second": 37923.95906029727,
+            "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+            "measured_event_wall_seconds": 4338.515212774277,
+            "event_wall_transitions_per_second": 33761.08018907635
+          },
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_10-12-47-965515_flat_height_floor_dev50_51_20260919_s51_floorl1\\model_3999.pt",
+          "final_checkpoint_sha256": "02cf3d629ba21348249fa50a28b8f220091e6659e06d50549cd3e36a48c633dc",
+          "ending_runner_iteration": 3999
+        }
+      ],
+      "resources": {
+        "samples": 869,
+        "telemetry_errors": 0,
+        "peak_gpu_used_mib": 9749.0,
+        "minimum_gpu_headroom_fraction": 0.20623676925582152,
+        "peak_gpu_temperature_c": 62.0,
+        "minimum_system_available_ram_bytes": 10443714560
+      },
+      "minimum_gpu_headroom_fraction": 0.05,
+      "finished_utc": "2026-09-19T11:26:20.235698+00:00",
+      "wall_seconds": 4412.422000000006,
+      "paired_configuration_check": {
+        "only_env_differences": [
+          "log_dir",
+          "rewards.base_height_lower_l1"
+        ],
+        "height_form": "lower_l1",
+        "height_weight": -10.0,
+        "height_target_m": 0.6
+      }
+    }
+  },
+  "evaluations": {
+    "reference_nominal_20261201": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 99,
+        "pooled_rms_vx_vy_yaw": [
+          0.05001102960203626,
+          0.06794022805909933,
+          0.08012595748238535
+        ],
+        "episode_rms_p95": [
+          0.06670798361301422,
+          0.1494738757610321,
+          0.17882241308689117
+        ],
+        "episode_rms_max": [
+          0.0743415504693985,
+          0.17672374844551086,
+          0.2910551130771637
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04115900391803261,
+              0.013211637997759243,
+              0.011929807907272152
+            ],
+            "episode_rms_p95": [
+              0.04967905580997467,
+              0.017625978216528893,
+              0.013049103319644928
+            ],
+            "episode_rms_max": [
+              0.04967905580997467,
+              0.017625978216528893,
+              0.013049103319644928
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.034106016424961104,
+              0.02130415618353089,
+              0.035111558281963384
+            ],
+            "episode_rms_p95": [
+              0.04858269914984703,
+              0.028844747692346573,
+              0.04338754341006279
+            ],
+            "episode_rms_max": [
+              0.04858269914984703,
+              0.028844747692346573,
+              0.04338754341006279
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.05964202636117555,
+              0.026046530193887706,
+              0.04651565488304991
+            ],
+            "episode_rms_p95": [
+              0.06729136407375336,
+              0.035023778676986694,
+              0.05265362560749054
+            ],
+            "episode_rms_max": [
+              0.06729136407375336,
+              0.035023778676986694,
+              0.05265362560749054
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04447495134722014,
+              0.15119048646958338,
+              0.06924264114884146
+            ],
+            "episode_rms_p95": [
+              0.05865078419446945,
+              0.17672374844551086,
+              0.08605962991714478
+            ],
+            "episode_rms_max": [
+              0.05865078419446945,
+              0.17672374844551086,
+              0.08605962991714478
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 11,
+            "pooled_rms_vx_vy_yaw": [
+              0.05032764467429429,
+              0.0699801707794299,
+              0.1884659698102159
+            ],
+            "episode_rms_p95": [
+              0.06956551223993301,
+              0.10300218313932419,
+              0.2910551130771637
+            ],
+            "episode_rms_max": [
+              0.06956551223993301,
+              0.10300218313932419,
+              0.2910551130771637
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05305107210806478,
+              0.08153533166436143,
+              0.08216090270081844
+            ],
+            "episode_rms_p95": [
+              0.06253442913293839,
+              0.09694110602140427,
+              0.09633465856313705
+            ],
+            "episode_rms_max": [
+              0.06253442913293839,
+              0.09694110602140427,
+              0.09633465856313705
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.048012345683659204,
+              0.017726032525032333,
+              0.025743118437901624
+            ],
+            "episode_rms_p95": [
+              0.05728664621710777,
+              0.02533648908138275,
+              0.03324870020151138
+            ],
+            "episode_rms_max": [
+              0.05728664621710777,
+              0.02533648908138275,
+              0.03324870020151138
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06401720597585801,
+              0.020663786352032237,
+              0.03925588331758611
+            ],
+            "episode_rms_p95": [
+              0.0743415504693985,
+              0.02460361085832119,
+              0.05115385353565216
+            ],
+            "episode_rms_max": [
+              0.0743415504693985,
+              0.02460361085832119,
+              0.05115385353565216
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [],
+      "reasons": {},
+      "scenarios": {},
+      "contact_bodies": {},
+      "height_at_first_failure_m": [],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\reference_nominal_20261201.json",
+      "report_sha256": "0bb048c3190c27d58089a98d36ef2057c0defe09e0a8093967f2a07de827b415"
+    },
+    "reference_bounded_v1_20261202": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 100,
+        "pooled_rms_vx_vy_yaw": [
+          0.050142573000850524,
+          0.06653046701215881,
+          0.07870167000624877
+        ],
+        "episode_rms_p95": [
+          0.07047214359045029,
+          0.17384843528270721,
+          0.1873806267976761
+        ],
+        "episode_rms_max": [
+          0.07660891115665436,
+          0.18690231442451477,
+          0.2441205233335495
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.040933877584505875,
+              0.012788430522432804,
+              0.012119886355604246
+            ],
+            "episode_rms_p95": [
+              0.05316868796944618,
+              0.014873419888317585,
+              0.013833477161824703
+            ],
+            "episode_rms_max": [
+              0.05316868796944618,
+              0.014873419888317585,
+              0.013833477161824703
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.034300961809730635,
+              0.009168084730887448,
+              0.023865586949144275
+            ],
+            "episode_rms_p95": [
+              0.04254087060689926,
+              0.010981621220707893,
+              0.029073256999254227
+            ],
+            "episode_rms_max": [
+              0.04254087060689926,
+              0.010981621220707893,
+              0.029073256999254227
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.060184144870405645,
+              0.015037398818102884,
+              0.03407497936265956
+            ],
+            "episode_rms_p95": [
+              0.07506470382213593,
+              0.02095215581357479,
+              0.04235392436385155
+            ],
+            "episode_rms_max": [
+              0.07506470382213593,
+              0.02095215581357479,
+              0.04235392436385155
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04221961730975973,
+              0.16189245984603656,
+              0.04204022645532491
+            ],
+            "episode_rms_p95": [
+              0.056193988770246506,
+              0.18690231442451477,
+              0.06710755079984665
+            ],
+            "episode_rms_max": [
+              0.056193988770246506,
+              0.18690231442451477,
+              0.06710755079984665
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.03771765944338464,
+              0.06107645064353487,
+              0.1948438996796481
+            ],
+            "episode_rms_p95": [
+              0.05079163238406181,
+              0.08543515205383301,
+              0.2441205233335495
+            ],
+            "episode_rms_max": [
+              0.05079163238406181,
+              0.08543515205383301,
+              0.2441205233335495
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05655481691248096,
+              0.061900164099053946,
+              0.08875573632690265
+            ],
+            "episode_rms_p95": [
+              0.07518122345209122,
+              0.08219625800848007,
+              0.10379746556282043
+            ],
+            "episode_rms_max": [
+              0.07518122345209122,
+              0.08219625800848007,
+              0.10379746556282043
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05221798781054457,
+              0.013561521536534234,
+              0.025332750590434123
+            ],
+            "episode_rms_p95": [
+              0.05777564272284508,
+              0.017174046486616135,
+              0.03889056667685509
+            ],
+            "episode_rms_max": [
+              0.05777564272284508,
+              0.017174046486616135,
+              0.03889056667685509
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06826197078928958,
+              0.015281259111968195,
+              0.03441092339533208
+            ],
+            "episode_rms_p95": [
+              0.07660891115665436,
+              0.01931232027709484,
+              0.04114825278520584
+            ],
+            "episode_rms_max": [
+              0.07660891115665436,
+              0.01931232027709484,
+              0.04114825278520584
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [],
+      "reasons": {},
+      "scenarios": {},
+      "contact_bodies": {},
+      "height_at_first_failure_m": [],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\reference_bounded_v1_20261202.json",
+      "report_sha256": "90465890b3b7429329f3baf6e665254b96214358b5ae15130088b3cedc487440"
+    },
+    "seed50_control_nominal_20261201": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 88,
+        "no_fall_fraction": 0.88,
+        "no_fall_wilson95": [
+          0.8018790057328857,
+          0.9300059356298052
+        ],
+        "tracking_pass_count": 85,
+        "pooled_rms_vx_vy_yaw": [
+          0.08682516489738124,
+          0.06832589601809932,
+          0.11860757796725994
+        ],
+        "episode_rms_p95": [
+          0.16528524458408356,
+          0.15084144473075867,
+          0.30001527070999146
+        ],
+        "episode_rms_max": [
+          0.23219417035579681,
+          0.201744943857193,
+          0.33159300684928894
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.003173919426212,
+              0.0014117086552861058,
+              0.0013682061719276788
+            ],
+            "episode_rms_p95": [
+              0.009400366805493832,
+              0.0038429705891758204,
+              0.0024514799006283283
+            ],
+            "episode_rms_max": [
+              0.009400366805493832,
+              0.0038429705891758204,
+              0.0024514799006283283
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.03848309367971864,
+              0.013063167222415038,
+              0.01866063975450483
+            ],
+            "episode_rms_p95": [
+              0.04242952540516853,
+              0.016841646283864975,
+              0.021691417321562767
+            ],
+            "episode_rms_max": [
+              0.04242952540516853,
+              0.016841646283864975,
+              0.021691417321562767
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.12441077845115532,
+              0.011387698890394163,
+              0.01453968750100172
+            ],
+            "episode_rms_p95": [
+              0.16528524458408356,
+              0.015357528813183308,
+              0.01682770438492298
+            ],
+            "episode_rms_max": [
+              0.16528524458408356,
+              0.015357528813183308,
+              0.01682770438492298
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.07095933753724405,
+              0.15678635655491518,
+              0.03121051337981774
+            ],
+            "episode_rms_p95": [
+              0.09099868685007095,
+              0.201744943857193,
+              0.042982541024684906
+            ],
+            "episode_rms_max": [
+              0.09099868685007095,
+              0.201744943857193,
+              0.042982541024684906
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 7,
+            "no_fall_fraction": 0.5833333333333334,
+            "no_fall_wilson95": [
+              0.31951131254954973,
+              0.8067396863412435
+            ],
+            "tracking_pass_count": 8,
+            "pooled_rms_vx_vy_yaw": [
+              0.14934118616770892,
+              0.08307042866141107,
+              0.1774045643633683
+            ],
+            "episode_rms_p95": [
+              0.23219417035579681,
+              0.10951993614435196,
+              0.2946228086948395
+            ],
+            "episode_rms_max": [
+              0.23219417035579681,
+              0.10951993614435196,
+              0.2946228086948395
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 5,
+            "no_fall_fraction": 0.4166666666666667,
+            "no_fall_wilson95": [
+              0.19326031365875665,
+              0.6804886874504503
+            ],
+            "tracking_pass_count": 2,
+            "pooled_rms_vx_vy_yaw": [
+              0.08175523186112083,
+              0.06944763868318848,
+              0.2895021456230027
+            ],
+            "episode_rms_p95": [
+              0.12181874364614487,
+              0.09133151173591614,
+              0.33159300684928894
+            ],
+            "episode_rms_max": [
+              0.12181874364614487,
+              0.09133151173591614,
+              0.33159300684928894
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.0455598139425348,
+              0.011169474187799974,
+              0.013480686891968774
+            ],
+            "episode_rms_p95": [
+              0.05432489886879921,
+              0.01365943718701601,
+              0.017224106937646866
+            ],
+            "episode_rms_max": [
+              0.05432489886879921,
+              0.01365943718701601,
+              0.017224106937646866
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.08900200417558359,
+              0.009857425598689606,
+              0.010107238250442217
+            ],
+            "episode_rms_p95": [
+              0.11722515523433685,
+              0.012810504995286465,
+              0.011866332031786442
+            ],
+            "episode_rms_max": [
+              0.11722515523433685,
+              0.012810504995286465,
+              0.011866332031786442
+            ]
+          }
+        },
+        "all_scenario_tracking_met": false,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [
+        {
+          "env": 76,
+          "scenario": "yaw_positive",
+          "time_s": 7.6450000000000005,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.4912686347961426,
+          "height_m": 0.48171424865722656,
+          "contact_n": 271.89739990234375,
+          "contact_bodies": {
+            "RL_calf": 271.89739990234375
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.43261227011680603
+          ],
+          "actual_vx_vy_yaw": [
+            0.47843095660209656,
+            -0.47340381145477295,
+            0.16367942094802856
+          ],
+          "joint_positions_policy_order": [
+            -0.3654363453388214,
+            0.8717631101608276,
+            -1.5960649251937866,
+            -0.38055622577667236,
+            0.9989050030708313,
+            -2.1577084064483643,
+            -0.3076503276824951,
+            1.3381121158599854,
+            -1.519621729850769,
+            0.6913732290267944,
+            0.7034209370613098,
+            -0.966171145439148,
+            2.4551942348480225,
+            -6.176393032073975,
+            -0.5115481615066528,
+            -6.271732807159424
+          ],
+          "applied_torques_policy_order": [
+            36.10905075073242,
+            7.139223098754883,
+            91.36614227294922,
+            116.97309875488281,
+            19.746835708618164,
+            68.79588317871094,
+            17.558990478515625,
+            -21.47929573059082,
+            -10.832736015319824,
+            -155.2949981689453,
+            -53.79631423950195,
+            3.3144845962524414,
+            11.817582130432129,
+            10.102157592773438,
+            2.18048095703125,
+            0.1726970672607422
+          ]
+        },
+        {
+          "env": 36,
+          "scenario": "yaw_positive",
+          "time_s": 8.54,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.619496822357178,
+          "height_m": 0.5187143087387085,
+          "contact_n": 512.185791015625,
+          "contact_bodies": {
+            "RL_calf": 512.185791015625
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.45675531029701233
+          ],
+          "actual_vx_vy_yaw": [
+            0.19104790687561035,
+            -0.561725378036499,
+            0.1523868292570114
+          ],
+          "joint_positions_policy_order": [
+            -0.18149572610855103,
+            0.8153735399246216,
+            -1.5988812446594238,
+            -0.41312605142593384,
+            0.9638276100158691,
+            -1.875940203666687,
+            -0.26821431517601013,
+            1.3453426361083984,
+            -1.3847179412841797,
+            0.700441300868988,
+            0.5564064383506775,
+            -0.9731853008270264,
+            -6.060156345367432,
+            3.9392945766448975,
+            0.8618112206459045,
+            0.8211268782615662
+          ],
+          "applied_torques_policy_order": [
+            26.62688446044922,
+            25.775253295898438,
+            63.18305206298828,
+            95.29542541503906,
+            22.672039031982422,
+            23.996768951416016,
+            19.073070526123047,
+            -13.631532669067383,
+            -11.091748237609863,
+            -142.6631622314453,
+            -22.215316772460938,
+            5.760535717010498,
+            6.601263046264648,
+            6.74909782409668,
+            0.8573131561279297,
+            -2.3010306358337402
+          ]
+        },
+        {
+          "env": 29,
+          "scenario": "yaw_negative",
+          "time_s": 9.37,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.917689800262451,
+          "height_m": 0.5008381605148315,
+          "contact_n": 18.342735290527344,
+          "contact_bodies": {
+            "RR_calf": 18.342735290527344
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.45577263832092285
+          ],
+          "actual_vx_vy_yaw": [
+            0.04834449291229248,
+            0.0019547492265701294,
+            -0.19145965576171875
+          ],
+          "joint_positions_policy_order": [
+            0.796410322189331,
+            1.004721760749817,
+            -1.648174524307251,
+            0.20093542337417603,
+            0.7430558800697327,
+            -1.6397831439971924,
+            -0.6721835136413574,
+            0.771602213382721,
+            -1.1238688230514526,
+            0.18145303428173065,
+            0.8155557513237,
+            -1.831669569015503,
+            0.6451722383499146,
+            -3.7791202068328857,
+            2.536130666732788,
+            -3.171743869781494
+          ],
+          "applied_torques_policy_order": [
+            -134.0537872314453,
+            -41.033203125,
+            17.63971519470215,
+            -36.533329010009766,
+            40.03783416748047,
+            34.73162078857422,
+            162.19493103027344,
+            -46.35356140136719,
+            -5.165223121643066,
+            -22.57509994506836,
+            68.33242797851562,
+            57.140987396240234,
+            -4.304983139038086,
+            8.80312442779541,
+            -8.134075164794922,
+            14.362873077392578
+          ]
+        },
+        {
+          "env": 85,
+          "scenario": "yaw_negative",
+          "time_s": 9.68,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.547623872756958,
+          "height_m": 0.4816870391368866,
+          "contact_n": 17.798871994018555,
+          "contact_bodies": {
+            "RR_calf": 17.798871994018555
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.44767269492149353
+          ],
+          "actual_vx_vy_yaw": [
+            0.06037066876888275,
+            0.04229322820901871,
+            -0.13599270582199097
+          ],
+          "joint_positions_policy_order": [
+            0.8690420985221863,
+            1.0624784231185913,
+            -1.679452896118164,
+            0.21258072555065155,
+            0.7154181599617004,
+            -1.7300316095352173,
+            -0.6861257553100586,
+            0.7526490688323975,
+            -1.104026436805725,
+            0.19709259271621704,
+            0.9170122146606445,
+            -1.8976167440414429,
+            1.4900416135787964,
+            2.466106414794922,
+            3.885692596435547,
+            -6.069846153259277
+          ],
+          "applied_torques_policy_order": [
+            -151.61216735839844,
+            -43.084190368652344,
+            2.838153123855591,
+            -28.23936653137207,
+            52.36472702026367,
+            43.58872985839844,
+            169.72137451171875,
+            -53.75144577026367,
+            -13.909490585327148,
+            -13.66059398651123,
+            58.52537155151367,
+            56.44784927368164,
+            -2.350285530090332,
+            7.456525802612305,
+            -5.899805545806885,
+            6.64897346496582
+          ]
+        },
+        {
+          "env": 4,
+          "scenario": "yaw_positive",
+          "time_s": 9.885000000000002,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.363131523132324,
+          "height_m": 0.48826977610588074,
+          "contact_n": 1059.0970458984375,
+          "contact_bodies": {
+            "RL_calf": 1059.0970458984375
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.3861139416694641
+          ],
+          "actual_vx_vy_yaw": [
+            0.6278711557388306,
+            -0.3901713192462921,
+            0.006298962980508804
+          ],
+          "joint_positions_policy_order": [
+            -0.36872702836990356,
+            0.8093946576118469,
+            -1.5283352136611938,
+            -0.45305415987968445,
+            1.0133793354034424,
+            -2.0910937786102295,
+            -0.22934085130691528,
+            1.313743233680725,
+            -1.5444434881210327,
+            0.7075496315956116,
+            0.7287226319313049,
+            -0.8441112041473389,
+            -6.1908135414123535,
+            -3.569166898727417,
+            4.839605331420898,
+            -5.743190765380859
+          ],
+          "applied_torques_policy_order": [
+            51.39918518066406,
+            1.1810812950134277,
+            50.99214553833008,
+            105.45547485351562,
+            28.37199592590332,
+            54.110450744628906,
+            6.704125881195068,
+            -11.758153915405273,
+            -13.198881149291992,
+            -143.12295532226562,
+            -71.41997528076172,
+            -32.07921600341797,
+            1.556288719177246,
+            -0.3202857971191406,
+            -1.4779329299926758,
+            -1.2683429718017578
+          ]
+        },
+        {
+          "env": 77,
+          "scenario": "yaw_negative",
+          "time_s": 10.045000000000002,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 2.5880799293518066,
+          "height_m": 0.48653268814086914,
+          "contact_n": 107.29190063476562,
+          "contact_bodies": {
+            "RR_calf": 107.29190063476562
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4599285423755646
+          ],
+          "actual_vx_vy_yaw": [
+            0.09168331325054169,
+            0.05623246729373932,
+            -0.09304088354110718
+          ],
+          "joint_positions_policy_order": [
+            0.8635334372520447,
+            1.0880132913589478,
+            -1.6850926876068115,
+            0.22998879849910736,
+            0.6923182606697083,
+            -1.7204809188842773,
+            -0.6491938829421997,
+            0.7365767359733582,
+            -1.1394774913787842,
+            0.20050545036792755,
+            0.9686130881309509,
+            -1.8644585609436035,
+            1.3044257164001465,
+            1.6818293333053589,
+            2.5528833866119385,
+            -0.7591598629951477
+          ],
+          "applied_torques_policy_order": [
+            -166.591064453125,
+            -42.731468200683594,
+            -5.01920223236084,
+            -30.90424919128418,
+            61.724971771240234,
+            54.34781265258789,
+            171.7103729248047,
+            -51.137054443359375,
+            -2.6799967288970947,
+            -7.902310848236084,
+            53.87971878051758,
+            60.84733581542969,
+            2.9958229064941406,
+            10.96171760559082,
+            -2.107841968536377,
+            20.0
+          ]
+        },
+        {
+          "env": 5,
+          "scenario": "yaw_negative",
+          "time_s": 11.735000000000001,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 1.8080769777297974,
+          "height_m": 0.4737723767757416,
+          "contact_n": 257.06500244140625,
+          "contact_bodies": {
+            "RR_calf": 257.06500244140625
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.3719928562641144
+          ],
+          "actual_vx_vy_yaw": [
+            0.10582230985164642,
+            0.1225869208574295,
+            -0.11025933921337128
+          ],
+          "joint_positions_policy_order": [
+            0.86744624376297,
+            1.061110258102417,
+            -1.7953273057937622,
+            0.19935107231140137,
+            0.6719551086425781,
+            -1.804150104522705,
+            -0.6273245215415955,
+            0.8438395857810974,
+            -1.1870287656784058,
+            0.24789124727249146,
+            0.9643703103065491,
+            -1.8657069206237793,
+            2.8199081420898438,
+            1.576639175415039,
+            5.867290019989014,
+            -4.562856674194336
+          ],
+          "applied_torques_policy_order": [
+            -171.1855926513672,
+            -32.32753372192383,
+            14.884833335876465,
+            -23.510377883911133,
+            63.77604293823242,
+            67.99542236328125,
+            177.21580505371094,
+            -58.358028411865234,
+            2.4300990104675293,
+            -15.100805282592773,
+            48.620948791503906,
+            61.61962890625,
+            -3.1643083095550537,
+            10.995223999023438,
+            1.4643802642822266,
+            12.062519073486328
+          ]
+        },
+        {
+          "env": 53,
+          "scenario": "yaw_negative",
+          "time_s": 11.77,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 0.7356848120689392,
+          "height_m": 0.4674523174762726,
+          "contact_n": 920.8450317382812,
+          "contact_bodies": {
+            "RR_calf": 920.8450317382812
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4265044629573822
+          ],
+          "actual_vx_vy_yaw": [
+            0.014248676598072052,
+            0.2658923268318176,
+            -0.19270318746566772
+          ],
+          "joint_positions_policy_order": [
+            0.8312509059906006,
+            1.0634597539901733,
+            -1.941522479057312,
+            0.15639689564704895,
+            0.7024921178817749,
+            -1.9114360809326172,
+            -0.6062233448028564,
+            0.6424111723899841,
+            -1.2742516994476318,
+            0.281339555978775,
+            1.2946312427520752,
+            -1.7408638000488281,
+            2.734757423400879,
+            4.44273042678833,
+            4.891552448272705,
+            4.280418395996094
+          ],
+          "applied_torques_policy_order": [
+            -143.2081298828125,
+            -26.107011795043945,
+            51.28990936279297,
+            -5.262534141540527,
+            49.60759353637695,
+            60.99498748779297,
+            156.27540588378906,
+            -19.325267791748047,
+            20.193470001220703,
+            -36.86797332763672,
+            -7.644946098327637,
+            40.81597900390625,
+            -0.47060227394104004,
+            8.936212539672852,
+            -7.272732257843018,
+            11.67552375793457
+          ]
+        },
+        {
+          "env": 60,
+          "scenario": "yaw_positive",
+          "time_s": 11.92,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.348480701446533,
+          "height_m": 0.4882025718688965,
+          "contact_n": 1221.644287109375,
+          "contact_bodies": {
+            "RL_calf": 1221.644287109375
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.42889487743377686
+          ],
+          "actual_vx_vy_yaw": [
+            0.6185509562492371,
+            -0.5194317698478699,
+            -0.03984855115413666
+          ],
+          "joint_positions_policy_order": [
+            -0.34874340891838074,
+            0.8205432891845703,
+            -1.5424165725708008,
+            -0.45680010318756104,
+            1.061517357826233,
+            -2.0900046825408936,
+            -0.26793399453163147,
+            1.3300740718841553,
+            -1.5239334106445312,
+            0.7390299439430237,
+            0.6576050519943237,
+            -0.8480148911476135,
+            -5.081179141998291,
+            5.834948539733887,
+            -1.5976577997207642,
+            -5.048823833465576
+          ],
+          "applied_torques_policy_order": [
+            40.58216857910156,
+            15.492011070251465,
+            52.03731155395508,
+            116.34596252441406,
+            40.478126525878906,
+            45.927894592285156,
+            10.904926300048828,
+            -7.740649223327637,
+            -11.83912467956543,
+            -153.94546508789062,
+            -56.41083526611328,
+            -14.279997825622559,
+            12.194513320922852,
+            9.098440170288086,
+            1.9646034240722656,
+            1.4237642288208008
+          ]
+        },
+        {
+          "env": 28,
+          "scenario": "yaw_positive",
+          "time_s": 12.515,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.089548110961914,
+          "height_m": 0.5168700814247131,
+          "contact_n": 71.94532012939453,
+          "contact_bodies": {
+            "RL_calf": 71.94532012939453
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.44757041335105896
+          ],
+          "actual_vx_vy_yaw": [
+            0.47008174657821655,
+            0.07483543455600739,
+            0.05806960165500641
+          ],
+          "joint_positions_policy_order": [
+            -0.40621399879455566,
+            0.72806715965271,
+            -1.3021936416625977,
+            -0.6521859169006348,
+            0.999668538570404,
+            -1.858096957206726,
+            0.22281526029109955,
+            1.0562294721603394,
+            -1.9404337406158447,
+            0.6822884678840637,
+            0.6124942898750305,
+            -0.7911739945411682,
+            -0.5422336459159851,
+            -3.7923173904418945,
+            -5.192868709564209,
+            2.0878617763519287
+          ],
+          "applied_torques_policy_order": [
+            63.924495697021484,
+            23.49958038330078,
+            33.67755889892578,
+            96.68051147460938,
+            -24.467721939086914,
+            70.928955078125,
+            -40.182090759277344,
+            23.8826847076416,
+            44.05510711669922,
+            -94.1012954711914,
+            -76.57366943359375,
+            -30.186201095581055,
+            6.979746341705322,
+            1.3983521461486816,
+            2.889209747314453,
+            -8.241005897521973
+          ]
+        },
+        {
+          "env": 93,
+          "scenario": "yaw_negative",
+          "time_s": 12.63,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.787652015686035,
+          "height_m": 0.4755134582519531,
+          "contact_n": 327.21466064453125,
+          "contact_bodies": {
+            "RR_calf": 327.21466064453125
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4120091199874878
+          ],
+          "actual_vx_vy_yaw": [
+            0.022050756961107254,
+            0.023926056921482086,
+            -0.04474533349275589
+          ],
+          "joint_positions_policy_order": [
+            0.8656982183456421,
+            1.075534701347351,
+            -1.7097296714782715,
+            0.23341131210327148,
+            0.6908029913902283,
+            -1.717463731765747,
+            -0.6997811198234558,
+            0.7849021553993225,
+            -1.1361403465270996,
+            0.19440878927707672,
+            0.8918612003326416,
+            -1.8826799392700195,
+            3.6118059158325195,
+            4.195322513580322,
+            4.1138739585876465,
+            4.516480922698975
+          ],
+          "applied_torques_policy_order": [
+            -155.4291229248047,
+            -51.22935485839844,
+            13.82832145690918,
+            -36.7722282409668,
+            59.621925354003906,
+            44.21188735961914,
+            181.2653350830078,
+            -56.059791564941406,
+            -8.772153854370117,
+            -8.158256530761719,
+            56.58576202392578,
+            52.4715690612793,
+            -1.3430896997451782,
+            9.605178833007812,
+            -4.373101234436035,
+            20.0
+          ]
+        },
+        {
+          "env": 13,
+          "scenario": "yaw_negative",
+          "time_s": 12.97,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 1.1085346937179565,
+          "height_m": 0.4733671247959137,
+          "contact_n": 635.1619873046875,
+          "contact_bodies": {
+            "RR_calf": 635.1619873046875
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4128307104110718
+          ],
+          "actual_vx_vy_yaw": [
+            0.009148165583610535,
+            0.22604453563690186,
+            0.06775280833244324
+          ],
+          "joint_positions_policy_order": [
+            0.8694205284118652,
+            1.0704292058944702,
+            -1.83596932888031,
+            0.20416928827762604,
+            0.6435871124267578,
+            -1.8204607963562012,
+            -0.6225568652153015,
+            0.736263632774353,
+            -1.2115751504898071,
+            0.23673424124717712,
+            1.1471188068389893,
+            -1.8163025379180908,
+            3.056764841079712,
+            -5.0099592208862305,
+            1.8057441711425781,
+            3.8085272312164307
+          ],
+          "applied_torques_policy_order": [
+            -165.91929626464844,
+            -22.116544723510742,
+            -3.299384593963623,
+            -6.8095173835754395,
+            73.69490051269531,
+            66.02465057373047,
+            175.5190887451172,
+            -47.853023529052734,
+            12.551787376403809,
+            1.729844570159912,
+            24.33057975769043,
+            37.02164840698242,
+            4.093896865844727,
+            10.482856750488281,
+            -4.618456840515137,
+            20.0
+          ]
+        }
+      ],
+      "reasons": {
+        "body_contact": 12
+      },
+      "scenarios": {
+        "yaw_positive": 5,
+        "yaw_negative": 7
+      },
+      "contact_bodies": {
+        "RL_calf": 5,
+        "RR_calf": 7
+      },
+      "height_at_first_failure_m": [
+        0.48171424865722656,
+        0.5187143087387085,
+        0.5008381605148315,
+        0.4816870391368866,
+        0.48826977610588074,
+        0.48653268814086914,
+        0.4737723767757416,
+        0.4674523174762726,
+        0.4882025718688965,
+        0.5168700814247131,
+        0.4755134582519531,
+        0.4733671247959137
+      ],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control_nominal_20261201.json",
+      "report_sha256": "957d48bc55fb757a10249d0cff5084e26965b1fd0d099ee8cfc1a215a77326a2"
+    },
+    "seed50_control_bounded_v1_20261202": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 98,
+        "no_fall_fraction": 0.98,
+        "no_fall_wilson95": [
+          0.929988209271456,
+          0.9944980324498376
+        ],
+        "tracking_pass_count": 97,
+        "pooled_rms_vx_vy_yaw": [
+          0.07857912152214912,
+          0.0640307107865362,
+          0.09274912460295055
+        ],
+        "episode_rms_p95": [
+          0.1531021147966385,
+          0.15795296430587769,
+          0.21692857146263123
+        ],
+        "episode_rms_max": [
+          0.19641613960266113,
+          0.1897118240594864,
+          0.29495322704315186
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0018682387135317948,
+              0.0009171625036004719,
+              0.0012313809191592702
+            ],
+            "episode_rms_p95": [
+              0.003414253471419215,
+              0.0016125573311001062,
+              0.00238491827622056
+            ],
+            "episode_rms_max": [
+              0.003414253471419215,
+              0.0016125573311001062,
+              0.00238491827622056
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.06058780516190127,
+              0.011459077726391853,
+              0.015821781669545253
+            ],
+            "episode_rms_p95": [
+              0.08387584239244461,
+              0.015004042536020279,
+              0.01932208053767681
+            ],
+            "episode_rms_max": [
+              0.08387584239244461,
+              0.015004042536020279,
+              0.01932208053767681
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.13768765572209427,
+              0.013199324197733255,
+              0.013675880978248607
+            ],
+            "episode_rms_p95": [
+              0.1745511144399643,
+              0.01927458494901657,
+              0.016116902232170105
+            ],
+            "episode_rms_max": [
+              0.1745511144399643,
+              0.01927458494901657,
+              0.016116902232170105
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.05831489467492195,
+              0.14834899845600752,
+              0.020439288479174145
+            ],
+            "episode_rms_p95": [
+              0.09302986413240433,
+              0.1897118240594864,
+              0.03390520066022873
+            ],
+            "episode_rms_max": [
+              0.09302986413240433,
+              0.1897118240594864,
+              0.03390520066022873
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09002335942359237,
+              0.08108363649966638,
+              0.1338326744599694
+            ],
+            "episode_rms_p95": [
+              0.19641613960266113,
+              0.10267545282840729,
+              0.21402303874492645
+            ],
+            "episode_rms_max": [
+              0.19641613960266113,
+              0.10267545282840729,
+              0.21402303874492645
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 10,
+            "no_fall_fraction": 0.8333333333333334,
+            "no_fall_wilson95": [
+              0.5519691377470266,
+              0.9530348578161463
+            ],
+            "tracking_pass_count": 9,
+            "pooled_rms_vx_vy_yaw": [
+              0.049282283198999056,
+              0.056589346807695895,
+              0.2294189779989393
+            ],
+            "episode_rms_p95": [
+              0.08239993453025818,
+              0.08480064570903778,
+              0.29495322704315186
+            ],
+            "episode_rms_max": [
+              0.08239993453025818,
+              0.08480064570903778,
+              0.29495322704315186
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06297602408498088,
+              0.011316970260568663,
+              0.01152474434726157
+            ],
+            "episode_rms_p95": [
+              0.09573101252317429,
+              0.014454596675932407,
+              0.013430130667984486
+            ],
+            "episode_rms_max": [
+              0.09573101252317429,
+              0.014454596675932407,
+              0.013430130667984486
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09356509559819368,
+              0.009371918428239501,
+              0.009031597481749256
+            ],
+            "episode_rms_p95": [
+              0.13917376101016998,
+              0.01235890295356512,
+              0.011343402788043022
+            ],
+            "episode_rms_max": [
+              0.13917376101016998,
+              0.01235890295356512,
+              0.011343402788043022
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [
+        {
+          "env": 69,
+          "scenario": "yaw_negative",
+          "time_s": 12.379999999999999,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 1.7369741201400757,
+          "height_m": 0.45696401596069336,
+          "contact_n": 276.0340576171875,
+          "contact_bodies": {
+            "RR_calf": 276.0340576171875
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.41447505354881287
+          ],
+          "actual_vx_vy_yaw": [
+            0.1493113934993744,
+            0.0944514274597168,
+            -0.09106697887182236
+          ],
+          "joint_positions_policy_order": [
+            0.8370007276535034,
+            1.0551064014434814,
+            -1.9413816928863525,
+            0.22537432610988617,
+            0.7081742882728577,
+            -1.8481580018997192,
+            -0.6529625058174133,
+            0.7023952603340149,
+            -1.2784463167190552,
+            0.23965615034103394,
+            1.1204591989517212,
+            -1.915002465248108,
+            1.334414005279541,
+            6.051506519317627,
+            -1.4173237085342407,
+            2.8206613063812256
+          ],
+          "applied_torques_policy_order": [
+            -124.7125015258789,
+            -29.335674285888672,
+            30.67824363708496,
+            -15.605607032775879,
+            44.858524322509766,
+            43.46527862548828,
+            166.7522430419922,
+            -29.618019104003906,
+            1.3495137691497803,
+            -48.35563659667969,
+            33.72665023803711,
+            90.93788146972656,
+            -2.5878074169158936,
+            3.3271632194519043,
+            -3.9771971702575684,
+            13.512056350708008
+          ]
+        },
+        {
+          "env": 13,
+          "scenario": "yaw_negative",
+          "time_s": 16.84,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.426070213317871,
+          "height_m": 0.47454941272735596,
+          "contact_n": 28.431472778320312,
+          "contact_bodies": {
+            "RR_calf": 28.431472778320312
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.2839961051940918
+          ],
+          "actual_vx_vy_yaw": [
+            -0.007482117973268032,
+            0.02642023377120495,
+            -0.05285235121846199
+          ],
+          "joint_positions_policy_order": [
+            0.8363784551620483,
+            1.0513900518417358,
+            -1.7502399682998657,
+            0.17779462039470673,
+            0.6983422636985779,
+            -1.7533533573150635,
+            -0.7038918733596802,
+            0.7926902770996094,
+            -1.184103012084961,
+            0.26833438873291016,
+            0.8993924856185913,
+            -1.8222198486328125,
+            1.2600069046020508,
+            -1.3181289434432983,
+            3.5485002994537354,
+            4.072315216064453
+          ],
+          "applied_torques_policy_order": [
+            -134.2049102783203,
+            -35.70817184448242,
+            18.67461585998535,
+            -28.69965171813965,
+            46.798866271972656,
+            43.043212890625,
+            162.87588500976562,
+            -44.28799819946289,
+            -2.3979861736297607,
+            -26.61542510986328,
+            47.44464874267578,
+            53.92403793334961,
+            -1.5699899196624756,
+            4.058573246002197,
+            -5.108081817626953,
+            10.371023178100586
+          ]
+        }
+      ],
+      "reasons": {
+        "body_contact": 2
+      },
+      "scenarios": {
+        "yaw_negative": 2
+      },
+      "contact_bodies": {
+        "RR_calf": 2
+      },
+      "height_at_first_failure_m": [
+        0.45696401596069336,
+        0.47454941272735596
+      ],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_control_bounded_v1_20261202.json",
+      "report_sha256": "09d6aeed0ee90a5750582d71f5219a478927816bc2643760e6c957bc5151c648"
+    },
+    "seed50_floorl1_nominal_20261201": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 87,
+        "no_fall_fraction": 0.87,
+        "no_fall_wilson95": [
+          0.7901964855992357,
+          0.9224283257275948
+        ],
+        "tracking_pass_count": 81,
+        "pooled_rms_vx_vy_yaw": [
+          0.08189771488831267,
+          0.0643426963241789,
+          0.14250427689314124
+        ],
+        "episode_rms_p95": [
+          0.15054932236671448,
+          0.1598629504442215,
+          0.33892080187797546
+        ],
+        "episode_rms_max": [
+          0.16246694326400757,
+          0.20170636475086212,
+          0.3894166052341461
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0037944120115913035,
+              0.0013430903925206366,
+              0.0023186892875325963
+            ],
+            "episode_rms_p95": [
+              0.01046958938241005,
+              0.003950545098632574,
+              0.00354179204441607
+            ],
+            "episode_rms_max": [
+              0.01046958938241005,
+              0.003950545098632574,
+              0.00354179204441607
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.044205051658233116,
+              0.015322769043191454,
+              0.02028802966716854
+            ],
+            "episode_rms_p95": [
+              0.05273456871509552,
+              0.017407264560461044,
+              0.022617999464273453
+            ],
+            "episode_rms_max": [
+              0.05273456871509552,
+              0.017407264560461044,
+              0.022617999464273453
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.1290409453932385,
+              0.01251467480300496,
+              0.0162555720827697
+            ],
+            "episode_rms_p95": [
+              0.16246694326400757,
+              0.016106853261590004,
+              0.019314272329211235
+            ],
+            "episode_rms_max": [
+              0.16246694326400757,
+              0.016106853261590004,
+              0.019314272329211235
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.07759175749728084,
+              0.15597120281216145,
+              0.03823976193708616
+            ],
+            "episode_rms_p95": [
+              0.10516529530286789,
+              0.20170636475086212,
+              0.05392494425177574
+            ],
+            "episode_rms_max": [
+              0.10516529530286789,
+              0.20170636475086212,
+              0.05392494425177574
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 7,
+            "no_fall_fraction": 0.5833333333333334,
+            "no_fall_wilson95": [
+              0.31951131254954973,
+              0.8067396863412435
+            ],
+            "tracking_pass_count": 3,
+            "pooled_rms_vx_vy_yaw": [
+              0.06762122723402036,
+              0.04557955905279212,
+              0.3008294782816119
+            ],
+            "episode_rms_p95": [
+              0.09054429829120636,
+              0.05736614018678665,
+              0.3894166052341461
+            ],
+            "episode_rms_max": [
+              0.09054429829120636,
+              0.05736614018678665,
+              0.3894166052341461
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 4,
+            "no_fall_fraction": 0.3333333333333333,
+            "no_fall_wilson95": [
+              0.13812009109121315,
+              0.6093779111272004
+            ],
+            "tracking_pass_count": 3,
+            "pooled_rms_vx_vy_yaw": [
+              0.11423118488533417,
+              0.07356859782294513,
+              0.27571465999260736
+            ],
+            "episode_rms_p95": [
+              0.15091769397258759,
+              0.08639036118984222,
+              0.34661558270454407
+            ],
+            "episode_rms_max": [
+              0.15091769397258759,
+              0.08639036118984222,
+              0.34661558270454407
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04783298259793545,
+              0.011628180937295915,
+              0.015915140533136977
+            ],
+            "episode_rms_p95": [
+              0.06067213788628578,
+              0.013272295705974102,
+              0.018796071410179138
+            ],
+            "episode_rms_max": [
+              0.06067213788628578,
+              0.013272295705974102,
+              0.018796071410179138
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09638638154294892,
+              0.00972431702395764,
+              0.011684971652428525
+            ],
+            "episode_rms_p95": [
+              0.14427006244659424,
+              0.012976998463273048,
+              0.01535328384488821
+            ],
+            "episode_rms_max": [
+              0.14427006244659424,
+              0.012976998463273048,
+              0.01535328384488821
+            ]
+          }
+        },
+        "all_scenario_tracking_met": false,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [
+        {
+          "env": 28,
+          "scenario": "yaw_positive",
+          "time_s": 6.63,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.359572887420654,
+          "height_m": 0.5537464022636414,
+          "contact_n": 251.6284942626953,
+          "contact_bodies": {
+            "RL_calf": 251.6284942626953
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.44757041335105896
+          ],
+          "actual_vx_vy_yaw": [
+            -0.046872638165950775,
+            0.028423558920621872,
+            0.2209322601556778
+          ],
+          "joint_positions_policy_order": [
+            -0.17361731827259064,
+            0.664810061454773,
+            -1.42381751537323,
+            -0.5164898633956909,
+            0.895095944404602,
+            -1.686982274055481,
+            -0.008607332594692707,
+            1.0110225677490234,
+            -1.8127832412719727,
+            0.6235119104385376,
+            0.7155708074569702,
+            -0.951230525970459,
+            3.7581236362457275,
+            3.7883126735687256,
+            1.1221259832382202,
+            -3.95619797706604
+          ],
+          "applied_torques_policy_order": [
+            23.160465240478516,
+            38.88335037231445,
+            58.672019958496094,
+            93.0146255493164,
+            -7.185752868652344,
+            14.291753768920898,
+            13.0369234085083,
+            26.646976470947266,
+            53.11484909057617,
+            -128.43603515625,
+            -45.88587951660156,
+            -9.8828763961792,
+            5.491095066070557,
+            -7.224061965942383,
+            7.331535339355469,
+            -2.2686567306518555
+          ]
+        },
+        {
+          "env": 36,
+          "scenario": "yaw_positive",
+          "time_s": 8.56,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.910821437835693,
+          "height_m": 0.5304051637649536,
+          "contact_n": 237.2992706298828,
+          "contact_bodies": {
+            "RL_calf": 237.2992706298828
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.45675531029701233
+          ],
+          "actual_vx_vy_yaw": [
+            0.015096906572580338,
+            0.050461698323488235,
+            0.07422269135713577
+          ],
+          "joint_positions_policy_order": [
+            -0.2625064551830292,
+            0.6272584199905396,
+            -1.3619595766067505,
+            -0.6311028599739075,
+            0.965181291103363,
+            -1.6952548027038574,
+            0.02112058363854885,
+            0.9455567598342896,
+            -1.887528419494629,
+            0.7004862427711487,
+            0.7508794069290161,
+            -0.8046890497207642,
+            5.132598876953125,
+            3.8467535972595215,
+            3.3983635902404785,
+            5.633528232574463
+          ],
+          "applied_torques_policy_order": [
+            41.4146614074707,
+            45.53007888793945,
+            44.20354080200195,
+            109.15636444091797,
+            -32.95030975341797,
+            16.469036102294922,
+            1.1992706060409546,
+            46.82685089111328,
+            57.66347885131836,
+            -136.08880615234375,
+            -63.23729705810547,
+            -24.46077537536621,
+            7.884288311004639,
+            -4.400008201599121,
+            9.58779525756836,
+            -5.377449035644531
+          ]
+        },
+        {
+          "env": 77,
+          "scenario": "yaw_negative",
+          "time_s": 8.855,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 8.78872013092041,
+          "height_m": 0.5082738399505615,
+          "contact_n": 276.6661071777344,
+          "contact_bodies": {
+            "RR_calf": 276.6661071777344
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4599285423755646
+          ],
+          "actual_vx_vy_yaw": [
+            0.0907178595662117,
+            0.025535903871059418,
+            -0.19738031923770905
+          ],
+          "joint_positions_policy_order": [
+            0.7312048673629761,
+            0.8566210865974426,
+            -1.7325713634490967,
+            0.05035910755395889,
+            0.6992508172988892,
+            -1.7264964580535889,
+            -0.7864342331886292,
+            0.6373351216316223,
+            -0.735615074634552,
+            0.21278980374336243,
+            1.0940245389938354,
+            -1.4641571044921875,
+            -6.119431972503662,
+            -4.3311896324157715,
+            4.344367027282715,
+            0.7981409430503845
+          ],
+          "applied_torques_policy_order": [
+            -111.0081787109375,
+            -20.32114028930664,
+            53.738319396972656,
+            -38.77930450439453,
+            17.252294540405273,
+            45.69647979736328,
+            156.82025146484375,
+            -66.91800689697266,
+            -34.68083572387695,
+            -24.064645767211914,
+            -8.552895545959473,
+            -10.99479866027832,
+            9.867863655090332,
+            -1.3711190223693848,
+            -5.469039440155029,
+            -0.4834098815917969
+          ]
+        },
+        {
+          "env": 76,
+          "scenario": "yaw_positive",
+          "time_s": 9.215000000000002,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.637760162353516,
+          "height_m": 0.515093982219696,
+          "contact_n": 20.947811126708984,
+          "contact_bodies": {
+            "RL_calf": 20.947811126708984
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.43261227011680603
+          ],
+          "actual_vx_vy_yaw": [
+            0.18656304478645325,
+            -0.09866023063659668,
+            -0.12363915145397186
+          ],
+          "joint_positions_policy_order": [
+            -0.22562776505947113,
+            0.531336784362793,
+            -1.4049193859100342,
+            -0.6301603317260742,
+            1.0162345170974731,
+            -1.750460147857666,
+            -0.07448969781398773,
+            1.0511913299560547,
+            -1.8983616828918457,
+            0.7630687355995178,
+            0.7311673760414124,
+            -0.6611089706420898,
+            5.232082843780518,
+            3.908499002456665,
+            3.5509049892425537,
+            -5.397343635559082
+          ],
+          "applied_torques_policy_order": [
+            33.586021423339844,
+            62.59377670288086,
+            39.99921417236328,
+            106.57010650634766,
+            -47.90774917602539,
+            28.17888641357422,
+            22.540740966796875,
+            34.02543640136719,
+            58.46689224243164,
+            -141.4246063232422,
+            -70.18486785888672,
+            -41.702552795410156,
+            6.337101936340332,
+            -3.3328499794006348,
+            6.7994585037231445,
+            -8.996549606323242
+          ]
+        },
+        {
+          "env": 29,
+          "scenario": "yaw_negative",
+          "time_s": 9.425,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.865842342376709,
+          "height_m": 0.505336344242096,
+          "contact_n": 772.3768920898438,
+          "contact_bodies": {
+            "RR_calf": 772.3768920898438
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.45577263832092285
+          ],
+          "actual_vx_vy_yaw": [
+            0.02628258615732193,
+            0.06312068551778793,
+            -0.21929587423801422
+          ],
+          "joint_positions_policy_order": [
+            0.746322512626648,
+            0.7920351028442383,
+            -1.7599704265594482,
+            0.0629330724477768,
+            0.6933069229125977,
+            -1.7634553909301758,
+            -0.7379961013793945,
+            0.6866270899772644,
+            -0.8364078402519226,
+            0.17206262052059174,
+            1.1777338981628418,
+            -1.5279688835144043,
+            -5.501260280609131,
+            -2.9585795402526855,
+            1.3951531648635864,
+            3.265829086303711
+          ],
+          "applied_torques_policy_order": [
+            -124.1097412109375,
+            -2.645153045654297,
+            95.71678161621094,
+            -34.345245361328125,
+            25.820362091064453,
+            41.19247817993164,
+            139.8173065185547,
+            -80.94832611083984,
+            9.970791816711426,
+            -33.978145599365234,
+            -21.981653213500977,
+            12.026013374328613,
+            5.62117862701416,
+            3.8898401260375977,
+            -3.3687610626220703,
+            4.340249061584473
+          ]
+        },
+        {
+          "env": 60,
+          "scenario": "yaw_positive",
+          "time_s": 9.49,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.202096939086914,
+          "height_m": 0.5179443955421448,
+          "contact_n": 40.893795013427734,
+          "contact_bodies": {
+            "RL_calf": 40.893795013427734
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.42889487743377686
+          ],
+          "actual_vx_vy_yaw": [
+            0.050704628229141235,
+            -0.19806048274040222,
+            0.08348534256219864
+          ],
+          "joint_positions_policy_order": [
+            -0.24220161139965057,
+            0.5653411149978638,
+            -1.4595847129821777,
+            -0.6476970314979553,
+            0.9448807835578918,
+            -1.7692046165466309,
+            -0.09347020834684372,
+            1.083950161933899,
+            -1.788014531135559,
+            0.7177572846412659,
+            0.7145171761512756,
+            -0.72060227394104,
+            -2.8792386054992676,
+            -5.6553874015808105,
+            -3.233182907104492,
+            5.522331714630127
+          ],
+          "applied_torques_policy_order": [
+            32.56991958618164,
+            55.60820770263672,
+            68.40473175048828,
+            119.1590805053711,
+            -18.332752227783203,
+            32.346702575683594,
+            11.91433048248291,
+            25.16452980041504,
+            39.53813934326172,
+            -150.6985626220703,
+            -56.30680465698242,
+            -21.714502334594727,
+            11.18025016784668,
+            -0.8287338614463806,
+            5.765235900878906,
+            -3.435391902923584
+          ]
+        },
+        {
+          "env": 85,
+          "scenario": "yaw_negative",
+          "time_s": 9.665000000000001,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 7.393163204193115,
+          "height_m": 0.5126428008079529,
+          "contact_n": 852.9107055664062,
+          "contact_bodies": {
+            "RR_calf": 852.9107055664062
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.44767269492149353
+          ],
+          "actual_vx_vy_yaw": [
+            -0.014349101111292839,
+            0.07979530096054077,
+            -0.1603565812110901
+          ],
+          "joint_positions_policy_order": [
+            0.6898699402809143,
+            0.7812138199806213,
+            -1.7811365127563477,
+            0.08711331337690353,
+            0.6968241930007935,
+            -1.7016113996505737,
+            -0.7476444244384766,
+            0.6830861568450928,
+            -0.7742395401000977,
+            0.14948789775371552,
+            1.1891363859176636,
+            -1.5430200099945068,
+            -5.152797698974609,
+            -3.6375467777252197,
+            4.433493137359619,
+            4.034449577331543
+          ],
+          "applied_torques_policy_order": [
+            -105.29937744140625,
+            -11.324382781982422,
+            107.98853302001953,
+            -35.15473175048828,
+            24.09089469909668,
+            31.861814498901367,
+            134.34291076660156,
+            -87.16448974609375,
+            2.819220542907715,
+            -53.50419616699219,
+            -30.145370483398438,
+            19.998517990112305,
+            5.641610145568848,
+            6.242480754852295,
+            -0.42512932419776917,
+            8.097335815429688
+          ]
+        },
+        {
+          "env": 13,
+          "scenario": "yaw_negative",
+          "time_s": 10.68,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.563634872436523,
+          "height_m": 0.5369822382926941,
+          "contact_n": 114.79501342773438,
+          "contact_bodies": {
+            "RR_calf": 114.79501342773438
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4128307104110718
+          ],
+          "actual_vx_vy_yaw": [
+            -0.29784977436065674,
+            0.16194327175617218,
+            -0.17306579649448395
+          ],
+          "joint_positions_policy_order": [
+            0.550323486328125,
+            0.7522476315498352,
+            -1.7006880044937134,
+            0.0028620159719139338,
+            0.7334473729133606,
+            -1.6375300884246826,
+            -0.7104585766792297,
+            0.6075521111488342,
+            -0.9162517786026001,
+            0.1922750174999237,
+            1.210304856300354,
+            -1.5255165100097656,
+            4.520023822784424,
+            4.74893856048584,
+            0.22866873443126678,
+            -1.8012970685958862
+          ],
+          "applied_torques_policy_order": [
+            -64.35406494140625,
+            8.332942962646484,
+            75.04376220703125,
+            -16.292478561401367,
+            21.920515060424805,
+            21.781415939331055,
+            139.87258911132812,
+            -27.507787704467773,
+            -16.693456649780273,
+            -80.51919555664062,
+            -24.946544647216797,
+            34.50285339355469,
+            1.213349461555481,
+            1.5639159679412842,
+            -3.7612743377685547,
+            2.2847461700439453
+          ]
+        },
+        {
+          "env": 93,
+          "scenario": "yaw_negative",
+          "time_s": 10.745000000000001,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 7.7829084396362305,
+          "height_m": 0.5126749277114868,
+          "contact_n": 106.5871353149414,
+          "contact_bodies": {
+            "RR_calf": 106.5871353149414
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4120091199874878
+          ],
+          "actual_vx_vy_yaw": [
+            0.029022637754678726,
+            -0.11605571210384369,
+            -0.2843051850795746
+          ],
+          "joint_positions_policy_order": [
+            0.6815840601921082,
+            0.7339897751808167,
+            -1.653878927230835,
+            0.09239663928747177,
+            0.7038725018501282,
+            -1.60843825340271,
+            -0.7842057347297668,
+            0.6068215370178223,
+            -0.9438692927360535,
+            0.00279629766009748,
+            1.0634548664093018,
+            -1.8748202323913574,
+            -5.448148727416992,
+            -3.2563555240631104,
+            2.9631049633026123,
+            -5.921114444732666
+          ],
+          "applied_torques_policy_order": [
+            -89.72996520996094,
+            18.42375373840332,
+            66.96809387207031,
+            -30.00703239440918,
+            22.928136825561523,
+            15.774271011352539,
+            158.91847229003906,
+            -29.305770874023438,
+            2.6314175128936768,
+            -61.01246643066406,
+            26.41180419921875,
+            81.27350616455078,
+            -2.5262041091918945,
+            4.8192877769470215,
+            -1.483694314956665,
+            5.596090316772461
+          ]
+        },
+        {
+          "env": 53,
+          "scenario": "yaw_negative",
+          "time_s": 14.23,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 9.541058540344238,
+          "height_m": 0.486348956823349,
+          "contact_n": 223.52371215820312,
+          "contact_bodies": {
+            "RR_calf": 223.52371215820312
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4265044629573822
+          ],
+          "actual_vx_vy_yaw": [
+            0.27438172698020935,
+            0.05679440498352051,
+            -0.19422435760498047
+          ],
+          "joint_positions_policy_order": [
+            0.8471870422363281,
+            0.8409688472747803,
+            -1.6284083127975464,
+            0.1330098658800125,
+            0.6823118329048157,
+            -1.741217851638794,
+            -0.8260412216186523,
+            0.6142558455467224,
+            -0.6212210655212402,
+            0.19044528901576996,
+            1.0219049453735352,
+            -1.601699948310852,
+            -1.9978995323181152,
+            4.122241497039795,
+            -2.598513603210449,
+            0.5402557253837585
+          ],
+          "applied_torques_policy_order": [
+            -160.48231506347656,
+            -15.836587905883789,
+            41.30799102783203,
+            -54.32716369628906,
+            38.01579284667969,
+            35.412567138671875,
+            171.7320556640625,
+            -81.06658935546875,
+            -28.69410514831543,
+            6.530458450317383,
+            1.6248133182525635,
+            -7.81279993057251,
+            15.911206245422363,
+            2.4679603576660156,
+            1.4250127077102661,
+            3.6385154724121094
+          ]
+        },
+        {
+          "env": 5,
+          "scenario": "yaw_negative",
+          "time_s": 15.725000000000001,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 7.86913537979126,
+          "height_m": 0.5164375305175781,
+          "contact_n": 897.7586059570312,
+          "contact_bodies": {
+            "RR_calf": 897.7586059570312
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.3719928562641144
+          ],
+          "actual_vx_vy_yaw": [
+            0.025714650750160217,
+            0.08618102222681046,
+            -0.08216208219528198
+          ],
+          "joint_positions_policy_order": [
+            0.6933290958404541,
+            0.7615253925323486,
+            -1.745965600013733,
+            0.06211318075656891,
+            0.704332172870636,
+            -1.691115140914917,
+            -0.7421658039093018,
+            0.7176170945167542,
+            -0.727861762046814,
+            0.1724025011062622,
+            1.1374789476394653,
+            -1.5477871894836426,
+            -3.440467596054077,
+            -0.6957364082336426,
+            -1.3353761434555054,
+            -2.2372050285339355
+          ],
+          "applied_torques_policy_order": [
+            -109.38694763183594,
+            0.4495921730995178,
+            91.93592834472656,
+            -32.44141387939453,
+            24.25925064086914,
+            29.96013641357422,
+            129.5634765625,
+            -94.82795715332031,
+            0.505953311920166,
+            -51.2297477722168,
+            -24.090496063232422,
+            21.01032066345215,
+            2.5757360458374023,
+            8.376252174377441,
+            2.0508081912994385,
+            7.920901775360107
+          ]
+        },
+        {
+          "env": 4,
+          "scenario": "yaw_positive",
+          "time_s": 17.69,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.334471225738525,
+          "height_m": 0.5301089882850647,
+          "contact_n": 65.85160064697266,
+          "contact_bodies": {
+            "RL_calf": 65.85160064697266
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.3861139416694641
+          ],
+          "actual_vx_vy_yaw": [
+            -0.038168732076883316,
+            0.006642764434218407,
+            0.03154598921537399
+          ],
+          "joint_positions_policy_order": [
+            -0.2475581169128418,
+            0.5992345213890076,
+            -1.3536323308944702,
+            -0.6127957105636597,
+            0.8840374946594238,
+            -1.6876307725906372,
+            0.011579773388803005,
+            1.0001816749572754,
+            -1.8944544792175293,
+            0.7070376873016357,
+            0.773771345615387,
+            -0.7920054197311401,
+            3.191155195236206,
+            1.9452760219573975,
+            0.7746054530143738,
+            5.0626959800720215
+          ],
+          "applied_torques_policy_order": [
+            53.56840133666992,
+            44.70400619506836,
+            29.7921142578125,
+            90.78704833984375,
+            -27.104042053222656,
+            38.5546989440918,
+            8.255776405334473,
+            37.205238342285156,
+            55.433834075927734,
+            -130.8058624267578,
+            -66.46934509277344,
+            -28.344493865966797,
+            6.089750289916992,
+            -13.960829734802246,
+            8.56280517578125,
+            -8.063207626342773
+          ]
+        },
+        {
+          "env": 45,
+          "scenario": "yaw_negative",
+          "time_s": 18.84,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 10.670366287231445,
+          "height_m": 0.46950778365135193,
+          "contact_n": 62.47364807128906,
+          "contact_bodies": {
+            "RR_calf": 62.47364807128906
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.34646570682525635
+          ],
+          "actual_vx_vy_yaw": [
+            0.13197912275791168,
+            0.07871229946613312,
+            -0.1092110425233841
+          ],
+          "joint_positions_policy_order": [
+            0.8501272797584534,
+            0.7752747535705566,
+            -1.6985702514648438,
+            0.10415013879537582,
+            0.6401750445365906,
+            -1.7844550609588623,
+            -0.8697812557220459,
+            0.6639416813850403,
+            -0.5778283476829529,
+            0.23460990190505981,
+            1.0738102197647095,
+            -1.6093844175338745,
+            -3.9156506061553955,
+            -2.3858182430267334,
+            1.4493169784545898,
+            -3.3569071292877197
+          ],
+          "applied_torques_policy_order": [
+            -152.39234924316406,
+            11.353888511657715,
+            53.12559509277344,
+            -47.15745162963867,
+            45.32830810546875,
+            42.01941680908203,
+            166.95684814453125,
+            -86.31359100341797,
+            -27.83745002746582,
+            -1.1806602478027344,
+            0.9809746742248535,
+            -2.2863986492156982,
+            6.454668045043945,
+            6.801112174987793,
+            2.156926155090332,
+            0.6552848815917969
+          ]
+        }
+      ],
+      "reasons": {
+        "body_contact": 13
+      },
+      "scenarios": {
+        "yaw_positive": 5,
+        "yaw_negative": 8
+      },
+      "contact_bodies": {
+        "RL_calf": 5,
+        "RR_calf": 8
+      },
+      "height_at_first_failure_m": [
+        0.5537464022636414,
+        0.5304051637649536,
+        0.5082738399505615,
+        0.515093982219696,
+        0.505336344242096,
+        0.5179443955421448,
+        0.5126428008079529,
+        0.5369822382926941,
+        0.5126749277114868,
+        0.486348956823349,
+        0.5164375305175781,
+        0.5301089882850647,
+        0.46950778365135193
+      ],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1_nominal_20261201.json",
+      "report_sha256": "17aff6ea487ac82f38d84984a588ec82202b7bdb82f7bc42a817eab57f01232e"
+    },
+    "seed50_floorl1_bounded_v1_20261202": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 91,
+        "no_fall_fraction": 0.91,
+        "no_fall_wilson95": [
+          0.837737871472837,
+          0.9519274599974348
+        ],
+        "tracking_pass_count": 85,
+        "pooled_rms_vx_vy_yaw": [
+          0.08249085108105914,
+          0.06095070179357055,
+          0.12688617686225118
+        ],
+        "episode_rms_p95": [
+          0.15383757650852203,
+          0.15954719483852386,
+          0.29767918586730957
+        ],
+        "episode_rms_max": [
+          0.23621247708797455,
+          0.18813945353031158,
+          0.38939064741134644
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0010319930385402202,
+              0.00038992419638649007,
+              0.0021635682860655396
+            ],
+            "episode_rms_p95": [
+              0.0014173126546666026,
+              0.0006914735422469676,
+              0.0029920213855803013
+            ],
+            "episode_rms_max": [
+              0.0014173126546666026,
+              0.0006914735422469676,
+              0.0029920213855803013
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.059795657797568846,
+              0.011115694799623902,
+              0.01795475025413163
+            ],
+            "episode_rms_p95": [
+              0.08470429480075836,
+              0.015690572559833527,
+              0.020528484135866165
+            ],
+            "episode_rms_max": [
+              0.08470429480075836,
+              0.015690572559833527,
+              0.020528484135866165
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 11,
+            "pooled_rms_vx_vy_yaw": [
+              0.1441005138462735,
+              0.012090775721954805,
+              0.015728844188492675
+            ],
+            "episode_rms_p95": [
+              0.20194394886493683,
+              0.015601498074829578,
+              0.020847776904702187
+            ],
+            "episode_rms_max": [
+              0.20194394886493683,
+              0.015601498074829578,
+              0.020847776904702187
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.05691428186877309,
+              0.14741732871834748,
+              0.025889316537760967
+            ],
+            "episode_rms_p95": [
+              0.09119921177625656,
+              0.18813945353031158,
+              0.038762934505939484
+            ],
+            "episode_rms_max": [
+              0.09119921177625656,
+              0.18813945353031158,
+              0.038762934505939484
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 7,
+            "no_fall_fraction": 0.5833333333333334,
+            "no_fall_wilson95": [
+              0.31951131254954973,
+              0.8067396863412435
+            ],
+            "tracking_pass_count": 5,
+            "pooled_rms_vx_vy_yaw": [
+              0.055930531958851774,
+              0.056200695123009424,
+              0.2804130888635542
+            ],
+            "episode_rms_p95": [
+              0.08582984656095505,
+              0.09039399027824402,
+              0.38939064741134644
+            ],
+            "episode_rms_max": [
+              0.08582984656095505,
+              0.09039399027824402,
+              0.38939064741134644
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 8,
+            "no_fall_fraction": 0.6666666666666666,
+            "no_fall_wilson95": [
+              0.39062208887279953,
+              0.8618799089087867
+            ],
+            "tracking_pass_count": 6,
+            "pooled_rms_vx_vy_yaw": [
+              0.10656643962436835,
+              0.061612487396434684,
+              0.23209401506184
+            ],
+            "episode_rms_p95": [
+              0.23621247708797455,
+              0.0922878310084343,
+              0.318389892578125
+            ],
+            "episode_rms_max": [
+              0.23621247708797455,
+              0.0922878310084343,
+              0.318389892578125
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06090335928169603,
+              0.009358902154960259,
+              0.014082470692067537
+            ],
+            "episode_rms_p95": [
+              0.08973045647144318,
+              0.012796259485185146,
+              0.01610371470451355
+            ],
+            "episode_rms_max": [
+              0.08973045647144318,
+              0.012796259485185146,
+              0.01610371470451355
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09291471227738608,
+              0.008987827914739312,
+              0.011028803005224824
+            ],
+            "episode_rms_p95": [
+              0.12449619174003601,
+              0.012012376450002193,
+              0.013862227089703083
+            ],
+            "episode_rms_max": [
+              0.12449619174003601,
+              0.012012376450002193,
+              0.013862227089703083
+            ]
+          }
+        },
+        "all_scenario_tracking_met": false,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [
+        {
+          "env": 60,
+          "scenario": "yaw_positive",
+          "time_s": 7.575,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.673366546630859,
+          "height_m": 0.5329017043113708,
+          "contact_n": 270.16094970703125,
+          "contact_bodies": {
+            "RL_calf": 270.16094970703125
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.4392499029636383
+          ],
+          "actual_vx_vy_yaw": [
+            0.028358306735754013,
+            -0.07201871275901794,
+            0.0506354421377182
+          ],
+          "joint_positions_policy_order": [
+            -0.26368242502212524,
+            0.605165421962738,
+            -1.3698828220367432,
+            -0.5815709829330444,
+            0.9545509219169617,
+            -1.7285668849945068,
+            -0.025833608582615852,
+            1.0211693048477173,
+            -1.8928172588348389,
+            0.6971707344055176,
+            0.6647686958312988,
+            -0.8386024832725525,
+            2.65134596824646,
+            3.3563497066497803,
+            4.1703925132751465,
+            -5.694727897644043
+          ],
+          "applied_torques_policy_order": [
+            37.642295837402344,
+            50.7197380065918,
+            51.27364730834961,
+            86.13166046142578,
+            -28.105995178222656,
+            19.461423873901367,
+            23.466304779052734,
+            33.192352294921875,
+            68.96216583251953,
+            -139.51101684570312,
+            -47.790653228759766,
+            -18.553030014038086,
+            4.151548385620117,
+            -6.948831081390381,
+            5.0793938636779785,
+            -3.4892077445983887
+          ]
+        },
+        {
+          "env": 69,
+          "scenario": "yaw_negative",
+          "time_s": 7.7749999999999995,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.666211128234863,
+          "height_m": 0.5076751708984375,
+          "contact_n": 256.09716796875,
+          "contact_bodies": {
+            "RR_calf": 256.09716796875
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.41447505354881287
+          ],
+          "actual_vx_vy_yaw": [
+            0.03834410756826401,
+            0.1443060338497162,
+            -0.2968115508556366
+          ],
+          "joint_positions_policy_order": [
+            0.6606125831604004,
+            0.7472773790359497,
+            -1.7994076013565063,
+            0.11163727194070816,
+            0.7367528080940247,
+            -1.7002543210983276,
+            -0.7474316954612732,
+            0.6679654717445374,
+            -0.8263413906097412,
+            0.14482876658439636,
+            1.1898869276046753,
+            -1.6531480550765991,
+            5.466675281524658,
+            -4.684670925140381,
+            4.643759250640869,
+            0.03574882447719574
+          ],
+          "applied_torques_policy_order": [
+            -79.34490966796875,
+            13.238255500793457,
+            91.03495025634766,
+            -33.12020492553711,
+            13.90378189086914,
+            33.527610778808594,
+            149.19544982910156,
+            -47.594482421875,
+            -19.59941864013672,
+            -57.6325569152832,
+            -13.203508377075195,
+            43.49019241333008,
+            1.2210594415664673,
+            1.6094059944152832,
+            -0.37183740735054016,
+            5.824947357177734
+          ]
+        },
+        {
+          "env": 12,
+          "scenario": "yaw_positive",
+          "time_s": 8.37,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.661149978637695,
+          "height_m": 0.5339900851249695,
+          "contact_n": 165.67266845703125,
+          "contact_bodies": {
+            "RL_calf": 165.67266845703125
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.47856786847114563
+          ],
+          "actual_vx_vy_yaw": [
+            0.03591243922710419,
+            0.0077125984244048595,
+            0.15450987219810486
+          ],
+          "joint_positions_policy_order": [
+            -0.3007640838623047,
+            0.6246902942657471,
+            -1.3372776508331299,
+            -0.6296353936195374,
+            0.9958837032318115,
+            -1.716280460357666,
+            0.033180031925439835,
+            0.9369828104972839,
+            -1.8753509521484375,
+            0.6698867678642273,
+            0.7000064849853516,
+            -0.8297201991081238,
+            -5.830095291137695,
+            2.9141604900360107,
+            4.037701606750488,
+            2.185718297958374
+          ],
+          "applied_torques_policy_order": [
+            48.901222229003906,
+            48.27779769897461,
+            49.0416259765625,
+            104.0837173461914,
+            -32.077388763427734,
+            19.51039695739746,
+            -4.8014302253723145,
+            44.21534729003906,
+            58.16944122314453,
+            -134.69102478027344,
+            -54.793880462646484,
+            -17.080236434936523,
+            11.229422569274902,
+            -0.7702332139015198,
+            11.468456268310547,
+            0.0771198570728302
+          ]
+        },
+        {
+          "env": 4,
+          "scenario": "yaw_positive",
+          "time_s": 9.705000000000002,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.037112236022949,
+          "height_m": 0.5266656875610352,
+          "contact_n": 43.425811767578125,
+          "contact_bodies": {
+            "RL_calf": 43.425811767578125
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.44118425250053406
+          ],
+          "actual_vx_vy_yaw": [
+            0.04055781289935112,
+            -0.21123160421848297,
+            0.008135564625263214
+          ],
+          "joint_positions_policy_order": [
+            -0.2226773202419281,
+            0.5601975321769714,
+            -1.4701745510101318,
+            -0.6196950674057007,
+            0.9098278284072876,
+            -1.7688030004501343,
+            -0.12921267747879028,
+            1.1292980909347534,
+            -1.6583988666534424,
+            0.7043442726135254,
+            0.658795177936554,
+            -0.7638375759124756,
+            3.4696145057678223,
+            2.7801458835601807,
+            2.9278054237365723,
+            4.339956760406494
+          ],
+          "applied_torques_policy_order": [
+            29.01085090637207,
+            54.248443603515625,
+            68.74842834472656,
+            122.53660583496094,
+            -10.821640968322754,
+            37.111087799072266,
+            20.3040771484375,
+            7.574585914611816,
+            17.414030075073242,
+            -152.04629516601562,
+            -53.03943634033203,
+            -10.895188331604004,
+            10.181612014770508,
+            0.013710337691009045,
+            5.200702667236328,
+            -7.270083904266357
+          ]
+        },
+        {
+          "env": 28,
+          "scenario": "yaw_positive",
+          "time_s": 11.29,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.116113662719727,
+          "height_m": 0.5497020483016968,
+          "contact_n": 99.8276138305664,
+          "contact_bodies": {
+            "RL_calf": 99.8276138305664
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.31423574686050415
+          ],
+          "actual_vx_vy_yaw": [
+            0.12145274877548218,
+            -0.20499929785728455,
+            -0.032031722366809845
+          ],
+          "joint_positions_policy_order": [
+            -0.15480054914951324,
+            0.6486483812332153,
+            -1.4705181121826172,
+            -0.5026314854621887,
+            0.9311487674713135,
+            -1.7153798341751099,
+            -0.05038102716207504,
+            1.0577068328857422,
+            -1.7908935546875,
+            0.6360376477241516,
+            0.7199856638908386,
+            -0.8644409775733948,
+            -0.40468961000442505,
+            2.6896562576293945,
+            -1.9676223993301392,
+            -4.089962959289551
+          ],
+          "applied_torques_policy_order": [
+            19.408218383789062,
+            34.92231369018555,
+            64.7569351196289,
+            90.05689239501953,
+            -22.015380859375,
+            21.22353744506836,
+            21.990562438964844,
+            13.217041969299316,
+            56.5635871887207,
+            -130.3643341064453,
+            -53.24824142456055,
+            -22.62674331665039,
+            3.738961935043335,
+            -6.784800052642822,
+            1.465721845626831,
+            -8.510164260864258
+          ]
+        },
+        {
+          "env": 20,
+          "scenario": "yaw_positive",
+          "time_s": 13.0,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.304523944854736,
+          "height_m": 0.543586254119873,
+          "contact_n": 12.85554313659668,
+          "contact_bodies": {
+            "RL_calf": 12.85554313659668
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.37351536750793457
+          ],
+          "actual_vx_vy_yaw": [
+            0.06545097380876541,
+            0.0003005862236022949,
+            0.051533013582229614
+          ],
+          "joint_positions_policy_order": [
+            -0.27819186449050903,
+            0.6353696584701538,
+            -1.3504228591918945,
+            -0.624851644039154,
+            0.9726551175117493,
+            -1.6863641738891602,
+            0.05940798297524452,
+            0.9514177441596985,
+            -1.8502193689346313,
+            0.6402955055236816,
+            0.6863734722137451,
+            -0.8541280627250671,
+            3.058605670928955,
+            1.4542802572250366,
+            2.878612518310547,
+            2.188328504562378
+          ],
+          "applied_torques_policy_order": [
+            46.01702117919922,
+            46.63629913330078,
+            45.880897521972656,
+            100.98664093017578,
+            -31.081371307373047,
+            18.10262107849121,
+            -3.185112953186035,
+            42.99048614501953,
+            55.75370788574219,
+            -129.2670440673828,
+            -55.409297943115234,
+            -16.155311584472656,
+            5.848078727722168,
+            -2.9773247241973877,
+            12.064421653747559,
+            -9.742842674255371
+          ]
+        },
+        {
+          "env": 93,
+          "scenario": "yaw_negative",
+          "time_s": 13.879999999999999,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.87195348739624,
+          "height_m": 0.5086181163787842,
+          "contact_n": 327.27032470703125,
+          "contact_bodies": {
+            "RR_calf": 327.27032470703125
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.4408906102180481
+          ],
+          "actual_vx_vy_yaw": [
+            0.09168707579374313,
+            0.08600345253944397,
+            -0.3112282156944275
+          ],
+          "joint_positions_policy_order": [
+            0.7067688703536987,
+            0.7276053428649902,
+            -1.7526659965515137,
+            0.11434753239154816,
+            0.7125852704048157,
+            -1.6871130466461182,
+            -0.7443085312843323,
+            0.6972871422767639,
+            -0.7783620953559875,
+            0.1258392184972763,
+            1.1782479286193848,
+            -1.5565119981765747,
+            0.2510976195335388,
+            -0.31512293219566345,
+            -4.077853679656982,
+            -5.156452178955078
+          ],
+          "applied_torques_policy_order": [
+            -97.2515869140625,
+            15.661224365234375,
+            70.46830749511719,
+            -42.71577072143555,
+            23.45453643798828,
+            33.57868576049805,
+            139.90216064453125,
+            -76.06112670898438,
+            -14.30323600769043,
+            -34.439395904541016,
+            -20.935096740722656,
+            18.106487274169922,
+            1.6325145959854126,
+            5.072740077972412,
+            -0.022139880806207657,
+            3.9458930492401123
+          ]
+        },
+        {
+          "env": 13,
+          "scenario": "yaw_negative",
+          "time_s": 15.865000000000002,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.392091751098633,
+          "height_m": 0.5108996033668518,
+          "contact_n": 330.9322814941406,
+          "contact_bodies": {
+            "RR_calf": 330.9322814941406
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.2839961051940918
+          ],
+          "actual_vx_vy_yaw": [
+            0.02830588072538376,
+            0.2332688271999359,
+            -0.15773175656795502
+          ],
+          "joint_positions_policy_order": [
+            0.6353958249092102,
+            0.7369651794433594,
+            -1.8040403127670288,
+            0.08035317808389664,
+            0.7317221760749817,
+            -1.6966629028320312,
+            -0.7452782988548279,
+            0.6948491930961609,
+            -0.8245962858200073,
+            0.1772245317697525,
+            1.1977020502090454,
+            -1.4898680448532104,
+            5.310850620269775,
+            -5.851090908050537,
+            3.2497732639312744,
+            0.7047075629234314
+          ],
+          "applied_torques_policy_order": [
+            -76.82730865478516,
+            11.907715797424316,
+            87.61795043945312,
+            -33.61583709716797,
+            10.484479904174805,
+            30.514713287353516,
+            134.7482452392578,
+            -66.22618103027344,
+            -9.60086441040039,
+            -54.658668518066406,
+            -31.228504180908203,
+            24.083166122436523,
+            4.146241188049316,
+            4.343642234802246,
+            -0.06780517846345901,
+            10.217447280883789
+          ]
+        },
+        {
+          "env": 85,
+          "scenario": "yaw_negative",
+          "time_s": 19.87,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.320930480957031,
+          "height_m": 0.5293689966201782,
+          "contact_n": 14.523686408996582,
+          "contact_bodies": {
+            "RR_calf": 14.523686408996582
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.43969663977622986
+          ],
+          "actual_vx_vy_yaw": [
+            0.13714125752449036,
+            -0.04637976735830307,
+            -0.16023141145706177
+          ],
+          "joint_positions_policy_order": [
+            0.6961186528205872,
+            0.8163695335388184,
+            -1.6195522546768188,
+            0.08552896231412888,
+            0.6812569499015808,
+            -1.6158406734466553,
+            -0.7250754833221436,
+            0.5475754141807556,
+            -0.8977735638618469,
+            -0.023664165288209915,
+            1.0965901613235474,
+            -1.8160126209259033,
+            5.631592273712158,
+            -1.6885398626327515,
+            5.893457889556885,
+            -3.418478012084961
+          ],
+          "applied_torques_policy_order": [
+            -90.6451187133789,
+            -0.5708438754081726,
+            43.195011138916016,
+            -30.348217010498047,
+            29.230798721313477,
+            25.458045959472656,
+            145.906982421875,
+            -34.533447265625,
+            -6.111239433288574,
+            -44.82229232788086,
+            19.264968872070312,
+            57.410648345947266,
+            3.5435779094696045,
+            5.059505939483643,
+            -4.443458080291748,
+            7.686490058898926
+          ]
+        }
+      ],
+      "reasons": {
+        "body_contact": 9
+      },
+      "scenarios": {
+        "yaw_positive": 5,
+        "yaw_negative": 4
+      },
+      "contact_bodies": {
+        "RL_calf": 5,
+        "RR_calf": 4
+      },
+      "height_at_first_failure_m": [
+        0.5329017043113708,
+        0.5076751708984375,
+        0.5339900851249695,
+        0.5266656875610352,
+        0.5497020483016968,
+        0.543586254119873,
+        0.5086181163787842,
+        0.5108996033668518,
+        0.5293689966201782
+      ],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed50_floorl1_bounded_v1_20261202.json",
+      "report_sha256": "9aed6d52e8829880980ad9297452c036855ec23a20edd323087ca928b9d1a04c"
+    },
+    "seed51_control_nominal_20261201": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 99,
+        "pooled_rms_vx_vy_yaw": [
+          0.07560358449227225,
+          0.07782397707877729,
+          0.06352127446104755
+        ],
+        "episode_rms_p95": [
+          0.13647273182868958,
+          0.15710574388504028,
+          0.131870299577713
+        ],
+        "episode_rms_max": [
+          0.20941466093063354,
+          0.19847285747528076,
+          0.15795820951461792
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0016345613131116287,
+              0.00045331193299153383,
+              0.001611844282170967
+            ],
+            "episode_rms_p95": [
+              0.0052910312078893185,
+              0.0007949265418574214,
+              0.002875048201531172
+            ],
+            "episode_rms_max": [
+              0.0052910312078893185,
+              0.0007949265418574214,
+              0.002875048201531172
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04137689009869323,
+              0.012100057690974868,
+              0.019670355897445223
+            ],
+            "episode_rms_p95": [
+              0.05377566069364548,
+              0.01576661318540573,
+              0.02494315803050995
+            ],
+            "episode_rms_max": [
+              0.05377566069364548,
+              0.01576661318540573,
+              0.02494315803050995
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.12748672716040144,
+              0.010181166268980732,
+              0.01347117394612045
+            ],
+            "episode_rms_p95": [
+              0.20941466093063354,
+              0.014367916621267796,
+              0.018836766481399536
+            ],
+            "episode_rms_max": [
+              0.20941466093063354,
+              0.014367916621267796,
+              0.018836766481399536
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.06746213305830684,
+              0.1562759248028388,
+              0.030629774108311778
+            ],
+            "episode_rms_p95": [
+              0.0960221141576767,
+              0.19847285747528076,
+              0.04172435402870178
+            ],
+            "episode_rms_max": [
+              0.0960221141576767,
+              0.19847285747528076,
+              0.04172435402870178
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06407518498450897,
+              0.10902914054852963,
+              0.11905586677836422
+            ],
+            "episode_rms_p95": [
+              0.0704454854130745,
+              0.13114680349826813,
+              0.12925706803798676
+            ],
+            "episode_rms_max": [
+              0.0704454854130745,
+              0.13114680349826813,
+              0.12925706803798676
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09772587488394985,
+              0.10828150937231633,
+              0.13237788096690145
+            ],
+            "episode_rms_p95": [
+              0.1353292316198349,
+              0.12477120012044907,
+              0.15795820951461792
+            ],
+            "episode_rms_max": [
+              0.1353292316198349,
+              0.12477120012044907,
+              0.15795820951461792
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04615724934520543,
+              0.008700431600073926,
+              0.013466161022198943
+            ],
+            "episode_rms_p95": [
+              0.05433806777000427,
+              0.011439775116741657,
+              0.01754838600754738
+            ],
+            "episode_rms_max": [
+              0.05433806777000427,
+              0.011439775116741657,
+              0.01754838600754738
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.086317812791833,
+              0.00741740852506887,
+              0.010493858032567341
+            ],
+            "episode_rms_p95": [
+              0.1103428304195404,
+              0.008820544928312302,
+              0.013368921354413033
+            ],
+            "episode_rms_max": [
+              0.1103428304195404,
+              0.008820544928312302,
+              0.013368921354413033
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [],
+      "reasons": {},
+      "scenarios": {},
+      "contact_bodies": {},
+      "height_at_first_failure_m": [],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control_nominal_20261201.json",
+      "report_sha256": "007be99f5a99d11040ef092160db5f53b77a48fcf4dd1bdfa39c319210dde333"
+    },
+    "seed51_control_bounded_v1_20261202": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 100,
+        "pooled_rms_vx_vy_yaw": [
+          0.06911768527683206,
+          0.06960645941407174,
+          0.05832583116070882
+        ],
+        "episode_rms_p95": [
+          0.11860306560993195,
+          0.14350110292434692,
+          0.12591013312339783
+        ],
+        "episode_rms_max": [
+          0.1645279973745346,
+          0.17653357982635498,
+          0.148268461227417
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.001190089458630061,
+              0.00035644068279904866,
+              0.0016591763995288259
+            ],
+            "episode_rms_p95": [
+              0.002326167654246092,
+              0.0006617690669372678,
+              0.0030363111291080713
+            ],
+            "episode_rms_max": [
+              0.002326167654246092,
+              0.0006617690669372678,
+              0.0030363111291080713
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04480747553292636,
+              0.009953166925294993,
+              0.012980762518058103
+            ],
+            "episode_rms_p95": [
+              0.06104965880513191,
+              0.013925459235906601,
+              0.01573876105248928
+            ],
+            "episode_rms_max": [
+              0.06104965880513191,
+              0.013925459235906601,
+              0.01573876105248928
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.11773678076553132,
+              0.009973418947569104,
+              0.010941774573528447
+            ],
+            "episode_rms_p95": [
+              0.1645279973745346,
+              0.014335008338093758,
+              0.013574039563536644
+            ],
+            "episode_rms_max": [
+              0.1645279973745346,
+              0.014335008338093758,
+              0.013574039563536644
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.06167806429220327,
+              0.13649235110173416,
+              0.024493118293384554
+            ],
+            "episode_rms_p95": [
+              0.08931048959493637,
+              0.17653357982635498,
+              0.035207029432058334
+            ],
+            "episode_rms_max": [
+              0.08931048959493637,
+              0.17653357982635498,
+              0.035207029432058334
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.050891316327459656,
+              0.10382354427247147,
+              0.11174643998721856
+            ],
+            "episode_rms_p95": [
+              0.06128506734967232,
+              0.12185987085103989,
+              0.13697467744350433
+            ],
+            "episode_rms_max": [
+              0.06128506734967232,
+              0.12185987085103989,
+              0.13697467744350433
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.08322984758584205,
+              0.09517141747721683,
+              0.12139602673426811
+            ],
+            "episode_rms_p95": [
+              0.11151549965143204,
+              0.11609914898872375,
+              0.148268461227417
+            ],
+            "episode_rms_max": [
+              0.11151549965143204,
+              0.11609914898872375,
+              0.148268461227417
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05170391756840143,
+              0.00927607364148904,
+              0.009655057163739338
+            ],
+            "episode_rms_p95": [
+              0.07086875289678574,
+              0.012222795747220516,
+              0.01149861328303814
+            ],
+            "episode_rms_max": [
+              0.07086875289678574,
+              0.012222795747220516,
+              0.01149861328303814
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.07940504079601765,
+              0.007391107354957469,
+              0.008159464131578392
+            ],
+            "episode_rms_p95": [
+              0.11058960109949112,
+              0.010506967082619667,
+              0.010180005803704262
+            ],
+            "episode_rms_max": [
+              0.11058960109949112,
+              0.010506967082619667,
+              0.010180005803704262
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [],
+      "reasons": {},
+      "scenarios": {},
+      "contact_bodies": {},
+      "height_at_first_failure_m": [],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_control_bounded_v1_20261202.json",
+      "report_sha256": "1148506c4fb8e843db431684bc033b93daed93994c6936f716d2b29dee84568f"
+    },
+    "seed51_floorl1_nominal_20261201": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 99,
+        "no_fall_fraction": 0.99,
+        "no_fall_wilson95": [
+          0.9455138038212946,
+          0.9982325679358593
+        ],
+        "tracking_pass_count": 99,
+        "pooled_rms_vx_vy_yaw": [
+          0.08332923229282287,
+          0.07120867180838412,
+          0.0855233517363889
+        ],
+        "episode_rms_p95": [
+          0.1573256552219391,
+          0.15832452476024628,
+          0.1809203177690506
+        ],
+        "episode_rms_max": [
+          0.20627562701702118,
+          0.17855419218540192,
+          0.22373366355895996
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0010870149781677726,
+              0.0005791783764850935,
+              0.003189213631074616
+            ],
+            "episode_rms_p95": [
+              0.0023028673604130745,
+              0.0011224002810195088,
+              0.004469076171517372
+            ],
+            "episode_rms_max": [
+              0.0023028673604130745,
+              0.0011224002810195088,
+              0.004469076171517372
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.03756074817357595,
+              0.013880789202640013,
+              0.018146461753300033
+            ],
+            "episode_rms_p95": [
+              0.04201018065214157,
+              0.01666874811053276,
+              0.02093391865491867
+            ],
+            "episode_rms_max": [
+              0.04201018065214157,
+              0.01666874811053276,
+              0.02093391865491867
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.14524058335648676,
+              0.011072553205568648,
+              0.012520019926482434
+            ],
+            "episode_rms_p95": [
+              0.20627562701702118,
+              0.014312135055661201,
+              0.01492331176996231
+            ],
+            "episode_rms_max": [
+              0.20627562701702118,
+              0.014312135055661201,
+              0.01492331176996231
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.06798403058136494,
+              0.15297368258725247,
+              0.04165527930670215
+            ],
+            "episode_rms_p95": [
+              0.08071719110012054,
+              0.17855419218540192,
+              0.059227243065834045
+            ],
+            "episode_rms_max": [
+              0.08071719110012054,
+              0.17855419218540192,
+              0.059227243065834045
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 11,
+            "no_fall_fraction": 0.9166666666666666,
+            "no_fall_wilson95": [
+              0.646120088858883,
+              0.9851349055950829
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.07345652198490853,
+              0.09678441171869169,
+              0.1608347015119155
+            ],
+            "episode_rms_p95": [
+              0.1636563241481781,
+              0.1372397243976593,
+              0.22373366355895996
+            ],
+            "episode_rms_max": [
+              0.1636563241481781,
+              0.1372397243976593,
+              0.22373366355895996
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.10702800248309088,
+              0.0832155094448523,
+              0.17995143550991916
+            ],
+            "episode_rms_p95": [
+              0.16286791861057281,
+              0.10592051595449448,
+              0.19848696887493134
+            ],
+            "episode_rms_max": [
+              0.16286791861057281,
+              0.10592051595449448,
+              0.19848696887493134
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.046139640530086894,
+              0.01278126872484439,
+              0.01345876904452826
+            ],
+            "episode_rms_p95": [
+              0.05717843398451805,
+              0.016316432505846024,
+              0.01627834141254425
+            ],
+            "episode_rms_max": [
+              0.05717843398451805,
+              0.016316432505846024,
+              0.01627834141254425
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09744530162902096,
+              0.010357581456110314,
+              0.01016097461464581
+            ],
+            "episode_rms_p95": [
+              0.12886416912078857,
+              0.013679103925824165,
+              0.012100918218493462
+            ],
+            "episode_rms_max": [
+              0.12886416912078857,
+              0.013679103925824165,
+              0.012100918218493462
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [
+        {
+          "env": 36,
+          "scenario": "yaw_positive",
+          "time_s": 12.265,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.8833088874816895,
+          "height_m": 0.5260675549507141,
+          "contact_n": 1017.3320922851562,
+          "contact_bodies": {
+            "RL_calf": 1017.3320922851562
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.45675531029701233
+          ],
+          "actual_vx_vy_yaw": [
+            0.00970187783241272,
+            -0.3300936222076416,
+            0.20833896100521088
+          ],
+          "joint_positions_policy_order": [
+            -0.21356213092803955,
+            0.7880029678344727,
+            -1.5391548871994019,
+            -0.5478299260139465,
+            0.8381451368331909,
+            -1.7792986631393433,
+            -0.3372366726398468,
+            0.9987145662307739,
+            -1.7098743915557861,
+            0.6849103569984436,
+            0.6377266049385071,
+            -0.8799275159835815,
+            -3.606441020965576,
+            5.266219615936279,
+            4.700311660766602,
+            -3.8555667400360107
+          ],
+          "applied_torques_policy_order": [
+            67.76350402832031,
+            23.3840389251709,
+            37.66807174682617,
+            47.313087463378906,
+            -37.944454193115234,
+            80.14824676513672,
+            119.0949478149414,
+            13.919536590576172,
+            123.05174255371094,
+            -146.9718017578125,
+            -62.17291259765625,
+            33.84953689575195,
+            1.6923608779907227,
+            -7.493617057800293,
+            -6.0825700759887695,
+            -0.4003562927246094
+          ]
+        }
+      ],
+      "reasons": {
+        "body_contact": 1
+      },
+      "scenarios": {
+        "yaw_positive": 1
+      },
+      "contact_bodies": {
+        "RL_calf": 1
+      },
+      "height_at_first_failure_m": [
+        0.5260675549507141
+      ],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1_nominal_20261201.json",
+      "report_sha256": "003ac14c57049d6c645e4911d4566d90d397e032df8a4e01d211b7bafff3ad86"
+    },
+    "seed51_floorl1_bounded_v1_20261202": {
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 99,
+        "pooled_rms_vx_vy_yaw": [
+          0.07567407715538141,
+          0.06131536895896531,
+          0.07258140678076846
+        ],
+        "episode_rms_p95": [
+          0.13998061418533325,
+          0.15461179614067078,
+          0.15769648551940918
+        ],
+        "episode_rms_max": [
+          0.20223236083984375,
+          0.17338146269321442,
+          0.1966569721698761
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.00106932911723001,
+              0.0005760399644967359,
+              0.0033655863310200957
+            ],
+            "episode_rms_p95": [
+              0.0021951261442154646,
+              0.0011107402388006449,
+              0.005077276844531298
+            ],
+            "episode_rms_max": [
+              0.0021951261442154646,
+              0.0011107402388006449,
+              0.005077276844531298
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0583787318211503,
+              0.013540360378790285,
+              0.01438702806362189
+            ],
+            "episode_rms_p95": [
+              0.07681659609079361,
+              0.01579342968761921,
+              0.01721876859664917
+            ],
+            "episode_rms_max": [
+              0.07681659609079361,
+              0.01579342968761921,
+              0.01721876859664917
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.1366447822414509,
+              0.010352678641025431,
+              0.012698507057655418
+            ],
+            "episode_rms_p95": [
+              0.20223236083984375,
+              0.014087687246501446,
+              0.016098134219646454
+            ],
+            "episode_rms_max": [
+              0.20223236083984375,
+              0.014087687246501446,
+              0.016098134219646454
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.05748765576215862,
+              0.13089770518729693,
+              0.02942632076511159
+            ],
+            "episode_rms_p95": [
+              0.07897893339395523,
+              0.17338146269321442,
+              0.046632617712020874
+            ],
+            "episode_rms_max": [
+              0.07897893339395523,
+              0.17338146269321442,
+              0.046632617712020874
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04948838658691712,
+              0.0878967466323494,
+              0.1358067101332999
+            ],
+            "episode_rms_p95": [
+              0.05427958071231842,
+              0.10806577652692795,
+              0.15159150958061218
+            ],
+            "episode_rms_max": [
+              0.05427958071231842,
+              0.10806577652692795,
+              0.15159150958061218
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.08307181497744674,
+              0.06718870068714884,
+              0.15447858266664194
+            ],
+            "episode_rms_p95": [
+              0.10967490077018738,
+              0.09381663054227829,
+              0.1966569721698761
+            ],
+            "episode_rms_max": [
+              0.10967490077018738,
+              0.09381663054227829,
+              0.1966569721698761
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05709875508404854,
+              0.010970907911590529,
+              0.012210458586105083
+            ],
+            "episode_rms_p95": [
+              0.0773642510175705,
+              0.013080227188766003,
+              0.014177557080984116
+            ],
+            "episode_rms_max": [
+              0.0773642510175705,
+              0.013080227188766003,
+              0.014177557080984116
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.08723390481638575,
+              0.00959781969666073,
+              0.009749413748581487
+            ],
+            "episode_rms_p95": [
+              0.124674491584301,
+              0.010495100170373917,
+              0.011556684039533138
+            ],
+            "episode_rms_max": [
+              0.124674491584301,
+              0.010495100170373917,
+              0.011556684039533138
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive for this fixed case suite and recorded physical profile; it does not measure training-seed variability."
+      },
+      "first_failures": [],
+      "reasons": {},
+      "scenarios": {},
+      "contact_bodies": {},
+      "height_at_first_failure_m": [],
+      "report": "logs\\qualification\\flat_height_floor_dev50_51_20260919\\seed51_floorl1_bounded_v1_20261202.json",
+      "report_sha256": "d86c843b75faf4e1d5cd76a4954a6799e9b955833495bbf2c28a736ad80032d7"
+    }
+  },
+  "controls_exactly_repeat_previous": {
+    "seed50_control_nominal_20261201": true,
+    "seed50_control_bounded_v1_20261202": true,
+    "seed51_control_nominal_20261201": true,
+    "seed51_control_bounded_v1_20261202": true
+  },
+  "diagnosis_scope": "Existing complete evaluations, first-failure records and historical paired passive traces; no new replay. First-failure state does not establish pre-contact causality."
+}

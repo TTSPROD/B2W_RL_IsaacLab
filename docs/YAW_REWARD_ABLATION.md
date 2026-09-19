@@ -1,6 +1,9 @@
 # Абляция веса награды yaw — 17 сентября 2026
 
-## Решение после последнего эксперимента
+> Исторический протокол завершённого опыта. Результаты и условия ниже сохранены;
+> актуальные решения и очередь: [план](PROJECT_PLAN.md), [журнал](TRAINING_PROGRESS.md).
+
+## Исходное решение после абляции команд
 
 [Абляция команд](YAW_ABLATION.md) не выполнила заранее заданный критерий.
 Mix дал 99/100 и 100/100 эпизодов без контактов/падений, но yaw RMS 0,280–0,318
@@ -74,7 +77,7 @@ evaluation данные, физическая randomization и далее sim2si
 ## Артефакты
 
 - Координатор: scripts/run_yaw_reward_ablation.py.
-- Текущее состояние: logs/ablations/yaw_reward_20260917/job.json.
+- Job завершённого опыта: logs/ablations/yaw_reward_20260917/job.json.
 - Зафиксированный протокол и исходники: protocol.json и source/ рядом с job.json.
 - Training: logs/rsl_rl/unitree_b2w_flat/*_yaw_reward_control_20260917
   и *_yaw_reward_yaw2x_20260917.
@@ -109,4 +112,5 @@ peak GPU 9632 MiB, минимальный запас 21,58%, максимум 63
 получил 100/100 без отказа и tracking pass.
 [Отчёт](results/2026-09-17-flat-qualification-preflight.json).
 Серия [45/46/47](FLAT_QUALIFICATION.md) завершена: все quality gates провалены.
-После успешного staged seed 48 идёт [повторение 49/50/51](STAGED_QUALIFICATION.md).
+После успешного staged seed 48 завершено [повторение 49/50/51](STAGED_QUALIFICATION.md):
+только seed 49 прошёл оба профиля; общий Flat gate остаётся открытым.

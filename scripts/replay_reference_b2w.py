@@ -23,6 +23,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--num_envs', type=int, default=16)
     parser.add_argument('--suite', choices=('diagnostic', 'flat100'), default='diagnostic')
+    parser.add_argument('--yaw_trace', action='store_true', help='Passive yaw physics trace; writes a separate diagnostic NPZ')
     parser.add_argument('--reward_diagnostics', action='store_true', help='Record weighted reward components; diagnostic only')
     parser.add_argument('--seed', type=int, default=2026)
     parser.add_argument('--physical_profile', choices=PROFILES, default='nominal')
@@ -35,6 +36,8 @@ def main():
     args = parser.parse_args()
     report_path = args.report.resolve()
     policy_path = args.policy.resolve()
+    if args.yaw_trace and (report_path.exists() or report_path.with_suffix('.yaw.npz').exists()):
+        parser.error('Trace outputs must be new; refusing overwrite')
     if not report_path.is_relative_to((PROJECT_ROOT / 'logs/qualification').resolve()):
         parser.error('--report must be inside project logs/qualification')
     if not policy_path.is_relative_to(PROJECT_ROOT.resolve()) or not policy_path.is_file():
@@ -115,6 +118,11 @@ def main():
         report.update(gpu_pipeline=_gpu_evidence(base, robot, torch), physics_dt=dt, policy_dt=policy_dt,
                       policy_joint_names=policy_names, policy_to_asset_indices=policy_ids,
                       contact_bodies_checked=[sensor.body_names[i] for i in body_ids])
+        recorder = None
+        if args.yaw_trace:
+            from yaw_trace import YawTrace
+            recorder = YawTrace(base, robot, sensor, policy_ids, (settle_steps + measure_steps) * decimation, report_path, torch)
+            report['source_sha256']['scripts/yaw_trace.py'] = hashlib.sha256((PROJECT_ROOT / 'scripts/yaw_trace.py').read_bytes()).hexdigest()
         policy = torch.jit.load(str(policy_path), map_location=args.device).eval()
         n = args.num_envs
         device = base.device
@@ -211,6 +219,8 @@ def main():
                             'joint_positions_policy_order': robot.data.joint_pos[idx, policy_ids].tolist(),
                             'applied_torques_policy_order': robot.data.applied_torque[idx, policy_ids].tolist()})
                     failed |= new_failure
+                    if recorder is not None:
+                        recorder.capture(command, action, step * policy_dt + (substep + 1) * dt)
                 if args.reward_diagnostics:
                     base.reward_manager.compute(dt=policy_dt)
                     if step >= settle_steps:
@@ -232,6 +242,8 @@ def main():
                                   first_failures=failure_events, live_observation_max_error=obs_max_error)
                     _write_report(report_path, report)
                     print(f'[REPLAY] {step + 1}/{settle_steps + measure_steps}; failures={int(failed.sum())}', flush=True)
+        if recorder is not None:
+            report['yaw_trace'] = recorder.finish()
         after = physical_evidence(base)
         if after['properties_sha256'] != report['physical_evidence']['properties_sha256']:
             raise RuntimeError('Physical properties changed during replay')
