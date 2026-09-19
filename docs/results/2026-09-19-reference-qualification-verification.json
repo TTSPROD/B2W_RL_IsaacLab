@@ -1,0 +1,241 @@
+{
+  "verified_at": "2026-09-19T19:29:34.259605+00:00",
+  "job": "logs\\transfer\\flat_reference_qualification_20260919_resume1\\job.json",
+  "job_sha256": "1ce25bbc499351d55218ab5f6e8eeae105cf1f87fcda5ff6ff35d8e086239df4",
+  "finished_utc": "2026-09-19T19:26:37.169279+00:00",
+  "decision": {
+    "all_gates_pass": true,
+    "per_policy_profile_pass": {
+      "reference": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed54": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed55": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed56": {
+        "nominal": true,
+        "bounded_v1": true
+      }
+    },
+    "flat_transfer_gate_passed": true,
+    "final_updates_per_seed": 350,
+    "fresh_from_scratch_acceptance": false,
+    "hardware_release_accepted": false,
+    "automatic_rough_promotion": false
+  },
+  "metrics": {
+    "reference_nominal": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.06273666073010428,
+        0.15613901245832895,
+        0.18812076105049816
+      ]
+    },
+    "reference_bounded_v1": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.06669206439601533,
+        0.16566192218347223,
+        0.20018560103838767
+      ]
+    },
+    "seed54_nominal": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.07274152440037192,
+        0.16361430227448567,
+        0.17008637165010138
+      ]
+    },
+    "seed54_bounded_v1": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.07994154395464917,
+        0.17685741726836066,
+        0.17139646136605538
+      ]
+    },
+    "seed55_nominal": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.08310571649794628,
+        0.16113503831092882,
+        0.17033113753931547
+      ]
+    },
+    "seed55_bounded_v1": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.09148911697396157,
+        0.16298250817607884,
+        0.15879402612076404
+      ]
+    },
+    "seed56_nominal": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.06437467208676766,
+        0.1601010850280731,
+        0.16600667440259803
+      ]
+    },
+    "seed56_bounded_v1": {
+      "safe_count": 100,
+      "episodes": 100,
+      "worst_scenario_rms_vx_vy_yaw": [
+        0.06910736721612154,
+        0.1754235172654776,
+        0.16940476498887896
+      ]
+    }
+  },
+  "finals": {
+    "54": {
+      "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-508380_flat_reference_qualification_20260919_resume1_s54_stage2\\model_349.pt",
+      "sha256": "3eeb00963e528f6b31607a0188691f123b9ba533288a58c931c98ef790cab4fc",
+      "ending_iteration": 349,
+      "transfer_check": {
+        "actor_exactly_matches_reference": false,
+        "fixed_std_verified": true,
+        "critic_weights_changed": true,
+        "critic_comparison_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-312728_flat_reference_qualification_20260919_s54_stage1\\model_149.pt",
+        "latest_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.07635683566331863,
+          "raw_action_max_abs": 1.2736015319824219,
+          "mean_gaussian_kl": 4.664292812347412,
+          "leg_target_rms_rad": 0.017250658944249153,
+          "wheel_target_rms_rad_s": 0.356271892786026,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        }
+      }
+    },
+    "55": {
+      "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-515890_flat_reference_qualification_20260919_resume1_s55_stage2\\model_349.pt",
+      "sha256": "36188d0cab87efb339dc4fb42f60123d89a9829398b662ce37a0db45ec696067",
+      "ending_iteration": 349,
+      "transfer_check": {
+        "actor_exactly_matches_reference": false,
+        "fixed_std_verified": true,
+        "critic_weights_changed": true,
+        "critic_comparison_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-317232_flat_reference_qualification_20260919_s55_stage1\\model_149.pt",
+        "latest_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.10957049578428268,
+          "raw_action_max_abs": 0.8887582421302795,
+          "mean_gaussian_kl": 9.604555130004883,
+          "leg_target_rms_rad": 0.01826995424926281,
+          "wheel_target_rms_rad_s": 0.8200509548187256,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        }
+      }
+    },
+    "56": {
+      "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_19-11-02-444885_flat_reference_qualification_20260919_resume1_s56_stage2\\model_349.pt",
+      "sha256": "ec7e2c9fa333f26507b66d3cb45d51916afa4c839e15c64024b108be7aad9e98",
+      "ending_iteration": 349,
+      "transfer_check": {
+        "actor_exactly_matches_reference": false,
+        "fixed_std_verified": true,
+        "critic_weights_changed": true,
+        "critic_comparison_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_19-07-02-874254_flat_reference_qualification_20260919_resume1_s56_stage1\\model_149.pt",
+        "latest_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.07178520411252975,
+          "raw_action_max_abs": 0.49910902976989746,
+          "mean_gaussian_kl": 4.122492790222168,
+          "leg_target_rms_rad": 0.015418131835758686,
+          "wheel_target_rms_rad_s": 0.4012598693370819,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        }
+      }
+    }
+  },
+  "actual_training_transitions_including_retained_prefix": 103219200,
+  "minimum_training_gpu_headroom": 0.16487542745481193,
+  "peak_training_temperature_c": 65.0,
+  "verified_artifact_count": 66,
+  "verified_sha256": {
+    "scripts\\b2w_height_rewards.py": "63b8dfc8e338be39d25de32a1c9a23c931a13af8ecfa859409b2c4ca1b6ab150",
+    "scripts\\b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "scripts\\b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "scripts\\benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "scripts\\benchmark_parallel4096.py": "129ba37110a42f493ae2dd537550fb4f9fc3a49a9fadac2258191b66cbb857dc",
+    "scripts\\check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "scripts\\check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "scripts\\flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "scripts\\physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "scripts\\reference_transfer.py": "9f58b032b87ad98af6d44c558f010af59d9eaef51945803826b1e66ba38273d9",
+    "scripts\\replay_reference_b2w.py": "a306cb631f8b63d26decb37595f6d98eb192745f5a6dcd8d8267898eb023b4e8",
+    "scripts\\run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "scripts\\run_reference_qualification.py": "6237ef6f45867632f5dcdb860ed6b371446af1e187478ad51b8756e73e4d33bd",
+    "scripts\\run_reference_transfer.py": "6eb74ba3b6e77096e9d17c57719c27c7796e2165fc65f3eb5ab8630018eef10c",
+    "scripts\\smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859",
+    "scripts\\train_b2w.py": "46d84df87d693b150c805f4b602213626e97f9796d9db741f81cc92aa170cccb",
+    "scripts\\yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "docs\\REFERENCE_QUALIFICATION.md": "ec04becf169a0af1f992899446b6085d10a88aad184bc7c297df951e3a12b834",
+    "docs\\results\\2026-09-19-reference-upright-final.json": "aaaa8419eada490e98f9c552875b66c9dc7a6c390d58fac8ec6acb5ba034a963",
+    "vendor\\manifest.json": "2f0e2ea83aa9808dc10787f6dc34f6dd23ec7bb96c45acd4b747250ee72dfa1a",
+    "vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+    "logs\\transfer\\flat_reference_transfer_20260919\\job.json": "8ea928b0f18f6bc40a973539464b0f4368885611691837e5a2f75711dbd649a5",
+    "logs\\transfer\\flat_reference_qualification_20260919\\job.json": "4ff194bf8c06be9d5f2fff77685c0fa77dbf9c6551378e5f4714d563013004fa",
+    "docs\\REFERENCE_QUALIFICATION_RESUME.md": "702b35eac017dcdf3f512f297f0768d5c54355f47e8a61a827855066b3a4fe7b",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s54_stage0\\manifest.json": "2c32c78f21012794e1a930dc70e880965d058838fb0be5c8e7cb2336aa19fda0",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s54_stage0\\model_49.pt": "0aacece435e488daf4c2f74eb531e8823b5bc5084bb4c81557b1fd3f3a49ac2f",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s54_stage0\\params\\env.yaml": "a8877a443881c4fa7e36dc8cc4d0582f5d9b69844206c77c765069594102d37c",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s54_stage0\\params\\agent.yaml": "5cccd8ce84dbeacaaf12e39998d570f72f20d49cc49958c4b104de786be12f47",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s55_stage0\\manifest.json": "fe55bdc37443fac313a1563a8a036fc6b9dddb3c0535b3880d2b3aa6296a33f7",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s55_stage0\\model_49.pt": "6c30e9cfebf488e20c17dd7bf890efdce1b45a84a4805d67776ff6c20cff5b40",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s55_stage0\\params\\env.yaml": "b459b61b89db83e4935745f35d8ae24d0a2851c9b74bfba866134db284c0877e",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-29-23-959490_flat_reference_qualification_20260919_s55_stage0\\params\\agent.yaml": "18b06f4660bddd058ea735dd105daff6ef1069a5299117dca3e7c94e0f590907",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-312728_flat_reference_qualification_20260919_s54_stage1\\manifest.json": "fa0039fe16c6373c9262bee55829e5b7fd4922a77976f643161951c21f10dfaf",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-312728_flat_reference_qualification_20260919_s54_stage1\\model_149.pt": "68c685834d284c524a57db95cd8618d066477898366d0aa40d557a82065d0a2f",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-312728_flat_reference_qualification_20260919_s54_stage1\\params\\env.yaml": "57a26b1c875b59deed85871c9725d047ffcc79c2cae3bad82651d3d1c3c15055",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-312728_flat_reference_qualification_20260919_s54_stage1\\params\\agent.yaml": "96d2dd7efcfb07088c94e0f25175a15a272dee9a78d2bb5f25cdc96711ba231d",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-317232_flat_reference_qualification_20260919_s55_stage1\\manifest.json": "1e5d830149b89c77d77d4764dd794c0536cd3f8b98a414219fdf7ecbafb85645",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-317232_flat_reference_qualification_20260919_s55_stage1\\model_149.pt": "5bb36ad50a75bd832a9d464e71adeea6526706a8386bcf83d0693294e8921f14",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-317232_flat_reference_qualification_20260919_s55_stage1\\params\\env.yaml": "641568225883653498beee2d6f58e3f9adb91aa107effd807bc8a602a16c16d4",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-32-24-317232_flat_reference_qualification_20260919_s55_stage1\\params\\agent.yaml": "24f2c7c42feff4d6e1df75fc022c6ce1a5c4cf38faaf9f1a268fe050bb01a95a",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_16-49-19-081908_flat_reference_transfer_20260919_seed52_0\\params\\env.yaml": "2951eecf08b44fce98f478e09b6257242484950bb895e32aed92dd1eec795a4d",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_16-49-19-081908_flat_reference_transfer_20260919_seed52_0\\params\\agent.yaml": "520d43c7e8629f94263f6d7fb32e7273589562fbbec4e6460a7e07e6077faf28",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_16-56-19-032095_flat_reference_transfer_20260919_seed52_1\\params\\env.yaml": "44d6812d04191656bb35c08a1ebfbb590c37b3a5c86269a3bb401c2754f3cac8",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_16-56-19-032095_flat_reference_transfer_20260919_seed52_1\\params\\agent.yaml": "12faae91833f3b4b602293789c7d3a71b38faeb984d6554ec6d880779dae58ed",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_17-50-31-518061_flat_ref_upright_s52_20260919\\params\\env.yaml": "aa804dd77a546f1f31d576a57fdde08362ce8b1e3e2debdf59615fcc5cf128b7",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_17-50-31-518061_flat_ref_upright_s52_20260919\\params\\agent.yaml": "e138348ffa930e24fd31c76d1b61414d358240ded02b9dec941f1b7aa4a20e41",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\report.json": "41171ed3310c08924610268126a50817e6b3b5cd4f144183ef2ea90be2a30e5c",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-508380_flat_reference_qualification_20260919_resume1_s54_stage2\\model_349.pt": "3eeb00963e528f6b31607a0188691f123b9ba533288a58c931c98ef790cab4fc",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt": "f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed55\\export\\report.json": "1fd4c08b7d12623925edc212dae9f8b567b687de6679ece284f8bb2099aa4b93",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-515890_flat_reference_qualification_20260919_resume1_s55_stage2\\model_349.pt": "36188d0cab87efb339dc4fb42f60123d89a9829398b662ce37a0db45ec696067",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed55\\export\\policy-contract-export\\policy.pt": "7b391eb03905d39ffe0e7841feac57649a47858a8df626fe786c9342ba1b8d20",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed56\\export\\report.json": "fae4825eeecc3d6a17e58119a1c3e88ffe38a960d6885109d9caeb4d4615f06d",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_19-11-02-444885_flat_reference_qualification_20260919_resume1_s56_stage2\\model_349.pt": "ec7e2c9fa333f26507b66d3cb45d51916afa4c839e15c64024b108be7aad9e98",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed56\\export\\policy-contract-export\\policy.pt": "a1bdea327009c7aaea11dbda3daa7b64cd516948ac7fb60bcd46c6760681dd7e",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\reference\\nominal.json": "b38d3732e52798fb7871e48a26c375abfd3136e35d7a4647dc1c4184e59ee4e9",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\reference\\bounded_v1.json": "e6e09c6f7059ead0dae6ccb88309dd3ac3dad60e87a4e7842c903fa73439a637",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\nominal.json": "114452fc38937f3c261414d70cac66c5ac515358b322a83139baef3403748e1f",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\bounded_v1.json": "8a1a4411c225e69ffc66bee9de9191188669243b6c86adfb5766561dca423364",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed55\\nominal.json": "4e38d8542074fc524278320ff83636d73b20076669ca864522b9c54776256155",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed55\\bounded_v1.json": "22550382fa3bf33bb36af2e7f208cb263b1b59830463f83d37d65b36b4065581",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed56\\nominal.json": "43131bcb73f6bbb30f18387a7d554b4378c2e9407e183dc06536f559559d2026",
+    "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed56\\bounded_v1.json": "6a471cbb65219d38115c78525baa536b041f35c0f28ac7e7c0bef1d2c5ebcea8",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-508380_flat_reference_qualification_20260919_resume1_s54_stage2\\manifest.json": "681902b1fd3fb5473ab00b1603385ecb483d8c8b7b05d8e9cbc0b3071e0db009",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-515890_flat_reference_qualification_20260919_resume1_s55_stage2\\manifest.json": "7a344fc289019c9e0965a44edc82b3d4440f9c7857caaf6b00f349b01a0e613f",
+    "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_19-11-02-444885_flat_reference_qualification_20260919_resume1_s56_stage2\\manifest.json": "834a7203480e0b11f165256774b56ec5ab1e091984c883f13ba5180fe12efbaa"
+  },
+  "scope": "Three fresh critics/optimizers/RNG seeds sharing pretrained reference actor; Flat transfer only; no demonstrated superiority or Rough/hardware acceptance"
+}

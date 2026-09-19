@@ -120,3 +120,13 @@ development evaluations100/100 и scenario tracking pass. Это основан�
 зафиксировать режим для [трёх новых seeds](REFERENCE_QUALIFICATION.md),
 а не доказательство превосходства reference или готовности к Rough.
 [Итог с hashes](results/2026-09-19-reference-upright-final.json).
+
+### Квалификация19.09,22:26 МСК
+
+Замороженный режим воспроизведён на новых54/55/56: все6 оценок на двух новых
+наборах по100 эпизодов прошли полностью, tracking в пределах0,20/0,20/0,25.
+Reference на тех же двух наборах тоже100/100. Это подтверждает повторяемость
+переноса в Flat-покрытии; общий выигрыш над reference не доказан.
+[Пересчёт метрик и66 проверенных hashes](results/2026-09-19-reference-qualification-verification.json).
+Следующий исследовательский этап — Rough с отдельным runtime/terrain gate
+и Flat regression; продолжать весовые Flat sweeps по текущим данным незачем.

@@ -3,14 +3,14 @@
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 
-**Reference transfer прошёл итог350 на seeds52/53:** все четыре оценки
-nominal/bounded_v1 —100/100, scenario tracking в порогах.
-[Проверенный итог](docs/results/2026-09-19-reference-upright-final.json).
-Успешный режим:50 critic +100 PPO с recovery reset, затем200 PPO с upright reset.
-Flat transfer gate ещё открыт: [квалификация seeds54/55/56](docs/REFERENCE_QUALIFICATION.md)
-остановилась после150 у54/55 из-за проверки пути resume.
-[Исправление](docs/REFERENCE_QUALIFICATION_RESUME.md) сохраняет weights и бюджет;
-обучение возобновлено21:54 МСК, новые updates и нагрузка GPU проверены. Reference/seed49 и финалы52/53 сохранены.
+**Flat transfer прошёл квалификацию19.09.2026 в22:26 МСК.**
+Три новых seeds54/55/56, по350 updates: все шесть nominal/bounded_v1 оценок
+по100/100; tracking выполнен в каждом семействе. Проверены66 artifacts/hashes.
+[Итоговая проверка](docs/results/2026-09-19-reference-qualification-verification.json),
+[протокол](docs/REFERENCE_QUALIFICATION.md).
+Это воспроизводимое дообучение общего pretrained actor в указанном Flat-покрытии.
+Следующий этап — отдельный Rough GPU smoke и curriculum с Flat regression.
+Новая очередь пока не запускалась; reference/seed49 и все финалы сохранены.
 Текущая очередь и критерии решения ведутся в
 [журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
 

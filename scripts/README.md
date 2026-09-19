@@ -23,8 +23,9 @@
 | vendor_materials.py | Верификация/управление manifest pinned materials; vendor policy см. AGENTS.md |
 | sync_server.ps1 | Отдельная разрешённая синхронизация выделенного server project; не вызывается обычным Git push |
 
-## Текущая квалификация reference transfer
+## Завершённая квалификация reference transfer
 
+Завершена19.09 в22:26 МСК: все6 итоговых оценок100/100 и tracking pass.
 `run_reference_qualification.py`: seeds54/55/56, по50+100+200 updates,
 upright reset только после150. Новые cases только для финалов350;
 [замороженный протокол](../docs/REFERENCE_QUALIFICATION.md). Бюджет103219200 transitions.

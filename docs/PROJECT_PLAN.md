@@ -2,12 +2,14 @@
 
 Актуализирован 19 сентября 2026. Цель — воспроизводимое полезное управление B2W
 по Flat, затем Rough/обычным лестницам и отдельно sim2real.
-Reference transfer seeds52/53 завершён19.09 в21:04:52 МСК: все4 final350
-оценки100/100 и tracking pass. [Проверенный итог](results/2026-09-19-reference-upright-final.json).
-Следующий шаг — [три новых fine-tuning seeds54/55/56](REFERENCE_QUALIFICATION.md),
-тот же успешный режим50+100+200 и два новых набора cases. Flat transfer gate
-остаётся открытым до шести отдельных passes. После технической остановки на150
-у54/55 — [возобновление без повторного обучения](REFERENCE_QUALIFICATION_RESUME.md). Состояние — в [журнале](TRAINING_PROGRESS.md).
+**Flat transfer gate пройден19.09 в22:26:37 МСК.** Три новых seeds54/55/56,
+по350 updates: шесть отдельных evaluations100/100, все scenario tracking gates
+выполнены. Reference тоже прошёл оба новых набора. Проверены66 artifacts/hashes.
+[Итог и hashes](results/2026-09-19-reference-qualification-verification.json).
+Квалификация подтверждает повторяемость fine-tuning общего reference actor;
+она не закрывает обучение с нуля, Rough или аппаратные испытания.
+Следующий этап — отдельный Rough GPU smoke, затем зарегистрированный curriculum
+с Flat regression. Он пока не запущен. Состояние — в [журнале](TRAINING_PROGRESS.md).
 
 ## Почему меняем подход
 
@@ -37,7 +39,7 @@ Reference и seed49 уже показали безопасный Flat на пр�
 Последний stage остановлен. Превышение drift seed53 существовало до его первого
 PPO-update; upright resume smoke на обоих seeds прошёл при прежнем лимите.
 Продолжение [REFERENCE_RESUME](REFERENCE_RESUME.md) завершено успешно на350.
-Текущий протокол — [REFERENCE_QUALIFICATION](REFERENCE_QUALIFICATION.md).
+Пройденный qualification протокол — [REFERENCE_QUALIFICATION](REFERENCE_QUALIFICATION.md).
 Исторический recipe ниже сохраняет происхождение parent checkpoints.
 
 1. Проверить reference actor 57→16, Identity normalizer и точную загрузку.
@@ -65,12 +67,18 @@ Development pass означает работоспособный путь доо
 навыка, а не улучшение reference. Сравнивать отдельно safety, worst-scenario
 tracking и предконтактные данные; рост суммарной training reward не доказательство.
 
-После успеха заморозить весь recipe и проверить три ещё не использованных
-fine-tuning seeds с новыми двумя наборами cases. Они разделяют pretrained actor:
-это воспроизводимость переноса, не обучения с нуля. Каждый финал должен отдельно
-пройти оба профиля. При неуспехе — сохранить рабочий reference/seed49, проверить
-drift и mismatch recovery/Flat; следующая гипотеза — распределение reset либо
-явные safety costs, но не автоматический contact−12 или новый sweep.
+Успешный recipe50 critic +100 recovery PPO +200 upright PPO заморожен и
+проверен на новых seeds54/55/56 и evaluation seeds2026091961/2026091962.
+Все три финала350 отдельно прошли nominal и bounded_v1. Квалификация закрыта.
+Остановка координатора после150 у54/55 исправлена без повторения updates:
+собственный load_run проверяется по checkpoint/hash/seed, параметры не изменены.
+[Дополнение к протоколу](REFERENCE_QUALIFICATION_RESUME.md).
+
+Следующее решение: сохранить все три квалифицированных финала как Flat anchors;
+до нового обучения проверить Rough runtime/terrain, зафиксировать контракт,
+curriculum и критерии Rough/Flat regression. Старые evaluation cases теперь
+раскрыты: годятся для regression, но не должны выдаваться за новую независимую
+приёмку после подбора параметров. Автопродление Flat ради reward не требуется.
 
 ## Архитектура и границы
 
@@ -98,7 +106,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 |---|---|---|
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
-| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development2/2 пройден;54/55 на150, исправлен coordinator resume |
+| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Пройден19.09:54/55/56, все6 оценок100/100 и tracking pass |
 | Rough | Отдельный GPU smoke; performance curriculum и Flat regression | Не запускался |
 | Stairs | Удержанные семейства up/down, размеры геометрии | Не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |

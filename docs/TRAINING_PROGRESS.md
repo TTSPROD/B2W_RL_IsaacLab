@@ -1,43 +1,49 @@
 # Результаты обучения B2W
 
-**19.09.2026,21:04:52 МСК: upright continuation завершён успешно.**
-Оба seeds52/53 достигли350 updates; все четыре nominal/bounded_v1 оценки
-прошли100/100 и scenario tracking. Hashes source/checkpoints/exports/reports
-проверены; actor отличается от reference, critic обновлён, std0,1 сохранён.
-[Полный итог](results/2026-09-19-reference-upright-final.json).
+**19.09.2026,22:26:37 МСК: квалификация Flat transfer завершена успешно.**
+Tри новых seeds54/55/56 достигли350 updates. Все шесть nominal/bounded_v1
+оценок —100/100 и scenario tracking pass; reference прошёл оба набора100/100.
+**Flat transfer gate пройден** в зарегистрированном покрытии.
+[Полный итог](results/2026-09-19-reference-qualification-resume-final.json),
+[независимая проверка66 artifacts/hashes](results/2026-09-19-reference-qualification-verification.json).
 
 | Policy/profile | Safe | Худший scenario RMS vx/vy/yaw |
 |---|---|---|
-|52 nominal|100/100|0,07497 /0,16763 /0,14924|
-|52 bounded_v1|100/100|0,08183 /0,15839 /0,16734|
-|53 nominal|100/100|0,05856 /0,15219 /0,16517|
-|53 bounded_v1|100/100|0,06424 /0,15036 /0,19387|
+|reference nominal|100/100|0.06274 / 0.15614 / 0.18812|
+|reference bounded_v1|100/100|0.06669 / 0.16566 / 0.20019|
+|seed54 nominal|100/100|0.07274 / 0.16361 / 0.17009|
+|seed54 bounded_v1|100/100|0.07994 / 0.17686 / 0.17140|
+|seed55 nominal|100/100|0.08311 / 0.16114 / 0.17033|
+|seed55 bounded_v1|100/100|0.09149 / 0.16298 / 0.15879|
+|seed56 nominal|100/100|0.06437 / 0.16010 / 0.16601|
+|seed56 bounded_v1|100/100|0.06911 / 0.17542 / 0.16940|
 
-Пороги0,20/0,20/0,25 выполнены отдельно в каждом семействе. Это сохранение
-навыка на раскрытых development cases, не доказанное превосходство reference.
-Минимальный запас VRAM17,90%, peak10084 MiB,64°C, telemetry errors0.
+Пороги vx/vy≤0,20 м/с и yaw≤0,25 рад/с выполнены в каждом семействе.
+Raw reports пересчитаны; policy/checkpoint/source hashes, export/live parity и
+одинаковые cases/physical samples проверены. Все финальные actors отличаются от
+reference, critics обновлены, std0,1 сохранён. Это воспроизводимость переноса
+общего pretrained actor, не обучение с нуля и не доказанное общее превосходство
+над reference. Worst yaw ниже, но worst vx у новых политик выше контрольного.
 
-Квалификация54/55/56 остановилась19.09 в21:37:39 МСК после успешных150 updates
-у54/55. Train exits0, telemetry errors0, drift0,06959/0,05920. Ошибка оркестратора:
-сравнение agent.yaml ошибочно требовало одинаковый load_run у разных seeds.
-[Исходный failed report](results/2026-09-19-reference-qualification-final.json) сохранён.
+Основной бюджет:103219200 transitions, включая сохранённые первые150 у54/55.
+Ни повторов, ни продления. Минимальный запас VRAM16,49%, max65°C, telemetry errors0.
+Рабочие checkpoints model_349 и exports для всех трёх seeds сохранены; точные
+пути/SHA256 — в verification JSON. Weights/runtime не входят в Git.
 
-[Исправление и продолжение](REFERENCE_QUALIFICATION_RESUME.md): проверять load_run
-по собственному parent/hash/seed, затем сравнивать все обучающие параметры.
-Checkpoints50/150 повторно проверены. Продолжить54/55 от model_149 ещё200 updates,
-затем56 fresh50+100+200. Уже выполненные150 не повторяются; бюджет, параметры,
-новые evaluation cases и thresholds неизменны. **Возобновлено21:54 МСК.**
-Первые PPO updates после150 выполнены обоими trainers; фактические env/agent configs
-совпадают с успешным upright stage после проверки собственного load_run.
-[Проверка запуска и GPU](results/2026-09-19-reference-qualification-resume-launch.json).
-Обновлённый ETA итогов22:25–22:35 МСК; возможна ранняя остановка guards.
-Flat transfer gate открыт до итоговых шести passes; Rough ещё не запускался.
+Очередь завершена; низкая загрузка GPU после22:26 ожидаема. Следующий этап по
+плану — отдельный Rough GPU smoke и curriculum с Flat regression. Не запущен.
 
-Исходный recovery-only final остановлен20:06:06 МСК: drift seed53 был0,25163
-до update и0,25031 после при guard0,25. [Исходный failed job](results/2026-09-19-reference-transfer-final.json)
-не переписан. Успешное продолжение началось от model_149; failed/probe updates
-отброшены, единственная MDP-поправка — reset roll/pitch±0,1 рад после150.
-[Диагностика/протокол](REFERENCE_RESUME.md). Reference/seed49 и все родители сохранены.
+История: development52/53 успешно завершён21:04, все4 оценки100/100.
+[Development итог](results/2026-09-19-reference-upright-final.json).
+Qualification остановилась21:37 после150 у54/55 из-за ошибочного сравнения
+load_run; оба train были успешны. [Исходный failed job](results/2026-09-19-reference-qualification-final.json)
+сохранён. Проверка собственного parent исправлена, продолжение21:54 использовало
+те же model_149 без повторных updates. [Протокол исправления](REFERENCE_QUALIFICATION_RESUME.md).
+
+Ещё более ранний recovery-only final52/53 остановлен drift guard:
+[исторический отчёт](results/2026-09-19-reference-transfer-final.json).
+Его failed/probe updates не вошли в принятые lineage; upright после150
+был отдельным зарегистрированным изменением. Reference/seed49 сохранены.
 
 ## Что установлено
 
