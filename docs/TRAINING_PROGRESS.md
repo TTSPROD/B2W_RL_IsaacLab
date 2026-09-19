@@ -10,7 +10,10 @@ tracking в порогах. Final350 не достигнут; исходный j
 обоих seeds завершилась exit0 с drift ниже порога.
 Подготовлено [ограниченное продолжение](REFERENCE_RESUME.md): ещё200 updates/seed
 от исходных model_149, только reset roll/pitch±0,1; rewards/PPO/guard не меняются.
-Запуск этой новой очереди пока не подтверждён.
+**Продолжение запущено:** снимок19.09,20:52:20 МСК —177/177 cumulative updates,
+оба4096-env trainer активны, drift ниже0,25, hashes источников совпадают.
+[Подтверждённый запуск](results/2026-09-19-reference-upright-launch.json).
+Результат final350 ещё не оценен.
 
 Seed49/reference и исходные checkpoints сохраняются. Flat release gate открыт.
 История старта первоначальной очереди: [snapshot](results/2026-09-19-reference-transfer-launch.json).

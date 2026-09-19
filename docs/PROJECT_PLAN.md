@@ -5,7 +5,8 @@
 прошёл update150 gates, затем остановился на drift после restart.
 [Диагностика и зарегистрированное продолжение](REFERENCE_RESUME.md):
 изменить только reset roll/pitch на±0,1 рад, ещё200 updates от model_149.
-Порог drift0,25 и все Flat gates сохраняются.
+Порог drift0,25 и все Flat gates сохраняются. Продолжение
+[запущено и проверено](results/2026-09-19-reference-upright-launch.json).
 Фактическое состояние и результаты — в [журнале](TRAINING_PROGRESS.md).
 Flat release gate пока не закрыт; seed49 сохранён как прошедший локальный кандидат.
 
@@ -97,7 +98,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 |---|---|---|
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
-| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Development подготовлен |
+| Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Продолжение от150 updates запущено |
 | Rough | Отдельный GPU smoke; performance curriculum и Flat regression | Не запускался |
 | Stairs | Удержанные семейства up/down, размеры геометрии | Не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |

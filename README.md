@@ -8,8 +8,10 @@
 сохранён без дообучения. [Итог опыта](docs/CONTACT6_ABLATION.md).
 **Reference transfer прошёл gates на150 updates, затем остановлен drift guard.**
 Причина проверена: превышение было до PPO-update в recovery-состояниях.
-Подготовлено [продолжение с upright reset](docs/REFERENCE_RESUME.md) от сохранённых
-checkpoints, ещё200 updates/seed; лимит0,25 и оценочные пороги сохранены.
+Запущено [продолжение с upright reset](docs/REFERENCE_RESUME.md) от сохранённых
+checkpoints: снимок19.09,20:52:20 МСК —177/177 cumulative updates.
+[Проверка запуска](docs/results/2026-09-19-reference-upright-launch.json).
+Лимит0,25 и оценочные пороги сохранены; итог новых политик ещё не измерен.
 Текущая очередь и критерии решения ведутся в
 [журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
 
