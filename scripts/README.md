@@ -17,6 +17,8 @@
 | benchmark_b2w.py | Последовательный throughput sweep; не тест качества и не параллельный benchmark |
 | check_stand_b2w.py | Zero-action PD stand без auto-reset; отдельный механический gate |
 | check_policy_contract.py | CPU fixtures и экспорт реального project checkpoint через закреплённый exporter |
+| play_b2w_gamepad.py | Видимый Isaac Sim,1 B2W Flat, прошедшая policy54/55/56 и Xbox; [управление](../docs/GAMEPAD_PLAY.md) |
+| b2w_gamepad.py | Windows XInput, dead zone, body-frame velocity mapping, LB/stop/disconnect; simulator only |
 | replay_reference_b2w.py | Diagnostic либо flat100, profiles nominal/bounded_v1; выбранный экспорт, по умолчанию скачанный reference |
 | flat_evaluation.py | Детерминированные cases, статистика и thresholds evaluator |
 | compare_robot_models.py | Таблицы source mass/COM/inertia; не динамическая sim2sim equivalence |

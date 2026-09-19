@@ -42,6 +42,13 @@ Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048.
 63 907,87 transitions/s суммарно, peak VRAM 9 583 MiB, минимальный запас 21,98%.
 Ограничения измерений и длительные прогоны — в [COMPUTE_DECISION](COMPUTE_DECISION.md).
 
+19 сентября отдельно запущен GUI Flat replay: Isaac Sim5.1, D3D12,1 B2W,
+квалифицированный seed54, Xbox XInput. Viewport и live parity проверены;
+[инструкция/ограничения](GAMEPAD_PLAY.md), [снимок проверки](results/2026-09-19-gamepad-gui.json).
+Vulkan GUI native-crash обойдён process-local D3D12; headless runtime не менялся.
+RTX sensor extensions не входят в успешный GUI gate. Viewer не совмещать
+с benchmark/training на той же GPU.
+
 Техническая квалификация не означает приёмку политики. Rough, Stairs,
 GUI/rendering и sim2sim требуют отдельных проверок. Ubuntu 26.04 на ПК не
 использовалась и не входит в опубликованную матрицу Isaac Sim 5.1.

@@ -16,13 +16,15 @@
 
 Headless Flat технически квалифицирован на Windows / RTX 4070 Ti, в том числе
 два одновременных запуска по 4096 сред. RTX 4080 Laptop прошёл отдельную
-квалификацию; сервер к Isaac Lab не допущен. Rough/stairs, GUI, sim2sim,
+квалификацию; сервер к Isaac Lab не допущен. GUI Flat сXbox проверен отдельно черезD3D12. Rough/stairs, sim2sim,
 zero-action PD stand и аппаратные испытания имеют отдельные незакрытые gates.
 
 ## Документы
 
 | Что нужно | Документ |
 |---|---|
+| Следующие Rough/Stairs этапы | [ROUGH_STAIRS_PLAN](docs/ROUGH_STAIRS_PLAN.md) |
+| Открыть Flat и управлять Xbox-геймпадом | [GAMEPAD_PLAY](docs/GAMEPAD_PLAY.md) |
 | Текущий результат, очередь и история опытов | [TRAINING_PROGRESS](docs/TRAINING_PROGRESS.md) |
 | Следующее решение, бюджет и критерии приёмки | [PROJECT_PLAN](docs/PROJECT_PLAN.md) |
 | Исследования и выбор подхода к обучению | [REWARD_RESEARCH](docs/REWARD_RESEARCH.md) |

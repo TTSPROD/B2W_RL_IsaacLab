@@ -45,6 +45,15 @@ load_run; оба train были успешны. [Исходный failed job](re
 Его failed/probe updates не вошли в принятые lineage; upright после150
 был отдельным зарегистрированным изменением. Reference/seed49 сохранены.
 
+## Интерактивный просмотр и следующий план
+
+19.09 запущен Isaac Sim GUI с1 Flat B2W, финалом seed54 и Xbox-геймпадом.
+Рендер D3D12, runtime/physics/weights неизменны; viewport и live parity проверены.
+[Управление](GAMEPAD_PLAY.md), [GUI свидетельство](results/2026-09-19-gamepad-gui.json).
+Новая training очередь не запущена. [План Rough/Stairs](ROUGH_STAIRS_PLAN.md)
+обновлён по успешному transfer: отдельный Rough smoke, actor-only перенос,
+свежий critic, короткие бюджеты, Flat regression, stairs up/down отдельным gate.
+
 ## Что установлено
 
 | Опыт | Результат | Решение и источник |

@@ -8,8 +8,10 @@
 [Итог и hashes](results/2026-09-19-reference-qualification-verification.json).
 Квалификация подтверждает повторяемость fine-tuning общего reference actor;
 она не закрывает обучение с нуля, Rough или аппаратные испытания.
-Следующий этап — отдельный Rough GPU smoke, затем зарегистрированный curriculum
-с Flat regression. Он пока не запущен. Состояние — в [журнале](TRAINING_PROGRESS.md).
+Следующий этап — [ограниченный Rough/Stairs transfer](ROUGH_STAIRS_PLAN.md):
+отдельные runtime/terrain gates, actor от квалифицированного Flat seed54,
+свежий privileged critic, curriculum и обязательная Flat regression.
+Rough/Stairs пока не запускались. Состояние — в [журнале](TRAINING_PROGRESS.md).
 
 ## Почему меняем подход
 
@@ -75,8 +77,8 @@ tracking и предконтактные данные; рост суммарно
 [Дополнение к протоколу](REFERENCE_QUALIFICATION_RESUME.md).
 
 Следующее решение: сохранить все три квалифицированных финала как Flat anchors;
-до нового обучения проверить Rough runtime/terrain, зафиксировать контракт,
-curriculum и критерии Rough/Flat regression. Старые evaluation cases теперь
+до нового обучения реализовать и проверить [Rough runtime/terrain, контракт,
+curriculum и критерии Rough/Flat regression](ROUGH_STAIRS_PLAN.md). Старые evaluation cases теперь
 раскрыты: годятся для regression, но не должны выдаваться за новую независимую
 приёмку после подбора параметров. Автопродление Flat ради reward не требуется.
 
@@ -107,8 +109,8 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
 | Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Пройден19.09:54/55/56, все6 оценок100/100 и tracking pass |
-| Rough | Отдельный GPU smoke; performance curriculum и Flat regression | Не запускался |
-| Stairs | Удержанные семейства up/down, размеры геометрии | Не запускался |
+| Rough | Smoke/throughput; 2 development seeds50+100+200; затем3 новых qualification seeds; Flat regression | План зафиксирован, реализация/запуск впереди |
+| Stairs | Отдельный straight-march evaluator; up/down0,05–0,18 м; 2 development +3 qualification seeds; Rough/Flat regression | После Rough qualification, не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |
 | SDK/hardware | Offline replay→fault tests→стенд→ограниченные испытания | Управление не разрешено |
 
@@ -127,22 +129,29 @@ height0,4–0,8 m, non-wheel contact≤1 N. Пороги не ослабляют
 Для Rough/parkour политика допустимых контактов задаётся отдельно: опора на
 колено встречается в опубликованных системах и не равна допустимому Flat-контакту.
 
-Rough/Stairs: предварительно ≥95% успешных эпизодов/проходов на каждом
-удержанном семействе, energy/slip/saturation и все нарушения опубликованы.
-Flat regression после этапа: success хуже не более2 п.п., tracking не более10%.
+Rough/Stairs: ≥95% на каждом family/level/profile каждого seed; stairs up/down
+раздельно. Проверять завершение маршрута, collisions, terrain-relative clearance,
+energy/slip/saturation; world-z Flat0,4–0,8 м на ступени не переносить.
+Flat regression всегда сохраняет исходные ≥99/100 и RMS0,20/0,20/0,25, дополнительно
+ограничивает деградацию относительно frozen parent. Полные budgets, геометрия,
+пороги и stops — в [Rough/Stairs плане](ROUGH_STAIRS_PLAN.md).
 Sim2sim: отсутствие NaN/перестановок, целевой разрыв success≤5 п.п.
-Конкретные industrial лестницы и hardware limits требуют измерений.
+Industrial лестницы, perceptive/history ABI и hardware limits — отдельные gates.
 
 ## Последующие задачи
 
-- P0: выполнить короткий transfer с ранними gates и зафиксировать фактический итог.
-- P1: при успехе — три новых fine-tuning seeds и новые hold-outs; при отказе —
-  один причинный пересмотр с ограниченным бюджетом.
+- Завершено: короткий Flat transfer и qualification54/55/56 на новых cases.
+- P0: реализовать Rough actor-only transfer с новым critic ABI, evaluator,
+  геометрическими fixtures и GPU smoke; измерить throughput до назначения env count.
+- P1: Rough2-seed development50+100+200 и Flat regression; только после общего
+  pass —3 новых seeds/hold-outs. При fail — одна причинная проверка, без продления.
+- P1: после Rough qualification — straight stairs up/down с отдельными геометриями,
+  stop/landing метриками и прежними Rough/Flat gates.
 - P1: artifact store с SHA256; Git хранит код/отчёты, но не training checkpoints.
 - P1: saturation contract, zero-action PD просадка, actuator/contact/geometry;
   сохранить отдельный успешный seed49.
-- P2: Rough GPU qualification, curriculum по измеренному успеху и сохранение Flat
-  в task mix. History/estimator/constraints только отдельным изменением ABI.
+- P2: history/estimator/perception/constraints — только отдельная проверка после
+  измеренного ограничения blind actor; новый ABI и соответствующая квалификация.
 - P3: MuJoCo, SDK2 replay без actuation, firmware/signs/CRC/watchdog/latency,
   затем отдельно разрешаемые hardware gates.
 

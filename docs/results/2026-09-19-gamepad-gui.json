@@ -1,0 +1,99 @@
+{
+  "verified_at": "2026-09-19T19:49:24.474351+00:00",
+  "scope": "Interactive GUI Flat playback, not new policy qualification",
+  "session_status": {
+    "status": "running",
+    "started_utc": "20260919T194532Z",
+    "policy_seed": 54,
+    "task": "RobotLab-Isaac-Velocity-Flat-Unitree-B2W-v0",
+    "policy": "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+    "policy_sha256": "f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee",
+    "checkpoint_sha256": "3eeb00963e528f6b31607a0188691f123b9ba533288a58c931c98ef790cab4fc",
+    "controller": "Windows XInput Xbox",
+    "gamepad_index": 0,
+    "graphics_api": "d3d12",
+    "simulation_only": true,
+    "num_envs": 1,
+    "physics_dt": 0.005,
+    "policy_dt": 0.02,
+    "command_limits_vx_vy_yaw": [
+      0.5,
+      0.3,
+      0.5
+    ],
+    "dead_zone": 0.15,
+    "source_sha256": {
+      "scripts\\play_b2w_gamepad.py": "4771dd5c8d0baf8f55f41bcdfcaa6a9e52fd359fd718b7b0f67fbd1ab4c84f22",
+      "scripts\\b2w_gamepad.py": "a8703cb7828d669069d0ff9df2566881ed38b49ac475e63506982ce30856216c",
+      "scripts\\b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+      "scripts\\check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce"
+    },
+    "ui_automation_note": "Computer Use helper unavailable (Windows1058); viewport captured through native Kit API",
+    "updated_utc": "2026-09-19T19:49:23.664261+00:00",
+    "policy_frames": 2395,
+    "sim_seconds": 47.9,
+    "wall_seconds": 141.98962589999428,
+    "gamepad_connected": true,
+    "gamepad_packet": 419,
+    "packet_changes": 108,
+    "buttons": 0,
+    "sticks": [
+      634,
+      -156,
+      -78,
+      -217
+    ],
+    "command": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "root_position": [
+      1.1028850078582764,
+      -0.8150286078453064,
+      0.6215822696685791
+    ],
+    "actual_velocity": [
+      -0.00025122659280896187,
+      -0.0011562423314899206,
+      -0.0005049359169788659
+    ],
+    "resets": 0,
+    "motion_command_frames": 475,
+    "fallen": false,
+    "live_observation_max_error": 0.0,
+    "live_action_target_max_error": 0.0,
+    "viewport_capture": "logs\\teleop\\20260919T194532Z\\viewport.png",
+    "gui_status": "READY - hold LB to move"
+  },
+  "viewport_sha256": "b9fffb87650559920f72afbd2e7534bbc398946d2cbb4dec1344c095c708777a",
+  "viewport_visually_inspected": true,
+  "observed_controller_motion": true,
+  "cpu_tests_passed": 116,
+  "launch_attempts": [
+    {
+      "log_prefix": "logs/teleop/viewer_20260919_224136",
+      "graphics": "Vulkan",
+      "result": "native RTX crash; h5py import error"
+    },
+    {
+      "log_prefix": "logs/teleop/viewer_20260919_224440",
+      "graphics": "Vulkan with h5py preload",
+      "result": "native RTX crash remains"
+    },
+    {
+      "log_prefix": "logs/teleop/viewer_20260919_224531",
+      "graphics": "D3D12 with h5py preload",
+      "result": "GUI and policy running"
+    }
+  ],
+  "limitations": [
+    "Computer Use unavailable due Windows1058; inspected native Kit viewport capture.",
+    "Optional isaacsim.sensors.rtx extension reports DLL startup error; this blind Flat viewer uses no RTX sensors.",
+    "Only interactive GUI observed; heldout quality comes from the separately passed Flat qualification.",
+    "Observed GUI speed about0.34x real time; physics/control frequencies refer to simulation time."
+  ],
+  "training_or_robot_actuation_started": false,
+  "user_confirmed_gamepad_motion": true,
+  "measured_gui_realtime_factor": 0.33734858935213186
+}

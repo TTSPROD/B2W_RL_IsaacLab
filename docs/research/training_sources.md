@@ -5,6 +5,24 @@
 
 Проверено: **17 сентября 2026**. Это исследование исходного кода и первичных публикаций, а не отчёт об уже проведённом обучении. Проекты, ранее находившиеся на сервере пользователя, не использовались. Предлагаемые критерии и эксперименты ниже — проектные решения, а не заявленные авторами результаты для нашего робота.
 
+## Решение после Flat qualification — 19 сентября 2026
+
+Seeds54/55/56 прошли все шесть новых Flat evaluations; результаты и66 hashes
+[проверены отдельно](../results/2026-09-19-reference-qualification-verification.json).
+Текущий [Rough/Stairs план](../ROUGH_STAIRS_PLAN.md) заменяет предварительные
+порядок вычислений и training budgets исторического исследования ниже.
+Сначала переносим квалифицированный Flat actor57→16, калибруем свежий Rough
+critic с height scan; GPU qualification и развитие сложности отдельные.
+Текущая площадка — desktop Windows, сервер не квалифицирован.
+
+Проверка pinned Isaac Lab v2.3.2 выявила два практических ограничения:
+[uniform height field](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab/isaaclab/terrains/height_field/hf_terrains.py)
+игнорирует difficulty; [штатный curriculum](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/mdp/curriculums.py)
+повышает уровень по distance, не по safe traversal. Поэтому нужны явные geometry
+presets и success-aware promotion, реализованные вне vendor. Численные уровни,
+50+100+200 updates, доли task mix и приёмочные пороги — локальные гипотезы,
+не рецепт или результаты авторов публикаций.
+
 ## Дополнение 19 сентября 2026: переиспользование навыка
 
 [Parkour in the Wild, §2.3](https://arxiv.org/html/2505.11164v1#S2.SS3)
