@@ -51,7 +51,10 @@ def axis(value, dead_zone=.15):
 
 class CommandMapper:
     """Hold LB to drive; release/disconnect/B immediately requests zero velocity."""
-    def __init__(self):
+    def __init__(self, max_forward=1.0, max_lateral=1.0, max_yaw=1.0):
+        if any(not 0 < limit <= 1. for limit in (max_forward, max_lateral, max_yaw)):
+            raise ValueError('Velocity command limits must be within (0, 1]')
+        self.max_forward, self.max_lateral, self.max_yaw = max_forward, max_lateral, max_yaw
         self.previous_buttons = 0
         self.command = (0., 0., 0.)
         self.blocked = False
@@ -70,7 +73,7 @@ class CommandMapper:
             self.command = (0., 0., 0.)
         else:
             # Robot axes: x forward, y left, positive yaw left.
-            target = (.5 * axis(state.ly), -.3 * axis(state.lx), -.5 * axis(state.rx))
+            target = (self.max_forward * axis(state.ly), -self.max_lateral * axis(state.lx), -self.max_yaw * axis(state.rx))
             self.command = tuple(old + max(-rate * dt, min(rate * dt, new - old))
-                                 for old, new, rate in zip(self.command, target, (.8, .6, 1.2)))
+                                 for old, new, rate in zip(self.command, target, (2., 2., 3.)))
         return self.command, reset, camera

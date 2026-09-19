@@ -8,8 +8,14 @@ class GamepadTests(unittest.TestCase):
         for x in (-2000,0,2000):self.assertEqual(axis(x),0.)
         self.assertEqual(axis(32767),1.);self.assertEqual(axis(-32768),-1.)
         m=CommandMapper(); cmd,_,_=m.advance(PadState(True,buttons=LB,lx=32767,ly=32767,rx=32767),1.)
-        self.assertEqual(cmd,(.5,-.3,-.5))
+        self.assertEqual(cmd,(1.,-1.,-1.))
         with self.assertRaises(ValueError):axis(float('nan'))
+
+    def test_configurable_limits(self):
+        m=CommandMapper(.8,.6,.7)
+        self.assertEqual(m.advance(PadState(True,buttons=LB,lx=-32768,ly=32767,rx=32767),1.)[0],(.8,.6,-.7))
+        for limits in ((0,1,1),(1,1.1,1),(1,1,float('nan'))):
+            with self.assertRaises(ValueError): CommandMapper(*limits)
 
     def test_release_disconnect_brake_and_rearm(self):
         m=CommandMapper(); moving=PadState(True,buttons=LB,ly=32767)
@@ -25,7 +31,7 @@ class GamepadTests(unittest.TestCase):
 
     def test_reset_edge_and_slew_limit(self):
         m=CommandMapper();moving=PadState(True,buttons=LB,ly=32767)
-        self.assertAlmostEqual(m.advance(moving,.02)[0][0],.016)
+        self.assertAlmostEqual(m.advance(moving,.02)[0][0],.04)
         pressed=PadState(True,buttons=LB|A,ly=32767)
         cmd,reset,_=m.advance(pressed,.02)
         self.assertTrue(reset);self.assertEqual(cmd,(0.,0.,0.))

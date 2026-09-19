@@ -42,12 +42,17 @@ Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048.
 63 907,87 transitions/s суммарно, peak VRAM 9 583 MiB, минимальный запас 21,98%.
 Ограничения измерений и длительные прогоны — в [COMPUTE_DECISION](COMPUTE_DECISION.md).
 
-19 сентября отдельно запущен GUI Flat replay: Isaac Sim5.1, D3D12,1 B2W,
-квалифицированный seed54, Xbox XInput. Viewport и live parity проверены;
-[инструкция/ограничения](GAMEPAD_PLAY.md), [снимок проверки](results/2026-09-19-gamepad-gui.json).
-Vulkan GUI native-crash обойдён process-local D3D12; headless runtime не менялся.
-RTX sensor extensions не входят в успешный GUI gate. Viewer не совмещать
-с benchmark/training на той же GPU.
+19 сентября GUI Flat replay ускорен до примерно 48,8 policy frames/s и 0,976×
+real time: Isaac Sim5.1,1 B2W seed54, Xbox XInput. Рабочий default — Storm/Vulkan
+raster rendering, CPU PhysX и CPU TorchScript с 1 потоком; physics dt0,005 с,
+decimation4 сохранены. Проектный `apps/b2w.gamepad.storm.kit` включает Hydra pxr,
+отключает Fabric и обновляет pose через USD. RTX/ray tracing/DLSS не используются.
+PXR extensions из официального registry хранятся в проектном cache. Headless
+training runtime не менялся; CPU playback не расширяет его квалификацию.
+[Управление и ограничения](GAMEPAD_PLAY.md), [замер](results/2026-09-19-gamepad-performance.json).
+Первый GPU/RTX D3D12 viewer0,34× real time сохранён в
+[историческом отчёте](results/2026-09-19-gamepad-gui.json); legacy-путь доступен явно.
+Viewer не совмещать с benchmark/training на той же GPU.
 
 Техническая квалификация не означает приёмку политики. Rough, Stairs,
 GUI/rendering и sim2sim требуют отдельных проверок. Ubuntu 26.04 на ПК не

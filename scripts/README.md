@@ -17,7 +17,7 @@
 | benchmark_b2w.py | Последовательный throughput sweep; не тест качества и не параллельный benchmark |
 | check_stand_b2w.py | Zero-action PD stand без auto-reset; отдельный механический gate |
 | check_policy_contract.py | CPU fixtures и экспорт реального project checkpoint через закреплённый exporter |
-| play_b2w_gamepad.py | Видимый Isaac Sim,1 B2W Flat, прошедшая policy54/55/56 и Xbox; [управление](../docs/GAMEPAD_PLAY.md) |
+| play_b2w_gamepad.py | Isaac Sim Storm/Vulkan, CPU physics/policy,1 B2W Flat54/55/56 и Xbox; лимиты 1/1/1 через CLI, около real time; [управление](../docs/GAMEPAD_PLAY.md) |
 | b2w_gamepad.py | Windows XInput, dead zone, body-frame velocity mapping, LB/stop/disconnect; simulator only |
 | replay_reference_b2w.py | Diagnostic либо flat100, profiles nominal/bounded_v1; выбранный экспорт, по умолчанию скачанный reference |
 | flat_evaluation.py | Детерминированные cases, статистика и thresholds evaluator |
@@ -27,12 +27,12 @@
 
 ## Завершённая квалификация reference transfer
 
-Завершена19.09 в22:26 МСК: все6 итоговых оценок100/100 и tracking pass.
-`run_reference_qualification.py`: seeds54/55/56, по50+100+200 updates,
-upright reset только после150. Новые cases только для финалов350;
-[замороженный протокол](../docs/REFERENCE_QUALIFICATION.md). Бюджет103219200 transitions.
+Завершена 19.09 в 22:26 МСК: все 6 итоговых оценок 100/100 и tracking pass.
+`run_reference_qualification.py`: seeds54/55/56, по 50+100+200 updates,
+upright reset только после 150. Новые cases только для финалов 350;
+[замороженный протокол](../docs/REFERENCE_QUALIFICATION.md). Бюджет 103219200 transitions.
 `--resume-validated-prefix` продолжает только подтверждённую техническую остановку
-после150 у54/55; собственные parent hashes проверяются, бюджет не повторяется.
+после 150 у 54/55; собственные parent hashes проверяются, бюджет не повторяется.
 Статус — в журнале. Исходные координаторы ниже сохраняют историю development.
 
 ## Исходный reference transfer
@@ -109,7 +109,7 @@ replay_reference_b2w.py всегда сохраняет имена звенье�
 run_yaw_reward_ablation.py продолжает обе группы от одного завершённого mix
 checkpoint: 1000 updates,4096 сред, weight1.5/3.0. После training сохраняет
 exports, восемь evaluations и автоматический comparison.json.
-[Протокол](../docs/YAW_REWARD_ABLATION.md). Привязан к локальным артефактам17.09.2026.
+[Протокол](../docs/YAW_REWARD_ABLATION.md). Привязан к локальным артефактам 17.09.2026.
 train_b2w.py принимает --yaw_tracking_weight; без него вес upstream сохраняется.
 Replay также записывает mean command, mean actual velocity и signed tracking bias.
 
@@ -129,18 +129,18 @@ bounded_v1. physical_evaluation.py включает ограниченные sta
 ## Восстановление после VRAM guard
 
 run_flat_recovery.py продолжает только сохранённый failed job17.09.2026:
-45/46 по899updates от model_1600, затем47 с нуля1601+resume899.
-Одна тренировка4096 за раз, прежний15%headroom, проверки checkpoints/TB/source
+45/46 по 899updates от model_1600, затем 47 с нуля 1601+resume899.
+Одна тренировка 4096 за раз, прежний 15%headroom, проверки checkpoints/TB/source
 и автоматические export/evaluations. Исходные отчёты не перезаписываются.
 [Пересмотренный протокол](../docs/FLAT_RECOVERY.md).
 
 run_flat_recovery_parallel.py принимает активный seed45 через Windows process
 handle без перезапуска, останавливает только проверенный прежний координатор
-и добавляет46. После обоих продолжает47 и оценки. Предыдущая очередь помечается
+и добавляет 46. После обоих продолжает 47 и оценки. Предыдущая очередь помечается
 handed_off; повторный seed46 запрещён. Source snapshots и exit codes сохраняются.
 
 run_flat_headroom5.py — завершённая очередь после второй остановки:45/46
-от1900/1700 на599/799updates, затем47 и оценки. Явно задаёт
+от 1900/1700 на 599/799updates, затем 47 и оценки. Явно задаёт
 minimum_gpu_headroom=.05; default run_pair остаётся.15. Не объявляет
 разные restart histories контролируемой приёмкой. [Итог серии](../docs/results/2026-09-18-flat-qualification-final.json): все три новых seeds не прошли Flat gate.
 
@@ -172,7 +172,7 @@ Seeds 49/50 параллельны, затем 51 отдельно. Проток
 | laptop_seed51_worker.py | Первичная квалификация ноутбука выполнена; основной seed51 не назначался |
 | qualify_laptop_pcores.py / laptop_pcore_runtime.py | Выполненный повторный benchmark с affinity P-ядер только у процесса и детей |
 | run_staged_laptop_parallel.py | Исторический, не выполненный end-to-end перенос fresh seed51; повторное назначение требует нового протокола |
-| run_staged_tail_parallel.py / laptop_staged_tail_worker.py | Подготовленный перенос seed50 после2500; окно серии 49/50/51 уже пройдено, перенос не выполнялся |
+| run_staged_tail_parallel.py / laptop_staged_tail_worker.py | Подготовленный перенос seed50 после 2500; окно серии 49/50/51 уже пройдено, перенос не выполнялся |
 | server_cuda_probe.cpp | GPU0 D2D пройден; cuBLAS init timeout. Synthetic CUDA, не Isaac/PPO benchmark |
 
 [Квалификация ноутбука](../docs/LAPTOP_WORKER.md),
@@ -213,9 +213,9 @@ calf contact — явно ограниченный proxy, не полный unde
 
 
 `run_contact6_ablation.py` — завершённый опыт contact−3/−6 после
-завершения lower-L1. Height terms выключены; seed50 и51 по две ветви от исходных
+завершения lower-L1. Height terms выключены; seed50 и 51 по две ветви от исходных
 model_2499,1500 новых updates/ветвь,4096 сред. Smoke/resume, проверка единственного
-различия env.yaml, source/decision hashes, VRAM guard5%,4exports и10evaluations.
+различия env.yaml, source/decision hashes, VRAM guard5%,4exports и 10evaluations.
 Не запускать повторно в существующий каталог; не менять frozen исходники.
 [Протокол](../docs/CONTACT6_ABLATION.md), журнал `logs/ablations/lower_l1_followup.json`.
 
@@ -225,7 +225,7 @@ model_2499,1500 новых updates/ветвь,4096 сред. Smoke/resume, пр�
   --upright повторяет их с reset roll/pitch±0,1, прежний drift guard.
 - train_b2w.py --reference_update_probe: passive pre/post measurements на тех же
   observations; --flat_upright_resets: единственное изменение orientation reset.
-- run_reference_upright_resume.py:200 updates/seed от проверенных150, затем
-  exports и4 evaluations. [Протокол](../docs/REFERENCE_RESUME.md).
+- run_reference_upright_resume.py:200 updates/seed от проверенных 150, затем
+  exports и 4 evaluations. [Протокол](../docs/REFERENCE_RESUME.md).
 
 Исходный failed job и протокол сохраняются; retry не переписывает историю.
