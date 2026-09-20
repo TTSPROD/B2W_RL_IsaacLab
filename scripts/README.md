@@ -343,3 +343,23 @@ seed60 bounded/lateral yaw; продолжает по200updates с сохран�
 Все4Flat+48Rough финальных batches собираются диагностически, старый fail150
 сохраняется. Technical/drift/VRAM/source guards прекращают очередь.
 [Протокол](../docs/ROUGH_ROUTE_CONTINUATION.md). Повторный запуск запрещён.
+
+
+## Отклонённый teacher locomotion T0 (20 сентября2026)
+
+По уточнению пользователя actor строго57→16. Скрипты247-input оставлены
+только как история; запуск заблокирован. Seed67 прошёл100updates до технического
+сбоя diagnostic reset; seed68 не запускался.
+
+`b2w_locomotion_teacher.py` создаёт отдельный sim ABI247→16 и выполняет
+проверяемый zero-pad lift Flat57; `train_locomotion_teacher.py` запускает native
+PPO со свежим critic,25critic-only updates и обучаемым std после warmup.
+`run_locomotion_teacher_pilot.py --attempt 1` — bounded последовательная очередь:
+64env2+2 discard smoke, затем seeds67/68 по100updates на1024env. Повторный
+запуск в тот же output запрещён; использует локальный qualified Flat54 anchor.
+`--smoke_only` ограничивает очередь только технической проверкой.
+
+Каждый stage сохраняет manifest/config/source hashes, checkpoints/optimizer,
+export parity и external exit code/resource telemetry. Pilot diagnostic
+не является Rough/Stairs quality pass; mixed terrain не запускается автоматически.
+[Протокол и этапы](../docs/ROUGH_TEACHER_REDESIGN.md).

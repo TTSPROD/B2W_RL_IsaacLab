@@ -1,5 +1,23 @@
 # Результаты обучения B2W
 
+**ОСТАНОВЛЕНО по уточнению пользователя20.09.2026. Actor строго57→16,
+как reference. Teacher247 отклонён; дальнейшее обучение не разрешено текущим
+планом. Фактически выполненные100updates seed67 сохранены только как отклонённый
+эксперимент, seed68 не запускался. Активных teacher процессов нет.**
+
+Teacher T0: CPU208 distinct tests,1290vendor hashes, GPU64 train/resume2+2
+прошли; optimizer40→80, export error0. Seed67 выполнил100updates (25critic+75PPO),
+model_99 сохранён. После обучения diagnostic reset упал с PyTorch
+`Inplace update to inference tensor outside InferenceMode`; stage exit1,
+supervisor остановился до seed68. Ошибка не исправлялась после команды остановки.
+
+[Job](results/locomotion_teacher_t0_20260920_1.json),
+[validation](results/2026-09-20-teacher-validation.json).
+Это не Rough/Stairs pass; teacher не используется дальше. Квалифицированные
+Flat57 anchors и старые failed результаты неизменны.
+
+## История до отклонённого teacher эксперимента
+
 **Проверено20.09 в18:46МСК: wide65/66 завершён18:28:16МСК на150, quality stop.**
 Все28 stages exit0;91 SHA256 проверен без расхождений. Дальнейшие200PPO/seed
 не запускались по заранее заданному stop rule.
@@ -20,7 +38,7 @@ stand/turn exposure7,12%/5,77% против≈2,69%. Это улучшение �
 но не доказательство качества. Отдельная evaluation в широком коридоре
 не выполнялась. Новый запуск этой проверкой не назначен.
 
-## Ближайшее решение
+## Историческое ближайшее решение до teacher пересмотра
 
 [План диагностики](ROUGH_NEXT_DIAGNOSTICS.md): без новых PPO updates сравнить
 политики54,61/62 и65/66 на одних траекториях с двумя независимыми corridor

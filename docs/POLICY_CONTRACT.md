@@ -1,11 +1,16 @@
-# Контракт B2W 57 → 16: CPU и live Isaac
+# Контракт B2W57→16
+
+**Обязательное уточнение20.09:** actor сохраняет57 входов и16выходов,
+точно как reference, с прежними order/scales/50Hz. Teacher247 отклонён.
+Privileged critic не расширяет actor ABI. Новых обучений сейчас нет.
+Flat anchors и их контракт сохранены; saturation/hardware gates открыты.
 
 Проверено 17 сентября 2026. CPU export parity и live observation/action parity
 в Isaac выполнены для reference, seeds 42/43/44 и завершённых yaw-абляций. Контракт
 проверен частично: saturation и аппаратный mapping остаются открытыми,
 `stage_1_complete=false`. Исходники `vendor/` не изменены.
 
-## Состояние20.09.2026
+## История blind57 до teacher пересмотра20.09.2026
 
 Rough путь сохраняет actor57→16/Identity/50Hz, critic247 с187 height rays.
 Critic не передаёт terrain или velocity estimates actor. Export/live checks
@@ -13,14 +18,14 @@ Critic не передаёт terrain или velocity estimates actor. Export/liv
 [аудит199 hashes](results/2026-09-20-rough-latest-audit.json),
 [исследование ограничений blind57](ROUGH_RESEARCH_2026-09-20.md).
 
-Готовится [route correction59/60](ROUGH_ROUTE_CORRECTION.md): actor qualified
+Проводился [route correction59/60](ROUGH_ROUTE_CORRECTION.md): actor qualified
 seed54, новые critic/optimizer,50+100+200 single4096. Исходная reference
 уже использована в lineage seed54; её повторный actor-only import не является
 resume training state. Rough-only commands/reset/22с меняют episode protocol,
 Flat30% сохраняет20с и прежние команды. Observation/action ABI, tilt terminal,
 PPO/drift0,25, parity и Flat/Rough gates сохраняются. Экспорт новых финалов
 проверяется отдельно; до их фактического pass acceptance не объявляется.
-[Новый job](../logs/rough/rough_route_correction_20260920/job.json).
+[Завершённый исторический job](../logs/rough/rough_route_correction_20260920/job.json).
 
 Frozen reference/anchor54 comparator на random0 завершён4×100:
 42/45 и39/47 successes nominal/bounded; ни один full gate не пройден.

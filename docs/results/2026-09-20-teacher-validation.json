@@ -1,0 +1,54 @@
+{
+  "date": "2026-09-20",
+  "cpu": {
+    "full_suite_passed": true,
+    "full_suite_tests": 207,
+    "final_teacher_targeted_passed": true,
+    "final_teacher_targeted_tests": 11,
+    "additional_native_transient_contact_test": true,
+    "distinct_tests_covered": 208,
+    "logs": [
+      {
+        "path": "logs/teacher_cpu_tests_20260920.txt",
+        "sha256": "b060c5bd5e14818013fd456976a972203694ebf6d4d8b92771e1ac3dbdd3f78d"
+      },
+      {
+        "path": "logs/teacher_targeted_tests_20260920.txt",
+        "sha256": "3c7b9f017fcc8e2812ff2152dbfa355382ad9326569d2056b073749182fa781b"
+      }
+    ]
+  },
+  "vendor": {
+    "verified_files": 1290,
+    "pinned_sources": 6,
+    "unchanged": true
+  },
+  "policy_quality_accepted": false,
+  "gpu_job": "docs/results/locomotion_teacher_t0_20260920_1.json",
+  "gpu_status": "see_job_actual_status",
+  "gpu_smoke": {
+    "passed": true,
+    "external_exit_codes": [
+      0,
+      0
+    ],
+    "num_envs": 64,
+    "updates": [
+      2,
+      2
+    ],
+    "optimizer_steps": [
+      40,
+      80
+    ],
+    "export_max_abs_error": [
+      0.0,
+      0.0
+    ],
+    "contact_history": 4,
+    "actor": 247,
+    "critic": 247,
+    "actions": 16,
+    "physics": "GPU PhysX/Fabric cuda:0"
+  }
+}
