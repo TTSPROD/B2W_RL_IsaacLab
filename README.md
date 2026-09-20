@@ -2,25 +2,27 @@
 
 Обучение Unitree B2W: **Flat → Rough → Stairs**, затем отдельный sim2real этап.
 
-**20.09: Flat квалифицирован; Rough пока не принят.** Precision61/62
-остановились на150 в15:56МСК: Flat400/400 safe и все4regression checks прошли;
-Rough1124/1600 successes,0/16 suites, все476 failures — corridor.
-[Итог](docs/results/rough_precision_training_20260920.json),
-[пересчитанный аудит](docs/results/2026-09-20-precision150-corridor-audit.json).
+**20.09: Flat квалифицирован; Rough пока не принят. Обучение остановлено.**
+Последняя серия [wide65/66](docs/ROUGH_WIDE_CORRIDOR.md) завершилась18:28МСК
+на150 по quality gate:28 stages exit0,91 SHA256 проверен без расхождений.
+Training corridor расширен до3,6м, evaluation оставалась шириной1,8м.
+Rough564/1600(35,25%),0/16 suites; seeds65/66 —61%/9,5% успеха.
+Flat400/400 safe, все4 absolute gates пройдены, все4 relative gates не пройдены.
+[Итог](docs/results/rough_wide_training_20260920.json),
+[аудит](docs/results/2026-09-20-wide150-audit.json).
 
-Текущий опыт — [wheel corridor63/64](docs/ROUGH_WHEEL_CORRIDOR.md):
-Rough выход колеса за прежний evaluator corridor становится true terminal
-и запрещает curriculum promotion. Precision rewards и Flat replay сохраняются.
-Actor отqualified Flat54, новые critics/optimizers,50+100+200PPO,single4096.
-Native64 train/resume и175CPUtests пройдены; основная очередь запущена 20.09 в 16:21 МСК.
-[Статус](docs/TRAINING_PROGRESS.md), [план](docs/PROJECT_PLAN.md).
+**Следующий шаг — [диагностика двух ширин и причин выхода](docs/ROUGH_NEXT_DIAGNOSTICS.md).**
+Без дообучения сравнить54,61/62 и65/66 на одинаковых траекториях, отдельно
+оценить узкий и широкий коридоры, снять heading/lateral/forward bias до отказа.
+При необходимости проверить влияние exploration на frozen actor. Новая серия
+выбирается по результатам; диагностика и дополнительное обучение ещё не запускались.
+[План](docs/PROJECT_PLAN.md), [журнал](docs/TRAINING_PROGRESS.md).
 
-[Passive replay](docs/results/rough_corridor_trace_20260920.json) сохранил все200
-исходных rows: на random0 nominal измерены боковые и передние пересечения
-по точным координатам колёс. [Исследование подходов](docs/ROUGH_RESEARCH_2026-09-20.md).
-Reference используется черезactor54 и frozen drift guards; её собственный
-Rough comparator не прошёл gates, поэтому Rough imitation loss не добавляется.
-Flat54/55/56 прошли6/6 квалификационных оценок100/100 с tracking;
+Precision61/62 ранее дали1124/1600(70,25%), corridor63/64 —327/1600(20,44%).
+Все три серии не прошли Rough gates; разные seeds не дают парной причинной
+оценки ширины. Широкая evaluation65/66 пока не выполнена.
+[Источники Unitree/Isaac Lab и wheeled RL](docs/ROUGH_RESEARCH_2026-09-20_FOLLOWUP.md).
+Flat54/55/56 остаются квалифицированными anchors:6/6 оценок100/100 с tracking;
 [верификация](docs/results/2026-09-19-reference-qualification-verification.json).
 
 Windows / RTX4070Ti: Flat headless2×4096 и Rough single4096 технически
@@ -37,11 +39,12 @@ GUI Flat сXbox работает через Storm/Vulkan; D3D12 — истори
 
 | Что нужно | Документ |
 |---|---|
+| Ближайшая диагностика после65/66 | [ROUGH_NEXT_DIAGNOSTICS](docs/ROUGH_NEXT_DIAGNOSTICS.md) |
 | Следующие Rough/Stairs этапы | [ROUGH_STAIRS_PLAN](docs/ROUGH_STAIRS_PLAN.md) |
 | Открыть Flat и управлять Xbox-геймпадом | [GAMEPAD_PLAY](docs/GAMEPAD_PLAY.md) |
 | Текущий результат, очередь и история опытов | [TRAINING_PROGRESS](docs/TRAINING_PROGRESS.md) |
 | Следующее решение, бюджет и критерии приёмки | [PROJECT_PLAN](docs/PROJECT_PLAN.md) |
-| Исследования и выбор подхода к обучению | [Rough20.09](docs/ROUGH_RESEARCH_2026-09-20.md), [REWARD_RESEARCH](docs/REWARD_RESEARCH.md) |
+| Исследования и выбор подхода к обучению | [Unitree follow-up](docs/ROUGH_RESEARCH_2026-09-20_FOLLOWUP.md), [Rough20.09](docs/ROUGH_RESEARCH_2026-09-20.md), [REWARD_RESEARCH](docs/REWARD_RESEARCH.md) |
 | Установка и команды запуска | [DESKTOP_SETUP](docs/DESKTOP_SETUP.md), [каталог scripts](scripts/README.md) |
 | Выбор вычислительного режима | [COMPUTE_DECISION](docs/COMPUTE_DECISION.md) |
 | Пути, Git и синхронизация | [INFRASTRUCTURE](docs/INFRASTRUCTURE.md) |

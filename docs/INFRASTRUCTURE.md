@@ -1,13 +1,21 @@
 # Инфраструктура и синхронизация
 
-**20.09:** precision61/62 завершились на150 в15:56МСК с Rough quality stop,
-Flat regression пройден. Следующий [corridor63/64](ROUGH_WHEEL_CORRIDOR.md)
-использует тот же desktop runtime и single4096 последовательные seeds.
-Native64 train/resume пройден; основная очередь запущена 20.09 в 16:21 МСК.
-[Статус](TRAINING_PROGRESS.md), [план](PROJECT_PLAN.md),
-[последний итог](results/rough_precision_training_20260920.json).
+**Последний результат20.09:** wide65/66 завершился18:28:16МСК на150
+с quality stop,28 stages exit0. Rough564/1600, Flat400/400 safe,
+4/4 absolute и0/4 relative gates. [Аудит91hash](results/2026-09-20-wide150-audit.json).
+При проверке18:46МСК GPU занимала975MiB/12282MiB, utilization5%; это датированный
+замер. Новые training updates и следующая диагностика не запускались.
+
+Серия использовала тот же desktop runtime: single4096, seeds последовательно,
+training y±1,8м, прежний evaluator y±0,9м, X[−0,6;5,4], tile12×12м.
+197CPUтестов,1290vendor hashes и native64 train/resume2+2 пройдены.
+[Протокол проведённого опыта](ROUGH_WIDE_CORRIDOR.md),
+[следующий план](ROUGH_NEXT_DIAGNOSTICS.md), [журнал](TRAINING_PROGRESS.md).
+
 Checkpoints остаются в исключённых из Git `logs/`; исторические jobs/PID
-не являются текущим состоянием. Серверные и hardware gates не меняются.
+не являются текущим состоянием. Git push переносит код, docs и опубликованные
+JSON, но не checkpoints/runtime и не обновляет ноутбук или сервер.
+Серверные и hardware gates не меняются.
 
 ## Разделение данных
 
@@ -52,7 +60,8 @@ Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048.
 Для Rough выбран один4096-env процесс, два сида последовательно.2×4096 Rough
 не запускались: прогноз13130MiB превышает12282MiB устройства.
 [Измерения](results/rough_capacity_20260919.json),
-[действующий протокол](ROUGH_WHEEL_CORRIDOR.md); прежнийR1 исторический.
+[протокол завершённой серии](ROUGH_WIDE_CORRIDOR.md);
+[следующая диагностика](ROUGH_NEXT_DIAGNOSTICS.md) пока не запускалась.
 
 19 сентября GUI Flat replay ускорен до примерно 48,8 policy frames/s и 0,976×
 real time: Isaac Sim5.1,1 B2W seed54, Xbox XInput. Рабочий default — Storm/Vulkan

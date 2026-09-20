@@ -1,0 +1,267 @@
+{
+  "status": "passed",
+  "checked_utc": "2026-09-20T14:38:07.890628+00:00",
+  "cpu_tests": {
+    "command": ".venv/Scripts/python.exe -B -m unittest discover -s tests",
+    "count": 197,
+    "exit_code": 0
+  },
+  "vendor": {
+    "command": ".venv/Scripts/python.exe -B scripts/vendor_materials.py verify",
+    "files": 1290,
+    "sources": 6,
+    "exit_code": 0
+  },
+  "git_diff_check_exit_code": 0,
+  "preflight": "docs\\results\\rough_wide_preflight_20260920_1.json",
+  "preflight_sha256": "20710def678ee6eaec784260f3f111bbd530c1923480f0aecac2c149eaae0c3f",
+  "frozen_input_count": 53,
+  "all_frozen_hashes_match": true,
+  "stages": [
+    {
+      "name": "train",
+      "exit_code": 0,
+      "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_14-36-04-842449_rough_wide_preflight_20260920_1_train\\model_1.pt",
+      "checkpoint_sha256": "694b74f32f78bdb3333e1ddbf730a8e76a2eb86e0f38a0a815a13c831de0ab49",
+      "optimizer_max_step": 40.0,
+      "drift": {
+        "sample_count": 64,
+        "raw_action_rms": 0.04981414973735809,
+        "raw_action_max_abs": 0.1608138084411621,
+        "mean_gaussian_kl": 1.9851595163345337,
+        "leg_target_rms_rad": 0.009655051864683628,
+        "wheel_target_rms_rad_s": 0.2629670798778534,
+        "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+      },
+      "flat_bank_drift": {
+        "sample_count": 4096,
+        "raw_action_rms": 0.054731737822294235,
+        "raw_action_max_abs": 0.34690380096435547,
+        "mean_gaussian_kl": 2.3964505195617676,
+        "leg_target_rms_rad": 0.009990041144192219,
+        "wheel_target_rms_rad_s": 0.33446818590164185,
+        "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+      },
+      "wide_fixture": {
+        "passed": true,
+        "injected_rough_id": 20,
+        "injected_flat_id": 0,
+        "bounds": {
+          "x": [
+            -0.6,
+            5.4
+          ],
+          "y": [
+            -1.8,
+            1.8
+          ]
+        },
+        "narrow_lateral_crossings": [
+          {
+            "side": "negative_y",
+            "actual_narrow_crossing": true,
+            "maximum_abs_wheel_y_m": 1.2513790130615234,
+            "wide_crossing": false,
+            "rough_terminal": false,
+            "flat_terminal": false
+          },
+          {
+            "side": "positive_y",
+            "actual_narrow_crossing": true,
+            "maximum_abs_wheel_y_m": 1.2499160766601562,
+            "wide_crossing": false,
+            "rough_terminal": false,
+            "flat_terminal": false
+          }
+        ],
+        "sides": [
+          {
+            "side": "forward",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          },
+          {
+            "side": "backward",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          },
+          {
+            "side": "negative_y",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          },
+          {
+            "side": "positive_y",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          }
+        ],
+        "cadence_hz": 200,
+        "policy_reset_hz": 50,
+        "scope": "Native physics/reset smoke; injected counters and smoke weights are discarded"
+      },
+      "export_parity": {
+        "max_abs_error": 0.0,
+        "sample_count": 64,
+        "tolerance": 1e-05,
+        "scope": "CPU live actor versus exported actor on actual observations; same action adapter"
+      },
+      "effective_config_pass": true
+    },
+    {
+      "name": "resume",
+      "exit_code": 0,
+      "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_14-36-34-244874_rough_wide_preflight_20260920_1_resume\\model_3.pt",
+      "checkpoint_sha256": "ea544888f38699fcf7396d4df54881913b7ed5fad3228a4477f91a82b358129b",
+      "optimizer_max_step": 80.0,
+      "drift": {
+        "sample_count": 64,
+        "raw_action_rms": 0.05647086724638939,
+        "raw_action_max_abs": 0.21211479604244232,
+        "mean_gaussian_kl": 2.5511670112609863,
+        "leg_target_rms_rad": 0.010569477453827858,
+        "wheel_target_rms_rad_s": 0.30125975608825684,
+        "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+      },
+      "flat_bank_drift": {
+        "sample_count": 4096,
+        "raw_action_rms": 0.06583062559366226,
+        "raw_action_max_abs": 0.4090890884399414,
+        "mean_gaussian_kl": 3.4669370651245117,
+        "leg_target_rms_rad": 0.012369307689368725,
+        "wheel_target_rms_rad_s": 0.40370699763298035,
+        "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+      },
+      "wide_fixture": {
+        "passed": true,
+        "injected_rough_id": 20,
+        "injected_flat_id": 0,
+        "bounds": {
+          "x": [
+            -0.6,
+            5.4
+          ],
+          "y": [
+            -1.8,
+            1.8
+          ]
+        },
+        "narrow_lateral_crossings": [
+          {
+            "side": "negative_y",
+            "actual_narrow_crossing": true,
+            "maximum_abs_wheel_y_m": 1.2513790130615234,
+            "wide_crossing": false,
+            "rough_terminal": false,
+            "flat_terminal": false
+          },
+          {
+            "side": "positive_y",
+            "actual_narrow_crossing": true,
+            "maximum_abs_wheel_y_m": 1.2499160766601562,
+            "wide_crossing": false,
+            "rough_terminal": false,
+            "flat_terminal": false
+          }
+        ],
+        "sides": [
+          {
+            "side": "forward",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          },
+          {
+            "side": "backward",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          },
+          {
+            "side": "negative_y",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          },
+          {
+            "side": "positive_y",
+            "actual_wheel_crossing": true,
+            "rough_terminal": true,
+            "flat_terminal": false,
+            "timed_out": false,
+            "sticky_cleared_on_reset": true,
+            "curriculum_failed_episode_recorded": true,
+            "curriculum_success_increment": 0,
+            "injected_expected_m": 2.0,
+            "injected_progress_m": 2.0
+          }
+        ],
+        "cadence_hz": 200,
+        "policy_reset_hz": 50,
+        "scope": "Native physics/reset smoke; injected counters and smoke weights are discarded"
+      },
+      "export_parity": {
+        "max_abs_error": 0.0,
+        "sample_count": 64,
+        "tolerance": 1e-05,
+        "scope": "CPU live actor versus exported actor on actual observations; same action adapter"
+      },
+      "effective_config_pass": true
+    }
+  ],
+  "training_corridor_y": [
+    -1.8,
+    1.8
+  ],
+  "evaluation_corridor_y": [
+    -0.9,
+    0.9
+  ],
+  "policy_quality_accepted": false
+}

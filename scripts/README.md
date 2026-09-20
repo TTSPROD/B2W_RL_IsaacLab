@@ -4,17 +4,21 @@
 и необходимые environment settings указаны в [DESKTOP_SETUP.md](../docs/DESKTOP_SETUP.md).
 Ни один перечисленный launcher не управляет реальным роботом. Vendor неизменяем.
 
-## Текущий Rough wheel corridor experiment
+## Завершённый Rough wide corridor experiment
 
-[Протокол](../docs/ROUGH_WHEEL_CORRIDOR.md): `run_rough_corridor_preflight.py --attempt 1`,
-затем `run_rough_corridor_training.py --preflight docs/results/rough_corridor_preflight_20260920_1.json`.
-`rough_wheel_corridor.py`: physics-rate sticky boundary по4колёсам, Rough-only true
-terminal и согласованное curriculum failure. Opt-in `--rough_wheel_corridor`
-требует precision/route/tilt/transfer и сохраняется при own-stage resume.
-63/64 отFlat54,50+100+200,single4096;150полный4Flat+16Roughblock, затемqualitystop.
-`trace_rough_b2w.py` добавляет passivewheel/heading/prefailuretelemetry вокруг
-неизменногоevaluator; `run_rough_corridor_trace.py` проверилidentical200historicalrows.
-Прежниеprecision/route launchers иresults исторические; повторныйзапусксуществующейочередизапрещён.
+65/66 завершились18:28МСК на150 с quality stop; продолжение350 не выполнялось.
+[Следующая диагностика двух ширин](../docs/ROUGH_NEXT_DIAGNOSTICS.md) пока
+не реализована и не запускалась. Приведённые ниже команды сохраняют provenance
+проведённого опыта; существующие output directories повторно не запускаются.
+
+[Протокол](../docs/ROUGH_WIDE_CORRIDOR.md): `run_rough_wide_preflight.py --attempt 1`,
+затем `run_rough_wide_training.py --preflight docs/results/rough_wide_preflight_20260920_1.json`.
+Opt-in `--rough_wide_corridor` требует `--rough_wheel_corridor`: только учебная
+полуширина y0,9→1,8м, terminal и curriculum failure сохраняются. Strict evaluator
+остаётся±0,9м. Seeds65/66 отFlat54,50+100+200,single4096; полный блок оценок150,
+затем stop при любом fail. Проверки own-resume фиксируют ширину и seed.
+Wide65/66, corridor63/64 иprecision61/62 завершились failed150; их launchers и
+results сохранены как история. Существующие очереди не перезапускаются.
 
 ## Переиспользуемые инструменты
 

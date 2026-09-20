@@ -1,43 +1,55 @@
 # План проекта B2W
 
-**20.09, текущий опыт:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md).
-Согласовать Rough training constraint с прежним evaluator: пересечение границы
-колесом — true terminal и curriculum failure. Precision std0,25 и Flat replay
-сохраняются. Actor отqualified54, свежие critic247/optimizer,50+100+200updates
-single4096; максимум68812800transitions. Native64 train/resume,175CPUtests,
-1290vendor hashes пройдены; основная очередь запущена 20.09 в 16:21 МСК.
-Фактический запуск — в [TRAINING_PROGRESS](TRAINING_PROGRESS.md).
+**20.09, последний опыт:** [широкий учебный коридор65/66](ROUGH_WIDE_CORRIDOR.md).
+По уточнению пользователя ширина training corridor увеличивается1,8→3,6м
+(y±0,9→±1,8); tile12×12м это позволяет. Wheel terminal и curriculum failure
+сохраняются. Узкий evaluator±0,9м и все quality gates остаются прежними.
+197CPUтестов,1290vendor hashes и native64 train/resume пройдены.
+Очередь65/66 завершилась18:28:16МСК на150 с quality stop. Rough564/1600,
+0/16 suites; Flat400/400 safe,4/4 absolute и0/4 relative gates.
+[Аудит91hash](results/2026-09-20-wide150-audit.json). Фактический статус — [TRAINING_PROGRESS](TRAINING_PROGRESS.md).
 
-Precision61/62 завершились15:56:59МСК на150: Flat400/400 safe и все4absolute/
-relative gates pass; Rough1124/1600 success,0/16 suites,476corridor failures.
-[Итог](results/rough_precision_training_20260920.json),
-[проверка26artifacts](results/2026-09-20-precision150-corridor-audit.json).
-Новая [диагностика](results/rough_corridor_trace_20260920.json) сохранила исходные
-200rows random0nominal;61:18negative-y/4forward,62:7negative-y/16forward.
-Это ограниченный поднабор; прежний root proxy заменён точными wheel crossings.
+Последний corridor63/64 завершился17:12:22МСК на150: Flat400/400 safe и все4
+absolute gates pass, но relative pass только64nominal. Rough327/1600 success,
+0/16suites,1273corridor failures. Curriculum обоих `[0,0,0,0,0]`.
+[Итог](results/rough_corridor_training_20260920.json),
+[аудит59artifacts](results/2026-09-20-corridor150-audit.json).
+Episode length сократилась примерно22→12с, Rough stand/turn exposure13,3→2,7%.
+Общая reward положительна; ранние отказы не объясняются избеганием общей
+отрицательной награды. Forward overshoot остаётся отдельной проблемой.
 
-## Следующие этапы
+## Следующие этапы — после остановки65/66
 
-1. Проверить новую constraint на64env: все4границы, Rough-only, native reset,
-   отсутствие timeout bootstrap, train/resume2+2. Выполнено, веса discard.
-2. Запустить63/64 по50critic-only, затем Flat checks. После100PPO до150 —
-   все4Flat+16Rough level0,≥90% каждого kind/family/profile. Любой fail
-   закрывает следующие updates обоих seeds после полного диагностического блока.
-3. При pass150 — ещё200PPO,4Flat+48Rough levels0/1/2,≥95% каждого kind,
-   всеFlat gates и curriculum level2. Acceptance автоматически не выдаётся.
-4. При fail проверять corridor terminal counts, episode length и route completion:
-   снижение выходов за счёт остановки движения не является успехом.
-   При недостаточной наблюдаемости — отдельный history/velocity estimator либо
-   navigation controller с новым контрактом и повторной Flat/export квалификацией.
-5. Только общий development pass открывает новые qualification seeds/cases,
+Следующая диагностика и новое обучение пока не запускались.
+Подробности и границы — [ROUGH_NEXT_DIAGNOSTICS](ROUGH_NEXT_DIAGNOSTICS.md).
+
+1. Без дообучения сравнить Flat54 и финалы150 seeds61/62/65/66. На одной
+   траектории считать успех для ширины1,8 и3,6м, сохраняя X, physics, commands,
+   safety и route completion. Сначала random0 nominal и parity прежних strict
+   reports, затем все4families×2profiles level0. Широкая оценка диагностическая.
+2. Снять первые wheel crossings и bias до отказа: отдельно heading/yaw drift,
+   lateral slip и forward overshoot. Полные20с averages не заменяют prefailure
+   метрики. При необходимости — paired frozen-actor replay с exploration0/0,1,
+   одинаковыми cases/physics и отдельным фиксированным noise RNG.
+3. Выбрать одну поправку: меньше exploration при подтверждённом влиянии шума;
+   постепенное сужение training corridor при успешных широких маршрутах;
+   либо отдельный history/velocity estimator/navigation контракт при устойчивом
+   систематическом уходе. Не менять эти факторы одновременно.
+4. До следующего PPO зафиксировать recipe, parent, два seeds, бюджет и stop
+   rules. Сохранить Flat safety/absolute/relative gates.65/66 до350 не продлевать
+   автоматически: оба ухудшили Flat tracking, а Rough результаты расходятся.
+5. Только общий development pass открывает независимые qualification cases,
    затем Stairs. Live robot actuation этим планом не разрешается.
 
-Reference уже является предком54 и comparator дляdrift. Flat BC пока не нужен:
-precision150 сохранил все Flat gates. Новый опыт начинается от54, чтобы не
-менять terminal/value function внутри чужого failed150 checkpoint.
-Сравнение63/64 с61/62 историческое, не paired causal control.
-[Полный протокол](ROUGH_WHEEL_CORRIDOR.md), [исследования](ROUGH_RESEARCH_2026-09-20.md).
-Исторические57–60failed350 и61/62failed150, gates и vendor сохраняются.
+65/66:488/800(61%) и76/800(9,5%) на узком evaluator. Полная широкая оценка
+ещё не выполнялась. Precision61/62 дали1124/1600(70,25%) и остаются comparator;
+рост относительно63/64 не означает улучшения относительно всех прежних серий.
+Все сравнения training recipes исторические, с разными seeds.
+
+Reference уже является предком54. Исторический [протокол65/66](ROUGH_WIDE_CORRIDOR.md)
+и [исследование источников](ROUGH_RESEARCH_2026-09-20_FOLLOWUP.md) сохранены.
+Рассмотренный curriculum-only вариант не запускался.57–60failed350,
+61–66failed150 и vendor не переписываются.
 
 ## История смены Flat подхода — до19.09
 
@@ -103,8 +115,9 @@ tracking и предконтактные данные; рост суммарно
 [Дополнение к протоколу](REFERENCE_QUALIFICATION_RESUME.md).
 
 Все три квалифицированных финала сохранены как Flat anchors. Rough runtime,
-terrain и evaluator проверены; текущая поправка описана в
-[ROUGH_PRECISION_TRACKING](ROUGH_PRECISION_TRACKING.md). Route59/60 завершены без
+terrain и evaluator проверены; последняя серия описана в
+[ROUGH_WIDE_CORRIDOR](ROUGH_WIDE_CORRIDOR.md), следующий шаг —
+[две ширины и причины выхода](ROUGH_NEXT_DIAGNOSTICS.md). Route59/60 завершены без
 quality pass и сохранены как история. Старые evaluation cases теперь
 раскрыты: годятся для regression, но не должны выдаваться за новую независимую
 приёмку после подбора параметров. Автопродление Flat ради reward не требуется.
@@ -124,7 +137,7 @@ History/velocity estimator и constrained RL — отдельные возмож
 а не часть текущего короткого опыта.
 
 Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицированы.
-Ноутбук квалифицирован отдельно; текущая очередь ему не назначается.
+Ноутбук квалифицирован отдельно; новая очередь ему не назначена.
 Сервер не прошёл Isaac gate, несмотря на Hopper/CUDA.
 [Инфраструктура](INFRASTRUCTURE.md), [решение по вычислениям](COMPUTE_DECISION.md).
 Предыдущие проекты и их jobs не используются; vendor не изменяется.
@@ -136,7 +149,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
 | Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Пройден19.09:54/55/56, все6 оценок100/100 и tracking pass |
-| Rough | Smoke/throughput;2development seeds50+100+200; затем3qualification seeds; Flat regression | 61/62failed150; corridor63/64 preflight пройден, очередь запущена в 16:21 МСК; acceptance открыт |
+| Rough | Smoke/throughput;2development seeds50+100+200; затем3qualification seeds; Flat regression | 61–66failed150; wide564/1600, Flat relative0/4; acceptance открыт |
 | Stairs | Отдельный straight-march evaluator; up/down0,05–0,18 м; 2 development +3 qualification seeds; Rough/Flat regression | После Rough qualification, не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |
 | SDK/hardware | Offline replay→fault tests→стенд→ограниченные испытания | Управление не разрешено |
@@ -170,8 +183,10 @@ Industrial лестницы, perceptive/history ABI и hardware limits — от�
 - Завершено: короткий Flat transfer и qualification54/55/56 на новых cases.
 - Завершено: [Rough R0](ROUGH_R0.md), safe curriculum, full evaluator,
   bounded physics и capacity;57–60 до350 завершены без quality acceptance.
-- P0: corridor63/64 запущен в16:21МСК после native64 train/resume preflight;
-  выполнить ограниченные50+100+200 с неизменёнными quality gates. Reference/anchor
+- P0: wide65/66 завершился failed150: training y±1,8м увеличил длину
+  эпизодов, но narrow evaluation и Flat relative gates не пройдены.
+  Следующий шаг — [две ширины, prefailure trace и noise probe](ROUGH_NEXT_DIAGNOSTICS.md),
+  без автоматического продления. Reference/anchor
   random0 baseline завершён без quality pass и остаётся историческим comparator.
 - P1: Rough2-seed development50+100+200 и Flat regression; только после общего
   pass —3 новых seeds/hold-outs. При fail — одна причинная проверка, без продления.

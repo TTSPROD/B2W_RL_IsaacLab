@@ -1,20 +1,21 @@
 # План Rough и обычных лестниц после Flat qualification
 
-**20.09:** precision61/62 завершились на150:Flat400/400safe, все4regressionpass;
-Rough1124/1600success,0/16suites,476corridorfail. Qualification/Stairs закрыты.
-[Итог](results/rough_precision_training_20260920.json),
-[аудит](results/2026-09-20-precision150-corridor-audit.json).
+**20.09:** wide65/66 завершились18:28МСК на150 с quality stop.
+Rough564/1600(35,25%) на узком evaluator,0/16 suites; Flat400/400 safe,
+4/4 absolute и0/4 relative gates. Qualification и Stairs не запускались.
+[Итог](results/rough_wide_training_20260920.json),
+[аудит](results/2026-09-20-wide150-audit.json).
 
-Текущий опыт — [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md): один Rough
-constraint включён в native true-terminal и curriculumfailure. Границы по
-колёсам прежнегоevaluator x[−0,6;5,4],y±0,9 проверяются200Hz; Flat исключён.
-Precision rewards,actor57,physics,route sampler,drift guards и всеqualitygates
-сохранены. Native64 preflight прошёл; основная очередь запущена 20.09 в 16:21 МСК.
+Training y расширялся±0,9→±1,8м; evaluator оставался±0,9м. Ни широкая
+оценка финалов, ни новый training recipe ещё не выполнены.
+[Следующая диагностика](ROUGH_NEXT_DIAGNOSTICS.md): две ширины на одних
+траекториях54/61/62/65/66, причины выхода до failure, затем при необходимости
+noise probe. По результатам выбирается одно изменение следующей серии.
 
-После50Flat; после150 полный4Flat+16Roughblock, любойfailостанавливаетupdates.
-Приpass —350,4Flat+48Rough; затемотдельнаяqualification и только потомStairs.
-[План](PROJECT_PLAN.md), [состояние](TRAINING_PROGRESS.md).
-Датированные frozen протоколы сохраняются; численныепороги не обещаютсходимость.
+Все Flat/Rough quality gates сохраняются. Только общий development pass
+открывает отдельную qualification, затем Stairs. Датированные frozen
+протоколы не переписываются. [Общий план](PROJECT_PLAN.md),
+[фактическая история](TRAINING_PROGRESS.md).
 
 ## Что переносим из успешного опыта
 
@@ -35,7 +36,8 @@ seeds55/56 остаются frozen comparators, а не запасными ка�
 Успешные элементы: actor-only transfer; свежие critic/optimizer; 50 critic-only
 updates; fixed std 0,1, LR 1e−4, PPO clip 0,1, entropy 0; короткие 100+200 PPO
 отрезки с проверкой качества. Actuator/action параметры и reward weights сохраняем;
-Precision61/62 ввёл trackingstd0,25; corridor63/64 сохраняет его и вводит wheel constraint.
+Precision61/62 ввёл trackingstd0,25; corridor63/64 добавил wheel constraint,
+wide65/66 расширил только его учебную полуширину до1,8м. Все серии завершены.
 Из диагностики reset следует: с первого Rough update используем upright reset
 roll/pitch ±0,1 рад. Возвращать recovery ±π после адаптации не требуется.
 Это новая terrain-задача от готового Flat anchor, а не буквальное воспроизведение

@@ -1,6 +1,70 @@
 # Результаты обучения B2W
 
-**20.09, текущая очередь:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md)
+**Проверено20.09 в18:46МСК: wide65/66 завершён18:28:16МСК на150, quality stop.**
+Все28 stages exit0;91 SHA256 проверен без расхождений. Дальнейшие200PPO/seed
+не запускались по заранее заданному stop rule.
+[Итог](results/rough_wide_training_20260920.json),
+[аудит](results/2026-09-20-wide150-audit.json).
+
+На прежнем узком evaluator y±0,9м: Rough564/1600(35,25%),0/16 suites;
+seed65 —488/800(61%), seed66 —76/800(9,5%). Все1036 первых отказов — corridor.
+Предыдущий узкий training63/64:327/1600(20,44%); сравнение историческое,
+разные seeds не дают парной причинной оценки эффекта ширины.
+Flat400/400 safe и4/4 absolute gates pass, но0/4 relative gates:
+у65 слегка ухудшился negative-yaw tracking, у66 — несколько сценариев vx/yaw.
+Curriculum обоих остался `[0,0,0,0,0]`; policy acceptance не пройдена.
+
+Training y±1,8м подтверждён в обоих manifests. Последние10 updates:
+средняя episode length17,31/14,92с против11,99/11,56с у63/64;
+stand/turn exposure7,12%/5,77% против≈2,69%. Это улучшение доступного опыта,
+но не доказательство качества. Отдельная evaluation в широком коридоре
+не выполнялась. Новый запуск этой проверкой не назначен.
+
+## Ближайшее решение
+
+[План диагностики](ROUGH_NEXT_DIAGNOSTICS.md): без новых PPO updates сравнить
+политики54,61/62 и65/66 на одних траекториях с двумя независимыми corridor
+счётчиками (y±0,9 и±1,8м). Снять prefailure heading/velocity/wheel traces;
+при необходимости отделить влияние exploration paired frozen-actor probe.
+Диагностика ещё не запускалась; новые seeds/бюджет обучения не назначены.
+Завершённые протоколы и их thresholds сохраняются неизменными.
+
+## История запуска wide65/66 и предыдущих результатов
+
+**20.09, последний итог:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md)
+завершился в17:12:22МСК на150 с quality stop; все28 stages exit0.
+Rough level0:327/1600 successes(20,44%),0/16 suites; все1273 первых отказа —
+corridor. Flat400/400 safe и4/4 absolute gates pass; relative gate прошёл
+только64 nominal. Curriculum обоих `[0,0,0,0,0]`; приёмка не пройдена.
+[Итог](results/rough_corridor_training_20260920.json),
+[аудит59artifacts](results/2026-09-20-corridor150-audit.json): SHA256 без расхождений.
+
+Training episodes сократились примерно22→12с; доля stand/turn steps —
+с≈13,3% до2,69%. Все1600 evaluation episodes достигли3м, stalls≥3с отсутствуют;
+это не успешное завершение маршрута при sticky corridor failure.
+Больший progress и положительный vx bias указывают на overshoot наряду с
+боковым уходом; полные20с метрик включают движение после первого failure.
+
+**Исторический запуск по уточнению пользователя:** [wide corridor65/66](ROUGH_WIDE_CORRIDOR.md).
+Запущена20.09 в17:37МСК. Seed65 выполняет50critic-only updates, seed66 ожидает.
+Первые реальные updates конечны, actor frozen, drift0; supervisor PID5956.
+[Launch evidence](results/2026-09-20-rough-wide-launch.json),
+[живой job](../logs/rough/rough_wide_training_20260920/job.json).
+197CPUтестов,1290vendor hashes и native64 train/resume2+2 прошли; optimizer40→80,
+все native fixtures и полный effective config diff пройдены.
+[Проверки](results/2026-09-20-rough-wide-validation.json).
+ETA150 с полным блоком оценок18:27–18:47МСК; при полном pass финал350
+ориентировочно19:57–20:37МСК. Это прогноз вычислений, не качества.
+Только training y расширяется
+с±0,9 до±1,8м; true terminal и wheel-aware curriculum сохраняются.
+Training x[−0,6;5,4], tile12×12м и evaluator y±0,9м остаются прежними;
+quality gates не ослабляются. Свежие seeds65/66 от qualified Flat54,
+single4096 последовательно на desktop; std0,1 сохраняется.
+Подготовленный curriculum-only вариант не запускался и заменён этим опытом.
+
+## История запуска corridor63/64
+
+**20.09, запуск:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md)
 запущена в16:21МСК. Seed63 выполняет50обновлений калибровкиcritic; seed64 следующий.
 Первые реальные updates конечны, actor frozen и drift0; новый wheel tracker работает.
 [Launch evidence](results/2026-09-20-rough-corridor-launch.json),
