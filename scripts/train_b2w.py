@@ -54,6 +54,7 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
     parser.add_argument("--rough_tilt_termination", action="store_true", help="Corrective Rough experiment: terminate sustained tilt, preserve drift and rewards.")
     parser.add_argument("--rough_route_commands", action="store_true", help="Bounded route task distribution on Rough tiles; preserve Flat replay and evaluation gates.")
     parser.add_argument("--rough_precision_tracking", action="store_true", help="Registered route experiment: tracking std .25, unchanged weights and gates.")
+    parser.add_argument("--rough_wheel_corridor", action="store_true", help="Rough-only wheel corridor terminal and curriculum constraint.")
     parser.add_argument("--rough_stage", type=int, choices=(0,1,2), default=0)
     parser.add_argument("--max_iterations", type=int, default=5000, help="PPO updates to execute in this run.")
     parser.add_argument("--seed", type=int, default=42)
@@ -120,6 +121,8 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
         parser.error("--rough_route_commands requires Rough transfer with tilt termination")
     if args.rough_precision_tracking and not args.rough_route_commands:
         parser.error("--rough_precision_tracking requires registered route commands")
+    if args.rough_wheel_corridor and not args.rough_precision_tracking:
+        parser.error("--rough_wheel_corridor requires the registered precision route recipe")
     if args.rough_transfer:
         from b2w_rough_runtime import ANCHOR_SHA256
         if (args.rough_r0 or args.reference_init is None or sha256(args.reference_init) != ANCHOR_SHA256
@@ -140,6 +143,8 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
                 parser.error('Route task distribution must be preserved on own-stage resume')
             if parent.get('rough_precision_tracking', False) != args.rough_precision_tracking:
                 parser.error('Tracking precision must be preserved on own-stage resume')
+            if parent.get('rough_wheel_corridor', False) != args.rough_wheel_corridor:
+                parser.error('Wheel corridor constraint must be preserved on own-stage resume')
             expected = 1 if smoke else (49 if args.rough_stage == 1 else 149)
             if (not parent.get('rough_transfer') or parent['num_envs'] != args.num_envs
                     or parent.get('ending_runner_iteration') != expected
@@ -188,6 +193,7 @@ def main() -> None:
         "rough_tilt_termination": args.rough_tilt_termination,
         "rough_route_commands": args.rough_route_commands,
         "rough_precision_tracking": args.rough_precision_tracking,
+        "rough_wheel_corridor": args.rough_wheel_corridor,
         "rough_stage": args.rough_stage if args.rough_transfer else None,
         "status": "starting",
         "started_utc": datetime.now(timezone.utc).isoformat(),
@@ -265,6 +271,9 @@ def main() -> None:
         if args.rough_precision_tracking:
             from rough_precision_tracking import configure_precision_tracking
             manifest['precision_tracking'] = configure_precision_tracking(env_cfg)
+        if args.rough_wheel_corridor:
+            from rough_wheel_corridor import configure_wheel_corridor
+            configure_wheel_corridor(env_cfg)
         if args.yaw_tracking_weight is not None:
             env_cfg.rewards.track_ang_vel_z_exp.weight = args.yaw_tracking_weight
         if args.undesired_contact_weight is not None:
@@ -352,6 +361,8 @@ def main() -> None:
                 rough_sources += ('rough_route_commands.py',)
             if args.rough_precision_tracking:
                 rough_sources += ('rough_precision_tracking.py',)
+            if args.rough_wheel_corridor:
+                rough_sources += ('rough_wheel_corridor.py',)
             for name in rough_sources:
                 shutil.copyfile(PROJECT_ROOT / 'scripts' / name, source_dir / name)
                 runtime['source_sha256']['scripts/' + name] = sha256(PROJECT_ROOT / 'scripts' / name)
@@ -383,7 +394,11 @@ def main() -> None:
             restored = None
             if args.resume:
                 restored = torch.load(args.resume, map_location='cpu', weights_only=True)['infos']['rough_curriculum']
-            safe_curriculum = SafeTraversalCurriculum(env, cap=args.rough_stage, state=restored)
+            curriculum_class = SafeTraversalCurriculum
+            if args.rough_wheel_corridor:
+                from rough_wheel_corridor import WheelCorridorCurriculum
+                curriculum_class = WheelCorridorCurriculum
+            safe_curriculum = curriculum_class(env, cap=args.rough_stage, state=restored)
             if args.rough_tilt_termination and args.num_envs == 64:
                 from rough_tilt_termination import validate_tilt_fixture
                 manifest['tilt_termination_fixture'] = validate_tilt_fixture(env)
@@ -393,6 +408,9 @@ def main() -> None:
             if args.rough_precision_tracking and args.num_envs == 64:
                 from rough_precision_tracking import precision_tracking_fixture
                 manifest['precision_tracking_fixture'] = precision_tracking_fixture(env)
+            if args.rough_wheel_corridor and args.num_envs == 64:
+                from rough_wheel_corridor import validate_corridor_fixture
+                manifest['wheel_corridor_fixture'] = validate_corridor_fixture(env)
             observations = env.get_observations()
             manifest['rough_curriculum'] = safe_curriculum.snapshot()
         manifest["physics_dt"] = env_cfg.sim.dt

@@ -4,14 +4,17 @@
 и необходимые environment settings указаны в [DESKTOP_SETUP.md](../docs/DESKTOP_SETUP.md).
 Ни один перечисленный launcher не управляет реальным роботом. Vendor неизменяем.
 
-## Текущий Rough precision experiment
+## Текущий Rough wheel corridor experiment
 
-[Протокол](../docs/ROUGH_PRECISION_TRACKING.md): `run_rough_precision_preflight.py --attempt 1`,
-затем `run_rough_precision_training.py --preflight docs/results/rough_precision_preflight_20260920_1.json`.
-`rough_precision_tracking.py` задаёт толькоstd0,25 двух existing tracking terms;
-`train_b2w.py --rough_precision_tracking` требует route/tilt/transfer flags и
-сохраняет режим при own-stage resume. Новая очередь61/62,50+100+200,single4096;
-после150 полный4Flat+16Rough block перед quality stop. Старые launchers исторические.
+[Протокол](../docs/ROUGH_WHEEL_CORRIDOR.md): `run_rough_corridor_preflight.py --attempt 1`,
+затем `run_rough_corridor_training.py --preflight docs/results/rough_corridor_preflight_20260920_1.json`.
+`rough_wheel_corridor.py`: physics-rate sticky boundary по4колёсам, Rough-only true
+terminal и согласованное curriculum failure. Opt-in `--rough_wheel_corridor`
+требует precision/route/tilt/transfer и сохраняется при own-stage resume.
+63/64 отFlat54,50+100+200,single4096;150полный4Flat+16Roughblock, затемqualitystop.
+`trace_rough_b2w.py` добавляет passivewheel/heading/prefailuretelemetry вокруг
+неизменногоevaluator; `run_rough_corridor_trace.py` проверилidentical200historicalrows.
+Прежниеprecision/route launchers иresults исторические; повторныйзапусксуществующейочередизапрещён.
 
 ## Переиспользуемые инструменты
 

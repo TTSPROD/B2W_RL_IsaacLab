@@ -1,26 +1,20 @@
 # План Rough и обычных лестниц после Flat qualification
 
-**20.09:** route59/60 завершили350:0/48 полных Rough suites,
-2653/4800 успешных episodes; Flat400/400 safe, relative3/4 failed.
-Qualification и Stairs остаются закрыты.
-[Итог](results/rough_route_continue_20260920.json),
-[диагностика](results/2026-09-20-rough-route-diagnosis.json).
+**20.09:** precision61/62 завершились на150:Flat400/400safe, все4regressionpass;
+Rough1124/1600success,0/16suites,476corridorfail. Qualification/Stairs закрыты.
+[Итог](results/rough_precision_training_20260920.json),
+[аудит](results/2026-09-20-precision150-corridor-audit.json).
 
-Действующий опыт — [precision tracking61/62](ROUGH_PRECISION_TRACKING.md):
-actor отqualified54, новые critic/optimizer;50+100+200updates single4096.
-Меняется только tracking kernel width0,5→0,25 обоих kernels на Flat/Rough tiles;
-weights, gates, ABI и physics сохраняются. [Native64 train/resume preflight](results/rough_precision_preflight_20260920_1.json)
-пройден; основная очередь запущена20.09 в15:08МСК, фактический запуск фиксируется в журнале.
-После150 выполняется полный4Flat+16Rough block, любой fail останавливает updates.
-При успехе —350 и4Flat+48Rough; затем отдельная qualification и только потом Stairs.
-Reference уже используется черезactor54, но её собственные Rough gates failed;
-[baseline](results/rough_reference_baseline_20260920.json).
+Текущий опыт — [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md): один Rough
+constraint включён в native true-terminal и curriculumfailure. Границы по
+колёсам прежнегоevaluator x[−0,6;5,4],y±0,9 проверяются200Hz; Flat исключён.
+Precision rewards,actor57,physics,route sampler,drift guards и всеqualitygates
+сохранены. Native64 preflight прошёл; основная очередь подготовлена.
 
-Дальнейшие развилки (Flat distillation, wheel diagnostics/curriculum,
-history/estimator сновымABI) — в [главном плане](PROJECT_PLAN.md).
-Численные пороги ниже остаются проектными gates, а не обещанием сходимости.
-Исторические frozen protocols сохраняются; текущее состояние —
-[TRAINING_PROGRESS](TRAINING_PROGRESS.md).
+После50Flat; после150 полный4Flat+16Roughblock, любойfailостанавливаетupdates.
+Приpass —350,4Flat+48Rough; затемотдельнаяqualification и только потомStairs.
+[План](PROJECT_PLAN.md), [состояние](TRAINING_PROGRESS.md).
+Датированные frozen протоколы сохраняются; численныепороги не обещаютсходимость.
 
 ## Что переносим из успешного опыта
 
@@ -41,7 +35,7 @@ seeds55/56 остаются frozen comparators, а не запасными ка�
 Успешные элементы: actor-only transfer; свежие critic/optimizer; 50 critic-only
 updates; fixed std 0,1, LR 1e−4, PPO clip 0,1, entropy 0; короткие 100+200 PPO
 отрезки с проверкой качества. Actuator/action параметры и reward weights сохраняем;
-в precision61/62 изменяем только общий std linear/yaw tracking kernels0,5→0,25.
+Precision61/62 ввёл trackingstd0,25; corridor63/64 сохраняет его и вводит wheel constraint.
 Из диагностики reset следует: с первого Rough update используем upright reset
 roll/pitch ±0,1 рад. Возвращать recovery ±π после адаптации не требуется.
 Это новая terrain-задача от готового Flat anchor, а не буквальное воспроизведение
@@ -62,7 +56,8 @@ Actor export/live parity ≤1e−5 проверяется до и после о�
 `scripts/train_b2w.py --rough_r0` теперь имеет ограниченный project Rough path
 с critic247; Flat defaults сохранены. Проектный terrain config и smoke реализованы;
 safe curriculum и полный Rough evaluator прошли preflight. Route protocol59/60
-и последующий precision61/62 прошли собственные native64 train/resume проверки.
+и precision61/62 прошли native64 train/resume. Новыйcorridor63/64 также прошёл
+свои native проверкиterminal/reset/Flat-exemption и2+2resume.
 Реализация и квалификация Stairs остаются отдельной задачей после Rough qualification.
 Vendor и runtime source неизменны.
 
@@ -91,7 +86,7 @@ terrain, максимальные updates и timeout до старта. Назв
 |---|---|---|
 | R0: реализация и GPU smoke | 64 env, 10 000 physics steps; отдельные 2 PPO + 2 resume updates, результаты discard | Контракт, mesh/rays/spawn/contact fixtures, export parity, restart, finite telemetry |
 | R0: производительность, выполнено |50 updates на1024/2048/4096; dual2048; все discard |Выбран single4096 по измеренному throughput;2×4096 не запускался |
-| R1: Rough development, precision tracking |Свежие61/62, каждый50 critic +100 PPO +200 PPO, single4096; preflight пройден, основная очередь запущена20.09 в15:08МСК | Оба model_349 должны пройти все Rough families и Flat regression |
+| R1: Rough development, wheel corridor |Свежие63/64, каждый50critic+100PPO+200PPO,single4096; preflight пройден, очередь подготовлена | Оба model_349 должны пройти все Rough families и Flat regression |
 | R2: Rough qualification | Только после R1: 3 новых seeds, тот же recipe и anchor; новые geometry/physics cases | Каждый финал отдельно проходит все gates; Rough-only acceptance |
 | S0: straight stairs smoke | Новый mesh/evaluator, 64 env, 10 000 physics steps и 2+2 discard updates | Корректные up/down labels, spawn/finish/no-shortcut/contact fixtures |
 | S1: stairs development | 2 свежих seeds от заранее выбранного qualified Rough actor, свежие critic/optimizer; 50+100+200 | Оба финала проходят up и down отдельно, Rough и Flat regression |
@@ -115,12 +110,10 @@ Stairs требует собственной capacity проверки. Это �
 В training mix постоянно 30% Flat, 30% random rough, 20% slopes (поровну оба
 знака), 20% blocks. Ступени пока исключены. Flat environments сохраняют
 квалифицированный command sampler, в том числе pure-yaw fraction0,25.
-Precision61/62 сохраняет Rough sampler/reset/22с, введённые историческим
-[route protocol59/60](ROUGH_ROUTE_CORRECTION.md); случайные широкие команды
-на Rough относились к прежней57/58 серии. Обе серии завершены без quality pass.
-Текущий опыт меняет только общий std linear/yaw tracking kernels0,5→0,25
-на всех training tiles; weights и physics сохраняются. Дополнительные pushes,
-reward sweeps и ослабление gates не входят в опыт.
+Corridor63/64 сохраняет sampler/reset/22с из исторического route59/60 и
+precisionstd0,25 из61/62. Меняется Rough wheel-corridor constraint: true terminal
+и sticky failure дляcurriculum. Дополнительныеreward penalties, pushes,
+новыеobservations иослаблениеgates не входятвэтотопыт.
 
 | Уровень | Random rough, абсолютные высоты относительно среднего | Slope, отношение Δz/Δx | Blocks, высота / размер ячейки |
 |---|---|---|---|
@@ -144,8 +137,9 @@ approach участвуют как движущиеся эпизоды. Для �
 episode safe traversal требует отсутствие sticky failure и продвижение в
 командуемом направлении ≥50% интеграла заданной translational speed, минимум1 м;
 направление команды поворачивается по текущему yaw, дистанция интегрируется
-по physics steps. Поэтому постепенный боковой уход может выполнить curriculum:
-root square±5,4м шире evaluation wheel corridor, и promotion не означает route pass.
+по physics steps. Раньше постепенный боковой уход мог выполнить curriculum приroot square±5,4м.
+В63/64 каждыйвыходколеса заwheel corridor — stickyfailure иtrue terminal,
+такойepisode не повышаетуровень. Promotion всёравно не заменяетполныйevaluationpass.
 Только вращение без поступательного движения не обеспечивает нужный progress.
 Ошибки геометрии не исключаем задним числом: технический дефект останавливает очередь.
 
@@ -223,7 +217,7 @@ tilt к gravity>60° более0,1 с. В первом locomotion gate разр�
 contacts. Knee-assisted parkour не объявляем универсально неправильным, но
 включать его в этот контракт без отдельного пересмотра нельзя. В текущем training
 сохранён tilt terminal>60° дольше0,1с; отдельного contact terminal по-прежнему нет.
-Precision61/62 меняет только ширину tracking kernels при прежних reward weights.
+Corridor63/64 сохраняетprecisionrewards и вводитRough-only wheel terminal.
 Evaluator фиксирует sticky failure даже при восстановлении.
 
 World-z0,4–0,8 из Flat на неровности и лестницы **не переносим**. Измеряем расстояния
@@ -280,5 +274,5 @@ selection, privileged teacher и student; это основание повыша
 и [distance curriculum](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/mdp/curriculums.py)
 проверены по локальному matched runtime v2.3.2. Локальный успех Flat — основание
 первого ограниченного переноса. Исторические Rough57/58 и route59/60 завершены
-и не приняты. Precision61/62 прошёл preflight, основная очередь запущена20.09 в15:08МСК;
-Stairs не запускался и не имеет quality pass.
+и не приняты. Precision61/62 failed150 припройденномFlat; corridor63/64
+прошёлpreflight, очередьподготовлена. Stairs не запускался и не имеетqualitypass.

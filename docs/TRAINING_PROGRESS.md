@@ -1,5 +1,26 @@
 # Результаты обучения B2W
 
+**20.09, последний результат:** precision61/62 остановились15:56:59МСК на150.
+Flat400/400safe и все4absolute/relative gates пройдены; Roughlevel0 —1124/1600
+success(70,25%),0/16full suites, все476first failures —corridor.28stagesexit0.
+[Итог](results/rough_precision_training_20260920.json),
+[аудит26artifacts](results/2026-09-20-precision150-corridor-audit.json).
+
+**Следующая очередь:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md).
+Rough выходколеса за прежниеграницы теперьtrue terminal иcurriculumfailure;
+Flat,precisionrewards,actor57,PPO иgatesсохраняются. Свежиеactorот54/critic247/
+optimizer;50+100+200single4096.175CPUtests,1290vendorhashes,native64train/resume
+прошли:4границы/Rough-only/reset/timeoutсемантика,прежниефикстуры,optimizer40→80.
+[Preflight](results/rough_corridor_preflight_20260920_1.json).
+Основная очередь подготовлена; старт и ETA будут записаны после фактическихupdates.
+
+[Passive traces](results/rough_corridor_trace_20260920.json) сохранили200исходныхrows
+random0nominal:61выходы18negative-y/4forward;62выходы7negative-y/16forward.
+Это точныеколёсныеграницы200Hz,20Hzтраектории иошибкидопервогоfailure.
+Будущаяdiagnosisотличаетуспешныймаршрут отостановкидвижениярадиотсутствиявыхода.
+
+## История precision61/62 и предыдущих опытов
+
 **20.09, актуальный итог:** route continuation59/60 завершено12:47:42МСК,
 54stages exit0. Rough2653/4800 successes,0/48 full suites; первые failures:
 1888corridor,249body_contact,10route_incomplete. Curriculum[0,1,2,2,1] у обоих.

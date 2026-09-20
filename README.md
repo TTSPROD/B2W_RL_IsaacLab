@@ -1,27 +1,27 @@
 # B2W RL · Isaac Lab
 
-Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
-затем отдельный sim2real этап.
+Обучение Unitree B2W: **Flat → Rough → Stairs**, затем отдельный sim2real этап.
 
-**20.09.2026: Flat квалифицирован; Rough пока не принят.**
-Route59/60 завершили350 в12:47МСК:2653/4800 Rough successes,0/48 полных suites.
-Flat400/400 safe и absolute tracking pass, но3/4 relative gates failed.
-[Результат](docs/results/rough_route_continue_20260920.json),
-[диагностика](docs/results/2026-09-20-rough-route-diagnosis.json).
+**20.09: Flat квалифицирован; Rough пока не принят.** Precision61/62
+остановились на150 в15:56МСК: Flat400/400 safe и все4regression checks прошли;
+Rough1124/1600 successes,0/16 suites, все476 failures — corridor.
+[Итог](docs/results/rough_precision_training_20260920.json),
+[пересчитанный аудит](docs/results/2026-09-20-precision150-corridor-audit.json).
 
-Следующий опыт — [точность tracking reward](docs/ROUGH_PRECISION_TRACKING.md):
-ширина kernels0,5→0,25, свежие61/62 от qualified Flat54,50critic+100+200PPO.
-[Native64 train/resume preflight](docs/results/rough_precision_preflight_20260920_1.json)
-пройден: оба процесса завершились с exit0. Основная очередь запущена20.09 в15:08МСК;
-фактический запуск и статус — в [журнале](docs/TRAINING_PROGRESS.md),
-дальнейшие решения — в [плане](docs/PROJECT_PLAN.md).
-Reference уже является предком54; [random0 comparator](docs/results/rough_reference_baseline_20260920.json)
-не прошёл Rough gates, поэтому исходная политика не назначена Rough teacher.
-[Исследование практик](docs/ROUGH_RESEARCH_2026-09-20.md).
+Следующий опыт — [wheel corridor63/64](docs/ROUGH_WHEEL_CORRIDOR.md):
+Rough выход колеса за прежний evaluator corridor становится true terminal
+и запрещает curriculum promotion. Precision rewards и Flat replay сохраняются.
+Actor отqualified Flat54, новые critics/optimizers,50+100+200PPO,single4096.
+Native64 train/resume и175CPUtests пройдены; основная очередь подготовлена.
+[Статус](docs/TRAINING_PROGRESS.md), [план](docs/PROJECT_PLAN.md).
 
-Flat54/55/56 прошли все6 nominal/bounded evaluations100/100 с tracking;
-[проверены66 artifacts/hashes](docs/results/2026-09-19-reference-qualification-verification.json).
-Прежние Rough57/58:0/24 и10/24 suites, [итог](docs/results/rough_requested_continue_20260920.json).
+[Passive replay](docs/results/rough_corridor_trace_20260920.json) сохранил все200
+исходных rows: на random0 nominal измерены боковые и передние пересечения
+по точным координатам колёс. [Исследование подходов](docs/ROUGH_RESEARCH_2026-09-20.md).
+Reference используется черезactor54 и frozen drift guards; её собственный
+Rough comparator не прошёл gates, поэтому Rough imitation loss не добавляется.
+Flat54/55/56 прошли6/6 квалификационных оценок100/100 с tracking;
+[верификация](docs/results/2026-09-19-reference-qualification-verification.json).
 
 Windows / RTX4070Ti: Flat headless2×4096 и Rough single4096 технически
 проверены; для Rough последовательные seeds быстрее измеренной пары2048+2048.
