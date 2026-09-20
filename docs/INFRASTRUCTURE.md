@@ -9,7 +9,7 @@
 
 Актуально20.09: Rough57/58 до350 завершены без acceptance;
 [итог](results/rough_requested_continue_20260920.json),
-[исследование](ROUGH_RESEARCH_2026-09-20.md). Готовится
+[исследование](ROUGH_RESEARCH_2026-09-20.md).20.09 в09:32 МСК запущен
 [route59/60](ROUGH_ROUTE_CORRECTION.md) на этом desktop: single4096,
 50+100+200; [job](../logs/rough/rough_route_correction_20260920/job.json).
 Новые checkpoints остаются в исключённых из Git `logs/`.

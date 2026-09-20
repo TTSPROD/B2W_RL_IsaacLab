@@ -90,9 +90,9 @@ Dual2048 aggregate21170 transitions/s, peak10803MiB; single быстрее на2
 [Измерения и границы методики](results/rough_capacity_20260919.json).
 
 Seeds57/58 завершили350, но [quality gate провален](results/rough_requested_continue_20260920.json).
-Готовится [route59/60](ROUGH_ROUTE_CORRECTION.md):50+100+200 single4096,
-максимум68812800 transitions; новый22с Rough/20с Flat protocol требует
-собственного preflight. [Job](../logs/rough/rough_route_correction_20260920/job.json),
+20.09 в09:32 МСК запущен [route59/60](ROUGH_ROUTE_CORRECTION.md):50+100+200 single4096,
+максимум68812800 transitions; новый22с Rough/20с Flat protocol прошёл
+собственный native64-env train/resume preflight. [Job](../logs/rough/rough_route_correction_20260920/job.json),
 [обоснование](ROUGH_RESEARCH_2026-09-20.md). Старый throughput не обещает ETA
 нового sampler и не доказывает время достижения качества.
 

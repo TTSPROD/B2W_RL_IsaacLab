@@ -8,7 +8,7 @@ qualification и Stairs не запускались.**
 [continuation](ROUGH_REQUESTED_CONTINUATION.md) сохраняют прежние результаты.
 
 Действующее следующее решение — [Rough route correction](ROUGH_ROUTE_CORRECTION.md),
-пока подготовка: свежие59/60 от qualified Flat actor54, новые critic247/optimizer,
+запущено20.09 в09:32 МСК: свежие59/60 от qualified Flat actor54, новые critic247/optimizer,
 50+100+200 updates single4096, максимум68812800 transitions. Rough-only
 commands/reset/22с согласуются с маршрутом; Flat30% сохраняет20с и прежние
 команды/reset. Tilt terminal и все PPO/drift/quality gates сохраняются.

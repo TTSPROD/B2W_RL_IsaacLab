@@ -10,7 +10,7 @@ Rough57/58 завершили350 updates: прошли0/24 и10/24 Rough suites,
 остался на level0. Flat safety400/400 сохранена, но3/4 относительных regression
 gates не пройдены. [Итог350](docs/results/rough_requested_continue_20260920.json).
 
-Готовится [коррекция Rough эпизодов](docs/ROUGH_ROUTE_CORRECTION.md): новые
+20.09 в09:32 МСК запущена [коррекция Rough эпизодов](docs/ROUGH_ROUTE_CORRECTION.md): новые
 seeds59/60 от qualified seed54,50 critic +100+200 PPO, single4096.
 Rough команды/reset/22с согласуются с маршрутом; Flat30% сохраняет20с и
 прежние команды. Reference уже лежит в основе seed54. Frozen random0 comparator завершён:
@@ -19,7 +19,7 @@ reference42/45, anchor39/47 из100 nominal/bounded; все четыре gates f
 [Исследование практик](docs/ROUGH_RESEARCH_2026-09-20.md),
 [состояние новой очереди](logs/rough/rough_route_correction_20260920/job.json),
 [журнал](docs/TRAINING_PROGRESS.md), [план](docs/PROJECT_PLAN.md).
-Подготовленный протокол не означает запущенное или принятое обучение.
+[Запуск и первые выполненные updates](docs/results/2026-09-20-rough-route-launch.json) подтверждены. Rough acceptance остаётся открытым.
 
 Windows / RTX4070Ti: Flat headless2×4096 и Rough single4096 технически
 проверены; для Rough последовательные seeds быстрее измеренной пары2048+2048.

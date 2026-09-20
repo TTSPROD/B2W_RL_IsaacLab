@@ -12,14 +12,18 @@ Flat safety —400/400 и абсолютные tracking gates пройдены; 
 regression к anchor прошла только у58 bounded_v1. Checkpoint350, export
 и успешное выполнение вычислений не означают Rough acceptance.
 
-Готовится [Rough route correction](ROUGH_ROUTE_CORRECTION.md): seeds59/60
+20.09 в09:32 МСК запущена [Rough route correction](ROUGH_ROUTE_CORRECTION.md): seeds59/60
 от qualified Flat seed54 actor, свежие critic247/optimizer,50 critic-only
 +100+200 PPO, single4096 последовательно; максимум68812800 transitions.
 Rough70% получает согласованные команды/reset и22с эпизоды; Flat30% сохраняет
 20с и прежний random sampler. Tilt terminal, LR1e-4/std0,1/clip0,1/entropy0,
 drift0,25, frozen cases и все regression/quality gates сохраняются.
 [Новый job](../logs/rough/rough_route_correction_20260920/job.json) — источник
-фактического статуса; подготовка не является подтверждением запуска.
+фактического статуса. Supervisor PID12512; seed59 начал critic calibration,
+первые updates и source hashes подтверждены в [launch record](results/2026-09-20-rough-route-launch.json).
+Seed60 ожидает своей очереди.144 CPU-теста,1290 vendor hashes и native GPU
+train/resume2+2 пройдены; optimizer40→80, обе route/tilt fixtures прошли.
+[Верификация](results/2026-09-20-rough-route-validation.json).
 
 [Исследование20.09](ROUGH_RESEARCH_2026-09-20.md) отделяет velocity tracking
 от скрытого маршрута и обосновывает проверку выполнимости команд на tile.

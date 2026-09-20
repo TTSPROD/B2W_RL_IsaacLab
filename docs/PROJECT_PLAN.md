@@ -17,7 +17,7 @@ R0, safe curriculum, terrain/contact/bounded-physics fixtures, export/resume
 диагностическое; старые fails и checkpoints сохраняются.
 
 Следующее решение — [Rough route correction](ROUGH_ROUTE_CORRECTION.md),
-сейчас подготовка. Свежие seeds59/60 получают actor qualified seed54 и новые
+запущена20.09 в09:32 МСК. Свежие seeds59/60 получают actor qualified seed54 и новые
 critics/optimizers,50+100+200 updates по4096 сред последовательно.
 Одна связанная поправка постановки задачи: Rough-only commands/reset и22с
 эпизод; Flat30% сохраняет20с, прежние команды и reset. Tilt terminal,
@@ -137,7 +137,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
 | Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Пройден19.09:54/55/56, все6 оценок100/100 и tracking pass |
-| Rough | Smoke/throughput; 2 development seeds50+100+200; затем3 новых qualification seeds; Flat regression | R0 пройден;57/58 failed350; готовится route59/60, acceptance открыт |
+| Rough | Smoke/throughput; 2 development seeds50+100+200; затем3 новых qualification seeds; Flat regression | R0 пройден;57/58 failed350; запущен route59/60, acceptance открыт |
 | Stairs | Отдельный straight-march evaluator; up/down0,05–0,18 м; 2 development +3 qualification seeds; Rough/Flat regression | После Rough qualification, не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |
 | SDK/hardware | Offline replay→fault tests→стенд→ограниченные испытания | Управление не разрешено |
@@ -171,7 +171,7 @@ Industrial лестницы, perceptive/history ABI и hardware limits — от�
 - Завершено: короткий Flat transfer и qualification54/55/56 на новых cases.
 - Завершено: [Rough R0](ROUGH_R0.md), safe curriculum, full evaluator,
   bounded physics и capacity;57/58 до350 завершены без quality acceptance.
-- P0: reference/anchor Rough baseline и preflight нового route protocol59/60;
+- P0: reference/anchor Rough baseline и preflight нового route protocol59/60 пройдены;
   затем ограниченные50+100+200 с неизменёнными quality gates.
 - P1: Rough2-seed development50+100+200 и Flat regression; только после общего
   pass —3 новых seeds/hold-outs. При fail — одна причинная проверка, без продления.
