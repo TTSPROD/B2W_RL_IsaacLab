@@ -229,3 +229,90 @@ model_2499,1500 новых updates/ветвь,4096 сред. Smoke/resume, пр�
   exports и 4 evaluations. [Протокол](../docs/REFERENCE_RESUME.md).
 
 Исходный failed job и протокол сохраняются; retry не переписывает историю.
+
+
+## Rough R0 (19 сентября 2026)
+
+`run_rough_r0.py` — ограниченная локальная очередь от qualified Flat seed54:
+collision geometry/64-env physics smoke,2+2 PPO с optimizer resume, затем50
+updates на1024/2048 средах. Все веса discard; очередь не разрешает R1/Stairs.
+Протокол: [ROUGH_R0](../docs/ROUGH_R0.md). Существующие output/seeds защищены
+от повторного запуска; JSON и source snapshots сохраняют технические попытки.
+
+`train_b2w.py --rough_r0` сохраняет actor ABI57→16 и создаёт critic247,
+проверяет frozen parent hash, Rough и фиксированный Flat observation bank drift.
+`b2w_rough_runtime.py` задаёт level0 mix и отключает upstream distance promotion;
+`b2w_rough_terrain.py` создаёт проектные collision meshes с явной квантизацией.
+`smoke_rough_b2w.py` проверяет GPU PhysX/Fabric,187 rays,spawn и contacts на каждом
+physics step. Safe curriculum и полный Rough evaluator реализованы20сентября;
+их отдельная проверка описана ниже.
+
+
+## Rough development (20 сентября 2026)
+
+`benchmark_rough_capacity.py`: завершённый discard benchmark single4096/dual2048;
+выбран single4096. Повторно в существующие output не запускать.
+`run_rough_preflight.py --attempt N`: collision fixtures nominal/bounded,
+полный100-case evaluator и safe-curriculum train/resume2+2; веса discard.
+`run_rough_development.py --preflight docs/results/rough_r1_preflight_20260920_6.json`:
+фиксированные seeds57/58,4096 сред последовательно,50+100+200 updates. После
+milestones обязательны Flat regression и Rough cases по протоколу. Координатор
+запрещает повторное использование seeds, изменение source/protocol, продление
+бюджета; хранит процессные exit codes, checkpoints, resource/quality guards.
+Во время очереди исходники не менять и другие GPU jobs не запускать.
+
+`rough_curriculum.py`: только safe directed traversal повышает level, state
+сохраняется в checkpoint. `replay_rough_b2w.py`/`rough_metrics.py`:100 cases,
+200Hz contacts и50Hz sampled collision geometry, physical-property readback,
+route/tracking/energy/slip/limits. `rough_evaluation.py`: неизменяемые cases и
+пересчёт quality gates по полным rows. [Протокол](../docs/ROUGH_DEVELOPMENT.md).
+
+
+## Rough tilt correction (20 сентября 2026)
+
+`diagnose_rough_drift.py` пересчитывает сохранённый iteration115 probe без PPO.
+`rough_tilt_termination.py` добавляет только sustained-tilt terminal (>60°,>0,1с),
+использует physics-rate telemetry и выполняет искусственный переворот только
+на discard64-env smoke. В training opt-in `--rough_tilt_termination`.
+`run_rough_preflight.py --attempt 7 --tilt_termination` завершён exit0;
+fixture train/resume подтвердил reset после0,12с и очистку timer/sticky state.
+`run_rough_tilt_correction.py --preflight docs/results/rough_r1_preflight_20260920_7.json`
+запускает новую причинную серию57/58 от собственных validated model_49,
+100+200 новых updates. Исторический stopped_115 не используется как parent.
+YAML, source, parent, case hashes и прежние quality/VRAM/drift guards проверяются.
+[Протокол](../docs/ROUGH_TILT_CORRECTION.md). Во время запуска frozen code не менять.
+
+
+## Запрошенное Rough continuation150→350
+
+`run_rough_requested_continuation.py --continue_after_failed_rough150`:
+фиксированные seeds57/58, только собственные validated tilt-correction
+`model_149.pt`, ещё200 updates/seed,4096 env последовательно. Запущено20.09
+по прямому запросу пользователя после сообщения о Rough quality stop.
+Проверяет предыдущие20 evaluations/source/hashes/optimizer; сохраняет
+прежний fail150. Собирает4 Flat и48 Rough final evaluations с прежними
+порогами; результат диагностический, без автоматической acceptance/qualification.
+Training/evaluator код не менялся. [Протокол](../docs/ROUGH_REQUESTED_CONTINUATION.md).
+
+
+## Rough route correction (20 сентября 2026)
+
+`run_rough_reference_baseline.py` завершил сравнение исходной reference и
+Flat anchor54: random level0,100 cases×2profiles на политику. Это диагностический
+comparator, не Rough qualification.
+
+`rough_route_commands.py` задаёт opt-in согласованные command/reset/episode
+распределения на Rough70%, сохраняя Flat replay30%. `train_b2w.py
+--rough_route_commands --rough_transfer --rough_tilt_termination` требует
+новой серии stage0 и запрещает подмену режима при resume. Актор57→16,
+rewards,physics и evaluator сохранены; random initial episode clock выключен.
+
+`run_rough_route_preflight.py --attempt 1`: native reset/command/timeout/partial
+reset fixtures и discard64-env GPU train/resume2+2.
+`run_rough_route_correction.py --preflight docs/results/rough_route_preflight_20260920_1.json`:
+свежие seeds59/60 от квалифицированного Flat actor54, новые critics,
+50+100+200 updates, single4096, прежние Flat/Rough/drift/VRAM gates.
+Зависит от локальных исключённых из Git артефактов; повторный запуск запрещён.
+[Протокол](../docs/ROUGH_ROUTE_CORRECTION.md),
+[исследование](../docs/ROUGH_RESEARCH_2026-09-20.md),
+[проверенные последние результаты](../docs/results/2026-09-20-rough-latest-audit.json).

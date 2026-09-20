@@ -5,6 +5,28 @@
 проверен частично: saturation и аппаратный mapping остаются открытыми,
 `stage_1_complete=false`. Исходники `vendor/` не изменены.
 
+## Состояние20.09.2026
+
+Rough путь сохраняет actor57→16/Identity/50Hz, critic247 с187 height rays.
+Critic не передаёт terrain или velocity estimates actor. Export/live checks
+и завершение350 у57/58 не закрыли quality gate:
+[аудит199 hashes](results/2026-09-20-rough-latest-audit.json),
+[исследование ограничений blind57](ROUGH_RESEARCH_2026-09-20.md).
+
+Готовится [route correction59/60](ROUGH_ROUTE_CORRECTION.md): actor qualified
+seed54, новые critic/optimizer,50+100+200 single4096. Исходная reference
+уже использована в lineage seed54; её повторный actor-only import не является
+resume training state. Rough-only commands/reset/22с меняют episode protocol,
+Flat30% сохраняет20с и прежние команды. Observation/action ABI, tilt terminal,
+PPO/drift0,25, parity и Flat/Rough gates сохраняются. Экспорт новых финалов
+проверяется отдельно; до их фактического pass acceptance не объявляется.
+[Новый job](../logs/rough/rough_route_correction_20260920/job.json).
+
+Frozen reference/anchor54 comparator на random0 завершён4×100:
+42/45 и39/47 successes nominal/bounded; ни один full gate не пройден.
+[Отчёт](results/rough_reference_baseline_20260920.json) не меняет ABI и
+не является полной Rough квалификацией. Saturation и hardware gates ниже открыты.
+
 ## Выполненные проверки
 
 Дополнение после исходной проверки seed 42: оба финальных reward checkpoints
@@ -123,7 +145,7 @@ Targets: 12 позиций в rad = default `[0,0.8,-1.5]` ×4 + action ×
 `[0.125,0.25,0.25]` ×4; 4 скорости колёс в rad/s = action ×5.
 Physics dt 0.005 s, decimation 4, policy 50 Hz.
 
-## Reference transfer: подготовленный путь адаптации
+## Reference transfer: выполненный путь адаптации
 
 `reference_transfer.py` переносит только actor из зафиксированного
 `vendor/rl_sar/policy/b2w/robot_lab/policy.pt` в новую RSL-RL policy.
@@ -136,7 +158,7 @@ ABI сохраняется: 57→16, MLP `[512,256,128]`, ELU, `Identity` normal
 выполненным локальным обучением. Seeds 52/53 разделяют один начальный actor;
 различаются новые critic/RNG, поэтому это seeds адаптации общего reference.
 
-План включает 50 updates только critic при замороженном actor, затем 100 PPO
+Исторический протокол включает50 updates только critic при замороженном actor, затем100 PPO
 и ещё 200 PPO updates. После каждого stage выполняется development-оценка;
 следующий stage допускается только по заранее заданному правилу. Фиксированные std 0,1, LR 1e−4, clip 0,1 и entropy 0
 относятся к этому протоколу. Rewards и policy ABI не меняются.

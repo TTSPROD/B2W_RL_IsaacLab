@@ -1,7 +1,10 @@
 # Где обучать B2W
 
-**Основная площадка headless Flat — Windows / RTX 4070 Ti с отдельным runtime
-проекта.** Режим 2×4096 технически проверен. Текущий блокер — качество и
+[Аудит350](results/2026-09-20-rough-latest-audit.json) проверил199 hashes без расхождений.
+
+**Основная площадка — Windows / RTX4070Ti с отдельным runtime проекта.**
+Flat2×4096 и Rough single4096 технически проверены. Для Rough выбираем
+последовательные seeds: measured single4096 быстрее dual2048. Текущий блокер — качество и
 воспроизводимость политики; увеличение числа GPU не устраняет этот блокер.
 Очередь и результаты — в [TRAINING_PROGRESS](TRAINING_PROGRESS.md), бюджет
 и следующий эксперимент — в [PROJECT_PLAN](PROJECT_PLAN.md).
@@ -13,7 +16,7 @@
 | GPU | RTX 4070 Ti, 12 282 MiB | RTX 4080 Laptop, 12 282 MiB | 4× Hopper по 95 830 MiB; коммерческое имя не подтверждено |
 | CPU / RAM | Ryzen 9 5900X, 12C/24T, 31.9 GiB | i9-14900HX, 24C/32T, 31.6 GiB | Xeon 6527P, 96 потоков, 503 GiB |
 | ОС | Windows 11 Pro build 26200 | Windows 11 Enterprise build 26200 | Ubuntu 22.04.5 |
-| Проверенный профиль | Headless Flat, в том числе 2×4096 | Headless Flat, 1×4096 на P-ядрах | Isaac Lab throughput не измерен |
+| Проверенный профиль | Headless Flat2×4096; Rough1×4096 и2×2048 | Headless Flat, 1×4096 на P-ядрах | Isaac Lab throughput не измерен |
 | Статус | Основная площадка | Квалифицирован 18 сентября; основное обучение не назначалось | Runtime/RT/Vulkan gate не пройден |
 | Подробности | [Установка](DESKTOP_SETUP.md) | [Квалификация](LAPTOP_WORKER.md) | [Обследование](SERVER_PERFORMANCE.md) |
 
@@ -79,21 +82,36 @@ Resume восстанавливает optimizer, но запускает simulat
 и качество политики учитываются раздельно. Seeds 42/43/44 с разной историей
 не заменяют контролируемую приёмку на трёх новых seeds.
 
+## Rough: измерено20.09 и назначение следующей пары
+
+Single4096 дал26153 transitions/s по event wall time, peak7222MiB.
+Dual2048 aggregate21170 transitions/s, peak10803MiB; single быстрее на23,54%.
+2×4096 Rough не запускались: прогноз13130MiB выше12282MiB устройства.
+[Измерения и границы методики](results/rough_capacity_20260919.json).
+
+Seeds57/58 завершили350, но [quality gate провален](results/rough_requested_continue_20260920.json).
+Готовится [route59/60](ROUGH_ROUTE_CORRECTION.md):50+100+200 single4096,
+максимум68812800 transitions; новый22с Rough/20с Flat protocol требует
+собственного preflight. [Job](../logs/rough/rough_route_correction_20260920/job.json),
+[обоснование](ROUGH_RESEARCH_2026-09-20.md). Старый throughput не обещает ETA
+нового sampler и не доказывает время достижения качества.
+
 ## Следующие вычислительные проверки
 
-1. Использовать проверенный desktop Flat режим для эксперимента с заранее
+1. Использовать проверенный desktop single4096 Rough режим с заранее
    заданными бюджетом и критерием остановки из плана. Новый GPU workload требует
    проверки текущих ресурсов; старые PID и memory samples для этого непригодны.
 2. Ноутбуку назначать только отдельную проверенную задачу с собственным manifest;
    завершённая техническая квалификация сама по себе не назначает обучение.
-3. Перед Rough отдельно измерить startup terrain generation, steady-state
-   throughput и память. Flat не квалифицирует тяжёлые terrains или perception.
+3. Перед изменённым Rough protocol выполнить preflight и проверить timings;
+   Stairs/perception требуют собственной памяти, throughput и runtime проверки.
 4. К серверу возвращаться при нехватке локального ресурса после RT/Vulkan,
    Compatibility Checker и B2W physics smoke; общие драйверы и чужие процессы
    не менять.
 
 Официальные требования Isaac Lab 2.3.2 — RAM ≥32 GB и VRAM ≥16 GB.
-Подтверждённая работа на 12 GiB относится к конкретному Flat workload.
+Подтверждённая работа на12GiB относится к измеренным Flat/Rough workloads.
 [Требования](https://isaac-sim.github.io/IsaacLab/v2.3.2/source/setup/installation/index.html),
 [официальные benchmarks](https://isaac-sim.github.io/IsaacLab/v2.3.2/source/overview/reinforcement-learning/performance_benchmarks.html).
-Скорость Rough/Stairs, time-to-quality и преимущество сервера пока не установлены.
+Скорость прежнего Rough измерена; Stairs, time-to-quality и преимущество
+сервера пока не установлены.

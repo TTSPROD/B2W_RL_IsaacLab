@@ -1,0 +1,77 @@
+{
+  "observed_utc": "2026-09-19T21:27:56.439644+00:00",
+  "status_at_observation": "training",
+  "active_seed": 57,
+  "queued_seed": 58,
+  "num_envs": 4096,
+  "concurrent_training_processes": 1,
+  "training_schedule": [
+    50,
+    100,
+    200
+  ],
+  "supervisor_pid": 17628,
+  "job": "logs/rough/rough_development_20260920/job.json",
+  "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\manifest.json",
+  "observed_progress": {
+    "updated_utc": "2026-09-19T21:27:53.047283+00:00",
+    "iteration": 17,
+    "updates_completed_this_run": 18,
+    "updates_requested_this_run": 50,
+    "transitions_this_run": 1769472,
+    "collection_seconds": 3.6406095027923584,
+    "learning_seconds": 0.13202762603759766,
+    "losses": {
+      "value_function": 4.687521600723267,
+      "surrogate": 1.0946678230538964e-07,
+      "entropy": -14.138346672058105
+    },
+    "command_distribution": {
+      "env_command_steps": 1769472,
+      "standing_fraction": 0.019744873046875,
+      "pure_yaw_abs_gt_005_fraction": 0.27242250795717593,
+      "positive_pure_yaw_fraction": 0.1316997386791088,
+      "negative_pure_yaw_fraction": 0.14072276927806712,
+      "mean_abs_yaw_rad_s": 0.26759461168613696,
+      "scope": "Cumulative commands after command-manager updates, including initial resets"
+    },
+    "learning_rate": 0.0001,
+    "reference_drift": {
+      "sample_count": 4096,
+      "raw_action_rms": 0.0,
+      "raw_action_max_abs": 0.0,
+      "mean_gaussian_kl": 0.0,
+      "leg_target_rms_rad": 0.0,
+      "wheel_target_rms_rad_s": 0.0,
+      "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+    },
+    "training_phase": "critic_calibration",
+    "policy_quality_evaluated": false
+  },
+  "latest_resources": {
+    "utc": "2026-09-19T21:27:56.194233+00:00",
+    "elapsed_seconds": 102.125,
+    "process_tree_rss_bytes": 7027412992,
+    "process_tree_count": 4,
+    "system_available_ram_bytes": 14346571776,
+    "system_total_ram_bytes": 34277982208,
+    "gpu_total_mib": 12282.0,
+    "gpu_used_mib": 6759.0,
+    "gpu_utilization_percent": 59.0,
+    "gpu_temperature_c": 55.0,
+    "gpu_headroom_fraction": 0.44968246213971663
+  },
+  "source_guards_verified": true,
+  "preflight": "docs\\results\\rough_r1_preflight_20260920_6.json",
+  "preflight_sha256": "7ceed2f628f23a1f18b773397ab5a54fa3bff880bd8157a5f497082a18e6cfbb",
+  "capacity": "docs/results/rough_capacity_20260919.json",
+  "capacity_sha256": "00f8e08efad26ae0286569520b4d1ff40f81dd2667b3d97f34eb3972b261b595",
+  "protocol": "docs/ROUGH_DEVELOPMENT.md",
+  "protocol_sha256": "a17129311a7040dbf0736e32d546b76657401201fdf17a83b429b05d0e2eda81",
+  "validation": {
+    "cpu_tests_passed": 131,
+    "immutable_vendor_files_verified": 1290
+  },
+  "policy_quality_accepted": false,
+  "notes": "Launch observation only; job.json and final rough_development_20260920.json govern subsequent status."
+}

@@ -49,6 +49,11 @@ def git_revision(path: Path) -> str | None:
 def parse_args(app_launcher_class) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--num_envs", type=int, default=256)
+    parser.add_argument("--rough_r0", action="store_true", help="Bounded project Rough runtime tests only; discard weights.")
+    parser.add_argument("--rough_transfer", action="store_true", help="Registered Rough transfer with safe traversal curriculum.")
+    parser.add_argument("--rough_tilt_termination", action="store_true", help="Corrective Rough experiment: terminate sustained tilt, preserve drift and rewards.")
+    parser.add_argument("--rough_route_commands", action="store_true", help="Bounded route task distribution on Rough tiles; preserve Flat replay and evaluation gates.")
+    parser.add_argument("--rough_stage", type=int, choices=(0,1,2), default=0)
     parser.add_argument("--max_iterations", type=int, default=5000, help="PPO updates to execute in this run.")
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--run_name", default="", help="Optional letters/digits/dashes/underscores log suffix.")
@@ -108,6 +113,47 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
         parser.error("--flat_upright_resets requires --reference_init")
     if args.reference_update_probe and args.reference_init is None:
         parser.error("--reference_update_probe requires --reference_init")
+    if args.rough_tilt_termination and not args.rough_transfer:
+        parser.error("--rough_tilt_termination requires registered Rough transfer")
+    if args.rough_route_commands and not (args.rough_transfer and args.rough_tilt_termination):
+        parser.error("--rough_route_commands requires Rough transfer with tilt termination")
+    if args.rough_transfer:
+        from b2w_rough_runtime import ANCHOR_SHA256
+        if (args.rough_r0 or args.reference_init is None or sha256(args.reference_init) != ANCHOR_SHA256
+                or args.num_envs not in (64,4096) or args.flat_upright_resets or args.pure_yaw_fraction != .25
+                or not args.reference_update_probe or args.reference_drift_limit != .25):
+            parser.error('Registered Rough transfer requires frozen seed54 and unchanged guards')
+        smoke = args.num_envs == 64
+        if smoke:
+            if args.max_iterations != 2 or args.critic_warmup_updates != 1 or args.rough_stage != 0:
+                parser.error('Rough curriculum smoke requires 2 updates,64 env,warmup1,stage0')
+        elif args.max_iterations != (50,100,200)[args.rough_stage] or args.critic_warmup_updates != 50:
+            parser.error('Rough R1 requires fixed50/100/200 updates and warmup50')
+        if args.resume is not None:
+            parent = json.loads((args.resume.parent/'manifest.json').read_text(encoding='utf-8'))
+            if parent.get('rough_tilt_termination', False) and not args.rough_tilt_termination:
+                parser.error('Cannot remove tilt termination on resume')
+            if parent.get('rough_route_commands', False) != args.rough_route_commands:
+                parser.error('Route task distribution must be preserved on own-stage resume')
+            expected = 1 if smoke else (49 if args.rough_stage == 1 else 149)
+            if (not parent.get('rough_transfer') or parent['num_envs'] != args.num_envs
+                    or parent.get('ending_runner_iteration') != expected
+                    or (not smoke and parent.get('rough_stage') != args.rough_stage-1)):
+                parser.error('Rough stage requires the exact own previous stage')
+        elif args.rough_stage != 0:
+            parser.error('Later Rough stages require their own checkpoint')
+    if args.rough_r0:
+        from b2w_rough_runtime import ANCHOR_SHA256
+        if (args.reference_init is None or sha256(args.reference_init) != ANCHOR_SHA256
+                or args.num_envs not in (64, 1024, 2048, 4096) or args.max_iterations > 50
+                or args.critic_warmup_updates not in (1, 50) or args.flat_upright_resets
+                or args.pure_yaw_fraction != .25 or not args.reference_update_probe
+                or args.reference_drift_limit != .25):
+            parser.error("Rough R0 requires frozen seed54, bounded envs/updates, warmup1/50, yaw .25, probe and drift .25")
+        if args.resume is not None:
+            parent = json.loads((args.resume.parent / 'manifest.json').read_text(encoding='utf-8'))
+            if not parent.get('rough_r0') or parent['num_envs'] != args.num_envs:
+                parser.error("Rough R0 may only resume its own same-size Rough checkpoint")
     return args
 
 
@@ -117,15 +163,26 @@ def main() -> None:
     from isaaclab.app import AppLauncher
 
     args = parse_args(AppLauncher)
+    rough = args.rough_r0 or args.rough_transfer
+    task, experiment = FLAT_TASK, 'unitree_b2w_flat'
+    if rough:
+        from b2w_rough_runtime import ROUGH_TASK
+        task, experiment = ROUGH_TASK, 'unitree_b2w_rough_r0' if args.rough_r0 else 'unitree_b2w_rough'
+
     args.kit_args = f"{args.kit_args} {project_kit_args()}".strip()
     run_name = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H-%M-%S-%f")
     if args.run_name:
         run_name += "_" + args.run_name
-    log_dir = PROJECT_ROOT / "logs" / "rsl_rl" / "unitree_b2w_flat" / run_name
+    log_dir = PROJECT_ROOT / "logs" / "rsl_rl" / experiment / run_name
     log_dir.mkdir(parents=True, exist_ok=False)
     manifest = {
         "schema_version": 1,
-        "task": FLAT_TASK,
+        "task": task,
+        "rough_r0": args.rough_r0,
+        "rough_transfer": args.rough_transfer,
+        "rough_tilt_termination": args.rough_tilt_termination,
+        "rough_route_commands": args.rough_route_commands,
+        "rough_stage": args.rough_stage if args.rough_transfer else None,
         "status": "starting",
         "started_utc": datetime.now(timezone.utc).isoformat(),
         "num_envs": args.num_envs,
@@ -178,9 +235,16 @@ def main() -> None:
         torch.backends.cudnn.benchmark = False
         torch.cuda.reset_peak_memory_stats(device)
 
-        env_cfg = make_flat_env_cfg(
+        make_cfg = make_flat_env_cfg
+        if rough:
+            from b2w_rough_runtime import make_rough_env_cfg
+            make_cfg = make_rough_env_cfg
+        env_cfg = make_cfg(
             num_envs=args.num_envs, device=args.device, seed=args.seed, headless=args.headless
         )
+        if args.rough_tilt_termination:
+            from rough_tilt_termination import configure_tilt_termination
+            configure_tilt_termination(env_cfg)
         if args.flat_upright_resets:
             from reference_transfer import apply_flat_upright_reset
             manifest["reset_orientation_change"] = apply_flat_upright_reset(env_cfg)
@@ -188,6 +252,10 @@ def main() -> None:
             from b2w_yaw_commands import MeasuredYawVelocityCommand
             env_cfg.commands.base_velocity.class_type = MeasuredYawVelocityCommand
             env_cfg.commands.base_velocity.pure_yaw_fraction = args.pure_yaw_fraction
+        if args.rough_route_commands:
+            from rough_route_commands import configure_route_commands, route_specification
+            configure_route_commands(env_cfg)
+            manifest['rough_route_distribution'] = route_specification()
         if args.yaw_tracking_weight is not None:
             env_cfg.rewards.track_ang_vel_z_exp.weight = args.yaw_tracking_weight
         if args.undesired_contact_weight is not None:
@@ -220,7 +288,7 @@ def main() -> None:
         manifest["effective_undesired_contact_weight"] = env_cfg.rewards.undesired_contacts.weight
         manifest["effective_yaw_tracking_weight"] = env_cfg.rewards.track_ang_vel_z_exp.weight
         env_cfg.log_dir = str(log_dir)
-        agent_cfg = load_cfg_from_registry(FLAT_TASK, "rsl_rl_cfg_entry_point")
+        agent_cfg = load_cfg_from_registry(task, "rsl_rl_cfg_entry_point")
         agent_cfg.seed = args.seed
         agent_cfg.device = args.device
         agent_cfg.max_iterations = args.max_iterations
@@ -269,11 +337,19 @@ def main() -> None:
         for name in ("train_b2w.py", "b2w_runtime.py", "b2w_yaw_commands.py", "yaw_command_sampling.py", "b2w_height_rewards.py", "reference_transfer.py"):
             shutil.copyfile(PROJECT_ROOT / "scripts" / name, source_dir / name)
 
+        if rough:
+            rough_sources = ('b2w_rough_runtime.py', 'b2w_rough_terrain.py', 'rough_curriculum.py', 'rough_tilt_termination.py')
+            if args.rough_route_commands:
+                rough_sources += ('rough_route_commands.py',)
+            for name in rough_sources:
+                shutil.copyfile(PROJECT_ROOT / 'scripts' / name, source_dir / name)
+                runtime['source_sha256']['scripts/' + name] = sha256(PROJECT_ROOT / 'scripts' / name)
+            write_json(log_dir / 'runtime.json', runtime)
         # Preserve a reference to the raw environment even if wrapper initialization fails.
-        env = gym.make(FLAT_TASK, cfg=env_cfg)
+        env = gym.make(task, cfg=env_cfg)
         env = RslRlVecEnvWrapper(env, clip_actions=agent_cfg.clip_actions)
         observations = env.get_observations()
-        expected_dims = {"policy": 57, "critic": 60}
+        expected_dims = {"policy": 57, "critic": 247 if rough else 60}
         for name, width in expected_dims.items():
             value = observations[name]
             if tuple(value.shape) != (args.num_envs, width):
@@ -282,7 +358,29 @@ def main() -> None:
                 raise RuntimeError(f"{name} observations must be finite CUDA tensors")
         if env.num_actions != 16 or torch.device(env.device).type != "cuda":
             raise RuntimeError(f"Expected 16 actions on CUDA, got {env.num_actions} on {env.device}")
-        manifest["validated_contract"] = {"actor_observations": 57, "critic_observations": 60, "actions": 16}
+        manifest["validated_contract"] = {"actor_observations": 57, "critic_observations": expected_dims['critic'], "actions": 16}
+        flat_bank = None
+        if rough:
+            from b2w_rough_runtime import validate_environment, load_flat_bank, flat_bank_path
+            manifest['rough_runtime'] = validate_environment(env)
+            flat_bank = load_flat_bank(args.device)
+            manifest['flat_bank'] = {'path': str(flat_bank_path().relative_to(PROJECT_ROOT)), 'sha256': sha256(flat_bank_path())}
+            write_json(log_dir / 'rough_runtime.json', manifest['rough_runtime'])
+        safe_curriculum = None
+        if args.rough_transfer:
+            from rough_curriculum import SafeTraversalCurriculum
+            restored = None
+            if args.resume:
+                restored = torch.load(args.resume, map_location='cpu', weights_only=True)['infos']['rough_curriculum']
+            safe_curriculum = SafeTraversalCurriculum(env, cap=args.rough_stage, state=restored)
+            if args.rough_tilt_termination and args.num_envs == 64:
+                from rough_tilt_termination import validate_tilt_fixture
+                manifest['tilt_termination_fixture'] = validate_tilt_fixture(env)
+            if args.rough_route_commands and args.num_envs == 64:
+                from rough_route_commands import validate_route_fixture
+                manifest['route_command_fixture'] = validate_route_fixture(env)
+            observations = env.get_observations()
+            manifest['rough_curriculum'] = safe_curriculum.snapshot()
         manifest["physics_dt"] = env_cfg.sim.dt
         manifest["decimation"] = env_cfg.decimation
         manifest["policy_dt"] = env_cfg.sim.dt * env_cfg.decimation
@@ -300,11 +398,21 @@ def main() -> None:
                     if not bool(torch.isfinite(value).all()):
                         raise RuntimeError(f"Non-finite observations after rollout: {key}")
                 super().log(locs, *log_args, **log_kwargs)
+                if safe_curriculum is not None:
+                    manifest['rough_curriculum'] = safe_curriculum.snapshot()
+                    write_json(log_dir/'rough_curriculum.json', manifest['rough_curriculum'])
                 drift = None
                 if teacher is not None:
                     from reference_transfer import measure_reference_drift, set_actor_trainable
                     drift = measure_reference_drift(self.alg.policy, teacher, locs["obs"])
                     manifest["reference_transfer"]["latest_drift"] = drift
+                    if flat_bank is not None:
+                        flat_drift = measure_reference_drift(self.alg.policy, teacher, flat_bank)
+                        manifest['flat_bank_drift'] = flat_drift
+                        write_json(log_dir / 'flat_bank_drift.json', {'iteration': locs['it'], **flat_drift})
+                        if flat_drift['raw_action_rms'] > args.reference_drift_limit:
+                            self.save(str(log_dir / f"stopped_{locs['it']}.pt"))
+                            raise RuntimeError(f'Frozen Flat bank drift exceeded limit: {flat_drift}')
                     if args.reference_update_probe:
                         probe_obs = self.alg.policy.get_actor_obs(locs["obs"])
                         if not torch.equal(probe_obs, update_probe["observations"]):
@@ -335,6 +443,8 @@ def main() -> None:
                             }, log_dir / f'reference_update_{locs["it"]}.pt')
                     write_json(log_dir / "reference_drift.json", {"iteration": locs["it"], **drift})
                     if drift["raw_action_rms"] > args.reference_drift_limit:
+                        if rough:
+                            self.save(str(log_dir / f"stopped_{locs['it']}.pt"))
                         raise RuntimeError(f"Reference action drift exceeded registered limit: {drift}")
                     if locs["it"] < args.critic_warmup_updates and drift["raw_action_max_abs"] > 1e-5:
                         raise RuntimeError("Frozen actor changed during critic calibration")
@@ -362,6 +472,8 @@ def main() -> None:
                 for name, value in self.alg.policy.state_dict().items():
                     if not bool(torch.isfinite(value).all()):
                         raise RuntimeError(f"Non-finite policy tensor: {name}")
+                if safe_curriculum is not None:
+                    infos = dict(infos or {}, rough_curriculum=safe_curriculum.snapshot())
                 super().save(path, infos)
 
         runner = MonitoredRunner(env, agent_cfg.to_dict(), log_dir=str(log_dir), device=agent_cfg.device)
@@ -424,13 +536,18 @@ def main() -> None:
         manifest["status"] = "training"
         write_json(manifest_path, manifest)
         training_started = time.perf_counter()
-        runner.learn(num_learning_iterations=agent_cfg.max_iterations, init_at_random_ep_len=True)
+        manifest['init_at_random_ep_len'] = not args.rough_route_commands
+        runner.learn(num_learning_iterations=agent_cfg.max_iterations, init_at_random_ep_len=not args.rough_route_commands)
         torch.cuda.synchronize(device)
         manifest["training_elapsed_seconds"] = time.perf_counter() - training_started
         manifest["ending_runner_iteration"] = runner.current_learning_iteration
         manifest["torch_peak_allocated_bytes"] = torch.cuda.max_memory_allocated(device)
         manifest["torch_peak_reserved_bytes"] = torch.cuda.max_memory_reserved(device)
         manifest["status"] = "completed"
+        if rough:
+            from b2w_rough_runtime import verify_export
+            manifest['export_parity'] = verify_export(runner.alg.policy, env.get_observations(), log_dir / 'export')
+            manifest['weights_discarded_for_policy_selection'] = args.rough_r0 or args.num_envs == 64
         if not any(log_dir.glob("model_*.pt")):
             raise RuntimeError("PPO loop returned without producing a checkpoint")
         print("[INFO] PPO run completed. Policy quality has not been evaluated.", flush=True)

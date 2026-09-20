@@ -1,0 +1,2868 @@
+{
+  "status": "failed",
+  "started_utc": "2026-09-19T21:26:13.902556+00:00",
+  "supervisor_pid": 17628,
+  "stages": [
+    {
+      "name": "s57_to50",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/train_b2w.py",
+        "--rough_transfer",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--num_envs",
+        "4096",
+        "--seed",
+        "57",
+        "--max_iterations",
+        "50",
+        "--run_name",
+        "rough_development_20260920_s57_stage0",
+        "--reference_init",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--pure_yaw_fraction",
+        ".25",
+        "--reference_update_probe",
+        "--critic_warmup_updates",
+        "50",
+        "--reference_drift_limit",
+        ".25",
+        "--rough_stage",
+        "0"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-19T21:26:14.077147+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1104.0,
+        "gpu_utilization_percent": 5.0,
+        "gpu_temperature_c": 55.0,
+        "gpu_headroom_fraction": 0.9101123595505618
+      },
+      "pid": 26068,
+      "external_exit_code": 0,
+      "elapsed_seconds": 221.59400000001187,
+      "finished_utc": "2026-09-19T21:29:55.667735+00:00",
+      "resources": {
+        "sample_count": 107,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 6893.0,
+        "minimum_gpu_headroom_fraction": 0.43877218694023773,
+        "mean_gpu_utilization_percent": 45.67289719626168,
+        "peak_gpu_temperature_c": 65.0,
+        "peak_process_tree_rss_bytes": 7119126528,
+        "minimum_system_available_ram_bytes": 14346571776,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "validation": {
+        "seed": 57,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\manifest.json",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\model_49.pt",
+        "checkpoint_sha256": "7ba233329f0bcce2b2ffc1a4cb06bdd2fbef5f20ed4d74a6b1ad967b9491d97d",
+        "policy": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\export\\policy.pt",
+        "policy_sha256": "0b765e0160cd0f71617d8f347b8ef23128e6044b27f1a850ca7373d685609c54",
+        "actor_equal_to_anchor": true,
+        "optimizer_max_step": 1000.0,
+        "curriculum": {
+          "cap": 0,
+          "levels": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "windows": [
+            [
+              0,
+              0
+            ],
+            [
+              7,
+              1
+            ],
+            [
+              14,
+              3
+            ],
+            [
+              5,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "history": [
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 31,
+              "cap": 0,
+              "physics_tick": 492
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 44,
+              "cap": 0,
+              "physics_tick": 768
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 92,
+              "cap": 0,
+              "physics_tick": 956
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 75,
+              "cap": 0,
+              "physics_tick": 1284
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 86,
+              "cap": 0,
+              "physics_tick": 1376
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 72,
+              "cap": 0,
+              "physics_tick": 1408
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 87,
+              "cap": 0,
+              "physics_tick": 1444
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 59,
+              "cap": 0,
+              "physics_tick": 1920
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 43,
+              "cap": 0,
+              "physics_tick": 2168
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 31,
+              "cap": 0,
+              "physics_tick": 2256
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 49,
+              "cap": 0,
+              "physics_tick": 2496
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 43,
+              "cap": 0,
+              "physics_tick": 2560
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 48,
+              "cap": 0,
+              "physics_tick": 2644
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 44,
+              "cap": 0,
+              "physics_tick": 2740
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 47,
+              "cap": 0,
+              "physics_tick": 3000
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 35,
+              "cap": 0,
+              "physics_tick": 3204
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 40,
+              "cap": 0,
+              "physics_tick": 3376
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 44,
+              "cap": 0,
+              "physics_tick": 3572
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 30,
+              "cap": 0,
+              "physics_tick": 3724
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 27,
+              "cap": 0,
+              "physics_tick": 3728
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 41,
+              "cap": 0,
+              "physics_tick": 3732
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 26,
+              "cap": 0,
+              "physics_tick": 4016
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 26,
+              "cap": 0,
+              "physics_tick": 4220
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 33,
+              "cap": 0,
+              "physics_tick": 4396
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 20,
+              "cap": 0,
+              "physics_tick": 4664
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 19,
+              "cap": 0,
+              "physics_tick": 4736
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 21,
+              "cap": 0,
+              "physics_tick": 4752
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 15,
+              "cap": 0,
+              "physics_tick": 4796
+            }
+          ],
+          "total_episodes": [
+            1239,
+            1212,
+            415,
+            405,
+            803
+          ],
+          "total_successes": [
+            527,
+            543,
+            191,
+            177,
+            325
+          ],
+          "physics_ticks": 4800,
+          "scope": "Per-family safe traversal; no reward or termination changes; partial episodes reset on restart"
+        },
+        "final_rough_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.0,
+          "raw_action_max_abs": 0.0,
+          "mean_gaussian_kl": 0.0,
+          "leg_target_rms_rad": 0.0,
+          "wheel_target_rms_rad_s": 0.0,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "flat_bank_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.0,
+          "raw_action_max_abs": 0.0,
+          "mean_gaussian_kl": 0.0,
+          "leg_target_rms_rad": 0.0,
+          "wheel_target_rms_rad_s": 0.0,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "checkpoints": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_0.pt",
+              "sha256": "900ee35dfcdad5df183c43d125c4d4d561bdfac41c7a0dbf042378217bd2e826",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 24
+              }
+            },
+            {
+              "path": "model_49.pt",
+              "sha256": "7ba233329f0bcce2b2ffc1a4cb06bdd2fbef5f20ed4d74a6b1ad967b9491d97d",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 24
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 1650,
+          "warmup_updates_excluded": 5,
+          "measured_updates": 45,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 98304,
+          "measured_transitions": 4423680,
+          "rollout_seconds": 164.73283410072327,
+          "learning_seconds": 5.781626224517822,
+          "ppo_timed_seconds": 170.5144603252411,
+          "mean_rollout_seconds_per_update": 3.6607296466827393,
+          "mean_learning_seconds_per_update": 0.12848058276706273,
+          "mean_seconds_per_update": 3.789210229449802,
+          "median_seconds_per_update": 3.7087817192077637,
+          "transitions_per_second": 25943.136972443426,
+          "rollout_transitions_per_second": 26853.662927302103,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+          "measured_event_wall_seconds": 172.22063851356506,
+          "event_wall_transitions_per_second": 25686.120073533268
+        }
+      }
+    },
+    {
+      "name": "s58_to50",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/train_b2w.py",
+        "--rough_transfer",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--num_envs",
+        "4096",
+        "--seed",
+        "58",
+        "--max_iterations",
+        "50",
+        "--run_name",
+        "rough_development_20260920_s58_stage0",
+        "--reference_init",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--pure_yaw_fraction",
+        ".25",
+        "--reference_update_probe",
+        "--critic_warmup_updates",
+        "50",
+        "--reference_drift_limit",
+        ".25",
+        "--rough_stage",
+        "0"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-19T21:29:57.602905+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1072.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 44.0,
+        "gpu_headroom_fraction": 0.9127177984041687
+      },
+      "pid": 31808,
+      "external_exit_code": 0,
+      "elapsed_seconds": 215.60899999999674,
+      "finished_utc": "2026-09-19T21:33:33.209260+00:00",
+      "resources": {
+        "sample_count": 104,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 6824.0,
+        "minimum_gpu_headroom_fraction": 0.44439016446832763,
+        "mean_gpu_utilization_percent": 41.55769230769231,
+        "peak_gpu_temperature_c": 50.0,
+        "peak_process_tree_rss_bytes": 7043383296,
+        "minimum_system_available_ram_bytes": 14115557376,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "validation": {
+        "seed": 58,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\manifest.json",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\model_49.pt",
+        "checkpoint_sha256": "6dca0493583ce5e813c52df2059909d1260b8256b6d50b438be867c2c724d1a8",
+        "policy": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\export\\policy.pt",
+        "policy_sha256": "c76f8f2ab5777add45f6f00970ca4f7086cffdc05cbb00a76dedecadc66b50ac",
+        "actor_equal_to_anchor": true,
+        "optimizer_max_step": 1000.0,
+        "curriculum": {
+          "cap": 0,
+          "levels": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "windows": [
+            [
+              0,
+              0
+            ],
+            [
+              28,
+              7
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              92,
+              22
+            ],
+            [
+              16,
+              5
+            ]
+          ],
+          "history": [
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 18,
+              "cap": 0,
+              "physics_tick": 388
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 38,
+              "cap": 0,
+              "physics_tick": 704
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 87,
+              "cap": 0,
+              "physics_tick": 848
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 102,
+              "successes": 95,
+              "cap": 0,
+              "physics_tick": 1276
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 87,
+              "cap": 0,
+              "physics_tick": 1340
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 67,
+              "cap": 0,
+              "physics_tick": 1472
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 71,
+              "cap": 0,
+              "physics_tick": 1484
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 71,
+              "cap": 0,
+              "physics_tick": 1756
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 60,
+              "cap": 0,
+              "physics_tick": 1932
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 34,
+              "cap": 0,
+              "physics_tick": 2164
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 33,
+              "cap": 0,
+              "physics_tick": 2448
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 29,
+              "cap": 0,
+              "physics_tick": 2480
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 42,
+              "cap": 0,
+              "physics_tick": 2584
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 47,
+              "cap": 0,
+              "physics_tick": 2668
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 50,
+              "cap": 0,
+              "physics_tick": 2888
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 50,
+              "cap": 0,
+              "physics_tick": 2960
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 38,
+              "cap": 0,
+              "physics_tick": 3232
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 38,
+              "cap": 0,
+              "physics_tick": 3500
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 44,
+              "cap": 0,
+              "physics_tick": 3552
+            },
+            {
+              "family": "slope_down",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 42,
+              "cap": 0,
+              "physics_tick": 3612
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 31,
+              "cap": 0,
+              "physics_tick": 3620
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 32,
+              "cap": 0,
+              "physics_tick": 3984
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 26,
+              "cap": 0,
+              "physics_tick": 4136
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 102,
+              "successes": 19,
+              "cap": 0,
+              "physics_tick": 4324
+            },
+            {
+              "family": "slope_up",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 28,
+              "cap": 0,
+              "physics_tick": 4660
+            },
+            {
+              "family": "blocks",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 101,
+              "successes": 27,
+              "cap": 0,
+              "physics_tick": 4704
+            },
+            {
+              "family": "random",
+              "level": 0,
+              "next_level": 0,
+              "episodes": 100,
+              "successes": 28,
+              "cap": 0,
+              "physics_tick": 4708
+            }
+          ],
+          "total_episodes": [
+            1208,
+            1233,
+            412,
+            392,
+            820
+          ],
+          "total_successes": [
+            541,
+            539,
+            186,
+            177,
+            364
+          ],
+          "physics_ticks": 4800,
+          "scope": "Per-family safe traversal; no reward or termination changes; partial episodes reset on restart"
+        },
+        "final_rough_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.0,
+          "raw_action_max_abs": 0.0,
+          "mean_gaussian_kl": 0.0,
+          "leg_target_rms_rad": 0.0,
+          "wheel_target_rms_rad_s": 0.0,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "flat_bank_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.0,
+          "raw_action_max_abs": 0.0,
+          "mean_gaussian_kl": 0.0,
+          "leg_target_rms_rad": 0.0,
+          "wheel_target_rms_rad_s": 0.0,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "checkpoints": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_0.pt",
+              "sha256": "7b9ba89e79ae44c9d16c0e02931e0ab304dd9a5c9276d9dc2bc70109aeb93795",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 24
+              }
+            },
+            {
+              "path": "model_49.pt",
+              "sha256": "6dca0493583ce5e813c52df2059909d1260b8256b6d50b438be867c2c724d1a8",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 24
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 1650,
+          "warmup_updates_excluded": 5,
+          "measured_updates": 45,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 98304,
+          "measured_transitions": 4423680,
+          "rollout_seconds": 160.38671159744263,
+          "learning_seconds": 5.662159442901611,
+          "ppo_timed_seconds": 166.04887104034424,
+          "mean_rollout_seconds_per_update": 3.5641491466098363,
+          "mean_learning_seconds_per_update": 0.1258257653978136,
+          "mean_seconds_per_update": 3.6899749120076497,
+          "median_seconds_per_update": 3.516707420349121,
+          "transitions_per_second": 26640.831535224326,
+          "rollout_transitions_per_second": 27581.337356071435,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+          "measured_event_wall_seconds": 167.8249328136444,
+          "event_wall_transitions_per_second": 26358.89629648848
+        }
+      }
+    },
+    {
+      "name": "s57_u50_flat_nominal",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_reference_b2w.py",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--suite",
+        "flat100",
+        "--num_envs",
+        "100",
+        "--seed",
+        "2026091961",
+        "--physical_profile",
+        "nominal",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\rough_development_20260920\\s57_u50_flat_nominal.json"
+      ],
+      "timeout_seconds": 1800,
+      "started_utc": "2026-09-19T21:33:33.396367+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1103.0,
+        "gpu_utilization_percent": 0.0,
+        "gpu_temperature_c": 43.0,
+        "gpu_headroom_fraction": 0.910193779514737
+      },
+      "pid": 24696,
+      "external_exit_code": 0,
+      "elapsed_seconds": 58.625,
+      "finished_utc": "2026-09-19T21:34:32.028443+00:00",
+      "resources": {
+        "sample_count": 28,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 3731.0,
+        "minimum_gpu_headroom_fraction": 0.6962221136622699,
+        "mean_gpu_utilization_percent": 13.607142857142858,
+        "peak_gpu_temperature_c": 43.0,
+        "peak_process_tree_rss_bytes": 4437045248,
+        "minimum_system_available_ram_bytes": 16789594112,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      }
+    },
+    {
+      "name": "s57_u50_flat_bounded_v1",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_reference_b2w.py",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--suite",
+        "flat100",
+        "--num_envs",
+        "100",
+        "--seed",
+        "2026091962",
+        "--physical_profile",
+        "bounded_v1",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\rough_development_20260920\\s57_u50_flat_bounded_v1.json"
+      ],
+      "timeout_seconds": 1800,
+      "started_utc": "2026-09-19T21:34:32.132947+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1103.0,
+        "gpu_utilization_percent": 2.0,
+        "gpu_temperature_c": 42.0,
+        "gpu_headroom_fraction": 0.910193779514737
+      },
+      "pid": 7340,
+      "external_exit_code": 0,
+      "elapsed_seconds": 64.09400000001187,
+      "finished_utc": "2026-09-19T21:35:36.230951+00:00",
+      "resources": {
+        "sample_count": 31,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 3731.0,
+        "minimum_gpu_headroom_fraction": 0.6962221136622699,
+        "mean_gpu_utilization_percent": 13.806451612903226,
+        "peak_gpu_temperature_c": 45.0,
+        "peak_process_tree_rss_bytes": 4459601920,
+        "minimum_system_available_ram_bytes": 16773242880,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      }
+    },
+    {
+      "name": "s58_u50_flat_nominal",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_reference_b2w.py",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--suite",
+        "flat100",
+        "--num_envs",
+        "100",
+        "--seed",
+        "2026091961",
+        "--physical_profile",
+        "nominal",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\rough_development_20260920\\s58_u50_flat_nominal.json"
+      ],
+      "timeout_seconds": 1800,
+      "started_utc": "2026-09-19T21:35:36.341140+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1103.0,
+        "gpu_utilization_percent": 3.0,
+        "gpu_temperature_c": 45.0,
+        "gpu_headroom_fraction": 0.910193779514737
+      },
+      "pid": 32384,
+      "external_exit_code": 0,
+      "elapsed_seconds": 58.969000000011874,
+      "finished_utc": "2026-09-19T21:36:35.307006+00:00",
+      "resources": {
+        "sample_count": 28,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 3731.0,
+        "minimum_gpu_headroom_fraction": 0.6962221136622699,
+        "mean_gpu_utilization_percent": 15.357142857142858,
+        "peak_gpu_temperature_c": 47.0,
+        "peak_process_tree_rss_bytes": 4451057664,
+        "minimum_system_available_ram_bytes": 16726478848,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      }
+    },
+    {
+      "name": "s58_u50_flat_bounded_v1",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_reference_b2w.py",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--suite",
+        "flat100",
+        "--num_envs",
+        "100",
+        "--seed",
+        "2026091962",
+        "--physical_profile",
+        "bounded_v1",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\rough_development_20260920\\s58_u50_flat_bounded_v1.json"
+      ],
+      "timeout_seconds": 1800,
+      "started_utc": "2026-09-19T21:36:35.385515+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1103.0,
+        "gpu_utilization_percent": 3.0,
+        "gpu_temperature_c": 47.0,
+        "gpu_headroom_fraction": 0.910193779514737
+      },
+      "pid": 17016,
+      "external_exit_code": 0,
+      "elapsed_seconds": 57.79700000002049,
+      "finished_utc": "2026-09-19T21:37:33.187074+00:00",
+      "resources": {
+        "sample_count": 28,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 3731.0,
+        "minimum_gpu_headroom_fraction": 0.6962221136622699,
+        "mean_gpu_utilization_percent": 14.464285714285714,
+        "peak_gpu_temperature_c": 49.0,
+        "peak_process_tree_rss_bytes": 4457078784,
+        "minimum_system_available_ram_bytes": 16792141824,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      }
+    },
+    {
+      "name": "s57_to150",
+      "status": "failed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/train_b2w.py",
+        "--rough_transfer",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--num_envs",
+        "4096",
+        "--seed",
+        "57",
+        "--max_iterations",
+        "100",
+        "--run_name",
+        "rough_development_20260920_s57_stage1",
+        "--reference_init",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--pure_yaw_fraction",
+        ".25",
+        "--reference_update_probe",
+        "--critic_warmup_updates",
+        "50",
+        "--reference_drift_limit",
+        ".25",
+        "--rough_stage",
+        "1",
+        "--resume",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\model_49.pt"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-19T21:37:33.278095+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1103.0,
+        "gpu_utilization_percent": 2.0,
+        "gpu_temperature_c": 48.0,
+        "gpu_headroom_fraction": 0.910193779514737
+      },
+      "pid": 31812,
+      "error": "s57_to150 exited 1; see console.log",
+      "external_exit_code": 1,
+      "elapsed_seconds": 276.875,
+      "finished_utc": "2026-09-19T21:42:10.158558+00:00",
+      "resources": {
+        "sample_count": 133,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 6925.0,
+        "minimum_gpu_headroom_fraction": 0.43616674808663086,
+        "mean_gpu_utilization_percent": 44.2406015037594,
+        "peak_gpu_temperature_c": 64.0,
+        "peak_process_tree_rss_bytes": 7116627968,
+        "minimum_system_available_ram_bytes": 14117416960,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "cumulative_updates": 50,
+      "training": {
+        "57": {
+          "seed": 57,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\manifest.json",
+          "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\model_49.pt",
+          "checkpoint_sha256": "7ba233329f0bcce2b2ffc1a4cb06bdd2fbef5f20ed4d74a6b1ad967b9491d97d",
+          "policy": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-26-14-979510_rough_development_20260920_s57_stage0\\export\\policy.pt",
+          "policy_sha256": "0b765e0160cd0f71617d8f347b8ef23128e6044b27f1a850ca7373d685609c54",
+          "actor_equal_to_anchor": true,
+          "optimizer_max_step": 1000.0,
+          "curriculum": {
+            "cap": 0,
+            "levels": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "windows": [
+              [
+                0,
+                0
+              ],
+              [
+                7,
+                1
+              ],
+              [
+                14,
+                3
+              ],
+              [
+                5,
+                2
+              ],
+              [
+                3,
+                2
+              ]
+            ],
+            "history": [
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 31,
+                "cap": 0,
+                "physics_tick": 492
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 44,
+                "cap": 0,
+                "physics_tick": 768
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 92,
+                "cap": 0,
+                "physics_tick": 956
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 75,
+                "cap": 0,
+                "physics_tick": 1284
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 86,
+                "cap": 0,
+                "physics_tick": 1376
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 72,
+                "cap": 0,
+                "physics_tick": 1408
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 87,
+                "cap": 0,
+                "physics_tick": 1444
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 59,
+                "cap": 0,
+                "physics_tick": 1920
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 43,
+                "cap": 0,
+                "physics_tick": 2168
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 31,
+                "cap": 0,
+                "physics_tick": 2256
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 49,
+                "cap": 0,
+                "physics_tick": 2496
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 43,
+                "cap": 0,
+                "physics_tick": 2560
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 48,
+                "cap": 0,
+                "physics_tick": 2644
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 44,
+                "cap": 0,
+                "physics_tick": 2740
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 47,
+                "cap": 0,
+                "physics_tick": 3000
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 35,
+                "cap": 0,
+                "physics_tick": 3204
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 40,
+                "cap": 0,
+                "physics_tick": 3376
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 44,
+                "cap": 0,
+                "physics_tick": 3572
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 30,
+                "cap": 0,
+                "physics_tick": 3724
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 27,
+                "cap": 0,
+                "physics_tick": 3728
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 41,
+                "cap": 0,
+                "physics_tick": 3732
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 26,
+                "cap": 0,
+                "physics_tick": 4016
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 26,
+                "cap": 0,
+                "physics_tick": 4220
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 33,
+                "cap": 0,
+                "physics_tick": 4396
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 20,
+                "cap": 0,
+                "physics_tick": 4664
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 19,
+                "cap": 0,
+                "physics_tick": 4736
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 21,
+                "cap": 0,
+                "physics_tick": 4752
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 15,
+                "cap": 0,
+                "physics_tick": 4796
+              }
+            ],
+            "total_episodes": [
+              1239,
+              1212,
+              415,
+              405,
+              803
+            ],
+            "total_successes": [
+              527,
+              543,
+              191,
+              177,
+              325
+            ],
+            "physics_ticks": 4800,
+            "scope": "Per-family safe traversal; no reward or termination changes; partial episodes reset on restart"
+          },
+          "final_rough_drift": {
+            "sample_count": 4096,
+            "raw_action_rms": 0.0,
+            "raw_action_max_abs": 0.0,
+            "mean_gaussian_kl": 0.0,
+            "leg_target_rms_rad": 0.0,
+            "wheel_target_rms_rad_s": 0.0,
+            "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+          },
+          "flat_bank_drift": {
+            "sample_count": 4096,
+            "raw_action_rms": 0.0,
+            "raw_action_max_abs": 0.0,
+            "mean_gaussian_kl": 0.0,
+            "leg_target_rms_rad": 0.0,
+            "wheel_target_rms_rad_s": 0.0,
+            "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+          },
+          "checkpoints": {
+            "status": "passed",
+            "checkpoints": [
+              {
+                "path": "model_0.pt",
+                "sha256": "900ee35dfcdad5df183c43d125c4d4d561bdfac41c7a0dbf042378217bd2e826",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 24
+                }
+              },
+              {
+                "path": "model_49.pt",
+                "sha256": "7ba233329f0bcce2b2ffc1a4cb06bdd2fbef5f20ed4d74a6b1ad967b9491d97d",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 24
+                }
+              }
+            ],
+            "load_device": "cpu"
+          },
+          "timings": {
+            "finite_scalar_count": 1650,
+            "warmup_updates_excluded": 5,
+            "measured_updates": 45,
+            "meets_200_measured_update_requirement": false,
+            "transitions_per_update": 98304,
+            "measured_transitions": 4423680,
+            "rollout_seconds": 164.73283410072327,
+            "learning_seconds": 5.781626224517822,
+            "ppo_timed_seconds": 170.5144603252411,
+            "mean_rollout_seconds_per_update": 3.6607296466827393,
+            "mean_learning_seconds_per_update": 0.12848058276706273,
+            "mean_seconds_per_update": 3.789210229449802,
+            "median_seconds_per_update": 3.7087817192077637,
+            "transitions_per_second": 25943.136972443426,
+            "rollout_transitions_per_second": 26853.662927302103,
+            "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+            "measured_event_wall_seconds": 172.22063851356506,
+            "event_wall_transitions_per_second": 25686.120073533268
+          }
+        },
+        "58": {
+          "seed": 58,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\manifest.json",
+          "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\model_49.pt",
+          "checkpoint_sha256": "6dca0493583ce5e813c52df2059909d1260b8256b6d50b438be867c2c724d1a8",
+          "policy": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-19_21-29-58-491520_rough_development_20260920_s58_stage0\\export\\policy.pt",
+          "policy_sha256": "c76f8f2ab5777add45f6f00970ca4f7086cffdc05cbb00a76dedecadc66b50ac",
+          "actor_equal_to_anchor": true,
+          "optimizer_max_step": 1000.0,
+          "curriculum": {
+            "cap": 0,
+            "levels": [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "windows": [
+              [
+                0,
+                0
+              ],
+              [
+                28,
+                7
+              ],
+              [
+                12,
+                0
+              ],
+              [
+                92,
+                22
+              ],
+              [
+                16,
+                5
+              ]
+            ],
+            "history": [
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 18,
+                "cap": 0,
+                "physics_tick": 388
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 38,
+                "cap": 0,
+                "physics_tick": 704
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 87,
+                "cap": 0,
+                "physics_tick": 848
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 102,
+                "successes": 95,
+                "cap": 0,
+                "physics_tick": 1276
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 87,
+                "cap": 0,
+                "physics_tick": 1340
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 67,
+                "cap": 0,
+                "physics_tick": 1472
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 71,
+                "cap": 0,
+                "physics_tick": 1484
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 71,
+                "cap": 0,
+                "physics_tick": 1756
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 60,
+                "cap": 0,
+                "physics_tick": 1932
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 34,
+                "cap": 0,
+                "physics_tick": 2164
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 33,
+                "cap": 0,
+                "physics_tick": 2448
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 29,
+                "cap": 0,
+                "physics_tick": 2480
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 42,
+                "cap": 0,
+                "physics_tick": 2584
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 47,
+                "cap": 0,
+                "physics_tick": 2668
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 50,
+                "cap": 0,
+                "physics_tick": 2888
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 50,
+                "cap": 0,
+                "physics_tick": 2960
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 38,
+                "cap": 0,
+                "physics_tick": 3232
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 38,
+                "cap": 0,
+                "physics_tick": 3500
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 44,
+                "cap": 0,
+                "physics_tick": 3552
+              },
+              {
+                "family": "slope_down",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 42,
+                "cap": 0,
+                "physics_tick": 3612
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 31,
+                "cap": 0,
+                "physics_tick": 3620
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 32,
+                "cap": 0,
+                "physics_tick": 3984
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 26,
+                "cap": 0,
+                "physics_tick": 4136
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 102,
+                "successes": 19,
+                "cap": 0,
+                "physics_tick": 4324
+              },
+              {
+                "family": "slope_up",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 28,
+                "cap": 0,
+                "physics_tick": 4660
+              },
+              {
+                "family": "blocks",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 101,
+                "successes": 27,
+                "cap": 0,
+                "physics_tick": 4704
+              },
+              {
+                "family": "random",
+                "level": 0,
+                "next_level": 0,
+                "episodes": 100,
+                "successes": 28,
+                "cap": 0,
+                "physics_tick": 4708
+              }
+            ],
+            "total_episodes": [
+              1208,
+              1233,
+              412,
+              392,
+              820
+            ],
+            "total_successes": [
+              541,
+              539,
+              186,
+              177,
+              364
+            ],
+            "physics_ticks": 4800,
+            "scope": "Per-family safe traversal; no reward or termination changes; partial episodes reset on restart"
+          },
+          "final_rough_drift": {
+            "sample_count": 4096,
+            "raw_action_rms": 0.0,
+            "raw_action_max_abs": 0.0,
+            "mean_gaussian_kl": 0.0,
+            "leg_target_rms_rad": 0.0,
+            "wheel_target_rms_rad_s": 0.0,
+            "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+          },
+          "flat_bank_drift": {
+            "sample_count": 4096,
+            "raw_action_rms": 0.0,
+            "raw_action_max_abs": 0.0,
+            "mean_gaussian_kl": 0.0,
+            "leg_target_rms_rad": 0.0,
+            "wheel_target_rms_rad_s": 0.0,
+            "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+          },
+          "checkpoints": {
+            "status": "passed",
+            "checkpoints": [
+              {
+                "path": "model_0.pt",
+                "sha256": "7b9ba89e79ae44c9d16c0e02931e0ab304dd9a5c9276d9dc2bc70109aeb93795",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 24
+                }
+              },
+              {
+                "path": "model_49.pt",
+                "sha256": "6dca0493583ce5e813c52df2059909d1260b8256b6d50b438be867c2c724d1a8",
+                "finite_tensors": {
+                  "model_state_dict": 17,
+                  "optimizer_state_dict": 24
+                }
+              }
+            ],
+            "load_device": "cpu"
+          },
+          "timings": {
+            "finite_scalar_count": 1650,
+            "warmup_updates_excluded": 5,
+            "measured_updates": 45,
+            "meets_200_measured_update_requirement": false,
+            "transitions_per_update": 98304,
+            "measured_transitions": 4423680,
+            "rollout_seconds": 160.38671159744263,
+            "learning_seconds": 5.662159442901611,
+            "ppo_timed_seconds": 166.04887104034424,
+            "mean_rollout_seconds_per_update": 3.5641491466098363,
+            "mean_learning_seconds_per_update": 0.1258257653978136,
+            "mean_seconds_per_update": 3.6899749120076497,
+            "median_seconds_per_update": 3.516707420349121,
+            "transitions_per_second": 26640.831535224326,
+            "rollout_transitions_per_second": 27581.337356071435,
+            "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+            "measured_event_wall_seconds": 167.8249328136444,
+            "event_wall_transitions_per_second": 26358.89629648848
+          }
+        }
+      },
+      "flat": {
+        "57": {
+          "nominal": {
+            "passed": true,
+            "summary": {
+              "episodes": 100,
+              "no_fall_count": 100,
+              "no_fall_fraction": 1.0,
+              "no_fall_wilson95": [
+                0.9630065017930143,
+                1.0
+              ],
+              "tracking_pass_count": 100,
+              "pooled_rms_vx_vy_yaw": [
+                0.05143661913557275,
+                0.07074760210367795,
+                0.07227510642907663
+              ],
+              "episode_rms_p95": [
+                0.07482404261827469,
+                0.17769962549209595,
+                0.16205476224422455
+              ],
+              "episode_rms_max": [
+                0.0864005982875824,
+                0.19291989505290985,
+                0.2449391931295395
+              ],
+              "by_scenario": {
+                "stand": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03076328700387639,
+                    0.010303356016129493,
+                    0.011008396067039213
+                  ],
+                  "episode_rms_p95": [
+                    0.03956238552927971,
+                    0.013307562097907066,
+                    0.01342854741960764
+                  ],
+                  "episode_rms_max": [
+                    0.03956238552927971,
+                    0.013307562097907066,
+                    0.01342854741960764
+                  ]
+                },
+                "forward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03049122723570902,
+                    0.01984966242071127,
+                    0.029068272166823717
+                  ],
+                  "episode_rms_p95": [
+                    0.03952200710773468,
+                    0.028233854100108147,
+                    0.03763845935463905
+                  ],
+                  "episode_rms_max": [
+                    0.03952200710773468,
+                    0.028233854100108147,
+                    0.03763845935463905
+                  ]
+                },
+                "backward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.07274152440037192,
+                    0.02104948992280098,
+                    0.03096141623564323
+                  ],
+                  "episode_rms_p95": [
+                    0.0864005982875824,
+                    0.024637704715132713,
+                    0.03670557215809822
+                  ],
+                  "episode_rms_max": [
+                    0.0864005982875824,
+                    0.024637704715132713,
+                    0.03670557215809822
+                  ]
+                },
+                "lateral": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04573756374522299,
+                    0.16361430227448567,
+                    0.058643563357938515
+                  ],
+                  "episode_rms_p95": [
+                    0.05749042332172394,
+                    0.19291989505290985,
+                    0.09918555617332458
+                  ],
+                  "episode_rms_max": [
+                    0.05749042332172394,
+                    0.19291989505290985,
+                    0.09918555617332458
+                  ]
+                },
+                "yaw_positive": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04907463108974777,
+                    0.07137201619524296,
+                    0.17008637165010138
+                  ],
+                  "episode_rms_p95": [
+                    0.06672314554452896,
+                    0.1038190945982933,
+                    0.2449391931295395
+                  ],
+                  "episode_rms_max": [
+                    0.06672314554452896,
+                    0.1038190945982933,
+                    0.2449391931295395
+                  ]
+                },
+                "yaw_negative": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.054322234984455854,
+                    0.07719652550586409,
+                    0.0839449324100939
+                  ],
+                  "episode_rms_p95": [
+                    0.059998199343681335,
+                    0.09354936331510544,
+                    0.10041142255067825
+                  ],
+                  "episode_rms_max": [
+                    0.059998199343681335,
+                    0.09354936331510544,
+                    0.10041142255067825
+                  ]
+                },
+                "forward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04682703644236329,
+                    0.01804276010027937,
+                    0.025616125625914813
+                  ],
+                  "episode_rms_p95": [
+                    0.05759697034955025,
+                    0.02343323826789856,
+                    0.030834469944238663
+                  ],
+                  "episode_rms_max": [
+                    0.05759697034955025,
+                    0.02343323826789856,
+                    0.030834469944238663
+                  ]
+                },
+                "backward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.06681884200751247,
+                    0.01758087921989381,
+                    0.03297931877896813
+                  ],
+                  "episode_rms_p95": [
+                    0.08521831780672073,
+                    0.019871268421411514,
+                    0.03905078396201134
+                  ],
+                  "episode_rms_max": [
+                    0.08521831780672073,
+                    0.019871268421411514,
+                    0.03905078396201134
+                  ]
+                }
+              },
+              "all_scenario_tracking_met": true,
+              "single_policy_flat_thresholds_met": true,
+              "three_training_seed_acceptance_complete": false,
+              "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+            },
+            "report": "logs\\qualification\\rough_development_20260920\\s57_u50_flat_nominal.json",
+            "sha256": "0a4514f61127dc8d663c7bf3eacb81dc93af058368afc5d79ba3758a4fc8e13c"
+          },
+          "bounded_v1": {
+            "passed": true,
+            "summary": {
+              "episodes": 100,
+              "no_fall_count": 100,
+              "no_fall_fraction": 1.0,
+              "no_fall_wilson95": [
+                0.9630065017930143,
+                1.0
+              ],
+              "tracking_pass_count": 99,
+              "pooled_rms_vx_vy_yaw": [
+                0.05117863638193147,
+                0.07123802139097635,
+                0.06936501213033847
+              ],
+              "episode_rms_p95": [
+                0.08129589259624481,
+                0.18196333944797516,
+                0.15912480652332306
+              ],
+              "episode_rms_max": [
+                0.0947934165596962,
+                0.22374512255191803,
+                0.24513015151023865
+              ],
+              "by_scenario": {
+                "stand": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03150376101810459,
+                    0.010981604024253267,
+                    0.011827933909588549
+                  ],
+                  "episode_rms_p95": [
+                    0.04383173584938049,
+                    0.013421538285911083,
+                    0.016934381797909737
+                  ],
+                  "episode_rms_max": [
+                    0.04383173584938049,
+                    0.013421538285911083,
+                    0.016934381797909737
+                  ]
+                },
+                "forward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03409698135140458,
+                    0.009689791942676048,
+                    0.024551407838127138
+                  ],
+                  "episode_rms_p95": [
+                    0.042901936918497086,
+                    0.010860186070203781,
+                    0.028743119910359383
+                  ],
+                  "episode_rms_max": [
+                    0.042901936918497086,
+                    0.010860186070203781,
+                    0.028743119910359383
+                  ]
+                },
+                "backward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.07994154395464917,
+                    0.011503636780595473,
+                    0.023949536547055107
+                  ],
+                  "episode_rms_p95": [
+                    0.0947934165596962,
+                    0.0165841206908226,
+                    0.031363457441329956
+                  ],
+                  "episode_rms_max": [
+                    0.0947934165596962,
+                    0.0165841206908226,
+                    0.031363457441329956
+                  ]
+                },
+                "lateral": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.029631233938053395,
+                    0.17685741726836066,
+                    0.024146508882192066
+                  ],
+                  "episode_rms_p95": [
+                    0.054208628833293915,
+                    0.22374512255191803,
+                    0.039394885301589966
+                  ],
+                  "episode_rms_max": [
+                    0.054208628833293915,
+                    0.22374512255191803,
+                    0.039394885301589966
+                  ]
+                },
+                "yaw_positive": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04157201465863127,
+                    0.05898941050227227,
+                    0.17139646136605538
+                  ],
+                  "episode_rms_p95": [
+                    0.0537414588034153,
+                    0.08286131173372269,
+                    0.24513015151023865
+                  ],
+                  "episode_rms_max": [
+                    0.0537414588034153,
+                    0.08286131173372269,
+                    0.24513015151023865
+                  ]
+                },
+                "yaw_negative": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.05463640860193772,
+                    0.06504330520843614,
+                    0.08350000018356774
+                  ],
+                  "episode_rms_p95": [
+                    0.06476292014122009,
+                    0.08503959327936172,
+                    0.1172432079911232
+                  ],
+                  "episode_rms_max": [
+                    0.06476292014122009,
+                    0.08503959327936172,
+                    0.1172432079911232
+                  ]
+                },
+                "forward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.045937701202410405,
+                    0.011973628532655177,
+                    0.025722293495012063
+                  ],
+                  "episode_rms_p95": [
+                    0.05476360768079758,
+                    0.012917258776724339,
+                    0.032005246728658676
+                  ],
+                  "episode_rms_max": [
+                    0.05476360768079758,
+                    0.012917258776724339,
+                    0.032005246728658676
+                  ]
+                },
+                "backward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.06924161110831188,
+                    0.013262712147401464,
+                    0.032057129064736005
+                  ],
+                  "episode_rms_p95": [
+                    0.07905846834182739,
+                    0.016050657257437706,
+                    0.03861797973513603
+                  ],
+                  "episode_rms_max": [
+                    0.07905846834182739,
+                    0.016050657257437706,
+                    0.03861797973513603
+                  ]
+                }
+              },
+              "all_scenario_tracking_met": true,
+              "single_policy_flat_thresholds_met": true,
+              "three_training_seed_acceptance_complete": false,
+              "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+            },
+            "report": "logs\\qualification\\rough_development_20260920\\s57_u50_flat_bounded_v1.json",
+            "sha256": "99844fb29411db6e34c52c24ab32eafb477ddc8f34f654b6577a188e16d61639"
+          }
+        },
+        "58": {
+          "nominal": {
+            "passed": true,
+            "summary": {
+              "episodes": 100,
+              "no_fall_count": 100,
+              "no_fall_fraction": 1.0,
+              "no_fall_wilson95": [
+                0.9630065017930143,
+                1.0
+              ],
+              "tracking_pass_count": 100,
+              "pooled_rms_vx_vy_yaw": [
+                0.05143661913557275,
+                0.07074760210367795,
+                0.07227510642907663
+              ],
+              "episode_rms_p95": [
+                0.07482404261827469,
+                0.17769962549209595,
+                0.16205476224422455
+              ],
+              "episode_rms_max": [
+                0.0864005982875824,
+                0.19291989505290985,
+                0.2449391931295395
+              ],
+              "by_scenario": {
+                "stand": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03076328700387639,
+                    0.010303356016129493,
+                    0.011008396067039213
+                  ],
+                  "episode_rms_p95": [
+                    0.03956238552927971,
+                    0.013307562097907066,
+                    0.01342854741960764
+                  ],
+                  "episode_rms_max": [
+                    0.03956238552927971,
+                    0.013307562097907066,
+                    0.01342854741960764
+                  ]
+                },
+                "forward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03049122723570902,
+                    0.01984966242071127,
+                    0.029068272166823717
+                  ],
+                  "episode_rms_p95": [
+                    0.03952200710773468,
+                    0.028233854100108147,
+                    0.03763845935463905
+                  ],
+                  "episode_rms_max": [
+                    0.03952200710773468,
+                    0.028233854100108147,
+                    0.03763845935463905
+                  ]
+                },
+                "backward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.07274152440037192,
+                    0.02104948992280098,
+                    0.03096141623564323
+                  ],
+                  "episode_rms_p95": [
+                    0.0864005982875824,
+                    0.024637704715132713,
+                    0.03670557215809822
+                  ],
+                  "episode_rms_max": [
+                    0.0864005982875824,
+                    0.024637704715132713,
+                    0.03670557215809822
+                  ]
+                },
+                "lateral": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04573756374522299,
+                    0.16361430227448567,
+                    0.058643563357938515
+                  ],
+                  "episode_rms_p95": [
+                    0.05749042332172394,
+                    0.19291989505290985,
+                    0.09918555617332458
+                  ],
+                  "episode_rms_max": [
+                    0.05749042332172394,
+                    0.19291989505290985,
+                    0.09918555617332458
+                  ]
+                },
+                "yaw_positive": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04907463108974777,
+                    0.07137201619524296,
+                    0.17008637165010138
+                  ],
+                  "episode_rms_p95": [
+                    0.06672314554452896,
+                    0.1038190945982933,
+                    0.2449391931295395
+                  ],
+                  "episode_rms_max": [
+                    0.06672314554452896,
+                    0.1038190945982933,
+                    0.2449391931295395
+                  ]
+                },
+                "yaw_negative": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.054322234984455854,
+                    0.07719652550586409,
+                    0.0839449324100939
+                  ],
+                  "episode_rms_p95": [
+                    0.059998199343681335,
+                    0.09354936331510544,
+                    0.10041142255067825
+                  ],
+                  "episode_rms_max": [
+                    0.059998199343681335,
+                    0.09354936331510544,
+                    0.10041142255067825
+                  ]
+                },
+                "forward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04682703644236329,
+                    0.01804276010027937,
+                    0.025616125625914813
+                  ],
+                  "episode_rms_p95": [
+                    0.05759697034955025,
+                    0.02343323826789856,
+                    0.030834469944238663
+                  ],
+                  "episode_rms_max": [
+                    0.05759697034955025,
+                    0.02343323826789856,
+                    0.030834469944238663
+                  ]
+                },
+                "backward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.06681884200751247,
+                    0.01758087921989381,
+                    0.03297931877896813
+                  ],
+                  "episode_rms_p95": [
+                    0.08521831780672073,
+                    0.019871268421411514,
+                    0.03905078396201134
+                  ],
+                  "episode_rms_max": [
+                    0.08521831780672073,
+                    0.019871268421411514,
+                    0.03905078396201134
+                  ]
+                }
+              },
+              "all_scenario_tracking_met": true,
+              "single_policy_flat_thresholds_met": true,
+              "three_training_seed_acceptance_complete": false,
+              "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+            },
+            "report": "logs\\qualification\\rough_development_20260920\\s58_u50_flat_nominal.json",
+            "sha256": "f9065412b77fce809de4c357689ccd78ac20ee0ad191d8253a80383c200ce8fc"
+          },
+          "bounded_v1": {
+            "passed": true,
+            "summary": {
+              "episodes": 100,
+              "no_fall_count": 100,
+              "no_fall_fraction": 1.0,
+              "no_fall_wilson95": [
+                0.9630065017930143,
+                1.0
+              ],
+              "tracking_pass_count": 99,
+              "pooled_rms_vx_vy_yaw": [
+                0.05117863638193147,
+                0.07123802139097635,
+                0.06936501213033847
+              ],
+              "episode_rms_p95": [
+                0.08129589259624481,
+                0.18196333944797516,
+                0.15912480652332306
+              ],
+              "episode_rms_max": [
+                0.0947934165596962,
+                0.22374512255191803,
+                0.24513015151023865
+              ],
+              "by_scenario": {
+                "stand": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03150376101810459,
+                    0.010981604024253267,
+                    0.011827933909588549
+                  ],
+                  "episode_rms_p95": [
+                    0.04383173584938049,
+                    0.013421538285911083,
+                    0.016934381797909737
+                  ],
+                  "episode_rms_max": [
+                    0.04383173584938049,
+                    0.013421538285911083,
+                    0.016934381797909737
+                  ]
+                },
+                "forward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.03409698135140458,
+                    0.009689791942676048,
+                    0.024551407838127138
+                  ],
+                  "episode_rms_p95": [
+                    0.042901936918497086,
+                    0.010860186070203781,
+                    0.028743119910359383
+                  ],
+                  "episode_rms_max": [
+                    0.042901936918497086,
+                    0.010860186070203781,
+                    0.028743119910359383
+                  ]
+                },
+                "backward": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 13,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.07994154395464917,
+                    0.011503636780595473,
+                    0.023949536547055107
+                  ],
+                  "episode_rms_p95": [
+                    0.0947934165596962,
+                    0.0165841206908226,
+                    0.031363457441329956
+                  ],
+                  "episode_rms_max": [
+                    0.0947934165596962,
+                    0.0165841206908226,
+                    0.031363457441329956
+                  ]
+                },
+                "lateral": {
+                  "episodes": 13,
+                  "no_fall_count": 13,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7719046276458016,
+                    0.9999999999999999
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.029631233938053395,
+                    0.17685741726836066,
+                    0.024146508882192066
+                  ],
+                  "episode_rms_p95": [
+                    0.054208628833293915,
+                    0.22374512255191803,
+                    0.039394885301589966
+                  ],
+                  "episode_rms_max": [
+                    0.054208628833293915,
+                    0.22374512255191803,
+                    0.039394885301589966
+                  ]
+                },
+                "yaw_positive": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.04157201465863127,
+                    0.05898941050227227,
+                    0.17139646136605538
+                  ],
+                  "episode_rms_p95": [
+                    0.0537414588034153,
+                    0.08286131173372269,
+                    0.24513015151023865
+                  ],
+                  "episode_rms_max": [
+                    0.0537414588034153,
+                    0.08286131173372269,
+                    0.24513015151023865
+                  ]
+                },
+                "yaw_negative": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.05463640860193772,
+                    0.06504330520843614,
+                    0.08350000018356774
+                  ],
+                  "episode_rms_p95": [
+                    0.06476292014122009,
+                    0.08503959327936172,
+                    0.1172432079911232
+                  ],
+                  "episode_rms_max": [
+                    0.06476292014122009,
+                    0.08503959327936172,
+                    0.1172432079911232
+                  ]
+                },
+                "forward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.045937701202410405,
+                    0.011973628532655177,
+                    0.025722293495012063
+                  ],
+                  "episode_rms_p95": [
+                    0.05476360768079758,
+                    0.012917258776724339,
+                    0.032005246728658676
+                  ],
+                  "episode_rms_max": [
+                    0.05476360768079758,
+                    0.012917258776724339,
+                    0.032005246728658676
+                  ]
+                },
+                "backward_stop": {
+                  "episodes": 12,
+                  "no_fall_count": 12,
+                  "no_fall_fraction": 1.0,
+                  "no_fall_wilson95": [
+                    0.7575059933447592,
+                    1.0
+                  ],
+                  "tracking_pass_count": 12,
+                  "pooled_rms_vx_vy_yaw": [
+                    0.06924161110831188,
+                    0.013262712147401464,
+                    0.032057129064736005
+                  ],
+                  "episode_rms_p95": [
+                    0.07905846834182739,
+                    0.016050657257437706,
+                    0.03861797973513603
+                  ],
+                  "episode_rms_max": [
+                    0.07905846834182739,
+                    0.016050657257437706,
+                    0.03861797973513603
+                  ]
+                }
+              },
+              "all_scenario_tracking_met": true,
+              "single_policy_flat_thresholds_met": true,
+              "three_training_seed_acceptance_complete": false,
+              "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+            },
+            "report": "logs\\qualification\\rough_development_20260920\\s58_u50_flat_bounded_v1.json",
+            "sha256": "85a3b30bf14446f03b0cac575b6aae7af94d11cf1c6cf4cfd5a3d519b6ad3940"
+          }
+        }
+      },
+      "rough": {},
+      "status": "passed",
+      "all_gates_passed": true
+    },
+    {
+      "cumulative_updates": 150,
+      "training": {},
+      "flat": {},
+      "rough": {},
+      "status": "training"
+    }
+  ],
+  "seeds": [
+    57,
+    58
+  ],
+  "updates": [
+    50,
+    100,
+    200
+  ],
+  "num_envs": 4096,
+  "concurrent_training_processes": 1,
+  "max_training_transitions": 68812800,
+  "anchor": "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+  "anchor_sha256": "f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee",
+  "preflight": "docs\\results\\rough_r1_preflight_20260920_6.json",
+  "preflight_sha256": "7ceed2f628f23a1f18b773397ab5a54fa3bff880bd8157a5f497082a18e6cfbb",
+  "capacity": "docs/results/rough_capacity_20260919.json",
+  "capacity_sha256": "00f8e08efad26ae0286569520b4d1ff40f81dd2667b3d97f34eb3972b261b595",
+  "protocol": "docs/ROUGH_DEVELOPMENT.md",
+  "protocol_sha256": "a17129311a7040dbf0736e32d546b76657401201fdf17a83b429b05d0e2eda81",
+  "source_sha256": {
+    "scripts/train_b2w.py": "276851ff379a3912079ea431bcaab90076cb61f52f4966ce00b2e1ede3c8345e",
+    "scripts/b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "scripts/b2w_rough_runtime.py": "54295d85905f7e586474f2161c4f2912431a78c5988a8aed84658a6e22518399",
+    "scripts/b2w_rough_terrain.py": "4983626f1420d01cc90e5da7e587d81d1b0fcaf2ca116acf1cd661d738e1ffd0",
+    "scripts/rough_curriculum.py": "d7d7568dbf03c63bd257710249d4c9d0ea92af8ebe2b0ac5639e3fe2cba04e22",
+    "scripts/reference_transfer.py": "9f58b032b87ad98af6d44c558f010af59d9eaef51945803826b1e66ba38273d9",
+    "scripts/b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "scripts/yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "scripts/b2w_height_rewards.py": "63b8dfc8e338be39d25de32a1c9a23c931a13af8ecfa859409b2c4ca1b6ab150",
+    "scripts/rough_evaluation.py": "616672d9b089ce93a4877976f9208aef70ed034c9b2f7ecc344ee42b945514a6",
+    "scripts/rough_metrics.py": "9be42c2634e2a92370829383d17d2de24f7f754ae79e7e15036d90017c71c65c",
+    "scripts/replay_rough_b2w.py": "f60dba4500d2bcb2a054147053cf90a32c03633a451c63ceaf85b153f78bb77e",
+    "scripts/physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "scripts/replay_reference_b2w.py": "a306cb631f8b63d26decb37595f6d98eb192745f5a6dcd8d8267898eb023b4e8",
+    "scripts/flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "scripts/check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "scripts/smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859",
+    "scripts/benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "scripts/run_rough_r0.py": "fb555ad23588e85826d32829c20cec7a9fe7d1a0f150ef2233628be3fe6a6342",
+    "scripts/rough_training_protocol.py": "0d07034093c5d3a6fc2235c652a1c3630d21c426483b79f7e14da07cbce4e5a7",
+    "scripts/run_reference_transfer.py": "6eb74ba3b6e77096e9d17c57719c27c7796e2165fc65f3eb5ab8630018eef10c",
+    "scripts/run_rough_development.py": "738cb151cfa3d9a6186febf144d572dca9e9c9179a2c4e4f97e7200badf64114",
+    "docs/ROUGH_DEVELOPMENT.md": "a17129311a7040dbf0736e32d546b76657401201fdf17a83b429b05d0e2eda81"
+  },
+  "policy_quality_accepted": false,
+  "qualification_started": false,
+  "hardware_release_accepted": false,
+  "rough_cases_sha256": "15162222e35760dda72bbd67548431bab2cabce54dba7cd1032de94dbd3af79a",
+  "active_milestone": 150,
+  "active_seed": 57,
+  "error": "RuntimeError: s57_to150 exited 1; see console.log",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\scripts\\run_rough_development.py\", line 89, in main\n    stage=own_child(cmd,OUT/f's{seed}_to{cumulative}',job,save)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\scripts\\run_rough_r0.py\", line 69, in own_child\n    raise RuntimeError(f'{directory.name} exited {child.returncode}; see console.log')\nRuntimeError: s57_to150 exited 1; see console.log\n",
+  "finished_utc": "2026-09-19T21:42:10.162559+00:00"
+}

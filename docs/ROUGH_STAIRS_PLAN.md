@@ -1,9 +1,30 @@
 # План Rough и обычных лестниц после Flat qualification
 
-Решение от 19 сентября 2026. **План реализации; Rough/Stairs не запускались.**
-Численные бюджеты и пороги ниже — наши проверяемые проектные решения, а не
-обещание сходимости и не параметры готовой политики Unitree.
-[Главный план](PROJECT_PLAN.md), [проверенный Flat итог](results/2026-09-19-reference-qualification-verification.json).
+Состояние20.09.2026: **R0/preflight/capacity пройдены; Rough57/58 failed350;
+qualification и Stairs не запускались.**
+[Аудит199 hashes](results/2026-09-20-rough-latest-audit.json) не выявил расхождений:
+0/24 и10/24 Rough suites прошли, оба curriculum остались на level0.
+Исторические [R1](ROUGH_DEVELOPMENT.md), [tilt](ROUGH_TILT_CORRECTION.md) и
+[continuation](ROUGH_REQUESTED_CONTINUATION.md) сохраняют прежние результаты.
+
+Действующее следующее решение — [Rough route correction](ROUGH_ROUTE_CORRECTION.md),
+пока подготовка: свежие59/60 от qualified Flat actor54, новые critic247/optimizer,
+50+100+200 updates single4096, максимум68812800 transitions. Rough-only
+commands/reset/22с согласуются с маршрутом; Flat30% сохраняет20с и прежние
+команды/reset. Tilt terminal и все PPO/drift/quality gates сохраняются.
+[Исследование](ROUGH_RESEARCH_2026-09-20.md),
+[новый job](../logs/rough/rough_route_correction_20260920/job.json).
+
+Сравнение frozen reference/anchor54 на random0 nominal/bounded_v1 завершено:
+42/45 против39/47 успешных эпизодов из100; все четыре full gates провалены.
+[Baseline](results/rough_reference_baseline_20260920.json) не является
+сравнением всех terrains или новым hold-out. Имитация reference на Rough
+не добавляется; anchor54 сохраняет проверенное происхождение Flat навыка.
+
+Численные пороги ниже остаются проектными gates, а не обещанием сходимости.
+Изменения учебного episode protocol имеют приоритет по
+[ROUGH_ROUTE_CORRECTION](ROUGH_ROUTE_CORRECTION.md); прежние frozen protocols
+не переписываются. [Главный план](PROJECT_PLAN.md).
 
 ## Что переносим из успешного опыта
 
@@ -41,9 +62,11 @@ Actor export/live parity ≤1e−5 проверяется до и после о�
 
 В pinned `robot_lab` зарегистрирован
 `RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0`; отдельного Stairs task нет.
-Текущий `scripts/train_b2w.py` жёстко использует Flat и critic60. Нужны отдельные
-проектные Rough/Stairs configs, launcher и evaluator; переименование run или
-передача другого task не заменяют их реализацию. Vendor и runtime source неизменны.
+`scripts/train_b2w.py --rough_r0` теперь имеет ограниченный project Rough path
+с critic247; Flat defaults сохранены. Проектный terrain config и smoke реализованы;
+safe curriculum и полный Rough evaluator прошли preflight. Stairs path открыт;
+новый route episode protocol требует своего отдельного preflight.
+Vendor и runtime source неизменны.
 
 Особенности upstream, которые нельзя принять за нашу приёмку:
 
@@ -69,8 +92,8 @@ terrain, максимальные updates и timeout до старта. Назв
 | Этап | Вычисления | Выход |
 |---|---|---|
 | R0: реализация и GPU smoke | 64 env, 10 000 physics steps; отдельные 2 PPO + 2 resume updates, результаты discard | Контракт, mesh/rays/spawn/contact fixtures, export parity, restart, finite telemetry |
-| R0: производительность | По 50 updates на 1024 и 2048 env; 4096 только при запасе памяти; все discard | Измеренный Rough throughput/VRAM; один training process по умолчанию |
-| R1: Rough development | 2 свежих seeds, каждый 50 critic + 100 PPO + 200 PPO | Оба model_349 проходят все Rough families и Flat regression |
+| R0: производительность, выполнено |50 updates на1024/2048/4096; dual2048; все discard |Выбран single4096 по измеренному throughput;2×4096 не запускался |
+| R1: Rough development, новая поправка |Свежие59/60, каждый50 critic +100 PPO +200 PPO, single4096 | Оба model_349 проходят все Rough families и Flat regression |
 | R2: Rough qualification | Только после R1: 3 новых seeds, тот же recipe и anchor; новые geometry/physics cases | Каждый финал отдельно проходит все gates; Rough-only acceptance |
 | S0: straight stairs smoke | Новый mesh/evaluator, 64 env, 10 000 physics steps и 2+2 discard updates | Корректные up/down labels, spawn/finish/no-shortcut/contact fixtures |
 | S1: stairs development | 2 свежих seeds от заранее выбранного qualified Rough actor, свежие critic/optimizer; 50+100+200 | Оба финала проходят up и down отдельно, Rough и Flat regression |
@@ -78,24 +101,26 @@ terrain, максимальные updates и timeout до старта. Назв
 
 Smoke2+2 использует critic warmup1, чтобы фактически проверить и actor update,
 и optimizer resume; все его weights отбрасываются. Основной warmup всегда50.
-Параметры PPO и rollout24 сохраняются. 4096 env — **верхний лимит**, не уже
-квалифицированная Rough конфигурация. При 2048 env бюджет одной development пары
-34 406 400 transitions, при 4096 — 68 812 800. Три qualification seeds: соответственно
-51 609 600 / 103 219 200. Это отдельный бюджет на R1/R2 или S1/S2, не одна
-автоматическая бесконечная очередь. Число env фиксируется после R0; меняя его,
+Параметры PPO и rollout24 сохраняются. Single4096 Rough технически проверен
+и выбран; бюджет новой development пары68812800 transitions. Три будущих
+qualification seeds при4096 дали бы103219200 transitions; они ещё не назначены.
+Stairs требует собственной capacity проверки. Это отдельные budgets, не
+автоматическая бесконечная очередь. Меняя число env,
 регистрируем новый recipe и не называем данные одной воспроизведённой серией.
 
 Не запускаем upstream default 20 000 updates. Увеличение бюджета после fail
 требует нового причинного решения, а не продолжения ради reward. ETA вычисляем
-после Rough throughput измерения, Flat скорость на него не переносим.
+по timing именно нового Rough recipe; Flat скорость на него не переносим.
 
 ## R1: простой Rough curriculum
 
 В training mix постоянно 30% Flat, 30% random rough, 20% slopes (поровну оба
 знака), 20% blocks. Ступени пока исключены. Flat environments сохраняют
 квалифицированный command sampler, в том числе pure-yaw fraction0,25.
-На Rough сначала используем тот же command sampler/ranges, rewards и physics;
-самовольное одновременное ускорение, новые pushes и новые penalties не допускаются.
+Для59/60 Rough sampler/reset/22с меняются вместе по
+[route protocol](ROUGH_ROUTE_CORRECTION.md); случайные широкие команды
+на Rough относились к прежней57/58 серии. Rewards и physics сохраняются;
+дополнительные pushes, reward sweeps и ослабление gates не входят в опыт.
 
 | Уровень | Random rough, абсолютные высоты относительно среднего | Slope, отношение Δz/Δx | Blocks, высота / размер ячейки |
 |---|---|---|---|
@@ -192,9 +217,9 @@ approach/flight/landing; overshoot площадки и остановка счи
 physics step, столкновение корпуса/уход с маршрута/невыполнение цели;
 tilt к gravity>60° более0,1 с. В первом locomotion gate разрешены только wheel
 contacts. Knee-assisted parkour не объявляем универсально неправильным, но
-включать его в этот контракт без отдельного пересмотра нельзя. Training termination
-и reward остаются исходными для первого опыта; evaluator фиксирует sticky failure,
-даже если training эпизод смог восстановиться и получить reward.
+включать его в этот контракт без отдельного пересмотра нельзя. В текущем training
+сохранён tilt terminal>60° дольше0,1с; reward и отсутствие отдельного contact
+terminal прежние. Evaluator фиксирует sticky failure даже при восстановлении.
 
 World-z0,4–0,8 из Flat на неровности и лестницы **не переносим**. Измеряем расстояния
 нижней поверхности корпуса и leg collision shapes до фактического collision mesh,
@@ -214,7 +239,8 @@ export/live после clipping — technical fail. Общий hardware torque-s
 ## Защита от пустых и непрерывных экспериментов
 
 Перед каждым stage free VRAM≥50%, во время≥5%; отсутствие telemetry errors.
-Rough two-process режим отдельно квалифицируется, Flat2×4096 его не разрешает.
+Rough dual2048 отдельно проверен, но медленнее single4096;2×4096 не разрешён
+этими измерениями. Stairs не наследует Rough capacity автоматически.
 Первичный timeout training3600 с/stage; export600 с; evaluation одного100-case
 batch1800 с. Если R0 показывает, что бюджету не хватает времени, новый timeout
 фиксируется до старта R1, а не по факту затянувшегося job. Source/mesh/parent hashes,
@@ -248,4 +274,5 @@ selection, privileged teacher и student; это основание повыша
 [height-field implementation](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab/isaaclab/terrains/height_field/hf_terrains.py)
 и [distance curriculum](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/mdp/curriculums.py)
 проверены по локальному matched runtime v2.3.2. Локальный успех Flat — основание
-первого ограниченного переноса; все Rough/Stairs числа выше ещё требуют измерений.
+первого ограниченного переноса. Rough57/58 измерен и не принят;59/60 и
+Stairs пока не имеют подтверждённого quality pass.

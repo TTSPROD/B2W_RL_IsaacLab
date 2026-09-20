@@ -5,6 +5,26 @@
 
 Проверено: **17 сентября 2026**. Это исследование исходного кода и первичных публикаций, а не отчёт об уже проведённом обучении. Проекты, ранее находившиеся на сервере пользователя, не использовались. Предлагаемые критерии и эксперименты ниже — проектные решения, а не заявленные авторами результаты для нашего робота.
 
+## Актуализация20сентября2026
+
+[Новое исследование Rough](../ROUGH_RESEARCH_2026-09-20.md) сопоставляет
+официальный Unitree RL Lab, ETH/Swiss-Mile, Go2-W ATRos/MUJICA,
+Parkour fine-tuning и CaT; содержит проверенные первичные ссылки.
+[Аудит350](../results/2026-09-20-rough-latest-audit.json) проверил199 hashes:
+57/58 не прошли Rough, curriculum остался на level0. World practice не
+подтверждает, что memoryless actor57 эквивалентен history/estimator policy.
+
+[Следующая проверка](../ROUGH_ROUTE_CORRECTION.md), пока подготовка:
+59/60 от qualified reference-derived actor54,50+100+200 single4096;
+Rough-only route-compatible commands/reset/22с, Flat30% прежние20с/команды.
+PPO/rewards/drift и gates сохраняются.
+[Job](../../logs/rough/rough_route_correction_20260920/job.json).
+
+[Frozen reference comparator](../results/rough_reference_baseline_20260920.json)
+завершён на random0 nominal/bounded: reference42/45, anchor54 39/47 из100.
+Все четыре full gates failed. Это ограниченный раскрытый baseline, не
+all-terrain сравнение или hold-out; безусловная Rough BC к reference не вводится.
+
 ## Решение после Flat qualification — 19 сентября 2026
 
 Seeds54/55/56 прошли все шесть новых Flat evaluations; результаты и66 hashes
@@ -38,7 +58,7 @@ asymmetric critics и учёт DC-motor constraints. Полезный вывод
 этапов — учитывать наблюдаемость контактов и torque-speed ограничения;
 этот preprint не является готовым B2W pipeline или доказательством нашего transfer.
 
-Выбранная локальная проверка — [reference transfer](../REFERENCE_TRANSFER.md)
+Историческая локальная проверка19.09 — [reference transfer](../REFERENCE_TRANSFER.md)
 с новым critic и ограниченным PPO-бюджетом. Реализация и фактические результаты
 должны оцениваться отдельно от опубликованных авторами результатов.
 Серверный вариант исходного исследования ниже не реализован: действующая

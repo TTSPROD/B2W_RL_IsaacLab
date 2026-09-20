@@ -1,5 +1,146 @@
 # Результаты обучения B2W
 
+**20.09.2026,04:44МСК: Rough57/58 завершили350, общий quality gate не пройден.**
+[Аудит](results/2026-09-20-rough-latest-audit.json):54 stages exit0,
+199 hashes без расхождений. В48 Rough reports2250/4800 successes;
+первые failures:2211 corridor,246 body contact,93 route incomplete.
+Все48 tracking gates прошли, но только10 full gates — все у58.
+[Полный результат](results/rough_requested_continue_20260920.json):
+seed57 прошёл0/24, seed58 —10/24 Rough family/level/profile suites.
+У обоих cap2 открыт, но финальные curriculum levels `[0,0,0,0,0]`.
+Flat safety —400/400 и абсолютные tracking gates пройдены; относительная
+regression к anchor прошла только у58 bounded_v1. Checkpoint350, export
+и успешное выполнение вычислений не означают Rough acceptance.
+
+Готовится [Rough route correction](ROUGH_ROUTE_CORRECTION.md): seeds59/60
+от qualified Flat seed54 actor, свежие critic247/optimizer,50 critic-only
++100+200 PPO, single4096 последовательно; максимум68812800 transitions.
+Rough70% получает согласованные команды/reset и22с эпизоды; Flat30% сохраняет
+20с и прежний random sampler. Tilt terminal, LR1e-4/std0,1/clip0,1/entropy0,
+drift0,25, frozen cases и все regression/quality gates сохраняются.
+[Новый job](../logs/rough/rough_route_correction_20260920/job.json) — источник
+фактического статуса; подготовка не является подтверждением запуска.
+
+[Исследование20.09](ROUGH_RESEARCH_2026-09-20.md) отделяет velocity tracking
+от скрытого маршрута и обосновывает проверку выполнимости команд на tile.
+Исходный reference уже использован через Flat transfer и anchor54.
+Отдельный [baseline runner](../scripts/run_rough_reference_baseline.py)
+завершил frozen reference/anchor54 на random0 nominal/bounded_v1,4×100 cases:
+reference42/45, anchor39/47 successes; все четыре full gates failed.
+[Фактические отчёты](results/rough_reference_baseline_20260920.json).
+Это evaluation раскрытого поднабора, не обучение, hold-out или полная qualification.
+
+## История запусков и решений
+
+Записи ниже относятся к указанному времени. Старые PID, ссылки на jobs и
+глаголы «запущено/выполняет» сохранены как история, а не текущее состояние.
+
+**20.09.2026,03:09 МСК: по прямому запросу продолжено обучение150→350.**
+[Живой job](../logs/rough/rough_requested_continue_20260920/job.json), supervisor
+PID29092 на момент запуска. Оба seeds57/58 получают ещё200 updates от
+собственных `model_149.pt` с сохранением optimizer/critic/curriculum;4096 env
+последовательно. [Отдельный протокол](ROUGH_REQUESTED_CONTINUATION.md).
+Открывается предусмотренный stage2 cap2, safe-traversal promotion остаётся прежней.
+
+Предыдущая tilt-correction очередь штатно остановилась в01:31:31МСК:
+оба сида завершили150, все4 Flat evaluations100/100 и tracking прошли.
+Drift0,04979/0,04729 при лимите0,25. Rough level0: seed57 от22 до44/100,
+seed58 от44 до69/100; все первые failures — corridor, tracking RMS прошли.
+[Окончательный результат150](results/rough_tilt_correction_20260920.json).
+
+После сообщения об этом пользователь прямо поручил продолжить. Новая очередь
+выполняет оставшиеся200 updates/seed и собирает4 Flat +48 Rough evaluations
+всех levels0/1/2. Промежуточный fail150 не переписывается; это диагностическое
+продолжение и оно не закрывает исходный development protocol. Drift0,25,
+VRAM/finite/timeout/export checks сохранены. Технические ошибки прекращают
+очередь; после финальных оценок новых training updates не назначается.
+Перед стартом повторно проверены hashes/source и первичные20 отчётов,
+actor/critic/optimizer обоих родителей.3 новых теста guards продолжения прошли;
+training/evaluator код совпадает с пройденным GPU preflight7.
+
+**20.09.2026,00:55 МСК: запущена корректирующая Rough серия.**
+[Текущий job](../logs/rough/rough_tilt_correction_20260920/job.json), supervisor
+PID30460 на момент запуска. Seeds57/58 последовательно по4096 env, каждый от
+своего проверенного `model_49.pt`, optimizer/critic сохранены; далее100+200
+updates. [Протокол и полный учёт бюджета](ROUGH_TILT_CORRECTION.md).
+
+Исходная серия остановлена в00:42:10МСК на iteration115 сида57: drift0,25273
+при лимите0,25. Оба calibration этапа50 и все4 Flat evaluations100/100 прошли.
+[Исходный окончательный результат](results/rough_development_20260920.json).
+[Диагностика сохранённого probe](results/2026-09-20-rough-drift-diagnosis.json):
+превышение было ДО update0,26653; update его уменьшил.12 сильно наклонённых
+наблюдений из4096 дали84,95% squared drift; Flat bank0,06943. Это не основание
+исключать их из guard или объявлять policy принятой.
+
+Единственное изменение новой серии — true terminal после tilt>60° дольше0,1с.
+Rewards/PPO/terrain/curriculum и все Flat/Rough evaluation gates сохранены.
+[GPU preflight7](results/rough_r1_preflight_20260920_7.json) прошёл: реальный
+искусственный переворот завершился native terminal через0,12с, time_out=false,
+sticky/timer очищены;train/resume2+2 и полная100-case оценка завершены exit0.
+YAML comparison: только новый terminal, плюс имена логов и smoke seed.
+134 CPU-теста и1290 vendor hashes прошли. Новая серия — проверка причинной
+гипотезы; успешное устранение дрейфа и качество locomotion ещё оцениваются.
+Неудачные66 updates исходного сида57 сохранены отдельно и явно учтены.
+
+**20.09.2026,00:26 МСК: запущено Rough R1 обучение, seeds57/58.**
+Один4096-env процесс за раз, от qualified Flat seed54; по50 critic-only +100 PPO
++200 PPO. Supervisor PID17628; это отметка запуска, текущий статус —
+[живой job.json](../logs/rough/rough_development_20260920/job.json).
+После50/150/350 обязательны Flat regression; после150 Rough level0,
+после350 все уровни0/1/2. Ошибка runtime/drift/VRAM или quality gate прекращает
+дальнейшую очередь. Никаких автоматических продлений/замен seeds.
+[Фиксированный протокол](ROUGH_DEVELOPMENT.md).
+
+4096 проверены50 updates:26153 transitions/s по времени между updates,
+peak7222MiB. Одновременная пара2048+2048 также прошла по50 updates,
+aggregate21170 transitions/s,peak10803MiB,minfree12,04%. Single4096 на23,54%
+быстрее этой пары.2×4096 Rough не запускались: прогноз13130MiB выше12282MiB.
+Все capacity веса discard. [Измерения](results/rough_capacity_20260919.json).
+
+[Финальный preflight](results/rough_r1_preflight_20260920_6.json) прошёл:
+nominal blocks level2 и bounded random level2 fixtures, полный100-case random
+level0 (4400 physics steps), safe-curriculum train/resume2+2. Исходный Flat actor
+прошёл39/100 маршрутов;61 отказ — corridor, запрещённых contacts/tilt отказов
+в этой партии нет. Это исходный Rough baseline, не принятие политики и не
+неисправность evaluator. Geometry/energy/slip/limits/physical readback сохранены.
+Ранние технические попытки1–4 и успешная5 сохранены;6 дополнительно проверяет
+полную100-case оценку и JSON-roundtrip cases.131 CPU-тест и1290 vendor hashes
+прошли. Основные R1 результаты пока не получены; R2/Stairs не запущены.
+
+Ниже — исторические результаты на указанное время.
+
+**19.09.2026,23:46 МСК: техническая очередь Rough R0 завершена.**
+Перенос actor от qualified Flat seed54, новый critic247 и level0 mix выполнены.
+GPU PhysX/Fabric:64 env,10000 physics steps +80-step contact fixture; проверены
+187 rays и270 spawn probes collision mesh. Train/resume2+2 прошёл, optimizer
+step40→80; затем по50 updates на1024/2048 env. Все exit0, export parity0,
+finite telemetry;104 updates,3692544 PPO transitions. Все эти веса discard.
+[Проверенный итог и hashes](results/2026-09-19-rough-r0-verification.json),
+[полная очередь](results/rough_r0_20260919_fix2.json), [протокол](ROUGH_R0.md).
+
+| R0 benchmark | Transitions/s (после первых5 updates) | Минимальный запас VRAM | Финальный drift Rough / Flat bank |
+|---|---:|---:|---:|
+|1024 env,50 updates|10055,19|55,08%|0,0660 /0,0581|
+|2048 env,50 updates|17165,68|50,87%|0,0634 /0,0465|
+
+Измерение относится к одному процессу,level0 и этому mesh;2048 быстрее среди
+двух проверенных конфигураций.4096 и два Rough процесса не квалифицированы.
+Общий max62°C, telemetry errors0, drift limit0,25 не превышен. Пройдены34 CPU
+теста;1290 vendor files и исходные Flat anchors54/55/56 сохранили hashes.
+
+**Полный R0 gate и R1 пока не закрыты.** Следующий обязательный шаг — safe traversal
+curriculum вместо выключенной promotion, полный Rough evaluator с route,
+collision-shape clearance/slip/energy/limits, bounded physics readback и Flat
+regression относительно frozen parent. Основная350-update серия и Stairs не
+запускались. Очередь завершилась штатно; низкая загрузка GPU теперь ожидаема.
+
+Две технические ошибки до PPO сохранены: первый bootstrap import остановился
+до env;fix1 прошёл10000 physics steps, затем упал на inference-mode contact
+injection. Fix2 исправил harness и повторил весь gate без ослабления порогов.
+Контакты в smoke не являются policy acceptance:21/64 environments хотя бы раз
+имели non-wheel contact за несколько auto-reset episodes; это не success rate
+100-case evaluator и не основание считать Rough safe.
+
 **19.09.2026,22:26:37 МСК: квалификация Flat transfer завершена успешно.**
 Tри новых seeds54/55/56 достигли350 updates. Все шесть nominal/bounded_v1
 оценок —100/100 и scenario tracking pass; reference прошёл оба набора100/100.
@@ -30,8 +171,8 @@ reference, critics обновлены, std0,1 сохранён. Это восп�
 Рабочие checkpoints model_349 и exports для всех трёх seeds сохранены; точные
 пути/SHA256 — в verification JSON. Weights/runtime не входят в Git.
 
-Очередь завершена; низкая загрузка GPU после22:26 ожидаема. Следующий этап по
-плану — отдельный Rough GPU smoke и curriculum с Flat regression. Не запущен.
+Очередь Flat завершена после22:26. Следующий Rough R0 выполнен позже;
+актуальное состояние и оставшиеся gates приведены в начале журнала.
 
 История: development52/53 успешно завершён21:04, все4 оценки100/100.
 [Development итог](results/2026-09-19-reference-upright-final.json).
@@ -50,7 +191,8 @@ load_run; оба train были успешны. [Исходный failed job](re
 19.09 запущен Isaac Sim GUI с1 Flat B2W, финалом seed54 и Xbox-геймпадом.
 Рендер D3D12, runtime/physics/weights неизменны; viewport и live parity проверены.
 [Управление](GAMEPAD_PLAY.md), [GUI свидетельство](results/2026-09-19-gamepad-gui.json).
-Новая training очередь не запущена. [План Rough/Stairs](ROUGH_STAIRS_PLAN.md)
+На момент GUI просмотра новая training очередь не запускалась; позднее
+выполнен Rough R0, см. начало журнала. [План Rough/Stairs](ROUGH_STAIRS_PLAN.md)
 обновлён по успешному transfer: отдельный Rough smoke, actor-only перенос,
 свежий critic, короткие бюджеты, Flat regression, stairs up/down отдельным gate.
 

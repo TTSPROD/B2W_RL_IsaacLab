@@ -1,10 +1,28 @@
 # Практики обучения колёсноногих роботов и решение для B2W
 
-Исследование обновлено19.09.2026 по первичным публикациям и коду.
-Внешние системы здесь не запускались. Их успех не доказывает эффективность
-наших численных параметров. [Следующий протокол](REFERENCE_TRANSFER.md).
+Обновлено20.09.2026. Актуальное исследование первичных источников:
+[ROUGH_RESEARCH_2026-09-20](ROUGH_RESEARCH_2026-09-20.md).
+[Аудит350](results/2026-09-20-rough-latest-audit.json):199 hashes проверены,
+Rough57/58 не приняты;2250/4800 успешных episodes и10/48 full suites,
+оба curriculum остались на level0. Mean reward и tracking не заменяют route gate.
 
-## Вывод из наших экспериментов
+Новая причинная проверка — [route correction59/60](ROUGH_ROUTE_CORRECTION.md),
+сейчас подготовка: согласовать Rough commands/reset/22с на конечном tile,
+оставить Flat30%/20с и его sampler. Actor от qualified seed54, новые critics,
+50+100+200 single4096. Rewards, PPO, tilt terminal, drift0,25 и frozen gates
+сохраняются. [Job](../logs/rough/rough_route_correction_20260920/job.json).
+
+Reference уже применена через actor transfer в seed54. Дополнительный
+[frozen comparator](results/rough_reference_baseline_20260920.json) завершён:
+reference42/45 против anchor39/47 из100 на random0 nominal/bounded.
+Это не Rough expert и не свидетельство превосходства одного на всех terrains;
+добавлять BC к такому учителю сейчас не обосновано. History/velocity-contact
+estimator и constrained RL остаются отдельными вариантами с новым контрактом.
+
+Внешние методы здесь не запускались; их успех не доказывает наши параметры.
+Ниже — история Flat решения и прежних исследований, а не активный reward sweep.
+
+## Исторический вывод из Flat экспериментов
 
 Успех staged seed48 не повторился во всей49/50/51 серии.
 Contact−3:23→14 отказов; height L2−10 и lower-L1:14→23;
@@ -80,7 +98,7 @@ first/second differences, knee limits и survival; веса нельзя пер�
 также использует XY:yaw3:1,5. Малый relative yaw weight сам по себе не объясняет
 неуспех B2W. Это не официальный код Unitree.
 
-## Зарегистрированное решение
+## Историческое решение19.09: reference transfer
 
 Reference actor →50 critic-only updates →100+200 native PPO.
 Два seeds52/53, std0,1 fixed, LR1e−4 fixed, clip0,1, entropy0.

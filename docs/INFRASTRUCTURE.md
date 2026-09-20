@@ -1,9 +1,18 @@
 # Инфраструктура и синхронизация
 
+[Аудит350](results/2026-09-20-rough-latest-audit.json) проверил199 hashes без расхождений.
+
 Проверенное окружение и границы проекта — ниже. Текущая очередь и результаты
 обучения ведутся в [TRAINING_PROGRESS](TRAINING_PROGRESS.md), следующие решения
 и gates — в [PROJECT_PLAN](PROJECT_PLAN.md). Датированные протоколы и JSON
 сохраняют историю; промежуточные PID и статусы не являются текущими.
+
+Актуально20.09: Rough57/58 до350 завершены без acceptance;
+[итог](results/rough_requested_continue_20260920.json),
+[исследование](ROUGH_RESEARCH_2026-09-20.md). Готовится
+[route59/60](ROUGH_ROUTE_CORRECTION.md) на этом desktop: single4096,
+50+100+200; [job](../logs/rough/rough_route_correction_20260920/job.json).
+Новые checkpoints остаются в исключённых из Git `logs/`.
 
 ## Разделение данных
 
@@ -42,6 +51,14 @@ Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048.
 63 907,87 transitions/s суммарно, peak VRAM 9 583 MiB, минимальный запас 21,98%.
 Ограничения измерений и длительные прогоны — в [COMPUTE_DECISION](COMPUTE_DECISION.md).
 
+20 сентября Rough capacity: один4096-env процесс дал26153 transitions/s
+по времени между updates; два2048-env процесса —21170 суммарно в overlap.
+Оба режима завершили по50 updates на процесс; dual peak10803MiB, запас12,04%.
+Для Rough выбран один4096-env процесс, два сида последовательно.2×4096 Rough
+не запускались: прогноз13130MiB превышает12282MiB устройства.
+[Измерения](results/rough_capacity_20260919.json),
+[действующий протокол](ROUGH_ROUTE_CORRECTION.md); прежнийR1 исторический.
+
 19 сентября GUI Flat replay ускорен до примерно 48,8 policy frames/s и 0,976×
 real time: Isaac Sim5.1,1 B2W seed54, Xbox XInput. Рабочий default — Storm/Vulkan
 raster rendering, CPU PhysX и CPU TorchScript с 1 потоком; physics dt0,005 с,
@@ -54,8 +71,9 @@ training runtime не менялся; CPU playback не расширяет ег�
 [историческом отчёте](results/2026-09-19-gamepad-gui.json); legacy-путь доступен явно.
 Viewer не совмещать с benchmark/training на той же GPU.
 
-Техническая квалификация не означает приёмку политики. Rough, Stairs,
-GUI/rendering и sim2sim требуют отдельных проверок. Ubuntu 26.04 на ПК не
+Техническая квалификация не означает приёмку политики. Rough runtime проверен,
+но Rough quality, Stairs и sim2sim gates открыты; GUI относится только к
+описанному Flat replay. Ubuntu 26.04 на ПК не
 использовалась и не входит в опубликованную матрицу Isaac Sim 5.1.
 
 ## Ноутбук и сервер

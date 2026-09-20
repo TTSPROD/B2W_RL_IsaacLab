@@ -1,0 +1,319 @@
+{
+  "status": "failed",
+  "started_utc": "2026-09-19T20:32:51.682198+00:00",
+  "supervisor_pid": 20548,
+  "stages": [
+    {
+      "name": "physics",
+      "status": "failed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/smoke_rough_b2w.py",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rough\\rough_r0_20260919\\physics.json"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-19T20:32:52.254564+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 1315.0,
+        "gpu_utilization_percent": 5.0,
+        "gpu_temperature_c": 54.0,
+        "gpu_headroom_fraction": 0.8929327471095913
+      },
+      "pid": 25940,
+      "error": "physics exited 1; see console.log",
+      "external_exit_code": 1,
+      "elapsed_seconds": 6.078000000008615,
+      "finished_utc": "2026-09-19T20:32:58.336413+00:00",
+      "resources": {
+        "sample_count": 3,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 1518.0,
+        "minimum_gpu_headroom_fraction": 0.8764044943820225,
+        "mean_gpu_utilization_percent": 5.0,
+        "peak_gpu_temperature_c": 54.0,
+        "peak_process_tree_rss_bytes": 1105899520,
+        "minimum_system_available_ram_bytes": 20231696384,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      }
+    }
+  ],
+  "scope": "R0 only; discard all weights; no R1/stairs/hardware acceptance",
+  "parent": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_18-54-23-508380_flat_reference_qualification_20260919_resume1_s54_stage2\\model_349.pt",
+  "parent_sha256": "3eeb00963e528f6b31607a0188691f123b9ba533288a58c931c98ef790cab4fc",
+  "anchor": "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+  "anchor_sha256": "f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee",
+  "flat_bank_sha256": "d8208b88639a03ef2cd7f545303ab12d34f261fe0a5364051bfb43ba33f206b8",
+  "geometry_seed": 2026091970,
+  "seeds": [
+    5700,
+    5701,
+    5702
+  ],
+  "training_budget_updates": [
+    2,
+    2,
+    50,
+    50
+  ],
+  "num_envs": [
+    64,
+    64,
+    1024,
+    2048
+  ],
+  "physics_smoke_steps": 10000,
+  "source_sha256": {
+    "scripts/run_rough_r0.py": "d3a0ead7505bc765518bb0f18022acdb6c5488e768c9dccf6acce6ef84f2cc70",
+    "scripts/smoke_rough_b2w.py": "dcae52aeaddba625c962572342548d8a3ea5b1bd01d735eeb585a5fd133dd6bf",
+    "scripts/train_b2w.py": "5491ac78812ec6d54c19c5f1c8b22e58d2331e80751ed844cbc95b8ed1493f4a",
+    "scripts/b2w_rough_runtime.py": "4ade189c35c24c8ab0b42aac6efafc1109298d105e594ae45ff54a90a7744e03",
+    "scripts/b2w_rough_terrain.py": "4983626f1420d01cc90e5da7e587d81d1b0fcaf2ca116acf1cd661d738e1ffd0",
+    "scripts/b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "scripts/reference_transfer.py": "9f58b032b87ad98af6d44c558f010af59d9eaef51945803826b1e66ba38273d9",
+    "scripts/b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "scripts/yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "scripts/benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "scripts/smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859"
+  },
+  "protocol_sha256": "b55819cd6215dcccf513a58c0506cdfd90e1295516abdd1243e71b71a58e7534",
+  "r1_permitted": false,
+  "geometry_fixtures": [
+    {
+      "family": "flat",
+      "level": 0,
+      "mesh_sha256": "faa18b56ec14bbc77a55f98f62650edd91cab4853515edc35338dabe6afb19a7",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": 0.0,
+      "max_z": 0.0,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "flat",
+      "level": 1,
+      "mesh_sha256": "faa18b56ec14bbc77a55f98f62650edd91cab4853515edc35338dabe6afb19a7",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": 0.0,
+      "max_z": 0.0,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "flat",
+      "level": 2,
+      "mesh_sha256": "faa18b56ec14bbc77a55f98f62650edd91cab4853515edc35338dabe6afb19a7",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": 0.0,
+      "max_z": 0.0,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "random",
+      "level": 0,
+      "mesh_sha256": "0c9f038e60247037877e0cc10643bb21404a5fb054b20e257c40454da05c39dc",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.01,
+      "max_z": 0.01,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "random",
+      "level": 1,
+      "mesh_sha256": "412f0a0d631ed582e62a625c344893e868f377cde2c7ce2dcaca3bda1d47f604",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.025,
+      "max_z": 0.025,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "random",
+      "level": 2,
+      "mesh_sha256": "3f3a0268f557a91f24feea0b50305b7d3332bd17a77000a82dc5b098d5aaf199",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.04,
+      "max_z": 0.04,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "slope_up",
+      "level": 0,
+      "mesh_sha256": "12095765293fcfcc3a838439d0cd558105cc309c7520459c588b6f268457a2a4",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.225,
+      "max_z": 0.225,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "slope_up",
+      "level": 1,
+      "mesh_sha256": "e9daa8a41466571b6748a02de26c9e9917d0b5a13ae276d409338bce653c534a",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.45,
+      "max_z": 0.45,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "slope_up",
+      "level": 2,
+      "mesh_sha256": "cd2ad3d735d783dd02d46f1d28586a76c031bdc6dd278d6a0bcff8b291dec62f",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.9,
+      "max_z": 0.9,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "slope_down",
+      "level": 0,
+      "mesh_sha256": "9ad245337c181c835f9597db199ab1474f6f05c2d659e900573fa6b7d9df6550",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.225,
+      "max_z": 0.225,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "slope_down",
+      "level": 1,
+      "mesh_sha256": "4a8963cbdc46437cfe1b704bed0ffa49cb8a8e71b3739f51b4faa637caed32f6",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.45,
+      "max_z": 0.45,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "slope_down",
+      "level": 2,
+      "mesh_sha256": "f66938fcfc49aace65573f67bff551929992da7d8e3616005439a7f12f5838b6",
+      "vertices": 14641,
+      "faces": 28800,
+      "min_z": -0.9,
+      "max_z": 0.9,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "blocks",
+      "level": 0,
+      "mesh_sha256": "a9e8fb6cf498243bab1fce7dec33c6e3f837518cf53538451bbc313e6a3cf5d1",
+      "vertices": 19537,
+      "faces": 36144,
+      "min_z": 0.0,
+      "max_z": 0.04,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "blocks",
+      "level": 1,
+      "mesh_sha256": "fb0120370d792a85b6616aba49df203e5c89a0f2dc1e0e132a7b78475ce53f90",
+      "vertices": 19537,
+      "faces": 36144,
+      "min_z": 0.0,
+      "max_z": 0.07,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    },
+    {
+      "family": "blocks",
+      "level": 2,
+      "mesh_sha256": "25292d819028e8d5856a8f6585e1ca4b2eee152c45dfc08a69be39463511afe4",
+      "vertices": 19537,
+      "faces": 36144,
+      "min_z": 0.0,
+      "max_z": 0.1,
+      "spawn_origin": [
+        6.0,
+        6.0,
+        0.0
+      ],
+      "spawn_square_m": 3.0
+    }
+  ],
+  "error": "RuntimeError: physics exited 1; see console.log",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\scripts\\run_rough_r0.py\", line 168, in main\n    own_child([PYTHON, '-B', '-u', 'scripts/smoke_rough_b2w.py', '--headless', '--device', 'cuda:0',\n  File \"D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\scripts\\run_rough_r0.py\", line 67, in own_child\n    raise RuntimeError(f'{directory.name} exited {child.returncode}; see console.log')\nRuntimeError: physics exited 1; see console.log\n",
+  "finished_utc": "2026-09-19T20:32:58.338414+00:00"
+}

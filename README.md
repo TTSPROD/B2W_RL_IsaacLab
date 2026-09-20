@@ -3,21 +3,32 @@
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 
-**Flat transfer прошёл квалификацию19.09.2026 в22:26 МСК.**
-Три новых seeds54/55/56, по350 updates: все шесть nominal/bounded_v1 оценок
-по100/100; tracking выполнен в каждом семействе. Проверены66 artifacts/hashes.
-[Итоговая проверка](docs/results/2026-09-19-reference-qualification-verification.json),
-[протокол](docs/REFERENCE_QUALIFICATION.md).
-Это воспроизводимое дообучение общего pretrained actor в указанном Flat-покрытии.
-Следующий этап — отдельный Rough GPU smoke и curriculum с Flat regression.
-Новая очередь пока не запускалась; reference/seed49 и все финалы сохранены.
-Текущая очередь и критерии решения ведутся в
-[журнале](docs/TRAINING_PROGRESS.md) и [плане проекта](docs/PROJECT_PLAN.md).
+**20.09.2026: Flat квалифицирован; Rough пока не принят.** Flat seeds54/55/56
+прошли все6 nominal/bounded_v1 оценок по100/100 с tracking;
+[проверены66 artifacts/hashes](docs/results/2026-09-19-reference-qualification-verification.json).
+Rough57/58 завершили350 updates: прошли0/24 и10/24 Rough suites, curriculum
+остался на level0. Flat safety400/400 сохранена, но3/4 относительных regression
+gates не пройдены. [Итог350](docs/results/rough_requested_continue_20260920.json).
 
-Headless Flat технически квалифицирован на Windows / RTX 4070 Ti, в том числе
-два одновременных запуска по 4096 сред. RTX 4080 Laptop прошёл отдельную
-квалификацию; сервер к Isaac Lab не допущен. GUI Flat сXbox проверен отдельно черезD3D12. Rough/stairs, sim2sim,
-zero-action PD stand и аппаратные испытания имеют отдельные незакрытые gates.
+Готовится [коррекция Rough эпизодов](docs/ROUGH_ROUTE_CORRECTION.md): новые
+seeds59/60 от qualified seed54,50 critic +100+200 PPO, single4096.
+Rough команды/reset/22с согласуются с маршрутом; Flat30% сохраняет20с и
+прежние команды. Reference уже лежит в основе seed54. Frozen random0 comparator завершён:
+reference42/45, anchor39/47 из100 nominal/bounded; все четыре gates failed.
+[Отчёт](docs/results/rough_reference_baseline_20260920.json).
+[Исследование практик](docs/ROUGH_RESEARCH_2026-09-20.md),
+[состояние новой очереди](logs/rough/rough_route_correction_20260920/job.json),
+[журнал](docs/TRAINING_PROGRESS.md), [план](docs/PROJECT_PLAN.md).
+Подготовленный протокол не означает запущенное или принятое обучение.
+
+Windows / RTX4070Ti: Flat headless2×4096 и Rough single4096 технически
+проверены; для Rough последовательные seeds быстрее измеренной пары2048+2048.
+Ноутбук квалифицирован отдельно, сервер к Isaac Lab не допущен.
+GUI Flat сXbox работает через Storm/Vulkan; D3D12 — исторический медленный
+режим. Stairs, sim2sim, zero-action PD stand и hardware имеют отдельные gates.
+
+[Аудит последней серии](docs/results/2026-09-20-rough-latest-audit.json):
+199 hashes без расхождений; runtime success отделён от quality acceptance.
 
 ## Документы
 
@@ -27,7 +38,7 @@ zero-action PD stand и аппаратные испытания имеют от�
 | Открыть Flat и управлять Xbox-геймпадом | [GAMEPAD_PLAY](docs/GAMEPAD_PLAY.md) |
 | Текущий результат, очередь и история опытов | [TRAINING_PROGRESS](docs/TRAINING_PROGRESS.md) |
 | Следующее решение, бюджет и критерии приёмки | [PROJECT_PLAN](docs/PROJECT_PLAN.md) |
-| Исследования и выбор подхода к обучению | [REWARD_RESEARCH](docs/REWARD_RESEARCH.md) |
+| Исследования и выбор подхода к обучению | [Rough20.09](docs/ROUGH_RESEARCH_2026-09-20.md), [REWARD_RESEARCH](docs/REWARD_RESEARCH.md) |
 | Установка и команды запуска | [DESKTOP_SETUP](docs/DESKTOP_SETUP.md), [каталог scripts](scripts/README.md) |
 | Выбор вычислительного режима | [COMPUTE_DECISION](docs/COMPUTE_DECISION.md) |
 | Пути, Git и синхронизация | [INFRASTRUCTURE](docs/INFRASTRUCTURE.md) |
