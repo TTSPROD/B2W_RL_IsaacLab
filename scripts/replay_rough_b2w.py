@@ -1,11 +1,12 @@
-"""Frozen 100-case Rough route evaluation; direct physics stepping without auto-reset."""
+"""Frozen Rough route or locomotion evaluation; no auto-reset."""
 from __future__ import annotations
 import argparse,json,math,sys,time,traceback
 from pathlib import Path
 sys.dont_write_bytecode=True
 from b2w_runtime import PROJECT_ROOT as ROOT,configure_process,project_kit_args
 from b2w_rough_runtime import ROUGH_TASK,make_rough_env_cfg,validate_environment
-from rough_evaluation import FAMILIES,CASE_SEEDS,GEOMETRY_SEED,make_cases,digest,summarize
+from rough_evaluation import (FAMILIES,CASE_SEEDS,EVALUATION_MODES,GEOMETRY_SEED,
+                              make_cases,make_locomotion_cases,digest,summarize)
 from benchmark_b2w import sha256,write_json,utc_now
 
 
@@ -16,17 +17,20 @@ def main():
     p.add_argument('--policy',type=Path,required=True);p.add_argument('--report',type=Path,required=True)
     p.add_argument('--family',choices=FAMILIES,required=True);p.add_argument('--level',type=int,choices=range(3),required=True)
     p.add_argument('--physical_profile',choices=CASE_SEEDS,default='nominal')
+    p.add_argument('--evaluation_mode',choices=EVALUATION_MODES,default='route')
     p.add_argument('--fixture',action='store_true',help='12-case,1s harness fixture; never acceptance')
     AppLauncher.add_app_launcher_args(p);p.set_defaults(headless=True,device='cuda:0')
     args=p.parse_args();args.policy=(ROOT/args.policy).resolve();args.report=(ROOT/args.report).resolve()
     if not args.policy.is_relative_to(ROOT) or not args.policy.is_file():raise ValueError('Policy must be inside project')
     if not args.report.is_relative_to(ROOT/'logs') or args.report.exists():raise ValueError('New project logs report required')
     args.report.parent.mkdir(parents=True,exist_ok=True)
-    cases=make_cases(args.family,args.level,args.physical_profile)
+    case_factory=make_locomotion_cases if args.evaluation_mode=='locomotion' else make_cases
+    cases=case_factory(args.family,args.level,args.physical_profile)
     if args.fixture:cases=[cases[i] for i in [0,1,2,3,60,61,62,63,80,81,82,83]]
     n=len(cases);report=dict(status='starting',started_utc=utc_now(),policy=str(args.policy.relative_to(ROOT)),
         policy_sha256=sha256(args.policy),family=args.family,level=args.level,physical_profile=args.physical_profile,
         cases=cases,cases_sha256=digest(cases),geometry_seed=GEOMETRY_SEED,fixture=args.fixture,
+        evaluation_mode=args.evaluation_mode,corridor_is_failure=args.evaluation_mode=='route',
         policy_quality_evaluated=not args.fixture,auto_reset=False,
         source_sha256={f'scripts/{name}':sha256(ROOT/'scripts'/name) for name in ('replay_rough_b2w.py','rough_evaluation.py','rough_metrics.py','b2w_rough_runtime.py','b2w_rough_terrain.py','physical_evaluation.py')})
     save=lambda:write_json(args.report,report);save();app=env=None;exitcode=1
@@ -111,7 +115,8 @@ def main():
                     max_tilt=torch.maximum(max_tilt,angle)
                     wheel=robot.data.body_link_pos_w[:,metrics.wheels]-base.scene.env_origins[:,None,:]
                     outside=(wheel[:,:,1].abs()>.9).any(1)|(wheel[:,:,0]<-.6).any(1)|(wheel[:,:,0]>5.4).any(1)
-                    causes={'body_contact':contact>1.,'tilt':tilted,'corridor':outside}
+                    causes={'body_contact':contact>1.,'tilt':tilted}
+                    if args.evaluation_mode=='route':causes['corridor']=outside
                     anyfail=torch.stack(list(causes.values())).any(0)
                     for index in anyfail.nonzero().flatten().tolist():
                         if failures[index] is None:
@@ -137,12 +142,16 @@ def main():
         report['physical_evidence']['persistent_through_replay']=True
         err=torch.stack(errors);signed=torch.stack(bias);rows=[]
         for i,case in enumerate(cases):
-            goal=float(route_max[i])>=3.
-            if not goal and failures[i] is None:failures[i]=dict(time_s=22.,reasons=['route_incomplete'])
+            minimum=case.get('minimum_progress_m',case.get('minimum_route_m',3.))
+            goal=float(route_max[i])>=minimum
+            if not goal and failures[i] is None:
+                reason='progress_incomplete' if args.evaluation_mode=='locomotion' else 'route_incomplete'
+                failures[i]=dict(time_s=22.,reasons=[reason])
             rows.append(dict(index=case['index'],success=failures[i] is None,first_failure=failures[i],
                 squared_error_sum=err[:,i].sum(0).tolist(),measurement_steps=len(err),rms=err[:,i].mean(0).sqrt().tolist(),
                 error_p95=torch.quantile(signed[:,i].abs(),.95,dim=0).tolist(),error_max=signed[:,i].abs().amax(0).tolist(),
-                signed_bias=signed[:,i].mean(0).tolist(),route_progress_m=float(route_max[i]),rollback_m=float(rollback[i]),
+                signed_bias=signed[:,i].mean(0).tolist(),route_progress_m=float(route_max[i]),
+                forward_progress_m=float(route_max[i]),rollback_m=float(rollback[i]),
                 max_stall_seconds=float(stall_max[i]),max_tilt_deg=float(max_tilt[i]),
                 action_clipping_steps=int(action_clip[i]),observation_clipping_steps=int(obs_clip[i])))
         report.update(status='completed',results=rows,summary=None if args.fixture else summarize(cases,rows),

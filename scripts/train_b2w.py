@@ -56,6 +56,9 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
     parser.add_argument("--rough_precision_tracking", action="store_true", help="Registered route experiment: tracking std .25, unchanged weights and gates.")
     parser.add_argument("--rough_wheel_corridor", action="store_true", help="Rough-only wheel corridor terminal and curriculum constraint.")
     parser.add_argument("--rough_wide_corridor", action="store_true", help="Opt-in training corridor: +/-1.8 m lateral wheel bounds; retains true termination and curriculum failure.")
+    parser.add_argument("--unified_u1", action="store_true", help="Reference-compatible U1: seed54 actor, privileged critic247, no route/corridor objective.")
+    parser.add_argument("--unified_u11", action="store_true", help="U1.1 single-factor terrain sampling: more Flat rehearsal and slope-up exposure.")
+    parser.add_argument("--unified_u12", action="store_true", help="U1.2 single-factor contact penalty -3 on top of U1.1 sampling.")
     parser.add_argument("--rough_stage", type=int, choices=(0,1,2), default=0)
     parser.add_argument("--max_iterations", type=int, default=5000, help="PPO updates to execute in this run.")
     parser.add_argument("--seed", type=int, default=42)
@@ -126,6 +129,14 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
         parser.error("--rough_wheel_corridor requires the registered precision route recipe")
     if args.rough_wide_corridor and not args.rough_wheel_corridor:
         parser.error("--rough_wide_corridor requires --rough_wheel_corridor")
+    if args.unified_u1 and (not args.rough_transfer or not args.rough_tilt_termination
+            or args.rough_route_commands or args.rough_precision_tracking
+            or args.rough_wheel_corridor or args.rough_wide_corridor):
+        parser.error("--unified_u1 requires Rough transfer + tilt termination and forbids route/corridor variants")
+    if args.unified_u11 and not args.unified_u1:
+        parser.error("--unified_u11 requires --unified_u1")
+    if args.unified_u12 and not args.unified_u11:
+        parser.error("--unified_u12 requires --unified_u11")
     if args.rough_transfer:
         from b2w_rough_runtime import ANCHOR_SHA256
         if (args.rough_r0 or args.reference_init is None or sha256(args.reference_init) != ANCHOR_SHA256
@@ -150,6 +161,12 @@ def parse_args(app_launcher_class) -> argparse.Namespace:
                 parser.error('Wheel corridor constraint must be preserved on own-stage resume')
             if parent.get('rough_wide_corridor', False) != args.rough_wide_corridor:
                 parser.error('Wheel corridor width must be preserved on own-stage resume')
+            if parent.get('unified_u1', False) != args.unified_u1:
+                parser.error('Unified U1 mode must be preserved on own-stage resume')
+            if parent.get('unified_u11', False) != args.unified_u11:
+                parser.error('Unified U1.1 sampling must be preserved on own-stage resume')
+            if parent.get('unified_u12', False) != args.unified_u12:
+                parser.error('Unified U1.2 contact penalty must be preserved on own-stage resume')
             expected = 1 if smoke else (49 if args.rough_stage == 1 else 149)
             if (not parent.get('rough_transfer') or parent['num_envs'] != args.num_envs
                     or parent.get('ending_runner_iteration') != expected
@@ -200,6 +217,9 @@ def main() -> None:
         "rough_precision_tracking": args.rough_precision_tracking,
         "rough_wheel_corridor": args.rough_wheel_corridor,
         "rough_wide_corridor": args.rough_wide_corridor,
+        "unified_u1": args.unified_u1,
+        "unified_u11": args.unified_u11,
+        "unified_u12": args.unified_u12,
         "rough_stage": args.rough_stage if args.rough_transfer else None,
         "status": "starting",
         "started_utc": datetime.now(timezone.utc).isoformat(),
@@ -257,9 +277,15 @@ def main() -> None:
         if rough:
             from b2w_rough_runtime import make_rough_env_cfg
             make_cfg = make_rough_env_cfg
-        env_cfg = make_cfg(
-            num_envs=args.num_envs, device=args.device, seed=args.seed, headless=args.headless
-        )
+        make_kwargs=dict(num_envs=args.num_envs,device=args.device,seed=args.seed,headless=args.headless)
+        if rough and args.unified_u11:
+            from b2w_rough_runtime import U11_TERRAIN_PROPORTIONS
+            make_kwargs['terrain_proportions']=U11_TERRAIN_PROPORTIONS
+        env_cfg = make_cfg(**make_kwargs)
+        if rough:
+            from b2w_rough_runtime import DEFAULT_TERRAIN_PROPORTIONS,U11_TERRAIN_PROPORTIONS
+            terrain_mix=U11_TERRAIN_PROPORTIONS if args.unified_u11 else DEFAULT_TERRAIN_PROPORTIONS
+            manifest['rough_terrain_proportions']={name:value for name,value in terrain_mix}
         if args.rough_tilt_termination:
             from rough_tilt_termination import configure_tilt_termination
             configure_tilt_termination(env_cfg)
@@ -280,6 +306,8 @@ def main() -> None:
         if args.rough_wheel_corridor:
             from rough_wheel_corridor import configure_wheel_corridor
             configure_wheel_corridor(env_cfg)
+        if args.unified_u12:
+            env_cfg.rewards.undesired_contacts.weight = -3.0
         if args.yaw_tracking_weight is not None:
             env_cfg.rewards.track_ang_vel_z_exp.weight = args.yaw_tracking_weight
         if args.undesired_contact_weight is not None:
@@ -405,6 +433,9 @@ def main() -> None:
                 from rough_wheel_corridor import WheelCorridorCurriculum
                 curriculum_class = WheelCorridorCurriculum
             curriculum_kwargs = {}
+            if args.unified_u11:
+                from b2w_rough_runtime import U11_FAMILY_BY_TYPE
+                curriculum_kwargs['family_by_type'] = U11_FAMILY_BY_TYPE
             if args.rough_wheel_corridor:
                 from rough_wheel_corridor import Y_LIMIT, WIDE_Y_LIMIT
                 curriculum_kwargs['y_limit'] = WIDE_Y_LIMIT if args.rough_wide_corridor else Y_LIMIT

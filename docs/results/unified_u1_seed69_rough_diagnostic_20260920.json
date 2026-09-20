@@ -1,0 +1,78 @@
+{
+  "status": "completed_diagnostic_failed_gate",
+  "date": "2026-09-20",
+  "scope": "Post-stop frozen-policy Rough level0 nominal diagnosis; no training updates and no qualification claim.",
+  "seed": 69,
+  "cumulative_updates": 150,
+  "evaluation_mode": "locomotion",
+  "corridor_is_failure": false,
+  "policy": "logs/rsl_rl/unitree_b2w_rough/2026-09-20_17-56-38-624561_unified_u1_training_20260920_s69_stage1/export/policy.pt",
+  "policy_sha256": "e13e2553dc1f2cf1d816117406e2e91cdf38f7301e29fdafad67f704cb3f212c",
+  "threshold": 0.95,
+  "families": {
+    "random": {
+      "success": 100,
+      "episodes": 100,
+      "passed": true,
+      "traverse": "60/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "report": "logs/qualification/unified_u1_training_20260920/s69_u150_random_l0_nominal_diagnostic.json",
+      "report_sha256": "92d67ead369953a90709f69e73ce81d68b6bf4f752e194ae6672ce8600596227"
+    },
+    "blocks": {
+      "success": 100,
+      "episodes": 100,
+      "passed": true,
+      "traverse": "60/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "report": "logs/qualification/unified_u1_training_20260920/s69_u150_blocks_l0_nominal_diagnostic.json",
+      "report_sha256": "19b42d74981ba046781466bab9e9157396af4c9d8e59c768593e82c43bb161ac"
+    },
+    "slope_up": {
+      "success": 92,
+      "episodes": 100,
+      "passed": false,
+      "traverse": "52/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "failure_reasons": {"body_contact": 8},
+      "contact_bodies": {"FL_calf": 4, "FR_calf": 4},
+      "report": "logs/qualification/unified_u1_training_20260920/s69_u150_slope_up_l0_nominal_diagnostic.json",
+      "report_sha256": "c60a71e35c294c9551db7ee8863f34d5da923c6dd4c7816e68a99418869e7669"
+    },
+    "slope_down": {
+      "success": 99,
+      "episodes": 100,
+      "passed": true,
+      "traverse": "59/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "failure_reasons": {"body_contact": 1},
+      "contact_bodies": {"FR_hip": 1},
+      "report": "logs/qualification/unified_u1_training_20260920/s69_u150_slope_down_l0_nominal_diagnostic.json",
+      "report_sha256": "14b6b7a8fdfb43e41354d6f3ee25e1c7b13f8376c76d3a6295316205a5dddc33"
+    }
+  },
+  "aggregate_success": 391,
+  "aggregate_episodes": 400,
+  "all_family_gates_passed": false,
+  "flat54_slope_up_comparator": {
+    "success": 88,
+    "episodes": 100,
+    "passed": false,
+    "traverse": "48/60",
+    "stand": "20/20",
+    "turn": "20/20",
+    "failure_reasons": {"body_contact": 12},
+    "contact_bodies": {"FL_calf": 9, "FR_calf": 5},
+    "interpretation": "U1 seed69 improved slope_up from 88/100 to 92/100, but did not reach the fixed 95% gate.",
+    "report": "logs/qualification/unified_u1_training_20260920/flat54_slope_up_l0_nominal_diagnostic.json",
+    "report_sha256": "e7ae89f03cb5ee499ec04acb237ee3b23c63635d9269e5bacf29248465cd5a19"
+  },
+  "bounded_profile_started": false,
+  "training_updates_performed_by_diagnostic": 0,
+  "policy_quality_accepted": false,
+  "hardware_release_accepted": false
+}

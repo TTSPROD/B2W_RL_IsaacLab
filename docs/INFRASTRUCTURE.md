@@ -1,23 +1,41 @@
 # Инфраструктура и синхронизация
 
-**ОСТАНОВЛЕНО по уточнению пользователя20.09.2026. Actor строго57→16,
-как reference. Teacher247 отклонён; дальнейшее обучение не разрешено текущим
-планом. Фактически выполненные100updates seed67 сохранены только как отклонённый
-эксперимент, seed68 не запускался. Активных teacher процессов нет.**
+**Цель уточнена 20.09.2026. Qualified Flat54 подходит как reference-compatible
+actor-parent57→16. U1 seeds69/70 выполнен последовательно одним4096-env
+процессом до quality stop150. Critic60→247 и50 frozen-actor updates прошли;
+после100 PPO seed70 не сохранил Flat regression, поэтому следующие200 и U2
+не запускались. [Evidence](results/unified_u1_training_20260920.json).**
+
+U1 preflight20.09 прошёл5 stages: два evaluator fixtures, полный100-case
+locomotion baseline и GPU train/resume2+2. После завершения GPU idle:
+866MiB/12282MiB, utilization5%,55°C — датированный замер, не гарантия будущей
+нагрузки. [Evidence](results/unified_u1_preflight_20260920_1.json). Основной
+запуск подтвердил peak GPU6616MiB на critic-only stage; два одновременных4096
+по-прежнему не помещаются в12282MiB. Измеренный2×2048 режим медленнее aggregate
+и меняет зарегистрированный recipe, поэтому seeds выполнялись последовательно.
+U1.1 preflight и seeds71/72 выполнены последовательно1×4096; quality stop150,
+следующие200 не запускались. Параллельность и capacity assumptions не менялись.
+U1.2 preflight и seeds73/74 также выполнены последовательно1×4096 и остановлены
+на150. Репликация неизменного U1.1 seeds75/76 выполнена21.09 после нового
+preflight5/5 тем же последовательным1×4096 режимом и остановлена quality gate
+на150. После завершения GPU idle:853MiB/12282MiB, utilization5%,57°C;
+активных training jobs нет. [Evidence](results/unified_u11_replication_20260920.json).
 
 Desktop runtime не менялся. Ниже датированные прежние измерения.
 
-**Последний результат20.09:** wide65/66 завершился18:28:16МСК на150
+**Последний принятый 57-input результат 20.09:** wide65/66 завершился 18:28:16 МСК на 150
 с quality stop,28 stages exit0. Rough564/1600, Flat400/400 safe,
 4/4 absolute и0/4 relative gates. [Аудит91hash](results/2026-09-20-wide150-audit.json).
 При проверке18:46МСК GPU занимала975MiB/12282MiB, utilization5%; это датированный
-замер. Новые training updates и следующая диагностика не запускались.
+замер. Позднейший teacher247 seed67 выполнил100 updates, но эксперимент отклонён
+по ABI и упал на diagnostic reset; seed68 не запускался. Новых training updates
+после него и U1 ещё не было.
 
 Серия использовала тот же desktop runtime: single4096, seeds последовательно,
 training y±1,8м, прежний evaluator y±0,9м, X[−0,6;5,4], tile12×12м.
 197CPUтестов,1290vendor hashes и native64 train/resume2+2 пройдены.
 [Протокол проведённого опыта](ROUGH_WIDE_CORRIDOR.md),
-[следующий план](ROUGH_NEXT_DIAGNOSTICS.md), [журнал](TRAINING_PROGRESS.md).
+[действующий план](ROUGH_STAIRS_PLAN.md), [журнал](TRAINING_PROGRESS.md).
 
 Checkpoints остаются в исключённых из Git `logs/`; исторические jobs/PID
 не являются текущим состоянием. Git push переносит код, docs и опубликованные

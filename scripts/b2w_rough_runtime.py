@@ -9,9 +9,15 @@ from b2w_rough_terrain import terrain_function, mesh_hash
 ROUGH_TASK = 'RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0'
 GEOMETRY_SEED = 2026091970
 ANCHOR_SHA256 = 'f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee'
+DEFAULT_TERRAIN_PROPORTIONS = (('flat', .3), ('random', .3), ('slope_up', .1),
+                               ('slope_down', .1), ('blocks', .2))
+U11_TERRAIN_PROPORTIONS = (('flat', .4), ('random', .1), ('slope_up', .2),
+                           ('slope_down', .1), ('blocks', .2))
+DEFAULT_FAMILY_BY_TYPE = (0, 0, 0, 1, 1, 1, 2, 3, 4, 4)
+U11_FAMILY_BY_TYPE = (0, 0, 0, 0, 1, 2, 2, 3, 4, 4)
 
 
-def make_rough_env_cfg(*, num_envs, device, seed, headless=True):
+def make_rough_env_cfg(*, num_envs, device, seed, headless=True, terrain_proportions=None):
     import importlib
     from isaaclab.utils import configclass
     from isaaclab.terrains import TerrainGeneratorCfg, SubTerrainBaseCfg
@@ -26,14 +32,18 @@ def make_rough_env_cfg(*, num_envs, device, seed, headless=True):
 
     cfg = importlib.import_module(f'{B2W_MODULE}.rough_env_cfg').UnitreeB2WRoughEnvCfg()
     cfg = prepare_env_cfg(cfg, num_envs=num_envs, device=device, seed=seed, headless=headless)
+    proportions = DEFAULT_TERRAIN_PROPORTIONS if terrain_proportions is None else tuple(terrain_proportions)
+    if tuple(name for name, _ in proportions) != tuple(name for name, _ in DEFAULT_TERRAIN_PROPORTIONS):
+        raise ValueError('Terrain family order changed')
+    if abs(sum(value for _, value in proportions)-1.) > 1e-9 or any(value <= 0 for _, value in proportions):
+        raise ValueError('Terrain proportions must be positive and sum to one')
     cfg.scene.terrain.max_init_terrain_level = 0
     cfg.scene.terrain.terrain_generator = TerrainGeneratorCfg(
         seed=GEOMETRY_SEED, curriculum=True, size=(12., 12.), num_rows=3, num_cols=10,
         border_width=10., horizontal_scale=.1, vertical_scale=.005, use_cache=False,
         cache_dir=str(PROJECT_ROOT/'.cache/rough_terrains'),
         sub_terrains={name: ProjectTileCfg(family=name, proportion=proportion)
-                      for name, proportion in [('flat', .3), ('random', .3), ('slope_up', .1),
-                                                ('slope_down', .1), ('blocks', .2)]})
+                      for name, proportion in proportions})
     # R0 stays on level 0. Upstream distance promotion is deliberately disabled.
     cfg.curriculum.terrain_levels = None
     cfg.events.randomize_reset_base.params['pose_range']['roll'] = (-.1, .1)

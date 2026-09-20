@@ -2,8 +2,11 @@
 
 **Обязательное уточнение20.09:** actor сохраняет57 входов и16выходов,
 точно как reference, с прежними order/scales/50Hz. Teacher247 отклонён.
-Privileged critic не расширяет actor ABI. Новых обучений сейчас нет.
-Flat anchors и их контракт сохранены; saturation/hardware gates открыты.
+Privileged critic не расширяет actor ABI. Целевая trainable lineage сохраняет
+reference actor `57→512→256→128→16`, ELU, Identity, без history. Qualified
+Flat54 подходит как actor-parent. Один явный переход critic60→247 выполняется
+с frozen actor; далее Rough→Stairs идёт full resume. Route controller не входит
+в первый training этап; saturation/hardware gates открыты.
 
 Проверено 17 сентября 2026. CPU export parity и live observation/action parity
 в Isaac выполнены для reference, seeds 42/43/44 и завершённых yaw-абляций. Контракт
@@ -196,6 +199,11 @@ Inf, quaternion и age >20 ms относятся к локальному offline
 20 ms — период policy для теста, не утверждённый аппаратный timeout.
 
 Следующие gates:
+
+0. U1 seeds69/70 подтвердил runtime actor57→16 и critic247, но не quality pass:
+   seed70 провалил Flat backward regression, а frozen seed69 diagnostic дал
+   slope_up92/100 из-за calf contacts. До нового двухсидового запуска требуется
+   зарегистрированный retention/contact recipe; ABI actor менять нельзя.
 
 1. Для каждого нового финального checkpoint повторить CPU export и live parity,
    затем Flat100. Для seeds 42/43/44 и yaw-абляций это выполнено;

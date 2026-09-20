@@ -4,7 +4,8 @@ from types import SimpleNamespace
 import torch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from rough_curriculum import promotion,SafeTraversalCurriculum
-from rough_evaluation import make_cases,digest,summarize
+from rough_evaluation import make_cases,make_locomotion_cases,digest,summarize
+from b2w_rough_runtime import DEFAULT_TERRAIN_PROPORTIONS,U11_TERRAIN_PROPORTIONS,U11_FAMILY_BY_TYPE
 
 
 class Scene(dict):
@@ -30,6 +31,13 @@ def fake_env(n=100):
 
 
 class RoughProtocolTests(unittest.TestCase):
+    def test_u11_sampling_is_one_registered_factor(self):
+        self.assertEqual(dict(DEFAULT_TERRAIN_PROPORTIONS),
+                         {'flat':.3,'random':.3,'slope_up':.1,'slope_down':.1,'blocks':.2})
+        self.assertEqual(dict(U11_TERRAIN_PROPORTIONS),
+                         {'flat':.4,'random':.1,'slope_up':.2,'slope_down':.1,'blocks':.2})
+        self.assertEqual(U11_FAMILY_BY_TYPE,(0,0,0,0,1,2,2,3,4,4))
+
     def test_thresholds_caps_and_minimum_evidence(self):
         self.assertEqual(promotion(0,2,99,99),0)
         self.assertEqual(promotion(0,2,100,80),1)
@@ -46,6 +54,9 @@ class RoughProtocolTests(unittest.TestCase):
         snap=c.snapshot();c.close()
         restored=SafeTraversalCurriculum(env,cap=2,state=snap)
         self.assertEqual(restored.levels[1],1);self.assertEqual(restored.total_successes[1],100)
+        restored.close()
+        with self.assertRaises(ValueError):
+            SafeTraversalCurriculum(env,cap=2,state=snap,family_by_type=U11_FAMILY_BY_TYPE)
 
     def test_sticky_contact_prevents_promotion(self):
         env,command,data,force=fake_env();c=SafeTraversalCurriculum(env,cap=1)
@@ -80,6 +91,17 @@ class RoughProtocolTests(unittest.TestCase):
         rows[80]['success']=rows[81]['success']=False
         result=summarize(cases,rows)
         self.assertEqual(result['success'],98);self.assertFalse(result['passed'])
+
+    def test_locomotion_cases_remove_only_absolute_corridor_contract(self):
+        route=make_cases('blocks',1,'bounded_v1')
+        locomotion=make_locomotion_cases('blocks',1,'bounded_v1')
+        self.assertNotEqual(digest(route),digest(locomotion))
+        self.assertEqual(len(locomotion),100)
+        for old,new in zip(route,locomotion):
+            self.assertNotIn('corridor_x',new);self.assertNotIn('corridor_y',new)
+            self.assertNotIn('minimum_route_m',new);self.assertEqual(new['minimum_progress_m'],3.)
+            self.assertEqual({k:v for k,v in old.items() if k not in ('corridor_x','corridor_y','minimum_route_m')},
+                             {k:v for k,v in new.items() if k!='minimum_progress_m'})
 
 
 if __name__=='__main__':unittest.main()

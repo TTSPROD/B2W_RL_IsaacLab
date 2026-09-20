@@ -1,6 +1,6 @@
 # Практики обучения колёсноногих роботов и решение для B2W
 
-Обновлено20.09.2026. Актуальное исследование первичных источников:
+Обновлено21.09.2026. Актуальное исследование первичных источников:
 [ROUGH_RESEARCH_2026-09-20](ROUGH_RESEARCH_2026-09-20.md).
 [Аудит350](results/2026-09-20-rough-latest-audit.json):199 hashes проверены,
 Rough57/58 не приняты;2250/4800 успешных episodes и10/48 full suites,
@@ -57,6 +57,29 @@ sweeps на сохранение и дообучение проверенног�
 | [FLORES](https://arxiv.org/html/2507.22345v1) |B2W переставляет ноги при поворотах; FLORES имеет front steering joints |Не копировать их steering/default pose на другую механику |
 | [Not Only Rewards But Also Constraints](https://arxiv.org/html/2308.12517v3) |Отдельные физические constraints сокращают reward engineering |Возможный следующий метод после transfer, не очередное усиление penalty |
 | [CaT](https://arxiv.org/abs/2403.18765) |Constraint violations влияют на прекращение будущей награды |Отдельная проверяемая ветка; не эквивалент обычному reset на contact |
+
+### Сверка numerical coefficients Unitree
+
+Проверены текущие первичные конфиги
+[robot_lab B2W](https://github.com/fan-ziqi/robot_lab/blob/main/source/robot_lab/robot_lab/tasks/manager_based/locomotion/velocity/config/wheeled/unitree_b2w/rough_env_cfg.py),
+[robot_lab Go2W](https://github.com/fan-ziqi/robot_lab/blob/main/source/robot_lab/robot_lab/tasks/manager_based/locomotion/velocity/config/wheeled/unitree_go2w/rough_env_cfg.py) и
+[официальный Unitree Go2](https://github.com/unitreerobotics/unitree_rl_lab/blob/main/source/unitree_rl_lab/unitree_rl_lab/tasks/locomotion/robots/go2/velocity_env_cfg.py).
+
+| Term | B2W | Go2W | Go2 |
+|---|---:|---:|---:|
+| track linear / yaw |3 /1,5|3 /1,5|1,5 /0,75|
+| undesired contacts |−1|−1|−1|
+| lin-z / ang-xy |−2 /−0,05|−2 /−0,05|−2 /−0,05|
+| action rate |−0,01|−0,01|−0,1|
+| joint torque |−1e−5|−2,5e−5|−2e−4|
+| joint acceleration |−1e−7|−2,5e−7|−2,5e−7|
+| joint limits |−5|−5|−10|
+
+Ключевой вывод: все три используют contact−1. B2W дополнительно намеренно
+отключает feet height/gait/air-time/slide; quadruped Go2 terms нельзя переносить
+в wheel-legged policy без отдельной гипотезы. Поэтому U1.2 contact−3 отклонён,
+а репликация75/76 выполнена с reference contact−1. Она всё равно остановлена
+на150, следовательно причина не сводится к одному contact coefficient.
 
 MUJICA и Swiss-Mile — исследования на других роботах/задачах.
 DAgger полезен для переноса между observation spaces и объединения экспертов.

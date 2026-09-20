@@ -1,17 +1,22 @@
 # План проекта B2W
 
-**ОСТАНОВЛЕНО по уточнению пользователя20.09.2026. Actor строго57→16,
-как reference. Teacher247 отклонён; дальнейшее обучение не разрешено текущим
-планом. Фактически выполненные100updates seed67 сохранены только как отклонённый
-эксперимент, seed68 не запускался. Активных teacher процессов нет.**
+**Цель уточнена 20.09.2026: одна обучаемая reference-compatible lineage
+Flat → Rough → Stairs. Deployable actor всегда строго57→16 с той же сетью,
+observations/actions/scales/50Hz, что `rl_sar/policy/b2w/robot_lab`.
+Flat foundation54/55/56 уже квалифицирован. U1, U1.1, U1.2 и независимая
+репликация U1.1 seeds75/76 остановлены quality gates на cumulative150.
+Последняя репликация сохранила reference reward contact−1: seed75 прошёл Flat,
+но slope_up95/89 и slope_down100/88; seed76 провалил relative Flat при safety
+200/200. Rough не принят, U2/Stairs заблокирован.**
 
 Действующий контракт и состояние: [ROUGH_STAIRS_PLAN](ROUGH_STAIRS_PLAN.md).
 
 ## Исторические решения до teacher пересмотра
 
 Разделы ниже описывают завершённый blind путь, включая его бюджеты и gates.
-Все следующие разделы — история. Новый57-input recipe ещё не зарегистрирован;
-никакие перечисленные бюджеты не являются разрешённой активной очередью.
+Все следующие разделы — история. Единый reference-compatible recipe U0→U1→U2
+зарегистрирован отдельно в [Rough/Stairs плане](ROUGH_STAIRS_PLAN.md); старые
+бюджеты не являются разрешённой активной очередью.
 
 ## История смены Flat подхода — до19.09
 
@@ -112,8 +117,9 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
 | Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Пройден19.09:54/55/56, все6 оценок100/100 и tracking pass |
-| Rough57 | Новый recipe должен сохранить57→16 и разделить locomotion/route | Остановлено; teacher247 отклонён, acceptance открыт |
-| Stairs57 | Curriculum и straight-march controller/evaluator при прежнем actor ABI | Не запускался; план пересматривается |
+| Foundation57 | Qualified Flat actor57, resumable checkpoints54/55/56 | Пройден; terrain parent seed54 |
+| Rough57 | U1 critic migration, затем Rough PPO | U1/U1.1/U1.2 и репликация75/76 остановлены на150; qualified policy нет |
+| Stairs57 | U2 full resume от qualified Rough | Не запускался; заблокирован Rough gate |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |
 | SDK/hardware | Offline replay→fault tests→стенд→ограниченные испытания | Управление не разрешено |
 
@@ -146,10 +152,18 @@ Industrial лестницы, perceptive/history ABI и hardware limits — от�
 - Завершено: короткий Flat transfer и qualification54/55/56 на новых cases.
 - Завершено: [Rough R0](ROUGH_R0.md), safe curriculum, full evaluator,
   bounded physics и capacity;57–60 до350 завершены без quality acceptance.
-- P0: остановка. Зафиксирован обязательный actor57→16; teacher247 отклонён.
-- P1: пересмотреть Rough/Stairs recipe без расширения actor inputs; сохранить
-  privileged critic и вынести обратную связь по маршруту в velocity commands.
-  Новое обучение этим документом сейчас не назначается.
+- Завершено: frozen compatibility/U1 preflight; Flat54 locomotion baseline
+  random level0 nominal100/100, но это не qualification.
+- Завершено: U1.1 с единственным изменением terrain proportions:
+  flat/random/slope_up/slope_down/blocks `0,4/0,1/0,2/0,1/0,2`; rewards/PPO/
+  budget/ABI неизменны. Seeds71/72 остановлены на150 из-за одного относительного
+  Flat fail каждый; slope_up100/100 против77/100 показал высокую seed variance.
+- Завершено/отклонено: U1.2 `undesired_contacts −1→−3`; seeds73/74 остановлены
+  на150, Flat relative fail и slope_up74/73 из100. Этот reward не продолжать.
+- P0: спроектировать Flat-bank actor anchoring поверх U1.1 без изменения reward;
+  сначала unit/gradient/native preflight, затем только новые seeds.
+- P1: только qualified Rough продолжать full resume в U2/Stairs. Route control —
+  отдельный поздний navigation gate.
 - P1: artifact store с SHA256; Git хранит код/отчёты, но не training checkpoints.
 - P1: saturation contract, zero-action PD просадка, actuator/contact/geometry;
   сохранить отдельный успешный seed49.

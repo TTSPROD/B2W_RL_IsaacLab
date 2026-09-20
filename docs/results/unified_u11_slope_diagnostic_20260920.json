@@ -1,0 +1,38 @@
+{
+  "status": "completed_diagnostic_failed_reproducibility",
+  "scope": "Post-stop frozen-policy slope_up level0 nominal diagnosis; no training updates and no qualification claim.",
+  "parent_result": "docs/results/unified_u11_training_20260920.json",
+  "evaluation_mode": "locomotion",
+  "corridor_is_failure": false,
+  "threshold": 0.95,
+  "seeds": {
+    "71": {
+      "policy_sha256": "d759fe13e9b0289768b726610b19166072e68871d81fa43eab1a4e93a3f2c3d5",
+      "success": 100,
+      "episodes": 100,
+      "traverse": "60/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "passed": true,
+      "report": "logs/qualification/unified_u11_training_20260920/s71_u150_slope_up_l0_nominal_diagnostic.json",
+      "report_sha256": "b42ca098d2972abf9e7f23c89984067a72cbae90ca416cf7dd8fd2554224c404"
+    },
+    "72": {
+      "policy_sha256": "119009f2a4fe44a2e3d8d87e761825614679b044c58e7aa7d24828d21f336aa3",
+      "success": 77,
+      "episodes": 100,
+      "traverse": "37/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "passed": false,
+      "failure_reasons": {"body_contact": 23},
+      "contact_bodies": {"FL_calf": 16, "FR_calf": 8},
+      "report": "logs/qualification/unified_u11_training_20260920/s72_u150_slope_up_l0_nominal_diagnostic.json",
+      "report_sha256": "0b9812206bba208b4801ae7d6d28c67d9045ed23ce59b381e3583e34d1adbc9c"
+    }
+  },
+  "all_seed_gates_passed": false,
+  "training_updates_performed_by_diagnostic": 0,
+  "policy_quality_accepted": false,
+  "hardware_release_accepted": false
+}

@@ -5,6 +5,7 @@ import hashlib,json,math,random
 FAMILIES=('random','slope_up','slope_down','blocks')
 CASE_SEEDS={'nominal':2026091981,'bounded_v1':2026091982}
 GEOMETRY_SEED=2026091980
+EVALUATION_MODES=('route','locomotion')
 
 
 def make_cases(family,level,profile):
@@ -20,6 +21,16 @@ def make_cases(family,level,profile):
                           vx=rng.uniform(.20,.24) if kind=='traverse' else .30,
                           yaw=(1 if i%2 else -1)*rng.uniform(.20,.30) if kind=='turn' else 0.,
                           approach_seconds=12.,minimum_route_m=3.,corridor_y=[-.9,.9],corridor_x=[-.6,5.4]))
+    return cases
+
+
+def make_locomotion_cases(family,level,profile):
+    """Frozen proprioceptive locomotion cases; no absolute corridor objective."""
+    cases=[]
+    for source in make_cases(family,level,profile):
+        case={key:value for key,value in source.items() if key not in ('corridor_y','corridor_x','minimum_route_m')}
+        case['minimum_progress_m']=3.
+        cases.append(case)
     return cases
 
 

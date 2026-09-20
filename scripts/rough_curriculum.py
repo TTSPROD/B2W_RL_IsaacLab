@@ -12,18 +12,24 @@ def promotion(level, cap, episodes, successes):
 
 class SafeTraversalCurriculum:
     """Measure before auto-reset; command directions are integrated at each physics step."""
-    def __init__(self, env, cap=0, state=None):
+    def __init__(self, env, cap=0, state=None, family_by_type=None):
         import torch
         self.t = torch; self.env = env.unwrapped; self.robot = self.env.scene['robot']
         self.sensor = self.env.scene['contact_forces']; self.terrain = self.env.scene.terrain
         self.forbidden = [i for i,n in enumerate(self.sensor.body_names) if not n.endswith('_foot')]
         if len(self.sensor.body_names)-len(self.forbidden)!=4: raise ValueError('Invalid wheel contact map')
-        self.family = torch.tensor([0,0,0,1,1,1,2,3,4,4],device=self.env.device)[self.terrain.terrain_types]
+        mapping=(0,0,0,1,1,1,2,3,4,4) if family_by_type is None else tuple(family_by_type)
+        if len(mapping)!=10 or set(mapping)!=set(range(5)):
+            raise ValueError('Invalid terrain type to family mapping')
+        self.family_by_type=mapping
+        self.family = torch.tensor(mapping,device=self.env.device)[self.terrain.terrain_types]
         self.names=('flat','random','slope_up','slope_down','blocks')
         self.cap=cap; self.levels=[0]*5; self.windows=[[0,0] for _ in range(5)]; self.history=[]
         self.total_episodes=[0]*5; self.total_successes=[0]*5
         if state:
             if state['cap']>cap: raise ValueError('Curriculum cap cannot regress')
+            if tuple(state.get('family_by_type',mapping))!=mapping:
+                raise ValueError('Terrain family mapping cannot change on resume')
             self.levels=list(state['levels']);self.windows=[list(x) for x in state['windows']]
             self.history=list(state['history']);self.total_episodes=list(state['total_episodes']);self.total_successes=list(state['total_successes'])
         n=self.env.num_envs; kwargs=dict(device=self.env.device)
@@ -100,7 +106,9 @@ class SafeTraversalCurriculum:
         if bool(self.nonfinite.any()):raise ValueError('Nonfinite physics state recorded before reset')
         return dict(cap=self.cap,levels=list(self.levels),windows=[list(x) for x in self.windows],
                     history=list(self.history),total_episodes=list(self.total_episodes),total_successes=list(self.total_successes),
-                    physics_ticks=self.ticks,tilt_failed_episodes_since_restart=self.tilt_terminal_count,scope='Per-family safe traversal; no reward or termination changes; partial episodes reset on restart')
+                    family_by_type=list(self.family_by_type),physics_ticks=self.ticks,
+                    tilt_failed_episodes_since_restart=self.tilt_terminal_count,
+                    scope='Per-family safe traversal; no reward or termination changes; partial episodes reset on restart')
 
     def close(self):
         self.env.scene.update=self.original_update;self.env._reset_idx=self.original_reset

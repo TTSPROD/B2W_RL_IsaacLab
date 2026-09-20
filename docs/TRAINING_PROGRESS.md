@@ -1,9 +1,67 @@
 # Результаты обучения B2W
 
-**ОСТАНОВЛЕНО по уточнению пользователя20.09.2026. Actor строго57→16,
-как reference. Teacher247 отклонён; дальнейшее обучение не разрешено текущим
-планом. Фактически выполненные100updates seed67 сохранены только как отклонённый
-эксперимент, seed68 не запускался. Активных teacher процессов нет.**
+**Текущее решение 20.09.2026:** первый U1 seeds69/70 завершён quality stop на
+cumulative150. Actor остался строго57→16, critic247; critic-only50 у обоих
+сохранил actor54 bitwise и все4 Flat gates. После100 PPO seed69 прошёл оба Flat
+regression gates, seed70 не прошёл nominal и bounded из-за деградации backward/
+backward-stop `vx`; падений не было. Поэтому Rough acceptance и следующие200
+updates не запускались. [Итоговый evidence](results/unified_u1_training_20260920.json),
+[действующий план](ROUGH_STAIRS_PLAN.md).
+
+Post-stop диагностика без изменения весов проверила seed69 на Rough level0
+nominal: random100/100, blocks100/100, slope_down99/100, slope_up92/100.
+Все9 отказов — body contact:8 calf на slope_up и1 hip на slope_down. Stand/turn
+прошли, slope_up traverse52/60. Bounded не запускался, так как nominal уже
+провалил95% gate. Попытки продолжить100 updates не стартовали: resume guards
+корректно запретили повтор stage1 и неполный stage2; training updates не было.
+[Diagnostic evidence](results/unified_u1_seed69_rough_diagnostic_20260920.json).
+Frozen Flat54 comparator на slope_up дал88/100 (12 body contacts), то есть U1
+улучшил подъём до92/100, но не достиг фиксированного95% gate.
+
+**Следующий зарегистрированный опыт U1.1:** единственное изменение — terrain
+proportions `0,4/0,1/0,2/0,1/0,2` для flat/random/slope_up/slope_down/blocks.
+Rewards, PPO, actor57, critic247 и50+100+200 schedule не меняются. Новые seeds
+71/72 запускаются только после discard-only preflight, последовательно1×4096.
+
+**U1.1 выполнен20.09:** preflight5/5 прошёл; seeds71/72 дошли до150 и
+остановлены Flat relative gate. Safety400/400. Seed71 nominal превысил parent
+на yaw_positive/yaw на0,00168; seed72 bounded — yaw_positive/vy на0,000057.
+Post-stop slope_up: seed71100/100, seed7277/100 с23 calf contacts. Sampling
+решил slope_up для одного seed, но не дал воспроизводимость. Следующие200 не
+запускались. [Result](results/unified_u11_training_20260920.json),
+[diagnostic](results/unified_u11_slope_diagnostic_20260920.json).
+
+**Следующий U1.2:** сохранить U1.1 sampling и изменить только contact penalty
+`−1→−3`; seeds73/74 с нуля от actor54 после отдельного discard-only preflight.
+PPO/std/budget/ABI/gates не меняются.
+
+**U1.2 выполнен и отклонён20.09:** preflight5/5 прошёл, seeds73/74 остановлены
+на150. Safety400/400, но seed73 провалил оба relative Flat profile, seed74 —
+bounded. Frozen slope_up дал74/100 и73/100 с26/27 body contacts, хуже U1.1.
+Contact `−3` не продолжать. [Result](results/unified_u12_training_20260920.json),
+[diagnostic](results/unified_u12_slope_diagnostic_20260920.json).
+
+**Репликация U1.1 завершена21.09:** свежий preflight5/5 прошёл; неизменный
+reference contact−1 и U1.1 sampling проверены на seeds75/76. Оба прошли50,
+на150 seed75 сохранил оба Flat profile100/100, seed76 был безопасен200/200,
+но провалил relative Flat gate на stand/lateral. Rough seed75: random и blocks
+по100/100 в обоих profiles; slope_up95/89, slope_down100/88. Все28 failures —
+body contacts. Общий quality stop150, следующих200 updates нет; seed75 нельзя
+cherry-pick как qualified policy. [Preflight](results/unified_u11_preflight_20260920_2.json),
+[result](results/unified_u11_replication_20260920.json).
+
+**U1 preflight20.09 завершён:**211 CPU tests, locomotion evaluator nominal/
+bounded fixtures, полный frozen Flat54 random level0 nominal100/100 и native
+GPU train/resume2+2 прошли. Manifests подтверждают actor57,critic247,actions16,
+tilt terminal, отсутствие route/corridor flags и optimizer step40→80.
+Все preflight weights discard; основной запуск затем выполнен как описано выше.
+[Evidence](results/unified_u1_preflight_20260920_1.json).
+
+План основан на том, что precision61/62 остаётся лучшим Rough результатом
+1124/1600 (70,25%), а corridor terminal63/64 и wide65/66 дали327/1600 и
+564/1600 соответственно. У65/66 все1036 первых failures — corridor, Flat
+safety400/400 сохранена, но relative gates0/4. Эти опыты смешивали locomotion
+и navigation acceptance; corridor больше не является первым gate базовой policy.
 
 Teacher T0: CPU208 distinct tests,1290vendor hashes, GPU64 train/resume2+2
 прошли; optimizer40→80, export error0. Seed67 выполнил100updates (25critic+75PPO),
