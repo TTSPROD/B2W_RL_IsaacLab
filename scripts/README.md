@@ -316,3 +316,14 @@ reset fixtures и discard64-env GPU train/resume2+2.
 [Протокол](../docs/ROUGH_ROUTE_CORRECTION.md),
 [исследование](../docs/ROUGH_RESEARCH_2026-09-20.md),
 [проверенные последние результаты](../docs/results/2026-09-20-rough-latest-audit.json).
+
+
+## Запрошенное route продолжение150→350
+
+`run_rough_route_continuation.py --verify_only` проверяет собственные parents59/60,
+исходники,optimizer и полные Flat rows без обучения.
+`--continue_after_failed_flat150` разрешает только раскрытый relative failure
+seed60 bounded/lateral yaw; продолжает по200updates с сохранением route recipe.
+Все4Flat+48Rough финальных batches собираются диагностически, старый fail150
+сохраняется. Technical/drift/VRAM/source guards прекращают очередь.
+[Протокол](../docs/ROUGH_ROUTE_CONTINUATION.md). Повторный запуск запрещён.

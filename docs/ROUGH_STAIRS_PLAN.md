@@ -1,5 +1,7 @@
 # План Rough и обычных лестниц после Flat qualification
 
+**Обновление20.09:** route59/60 остановилась на Flat regression150 до Rough evaluation. По запросу пользователя назначено [диагностическое продолжение150→350](ROUGH_ROUTE_CONTINUATION.md); acceptance и Stairs остаются закрыты.
+
 Состояние20.09.2026: **R0/preflight/capacity пройдены; Rough57/58 failed350;
 qualification и Stairs не запускались.**
 [Аудит199 hashes](results/2026-09-20-rough-latest-audit.json) не выявил расхождений:

@@ -1,5 +1,7 @@
 # B2W RL · Isaac Lab
 
+**20.09, обновление:** route59/60 остановилась на150 из-за одного относительного Flat gate. По запросу пользователя подготовлено [диагностическое продолжение150→350](docs/ROUGH_ROUTE_CONTINUATION.md); исходный fail сохранён. Текущее состояние — [новый job](logs/rough/rough_route_continue_20260920/job.json).
+
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
 затем поэтапный перенос через Unitree SDK2.
 

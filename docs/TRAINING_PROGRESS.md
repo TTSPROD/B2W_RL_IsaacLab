@@ -1,5 +1,22 @@
 # Результаты обучения B2W
 
+**20.09: пользователь запросил продолжение route59/60 после quality stop150.**
+Исходная очередь завершилась09:59:13МСК:12stages exit0; оба150,
+уровни curriculum `[0,1,1,1,1]`. Все4 Flat100/100 safe и absolute tracking pass.
+Seed60 bounded/lateral yaw RMS0,03469683 против relative limit0,03414651;
+это единственный относительный отказ. Rough150 ещё не оценивался.
+[Исходный окончательный job](results/rough_route_correction_20260920.json) сохранён.
+
+Подготовлено [продолжение150→350](ROUGH_ROUTE_CONTINUATION.md), ещё200updates
+на каждый seed от своегоmodel149 с critic/optimizer/curriculum. Route/trainer/
+evaluator/PPO/drift/VRAM guards не менялись;8 новых CPU guard tests прошли.
+Предстартовая проверка исходников,checkpoint/export/optimizer и полных Flat rows
+пройдена, включая точное раскрытое превышение. Финал соберёт4Flat+48Rough
+оценок без автоматической qualification; quality fail150 не отменяется.
+[Новый живой job](../logs/rough/rough_route_continue_20260920/job.json).
+
+Записи ниже описывают исходный запуск и предшествующую историю.
+
 **20.09.2026,04:44МСК: Rough57/58 завершили350, общий quality gate не пройден.**
 [Аудит](results/2026-09-20-rough-latest-audit.json):54 stages exit0,
 199 hashes без расхождений. В48 Rough reports2250/4800 successes;

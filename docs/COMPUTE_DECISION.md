@@ -1,5 +1,7 @@
 # Где обучать B2W
 
+**Обновление20.09:** route59/60 дошла до150 и остановилась на quality gate. [Запрошенное продолжение](ROUGH_ROUTE_CONTINUATION.md) использует тот же single4096 режим и ровно200 дополнительных updates/seed.
+
 [Аудит350](results/2026-09-20-rough-latest-audit.json) проверил199 hashes без расхождений.
 
 **Основная площадка — Windows / RTX4070Ti с отдельным runtime проекта.**
