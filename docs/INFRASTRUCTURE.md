@@ -3,7 +3,7 @@
 **20.09:** precision61/62 завершились на150 в15:56МСК с Rough quality stop,
 Flat regression пройден. Следующий [corridor63/64](ROUGH_WHEEL_CORRIDOR.md)
 использует тот же desktop runtime и single4096 последовательные seeds.
-Native64 train/resume пройден; основная очередь подготовлена.
+Native64 train/resume пройден; основная очередь запущена 20.09 в 16:21 МСК.
 [Статус](TRAINING_PROGRESS.md), [план](PROJECT_PLAN.md),
 [последний итог](results/rough_precision_training_20260920.json).
 Checkpoints остаются в исключённых из Git `logs/`; исторические jobs/PID

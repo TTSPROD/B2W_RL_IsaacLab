@@ -1,23 +1,33 @@
 # Результаты обучения B2W
 
-**20.09, последний результат:** precision61/62 остановились15:56:59МСК на150.
-Flat400/400safe и все4absolute/relative gates пройдены; Roughlevel0 —1124/1600
-success(70,25%),0/16full suites, все476first failures —corridor.28stagesexit0.
-[Итог](results/rough_precision_training_20260920.json),
+**20.09, текущая очередь:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md)
+запущена в16:21МСК. Seed63 выполняет50обновлений калибровкиcritic; seed64 следующий.
+Первые реальные updates конечны, actor frozen и drift0; новый wheel tracker работает.
+[Launch evidence](results/2026-09-20-rough-corridor-launch.json),
+[живой job](../logs/rough/rough_corridor_training_20260920/job.json).
+ETA до150 с полными проверками17:07–17:27МСК; при полном pass до350 с проверками
+18:37–19:12МСК. Прогноз относится к вычислениям, а не сходимости.
+
+175 CPU-тестов,1290 vendor hashes и native64 train/resume прошли.
+Все4границы вызывают Rough terminal, Flat исключён; native reset очищает sticky
+failure, timeout bootstrap не используется. Прежние fixtures, export parity
+и optimizer40→80 подтверждены. [Проверки](results/2026-09-20-rough-corridor-validation.json).
+Новый опыт сохраняет precision rewards, actor57 и прежние quality gates.
+После50 — Flat; после150 — полный4Flat+16Rough блок и stop при любом fail.
+
+**Предыдущий итог:** precision61/62 завершились15:56:59МСК на150.
+Flat400/400 безопасных эпизодов и все4absolute/relative gates пройдены.
+Rough level0:1124/1600 successes(70,25%),0/16 suites; все476 первых отказов — corridor.
+28 stages exit0. [Итог](results/rough_precision_training_20260920.json),
 [аудит26artifacts](results/2026-09-20-precision150-corridor-audit.json).
 
-**Следующая очередь:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md).
-Rough выходколеса за прежниеграницы теперьtrue terminal иcurriculumfailure;
-Flat,precisionrewards,actor57,PPO иgatesсохраняются. Свежиеactorот54/critic247/
-optimizer;50+100+200single4096.175CPUtests,1290vendorhashes,native64train/resume
-прошли:4границы/Rough-only/reset/timeoutсемантика,прежниефикстуры,optimizer40→80.
-[Preflight](results/rough_corridor_preflight_20260920_1.json).
-Основная очередь подготовлена; старт и ETA будут записаны после фактическихupdates.
-
-[Passive traces](results/rough_corridor_trace_20260920.json) сохранили200исходныхrows
-random0nominal:61выходы18negative-y/4forward;62выходы7negative-y/16forward.
-Это точныеколёсныеграницы200Hz,20Hzтраектории иошибкидопервогоfailure.
-Будущаяdiagnosisотличаетуспешныймаршрут отостановкидвижениярадиотсутствиявыхода.
+[Passive traces](results/rough_corridor_trace_20260920.json) сохранили значения
+всех200 исходных rows random0nominal:61 —18negative-y/4forward;
+62 —7negative-y/16forward. Точные координаты колёс сняты на первом crossing200Hz,
+траектории20Hz и velocity bias до первого failure также сохранены.
+Уточнение к frozen протоколу: сравнивались значения разобранного JSON,
+а не побитовое совпадение сериализованных файлов; trace добавляет новые поля.
+Снижение выходов за счёт отказа двигаться не считается успешным маршрутом.
 
 ## История precision61/62 и предыдущих опытов
 

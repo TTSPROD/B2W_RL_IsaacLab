@@ -8,11 +8,11 @@ Rough1124/1600 successes,0/16 suites, все476 failures — corridor.
 [Итог](docs/results/rough_precision_training_20260920.json),
 [пересчитанный аудит](docs/results/2026-09-20-precision150-corridor-audit.json).
 
-Следующий опыт — [wheel corridor63/64](docs/ROUGH_WHEEL_CORRIDOR.md):
+Текущий опыт — [wheel corridor63/64](docs/ROUGH_WHEEL_CORRIDOR.md):
 Rough выход колеса за прежний evaluator corridor становится true terminal
 и запрещает curriculum promotion. Precision rewards и Flat replay сохраняются.
 Actor отqualified Flat54, новые critics/optimizers,50+100+200PPO,single4096.
-Native64 train/resume и175CPUtests пройдены; основная очередь подготовлена.
+Native64 train/resume и175CPUtests пройдены; основная очередь запущена 20.09 в 16:21 МСК.
 [Статус](docs/TRAINING_PROGRESS.md), [план](docs/PROJECT_PLAN.md).
 
 [Passive replay](docs/results/rough_corridor_trace_20260920.json) сохранил все200

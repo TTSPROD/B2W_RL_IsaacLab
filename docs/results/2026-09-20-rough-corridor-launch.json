@@ -1,0 +1,348 @@
+{
+  "observed_utc": "2026-09-20T13:23:54.628320+00:00",
+  "job": "logs/rough/rough_corridor_training_20260920/job.json",
+  "started_utc": "2026-09-20T13:21:49.110773+00:00",
+  "supervisor_pid": 5952,
+  "trainer_pid": 21620,
+  "code_commit": "952aa9d87027c573c859c381cd6590e92de1e3bb",
+  "manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_13-21-50-170160_rough_corridor_training_20260920_s63_stage0\\manifest.json",
+  "progress_observed": {
+    "updated_utc": "2026-09-20T13:23:54.617821+00:00",
+    "iteration": 25,
+    "updates_completed_this_run": 26,
+    "updates_requested_this_run": 50,
+    "transitions_this_run": 2555904,
+    "collection_seconds": 3.732522487640381,
+    "learning_seconds": 0.1253058910369873,
+    "losses": {
+      "value_function": 4.328292751312256,
+      "surrogate": 6.944173946976662e-08,
+      "entropy": -14.138346672058105
+    },
+    "command_distribution": {
+      "env_command_steps": 2555904,
+      "standing_fraction": 0.18469903407952723,
+      "pure_yaw_abs_gt_005_fraction": 0.08680646847455929,
+      "positive_pure_yaw_fraction": 0.04325162447415865,
+      "negative_pure_yaw_fraction": 0.04355484400040064,
+      "mean_abs_yaw_rad_s": 0.07786346860349369,
+      "scope": "Cumulative commands after command-manager updates, including initial resets",
+      "rough_route": {
+        "specification": {
+          "version": "rough_route_v1",
+          "rough_terrain_columns": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "probabilities": {
+            "traverse": 0.6,
+            "stand": 0.2,
+            "turn": 0.2
+          },
+          "settle_seconds": 2.0,
+          "approach_seconds": 12.0,
+          "episode_seconds": 22.0,
+          "traverse_vx": [
+            0.2,
+            0.24
+          ],
+          "approach_vx": 0.3,
+          "turn_abs_yaw": [
+            0.2,
+            0.3
+          ],
+          "rough_vy": 0.0,
+          "heading_feedback": false,
+          "flat_episode_seconds": 20.0,
+          "flat_command_sampler": "MeasuredYawVelocityCommand, unchanged ranges and pure-yaw mix",
+          "rough_reset": {
+            "x": [
+              0.0,
+              0.0
+            ],
+            "y": [
+              -0.1,
+              0.1
+            ],
+            "z": [
+              0.0,
+              0.0
+            ],
+            "yaw": [
+              -0.025,
+              0.025
+            ],
+            "roll_pitch": "preserve configured upright ranges",
+            "all_root_velocities": 0.0
+          },
+          "scope": "Training task-distribution bundle; frozen evaluation cases/gates unchanged"
+        },
+        "sampled_episode_kinds": {
+          "traverse": 4579,
+          "stand": 1599,
+          "turn": 1498
+        },
+        "actual_command_phase_steps": {
+          "settle": 457720,
+          "traverse": 833052,
+          "approach": 498236,
+          "stand": 0,
+          "turn": 0
+        }
+      }
+    },
+    "learning_rate": 0.0001,
+    "reference_drift": {
+      "sample_count": 4096,
+      "raw_action_rms": 0.0,
+      "raw_action_max_abs": 0.0,
+      "mean_gaussian_kl": 0.0,
+      "leg_target_rms_rad": 0.0,
+      "wheel_target_rms_rad_s": 0.0,
+      "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+    },
+    "training_phase": "critic_calibration",
+    "policy_quality_evaluated": false
+  },
+  "curriculum_observed": {
+    "cap": 0,
+    "levels": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "windows": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        98,
+        0
+      ],
+      [
+        65,
+        0
+      ],
+      [
+        61,
+        0
+      ]
+    ],
+    "history": [
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 102,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1352
+      },
+      {
+        "family": "blocks",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 100,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1356
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 102,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1472
+      },
+      {
+        "family": "slope_up",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 100,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1540
+      },
+      {
+        "family": "blocks",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 102,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1560
+      },
+      {
+        "family": "slope_down",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 101,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1576
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 101,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1616
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 100,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1724
+      },
+      {
+        "family": "blocks",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 102,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1764
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 100,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1876
+      },
+      {
+        "family": "slope_up",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 100,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 1992
+      },
+      {
+        "family": "blocks",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 102,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 2008
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 103,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 2024
+      },
+      {
+        "family": "slope_down",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 100,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 2076
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 101,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 2232
+      },
+      {
+        "family": "blocks",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 101,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 2304
+      },
+      {
+        "family": "random",
+        "level": 0,
+        "next_level": 0,
+        "episodes": 101,
+        "successes": 0,
+        "cap": 0,
+        "physics_tick": 2492
+      }
+    ],
+    "total_episodes": [
+      0,
+      810,
+      298,
+      266,
+      568
+    ],
+    "total_successes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "physics_ticks": 2496,
+    "tilt_failed_episodes_since_restart": 0,
+    "scope": "Safe traversal plus Rough-only sticky wheel corridor; true terminal; Flat unchanged",
+    "wheel_corridor_enabled": true,
+    "corridor_bounds": {
+      "x": [
+        -0.6,
+        5.4
+      ],
+      "y": [
+        -0.9,
+        0.9
+      ]
+    },
+    "corridor_failed_episodes_since_restart": [
+      0,
+      810,
+      298,
+      266,
+      568
+    ],
+    "corridor_sides_since_restart": {
+      "backward": 0,
+      "forward": 0,
+      "negative_y": 1911,
+      "positive_y": 31
+    }
+  },
+  "source_hashes_verified": 56,
+  "source_hash_mismatches": 0,
+  "policy_quality_accepted": false,
+  "eta_msk": {
+    "checkpoint150": "2026-09-20 17:07–17:27",
+    "checkpoint350_if150_passes": "2026-09-20 18:37–19:12"
+  },
+  "eta_note": "Estimated from prior single4096 timing; quality failure stops next updates"
+}

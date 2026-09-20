@@ -96,7 +96,7 @@ Dual2048 aggregate21170 transitions/s, peak10803MiB; single быстрее на2
 сохранил Flat, но на150 все16Rough suites failed; [итог](results/rough_precision_training_20260920.json).
 Следующая пара[corridor63/64](ROUGH_WHEEL_CORRIDOR.md):50critic+100+200PPO,
 максимум68812800transitions; новое Rough wheel constraint, прежние precision
-rewards/PPO/route sampler. Native64 train/resume пройден, основная очередь подготовлена.
+rewards/PPO/route sampler. Native64 train/resume пройден, основная очередь запущена 20.09 в 16:21 МСК.
 ETA — вычислительный прогноз, время достижения качества не обещается.
 
 ## Следующие вычислительные проверки

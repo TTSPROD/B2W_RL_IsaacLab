@@ -9,7 +9,7 @@ Rough1124/1600success,0/16suites,476corridorfail. Qualification/Stairs закр�
 constraint включён в native true-terminal и curriculumfailure. Границы по
 колёсам прежнегоevaluator x[−0,6;5,4],y±0,9 проверяются200Hz; Flat исключён.
 Precision rewards,actor57,physics,route sampler,drift guards и всеqualitygates
-сохранены. Native64 preflight прошёл; основная очередь подготовлена.
+сохранены. Native64 preflight прошёл; основная очередь запущена 20.09 в 16:21 МСК.
 
 После50Flat; после150 полный4Flat+16Roughblock, любойfailостанавливаетupdates.
 Приpass —350,4Flat+48Rough; затемотдельнаяqualification и только потомStairs.
@@ -86,7 +86,7 @@ terrain, максимальные updates и timeout до старта. Назв
 |---|---|---|
 | R0: реализация и GPU smoke | 64 env, 10 000 physics steps; отдельные 2 PPO + 2 resume updates, результаты discard | Контракт, mesh/rays/spawn/contact fixtures, export parity, restart, finite telemetry |
 | R0: производительность, выполнено |50 updates на1024/2048/4096; dual2048; все discard |Выбран single4096 по измеренному throughput;2×4096 не запускался |
-| R1: Rough development, wheel corridor |Свежие63/64, каждый50critic+100PPO+200PPO,single4096; preflight пройден, очередь подготовлена | Оба model_349 должны пройти все Rough families и Flat regression |
+| R1: Rough development, wheel corridor |Свежие63/64, каждый50critic+100PPO+200PPO,single4096; preflight пройден, очередь запущена в 16:21 МСК | Оба model_349 должны пройти все Rough families и Flat regression |
 | R2: Rough qualification | Только после R1: 3 новых seeds, тот же recipe и anchor; новые geometry/physics cases | Каждый финал отдельно проходит все gates; Rough-only acceptance |
 | S0: straight stairs smoke | Новый mesh/evaluator, 64 env, 10 000 physics steps и 2+2 discard updates | Корректные up/down labels, spawn/finish/no-shortcut/contact fixtures |
 | S1: stairs development | 2 свежих seeds от заранее выбранного qualified Rough actor, свежие critic/optimizer; 50+100+200 | Оба финала проходят up и down отдельно, Rough и Flat regression |
@@ -275,4 +275,4 @@ selection, privileged teacher и student; это основание повыша
 проверены по локальному matched runtime v2.3.2. Локальный успех Flat — основание
 первого ограниченного переноса. Исторические Rough57/58 и route59/60 завершены
 и не приняты. Precision61/62 failed150 припройденномFlat; corridor63/64
-прошёлpreflight, очередьподготовлена. Stairs не запускался и не имеетqualitypass.
+прошёлpreflight, очередь запущена в 16:21 МСК. Stairs не запускался и не имеетqualitypass.

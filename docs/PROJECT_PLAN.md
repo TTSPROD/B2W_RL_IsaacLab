@@ -1,11 +1,11 @@
 # План проекта B2W
 
-**20.09, следующий опыт:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md).
+**20.09, текущий опыт:** [wheel corridor63/64](ROUGH_WHEEL_CORRIDOR.md).
 Согласовать Rough training constraint с прежним evaluator: пересечение границы
 колесом — true terminal и curriculum failure. Precision std0,25 и Flat replay
 сохраняются. Actor отqualified54, свежие critic247/optimizer,50+100+200updates
 single4096; максимум68812800transitions. Native64 train/resume,175CPUtests,
-1290vendor hashes пройдены; основная очередь подготовлена.
+1290vendor hashes пройдены; основная очередь запущена 20.09 в 16:21 МСК.
 Фактический запуск — в [TRAINING_PROGRESS](TRAINING_PROGRESS.md).
 
 Precision61/62 завершились15:56:59МСК на150: Flat400/400 safe и все4absolute/
@@ -136,7 +136,7 @@ Desktop Windows/RTX4070Ti: Flat headless и2×4096 квалифицирован�
 | Runtime Flat | GPU smoke, PPO/resume, длительная telemetry, throughput | Desktop пройден |
 | Policy contract | Объективная export/live parity, order/scales/history | Nominal пройден; saturation/hardware открыты |
 | Flat transfer |3 одинаково проведённых fine-tuning seeds, каждый2 профиля | Пройден19.09:54/55/56, все6 оценок100/100 и tracking pass |
-| Rough | Smoke/throughput;2development seeds50+100+200; затем3qualification seeds; Flat regression | 61/62failed150; corridor63/64 preflight пройден, очередь подготовлена; acceptance открыт |
+| Rough | Smoke/throughput;2development seeds50+100+200; затем3qualification seeds; Flat regression | 61/62failed150; corridor63/64 preflight пройден, очередь запущена в 16:21 МСК; acceptance открыт |
 | Stairs | Отдельный straight-march evaluator; up/down0,05–0,18 м; 2 development +3 qualification seeds; Rough/Flat regression | После Rough qualification, не запускался |
 | Sim2sim | MuJoCo с согласованной моделью и ABI, измеренный разрыв | Не выполнен |
 | SDK/hardware | Offline replay→fault tests→стенд→ограниченные испытания | Управление не разрешено |
@@ -170,7 +170,7 @@ Industrial лестницы, perceptive/history ABI и hardware limits — от�
 - Завершено: короткий Flat transfer и qualification54/55/56 на новых cases.
 - Завершено: [Rough R0](ROUGH_R0.md), safe curriculum, full evaluator,
   bounded physics и capacity;57–60 до350 завершены без quality acceptance.
-- P0: corridor63/64 подготовлен после native64 train/resume preflight;
+- P0: corridor63/64 запущен в16:21МСК после native64 train/resume preflight;
   выполнить ограниченные50+100+200 с неизменёнными quality gates. Reference/anchor
   random0 baseline завершён без quality pass и остаётся историческим comparator.
 - P1: Rough2-seed development50+100+200 и Flat regression; только после общего
