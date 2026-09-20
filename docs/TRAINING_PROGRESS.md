@@ -7,13 +7,15 @@ Seed60 bounded/lateral yaw RMS0,03469683 против relative limit0,03414651;
 это единственный относительный отказ. Rough150 ещё не оценивался.
 [Исходный окончательный job](results/rough_route_correction_20260920.json) сохранён.
 
-Подготовлено [продолжение150→350](ROUGH_ROUTE_CONTINUATION.md), ещё200updates
+В11:13МСК запущено [продолжение150→350](ROUGH_ROUTE_CONTINUATION.md), ещё200updates
 на каждый seed от своегоmodel149 с critic/optimizer/curriculum. Route/trainer/
 evaluator/PPO/drift/VRAM guards не менялись;8 новых CPU guard tests прошли.
 Предстартовая проверка исходников,checkpoint/export/optimizer и полных Flat rows
 пройдена, включая точное раскрытое превышение. Финал соберёт4Flat+48Rough
 оценок без автоматической qualification; quality fail150 не отменяется.
 [Новый живой job](../logs/rough/rough_route_continue_20260920/job.json).
+Supervisor PID10260; seed59 фактически выполняет PPO начиная сiteration150.
+[Запись запуска и resume evidence](results/2026-09-20-rough-route-continuation-launch.json).
 
 Записи ниже описывают исходный запуск и предшествующую историю.
 

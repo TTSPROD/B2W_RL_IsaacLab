@@ -1,6 +1,6 @@
 # Инфраструктура и синхронизация
 
-**Текущая очередь20.09:** исходная route59/60 завершена quality stop на150. Назначено [запрошенное продолжение](ROUGH_ROUTE_CONTINUATION.md) на том же desktop, single4096 последовательно; [живой job](../logs/rough/rough_route_continue_20260920/job.json).
+**Текущая очередь20.09:** исходная route59/60 завершена quality stop на150. В11:13МСК запущено [запрошенное продолжение](ROUGH_ROUTE_CONTINUATION.md) на том же desktop, single4096 последовательно; [живой job](../logs/rough/rough_route_continue_20260920/job.json).
 
 [Аудит350](results/2026-09-20-rough-latest-audit.json) проверил199 hashes без расхождений.
 
