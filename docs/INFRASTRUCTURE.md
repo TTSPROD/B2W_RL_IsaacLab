@@ -1,20 +1,14 @@
 # Инфраструктура и синхронизация
 
-**Текущая очередь20.09:** исходная route59/60 завершена quality stop на150. В11:13МСК запущено [запрошенное продолжение](ROUGH_ROUTE_CONTINUATION.md) на том же desktop, single4096 последовательно; [живой job](../logs/rough/rough_route_continue_20260920/job.json).
-
-[Аудит350](results/2026-09-20-rough-latest-audit.json) проверил199 hashes без расхождений.
-
-Проверенное окружение и границы проекта — ниже. Текущая очередь и результаты
-обучения ведутся в [TRAINING_PROGRESS](TRAINING_PROGRESS.md), следующие решения
-и gates — в [PROJECT_PLAN](PROJECT_PLAN.md). Датированные протоколы и JSON
-сохраняют историю; промежуточные PID и статусы не являются текущими.
-
-Актуально20.09: Rough57/58 до350 завершены без acceptance;
-[итог](results/rough_requested_continue_20260920.json),
-[исследование](ROUGH_RESEARCH_2026-09-20.md).20.09 в09:32 МСК запущен
-[route59/60](ROUGH_ROUTE_CORRECTION.md) на этом desktop: single4096,
-50+100+200; [job](../logs/rough/rough_route_correction_20260920/job.json).
+**20.09:** route59/60 завершили350 в12:47МСК без quality acceptance.
+Следующий [precision tracking61/62](ROUGH_PRECISION_TRACKING.md) использует
+тот же отдельный desktop runtime и single4096 последовательные seeds.
+[Native64 train/resume preflight](results/rough_precision_preflight_20260920_1.json)
+пройден, оба child exit0; основная очередь запущена20.09 в15:08МСК.
+Фактический запуск/стадия — в [TRAINING_PROGRESS](TRAINING_PROGRESS.md);
+[план](PROJECT_PLAN.md), [завершённый результат](results/rough_route_continue_20260920.json).
 Новые checkpoints остаются в исключённых из Git `logs/`.
+Исторические датированные jobs/PID не описывают текущую очередь.
 
 ## Разделение данных
 
@@ -59,7 +53,7 @@ Checker, 10 000 шагов GPU PhysX/Fabric, PPO/resume и sweep 256–2048.
 Для Rough выбран один4096-env процесс, два сида последовательно.2×4096 Rough
 не запускались: прогноз13130MiB превышает12282MiB устройства.
 [Измерения](results/rough_capacity_20260919.json),
-[действующий протокол](ROUGH_ROUTE_CORRECTION.md); прежнийR1 исторический.
+[действующий протокол](ROUGH_PRECISION_TRACKING.md); прежнийR1 исторический.
 
 19 сентября GUI Flat replay ускорен до примерно 48,8 policy frames/s и 0,976×
 real time: Isaac Sim5.1,1 B2W seed54, Xbox XInput. Рабочий default — Storm/Vulkan

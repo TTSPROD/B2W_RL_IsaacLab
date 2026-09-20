@@ -1,8 +1,9 @@
 # Где обучать B2W
 
-**Обновление20.09:** route59/60 дошла до150 и остановилась на quality gate. [Запрошенное продолжение](ROUGH_ROUTE_CONTINUATION.md) использует тот же single4096 режим и ровно200 дополнительных updates/seed.
-
-[Аудит350](results/2026-09-20-rough-latest-audit.json) проверил199 hashes без расхождений.
+**20.09:** route59/60 завершили350 без quality acceptance.
+[Следующий precision опыт61/62](ROUGH_PRECISION_TRACKING.md) сохраняет
+single4096 и последовательное выполнение seeds; до150 с checks45–60мин,
+при полном pass ещё90–100мин до350. Это ETA вычислений, не обещание качества.
 
 **Основная площадка — Windows / RTX4070Ti с отдельным runtime проекта.**
 Flat2×4096 и Rough single4096 технически проверены. Для Rough выбираем
@@ -91,12 +92,16 @@ Dual2048 aggregate21170 transitions/s, peak10803MiB; single быстрее на2
 2×4096 Rough не запускались: прогноз13130MiB выше12282MiB устройства.
 [Измерения и границы методики](results/rough_capacity_20260919.json).
 
-Seeds57/58 завершили350, но [quality gate провален](results/rough_requested_continue_20260920.json).
-20.09 в09:32 МСК запущен [route59/60](ROUGH_ROUTE_CORRECTION.md):50+100+200 single4096,
-максимум68812800 transitions; новый22с Rough/20с Flat protocol прошёл
-собственный native64-env train/resume preflight. [Job](../logs/rough/rough_route_correction_20260920/job.json),
-[обоснование](ROUGH_RESEARCH_2026-09-20.md). Старый throughput не обещает ETA
-нового sampler и не доказывает время достижения качества.
+Исторические seeds57/58 завершили350 с [quality failure](results/rough_requested_continue_20260920.json).
+Route59/60 также завершили350 без acceptance: [итог](results/rough_route_continue_20260920.json).
+Их отдельные native64 preflights и результаты сохраняются как история.
+
+В15:08МСК запущена пара [precision61/62](ROUGH_PRECISION_TRACKING.md):
+50 critic +100+200 PPO, single4096, максимум68812800 transitions.
+Общий std tracking kernels0,5→0,25 — единственная поправка; sampler сохраняет
+22с Rough/20с Flat. [Native64 train/resume preflight](results/rough_precision_preflight_20260920_1.json)
+пройден, оба child exit0. Фактический запуск фиксируется в [журнале](TRAINING_PROGRESS.md).
+ETA выше — ориентир по историческим timing; он не доказывает время достижения качества.
 
 ## Следующие вычислительные проверки
 

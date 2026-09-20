@@ -72,7 +72,7 @@ class RoughPrecisionConfigTests(unittest.TestCase):
             ('changed weight', lambda term: setattr(term, 'weight', 2.)),
             ('wrong function', lambda term: setattr(term, 'func', lambda env: None)),
             ('missing std', lambda term: term.params.pop('std')),
-            ('wrong command', lambda term: term.params.update(command_name='other_velocity')), 
+            ('wrong command', lambda term: term.params.update(command_name='other_velocity')),
         ]
         for name in precision.TERMS:
             for reason, mutate in mutations:

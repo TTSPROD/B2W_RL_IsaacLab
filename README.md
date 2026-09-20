@@ -1,27 +1,27 @@
 # B2W RL · Isaac Lab
 
-**20.09, обновление:** route59/60 остановилась на150 из-за одного относительного Flat gate. По запросу пользователя в11:13МСК запущено [диагностическое продолжение150→350](docs/ROUGH_ROUTE_CONTINUATION.md); исходный fail сохранён. Текущее состояние — [новый job](logs/rough/rough_route_continue_20260920/job.json).
-
 Обучение Unitree B2W: **Flat → Rough → Stairs → промышленные лестницы**,
-затем поэтапный перенос через Unitree SDK2.
+затем отдельный sim2real этап.
 
-**20.09.2026: Flat квалифицирован; Rough пока не принят.** Flat seeds54/55/56
-прошли все6 nominal/bounded_v1 оценок по100/100 с tracking;
+**20.09.2026: Flat квалифицирован; Rough пока не принят.**
+Route59/60 завершили350 в12:47МСК:2653/4800 Rough successes,0/48 полных suites.
+Flat400/400 safe и absolute tracking pass, но3/4 relative gates failed.
+[Результат](docs/results/rough_route_continue_20260920.json),
+[диагностика](docs/results/2026-09-20-rough-route-diagnosis.json).
+
+Следующий опыт — [точность tracking reward](docs/ROUGH_PRECISION_TRACKING.md):
+ширина kernels0,5→0,25, свежие61/62 от qualified Flat54,50critic+100+200PPO.
+[Native64 train/resume preflight](docs/results/rough_precision_preflight_20260920_1.json)
+пройден: оба процесса завершились с exit0. Основная очередь запущена20.09 в15:08МСК;
+фактический запуск и статус — в [журнале](docs/TRAINING_PROGRESS.md),
+дальнейшие решения — в [плане](docs/PROJECT_PLAN.md).
+Reference уже является предком54; [random0 comparator](docs/results/rough_reference_baseline_20260920.json)
+не прошёл Rough gates, поэтому исходная политика не назначена Rough teacher.
+[Исследование практик](docs/ROUGH_RESEARCH_2026-09-20.md).
+
+Flat54/55/56 прошли все6 nominal/bounded evaluations100/100 с tracking;
 [проверены66 artifacts/hashes](docs/results/2026-09-19-reference-qualification-verification.json).
-Rough57/58 завершили350 updates: прошли0/24 и10/24 Rough suites, curriculum
-остался на level0. Flat safety400/400 сохранена, но3/4 относительных regression
-gates не пройдены. [Итог350](docs/results/rough_requested_continue_20260920.json).
-
-20.09 в09:32 МСК запущена [коррекция Rough эпизодов](docs/ROUGH_ROUTE_CORRECTION.md): новые
-seeds59/60 от qualified seed54,50 critic +100+200 PPO, single4096.
-Rough команды/reset/22с согласуются с маршрутом; Flat30% сохраняет20с и
-прежние команды. Reference уже лежит в основе seed54. Frozen random0 comparator завершён:
-reference42/45, anchor39/47 из100 nominal/bounded; все четыре gates failed.
-[Отчёт](docs/results/rough_reference_baseline_20260920.json).
-[Исследование практик](docs/ROUGH_RESEARCH_2026-09-20.md),
-[состояние новой очереди](logs/rough/rough_route_correction_20260920/job.json),
-[журнал](docs/TRAINING_PROGRESS.md), [план](docs/PROJECT_PLAN.md).
-[Запуск и первые выполненные updates](docs/results/2026-09-20-rough-route-launch.json) подтверждены. Rough acceptance остаётся открытым.
+Прежние Rough57/58:0/24 и10/24 suites, [итог](docs/results/rough_requested_continue_20260920.json).
 
 Windows / RTX4070Ti: Flat headless2×4096 и Rough single4096 технически
 проверены; для Rough последовательные seeds быстрее измеренной пары2048+2048.
@@ -29,8 +29,9 @@ Windows / RTX4070Ti: Flat headless2×4096 и Rough single4096 техническ
 GUI Flat сXbox работает через Storm/Vulkan; D3D12 — исторический медленный
 режим. Stairs, sim2sim, zero-action PD stand и hardware имеют отдельные gates.
 
-[Аудит последней серии](docs/results/2026-09-20-rough-latest-audit.json):
-199 hashes без расхождений; runtime success отделён от quality acceptance.
+[Аудит route59/60 и исторических comparators](docs/results/2026-09-20-rough-route-diagnosis.json):
+199 записанных SHA256 проверены без расхождений; runtime success отделён от quality acceptance.
+[Прежний аудит57/58](docs/results/2026-09-20-rough-latest-audit.json) сохранён как история.
 
 ## Документы
 

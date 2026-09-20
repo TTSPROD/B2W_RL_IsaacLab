@@ -1,5 +1,33 @@
 # Результаты обучения B2W
 
+**20.09, актуальный итог:** route continuation59/60 завершено12:47:42МСК,
+54stages exit0. Rough2653/4800 successes,0/48 full suites; первые failures:
+1888corridor,249body_contact,10route_incomplete. Curriculum[0,1,2,2,1] у обоих.
+Flat400/400 safe, все4absolute gates pass, relative pass только59bounded_v1.
+Ни development protocol, ни policy acceptance не пройдены.
+[Итог](results/rough_route_continue_20260920.json),
+[разбор причин](results/2026-09-20-rough-route-diagnosis.json).
+
+**Следующая очередь:** [precision tracking61/62](ROUGH_PRECISION_TRACKING.md).
+Изменяется только ширина обоих tracking kernels0,5→0,25. Actor отFlat54,
+свежие critic/optimizer;50+100+200, single4096, все прежние quality gates.
+Preflight64 завершён14:58МСК: train/resume2+2 exit0, optimizer40→80,
+native reward/route/tilt fixtures и полный effective config diff прошли.
+Все165 CPU-тестов и45 frozen input hashes проверены; vendor1290 проверены.
+Rough drift0,04796, Flat-bank0,05626 при лимите0,25; smoke веса discard.
+[Отчёт](results/rough_precision_preflight_20260920_1.json).
+Основная очередь запущена20.09 в15:08МСК: seed61 фактически выполняет critic calibration,
+seed62 ожидает; actor пока frozen, drift0. [Launch evidence](results/2026-09-20-rough-precision-launch.json).
+[Живой job](../logs/rough/rough_precision_training_20260920/job.json).
+ETA до150 с полными оценками15:55–16:10МСК; при полном pass финал350
+с проверками ориентировочно17:25–17:50МСК. Это вычислительный прогноз, не гарантия качества.
+После150 весь диагностический блок4Flat+16Rough завершается до решения stop/pass.
+Следующий бюджет при любом fail не исполняется.
+Уточнение наблюдаемости: actor57 видит предыдущее действие, но не имеет стека
+наблюдений, рекуррентной памяти, прямого измерения линейной скорости или позиции маршрута.
+
+## История route59/60
+
 **20.09: пользователь запросил продолжение route59/60 после quality stop150.**
 Исходная очередь завершилась09:59:13МСК:12stages exit0; оба150,
 уровни curriculum `[0,1,1,1,1]`. Все4 Flat100/100 safe и absolute tracking pass.
