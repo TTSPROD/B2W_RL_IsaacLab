@@ -4,6 +4,15 @@
 и необходимые environment settings указаны в [DESKTOP_SETUP.md](../docs/DESKTOP_SETUP.md).
 Ни один перечисленный launcher не управляет реальным роботом. Vendor неизменяем.
 
+## Текущий Rough precision experiment
+
+[Протокол](../docs/ROUGH_PRECISION_TRACKING.md): `run_rough_precision_preflight.py --attempt 1`,
+затем `run_rough_precision_training.py --preflight docs/results/rough_precision_preflight_20260920_1.json`.
+`rough_precision_tracking.py` задаёт толькоstd0,25 двух existing tracking terms;
+`train_b2w.py --rough_precision_tracking` требует route/tilt/transfer flags и
+сохраняет режим при own-stage resume. Новая очередь61/62,50+100+200,single4096;
+после150 полный4Flat+16Rough block перед quality stop. Старые launchers исторические.
+
 ## Переиспользуемые инструменты
 
 | Script | Назначение и ограничения |
