@@ -1,0 +1,2421 @@
+{
+  "models": {
+    "upstream5000": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.18114088475704193,
+          0.16224291920661926,
+          0.15097062289714813
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 382.32775,
+          "torque_saturation_fraction": 0.0028837890625,
+          "horizontal_contact_slip_proxy_m_s": 0.22660885106511908,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 484,
+        "num_envs": 512,
+        "unsafe": 28,
+        "rms_vx_vy_yaw": [
+          0.27492082118988037,
+          0.23801414668560028,
+          0.20852410793304443
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 667.573875,
+          "torque_saturation_fraction": 0.0142342529296875,
+          "horizontal_contact_slip_proxy_m_s": 0.2801904488384958,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 7,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2594106197357178,
+              0.2453935146331787,
+              0.2041075974702835
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 17,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.35491690039634705,
+              0.2713751494884491,
+              0.26641738414764404
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 4,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.29696816205978394,
+              0.258591890335083,
+              0.22437267005443573
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22437100112438202,
+              0.21070674061775208,
+              0.16573628783226013
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23534584045410156,
+              0.21183916926383972,
+              0.1710745096206665
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.1917225569486618,
+              0.17635798454284668,
+              0.15671047568321228
+            ]
+          }
+        },
+        "inverse_safe": 85
+      },
+      "rough2010": {
+        "safe": 480,
+        "num_envs": 512,
+        "unsafe": 32,
+        "rms_vx_vy_yaw": [
+          0.27946212887763977,
+          0.22523841261863708,
+          0.199899822473526
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 667.6809375,
+          "torque_saturation_fraction": 0.0138802490234375,
+          "horizontal_contact_slip_proxy_m_s": 0.28088749350136616,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 4,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2741554379463196,
+              0.2259581834077835,
+              0.2021966278553009
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 22,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.358722448348999,
+              0.24689367413520813,
+              0.24122974276542664
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 4,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.3015507757663727,
+              0.25222939252853394,
+              0.21691663563251495
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21835018694400787,
+              0.20219725370407104,
+              0.16685152053833008
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2350330948829651,
+              0.19469952583312988,
+              0.15855784714221954
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2016228586435318,
+              0.19005930423736572,
+              0.16237801313400269
+            ]
+          }
+        },
+        "inverse_safe": 80
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 690,
+        "success": 475,
+        "unsafe": 84,
+        "stop_failed": 199,
+        "timeouts": 0,
+        "incomplete": 10,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 73,
+            "unsafe": 12,
+            "stop_failed": 39,
+            "incomplete": 4,
+            "passage_success": 116
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 85,
+            "unsafe": 13,
+            "stop_failed": 30,
+            "incomplete": 0,
+            "passage_success": 117
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 85,
+            "unsafe": 4,
+            "stop_failed": 37,
+            "incomplete": 2,
+            "passage_success": 126
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 81,
+            "unsafe": 15,
+            "stop_failed": 31,
+            "incomplete": 1,
+            "passage_success": 114
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 79,
+            "unsafe": 20,
+            "stop_failed": 28,
+            "incomplete": 1,
+            "passage_success": 109
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 72,
+            "unsafe": 20,
+            "stop_failed": 34,
+            "incomplete": 2,
+            "passage_success": 108
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 964,
+      "rough_gate_pass": false
+    },
+    "upstream10000": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.16194985806941986,
+          0.15628325939178467,
+          0.14735384285449982
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 375.76975,
+          "torque_saturation_fraction": 0.00347900390625,
+          "horizontal_contact_slip_proxy_m_s": 0.23687498723117364,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 499,
+        "num_envs": 512,
+        "unsafe": 13,
+        "rms_vx_vy_yaw": [
+          0.22740322351455688,
+          0.21596820652484894,
+          0.19212345778942108
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 660.27475,
+          "torque_saturation_fraction": 0.0137366943359375,
+          "horizontal_contact_slip_proxy_m_s": 0.28405681014242623,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21281246840953827,
+              0.22088119387626648,
+              0.19069868326187134
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 10,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2706228494644165,
+              0.23999260365962982,
+              0.23207329213619232
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.25276514887809753,
+              0.23156386613845825,
+              0.20888027548789978
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20291711390018463,
+              0.20013312995433807,
+              0.15912343561649323
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20184019207954407,
+              0.1885940432548523,
+              0.16510529816150665
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.1705496609210968,
+              0.17480221390724182,
+              0.15291430056095123
+            ]
+          }
+        },
+        "inverse_safe": 92
+      },
+      "rough2010": {
+        "safe": 504,
+        "num_envs": 512,
+        "unsafe": 8,
+        "rms_vx_vy_yaw": [
+          0.22817236185073853,
+          0.21171170473098755,
+          0.18779468536376953
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 663.9829375,
+          "torque_saturation_fraction": 0.01359130859375,
+          "horizontal_contact_slip_proxy_m_s": 0.2860555686292292,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23026946187019348,
+              0.21098357439041138,
+              0.190903902053833
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 7,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.26627227663993835,
+              0.23286856710910797,
+              0.2211858034133911
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24530717730522156,
+              0.231074720621109,
+              0.20029175281524658
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19825203716754913,
+              0.1952122002840042,
+              0.16077101230621338
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19298997521400452,
+              0.185918927192688,
+              0.15650612115859985
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.190773144364357,
+              0.18165937066078186,
+              0.1593518704175949
+            ]
+          }
+        },
+        "inverse_safe": 95
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 722,
+        "success": 637,
+        "unsafe": 39,
+        "stop_failed": 81,
+        "timeouts": 0,
+        "incomplete": 11,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 111,
+            "unsafe": 3,
+            "stop_failed": 13,
+            "incomplete": 1,
+            "passage_success": 125
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 113,
+            "unsafe": 2,
+            "stop_failed": 10,
+            "incomplete": 3,
+            "passage_success": 124
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 108,
+            "unsafe": 4,
+            "stop_failed": 13,
+            "incomplete": 3,
+            "passage_success": 123
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 93,
+            "unsafe": 14,
+            "stop_failed": 18,
+            "incomplete": 3,
+            "passage_success": 111
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 109,
+            "unsafe": 6,
+            "stop_failed": 13,
+            "incomplete": 0,
+            "passage_success": 122
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 103,
+            "unsafe": 10,
+            "stop_failed": 14,
+            "incomplete": 1,
+            "passage_success": 117
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 1003,
+      "rough_gate_pass": false
+    },
+    "upstream15000": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.17009896039962769,
+          0.16033345460891724,
+          0.14845065772533417
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 359.04290625,
+          "torque_saturation_fraction": 0.00332080078125,
+          "horizontal_contact_slip_proxy_m_s": 0.23452873703491992,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 494,
+        "num_envs": 512,
+        "unsafe": 18,
+        "rms_vx_vy_yaw": [
+          0.22923345863819122,
+          0.2165827453136444,
+          0.1930459886789322
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 643.2680625,
+          "torque_saturation_fraction": 0.0146043701171875,
+          "horizontal_contact_slip_proxy_m_s": 0.2861261030156419,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2184770554304123,
+              0.222832590341568,
+              0.1952476054430008
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 11,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2701205611228943,
+              0.2372576892375946,
+              0.22485588490962982
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 5,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24350711703300476,
+              0.23321539163589478,
+              0.21478301286697388
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21189893782138824,
+              0.2044675201177597,
+              0.16059473156929016
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2108646184206009,
+              0.185222327709198,
+              0.16702668368816376
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.17660559713840485,
+              0.17403826117515564,
+              0.15287494659423828
+            ]
+          }
+        },
+        "inverse_safe": 91
+      },
+      "rough2010": {
+        "safe": 494,
+        "num_envs": 512,
+        "unsafe": 18,
+        "rms_vx_vy_yaw": [
+          0.22475974261760712,
+          0.21177873015403748,
+          0.19896575808525085
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 639.4734375,
+          "torque_saturation_fraction": 0.0138037109375,
+          "horizontal_contact_slip_proxy_m_s": 0.28540147756707407,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20397301018238068,
+              0.20495717227458954,
+              0.18923531472682953
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 13,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2694850265979767,
+              0.22804111242294312,
+              0.24043309688568115
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24004152417182922,
+              0.22879497706890106,
+              0.22769758105278015
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20525917410850525,
+              0.20322051644325256,
+              0.16573099792003632
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2065308690071106,
+              0.19342777132987976,
+              0.15475216507911682
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.18599189817905426,
+              0.18890440464019775,
+              0.16092529892921448
+            ]
+          }
+        },
+        "inverse_safe": 89
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 740,
+        "success": 630,
+        "unsafe": 26,
+        "stop_failed": 108,
+        "timeouts": 0,
+        "incomplete": 4,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 110,
+            "unsafe": 2,
+            "stop_failed": 16,
+            "incomplete": 0,
+            "passage_success": 126
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 113,
+            "unsafe": 1,
+            "stop_failed": 14,
+            "incomplete": 0,
+            "passage_success": 127
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 108,
+            "unsafe": 2,
+            "stop_failed": 18,
+            "incomplete": 0,
+            "passage_success": 126
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 100,
+            "unsafe": 6,
+            "stop_failed": 21,
+            "incomplete": 1,
+            "passage_success": 121
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 99,
+            "unsafe": 7,
+            "stop_failed": 20,
+            "incomplete": 2,
+            "passage_success": 120
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 100,
+            "unsafe": 8,
+            "stop_failed": 19,
+            "incomplete": 1,
+            "passage_success": 120
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 988,
+      "rough_gate_pass": false
+    },
+    "upstream18100": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.15495425462722778,
+          0.15707135200500488,
+          0.14874564111232758
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 364.14378125,
+          "torque_saturation_fraction": 0.0037529296875,
+          "horizontal_contact_slip_proxy_m_s": 0.24032572769460037,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 500,
+        "num_envs": 512,
+        "unsafe": 12,
+        "rms_vx_vy_yaw": [
+          0.21489694714546204,
+          0.21602077782154083,
+          0.1979581117630005
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 642.4363125,
+          "torque_saturation_fraction": 0.0141727294921875,
+          "horizontal_contact_slip_proxy_m_s": 0.28718407744209645,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20749889314174652,
+              0.22162660956382751,
+              0.19973629713058472
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 7,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2534446716308594,
+              0.23798224329948425,
+              0.2541408836841583
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22575895488262177,
+              0.2315320074558258,
+              0.20269423723220825
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.1962108016014099,
+              0.20357947051525116,
+              0.16039134562015533
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20068512856960297,
+              0.1844792515039444,
+              0.16369329392910004
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.1672981083393097,
+              0.17556190490722656,
+              0.14980824291706085
+            ]
+          }
+        },
+        "inverse_safe": 95
+      },
+      "rough2010": {
+        "safe": 499,
+        "num_envs": 512,
+        "unsafe": 13,
+        "rms_vx_vy_yaw": [
+          0.21648846566677094,
+          0.2089584767818451,
+          0.1962132602930069
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 644.9085,
+          "torque_saturation_fraction": 0.0140992431640625,
+          "horizontal_contact_slip_proxy_m_s": 0.2883718310624784,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20561236143112183,
+              0.2145438939332962,
+              0.2000689059495926
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 7,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.25682640075683594,
+              0.22963553667068481,
+              0.24473071098327637
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23454083502292633,
+              0.22114063799381256,
+              0.20578095316886902
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19345852732658386,
+              0.19652605056762695,
+              0.1596953123807907
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.1890905648469925,
+              0.18098080158233643,
+              0.15151019394397736
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.17749269306659698,
+              0.17651915550231934,
+              0.16247329115867615
+            ]
+          }
+        },
+        "inverse_safe": 95
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 712,
+        "success": 639,
+        "unsafe": 58,
+        "stop_failed": 63,
+        "timeouts": 0,
+        "incomplete": 8,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 106,
+            "unsafe": 5,
+            "stop_failed": 14,
+            "incomplete": 3,
+            "passage_success": 123
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 115,
+            "unsafe": 4,
+            "stop_failed": 6,
+            "incomplete": 3,
+            "passage_success": 125
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 105,
+            "unsafe": 6,
+            "stop_failed": 16,
+            "incomplete": 1,
+            "passage_success": 121
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 102,
+            "unsafe": 14,
+            "stop_failed": 11,
+            "incomplete": 1,
+            "passage_success": 114
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 106,
+            "unsafe": 13,
+            "stop_failed": 9,
+            "incomplete": 0,
+            "passage_success": 117
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 105,
+            "unsafe": 16,
+            "stop_failed": 7,
+            "incomplete": 0,
+            "passage_success": 112
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 999,
+      "rough_gate_pass": false
+    },
+    "upstream19999": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.16306240856647491,
+          0.1536078155040741,
+          0.14814616739749908
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 374.9918125,
+          "torque_saturation_fraction": 0.00343408203125,
+          "horizontal_contact_slip_proxy_m_s": 0.24215044436100064,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 503,
+        "num_envs": 512,
+        "unsafe": 9,
+        "rms_vx_vy_yaw": [
+          0.2146943211555481,
+          0.2090514451265335,
+          0.18842476606369019
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 640.169625,
+          "torque_saturation_fraction": 0.013573486328125,
+          "horizontal_contact_slip_proxy_m_s": 0.28937960619326886,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20499613881111145,
+              0.2179083526134491,
+              0.19150179624557495
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 5,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24238741397857666,
+              0.22405238449573517,
+              0.20247557759284973
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23866121470928192,
+              0.23264022171497345,
+              0.22561803460121155
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19463582336902618,
+              0.1916826367378235,
+              0.15780611336231232
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.203459694981575,
+              0.18108823895454407,
+              0.16198231279850006
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.16784772276878357,
+              0.1638883650302887,
+              0.14671188592910767
+            ]
+          }
+        },
+        "inverse_safe": 97
+      },
+      "rough2010": {
+        "safe": 501,
+        "num_envs": 512,
+        "unsafe": 11,
+        "rms_vx_vy_yaw": [
+          0.21554559469223022,
+          0.20108921825885773,
+          0.18501915037631989
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 636.7638125,
+          "torque_saturation_fraction": 0.0127437744140625,
+          "horizontal_contact_slip_proxy_m_s": 0.2900267298396909,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21329475939273834,
+              0.19862936437129974,
+              0.18615148961544037
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 7,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23683780431747437,
+              0.21868886053562164,
+              0.1995936781167984
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2386728823184967,
+              0.21669553220272064,
+              0.21783941984176636
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.1919020265340805,
+              0.1914614886045456,
+              0.1573391705751419
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19959451258182526,
+              0.1789071261882782,
+              0.15247033536434174
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.18389654159545898,
+              0.1745467483997345,
+              0.15939542651176453
+            ]
+          }
+        },
+        "inverse_safe": 95
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 729,
+        "success": 620,
+        "unsafe": 41,
+        "stop_failed": 103,
+        "timeouts": 0,
+        "incomplete": 4,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 115,
+            "unsafe": 2,
+            "stop_failed": 10,
+            "incomplete": 1,
+            "passage_success": 125
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 106,
+            "unsafe": 2,
+            "stop_failed": 20,
+            "incomplete": 0,
+            "passage_success": 126
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 102,
+            "unsafe": 2,
+            "stop_failed": 23,
+            "incomplete": 1,
+            "passage_success": 125
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 99,
+            "unsafe": 10,
+            "stop_failed": 18,
+            "incomplete": 1,
+            "passage_success": 119
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 103,
+            "unsafe": 10,
+            "stop_failed": 14,
+            "incomplete": 1,
+            "passage_success": 120
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 95,
+            "unsafe": 15,
+            "stop_failed": 18,
+            "incomplete": 0,
+            "passage_success": 114
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 1004,
+      "rough_gate_pass": false
+    },
+    "reference": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.16148485243320465,
+          0.165706604719162,
+          0.1529356688261032
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 391.44275,
+          "torque_saturation_fraction": 0.0041513671875,
+          "horizontal_contact_slip_proxy_m_s": 0.22247909991479106,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 506,
+        "num_envs": 512,
+        "unsafe": 6,
+        "rms_vx_vy_yaw": [
+          0.2230590283870697,
+          0.21756461262702942,
+          0.19438815116882324
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 681.2453125,
+          "torque_saturation_fraction": 0.0131390380859375,
+          "horizontal_contact_slip_proxy_m_s": 0.28176357032581856,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21030177175998688,
+              0.2279612272977829,
+              0.2082357406616211
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2530689239501953,
+              0.23551632463932037,
+              0.22148609161376953
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24468743801116943,
+              0.2310788333415985,
+              0.21492092311382294
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2108103334903717,
+              0.20737364888191223,
+              0.15778091549873352
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19970203936100006,
+              0.18678703904151917,
+              0.16206121444702148
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.18004269897937775,
+              0.17485271394252777,
+              0.15595486760139465
+            ]
+          }
+        },
+        "inverse_safe": 99
+      },
+      "rough2010": {
+        "safe": 508,
+        "num_envs": 512,
+        "unsafe": 4,
+        "rms_vx_vy_yaw": [
+          0.22603739798069,
+          0.20993570983409882,
+          0.18999634683132172
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 685.2500625,
+          "torque_saturation_fraction": 0.013050048828125,
+          "horizontal_contact_slip_proxy_m_s": 0.28436935403890906,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2173769325017929,
+              0.21360598504543304,
+              0.19881390035152435
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.26694074273109436,
+              0.2345210462808609,
+              0.22533680498600006
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23521074652671814,
+              0.21532563865184784,
+              0.19334039092063904
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2054397314786911,
+              0.1982777863740921,
+              0.16581451892852783
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2031830996274948,
+              0.18680331110954285,
+              0.15680302679538727
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19380037486553192,
+              0.18205982446670532,
+              0.16108767688274384
+            ]
+          }
+        },
+        "inverse_safe": 100
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 695,
+        "success": 566,
+        "unsafe": 81,
+        "stop_failed": 104,
+        "timeouts": 0,
+        "incomplete": 17,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 90,
+            "unsafe": 12,
+            "stop_failed": 22,
+            "incomplete": 4,
+            "passage_success": 116
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 95,
+            "unsafe": 9,
+            "stop_failed": 20,
+            "incomplete": 4,
+            "passage_success": 117
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 108,
+            "unsafe": 3,
+            "stop_failed": 14,
+            "incomplete": 3,
+            "passage_success": 124
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 90,
+            "unsafe": 22,
+            "stop_failed": 14,
+            "incomplete": 2,
+            "passage_success": 108
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 94,
+            "unsafe": 16,
+            "stop_failed": 18,
+            "incomplete": 0,
+            "passage_success": 117
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 89,
+            "unsafe": 19,
+            "stop_failed": 16,
+            "incomplete": 4,
+            "passage_success": 113
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 1014,
+      "rough_gate_pass": true
+    },
+    "anchor54": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.17934465408325195,
+          0.17892812192440033,
+          0.15151195228099823
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 361.654,
+          "torque_saturation_fraction": 0.0036474609375,
+          "horizontal_contact_slip_proxy_m_s": 0.22093404145877812,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 509,
+        "num_envs": 512,
+        "unsafe": 3,
+        "rms_vx_vy_yaw": [
+          0.24590301513671875,
+          0.2398277372121811,
+          0.19887085258960724
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 655.31275,
+          "torque_saturation_fraction": 0.0127117919921875,
+          "horizontal_contact_slip_proxy_m_s": 0.27762643145905536,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23308077454566956,
+              0.248835951089859,
+              0.21036405861377716
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2833961248397827,
+              0.2773972451686859,
+              0.249582901597023
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.257099449634552,
+              0.24120603501796722,
+              0.19647227227687836
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23473016917705536,
+              0.22661596536636353,
+              0.16145214438438416
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22066053748130798,
+              0.199886754155159,
+              0.1618293672800064
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21053454279899597,
+              0.19573397934436798,
+              0.16373257339000702
+            ]
+          }
+        },
+        "inverse_safe": 100
+      },
+      "rough2010": {
+        "safe": 510,
+        "num_envs": 512,
+        "unsafe": 2,
+        "rms_vx_vy_yaw": [
+          0.24802906811237335,
+          0.23191805183887482,
+          0.1895083487033844
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 650.788875,
+          "torque_saturation_fraction": 0.0120640869140625,
+          "horizontal_contact_slip_proxy_m_s": 0.2777380319213922,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22402824461460114,
+              0.2253563553094864,
+              0.19078730046749115
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.295413076877594,
+              0.26599159836769104,
+              0.22249601781368256
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.27002131938934326,
+              0.24207358062267303,
+              0.20108641684055328
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22503241896629333,
+              0.2185569703578949,
+              0.16762183606624603
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22739775478839874,
+              0.20153652131557465,
+              0.15801668167114258
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2036076784133911,
+              0.20346911251544952,
+              0.15872040390968323
+            ]
+          }
+        },
+        "inverse_safe": 100
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 685,
+        "success": 535,
+        "unsafe": 80,
+        "stop_failed": 128,
+        "timeouts": 0,
+        "incomplete": 25,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 88,
+            "unsafe": 11,
+            "stop_failed": 24,
+            "incomplete": 5,
+            "passage_success": 115
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 96,
+            "unsafe": 11,
+            "stop_failed": 17,
+            "incomplete": 4,
+            "passage_success": 117
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 99,
+            "unsafe": 5,
+            "stop_failed": 22,
+            "incomplete": 2,
+            "passage_success": 121
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 80,
+            "unsafe": 21,
+            "stop_failed": 24,
+            "incomplete": 3,
+            "passage_success": 107
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 91,
+            "unsafe": 17,
+            "stop_failed": 17,
+            "incomplete": 3,
+            "passage_success": 113
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 81,
+            "unsafe": 15,
+            "stop_failed": 24,
+            "incomplete": 8,
+            "passage_success": 112
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 1019,
+      "rough_gate_pass": true
+    },
+    "anchor55": {
+      "flat1005": {
+        "safe": 128,
+        "num_envs": 128,
+        "unsafe": 0,
+        "rms_vx_vy_yaw": [
+          0.1838032454252243,
+          0.17729869484901428,
+          0.1532723754644394
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 361.04215625,
+          "torque_saturation_fraction": 0.003400390625,
+          "horizontal_contact_slip_proxy_m_s": 0.21775944566908897,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        }
+      },
+      "rough2009": {
+        "safe": 508,
+        "num_envs": 512,
+        "unsafe": 4,
+        "rms_vx_vy_yaw": [
+          0.24738392233848572,
+          0.23511849343776703,
+          0.19380182027816772
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 647.922625,
+          "torque_saturation_fraction": 0.0122198486328125,
+          "horizontal_contact_slip_proxy_m_s": 0.2759286388530627,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2236263006925583,
+              0.23967039585113525,
+              0.20439934730529785
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.28465843200683594,
+              0.26358023285865784,
+              0.22183015942573547
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2627255618572235,
+              0.24839812517166138,
+              0.21021990478038788
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23843830823898315,
+              0.22525927424430847,
+              0.16209429502487183
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23180094361305237,
+              0.19638709723949432,
+              0.16460661590099335
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2109246850013733,
+              0.18801841139793396,
+              0.15929369628429413
+            ]
+          }
+        },
+        "inverse_safe": 100
+      },
+      "rough2010": {
+        "safe": 507,
+        "num_envs": 512,
+        "unsafe": 5,
+        "rms_vx_vy_yaw": [
+          0.25548166036605835,
+          0.2266426682472229,
+          0.19307982921600342
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 648.698625,
+          "torque_saturation_fraction": 0.0118121337890625,
+          "horizontal_contact_slip_proxy_m_s": 0.27644538264616064,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "terrain_families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2340724915266037,
+              0.22738958895206451,
+              0.1938893347978592
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 5,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.3056487441062927,
+              0.2594965100288391,
+              0.2322690784931183
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2731746733188629,
+              0.23064272105693817,
+              0.20398148894309998
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2289663702249527,
+              0.21234959363937378,
+              0.1637885719537735
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23176851868629456,
+              0.19619908928871155,
+              0.16255611181259155
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22021111845970154,
+              0.20116449892520905,
+              0.16226086020469666
+            ]
+          }
+        },
+        "inverse_safe": 97
+      },
+      "stairs": {
+        "num_envs": 768,
+        "passage_success": 660,
+        "success": 557,
+        "unsafe": 90,
+        "stop_failed": 84,
+        "timeouts": 0,
+        "incomplete": 37,
+        "cases": [
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 99,
+            "unsafe": 13,
+            "stop_failed": 15,
+            "incomplete": 1,
+            "passage_success": 115
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 103,
+            "unsafe": 11,
+            "stop_failed": 12,
+            "incomplete": 2,
+            "passage_success": 117
+          },
+          {
+            "geometry": {
+              "direction": "down",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 101,
+            "unsafe": 7,
+            "stop_failed": 19,
+            "incomplete": 1,
+            "passage_success": 121
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.14,
+              "run_m": 0.32,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3001,
+            "success": 89,
+            "unsafe": 21,
+            "stop_failed": 15,
+            "incomplete": 3,
+            "passage_success": 105
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.16,
+              "run_m": 0.3,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3003,
+            "success": 88,
+            "unsafe": 15,
+            "stop_failed": 11,
+            "incomplete": 14,
+            "passage_success": 103
+          },
+          {
+            "geometry": {
+              "direction": "up",
+              "goal_x_m": 2.7,
+              "num_steps": 6,
+              "rise_m": 0.18,
+              "run_m": 0.27,
+              "start_x_m": -3.0,
+              "width_m": 8.0
+            },
+            "seed": 3002,
+            "success": 77,
+            "unsafe": 23,
+            "stop_failed": 12,
+            "incomplete": 16,
+            "passage_success": 99
+          }
+        ],
+        "all_rows_pass95": false
+      },
+      "rough_safe": 1015,
+      "rough_gate_pass": true
+    }
+  },
+  "identity": {
+    "upstream18100": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\artifacts\\upstream\\2026-09-23_model_18100\\upstream_model_18100.pt",
+      "sha256": "cc3ff9a993d18979c8874005565ebfc7503fc7b529e80e4eb64556912dadddf7",
+      "flag": "--checkpoint"
+    },
+    "reference": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+      "sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+      "flag": "--policy"
+    },
+    "anchor54": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_stair\\2026-09-23_14-54-17_stair_moving_anchor10_2048_20260923_seed54_full\\model_422.pt",
+      "sha256": "2218a5d1da95605533d05dbba85283e9558d3e1d71c9753af71478a59b259182",
+      "flag": "--checkpoint"
+    },
+    "anchor55": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_stair\\2026-09-23_14-54-17_stair_moving_anchor10_2048_20260923_seed55_full\\model_422.pt",
+      "sha256": "5495047af0aa01f757198c05e330eb8c2c4ca3b4b67cfe6b248eba831de669c7",
+      "flag": "--checkpoint"
+    },
+    "upstream5000": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\artifacts\\upstream\\2026-09-23_model_5000\\upstream_model_5000.pt",
+      "sha256": "316b845412d171a77a529345d72e2ca8fc6344c3092a3e153cd5cde95867ded2",
+      "flag": "--checkpoint"
+    },
+    "upstream10000": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\artifacts\\upstream\\2026-09-23_model_10000\\upstream_model_10000.pt",
+      "sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+      "flag": "--checkpoint"
+    },
+    "upstream15000": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\artifacts\\upstream\\2026-09-23_model_15000\\upstream_model_15000.pt",
+      "sha256": "9d97dfa997f5d759d8bbf1e63a558321fa0dbf455df27a77dd10b6d8732c654c",
+      "flag": "--checkpoint"
+    },
+    "upstream19999": {
+      "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\artifacts\\upstream\\2026-09-23_model_19999\\upstream_model_19999.pt",
+      "sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+      "flag": "--checkpoint"
+    }
+  },
+  "evaluator_sha256": {
+    "scripts/smoke_b2w.py": "6cd162bb77de472b0ee3dc71100339f0e8af7d309b40475566d8135d0f33442b",
+    "scripts/eval_stair_b2w.py": "fc51dd17312a6f2e20d47bbfac7d2b60db357bb3043d0b70e223ccc6e90c6a8b",
+    "scripts/eval_stair_suite.py": "6bcaf303c66ca1aac5c491f67235fa447dc2e3443c9cc41ba0d5937fe518a3d2",
+    "scripts/local_b2w_assets.py": "a1e7008447492f29cd96b68adf39a3ef98da376477df525474b485aa3e6add74",
+    "scripts/stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+    "scripts/stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+    "scripts/stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84",
+    "configs/stair_eval_v3.json": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f"
+  },
+  "prior_evidence": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\upstream_comparison_18100_20260923",
+  "new_evidence": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\upstream_milestones_20260923",
+  "new_runs": 9,
+  "reused_completed_runs": 63,
+  "final_evidence": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\upstream_final_20260923"
+}

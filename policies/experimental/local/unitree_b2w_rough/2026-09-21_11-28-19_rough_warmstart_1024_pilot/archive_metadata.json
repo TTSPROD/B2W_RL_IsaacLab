@@ -1,0 +1,19 @@
+{
+  "file": "local/unitree_b2w_rough/2026-09-21_11-28-19_rough_warmstart_1024_pilot/model_9.pt",
+  "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_11-28-19_rough_warmstart_1024_pilot/model_9.pt",
+  "location": "local",
+  "sha256": "69bf3f212945eaa5540530f430fd7a0fc355289ecfcfc6c6311699496850b3d0",
+  "bytes": 5867168,
+  "saved_iteration": 9,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [],
+  "config_sha256": {
+    "env.yaml": "1cfe9f7686c7ddf7cb3427908da7010d07676aeef29b50e46b0319660f28d8d4",
+    "agent.yaml": "4a153c6ea64f73a61758d4a429c92191d3c9a102fe55512ea886ebe4e16dc286"
+  }
+}

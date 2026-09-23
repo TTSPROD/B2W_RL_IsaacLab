@@ -1,0 +1,24 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-23_11-02-18_stair_basevel_control57_2048_20260923_seed54_full/model_398.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_11-02-18_stair_basevel_control57_2048_20260923_seed54_full/model_398.pt",
+  "location": "local",
+  "sha256": "49c50eabfc3d9ce640dc3cc46fb15f45fb8f071351e53a768afc2a406b474801",
+  "bytes": 5867886,
+  "saved_iteration": 398,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-23-actor-base-velocity.md",
+    "docs/results/2026-09-23-landing20-short.md",
+    "docs/results/2026-09-23-physical-rollin.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "f72571bf67672716e3a6405e1ca27c63111741dc2cf163ca5f0b145b981f674a",
+    "agent.yaml": "492905bcdcab380c79e9860871c547a44f3aa81449b616a366cd076b77e4948f",
+    "stair_parent.json": "e838cea59c5d5f9e955430258d0345b3367d0360f1c6fd0c910122a46593e600"
+  }
+}

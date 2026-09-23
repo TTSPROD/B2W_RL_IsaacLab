@@ -1,0 +1,1876 @@
+{
+  "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+  "historical_passage": {
+    "rlsar": [
+      {
+        "success": 56,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rlsar_up_h14_r32_seed3001.json"
+      },
+      {
+        "success": 59,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rlsar_down_h14_r32_seed3001.json"
+      },
+      {
+        "success": 58,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rlsar_up_h18_r27_seed3002.json"
+      },
+      {
+        "success": 62,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rlsar_down_h18_r27_seed3002.json"
+      }
+    ],
+    "rough54": [
+      {
+        "success": 56,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough54_up_h14_r32_seed3001.json"
+      },
+      {
+        "success": 62,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough54_down_h14_r32_seed3001.json"
+      },
+      {
+        "success": 57,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough54_up_h18_r27_seed3002.json"
+      },
+      {
+        "success": 63,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough54_down_h18_r27_seed3002.json"
+      }
+    ],
+    "rough55": [
+      {
+        "success": 55,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough55_up_h14_r32_seed3001.json"
+      },
+      {
+        "success": 60,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough55_down_h14_r32_seed3001.json"
+      },
+      {
+        "success": 51,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough55_up_h18_r27_seed3002.json"
+      },
+      {
+        "success": 63,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough55_down_h18_r27_seed3002.json"
+      }
+    ],
+    "rough56": [
+      {
+        "success": 55,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough56_up_h14_r32_seed3001.json"
+      },
+      {
+        "success": 61,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough56_down_h14_r32_seed3001.json"
+      },
+      {
+        "success": 56,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough56_up_h18_r27_seed3002.json"
+      },
+      {
+        "success": 61,
+        "n": 64,
+        "file": "logs\\stair_benchmark\\rough56_down_h18_r27_seed3002.json"
+      }
+    ]
+  },
+  "cycle": [
+    {
+      "case": "14/32 up",
+      "rlsar": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 623.0,
+        "elapsed_s": 82.4369999999908,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 3,
+        "failure_on_landing": 7,
+        "failure_progress_median_m": 4.253868579864502,
+        "failure_reasons": {
+          "base_contact": 8,
+          "hip_contact": 0,
+          "stop_failed": 6,
+          "termination": 0,
+          "tilt": 2,
+          "timeout": 0
+        },
+        "first_failure_step_median": 663.0,
+        "geometry": {
+          "direction": "up",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.14,
+          "run_m": 0.32,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 54,
+            "count": 56,
+            "median_m_s": 0.3159106969833374,
+            "p90_m_s": 0.41840076446533203
+          },
+          "100": {
+            "above_stop_speed": 6,
+            "count": 55,
+            "median_m_s": 0.0851367935538292,
+            "p90_m_s": 0.1509549468755722
+          },
+          "25": {
+            "above_stop_speed": 12,
+            "count": 56,
+            "median_m_s": 0.10913612693548203,
+            "p90_m_s": 0.18182438611984253
+          },
+          "50": {
+            "above_stop_speed": 6,
+            "count": 56,
+            "median_m_s": 0.09638740867376328,
+            "p90_m_s": 0.15494264662265778
+          },
+          "75": {
+            "above_stop_speed": 5,
+            "count": 55,
+            "median_m_s": 0.08538193255662918,
+            "p90_m_s": 0.14001357555389404
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 4,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 4,
+        "max_progress_m_median": 6.105891227722168,
+        "max_progress_m_min": 2.080260992050171,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.3159106969833374,
+        "passage_success": 56,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3001,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 6,
+        "stop_failed_drift_median_m": 0.1265115737915039,
+        "stop_failed_speed_median_m_s": 0.18165306746959686,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 6
+        },
+        "stop_success": 49,
+        "success": 44,
+        "success_step_median": 488.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 10
+      },
+      "rough54": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 643.0,
+        "elapsed_s": 27.75,
+        "failure_before_first_step": 1,
+        "failure_on_flight": 1,
+        "failure_on_landing": 6,
+        "failure_progress_median_m": 4.448670864105225,
+        "failure_reasons": {
+          "base_contact": 5,
+          "hip_contact": 0,
+          "stop_failed": 7,
+          "termination": 0,
+          "tilt": 3,
+          "timeout": 0
+        },
+        "first_failure_step_median": 601.0,
+        "geometry": {
+          "direction": "up",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.14,
+          "run_m": 0.32,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 53,
+            "count": 55,
+            "median_m_s": 0.30606788396835327,
+            "p90_m_s": 0.39441394805908203
+          },
+          "100": {
+            "above_stop_speed": 6,
+            "count": 53,
+            "median_m_s": 0.08323518186807632,
+            "p90_m_s": 0.14872609078884125
+          },
+          "25": {
+            "above_stop_speed": 9,
+            "count": 55,
+            "median_m_s": 0.0782441720366478,
+            "p90_m_s": 0.18573890626430511
+          },
+          "50": {
+            "above_stop_speed": 9,
+            "count": 55,
+            "median_m_s": 0.08193156123161316,
+            "p90_m_s": 0.1619940847158432
+          },
+          "75": {
+            "above_stop_speed": 6,
+            "count": 54,
+            "median_m_s": 0.0900513231754303,
+            "p90_m_s": 0.15800067782402039
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 4,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 1,
+        "incomplete_on_landing": 3,
+        "max_progress_m_median": 6.110593795776367,
+        "max_progress_m_min": 1.9845852851867676,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.30606788396835327,
+        "passage_success": 55,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-21_11-29-39_rough_from_flat54_stage1\\model_349.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3001,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 7,
+        "stop_failed_drift_median_m": 0.1096811294555664,
+        "stop_failed_speed_median_m_s": 0.16150608658790588,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 1,
+          "speed_only": 6
+        },
+        "stop_success": 46,
+        "success": 45,
+        "success_step_median": 508.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 8
+      }
+    },
+    {
+      "case": "14/32 down",
+      "rlsar": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 627.0,
+        "elapsed_s": 82.14100000000326,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 4,
+        "failure_progress_median_m": 4.829519271850586,
+        "failure_reasons": {
+          "base_contact": 3,
+          "hip_contact": 0,
+          "stop_failed": 5,
+          "termination": 0,
+          "tilt": 1,
+          "timeout": 0
+        },
+        "first_failure_step_median": 700.0,
+        "geometry": {
+          "direction": "down",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.14,
+          "run_m": 0.32,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 55,
+            "count": 56,
+            "median_m_s": 0.32686081528663635,
+            "p90_m_s": 0.38978248834609985
+          },
+          "100": {
+            "above_stop_speed": 5,
+            "count": 55,
+            "median_m_s": 0.09206576645374298,
+            "p90_m_s": 0.1433923840522766
+          },
+          "25": {
+            "above_stop_speed": 9,
+            "count": 56,
+            "median_m_s": 0.0863482654094696,
+            "p90_m_s": 0.18597368896007538
+          },
+          "50": {
+            "above_stop_speed": 13,
+            "count": 56,
+            "median_m_s": 0.09388678520917892,
+            "p90_m_s": 0.18437543511390686
+          },
+          "75": {
+            "above_stop_speed": 12,
+            "count": 56,
+            "median_m_s": 0.09741263836622238,
+            "p90_m_s": 0.16623902320861816
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 7,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 7,
+        "max_progress_m_median": 6.103455543518066,
+        "max_progress_m_min": 4.472201347351074,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.32686081528663635,
+        "passage_success": 56,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3001,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 5,
+        "stop_failed_drift_median_m": 0.04918718338012695,
+        "stop_failed_speed_median_m_s": 0.21132385730743408,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 5
+        },
+        "stop_success": 50,
+        "success": 48,
+        "success_step_median": 494.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 4
+      },
+      "rough54": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 637.0,
+        "elapsed_s": 27.889999999999418,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 2,
+        "failure_progress_median_m": 4.322174072265625,
+        "failure_reasons": {
+          "base_contact": 1,
+          "hip_contact": 0,
+          "stop_failed": 5,
+          "termination": 0,
+          "tilt": 1,
+          "timeout": 0
+        },
+        "first_failure_step_median": 608.0,
+        "geometry": {
+          "direction": "down",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.14,
+          "run_m": 0.32,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 58,
+            "count": 60,
+            "median_m_s": 0.30783021450042725,
+            "p90_m_s": 0.3843313455581665
+          },
+          "100": {
+            "above_stop_speed": 5,
+            "count": 57,
+            "median_m_s": 0.07136594504117966,
+            "p90_m_s": 0.13535399734973907
+          },
+          "25": {
+            "above_stop_speed": 6,
+            "count": 59,
+            "median_m_s": 0.06961875408887863,
+            "p90_m_s": 0.1487942337989807
+          },
+          "50": {
+            "above_stop_speed": 11,
+            "count": 59,
+            "median_m_s": 0.08877123147249222,
+            "p90_m_s": 0.19630348682403564
+          },
+          "75": {
+            "above_stop_speed": 7,
+            "count": 59,
+            "median_m_s": 0.09455770254135132,
+            "p90_m_s": 0.1649475395679474
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 7,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 7,
+        "max_progress_m_median": 6.108711242675781,
+        "max_progress_m_min": 4.322174072265625,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.30783021450042725,
+        "passage_success": 60,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-21_11-29-39_rough_from_flat54_stage1\\model_349.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3001,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 5,
+        "stop_failed_drift_median_m": 0.11662101745605469,
+        "stop_failed_speed_median_m_s": 0.1725776046514511,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 5
+        },
+        "stop_success": 52,
+        "success": 50,
+        "success_step_median": 502.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 2
+      }
+    },
+    {
+      "case": "16/30 up",
+      "rlsar": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 638.0,
+        "elapsed_s": 81.68700000000536,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 10,
+        "failure_progress_median_m": 5.595526695251465,
+        "failure_reasons": {
+          "base_contact": 6,
+          "hip_contact": 0,
+          "stop_failed": 6,
+          "termination": 0,
+          "tilt": 4,
+          "timeout": 0
+        },
+        "first_failure_step_median": 694.0,
+        "geometry": {
+          "direction": "up",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.16,
+          "run_m": 0.3,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 57,
+            "count": 57,
+            "median_m_s": 0.31979936361312866,
+            "p90_m_s": 0.3673867881298065
+          },
+          "100": {
+            "above_stop_speed": 6,
+            "count": 55,
+            "median_m_s": 0.09066839516162872,
+            "p90_m_s": 0.1595071703195572
+          },
+          "25": {
+            "above_stop_speed": 9,
+            "count": 57,
+            "median_m_s": 0.07474938035011292,
+            "p90_m_s": 0.18479080498218536
+          },
+          "50": {
+            "above_stop_speed": 8,
+            "count": 56,
+            "median_m_s": 0.10285986214876175,
+            "p90_m_s": 0.1635196954011917
+          },
+          "75": {
+            "above_stop_speed": 9,
+            "count": 55,
+            "median_m_s": 0.0861426591873169,
+            "p90_m_s": 0.16912993788719177
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 3,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 3,
+        "max_progress_m_median": 6.098819732666016,
+        "max_progress_m_min": 5.393204212188721,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.31979936361312866,
+        "passage_success": 57,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3003,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 6,
+        "stop_failed_drift_median_m": 0.11846351623535156,
+        "stop_failed_speed_median_m_s": 0.18321891129016876,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 6
+        },
+        "stop_success": 49,
+        "success": 45,
+        "success_step_median": 504.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 10
+      },
+      "rough54": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 648.0,
+        "elapsed_s": 27.672000000005937,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 4,
+        "failure_progress_median_m": 5.651329040527344,
+        "failure_reasons": {
+          "base_contact": 4,
+          "hip_contact": 0,
+          "stop_failed": 2,
+          "termination": 0,
+          "tilt": 0,
+          "timeout": 0
+        },
+        "first_failure_step_median": 602.0,
+        "geometry": {
+          "direction": "up",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.16,
+          "run_m": 0.3,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 54,
+            "count": 55,
+            "median_m_s": 0.29738372564315796,
+            "p90_m_s": 0.37600499391555786
+          },
+          "100": {
+            "above_stop_speed": 2,
+            "count": 55,
+            "median_m_s": 0.08450746536254883,
+            "p90_m_s": 0.12390436232089996
+          },
+          "25": {
+            "above_stop_speed": 2,
+            "count": 55,
+            "median_m_s": 0.0683826431632042,
+            "p90_m_s": 0.13324613869190216
+          },
+          "50": {
+            "above_stop_speed": 6,
+            "count": 55,
+            "median_m_s": 0.08082929253578186,
+            "p90_m_s": 0.151365265250206
+          },
+          "75": {
+            "above_stop_speed": 5,
+            "count": 55,
+            "median_m_s": 0.07793177664279938,
+            "p90_m_s": 0.13848501443862915
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 7,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 3,
+        "incomplete_on_landing": 4,
+        "max_progress_m_median": 6.1090521812438965,
+        "max_progress_m_min": 3.3651537895202637,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.29738372564315796,
+        "passage_success": 55,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-21_11-29-39_rough_from_flat54_stage1\\model_349.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3003,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 2,
+        "stop_failed_drift_median_m": 0.007773876190185547,
+        "stop_failed_speed_median_m_s": 0.17573074996471405,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 2
+        },
+        "stop_success": 53,
+        "success": 51,
+        "success_step_median": 506.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 4
+      }
+    },
+    {
+      "case": "16/30 down",
+      "rlsar": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 640.0,
+        "elapsed_s": 79.56299999999464,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 2,
+        "failure_progress_median_m": 4.970989227294922,
+        "failure_reasons": {
+          "base_contact": 1,
+          "hip_contact": 0,
+          "stop_failed": 6,
+          "termination": 0,
+          "tilt": 1,
+          "timeout": 0
+        },
+        "first_failure_step_median": 719.0,
+        "geometry": {
+          "direction": "down",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.16,
+          "run_m": 0.3,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 57,
+            "count": 57,
+            "median_m_s": 0.3038393557071686,
+            "p90_m_s": 0.3914041817188263
+          },
+          "100": {
+            "above_stop_speed": 6,
+            "count": 56,
+            "median_m_s": 0.07797092944383621,
+            "p90_m_s": 0.1536039412021637
+          },
+          "25": {
+            "above_stop_speed": 7,
+            "count": 57,
+            "median_m_s": 0.09099845588207245,
+            "p90_m_s": 0.1552659422159195
+          },
+          "50": {
+            "above_stop_speed": 7,
+            "count": 57,
+            "median_m_s": 0.08784911781549454,
+            "p90_m_s": 0.15089848637580872
+          },
+          "75": {
+            "above_stop_speed": 9,
+            "count": 57,
+            "median_m_s": 0.0886707678437233,
+            "p90_m_s": 0.15856942534446716
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 7,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 1,
+        "incomplete_on_landing": 6,
+        "max_progress_m_median": 6.105669021606445,
+        "max_progress_m_min": 3.49100399017334,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.3038393557071686,
+        "passage_success": 57,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3003,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 6,
+        "stop_failed_drift_median_m": 0.127288818359375,
+        "stop_failed_speed_median_m_s": 0.17641545832157135,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 6
+        },
+        "stop_success": 50,
+        "success": 49,
+        "success_step_median": 499.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 2
+      },
+      "rough54": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 633.0,
+        "elapsed_s": 26.235000000000582,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 1,
+        "failure_on_landing": 1,
+        "failure_progress_median_m": 3.868201971054077,
+        "failure_reasons": {
+          "base_contact": 1,
+          "hip_contact": 0,
+          "stop_failed": 5,
+          "termination": 0,
+          "tilt": 1,
+          "timeout": 0
+        },
+        "first_failure_step_median": 654.0,
+        "geometry": {
+          "direction": "down",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.16,
+          "run_m": 0.3,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 57,
+            "count": 59,
+            "median_m_s": 0.278528094291687,
+            "p90_m_s": 0.3689558506011963
+          },
+          "100": {
+            "above_stop_speed": 5,
+            "count": 59,
+            "median_m_s": 0.0796721950173378,
+            "p90_m_s": 0.1471927911043167
+          },
+          "25": {
+            "above_stop_speed": 9,
+            "count": 59,
+            "median_m_s": 0.0742010846734047,
+            "p90_m_s": 0.17082740366458893
+          },
+          "50": {
+            "above_stop_speed": 3,
+            "count": 59,
+            "median_m_s": 0.06503499299287796,
+            "p90_m_s": 0.14006124436855316
+          },
+          "75": {
+            "above_stop_speed": 7,
+            "count": 59,
+            "median_m_s": 0.07682382315397263,
+            "p90_m_s": 0.15286687016487122
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 4,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 4,
+        "max_progress_m_median": 6.1006760597229,
+        "max_progress_m_min": 3.868201971054077,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.278528094291687,
+        "passage_success": 59,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-21_11-29-39_rough_from_flat54_stage1\\model_349.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3003,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 5,
+        "stop_failed_drift_median_m": 0.09083700180053711,
+        "stop_failed_speed_median_m_s": 0.17159715294837952,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 5
+        },
+        "stop_success": 54,
+        "success": 53,
+        "success_step_median": 494.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 2
+      }
+    },
+    {
+      "case": "18/27 up",
+      "rlsar": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 670.0,
+        "elapsed_s": 83.14100000000326,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 1,
+        "failure_on_landing": 3,
+        "failure_progress_median_m": 5.675305366516113,
+        "failure_reasons": {
+          "base_contact": 2,
+          "hip_contact": 0,
+          "stop_failed": 9,
+          "termination": 0,
+          "tilt": 2,
+          "timeout": 0
+        },
+        "first_failure_step_median": 722.0,
+        "geometry": {
+          "direction": "up",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.18,
+          "run_m": 0.27,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 58,
+            "count": 58,
+            "median_m_s": 0.31771859526634216,
+            "p90_m_s": 0.41801193356513977
+          },
+          "100": {
+            "above_stop_speed": 9,
+            "count": 57,
+            "median_m_s": 0.09144986420869827,
+            "p90_m_s": 0.16245527565479279
+          },
+          "25": {
+            "above_stop_speed": 6,
+            "count": 57,
+            "median_m_s": 0.08454147726297379,
+            "p90_m_s": 0.15176168084144592
+          },
+          "50": {
+            "above_stop_speed": 8,
+            "count": 57,
+            "median_m_s": 0.09498454630374908,
+            "p90_m_s": 0.15667761862277985
+          },
+          "75": {
+            "above_stop_speed": 12,
+            "count": 57,
+            "median_m_s": 0.09889098256826401,
+            "p90_m_s": 0.21669353544712067
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 7,
+        "incomplete_before_first_step": 2,
+        "incomplete_on_flight": 1,
+        "incomplete_on_landing": 4,
+        "max_progress_m_median": 6.109875679016113,
+        "max_progress_m_min": 2.1458663940429688,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.31771859526634216,
+        "passage_success": 58,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3002,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 9,
+        "stop_failed_drift_median_m": 0.15114593505859375,
+        "stop_failed_speed_median_m_s": 0.1679188311100006,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 9
+        },
+        "stop_success": 48,
+        "success": 44,
+        "success_step_median": 530.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 4
+      },
+      "rough54": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 671.0,
+        "elapsed_s": 27.437999999994645,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 1,
+        "failure_on_landing": 1,
+        "failure_progress_median_m": 3.75675892829895,
+        "failure_reasons": {
+          "base_contact": 1,
+          "hip_contact": 0,
+          "stop_failed": 6,
+          "termination": 0,
+          "tilt": 1,
+          "timeout": 0
+        },
+        "first_failure_step_median": 584.0,
+        "geometry": {
+          "direction": "up",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.18,
+          "run_m": 0.27,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 54,
+            "count": 55,
+            "median_m_s": 0.3022296130657196,
+            "p90_m_s": 0.4195297658443451
+          },
+          "100": {
+            "above_stop_speed": 6,
+            "count": 53,
+            "median_m_s": 0.08230295032262802,
+            "p90_m_s": 0.15370583534240723
+          },
+          "25": {
+            "above_stop_speed": 9,
+            "count": 55,
+            "median_m_s": 0.08471401035785675,
+            "p90_m_s": 0.15849411487579346
+          },
+          "50": {
+            "above_stop_speed": 4,
+            "count": 55,
+            "median_m_s": 0.07326958328485489,
+            "p90_m_s": 0.12973937392234802
+          },
+          "75": {
+            "above_stop_speed": 3,
+            "count": 54,
+            "median_m_s": 0.08073803037405014,
+            "p90_m_s": 0.1254066824913025
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 10,
+        "incomplete_before_first_step": 1,
+        "incomplete_on_flight": 6,
+        "incomplete_on_landing": 3,
+        "max_progress_m_median": 6.094813346862793,
+        "max_progress_m_min": 2.1273386478424072,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.3022296130657196,
+        "passage_success": 55,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-21_11-29-39_rough_from_flat54_stage1\\model_349.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3002,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 6,
+        "stop_failed_drift_median_m": 0.12026500701904297,
+        "stop_failed_speed_median_m_s": 0.16452033817768097,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 6
+        },
+        "stop_success": 47,
+        "success": 46,
+        "success_step_median": 535.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 2
+      }
+    },
+    {
+      "case": "18/27 down",
+      "rlsar": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 636.0,
+        "elapsed_s": 82.93700000000536,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 1,
+        "failure_progress_median_m": 4.596687316894531,
+        "failure_reasons": {
+          "base_contact": 1,
+          "hip_contact": 0,
+          "stop_failed": 11,
+          "termination": 0,
+          "tilt": 0,
+          "timeout": 0
+        },
+        "first_failure_step_median": 723.0,
+        "geometry": {
+          "direction": "down",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.18,
+          "run_m": 0.27,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 61,
+            "count": 62,
+            "median_m_s": 0.2954532504081726,
+            "p90_m_s": 0.3826768100261688
+          },
+          "100": {
+            "above_stop_speed": 11,
+            "count": 62,
+            "median_m_s": 0.08195443451404572,
+            "p90_m_s": 0.18066227436065674
+          },
+          "25": {
+            "above_stop_speed": 11,
+            "count": 62,
+            "median_m_s": 0.09005222469568253,
+            "p90_m_s": 0.1981528103351593
+          },
+          "50": {
+            "above_stop_speed": 7,
+            "count": 62,
+            "median_m_s": 0.08810346573591232,
+            "p90_m_s": 0.15715669095516205
+          },
+          "75": {
+            "above_stop_speed": 3,
+            "count": 62,
+            "median_m_s": 0.07672394067049026,
+            "p90_m_s": 0.14325988292694092
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 1,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 1,
+        "max_progress_m_median": 6.093880653381348,
+        "max_progress_m_min": 4.596687316894531,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.2954532504081726,
+        "passage_success": 62,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\rl_sar\\policy\\b2w\\robot_lab\\policy.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3002,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 11,
+        "stop_failed_drift_median_m": 0.16057682037353516,
+        "stop_failed_speed_median_m_s": 0.18818399310112,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 11
+        },
+        "stop_success": 51,
+        "success": 51,
+        "success_step_median": 498.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 1
+      },
+      "rough54": {
+        "command_vx_m_s": 0.7,
+        "cycle": {
+          "brake_distance_m": 1.2,
+          "brake_min_speed_m_s": 0.25,
+          "brake_profile": true,
+          "enabled": true,
+          "hold_steps": 100,
+          "landing_approach_speed_m_s": null,
+          "max_stop_drift_m": 0.35,
+          "restart_distance_m": 0.35,
+          "slowdown_distance_m": null,
+          "stop_speed_m_s": 0.15
+        },
+        "cycle_success_step_median": 624.0,
+        "elapsed_s": 26.10899999999674,
+        "failure_before_first_step": 0,
+        "failure_on_flight": 0,
+        "failure_on_landing": 1,
+        "failure_progress_median_m": 4.447186470031738,
+        "failure_reasons": {
+          "base_contact": 1,
+          "hip_contact": 0,
+          "stop_failed": 10,
+          "termination": 0,
+          "tilt": 0,
+          "timeout": 0
+        },
+        "first_failure_step_median": 711.0,
+        "geometry": {
+          "direction": "down",
+          "goal_x_m": 2.7,
+          "num_steps": 6,
+          "rise_m": 0.18,
+          "run_m": 0.27,
+          "start_x_m": -3.0,
+          "width_m": 8.0
+        },
+        "hold_speed_profile": {
+          "0": {
+            "above_stop_speed": 61,
+            "count": 62,
+            "median_m_s": 0.2991279661655426,
+            "p90_m_s": 0.39690399169921875
+          },
+          "100": {
+            "above_stop_speed": 10,
+            "count": 62,
+            "median_m_s": 0.08696775883436203,
+            "p90_m_s": 0.16950759291648865
+          },
+          "25": {
+            "above_stop_speed": 9,
+            "count": 62,
+            "median_m_s": 0.09087182581424713,
+            "p90_m_s": 0.165755033493042
+          },
+          "50": {
+            "above_stop_speed": 9,
+            "count": 62,
+            "median_m_s": 0.08081080764532089,
+            "p90_m_s": 0.19002535939216614
+          },
+          "75": {
+            "above_stop_speed": 4,
+            "count": 62,
+            "median_m_s": 0.09265526384115219,
+            "p90_m_s": 0.1284582018852234
+          }
+        },
+        "horizon_policy_steps": 800,
+        "incomplete": 2,
+        "incomplete_before_first_step": 0,
+        "incomplete_on_flight": 0,
+        "incomplete_on_landing": 2,
+        "max_progress_m_median": 6.081842422485352,
+        "max_progress_m_min": 4.447186470031738,
+        "num_envs": 64,
+        "passage_speed_median_m_s": 0.2991279661655426,
+        "passage_success": 62,
+        "policy": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-21_11-29-39_rough_from_flat54_stage1\\model_349.pt",
+        "policy_actor_observation_dim": 57,
+        "policy_hz": 50.0,
+        "policy_observation_terms": [
+          "base_ang_vel",
+          "projected_gravity",
+          "velocity_commands",
+          "joint_pos",
+          "joint_vel",
+          "actions"
+        ],
+        "policy_sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+        "schema": "b2w_stair_eval_v3",
+        "seed": 3002,
+        "source_sha256": {
+          "eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+          "stair_command_profile.py": "defc0dc9ca167633004d90e8850df2d35b393276ad0a5c29185416f0bdaa59ac",
+          "stair_cycle_protocol.py": "e33dfca16f8d2c5b5f7e2e7826937dd37ddb32b4a955e718968e29ee73490fd3",
+          "stair_terrain.py": "adb47cea83cf5243edcd50a450ed89b12cb9a1ae6412597498f44ed4436f0c84"
+        },
+        "stop_failed": 10,
+        "stop_failed_drift_median_m": 0.13001108169555664,
+        "stop_failed_speed_median_m_s": 0.1800561249256134,
+        "stop_failure_reasons": {
+          "drift_and_speed": 0,
+          "drift_only": 0,
+          "speed_only": 10
+        },
+        "stop_success": 52,
+        "success": 51,
+        "success_step_median": 485.0,
+        "suite_sha256": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f",
+        "task": "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0",
+        "timeouts": 0,
+        "unsafe": 1
+      }
+    }
+  ],
+  "smoke": {
+    "rlsar": {
+      "flat_1001": {
+        "safe": 128,
+        "total": 128,
+        "rms": [
+          0.16376404464244843,
+          0.16853207349777222,
+          0.1501251459121704
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 421.2295,
+          "torque_saturation_fraction": 0.00355908203125,
+          "horizontal_contact_slip_proxy_m_s": 0.22597181331293606,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "families": {},
+        "source": "logs\\reference_comparison_20260922\\retry\\rlsar_flat_1001.log",
+        "sha256": "e1c964a4a09f9fdb893c491782bb34af09e1344dde024ff43c605e62e3fbb8eb"
+      },
+      "rough_2005": {
+        "safe": 509,
+        "total": 512,
+        "rms": [
+          0.2310856431722641,
+          0.21171846985816956,
+          0.19002605974674225
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 679.8618125,
+          "torque_saturation_fraction": 0.013567626953125,
+          "horizontal_contact_slip_proxy_m_s": 0.2902794080670378,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.23552905023097992,
+              0.21790215373039246,
+              0.19828249514102936
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 2,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.26095497608184814,
+              0.23179496824741364,
+              0.2187238186597824
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2525520920753479,
+              0.2278163880109787,
+              0.20414230227470398
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19779309630393982,
+              0.19566276669502258,
+              0.16412997245788574
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19018985331058502,
+              0.17931395769119263,
+              0.15616220235824585
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2112753838300705,
+              0.18197204172611237,
+              0.15812309086322784
+            ]
+          }
+        },
+        "source": "logs\\reference_comparison_20260922\\retry\\rlsar_rough_2005.log",
+        "sha256": "09990c23f948e5d601c99da4e4e0f30881250b2a8c5615691798fc6f7b174a96"
+      },
+      "rough_2006": {
+        "safe": 506,
+        "total": 512,
+        "rms": [
+          0.23108011484146118,
+          0.21721316874027252,
+          0.19475501775741577
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 694.921625,
+          "torque_saturation_fraction": 0.013392822265625,
+          "horizontal_contact_slip_proxy_m_s": 0.29743471266495364,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.22921928763389587,
+              0.21986396610736847,
+              0.19507911801338196
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2565827965736389,
+              0.23079289495944977,
+              0.2316032350063324
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2413705736398697,
+              0.2418624609708786,
+              0.2154969573020935
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20836766064167023,
+              0.19881358742713928,
+              0.16232039034366608
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21690574288368225,
+              0.18387667834758759,
+              0.15882234275341034
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2162114977836609,
+              0.19621621072292328,
+              0.15791098773479462
+            ]
+          }
+        },
+        "source": "logs\\reference_comparison_20260922\\retry\\rlsar_rough_2006.log",
+        "sha256": "97d53a9c96e76c2baa4e90de99589b5548d4461b5770d064c32cdafd5ec27119"
+      }
+    },
+    "rough54": {
+      "flat_1001": {
+        "safe": 128,
+        "total": 128,
+        "rms": [
+          0.16288600862026215,
+          0.17263254523277283,
+          0.14611059427261353
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 395.0769375,
+          "torque_saturation_fraction": 0.003353515625,
+          "horizontal_contact_slip_proxy_m_s": 0.2263563385620216,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "families": {},
+        "source": "logs\\reference_comparison_20260922\\retry\\rough54_flat_1001.log",
+        "sha256": "5bedab43f8d5fb5120ffed20efb35e1030e1381184ebb7de4ce787681eccfd0f"
+      },
+      "rough_2005": {
+        "safe": 507,
+        "total": 512,
+        "rms": [
+          0.23474647104740143,
+          0.22246704995632172,
+          0.19540858268737793
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 667.2950625,
+          "torque_saturation_fraction": 0.0134896240234375,
+          "horizontal_contact_slip_proxy_m_s": 0.2886395486172421,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24404919147491455,
+              0.2213265299797058,
+              0.20578615367412567
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 3,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2662358582019806,
+              0.24939623475074768,
+              0.22961825132369995
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 1,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.24969753623008728,
+              0.24158793687820435,
+              0.21140146255493164
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.20438887178897858,
+              0.20631931722164154,
+              0.16216617822647095
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.19266287982463837,
+              0.18401429057121277,
+              0.155624657869339
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21114091575145721,
+              0.19146303832530975,
+              0.15904338657855988
+            ]
+          }
+        },
+        "source": "logs\\reference_comparison_20260922\\retry\\rough54_rough_2005.log",
+        "sha256": "e4a695ecaa2dae162c129a6936b53f76acf50f9fee023a28fd800824f641b91a"
+      },
+      "rough_2006": {
+        "safe": 506,
+        "total": 512,
+        "rms": [
+          0.24229133129119873,
+          0.22897721827030182,
+          0.19633352756500244
+        ],
+        "dynamics": {
+          "mean_abs_joint_power_w_per_env": 679.387875,
+          "torque_saturation_fraction": 0.013203369140625,
+          "horizontal_contact_slip_proxy_m_s": 0.29388628326473,
+          "wheel_radius_assumed_m": 0.07,
+          "slip_proxy_scope": "Wheel bottom point projected onto world horizontal plane; contacted feet only."
+        },
+        "families": {
+          "pyramid_stairs": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2341967076063156,
+              0.22632108628749847,
+              0.20220865309238434
+            ]
+          },
+          "pyramid_stairs_inv": {
+            "envs": 102,
+            "unsafe_envs": 6,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.29068639874458313,
+              0.2545289099216461,
+              0.24070195853710175
+            ]
+          },
+          "boxes": {
+            "envs": 103,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2548754811286926,
+              0.24470020830631256,
+              0.20522789657115936
+            ]
+          },
+          "random_rough": {
+            "envs": 102,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.2059173882007599,
+              0.21203337609767914,
+              0.16224543750286102
+            ]
+          },
+          "hf_pyramid_slope": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21399492025375366,
+              0.19481396675109863,
+              0.15935836732387543
+            ]
+          },
+          "hf_pyramid_slope_inv": {
+            "envs": 51,
+            "unsafe_envs": 0,
+            "unsafe_first_10_steps": 0,
+            "rms_vx_vy_yaw": [
+              0.21860963106155396,
+              0.21105903387069702,
+              0.15944154560565948
+            ]
+          }
+        },
+        "source": "logs\\reference_comparison_20260922\\retry\\rough54_rough_2006.log",
+        "sha256": "7cb3127d1f27ae30a514090e1463ae8690f4f6eca3178cfff85b13cb8db0aee8"
+      }
+    }
+  },
+  "evaluator_hashes": {
+    "scripts/eval_stair_b2w.py": "cd8918810a6c61a1bd754027e4b518a722e284fcdb6bc7068345448a9de25c39",
+    "scripts/eval_stair_suite.py": "e648d13f7d5dfae6d30b9dca6c6605434e765e28207102a0a6044bf6983028e9",
+    "scripts/smoke_b2w.py": "861d28be4023548b1535e1026691417f606f4e1c8d82f357728e7a58e048b92f",
+    "scripts/local_b2w_assets.py": "442a4e67d179f898344295fb09f3a1a2c9eca6f4323d06d8d3c81f8bb08d2d90",
+    "configs/stair_eval_v3.json": "178a4064f872fe5dd71020928e3e7ccf0c4ee5a98e87d1d9527521241881054f"
+  }
+}

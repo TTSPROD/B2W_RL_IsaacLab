@@ -1,0 +1,10 @@
+{
+  "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\artifacts\\upstream\\2026-09-23_model_10000\\upstream_model_10000.pt",
+  "sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+  "flag": "--checkpoint",
+  "source_host": "user@10.126.161.7",
+  "source_run": "upstream_b2w_20000_4gpu_20260922",
+  "iteration": 10000,
+  "upstream_commit": "09f6a9dfdf48f32f38bb851dfa3a7d44db32b270",
+  "runtime_notes": "URDF compatibility adapter, distributed resume, debug visualization disabled"
+}

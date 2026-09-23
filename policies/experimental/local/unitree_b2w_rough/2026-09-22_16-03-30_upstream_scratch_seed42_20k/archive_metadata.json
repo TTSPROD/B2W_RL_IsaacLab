@@ -1,0 +1,19 @@
+{
+  "file": "local/unitree_b2w_rough/2026-09-22_16-03-30_upstream_scratch_seed42_20k/model_1200.pt",
+  "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_16-03-30_upstream_scratch_seed42_20k/model_1200.pt",
+  "location": "local",
+  "sha256": "4be2489ebf2212da7b6e5a2c63a43dba9ea703ef469f9a8da314ff8a097b5e19",
+  "bytes": 5868853,
+  "saved_iteration": 1200,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 42,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [],
+  "config_sha256": {
+    "env.yaml": "7365e9a6270b397acc67025a3731790b284c45c4ad8243fa958192acd9c7598c",
+    "agent.yaml": "49053af1e0bd02ee6bf748a11663391925a52cfd589cc9fc3f07a0cdeb4814e4"
+  }
+}

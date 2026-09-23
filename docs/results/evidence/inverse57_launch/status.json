@@ -1,0 +1,27 @@
+{
+  "phase": "training",
+  "updated_utc": "2026-09-23T15:38:14Z",
+  "deadline_epoch": 1790230730.307084,
+  "training_deadline_epoch": 1790216330.307084,
+  "baseline": {
+    "label": "parent10000",
+    "checkpoint": "/run-output/parent/model_10000.pt",
+    "sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+    "validation": false,
+    "flat_safe": 128,
+    "rough_safe": 1001,
+    "inverse": [
+      93,
+      94
+    ],
+    "rough_gate": false,
+    "stair_cycles": 636,
+    "stair_unsafe": 40,
+    "stair_stop_failed": 77,
+    "stair_passage": 723,
+    "worst_stair": 101,
+    "stair_gate": false
+  },
+  "target_updates": 500,
+  "last_checkpoint": "/run-output/parent/model_10000.pt"
+}

@@ -1,0 +1,21 @@
+{
+  "file": "local/unitree_b2w_rough/2026-09-22_18-04-46_rough_control_2048_20260922_seed54_full/model_398.pt",
+  "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_18-04-46_rough_control_2048_20260922_seed54_full/model_398.pt",
+  "location": "local",
+  "sha256": "cb14515f32ceb9d796d9ec7df3886696290c380c103cadfca266d3ab26e18a30",
+  "bytes": 5867886,
+  "saved_iteration": 398,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-22-rough-finetune.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "af12d8679e63e07374807564a37c644e4534f4d13a42f5ddd12549e26e1e7c38",
+    "agent.yaml": "b2f9099a62220d160e13347a9593a1896907519dc71676cafdcb85933bbb25d2"
+  }
+}

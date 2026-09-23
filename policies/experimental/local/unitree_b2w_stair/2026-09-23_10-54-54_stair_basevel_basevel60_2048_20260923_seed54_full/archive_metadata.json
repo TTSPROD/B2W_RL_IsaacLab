@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-23_10-54-54_stair_basevel_basevel60_2048_20260923_seed54_full/model_398.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_10-54-54_stair_basevel_basevel60_2048_20260923_seed54_full/model_398.pt",
+  "location": "local",
+  "sha256": "245e7c14285f45f40f614e0fecf09090f1d6bf54b9e9bed751e1334bac8a9d81",
+  "bytes": 5886318,
+  "saved_iteration": 398,
+  "actor_inputs": 60,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-23-actor-base-velocity.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "812aee1dbc5312a29dc4105c77ba426c626c83649f512d569822201fa0274fda",
+    "agent.yaml": "411a1e6dde6c60f7eac0da5856a32fe35d4ad2e717845cd46f09a93031879ca4",
+    "stair_parent.json": "7cb8cee881f96e7338827b06f54f2b3fe2367f9d8284a710521e1ce759538b7a"
+  }
+}

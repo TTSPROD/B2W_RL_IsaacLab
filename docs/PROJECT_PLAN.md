@@ -8,7 +8,7 @@
 
 Путь артефакта: train checkpoint → экспорт + manifest контракта → parity test → Isaac evaluation → MuJoCo sim2sim → SDK2 replay/dry-run → испытания робота.
 
-Визуальную проверку в Isaac Sim и sim2sim выполняем локально. После уточнения пользователя первый кандидат для длительного headless обучения — отдельный настольный ПК с RTX 4070 Ti 12 GB, Windows 11 и Ubuntu 26.04 (RAM 32 GB; CPU ещё не уточнён). Для выбранного стека первым проверяем Windows 11; Ubuntu 26.04 не входит в опубликованную матрицу Sim5.1. Ноутбук RTX 4080 Laptop 12 GiB, i9-14900HX, 32 GB RAM — для разработки/проверок и коротких тренировок. Сервер сохраняет копию проекта; перенос туда тренировок зависит от совместимости и измеренной выгоды. [Сравнение и план benchmark](COMPUTE_DECISION.md).
+Локальная RTX4080 Laptop используется для оценки, GUI и выполненных коротких экспериментов. Длительное одобренное inverse57-дообучение идёт на сервере:4GPU×1024 среды. Основной ABI остаётся 57→16. [Актуальный статус](TRAINING_STATUS.md), [вычисления](COMPUTE_DECISION.md).
 
 Используем robot_lab/rl_sar как основной reference. SRU нужен для сравнения рекуррентного контроллера и инженерии интеграции; это другой policy ABI. LauraMQuiros/b2w-rl — исследовательский reference, не исходная реализация нового проекта. Старые проекты на сервере не используем.
 
@@ -28,15 +28,25 @@
 | 5. SDK2 | C++ adapter, estimator, watchdog, logging, state machine | Replay и fault injection, ограниченные стендовые и flat испытания | 3–7 дней + доступ к роботу |
 | 6. Industrial | Замеры лестниц, collision meshes, при необходимости perception/teacher–student | Успех на удержанных реальных геометриях + контролируемый hardware validation | 2–4+ недели |
 
-Сначала получить воспроизводимый baseline и профили; длительные sweep до этого не запускать.
+## Актуальный статус и решение — 23 сентября 2026
+
+Главный актуальный источник: [локальное/серверное обучение и результаты](TRAINING_STATUS.md). Принятой rough/stair политики нет. Локальные rough seeds54–56 и stair control57/basevel60/anchor оценены; серверный upstream завершил 20000 updates. Восемь политик сопоставлены на 72 локальных сценариях с единым протоколом.
+
+Пользователь сохраняет **57 входов → 16 действий**, их порядок, нормировку и смысл. Ранее предложенная stair-v4 с дополнительными входами не реализована и отложена; её обоснование сохранено в [архиве предложения](LOCAL_TRAINING_PLAN.md), но не является разрешением нового запуска.
+
+Текущий одобренный эксперимент — автономный **inverse57 от upstream10000 на четырёх GPU**,4096 сред суммарно. LR1e-4 fixed; inverse35%; половина сред level7–9; rewards и команды неизменны. На снимке 18:41 МСК идёт первый блок 500, результатов дообучения ещё нет. Общий дедлайн 24 сентября 09:18:50 МСК, возможна ранняя остановка; чат не требуется, часовой heartbeat отключён. [Полный протокол](results/2026-09-23-inverse57-overnight-plan.md).
+
+Критерии принятия: ≥95% безопасности каждого rough семейства и inverse≥97/102 на каждом mesh; ≥95% полного лестничного цикла в каждой строке; отдельная validation, export parity и sim2sim. Training reward и сумма эпизодов не заменяют проверку каждой строки. Закрытые stair seeds4101–4104 остаются закрытыми.
+
+По прямому указанию пользователя сохранён [Git-архив экспериментальных политик](../policies/experimental/README.md), включая не принятые и последние сохранённые снимки остановленных runs. Это не релиз и не разрешение управлять роботом.
 
 ## 0. Квалификация вычислительной площадки
 
-Сервер: Ubuntu 22.04.5, 96 logical CPU, 503 GiB RAM, четыре GPU Hopper по 95830 MiB, driver 580.178.04, около 1.6 TiB свободного диска. NVML показывает `NVIDIA Graphics Device`, PCI ID `10de:233f`; точное коммерческое имя не подтверждено. VRAM уже занята другими процессами.
+Сервер: Ubuntu 22.04.5, 96 logical CPU, 503 GiB RAM, четыре GPU Hopper по 95830 MiB, driver 580.178.04, около 1.6 TiB свободного диска. NVML показывает `NVIDIA Graphics Device`, PCI ID `10de:233f`; точное коммерческое имя не подтверждено. Часть VRAM занята чужими процессами, их не останавливать и не вытеснять.
 
-NVIDIA исключает GPU без RT-ядер из поддерживаемых конфигураций Isaac Sim. Поэтому мощность CUDA и объём VRAM недостаточны для выбора сервера. Headless не считать документированным исключением. Проверить аппаратную модель, Vulkan/RTX capabilities, Compatibility Checker и отдельный physics smoke test. Не менять общий драйвер и не останавливать чужие процессы.
+Для точной headless physics/training конфигурации upstream B2W сервер практически квалифицирован: 1/2/4-GPU smoke завершились без OOM, разрешённый 4-GPU run завершил 20000 updates с ExitCode0. Это не квалифицирует GUI/RTX rendering, камеры или другие задачи Isaac Sim. Runtime adapter, образ, mounts и отключённая debug-визуализация входят в воспроизводимый контракт.
 
-Первым проверяем локальный RTX GPU с небольшим числом сред; 12 GiB меньше официальных 16 GB для Lab2.3.2, поэтому работоспособность подтверждается smoke/benchmark, а не названием GPU. Экспериментальный physics-only запуск на текущем сервере допускается как отдельная проверка, без обещания результата. Если ресурсов локально недостаточно, принять решение о совместимом RTX сервере либо оценить другой training backend (например MuJoCo/MJX) отдельным spike; перенос reward/contact модели имеет стоимость и не равен запуску robot_lab. До этого текущий сервер пригоден для хранения материалов и CPU проверок.
+Локальный RTX 4080 Laptop квалифицирован для прежних коротких A/B и evaluation; для v4 повторить memory/throughput probe и проверить sustained работу. RTX 4070 Ti остаётся неподтверждённой площадкой до собственного smoke/профиля. Серверные сведения выше — исторический контекст отдельной линии, не разрешение на новые jobs в рамках локального плана.
 
 ## 1. Контракт политики и модели
 
@@ -64,10 +74,10 @@ Blind policy рассматривать как первый baseline, а не о
 
 ## Быстрое и экономное обучение
 
-1. Single-GPU headless baseline без камер/видео. Локально замерить 256/512/1024/2048 сред, 4096 только при запасе; на квалифицированном сервере дополнительно 8192. Сохранять physics/rollout настройки, выбирать по steps/s, VRAM и времени до качества. Значения — sweep, не гарантия вмещения.
+1. Single-GPU headless без камер/видео. Для v4: smoke 64–256, ресурсный probe 2048/4096; основной кандидат 4096, запасной 2048. Старый sweep не повторять целиком без причины. Выбирать по sustained steps/s, peak VRAM/RAM и времени до качества.
 2. Фиксировать physics dt, policy dt, solver/contact параметры и real-time limits. Ускорение не должно менять задачу или скрывать GPU fallback.
-3. Короткие smoke runs → baseline по 3 seeds → только обоснованные ablations. Начинать с стандартных PPO defaults; сохранять checkpoint, optimizer, curriculum state и нормализацию.
-4. На нескольких GPU сначала независимые seeds/абляции, после — сравнить distributed PPO. Размер общего batch и изменение числа сред явно фиксировать; четыре GPU не означают ускорение в четыре раза.
+3. Smoke → один teacher feasibility seed → student pilot → замороженный рецепт по 3 seeds. Сохранять checkpoint, optimizer, RNG, curriculum и normalization; восстановление состояния сред описать явно.
+4. Локальные train/eval выполнять последовательно. При смене числа сред фиксировать sample budget и PPO batch; распределённое обучение не входит в текущую линию.
 5. Отдельные eval jobs на удержанных seeds, пакетная inference, редкое видео. Локальные asset/compiled caches внутри проекта. Не занимать GPU с чужими задачами без доступного ресурса.
 6. Отчёт: end-to-end время, samples/s, sim/update time, VRAM peak, GPU-hours до порога, success с разбросом seeds. Средний reward не заменяет качество управления.
 
@@ -79,7 +89,7 @@ Blind policy рассматривать как первый baseline, а не о
 |---|---|---|
 | Flat | 100 эпизодов по 20 s на seed; stand, forward/backward, lateral/yaw, stop | ≥99% без падения; RMS vx/vy error ≤0.20 m/s, yaw ≤0.25 rad/s в объявленном диапазоне команд |
 | Rough | ≥100 эпизодов/seed на удержанных terrains и randomizations | ≥95% завершений; tracking, энергозатраты, slip и saturation опубликованы |
-| Stairs | ≥100 проходов на семейство, отдельно up/down | ≥95% без падения/контакта корпуса; нет нарушения limits; успех каждого семейства отдельно |
+| Stairs | ≥128 эпизодов на геометрию, отдельно up/down; проход, остановка, restart | ≥95% безопасных полных циклов в каждой строке; проход/удержание отдельно, нет нарушения limits |
 | Regression | Flat после каждого этапа | Падение success не более 2 п.п.; tracking ухудшение ≤10% |
 | Sim2sim | Те же команды/геометрии и contract | Никаких перестановок/NaN; разрыв success ≤5 п.п. как ориентир |
 | Deployment | 50 Hz inference budget и выбранная частота low-level loop | p99 compute < policy period с запасом; stale data/deadline miss переводят FSM в проверенное безопасное состояние |
@@ -98,12 +108,13 @@ FSM: idle → acquire low-level control → stand preparation → policy → sto
 
 ## Ближайший backlog
 
-- P0: квалифицировать отдельный локальный runtime и B2W headless benchmark; серверный hardware gate нужен до переноса тренировок.
-- P0: снять firmware/SDK mode availability, motor limits и геометрию конкретного B2W; выбрать эталон robot model.
-- P1: создать собственное Isaac Lab extension и автоматический observation/action parity harness.
-- P1: baseline replay + flat benchmark 3 seeds, throughput sweep и runtime lock.
-- P2: rough/stairs curriculum, held-out evaluator, sim2sim.
-- P3: SDK adapter и поэтапный hardware acceptance.
-- P4: замеры промышленных лестниц и решение blind/perceptive по результатам baseline.
+- P0: v4 ABI, target/phase contract, отдельный evaluator и frozen eval manifest; unit checks и smoke. `rough57` неизменен, сервер исключён.
+- P1: один teacher seed, flat goal reach/hold/restart; ≥95% по строкам до лестницы.
+- P2: fixed 14/32 up/down, начальный общий cap P1+P2 = 300; ≥85% по строкам разрешает расширение геометрии.
+- P3: расширенный teacher curriculum/DR, условное продление до 1000; ≥95% по строкам и validation до student.
+- P4: student с доступными входами, distillation + PPO; flat/rough gates для заявленной области.
+- P5: три seeds полного замороженного рецепта teacher→student.
+- P6: отдельное закрытие rough stage, final stair test, export/history parity и MuJoCo sim2sim.
+- После P6: firmware/SDK modes, motor limits, adapter и поэтапный hardware acceptance; затем измеренные промышленные лестницы.
 
-Подробные первичные ссылки и проверенные отличия репозиториев: [training_sources.md](research/training_sources.md), [deployment_sources.md](research/deployment_sources.md). Новое обучение, промышленный terrain generator и SDK adapter — работа следующих этапов, они ещё не реализованы.
+Подробные первичные ссылки: [training_sources.md](research/training_sources.md), [deployment_sources.md](research/deployment_sources.md). Локальные training/eval scripts и генератор широких сплошных маршей уже реализованы; промышленный terrain generator и SDK adapter ещё предстоят. История pilots и основания текущего решения собраны в [пересмотре плана](results/2026-09-22-training-plan-review.md).

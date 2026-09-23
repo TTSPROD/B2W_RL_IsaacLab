@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-22_13-14-25_stair20_4096_equal_samples/model_373.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_13-14-25_stair20_4096_equal_samples/model_373.pt",
+  "location": "local",
+  "sha256": "70cebf1fcbb9d90e63385cfe0398530e4560c45e226798768e3a078f9c76cf20",
+  "bytes": 5867886,
+  "saved_iteration": 373,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-22-4096-env-scaling.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "abdfc1a2ec807687d288168bc0cc816ddf66069a05e57b8579d043fc5c0931bd",
+    "agent.yaml": "cfcc57f0235b884f0fee5d565f475434fc206809f72e66afdb6c0e540581f8eb",
+    "stair_parent.json": "35acab23c31f8d320d44db9b9b6c1dc127566655b291352934adfb8bcd2564b7"
+  }
+}

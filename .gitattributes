@@ -3,6 +3,10 @@ vendor/** -text
 vendor/README.md text eol=lf
 vendor/manifest.json text eol=lf
 *.pt binary
+# Preserve byte hashes of archived configs and evaluation evidence.
+policies/experimental/** -text whitespace=cr-at-eol
+policies/experimental/README.md text eol=lf
+docs/results/evidence/** -text whitespace=cr-at-eol
 *.onnx binary
 *.dae binary
 *.STL binary

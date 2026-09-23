@@ -1,0 +1,21 @@
+{
+  "start_epoch": 1790176730.307084,
+  "deadline_epoch": 1790230730.307084,
+  "train_deadline_epoch": 1790216330.307084,
+  "parent_sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+  "max_updates": 8000,
+  "eval_every": 500,
+  "fixed_lr": 0.0001,
+  "envs_total": 4096,
+  "validation_rough": [
+    52009,
+    52010
+  ],
+  "validation_flat": 51005,
+  "validation_stairs": [
+    53001,
+    53003,
+    53002
+  ],
+  "note": "Validation seeds fixed before training; geometry unchanged; closed seeds 4101\u20134104 unused."
+}

@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-22_11-48-14_stair16_failure_replay/model_448.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_11-48-14_stair16_failure_replay/model_448.pt",
+  "location": "local",
+  "sha256": "66f64ca892a196e031365e5172f8c872b2c8fd122a09ba422e7b2ab8d5a54266",
+  "bytes": 5867886,
+  "saved_iteration": 448,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-22-failure-state-replay.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "1d75c1c4e984ccd039e5a88930b2dbbcc22dfe8d9b3b3452c26495111f5e94fe",
+    "agent.yaml": "8c8a91aa21fc9212892da4ce5b15e0d11a7b52e5cdfe1478ae6341655c571956",
+    "stair_parent.json": "01ce79a56a8de6e4d8f9aa526f9c557a8c00eb378333f051b1b424d8d216fea9"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-23_14-39-04_stair_wheel_head_only_2048_20260923_seed55_full/model_422.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_14-39-04_stair_wheel_head_only_2048_20260923_seed55_full/model_422.pt",
+  "location": "local",
+  "sha256": "7da0cb1c58855cab60a5ec11b6dd3edcc4a3461b8e69c8bd9e8595d5423b3aca",
+  "bytes": 4311552,
+  "saved_iteration": 422,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 55,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-23-wheel-head-only.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "0f09ccc5a903241bba817523e3a6e0905c2223ee143089e0b84c1fe3f999f22a",
+    "agent.yaml": "43bc1c1c79981626fc17da69b7bde0855c6fe7ca97ed13e710e93fd1bc1e685a",
+    "stair_parent.json": "95c5cc2f6bf092fbec6f05e968902c700d4f6c98a42029ff99a0a49a79fec703"
+  }
+}

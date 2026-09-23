@@ -1,0 +1,18 @@
+# Stair cycle v3: парный A/B pilot
+
+22 сентября 2026. Локальная RTX 4080 Laptop, Isaac Sim 5.1 / Isaac Lab 2.3.2. Parent — rough seed 54 `model_349.pt`, SHA-256 `916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf`.
+
+Проверка общего stop protocol: 2 CPU fixtures прошли. Smoke v3: 4096 сред × 1 PPO update, reset probes 410/410 landing starts и 204 inverse rough, без опасных состояний в первые 10 шагов; actor 57→16. Затем обучены четыре run от одного parent, каждый 4096 сред × 25 новых PPO updates = 2 457 600 transitions. Общий бюджет — 9 830 400 transitions. Во всех run: protocol v3, 30/30% подъём/спуск, 10% landing starts, 15% flat, 10% random rough, 5% inverse rough, ступени 5–16 см / 30–42 см, фиксированный exploration std 0.1 и LR 1e-4. A использует резкую остановку 0.7→0; B — торможение на последних 1.2 м до 0.25 м/с перед остановкой.
+
+| Run | Checkpoint `model_373.pt` | SHA-256 | Rough 2006, безопасно всего / inverse | Rough 2005, безопасно всего / inverse |
+|---|---|---|---|---|
+| A/54 | `2026-09-22_14-37-29_v3_A_seed54` | `d6b2a917bb9d98ebc0a936c8a3d249e620b6bb64bb5d7ae714c5d01eecd7421c` | 508/512; 99/102 | не проверялся после отказа A/55 |
+| B/54 | `2026-09-22_14-40-04_v3_B_seed54` | `a4ce0e883e6b7756bcbfa374513ea62499e57902a43d5442361d363729c347f3` | 501/512; 97/102 | 505/512; 99/102 |
+| A/55 | `2026-09-22_14-41-49_v3_A_seed55` | `1b411f798b75d27be59bdf7ca305fde2325214454d5a8a68e13589ab9aa3a022` | 496/512; 92/102 | не запускался: отказ на 2006 |
+| B/55 | `2026-09-22_14-43-35_v3_B_seed55` | `fe567f617e5d9323e29e3e24b0e4edc6866c895b6a7b10c5ec78fbbe97ec7e83` | 502/512; 97/102 | 502/512; 96/102 |
+
+Контрольный parent на 2006: 506/512 всего и 96/102 inverse. Критерий для кандидата: каждое семейство ≥95%, inverse ≥97/102, общая безопасность не хуже parent более 2 п.п. и tracking не хуже более 10% по компоненте. A/55 не прошёл inverse на 2006. B/54 прошёл оба rough seeds; B/55 не прошёл inverse на 2005. Для B/54 и B/55 на 2006 семейство boxes дало 98/103, что выше 95%. Логи: `logs/eval_v3_{A54,B54,A55,B55}_rough2006_tilt03.log`, `logs/eval_v3_{B54,B55}_rough2005_tilt03.log`. Checkpoints и индивидуальные `stair_parent.json` лежат в указанных каталогах `logs/rsl_rl/unitree_b2w_stair/`.
+
+Первоначально rough evaluation была ошибочно запущена без `--reset-tilt-limit 0.3`; даже parent при этом дал 101/102 unsafe на обычных ступенях и 101/102 unsafe на inverse. После восстановления исходного параметра parent воспроизвёл 96/102 inverse. Результаты ошибочного запуска в решение не включены; его логи сохранены с именами без суффикса `_tilt03`.
+
+**Решение:** ни A, ни B не прошёл rough gate на двух training seeds. Не выбирать удачный seed 54, не запускать seed 56, не продлевать PPO автоматически. Stair suite, flat regression, закрытые stair seeds, export parity и sim2sim для этих кандидатов не запускались. Основным остаётся rough parent. Следующий эксперимент требует отдельной гипотезы и заранее зафиксированного протокола; reward обучения не служит основанием для принятия.

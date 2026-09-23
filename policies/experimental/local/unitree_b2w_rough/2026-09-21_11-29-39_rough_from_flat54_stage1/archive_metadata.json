@@ -1,0 +1,36 @@
+{
+  "file": "local/unitree_b2w_rough/2026-09-21_11-29-39_rough_from_flat54_stage1/model_349.pt",
+  "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_11-29-39_rough_from_flat54_stage1/model_349.pt",
+  "location": "local",
+  "sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+  "bytes": 5867886,
+  "saved_iteration": 349,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-21-continued-training.md",
+    "docs/results/2026-09-21-local-4080.md",
+    "docs/results/2026-09-22-4096-env-scaling.md",
+    "docs/results/2026-09-22-brake-profile.md",
+    "docs/results/2026-09-22-expanded-stair-range.md",
+    "docs/results/2026-09-22-failure-state-replay.md",
+    "docs/results/2026-09-22-inverse-replay.md",
+    "docs/results/2026-09-22-landing-prob05.md",
+    "docs/results/2026-09-22-landing-seed55.md",
+    "docs/results/2026-09-22-landing-start.md",
+    "docs/results/2026-09-22-longer-budget.md",
+    "docs/results/2026-09-22-parallel-2048-diagnostics.md",
+    "docs/results/2026-09-22-safe-passage.md",
+    "docs/results/2026-09-22-strict-stop-deadline.md",
+    "docs/results/2026-09-22-training-plan-review.md",
+    "docs/results/2026-09-22-v3-ab-training.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "7c1dc861d8560ef11401c6f0410533ea2cd4f2cbe88179192fcfbd204712ec27",
+    "agent.yaml": "40124cb1c4f63599ec099e8a91ece08e83f5803e2e738ff6e0724fc98f5c201f"
+  }
+}

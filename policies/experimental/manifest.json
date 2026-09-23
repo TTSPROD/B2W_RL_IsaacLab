@@ -1,0 +1,1663 @@
+{
+  "schema": "b2w_experimental_policy_archive_v1",
+  "snapshot_date": "2026-09-23",
+  "note": "Not approved for deployment. Presence does not prove completed training or passing evaluation. Smoke checkpoints and intermediate periodic saves are not duplicated.",
+  "reference": {
+    "file": "vendor/rl_sar/policy/b2w/robot_lab/policy.pt",
+    "sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+    "status": "external_reference_not_project_trained"
+  },
+  "policies": [
+    {
+      "file": "local/unitree_b2w_flat/2026-09-21_11-09-49_pilot_4080_256/model_1.pt",
+      "source": "logs/rsl_rl/unitree_b2w_flat/2026-09-21_11-09-49_pilot_4080_256/model_1.pt",
+      "location": "local",
+      "sha256": "9c6d198e138549b4f85e22b006a6661f4c7605c019e63bc58c7b7fca8e941aff",
+      "bytes": 4719127,
+      "saved_iteration": 1,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 42,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "14246706335729a69915e6e5a5c35d6c20933c472356bef051a4f49a465e37cf",
+        "agent.yaml": "4d978ddcb02a4246868ea3eff84651be6ef76f40a002d1d1d5f5e3821d1aa470"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_flat/2026-09-21_11-12-48_pilot_4080_1024/model_9.pt",
+      "source": "logs/rsl_rl/unitree_b2w_flat/2026-09-21_11-12-48_pilot_4080_1024/model_9.pt",
+      "location": "local",
+      "sha256": "8583b570907d953610c2dd171496c1307991b29b1bc5a5b1bee2dc242992360a",
+      "bytes": 4719127,
+      "saved_iteration": 9,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 42,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "1d31929b6a8ee28ca8b21dfb66eaa7062aa31b75a68952b534e10aead12eaf66",
+        "agent.yaml": "0a60015e55f860b8806c86cdde6ad26619d50a58e1eb6dacac1b5174a7289014"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_flat/2026-09-21_11-15-37_flat_seed42_4080/model_0.pt",
+      "source": "logs/rsl_rl/unitree_b2w_flat/2026-09-21_11-15-37_flat_seed42_4080/model_0.pt",
+      "location": "local",
+      "sha256": "214b826719943b42c8b6bc09d98c71e4893b7577b13bdbdeb8bc097369c272d0",
+      "bytes": 4719127,
+      "saved_iteration": 0,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 42,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "b2ccf7a1312e631725617eaa0c64a0dae1b684ceb62bdd9ef1594514ebc95d1e",
+        "agent.yaml": "d9a6ed29ba31ab31de9decb68d540d6450816230f81daf7545356e7bb8b78d19"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_11-26-48_rough_warmstart_pilot/model_9.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_11-26-48_rough_warmstart_pilot/model_9.pt",
+      "location": "local",
+      "sha256": "d92c52738fea76d44711ceddfa7021cf40d398ddf97dab5202a115b64a199ef1",
+      "bytes": 5867168,
+      "saved_iteration": 9,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "77503444781a0e79222f84fbf73a48a105b919fe3964f958a1e4c449f7567a93",
+        "agent.yaml": "951794b768a5dc0e7a5474344c0f0a878dc7e04eff4978850fd81487a02b8fc5"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_11-28-19_rough_warmstart_1024_pilot/model_9.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_11-28-19_rough_warmstart_1024_pilot/model_9.pt",
+      "location": "local",
+      "sha256": "69bf3f212945eaa5540530f430fd7a0fc355289ecfcfc6c6311699496850b3d0",
+      "bytes": 5867168,
+      "saved_iteration": 9,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "1cfe9f7686c7ddf7cb3427908da7010d07676aeef29b50e46b0319660f28d8d4",
+        "agent.yaml": "4a153c6ea64f73a61758d4a429c92191d3c9a102fe55512ea886ebe4e16dc286"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_11-29-39_rough_from_flat54_stage1/model_349.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_11-29-39_rough_from_flat54_stage1/model_349.pt",
+      "location": "local",
+      "sha256": "916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf",
+      "bytes": 5867886,
+      "saved_iteration": 349,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md",
+        "docs/results/2026-09-21-local-4080.md",
+        "docs/results/2026-09-22-4096-env-scaling.md",
+        "docs/results/2026-09-22-brake-profile.md",
+        "docs/results/2026-09-22-expanded-stair-range.md",
+        "docs/results/2026-09-22-failure-state-replay.md",
+        "docs/results/2026-09-22-inverse-replay.md",
+        "docs/results/2026-09-22-landing-prob05.md",
+        "docs/results/2026-09-22-landing-seed55.md",
+        "docs/results/2026-09-22-landing-start.md",
+        "docs/results/2026-09-22-longer-budget.md",
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md",
+        "docs/results/2026-09-22-safe-passage.md",
+        "docs/results/2026-09-22-strict-stop-deadline.md",
+        "docs/results/2026-09-22-training-plan-review.md",
+        "docs/results/2026-09-22-v3-ab-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "7c1dc861d8560ef11401c6f0410533ea2cd4f2cbe88179192fcfbd204712ec27",
+        "agent.yaml": "40124cb1c4f63599ec099e8a91ece08e83f5803e2e738ff6e0724fc98f5c201f"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_12-00-49_rough_tilt03_stage2/model_548.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_12-00-49_rough_tilt03_stage2/model_548.pt",
+      "location": "local",
+      "sha256": "d7460958e4652f327eb45e43ec78257994fd480ca555163ea52ae0ab9a33bdb8",
+      "bytes": 5868843,
+      "saved_iteration": 548,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-local-4080.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "21870d6512b4843142d2008e5eea63b34053cb2e3ca7321c8e71ccfd66f59c76",
+        "agent.yaml": "d7e4d5d1a84934eeb2db9975a4aecbb284eb0f32f9b35e90c554e2451329264c"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_12-37-33_rough_all_levels_stage3/model_548.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_12-37-33_rough_all_levels_stage3/model_548.pt",
+      "location": "local",
+      "sha256": "1f7340bd6f2f87cbb6a3afe500fdbafc00221bf40b7dac321b3e8361ddacaaf4",
+      "bytes": 5868843,
+      "saved_iteration": 548,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-local-4080.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "8efb6a19e2c04a37943ca1e61af4a6a6e097c4fed39f916fe23211cd04ac338d",
+        "agent.yaml": "1749d803a066d431369fbfb3040f4112fe4f423e599db2f2014655fe5695d72d"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_13-56-09_rough_from_flat54_seed55_stage1/model_349.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_13-56-09_rough_from_flat54_seed55_stage1/model_349.pt",
+      "location": "local",
+      "sha256": "765fe2a4cd1438ca3e81c387be570473c5dd3f9db656c4f064ec7a903dd802ed",
+      "bytes": 5867886,
+      "saved_iteration": 349,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-local-4080.md",
+        "docs/results/2026-09-22-rough-finetune.md",
+        "docs/results/2026-09-23-actor-base-velocity.md",
+        "docs/results/2026-09-23-command-profile-screen.md",
+        "docs/results/2026-09-23-rough-final-selection.md",
+        "docs/results/2026-09-23-stair-ascent-focus.md",
+        "docs/results/2026-09-23-stair-replay-commands.md",
+        "docs/results/2026-09-23-stop-pulse-screen.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "28dd9404fca755907226ed31154e65674917e163fbb96efcba4ea529639c1614",
+        "agent.yaml": "6b2a06a3c50bbc999e156e6795f669665c1dde33ae76fd46c3859a8c97e17547"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_14-11-55_rough_from_flat54_seed56_stage1/model_349.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_14-11-55_rough_from_flat54_seed56_stage1/model_349.pt",
+      "location": "local",
+      "sha256": "64a9646efc52285934170efc623753550f497c34f4e1ab8536a9403c144f1465",
+      "bytes": 5867886,
+      "saved_iteration": 349,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 56,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-local-4080.md",
+        "docs/results/2026-09-23-rough-final-selection.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "86ccce371f0e61db855f8d63146dbb4df449e5fc3507787ad59b865a1b43bf3b",
+        "agent.yaml": "80dc2d78f9e1342d3f5633ce72775451533685c391e87412848d86a4cf013ead"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-21_14-27-34_rough_scratch_seed54_equal_budget/model_300.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-21_14-27-34_rough_scratch_seed54_equal_budget/model_300.pt",
+      "location": "local",
+      "sha256": "60b0781eb16ece9259c04f808dc63d174a2a3c989fe9692606ea00eac98893be",
+      "bytes": 5868779,
+      "saved_iteration": 300,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "d155262154a5bbc952495776540395ee2525e9e6bf730dbf7f4c98d2a22560e8",
+        "agent.yaml": "79509557a9fe82bbf3bdd42a0de67f8979689b3cbce3f8b4df50e05b75f6ff26"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-22_16-03-30_upstream_scratch_seed42_20k/model_1200.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_16-03-30_upstream_scratch_seed42_20k/model_1200.pt",
+      "location": "local",
+      "sha256": "4be2489ebf2212da7b6e5a2c63a43dba9ea703ef469f9a8da314ff8a097b5e19",
+      "bytes": 5868853,
+      "saved_iteration": 1200,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 42,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "7365e9a6270b397acc67025a3731790b284c45c4ad8243fa958192acd9c7598c",
+        "agent.yaml": "49053af1e0bd02ee6bf748a11663391925a52cfd589cc9fc3f07a0cdeb4814e4"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-22_18-00-37_rough_inverse25_2048_20260922_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_18-00-37_rough_inverse25_2048_20260922_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "e5319b8fea9f3e409dfc33e1d61a96d140989bcf5dcfb1409d69d78f36962749",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-rough-finetune.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "1b114e914ee6d366f0d7b8ceae6465ece6a525fa840f49a3f41ab4a2acd483f0",
+        "agent.yaml": "ddbbe26dfa0c4f567f183dcfa12813e9e50a3b838421d04ca0119c7525598df9"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-22_18-00-37_rough_inverse25_2048_20260922_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_18-00-37_rough_inverse25_2048_20260922_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "1d2334922e3e36bb21f532d52bd4c807f1bcbb1e9b04f4a6e3934a25231f0c87",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-rough-finetune.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "feeebf9092527d99b84f6b1b77dc4002f05b989f42a93471d10b0d7d7772f78f",
+        "agent.yaml": "9db0505b31bc7978227d74e29b88d2aa76e3abf237ce2d6ecab7eb37e45645e5"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-22_18-04-46_rough_control_2048_20260922_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_18-04-46_rough_control_2048_20260922_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "cb14515f32ceb9d796d9ec7df3886696290c380c103cadfca266d3ab26e18a30",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-rough-finetune.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "af12d8679e63e07374807564a37c644e4534f4d13a42f5ddd12549e26e1e7c38",
+        "agent.yaml": "b2f9099a62220d160e13347a9593a1896907519dc71676cafdcb85933bbb25d2"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_rough/2026-09-22_18-04-46_rough_control_2048_20260922_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_rough/2026-09-22_18-04-46_rough_control_2048_20260922_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "b6c5e21d7d4a5a0081bbfa930ec86064c473292d772074d7c951a7a8b0186614",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-rough-finetune.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "0ecbc77e95f98ad55eaef5eb533c4ff4e31391517aae741f9a68e35b5ced09fa",
+        "agent.yaml": "0e935923ec21d3fa98bb1078c16b2fc03fe70a1077b698d274672074ebc43a81"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_15-15-36_stair1_from_rough54/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_15-15-36_stair1_from_rough54/model_448.pt",
+      "location": "local",
+      "sha256": "c60ce1de86c5c6a6fa4c581cf3624f96f5635da6f389a8798433ee51b903194d",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 64,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-stair-benchmark.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "59151877bee4305a5a88fa50bb29cbf4c3d78c9bfe28c16244c880311ee3770d",
+        "agent.yaml": "1377078aeec8dd8519536205e968731a93f378b3d654ff0f0a4c1a20244c7745",
+        "stair_parent.json": "8bd04b5b06dc88a60564af887351834fc1fe7a6f6b31a63cf7c8cc96f03d2fd0"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_15-30-15_stair2_safe_replay/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_15-30-15_stair2_safe_replay/model_448.pt",
+      "location": "local",
+      "sha256": "439b001bfb224baef87e8c25bfa12a4feb936ef5d9cb417a6eb1ee3d07b0b3f7",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 65,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-stair-benchmark.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "b890baf6ac7a7dab66360631ba7dacf2c401df6fd0881a3d5b0528cd7d0f16a4",
+        "agent.yaml": "c8dc9b64f4f10072299b8d7b2746b3ba434332d3c9007df640d3eafbe549025b",
+        "stair_parent.json": "bfcd2701bb5bc542b7e0e5c082f4b26a7d5355e66f53b764969e35816d8abc1c"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_16-10-58_stair3_landing_stability/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_16-10-58_stair3_landing_stability/model_448.pt",
+      "location": "local",
+      "sha256": "bc52554af504fe733420c82869b627c68d374b620a14f1ced9af074ef1e934bd",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "34b9a1c709cbf5948df7d86e52fb1b2a405ad6b2d9fc338a61b280b200708e05",
+        "agent.yaml": "75d05594ca060cabfbf76a2a4799c6b21fe5f9b7cacfd65fa8938120996b6f70",
+        "stair_parent.json": "07cdc782732e6c52c7171e300ff30747b53695518d8a56becfcf6f455b10b778"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_16-23-18_stair4_stop_hold/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_16-23-18_stair4_stop_hold/model_448.pt",
+      "location": "local",
+      "sha256": "a162538c1bde60a164d818d55d49e5dabd26911195fdd5b78870bd4caf2997c3",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "ea75ceeea34c95f45250dcb82b3c72d5922e39f9eac34dadf9db8a8fda424f0c",
+        "agent.yaml": "b33fb94408ce972c52e23e6c288c1789cdb8481bfbbe0607b1d059d57605518b",
+        "stair_parent.json": "b5a3122b806e0cb02c4b3cd06e7f360e899620fae52077e8e6a7faa8a86fca0c"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_16-31-22_stair5_full_cycle/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_16-31-22_stair5_full_cycle/model_448.pt",
+      "location": "local",
+      "sha256": "bf204c72f7f2a0dcaadcc2f0c762e2bd3fe3f26a116adecee8901122bdd39b1e",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "922a395414c42847a97a7319897ae4a58e78b0360f21a3b9a6be311138b5a790",
+        "agent.yaml": "33759641cb1681773864cde961daea8d4d3b32d88255e529f178d0ad3c10f02d",
+        "stair_parent.json": "1a553b255acbe48cde52770def3a0a38868d8c1ea989c1c095e021a34affc3a0"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_16-46-16_stair6_replay30/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_16-46-16_stair6_replay30/model_448.pt",
+      "location": "local",
+      "sha256": "243ef0c848acd2a92b8fb2e7ba139360e59d17c8a5ff88db2ca78f99b50cc12b",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "583451a8a5f88aba6db8928df26f4f47fcfc2fcb5ed62590cf55f0224b5ec606",
+        "agent.yaml": "dba5d45bd0a6ecb3c0b8659ed4736941245a2317eb86ac5458165f413c49075b",
+        "stair_parent.json": "172a7a7380a291ab612ff25f759c7271a9b493a7758457f047d9fa3bd147a49b"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_16-59-05_stair7_stopspeed6/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_16-59-05_stair7_stopspeed6/model_448.pt",
+      "location": "local",
+      "sha256": "310f34eb0ccfaa064e831aedabedcea18eb849b1b8a1bfc7a5d4efa5f2718f56",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "89ee45d019daf9c18d8fb468e4a6801682030e594e5179b188645b31a8acb5ad",
+        "agent.yaml": "637303c727c462104c08d489e01b49a788d101137646c71ad8f2e0d9791ef19d",
+        "stair_parent.json": "400547b914c8c1dfd34580ad8e83d6f3858f36cc21140f9d77203a7bcd8391bc"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_17-32-17_stair8_approach05/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_17-32-17_stair8_approach05/model_448.pt",
+      "location": "local",
+      "sha256": "d63bbce220c657322377816eb70df7186761c62db9bbf86be98697d486c146cb",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "f2cfea90724e85f3384e6a33642b444c084931c0e4b2bb962a6236da51c5eb4e",
+        "agent.yaml": "ee3851260ad2e6b904fcbcae3a89720a6ff5ad94a93cc6558f0af187c13f6502",
+        "stair_parent.json": "3db761a0464f635f66f7e86f35ba5bb6629b256d277cd42eeefe36553b1ad78e"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-21_17-45-02_stair9_up50/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-21_17-45-02_stair9_up50/model_448.pt",
+      "location": "local",
+      "sha256": "80023487f9d178135dd7ce1a17cab55f3409f70ecade4c6bcf68b81e8aa47668",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-21-continued-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "3d635f47d439848aac6db2f344836d7bb5d9213c882a1fef88e987d3f7e44602",
+        "agent.yaml": "9b17fcc3cbc0ade71bf767635d5a61347f6cafaea72aecd735685dc6f2627580",
+        "stair_parent.json": "b698dad4afc49715c2525619f50f504e5c2a1581236f631809edde80876810ca"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_09-40-25_stair10_landing_control/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_09-40-25_stair10_landing_control/model_448.pt",
+      "location": "local",
+      "sha256": "1b4b2e705dfc3dbb3ffa02276eb054b571c46c48385eb01a28b2de53e5d42f0c",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-landing-start.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "35a1ac5726f04b0ea6b895dbf8101f26c65c1d963bbedbf191cab9a3811ff9d5",
+        "agent.yaml": "b537caec28141911f8c353941bb9ff10f41cb51974a661cb7d5a53afe213fdae",
+        "stair_parent.json": "095ebab832da2389b82dad5a66a9101dbe91492553c97bd724783b500dc94f84"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_09-43-33_stair10_landing_start/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_09-43-33_stair10_landing_start/model_448.pt",
+      "location": "local",
+      "sha256": "81bda529cbb3d3913619b85e6bd808c1fa372c21e47f3e42066d9a1283445907",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-landing-start.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "40b366e9b0ef09eb884d8aacb929a77c3093b93a1a55270e058652ec6f19680c",
+        "agent.yaml": "6e360da71b214f5d6692e8bbbc3725fe02a2cf74ec2890bd69398c7e902fb02c",
+        "stair_parent.json": "54541d85d61f7b476610fd98aa6e5705defe366ea230697fa4e295e3ebcfbb95"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_10-13-30_stair11_prob05/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_10-13-30_stair11_prob05/model_448.pt",
+      "location": "local",
+      "sha256": "10c7ce8a292c1d688f30333042c209bee7d7311c79560acb023e8ae4a0c43a76",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-landing-prob05.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "d8d6b4c8d92ffacc100b70a22b8c478ed22592cfe9ba679af72380145cfd24d2",
+        "agent.yaml": "e22402b64ec9369b491cc548fa8f594f1116353e3abb1866b0c61485394d584f",
+        "stair_parent.json": "c25f99218b2f303af87ccc001b51d008d857f21e029712c6fe51c27d7bdee106"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_10-30-15_stair12_landing_seed55/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_10-30-15_stair12_landing_seed55/model_448.pt",
+      "location": "local",
+      "sha256": "f809e1d216afab0ca1d84301d6910d143399f381ea4eb78ea667503316307ae4",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-landing-seed55.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "339fcc78092785c72a05774718c1329185369062e1cf7a6bb780ec52830e5a25",
+        "agent.yaml": "04c40035e349ba7838b0e88012fd36b22e1c79789ae407895da5ca0cdd232edb",
+        "stair_parent.json": "54541d85d61f7b476610fd98aa6e5705defe366ea230697fa4e295e3ebcfbb95"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_10-46-16_stair13_expanded/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_10-46-16_stair13_expanded/model_448.pt",
+      "location": "local",
+      "sha256": "7cf76fd5f84f1f54569b66468f8879721b5a4f87580ea51d8e960f6bf1128b1d",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-expanded-stair-range.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "4842b162f132b32da048060e8cfbc4e09fd87f2abe6f310f8f222e6ff4f09171",
+        "agent.yaml": "e6847f302003b41b06a1561a54eee2690b052c91b296142b57cb2667fb654f2e",
+        "stair_parent.json": "51cea63c5a6ebc36aa39d4f009df36e8df43b95ef5ef3162f067369291bca6c4"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_10-56-25_stair14_inverse/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_10-56-25_stair14_inverse/model_448.pt",
+      "location": "local",
+      "sha256": "44feec317fa3adcf11677944f53a24af15cd24e04027955c38f41f22b7d06da1",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-inverse-replay.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "b2d1a45986143ba53380f27a284c250289ba704e55ede52a9772c6a02299729d",
+        "agent.yaml": "18e2b7f047c8e31b51c073a2c5a99b3a96266bd9f6ac63bd8960adbb46c74a10",
+        "stair_parent.json": "10f0c0f6540325049eb2d911b11ff10f71ae7c03aefda27b025ed0b9284b1b07"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_11-15-30_stair15_safe_passage/model_375.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_11-15-30_stair15_safe_passage/model_375.pt",
+      "location": "local",
+      "sha256": "4040929b2f361b33c4e3685196dcde0f669dec1c2a9f6cac74f78269ff7c35e6",
+      "bytes": 5867886,
+      "saved_iteration": 375,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [],
+      "config_sha256": {
+        "env.yaml": "f10d46b41d61d8bde72b9b91b4f96bf4cc87986983fb7232e78f89d8a0b7d0ef",
+        "agent.yaml": "8e3a0e83165e061f4899c01bbfc17eb9e89bf5f2f49a91b5ae538d9be69e8df2",
+        "stair_parent.json": "1beb8ec93d3c3fe30eae2099a5893927fd0a63ae12851e03d43c3ad45e9b6f92"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_11-18-13_stair15_safe_passage_v2/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_11-18-13_stair15_safe_passage_v2/model_448.pt",
+      "location": "local",
+      "sha256": "b31549634ccbb54c30e80efa33758e45dd6d10331ece69c868a010e867d2da3d",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-safe-passage.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "0074d25dd87a7178aba8d35c58317ad56d1ff7275bc26a991367f2c9dd135277",
+        "agent.yaml": "1eb5ed0bf3c403bb660add7020f684fcba27bebc82ad78b71fce225684db59fa",
+        "stair_parent.json": "1beb8ec93d3c3fe30eae2099a5893927fd0a63ae12851e03d43c3ad45e9b6f92"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_11-48-14_stair16_failure_replay/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_11-48-14_stair16_failure_replay/model_448.pt",
+      "location": "local",
+      "sha256": "66f64ca892a196e031365e5172f8c872b2c8fd122a09ba422e7b2ab8d5a54266",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-failure-state-replay.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "1d75c1c4e984ccd039e5a88930b2dbbcc22dfe8d9b3b3452c26495111f5e94fe",
+        "agent.yaml": "8c8a91aa21fc9212892da4ce5b15e0d11a7b52e5cdfe1478ae6341655c571956",
+        "stair_parent.json": "01ce79a56a8de6e4d8f9aa526f9c557a8c00eb378333f051b1b424d8d216fea9"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_12-04-44_stair17_long_budget/model_548.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_12-04-44_stair17_long_budget/model_548.pt",
+      "location": "local",
+      "sha256": "18fe0d2cf86bc4b2442ab967493c938e34b7f95c3856eb466eb6e8cb6d11277f",
+      "bytes": 5867886,
+      "saved_iteration": 548,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-longer-budget.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "651ac2c0d87ce07528d4bc6a31ddbe8b82552b69cdb91e6f49c250ea347c6363",
+        "agent.yaml": "13080a9a24ea1049f8276069af303c4083871e60bfa2c781a51ddd16fa4cf879",
+        "stair_parent.json": "e1570d5b05f0f11bb9a907a6887a13d4432e43573bfb952cfd0e8148883c36c5"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_12-39-08_stair18_strict_stop/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_12-39-08_stair18_strict_stop/model_448.pt",
+      "location": "local",
+      "sha256": "1ffe886ddd3efbedcda1c0e2b0f70ed7afaa91d0c55ce4d3ebebeaa537efcbf0",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-strict-stop-deadline.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "1039414435e9282b60a0406985c6ef29cf3acdb19ba9d05ce7387da3990d36a3",
+        "agent.yaml": "800729b5f0cbd6ecfb455898a162cd2ce38a2bdbc4ac7e07370089ef0f123227",
+        "stair_parent.json": "c1cb5c903591e3d2990f4df9ac66fb60d808e6bd688544bd544f826ccc3d42b6"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_13-04-56_stair19_brake/model_448.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_13-04-56_stair19_brake/model_448.pt",
+      "location": "local",
+      "sha256": "492abae7405b4334ad868df50cd0dd444daa3e1862ab4465d5f1e1cd62d3dbfa",
+      "bytes": 5867886,
+      "saved_iteration": 448,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-brake-profile.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "b44ce64748080f0ed93748e85e955df538f166280d0bb66fca05a02090cd7b15",
+        "agent.yaml": "65d3b1088af6363ed884f6c6886535ba51d150cd34b3a5b36d723e5ed8d58784",
+        "stair_parent.json": "35acab23c31f8d320d44db9b9b6c1dc127566655b291352934adfb8bcd2564b7"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_13-14-25_stair20_4096_equal_samples/model_373.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_13-14-25_stair20_4096_equal_samples/model_373.pt",
+      "location": "local",
+      "sha256": "70cebf1fcbb9d90e63385cfe0398530e4560c45e226798768e3a078f9c76cf20",
+      "bytes": 5867886,
+      "saved_iteration": 373,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-4096-env-scaling.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "abdfc1a2ec807687d288168bc0cc816ddf66069a05e57b8579d043fc5c0931bd",
+        "agent.yaml": "cfcc57f0235b884f0fee5d565f475434fc206809f72e66afdb6c0e540581f8eb",
+        "stair_parent.json": "35acab23c31f8d320d44db9b9b6c1dc127566655b291352934adfb8bcd2564b7"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_14-37-29_v3_A_seed54/model_373.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_14-37-29_v3_A_seed54/model_373.pt",
+      "location": "local",
+      "sha256": "d6b2a917bb9d98ebc0a936c8a3d249e620b6bb64bb5d7ae714c5d01eecd7421c",
+      "bytes": 5867886,
+      "saved_iteration": 373,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-v3-ab-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "14116d5f58d28c4c478b5a639435d718883d8f83b6b76359d4c3ad10f4f67a6e",
+        "agent.yaml": "89c8521cbbabd2109d878bcf418463a37507b1263489b06945f4479eb5d70d25",
+        "stair_parent.json": "1052e36916c0a45d1baf700569355fffd87e70209a2f372e91a112294cf84fe5"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_14-40-04_v3_B_seed54/model_373.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_14-40-04_v3_B_seed54/model_373.pt",
+      "location": "local",
+      "sha256": "a4ce0e883e6b7756bcbfa374513ea62499e57902a43d5442361d363729c347f3",
+      "bytes": 5867886,
+      "saved_iteration": 373,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-v3-ab-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "b22548af9959ad0c28ded5d6b47ba22a7ec5d058323bd4432024f52f9db07d99",
+        "agent.yaml": "2193a29e9481d51df442daf365b69fa2d8aa7b64cde5960e057ff864522fae9f",
+        "stair_parent.json": "be3ca821e951a398dbea688da2e684d80b228e2dc25a1e868600c85e8db1a6df"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_14-41-49_v3_A_seed55/model_373.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_14-41-49_v3_A_seed55/model_373.pt",
+      "location": "local",
+      "sha256": "1b411f798b75d27be59bdf7ca305fde2325214454d5a8a68e13589ab9aa3a022",
+      "bytes": 5867886,
+      "saved_iteration": 373,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-v3-ab-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "f8548b20516ff6109d589a793920d9c261f4e4fad7e327f0c722248afe42fde2",
+        "agent.yaml": "2ceec46c4a6aee60685cd5de78a70fe5240e9325ed63003d19a641e2bb5a3dcd",
+        "stair_parent.json": "1052e36916c0a45d1baf700569355fffd87e70209a2f372e91a112294cf84fe5"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_14-43-35_v3_B_seed55/model_373.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_14-43-35_v3_B_seed55/model_373.pt",
+      "location": "local",
+      "sha256": "fe567f617e5d9323e29e3e24b0e4edc6866c895b6a7b10c5ec78fbbe97ec7e83",
+      "bytes": 5867886,
+      "saved_iteration": 373,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-v3-ab-training.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "873ad58eb4975b4ad914f5b16dec0675bf8961234284fb02b69faeb0efb10bcc",
+        "agent.yaml": "0ad193598f3d6b81210a2a05c3981cf16212a41de800b11a20f3ab250569aa84",
+        "stair_parent.json": "be3ca821e951a398dbea688da2e684d80b228e2dc25a1e868600c85e8db1a6df"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-00-17_v3_2048_control_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-00-17_v3_2048_control_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "9d783eb3f9e012e0780c3c3ec37008bd6ba3091a727108f05749048ce2d0d953",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "0c8aad122cbc084b5b4bef20ef12cdd0dcd9ee03774175b3379d78b6ef5c7c47",
+        "agent.yaml": "2740a9a5fe4df09f2e50d934ca9d6f579e96c7e3f143abdc3f16bc9cb76ccc7b",
+        "stair_parent.json": "be3ca821e951a398dbea688da2e684d80b228e2dc25a1e868600c85e8db1a6df"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-00-17_v3_2048_control_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-00-17_v3_2048_control_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "61f5c01eae1616b427d4ceded936a6416fd827442ec72e78e7321f3afb1d41ec",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "d51ef51642ff8818c9eb1f9f46ee37022a7ac538a9e3c0f433fac22dd6d1c987",
+        "agent.yaml": "1a1f74ce2a3ac60c92f203413d9d2cc72f375c3549d742802c869c8165a735fc",
+        "stair_parent.json": "be3ca821e951a398dbea688da2e684d80b228e2dc25a1e868600c85e8db1a6df"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-04-14_v3_2048_passage_bonus_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-04-14_v3_2048_passage_bonus_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "21baa1502c32a3c2b6819dd3ed57e0187b7db678cb5dfcaf3c9c5d7d151eff56",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "87e1f4d78c55b52597e2851131ac47baa22791b194f4a23e128c9adb7d079927",
+        "agent.yaml": "a990a2415817372af497674983092ef506ff8baf030d0d6a102d4cad8f3861ef",
+        "stair_parent.json": "a1303315c113f3a7d1ef37f173bfa637568149229d0d017863da5b2dcce6989a"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-04-14_v3_2048_passage_bonus_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-04-14_v3_2048_passage_bonus_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "5621fd4ed5925a83f7d1ecd9f4470c1c6b0b3cd2e746b962ab4296e9a41f48a1",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "85287f3028fdbf634b43741ad2d09f03f3a79e402e93eab19df199caa26a64c4",
+        "agent.yaml": "952d0e54f8397970e7230619e1b87b7701545107ae9fbe62b21d9590836785b4",
+        "stair_parent.json": "a1303315c113f3a7d1ef37f173bfa637568149229d0d017863da5b2dcce6989a"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-08-03_v3_2048_late_brake_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-08-03_v3_2048_late_brake_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "dac1e62251fb68a92ee9e956cfca31015c5a83248514ce4d02746744cc020ade",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "3e30b78a4dc3094a5e915efe440df1b7846c68db24ffb8a72d94fdf34f548164",
+        "agent.yaml": "b5be9bd6ccb59ac8b26cba3d9a876f0ee479dbabc4104181f3b178a4df4725d8",
+        "stair_parent.json": "6aceab68a53569254d5db81509c5f1d3c07c6cc57a048b752f523df41bbd04dd"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-08-03_v3_2048_late_brake_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-08-03_v3_2048_late_brake_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "4fd576d1389be90c985e4bd3906e9657d2344357a73c6c5c380a6fd568c9871a",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-parallel-2048-diagnostics.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "2a7f96d434cb41357e43c2018a062252d73d281e44d68894f97e6a8bc80bcb3e",
+        "agent.yaml": "2ff3514aa04111495d96a5f6f09f7d5a625974de2a8a01ab5a9bd52bd56fbe7b",
+        "stair_parent.json": "6aceab68a53569254d5db81509c5f1d3c07c6cc57a048b752f523df41bbd04dd"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-38-18_v3_2048_stop_speed_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-38-18_v3_2048_stop_speed_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "c44d1665660b28cdf283f91b56096c707e4b0b21df266d2be81151f32408f5d4",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-stop-speed-reward.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "b47d75e5e87bff4a230e3810d45c11cb41e83a3deeef3d2db95022c85b448d7a",
+        "agent.yaml": "cd549dc9f5231701d1949008819dc40883bffb14b8a86fc0961ed438b01fa17f",
+        "stair_parent.json": "60a06a64f20e2dd05de922960bb126aa2bcc9a1b951cd387cd93f9ee0a7afcc0"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-38-18_v3_2048_stop_speed_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-38-18_v3_2048_stop_speed_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "84b127b4914d64eb5b9a6a65a38a3c395b720d04517f303b166ab103e066ede6",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-stop-speed-reward.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "81fe3421db4480f53b6ea1625ed225df3f0926e1be4b9440890b0a76e97a3032",
+        "agent.yaml": "2785c950b844bd0a211d3b08c196ec94b5595fbafb770b1dacdef052e9ba3453",
+        "stair_parent.json": "60a06a64f20e2dd05de922960bb126aa2bcc9a1b951cd387cd93f9ee0a7afcc0"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-48-32_v3_2048_stop_speed_1_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-48-32_v3_2048_stop_speed_1_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "d7df07dda19c58e3fbb8a53f32d2266f4b3fc31c52ad0b199837c387f86f7625",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-stop-speed-reward.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "7d7a4780895c24dd99a25694de01e2d56b9dbdd1341e89eda4fe44e1ae3cfee2",
+        "agent.yaml": "a86a99a71d1a5605ffdff6659a10216088a3943d394cdc482cdf666bd5378829",
+        "stair_parent.json": "3b5496e9b0e83dce41e664d6c88a9b58c1029eef0fade4d0679dc7e5b3417a1e"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-22_15-48-32_v3_2048_stop_speed_1_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-48-32_v3_2048_stop_speed_1_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "f9f367aa03658ea559010f606602a293442f3336c62a2316eb8e394c0760adf8",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-22-stop-speed-reward.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "93f12dc96136316cfabb8a961b562dde06ed97f729d1995b73b5114b3f0a7439",
+        "agent.yaml": "a9e0e0454fdeb6cc77588bc361973770e82b71f67ea891845e135bc1bf3a0ded",
+        "stair_parent.json": "3b5496e9b0e83dce41e664d6c88a9b58c1029eef0fade4d0679dc7e5b3417a1e"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_09-10-41_stair_replay_diverse_replay_2048_20260923_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_09-10-41_stair_replay_diverse_replay_2048_20260923_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "fd835961cf7f5d035fbe9358892ce5371d957603c60a547f138b6687bca39de2",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-stair-replay-commands.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "54f8a64b76545c03ea5c0c7a2faaee85bda511296d00cd0a7c859decaa1ba0ee",
+        "agent.yaml": "cdcb37c50abe568f83137e5bbb55bfd5466bfa2aa84bf5060f6a6ec370a29c87",
+        "stair_parent.json": "6b10be5290c0cc5b8317540b752ac7b123e1538f9a345eb8c37ab85100091be0"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_09-10-41_stair_replay_diverse_replay_2048_20260923_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_09-10-41_stair_replay_diverse_replay_2048_20260923_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "39528a1c3edfd531ba2f3993d7180fcc26514150f3168fa258a37749112d284f",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-stair-replay-commands.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "e558f327494618641dfbe4c7e306791096773bf125690e83395ca01c78f9b28e",
+        "agent.yaml": "dc5a529440fe26ca80c9a9ff88c849bfdc4277bd86d2ae512341aa2abf330bb6",
+        "stair_parent.json": "6b10be5290c0cc5b8317540b752ac7b123e1538f9a345eb8c37ab85100091be0"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_09-14-58_stair_replay_control_2048_20260923_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_09-14-58_stair_replay_control_2048_20260923_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "fd8892cbd316706e2ea30f58c2b87d1159bde0d83e2ef9837c09ba6552149abd",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-stair-replay-commands.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "03daf0bc03c44c570df20a3df848b281487c1d4c2eb91ef806583a3b482e2f7a",
+        "agent.yaml": "be1b184685eba82b7d9125e0302315b0a5610b8ae47e3211598985f96d4c88a4",
+        "stair_parent.json": "176cc489f47efe6ee483ec1d11806eeff7888dced29879eec267915d62404d59"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_09-14-58_stair_replay_control_2048_20260923_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_09-14-58_stair_replay_control_2048_20260923_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "c8db647b5df88014a0993364a834c7ba2f8bdabacf47b4b1d6dea33df6aad9f6",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-stair-replay-commands.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "640c003db49054b4d42d7dc878dbde1d1e36e8122ca40453f34636ba0c256ee1",
+        "agent.yaml": "b468757894d0f6f2ea0b592ff71146dcddc310c3b5a3be8a495ab4cd9b164192",
+        "stair_parent.json": "176cc489f47efe6ee483ec1d11806eeff7888dced29879eec267915d62404d59"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_10-54-54_stair_basevel_basevel60_2048_20260923_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_10-54-54_stair_basevel_basevel60_2048_20260923_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "245e7c14285f45f40f614e0fecf09090f1d6bf54b9e9bed751e1334bac8a9d81",
+      "bytes": 5886318,
+      "saved_iteration": 398,
+      "actor_inputs": 60,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-actor-base-velocity.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "812aee1dbc5312a29dc4105c77ba426c626c83649f512d569822201fa0274fda",
+        "agent.yaml": "411a1e6dde6c60f7eac0da5856a32fe35d4ad2e717845cd46f09a93031879ca4",
+        "stair_parent.json": "7cb8cee881f96e7338827b06f54f2b3fe2367f9d8284a710521e1ce759538b7a"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_10-58-10_stair_basevel_basevel60_2048_20260923_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_10-58-10_stair_basevel_basevel60_2048_20260923_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "2b30615a4454e13f31d3905df24bf3ea750a3f1b9acb2164a9112472c1db8bfa",
+      "bytes": 5886318,
+      "saved_iteration": 398,
+      "actor_inputs": 60,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-actor-base-velocity.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "dda05a129a51b0af51312dd262d0fd0fa26145409e5febb6f5875d910d0e6558",
+        "agent.yaml": "73c62c0ee85bb14671b5bb581504225f1cff3daf6c6f9533e6d41eeccbbc8ec0",
+        "stair_parent.json": "7cb8cee881f96e7338827b06f54f2b3fe2367f9d8284a710521e1ce759538b7a"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_11-02-18_stair_basevel_control57_2048_20260923_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_11-02-18_stair_basevel_control57_2048_20260923_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "49c50eabfc3d9ce640dc3cc46fb15f45fb8f071351e53a768afc2a406b474801",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-actor-base-velocity.md",
+        "docs/results/2026-09-23-landing20-short.md",
+        "docs/results/2026-09-23-physical-rollin.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "f72571bf67672716e3a6405e1ca27c63111741dc2cf163ca5f0b145b981f674a",
+        "agent.yaml": "492905bcdcab380c79e9860871c547a44f3aa81449b616a366cd076b77e4948f",
+        "stair_parent.json": "e838cea59c5d5f9e955430258d0345b3367d0360f1c6fd0c910122a46593e600"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_11-04-25_stair_basevel_control57_2048_20260923_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_11-04-25_stair_basevel_control57_2048_20260923_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "f5d7403f98853374b3cdaf6dc329461b29f0f0658e308c0d6a47b890c2371ff2",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-actor-base-velocity.md",
+        "docs/results/2026-09-23-landing20-short.md",
+        "docs/results/2026-09-23-physical-rollin.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "a8f54ecc0f1e72ad85666df227fb531f9c31037318efe23f1c921676ba500d9c",
+        "agent.yaml": "5ac5e51e295155a2190d6ca33053351f03ed92cb1d56e0e3ead51f361428a4cc",
+        "stair_parent.json": "e838cea59c5d5f9e955430258d0345b3367d0360f1c6fd0c910122a46593e600"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_12-03-15_stair_ascent45_57d_2048_20260923_seed54_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_12-03-15_stair_ascent45_57d_2048_20260923_seed54_full/model_398.pt",
+      "location": "local",
+      "sha256": "7d82329076b67a95d44a82ff9b1eb6d4da5fb1930b638b90fecbbb096d8806f5",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-stair-ascent-focus.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "286e56da22b90704036ea1a28a698f6f2644f0e1b0d0a33978b931aedd715de1",
+        "agent.yaml": "4bbde2244120bc5a54695925d8e2db10cd98edf667fa0b4403eced8d7fa8a233",
+        "stair_parent.json": "c362c78d49960274cf5a87cee52e9db59efe37d15d14a7644e9bb3d8534a0608"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_12-03-15_stair_ascent45_57d_2048_20260923_seed55_full/model_398.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_12-03-15_stair_ascent45_57d_2048_20260923_seed55_full/model_398.pt",
+      "location": "local",
+      "sha256": "d28071aa4cf100097509b6e3385aa9b46c15ff3554ce15acfa85528ee1e3ea3c",
+      "bytes": 5867886,
+      "saved_iteration": 398,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-stair-ascent-focus.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "e15f576bc4635ffff2b5232ff50a15cf22429a3c090a64e17f29b8ee1562ca51",
+        "agent.yaml": "64041e47df5b782b46f38ee4da8e97d22c0e59924fccdfb1d1573428fbdef4d7",
+        "stair_parent.json": "c362c78d49960274cf5a87cee52e9db59efe37d15d14a7644e9bb3d8534a0608"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_13-23-37_stair_landing20_short_2048_20260923_seed54_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_13-23-37_stair_landing20_short_2048_20260923_seed54_full/model_422.pt",
+      "location": "local",
+      "sha256": "5a487019ceacbe4b0adfd58b32337f1b257a7f7fa96a17f13ef0de7d784b117b",
+      "bytes": 5867886,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-landing20-short.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "fcb989dfff4c6af6205e711eddda3373e982740fe9651069e468332bfae95cee",
+        "agent.yaml": "e55d0b2abb6bfa8fc65149aa866bcfded10783ce01da9e03aff14a133132a9c2",
+        "stair_parent.json": "0001cea7c9a4501249fd2187d813aaf0fc863ff3959a8021e240bd6499982434"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_13-23-37_stair_landing20_short_2048_20260923_seed55_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_13-23-37_stair_landing20_short_2048_20260923_seed55_full/model_422.pt",
+      "location": "local",
+      "sha256": "7a9609f26175876e4e2d9099bff755361ffeae6b018ef00b0517fab8e6893ae6",
+      "bytes": 5867886,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-landing20-short.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "77bcfd87fdd82e257dd69974b16520e70143ee57e80145744631dd96d4ec0681",
+        "agent.yaml": "2e00fe46117a0f4c5b2bacd209a8b8fb84c5985fa84a33ae83b7351c2765b0e2",
+        "stair_parent.json": "ac2caa0646fe3f8006e61348c3ed85950326a7849ba51ffc56033d38d52f224e"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_13-56-42_stair_physical_rollin_2048_20260923_seed54_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_13-56-42_stair_physical_rollin_2048_20260923_seed54_full/model_422.pt",
+      "location": "local",
+      "sha256": "dd33fbbe238ed0eaf8efc45748751631c6eecde1608ad28be120cdf1c2236710",
+      "bytes": 5867886,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-physical-rollin.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "598dc02ce40cc4fd9d5cda3bd1cbbeb25bc0942ed62dc1855e4f1eb11a653fdb",
+        "agent.yaml": "876807d48b383698ac1d1cfcdc8d0c9359cfdb46142c2f0c926ce26ef43b796e",
+        "stair_parent.json": "180b51850637d34fb9257fe915160bc533d7675c2a09127517a1d2a98857bbdf"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_13-56-42_stair_physical_rollin_2048_20260923_seed55_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_13-56-42_stair_physical_rollin_2048_20260923_seed55_full/model_422.pt",
+      "location": "local",
+      "sha256": "71a0a8e147d40e61c24184efdb7640d0cc4aa7d8bfa44de283d1544587ccad6f",
+      "bytes": 5867886,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-physical-rollin.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "d6cc25f282e810f3e4dd672d1a8d9bdeee1e31bfbcb63a9b16b57b1aa7706b86",
+        "agent.yaml": "f62147057c4942600a9702234dbd7956304f9ca18aa034bfe44d47b077080e85",
+        "stair_parent.json": "f33fbde98b8289a26d2f42e1a4e5c49b8473420b4f9c6245aef02198e94cabc8"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_14-39-04_stair_wheel_head_only_2048_20260923_seed54_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_14-39-04_stair_wheel_head_only_2048_20260923_seed54_full/model_422.pt",
+      "location": "local",
+      "sha256": "db7515be53e62a69f616208dee89adc143b3da3e8177e394b23a730f1c087b0f",
+      "bytes": 4311552,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-wheel-head-only.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "6dcab7573b4e1851ea4f5a5b7d1fff8e197a1b8109426d1307c3113040d7b96d",
+        "agent.yaml": "d6f68372e9404bacfccb65a6e3ba2b9f7a413add4a173a4447927f4dc5ad35ef",
+        "stair_parent.json": "f48703e4566b154323ddff32d8dd54eff5293f1a119dbb64fbbc72efe6211ddf"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_14-39-04_stair_wheel_head_only_2048_20260923_seed55_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_14-39-04_stair_wheel_head_only_2048_20260923_seed55_full/model_422.pt",
+      "location": "local",
+      "sha256": "7da0cb1c58855cab60a5ec11b6dd3edcc4a3461b8e69c8bd9e8595d5423b3aca",
+      "bytes": 4311552,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-wheel-head-only.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "0f09ccc5a903241bba817523e3a6e0905c2223ee143089e0b84c1fe3f999f22a",
+        "agent.yaml": "43bc1c1c79981626fc17da69b7bde0855c6fe7ca97ed13e710e93fd1bc1e685a",
+        "stair_parent.json": "95c5cc2f6bf092fbec6f05e968902c700d4f6c98a42029ff99a0a49a79fec703"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_14-54-17_stair_moving_anchor10_2048_20260923_seed54_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_14-54-17_stair_moving_anchor10_2048_20260923_seed54_full/model_422.pt",
+      "location": "local",
+      "sha256": "2218a5d1da95605533d05dbba85283e9558d3e1d71c9753af71478a59b259182",
+      "bytes": 5867886,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 54,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-moving-teacher-anchor.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "7accf42b999f6c1726780ed1cb38fa0b8b44659fd1c7c1e01252253b0eed1360",
+        "agent.yaml": "6d10e091d31906b91e87a52912eaaabac3b2e464d9d0f8d46c5b3b6a5e4a0c75",
+        "stair_parent.json": "6bd47c1668701d842be6fe15ec70f71f6a1ca454da7882d799c422b7e8087373"
+      }
+    },
+    {
+      "file": "local/unitree_b2w_stair/2026-09-23_14-54-17_stair_moving_anchor10_2048_20260923_seed55_full/model_422.pt",
+      "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_14-54-17_stair_moving_anchor10_2048_20260923_seed55_full/model_422.pt",
+      "location": "local",
+      "sha256": "5495047af0aa01f757198c05e330eb8c2c4ca3b4b67cfe6b248eba831de669c7",
+      "bytes": 5867886,
+      "saved_iteration": 422,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 55,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "latest_saved_non_smoke_run",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-moving-teacher-anchor.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "148d451b6bff456c1af53b63870f969dfd56def20094afbd5e52bda58088f7ca",
+        "agent.yaml": "7f248b6154b986bebd1dce9b05ae8e28309bc4b058577bbf3b3b933bc6ccb938",
+        "stair_parent.json": "aed8958d83d3280a81d3a4af665421bcf26bf70c2d1aa679144be48f913764cd"
+      }
+    },
+    {
+      "file": "server/upstream_5000/upstream_model_5000.pt",
+      "source": "artifacts/upstream/2026-09-23_model_5000/upstream_model_5000.pt",
+      "location": "server",
+      "sha256": "316b845412d171a77a529345d72e2ca8fc6344c3092a3e153cd5cde95867ded2",
+      "bytes": 5869109,
+      "saved_iteration": 5000,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 44,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "evaluated_upstream_milestone",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-upstream-final-comparison.md",
+        "docs/results/2026-09-23-upstream-milestones-comparison.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "provenance.json": "73d1f6e5b141a2ffb6d4c333e80be0304e409d0f068d6e104137411b9d5d4cce"
+      }
+    },
+    {
+      "file": "server/upstream_10000/upstream_model_10000.pt",
+      "source": "artifacts/upstream/2026-09-23_model_10000/upstream_model_10000.pt",
+      "location": "server",
+      "sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+      "bytes": 5869183,
+      "saved_iteration": 10000,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 44,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "evaluated_upstream_milestone",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-inverse57-overnight-plan.md",
+        "docs/results/2026-09-23-upstream-final-comparison.md",
+        "docs/results/2026-09-23-upstream-milestones-comparison.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "provenance.json": "6828c2a5907bc7b728c27946dceb48472b56428668f4f5444862ba5e74b5fca3"
+      }
+    },
+    {
+      "file": "server/upstream_15000/upstream_model_15000.pt",
+      "source": "artifacts/upstream/2026-09-23_model_15000/upstream_model_15000.pt",
+      "location": "server",
+      "sha256": "9d97dfa997f5d759d8bbf1e63a558321fa0dbf455df27a77dd10b6d8732c654c",
+      "bytes": 5869183,
+      "saved_iteration": 15000,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 44,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "evaluated_upstream_milestone",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-upstream-final-comparison.md",
+        "docs/results/2026-09-23-upstream-milestones-comparison.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "provenance.json": "522a83c56bdf65c61f39ecec96460d1051782cf98132b1e2eccba5ce22c1eb50"
+      }
+    },
+    {
+      "file": "server/upstream_18100/upstream_model_18100.pt",
+      "source": "artifacts/upstream/2026-09-23_model_18100/upstream_model_18100.pt",
+      "location": "server",
+      "sha256": "cc3ff9a993d18979c8874005565ebfc7503fc7b529e80e4eb64556912dadddf7",
+      "bytes": 5869183,
+      "saved_iteration": 18100,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 44,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "evaluated_upstream_milestone",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-upstream-final-comparison.md",
+        "docs/results/2026-09-23-upstream-milestones-comparison.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "provenance.json": "c76cd0d5b4ed2ae127881ba5edd371a55d4ea5ff541d11a99b723100414135a2"
+      }
+    },
+    {
+      "file": "server/upstream_19999/upstream_model_19999.pt",
+      "source": "artifacts/upstream/2026-09-23_model_19999/upstream_model_19999.pt",
+      "location": "server",
+      "sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+      "bytes": 5869183,
+      "saved_iteration": 19999,
+      "actor_inputs": 57,
+      "actions": 16,
+      "seed": 44,
+      "status": "experimental_not_accepted",
+      "snapshot_kind": "evaluated_upstream_milestone",
+      "training_completion": "not_inferred_from_checkpoint",
+      "evaluation_reports": [
+        "docs/results/2026-09-23-upstream-final-comparison.md"
+      ],
+      "config_sha256": {
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "provenance.json": "a7e7e60413f527553bd15a02552de4df16b38c6bd9f65c35bfb0897dc66eb970",
+        "server_completion.json": "6249fe506fe6ce989c86ca8fdd44dcf7d93a69efc6a2c48e0410b188addf10fb"
+      }
+    }
+  ]
+}

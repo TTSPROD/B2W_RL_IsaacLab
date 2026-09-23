@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-23_12-03-15_stair_ascent45_57d_2048_20260923_seed55_full/model_398.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-23_12-03-15_stair_ascent45_57d_2048_20260923_seed55_full/model_398.pt",
+  "location": "local",
+  "sha256": "d28071aa4cf100097509b6e3385aa9b46c15ff3554ce15acfa85528ee1e3ea3c",
+  "bytes": 5867886,
+  "saved_iteration": 398,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 55,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-23-stair-ascent-focus.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "e15f576bc4635ffff2b5232ff50a15cf22429a3c090a64e17f29b8ee1562ca51",
+    "agent.yaml": "64041e47df5b782b46f38ee4da8e97d22c0e59924fccdfb1d1573428fbdef4d7",
+    "stair_parent.json": "c362c78d49960274cf5a87cee52e9db59efe37d15d14a7644e9bb3d8534a0608"
+  }
+}

@@ -1,5 +1,6 @@
 .cache/
 .venv/
+.runtime/
 __pycache__/
 *.pyc
 logs/
@@ -9,5 +10,8 @@ checkpoints/
 *.bundle
 *.tar.gz
 *.partial
+.pytest_cache/
+# Live delivery is mutable; publish reviewed snapshots in policies/experimental.
+artifacts/upstream/inverse57_4gpu_20260923/
 .env
 !.env.example

@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-22_15-38-18_v3_2048_stop_speed_seed54_full/model_398.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_15-38-18_v3_2048_stop_speed_seed54_full/model_398.pt",
+  "location": "local",
+  "sha256": "c44d1665660b28cdf283f91b56096c707e4b0b21df266d2be81151f32408f5d4",
+  "bytes": 5867886,
+  "saved_iteration": 398,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-22-stop-speed-reward.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "b47d75e5e87bff4a230e3810d45c11cb41e83a3deeef3d2db95022c85b448d7a",
+    "agent.yaml": "cd549dc9f5231701d1949008819dc40883bffb14b8a86fc0961ed438b01fa17f",
+    "stair_parent.json": "60a06a64f20e2dd05de922960bb126aa2bcc9a1b951cd387cd93f9ee0a7afcc0"
+  }
+}

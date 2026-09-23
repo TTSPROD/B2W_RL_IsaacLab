@@ -1,0 +1,24 @@
+{
+  "file": "server/upstream_10000/upstream_model_10000.pt",
+  "source": "artifacts/upstream/2026-09-23_model_10000/upstream_model_10000.pt",
+  "location": "server",
+  "sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+  "bytes": 5869183,
+  "saved_iteration": 10000,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 44,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "evaluated_upstream_milestone",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-23-inverse57-overnight-plan.md",
+    "docs/results/2026-09-23-upstream-final-comparison.md",
+    "docs/results/2026-09-23-upstream-milestones-comparison.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+    "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+    "provenance.json": "6828c2a5907bc7b728c27946dceb48472b56428668f4f5444862ba5e74b5fca3"
+  }
+}

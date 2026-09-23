@@ -1,0 +1,22 @@
+{
+  "file": "local/unitree_b2w_stair/2026-09-22_12-39-08_stair18_strict_stop/model_448.pt",
+  "source": "logs/rsl_rl/unitree_b2w_stair/2026-09-22_12-39-08_stair18_strict_stop/model_448.pt",
+  "location": "local",
+  "sha256": "1ffe886ddd3efbedcda1c0e2b0f70ed7afaa91d0c55ce4d3ebebeaa537efcbf0",
+  "bytes": 5867886,
+  "saved_iteration": 448,
+  "actor_inputs": 57,
+  "actions": 16,
+  "seed": 54,
+  "status": "experimental_not_accepted",
+  "snapshot_kind": "latest_saved_non_smoke_run",
+  "training_completion": "not_inferred_from_checkpoint",
+  "evaluation_reports": [
+    "docs/results/2026-09-22-strict-stop-deadline.md"
+  ],
+  "config_sha256": {
+    "env.yaml": "1039414435e9282b60a0406985c6ef29cf3acdb19ba9d05ce7387da3990d36a3",
+    "agent.yaml": "800729b5f0cbd6ecfb455898a162cd2ce38a2bdbc4ac7e07370089ef0f123227",
+    "stair_parent.json": "c1cb5c903591e3d2990f4df9ac66fb60d808e6bd688544bd544f826ccc3d42b6"
+  }
+}
