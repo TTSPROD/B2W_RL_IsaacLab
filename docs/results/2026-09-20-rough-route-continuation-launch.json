@@ -1,0 +1,145 @@
+{
+  "recorded_utc": "2026-09-20T08:14:35.959876+00:00",
+  "started_utc": "2026-09-20T08:13:25.837390+00:00",
+  "status": "training",
+  "job": "logs\\rough\\rough_route_continue_20260920\\job.json",
+  "supervisor_pid": 10260,
+  "child_pid": 15572,
+  "code_commit": "7c32a94ea8fd524ea7af1082c1aa944351c0a7fc",
+  "seeds": [
+    59,
+    60
+  ],
+  "num_envs": 4096,
+  "new_updates_per_seed": 200,
+  "final_updates_per_seed": 350,
+  "max_new_transitions": 39321600,
+  "prior_job": "docs\\results\\rough_route_correction_20260920.json",
+  "prior_job_sha256": "fb6ee681c496d05293d1bd71a45a5996f7000bd7e5f5443255054d7b0c908072",
+  "disclosed_prior_failure": {
+    "seed": 60,
+    "profile": "bounded_v1",
+    "scenario": "lateral",
+    "axis": "yaw",
+    "actual": 0.03469682853251822,
+    "parent": 0.024146508882192066,
+    "limit": 0.03414650888219207
+  },
+  "protocol": "docs\\ROUGH_ROUTE_CONTINUATION.md",
+  "protocol_sha256": "6399aaf035afa3f2a69cce95b4ad54936958e9a16ee3e5ebe1ebabb123da1fba",
+  "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_08-13-26-913125_rough_route_continue_20260920_s59_stage2\\manifest.json",
+  "resume": {
+    "path": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_06-42-51-736444_rough_route_correction_20260920_s59_stage1\\model_149.pt",
+    "sha256": "2880fa757c3905af5c3f87638182f9781f87e69d48cc2336c2a7a88d2bbcc051",
+    "load_optimizer": true,
+    "note": "Model/optimizer restart; simulator, curriculum and RNG state are reinitialized."
+  },
+  "starting_runner_iteration": 150,
+  "observed_progress": {
+    "updated_utc": "2026-09-20T08:14:33.548391+00:00",
+    "iteration": 159,
+    "updates_completed_this_run": 10,
+    "updates_requested_this_run": 200,
+    "transitions_this_run": 983040,
+    "collection_seconds": 2.9742088317871094,
+    "learning_seconds": 0.20706462860107422,
+    "losses": {
+      "value_function": 0.15145792737603186,
+      "surrogate": 0.008375742082716898,
+      "entropy": -14.138346672058105
+    },
+    "command_distribution": {
+      "env_command_steps": 983040,
+      "standing_fraction": 0.2921478271484375,
+      "pure_yaw_abs_gt_005_fraction": 0.08004862467447917,
+      "positive_pure_yaw_fraction": 0.034394327799479166,
+      "negative_pure_yaw_fraction": 0.045654296875,
+      "mean_abs_yaw_rad_s": 0.09386356480730076,
+      "scope": "Cumulative commands after command-manager updates, including initial resets",
+      "rough_route": {
+        "specification": {
+          "version": "rough_route_v1",
+          "rough_terrain_columns": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "probabilities": {
+            "traverse": 0.6,
+            "stand": 0.2,
+            "turn": 0.2
+          },
+          "settle_seconds": 2.0,
+          "approach_seconds": 12.0,
+          "episode_seconds": 22.0,
+          "traverse_vx": [
+            0.2,
+            0.24
+          ],
+          "approach_vx": 0.3,
+          "turn_abs_yaw": [
+            0.2,
+            0.3
+          ],
+          "rough_vy": 0.0,
+          "heading_feedback": false,
+          "flat_episode_seconds": 20.0,
+          "flat_command_sampler": "MeasuredYawVelocityCommand, unchanged ranges and pure-yaw mix",
+          "rough_reset": {
+            "x": [
+              0.0,
+              0.0
+            ],
+            "y": [
+              -0.1,
+              0.1
+            ],
+            "z": [
+              0.0,
+              0.0
+            ],
+            "yaw": [
+              -0.025,
+              0.025
+            ],
+            "roll_pitch": "preserve configured upright ranges",
+            "all_root_velocities": 0.0
+          },
+          "scope": "Training task-distribution bundle; frozen evaluation cases/gates unchanged"
+        },
+        "sampled_episode_kinds": {
+          "traverse": 3484,
+          "stand": 1102,
+          "turn": 1148
+        },
+        "actual_command_phase_steps": {
+          "settle": 283833,
+          "traverse": 245058,
+          "approach": 159189,
+          "stand": 0,
+          "turn": 0
+        }
+      }
+    },
+    "learning_rate": 0.0001,
+    "reference_drift": {
+      "sample_count": 4096,
+      "raw_action_rms": 0.04675585776567459,
+      "raw_action_max_abs": 0.27248430252075195,
+      "mean_gaussian_kl": 1.7488882541656494,
+      "leg_target_rms_rad": 0.009862606413662434,
+      "wheel_target_rms_rad_s": 0.2883182466030121,
+      "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+    },
+    "training_phase": "ppo",
+    "policy_quality_evaluated": false
+  },
+  "source_hashes_unchanged": true,
+  "additional_cpu_guard_tests_passed": 8,
+  "development_protocol_passed": false,
+  "policy_quality_accepted": false
+}

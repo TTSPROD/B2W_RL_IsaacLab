@@ -1,0 +1,819 @@
+{
+  "schema_version": 1,
+  "captured_utc": "2026-09-17T10:58:12.228126+00:00",
+  "scope": "Compact versioned evidence snapshot. Full logs, tensors and checkpoints remain local and excluded from Git.",
+  "git_head_at_capture": "b1dab208b63542b1d4fbcc7603be3cd6acf756f4",
+  "working_tree_dirty_at_capture": true,
+  "training_sources": {
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "benchmark_parallel4096.py": "3496ae12c1ca5f4c08b679815d362b9ec66df541fe4cb3d0b0230bc3ad132acd",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "replay_reference_b2w.py": "11a6b392f94fcc4abec7ab5eb2516644f6ced28f51527a4e74fc40a3b65978dd",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "train_b2w.py": "2db7b85effd9549fac2698e9a0fb1506ff217accb6b8c76b0dbefa13e07bbf59"
+  },
+  "local_qualification": {
+    "hardware": "RTX 4070 Ti / Ryzen 9 5900X / 32 GiB / Windows 11",
+    "gpu_physics_steps": 10000,
+    "server_qualified": false,
+    "rough_stairs_qualified": false,
+    "live_robot_tested": false,
+    "zero_action_stand_passed": false
+  },
+  "seed42_training": {
+    "status": "completed_evaluated_flat_gate_failed",
+    "external_exit_code": 0,
+    "finished_utc": "2026-09-17T09:57:56.567774+00:00",
+    "total_updates": 5000,
+    "transitions": 245760000,
+    "finite_tb_scalars": 158070,
+    "export": {
+      "status": "passed",
+      "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+      "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_07-17-25-907539_flat_pilot_seed42_20260917\\model_4999.pt",
+      "checkpoint_sha256": "282e2ed8930c5d17a747ceae3ff8457ddb015df70b90029f98463ace564e902b",
+      "checkpoint_iteration": 4999,
+      "agent_sha256": "41b77f297bced7bd96022509179dfdac3e7a3eca690330184c751c2d59089330",
+      "export": "logs\\qualification\\flat_seed42_final\\export\\policy-contract-export\\policy.pt",
+      "export_sha256": "68d4153285db3e2702fdf1e5346896aef9362f9d643ebcd75e5666c8fb14c0d1",
+      "exporter_sha256": "30e2a297241311917708c99aacf0a083038e8035079ffbde27e60cab2a362661",
+      "fixture_and_random_count": 295,
+      "random_seed": 20260917,
+      "max_abs_error": 0.0,
+      "tolerance": 1e-05,
+      "normalizer": "Identity",
+      "policy_quality_evaluated": false
+    },
+    "source_supervisor_status": "completed_pending_policy_evaluation"
+  },
+  "evaluation": {
+    "seed42": {
+      "policy_sha256": "68d4153285db3e2702fdf1e5346896aef9362f9d643ebcd75e5666c8fb14c0d1",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 96,
+        "no_fall_fraction": 0.96,
+        "no_fall_wilson95": [
+          0.9016292856411208,
+          0.9843366960084523
+        ],
+        "tracking_pass_count": 84,
+        "pooled_rms_vx_vy_yaw": [
+          0.11179390860275504,
+          0.06567968173926887,
+          0.12055103265477553
+        ],
+        "episode_rms_p95": [
+          0.23669984936714172,
+          0.16426482796669006,
+          0.2599480152130127
+        ],
+        "episode_rms_max": [
+          0.29845908284187317,
+          0.20195181667804718,
+          0.2953333258628845
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0008922751793347135,
+              0.00040211761196119316,
+              0.0038958826359206636
+            ],
+            "episode_rms_p95": [
+              0.0014941954286769032,
+              0.0005694071296602488,
+              0.005192529875785112
+            ],
+            "episode_rms_max": [
+              0.0014941954286769032,
+              0.0005694071296602488,
+              0.005192529875785112
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04325418220801328,
+              0.015897862072733603,
+              0.018200467101908226
+            ],
+            "episode_rms_p95": [
+              0.05108630284667015,
+              0.022059259936213493,
+              0.020661700516939163
+            ],
+            "episode_rms_max": [
+              0.05108630284667015,
+              0.022059259936213493,
+              0.020661700516939163
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.1514369821542189,
+              0.011579036046423406,
+              0.014541043777834151
+            ],
+            "episode_rms_p95": [
+              0.2059897780418396,
+              0.019148221239447594,
+              0.016266517341136932
+            ],
+            "episode_rms_max": [
+              0.2059897780418396,
+              0.019148221239447594,
+              0.016266517341136932
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06318168365939061,
+              0.16065776868037532,
+              0.05289778621316296
+            ],
+            "episode_rms_p95": [
+              0.09866663813591003,
+              0.20195181667804718,
+              0.08624672889709473
+            ],
+            "episode_rms_max": [
+              0.09866663813591003,
+              0.20195181667804718,
+              0.08624672889709473
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 8,
+            "no_fall_fraction": 0.6666666666666666,
+            "no_fall_wilson95": [
+              0.39062208887279953,
+              0.8618799089087867
+            ],
+            "tracking_pass_count": 5,
+            "pooled_rms_vx_vy_yaw": [
+              0.21363957636161598,
+              0.06881556621657105,
+              0.2283616108900826
+            ],
+            "episode_rms_p95": [
+              0.29845908284187317,
+              0.0982615053653717,
+              0.2599480152130127
+            ],
+            "episode_rms_max": [
+              0.29845908284187317,
+              0.0982615053653717,
+              0.2599480152130127
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 5,
+            "pooled_rms_vx_vy_yaw": [
+              0.10940262293256554,
+              0.05116650077954863,
+              0.25504820076607143
+            ],
+            "episode_rms_p95": [
+              0.2195310890674591,
+              0.10753563046455383,
+              0.2953333258628845
+            ],
+            "episode_rms_max": [
+              0.2195310890674591,
+              0.10753563046455383,
+              0.2953333258628845
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.048860836384306196,
+              0.011427224453006464,
+              0.013432302642528336
+            ],
+            "episode_rms_p95": [
+              0.06207224726676941,
+              0.015209371224045753,
+              0.01576565019786358
+            ],
+            "episode_rms_max": [
+              0.06207224726676941,
+              0.015209371224045753,
+              0.01576565019786358
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.11381678524961328,
+              0.009125571998861916,
+              0.009478139205856745
+            ],
+            "episode_rms_p95": [
+              0.148111954331398,
+              0.013016007840633392,
+              0.011846628040075302
+            ],
+            "episode_rms_max": [
+              0.148111954331398,
+              0.013016007840633392,
+              0.011846628040075302
+            ]
+          }
+        },
+        "all_scenario_tracking_met": false,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [
+        {
+          "env": 36,
+          "scenario": "yaw_positive",
+          "time_s": 7.1450000000000005,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.552026271820068,
+          "height_m": 0.5084226727485657,
+          "contact_n": 256.80133056640625
+        },
+        {
+          "env": 4,
+          "scenario": "yaw_positive",
+          "time_s": 8.635000000000002,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.377996444702148,
+          "height_m": 0.5028720498085022,
+          "contact_n": 66.81888580322266
+        },
+        {
+          "env": 52,
+          "scenario": "yaw_positive",
+          "time_s": 11.59,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.510146617889404,
+          "height_m": 0.495830237865448,
+          "contact_n": 227.41390991210938
+        },
+        {
+          "env": 60,
+          "scenario": "yaw_positive",
+          "time_s": 12.18,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.666533470153809,
+          "height_m": 0.5036321878433228,
+          "contact_n": 214.75820922851562
+        }
+      ]
+    },
+    "downloaded_reference": {
+      "policy_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 100,
+        "pooled_rms_vx_vy_yaw": [
+          0.05049724881930129,
+          0.0712119456860207,
+          0.07592123245923978
+        ],
+        "episode_rms_p95": [
+          0.07141005992889404,
+          0.1652175635099411,
+          0.17652614414691925
+        ],
+        "episode_rms_max": [
+          0.07730089128017426,
+          0.1844552755355835,
+          0.23460893332958221
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04017812918021783,
+              0.012904620136481696,
+              0.011495465000710074
+            ],
+            "episode_rms_p95": [
+              0.046129994094371796,
+              0.014760205522179604,
+              0.012981196865439415
+            ],
+            "episode_rms_max": [
+              0.046129994094371796,
+              0.014760205522179604,
+              0.012981196865439415
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.032554791828461986,
+              0.01843878940667092,
+              0.030260697765190445
+            ],
+            "episode_rms_p95": [
+              0.03780847042798996,
+              0.027894511818885803,
+              0.04344872757792473
+            ],
+            "episode_rms_max": [
+              0.03780847042798996,
+              0.027894511818885803,
+              0.04344872757792473
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.06302106552291578,
+              0.026285272496190035,
+              0.04073166738032807
+            ],
+            "episode_rms_p95": [
+              0.07730089128017426,
+              0.028612710535526276,
+              0.05066476762294769
+            ],
+            "episode_rms_max": [
+              0.07730089128017426,
+              0.028612710535526276,
+              0.05066476762294769
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0405641776188241,
+              0.159773354735692,
+              0.06503996758225172
+            ],
+            "episode_rms_p95": [
+              0.05191042274236679,
+              0.1844552755355835,
+              0.1058294028043747
+            ],
+            "episode_rms_max": [
+              0.05191042274236679,
+              0.1844552755355835,
+              0.1058294028043747
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05679698696652105,
+              0.07765527956806334,
+              0.1804757205485274
+            ],
+            "episode_rms_p95": [
+              0.07433616369962692,
+              0.10410072654485703,
+              0.23460893332958221
+            ],
+            "episode_rms_max": [
+              0.07433616369962692,
+              0.10410072654485703,
+              0.23460893332958221
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05410669032103556,
+              0.08096179705552554,
+              0.0755700413551253
+            ],
+            "episode_rms_p95": [
+              0.06351675093173981,
+              0.10381509363651276,
+              0.09681490808725357
+            ],
+            "episode_rms_max": [
+              0.06351675093173981,
+              0.10381509363651276,
+              0.09681490808725357
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04753856030411602,
+              0.01653198687594751,
+              0.024513664824408397
+            ],
+            "episode_rms_p95": [
+              0.058686282485723495,
+              0.021654795855283737,
+              0.03242069482803345
+            ],
+            "episode_rms_max": [
+              0.058686282485723495,
+              0.021654795855283737,
+              0.03242069482803345
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06208288050283506,
+              0.021189855099239163,
+              0.04043712489665807
+            ],
+            "episode_rms_p95": [
+              0.07141005992889404,
+              0.02382444031536579,
+              0.04785453900694847
+            ],
+            "episode_rms_max": [
+              0.07141005992889404,
+              0.02382444031536579,
+              0.04785453900694847
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      }
+    },
+    "suite": "flat100",
+    "evaluation_seed": 20260917,
+    "cases": {
+      "forward_backward_m_s": [
+        0.2,
+        0.5
+      ],
+      "lateral_abs_m_s": [
+        0.15,
+        0.3
+      ],
+      "yaw_abs_rad_s": [
+        0.2,
+        0.5
+      ],
+      "initial_yaw_rad": [
+        -3.141592653589793,
+        3.141592653589793
+      ],
+      "leg_offset_rad": [
+        -0.025,
+        0.025
+      ]
+    },
+    "duration_s": 20,
+    "settle_s": 2,
+    "physics_dt": 0.005,
+    "policy_dt": 0.02,
+    "physics_steps": 4400,
+    "external_exits": {
+      "nominal_replay": 0,
+      "flat100": 0,
+      "export": 0,
+      "note": "Observed exec session completion codes. The first nominal launch lacked the already accepted EULA environment setting and exited 1 before simulator startup; configured rerun exited 0.",
+      "reference_flat100": 0
+    },
+    "physical_randomization_evaluated": false,
+    "release_acceptance_complete": false
+  },
+  "dual4096_benchmark": {
+    "decision": {
+      "use_4096": true,
+      "decided_utc": "2026-09-17T10:51:39.135811+00:00",
+      "explanation": "Integrity, memory and speed gates passed",
+      "policy_quality_claim": false
+    },
+    "resources": {
+      "samples": 135,
+      "telemetry_errors": 0,
+      "peak_gpu_used_mib": 9583.0,
+      "minimum_gpu_headroom_fraction": 0.21975248330890734,
+      "peak_gpu_temperature_c": 65.0,
+      "minimum_system_available_ram_bytes": 11904491520
+    },
+    "throughput": {
+      "window_seconds": 597.2018959522247,
+      "updates_in_common_window": {
+        "43": 190,
+        "44": 199
+      },
+      "per_seed_transitions_per_second": {
+        "43": 31217.194777744928,
+        "44": 32690.67901514404
+      },
+      "aggregate_transitions_per_second": 63907.87379288897,
+      "note": "Common wall-time interval excludes startup, first10 updates and the tail where only one trainer remains."
+    },
+    "speedup": 1.6731952982053633,
+    "baseline2048": {
+      "status": "measured",
+      "window_seconds": 292.23030853271484,
+      "updates_sampled": {
+        "43": 111,
+        "44": 116
+      },
+      "solo_seed43_transitions_per_s": 24118.637669134016,
+      "parallel_transitions_per_s": {
+        "43": 18724.33098638997,
+        "44": 19470.776220422835
+      },
+      "current_updates": {
+        "43": 364,
+        "44": 131
+      },
+      "note": "Short contemporaneous wall-time observation; not a controlled 200-update benchmark or convergence comparison.",
+      "aggregate_transitions_per_s": 38195.107206812805,
+      "aggregate_speedup": 1.5836345207711813,
+      "parallel_training_remaining_seconds_estimate": 12267.855601252393,
+      "sequential_remaining_seconds_counterfactual": 19370.487106653174
+    },
+    "runs": [
+      {
+        "seed": 43,
+        "external_exit_code": 0,
+        "measured_updates": 200,
+        "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_10-40-12-323352_dual4096_benchmark_seed43_20260917\\model_610.pt",
+        "final_checkpoint_sha256": "2db5742ecea36a933ad601a1143bcfd16ac292760db8901d70a838184a521819"
+      },
+      {
+        "seed": 44,
+        "external_exit_code": 0,
+        "measured_updates": 200,
+        "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_10-40-12-301838_dual4096_benchmark_seed44_20260917\\model_410.pt",
+        "final_checkpoint_sha256": "bf28f9ddb2a4255e4dfde158f94fb271a8aaf9e6ea286fad56cf822a4e2e97ff"
+      }
+    ]
+  },
+  "continuation": {
+    "status_at_capture": "continuing_parallel4096",
+    "plans": [
+      {
+        "seed": 43,
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_10-40-12-323352_dual4096_benchmark_seed43_20260917\\model_610.pt",
+        "checkpoint_sha256": "2db5742ecea36a933ad601a1143bcfd16ac292760db8901d70a838184a521819",
+        "starting_runner_iteration": 611,
+        "num_envs": 4096,
+        "iterations": 2089,
+        "retained_transitions_before_this_run": 40353792,
+        "target_transitions": 245760000,
+        "planned_total_transitions": 245710848,
+        "budget_rounding_shortfall_transitions": 49152,
+        "resume_note": "Optimizer retained; simulator/RNG reset. Successful benchmark updates count toward total budget; failed benchmark updates are discarded."
+      },
+      {
+        "seed": 44,
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_10-40-12-301838_dual4096_benchmark_seed44_20260917\\model_410.pt",
+        "checkpoint_sha256": "bf28f9ddb2a4255e4dfde158f94fb271a8aaf9e6ea286fad56cf822a4e2e97ff",
+        "starting_runner_iteration": 411,
+        "num_envs": 4096,
+        "iterations": 2189,
+        "retained_transitions_before_this_run": 30523392,
+        "target_transitions": 245760000,
+        "planned_total_transitions": 245710848,
+        "budget_rounding_shortfall_transitions": 49152,
+        "resume_note": "Optimizer retained; simulator/RNG reset. Successful benchmark updates count toward total budget; failed benchmark updates are discarded."
+      }
+    ],
+    "live_snapshot": [
+      {
+        "seed": 43,
+        "run_directory": "logs/rsl_rl/unitree_b2w_flat/2026-09-17_10-51-39-366000_dual4096_continuation_seed43_20260917",
+        "progress": {
+          "updated_utc": "2026-09-17T10:58:09.693624+00:00",
+          "iteration": 730,
+          "updates_completed_this_run": 120,
+          "updates_requested_this_run": 2089,
+          "transitions_this_run": 11796480,
+          "collection_seconds": 2.4959757328033447,
+          "learning_seconds": 0.3021125793457031,
+          "losses": {
+            "value_function": 0.5217102974653244,
+            "surrogate": -0.0032381425364292225,
+            "entropy": 33.9902946472168
+          },
+          "learning_rate": 0.0002562890625000001,
+          "policy_quality_evaluated": false
+        },
+        "total_transitions_at_snapshot": 52150272,
+        "planned_total_transitions": 245710848
+      },
+      {
+        "seed": 44,
+        "run_directory": "logs/rsl_rl/unitree_b2w_flat/2026-09-17_10-51-39-376001_dual4096_continuation_seed44_20260917",
+        "progress": {
+          "updated_utc": "2026-09-17T10:58:10.469954+00:00",
+          "iteration": 531,
+          "updates_completed_this_run": 121,
+          "updates_requested_this_run": 2189,
+          "transitions_this_run": 11894784,
+          "collection_seconds": 3.1629490852355957,
+          "learning_seconds": 0.3001267910003662,
+          "losses": {
+            "value_function": 0.33091164454817773,
+            "surrogate": -0.001992589361907449,
+            "entropy": 31.737121963500975
+          },
+          "learning_rate": 0.0008649755859375004,
+          "policy_quality_evaluated": false
+        },
+        "total_transitions_at_snapshot": 42418176,
+        "planned_total_transitions": 245710848
+      }
+    ],
+    "controlled_three_seed_comparison": false,
+    "confounds": [
+      "Seed42 has benchmark resume at2048; seeds43/44 changed2048 to4096 at different retained updates.",
+      "Simulator/RNG restarts, PPO batch and optimizer update count differ. Compare outcomes descriptively, not as a controlled three-seed acceptance."
+    ]
+  },
+  "seed42_sustained_profile": {
+    "status": "completed",
+    "samples": 1895,
+    "covered_seconds": 9624.437999999998,
+    "source": "logs\\pilots\\flat_seed42_20260917\\resources.jsonl",
+    "peak_gpu_used_mib": 4444.0,
+    "peak_gpu_temperature_c": 61.0,
+    "peak_process_tree_rss_bytes": 5867802624,
+    "minimum_system_available_ram_bytes": 14472482816,
+    "median_active_gpu_utilization_percent": 19.0,
+    "telemetry_errors": 0,
+    "note": "Whole-device GPU counters; not an attribution of all VRAM to this job."
+  },
+  "verification": {
+    "vendor_files": 1290,
+    "pinned_sources": 6,
+    "project_cpu_tests_passed": 15,
+    "dns_skill_tests_passed": 23,
+    "ci_scope": "CI has no Isaac runtime/GPU; torch-dependent policy tests skip unless dependencies installed."
+  },
+  "source_artifacts": [
+    {
+      "path": "logs/benchmarks/dual4096_20260917/job.json",
+      "sha256_at_capture": "0d853a027348b7ae395b5eef3d2f08d17155a71d31c3f579304a803e2c46f397"
+    },
+    {
+      "path": "logs/benchmarks/dual4096_20260917/drain.json",
+      "sha256_at_capture": "40f1d34fee3613632ac405ec21de3de9def2aab3dd94b761f721c552be7bf273"
+    },
+    {
+      "path": "logs/benchmarks/dual4096_20260917/baseline2048.json",
+      "sha256_at_capture": "3b8a5b79264ab4d636c1a68f69ae50dd5cbbc529637e1bd09171cc42445ceb60"
+    },
+    {
+      "path": "logs/benchmarks/dual4096_20260917/environment_config_comparison.json",
+      "sha256_at_capture": "4c7b18f6252653d0e57df333fe99f494afd5ced510291750a279d9302c64e406"
+    },
+    {
+      "path": "logs/pilots/flat_seed42_20260917/job.json",
+      "sha256_at_capture": "fcc98fcf2393bca738009e2a2c7a05e2b6ca0982c2f5c7d5e10842bbb397b3cd"
+    },
+    {
+      "path": "logs/qualification/flat_seed42_final/flat100.json",
+      "sha256_at_capture": "7c4a8b1d3a858fef13215804efb5cc968f7f8f0a3b06deb986a4c2797a56276b"
+    },
+    {
+      "path": "logs/qualification/flat_seed42_final/reference_flat100.json",
+      "sha256_at_capture": "ae77604351d6b6e52c4496d40d7a5720a10a7f9407a623e278a6bf513c90adc9"
+    },
+    {
+      "path": "logs/qualification/flat_seed42_final/export/report.json",
+      "sha256_at_capture": "e9e04cfb4ad10c19e8b7e98b435bf9a26a66b671d6b1e418c33a547f5c51bca4"
+    },
+    {
+      "path": "logs/qualification/flat_seed42_final/sustained_profile.json",
+      "sha256_at_capture": "d29d3b95edb1491862384f2c2682f07d72844edc7d6e84606a884476dbc9c40d"
+    },
+    {
+      "path": "logs/qualification/flat_seed42_final/external_exits.json",
+      "sha256_at_capture": "1fda87abeb738fdad915141a4ce54ae6ff0ea8fe84d4e9a4b596354321e21ab9"
+    }
+  ],
+  "training_source_hash_semantics": "Observed local launch bytes, before Git line-ending normalization; do not assume hashes equal normalized fresh-checkout text."
+}

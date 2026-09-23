@@ -1,0 +1,140 @@
+{
+  "observed_utc": "2026-09-20T12:10:31.3223102Z",
+  "project_commit": "df766e198c8c52314758e7c6add951d4d405ab67",
+  "job": "logs/rough/rough_precision_training_20260920/job.json",
+  "job_started_utc": "2026-09-20T12:08:36.5348270Z",
+  "supervisor_pid": 2728,
+  "trainer_pid": 21020,
+  "processes": [
+    {
+      "Id": 2728,
+      "ProcessName": "python",
+      "StartTime": "2026-09-20T15:08:33.3308869+03:00"
+    },
+    {
+      "Id": 21020,
+      "ProcessName": "python",
+      "StartTime": "2026-09-20T15:08:36.757073+03:00"
+    }
+  ],
+  "status": "training",
+  "active_seed": 61,
+  "active_milestone": 50,
+  "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_12-08-37-617502_rough_precision_training_20260920_s61_stage0\\manifest.json",
+  "progress_observed": {
+    "updated_utc": "2026-09-20T15:10:28.566601+03:00",
+    "iteration": 25,
+    "updates_completed_this_run": 26,
+    "updates_requested_this_run": 50,
+    "transitions_this_run": 2555904,
+    "collection_seconds": 3.3404932022094727,
+    "learning_seconds": 0.13652253150939941,
+    "losses": {
+      "value_function": 4.292320656776428,
+      "surrogate": -5.122274160385132E-09,
+      "entropy": -14.138346672058105
+    },
+    "command_distribution": {
+      "env_command_steps": 2555904,
+      "standing_fraction": 0.11568939991486378,
+      "pure_yaw_abs_gt_005_fraction": 0.08276288937299679,
+      "positive_pure_yaw_fraction": 0.040575467623197116,
+      "negative_pure_yaw_fraction": 0.042187421749799676,
+      "mean_abs_yaw_rad_s": 0.07894441506897028,
+      "scope": "Cumulative commands after command-manager updates, including initial resets",
+      "rough_route": {
+        "specification": {
+          "version": "rough_route_v1",
+          "rough_terrain_columns": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "probabilities": {
+            "traverse": 0.6,
+            "stand": 0.2,
+            "turn": 0.2
+          },
+          "settle_seconds": 2.0,
+          "approach_seconds": 12.0,
+          "episode_seconds": 22.0,
+          "traverse_vx": [
+            0.2,
+            0.24
+          ],
+          "approach_vx": 0.3,
+          "turn_abs_yaw": [
+            0.2,
+            0.3
+          ],
+          "rough_vy": 0.0,
+          "heading_feedback": false,
+          "flat_episode_seconds": 20.0,
+          "flat_command_sampler": "MeasuredYawVelocityCommand, unchanged ranges and pure-yaw mix",
+          "rough_reset": {
+            "x": [
+              0.0,
+              0.0
+            ],
+            "y": [
+              -0.1,
+              0.1
+            ],
+            "z": [
+              0.0,
+              0.0
+            ],
+            "yaw": [
+              -0.025,
+              0.025
+            ],
+            "roll_pitch": "preserve configured upright ranges",
+            "all_root_velocities": 0.0
+          },
+          "scope": "Training task-distribution bundle; frozen evaluation cases/gates unchanged"
+        },
+        "sampled_episode_kinds": {
+          "traverse": 3448,
+          "stand": 1130,
+          "turn": 1156
+        },
+        "actual_command_phase_steps": {
+          "settle": 283833,
+          "traverse": 912975,
+          "approach": 592200,
+          "stand": 0,
+          "turn": 0
+        }
+      }
+    },
+    "learning_rate": 0.0001,
+    "reference_drift": {
+      "sample_count": 4096,
+      "raw_action_rms": 0.0,
+      "raw_action_max_abs": 0.0,
+      "mean_gaussian_kl": 0.0,
+      "leg_target_rms_rad": 0.0,
+      "wheel_target_rms_rad_s": 0.0,
+      "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+    },
+    "training_phase": "critic_calibration",
+    "policy_quality_evaluated": false
+  },
+  "checkpoint_initialization_exists": true,
+  "frozen_inputs_verified": 51,
+  "frozen_input_mismatches": 0,
+  "preflight": "docs\\results\\rough_precision_preflight_20260920_1.json",
+  "preflight_sha256": "fd6330db4487e49bd0021c9b7e0cbf1a0584f676e36f64d2c491d4759132039b",
+  "protocol_sha256": "a8f43138ef9c4e660c52c7769e1aaeb63d9060c8ff09c71b4d1bf820329d3d17",
+  "max_training_transitions": 68812800,
+  "policy_quality_accepted": false,
+  "eta": {
+    "final350_msk_if150_passes": "2026-09-20 17:25–17:50",
+    "first_full_checkpoint_150_msk": "2026-09-20 15:55–16:10",
+    "basis": "Historical single4096 timing; evaluations included; stop on any registered failure."
+  }
+}

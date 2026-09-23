@@ -1,0 +1,161 @@
+{
+  "checked_utc": "2026-09-19T17:49:14.187625+00:00",
+  "diagnoses": {
+    "docs\\results\\2026-09-19-reference-resume-diagnosis.json": "9ab008cfcc4f2be66a0a04ecd799403c5b02151e949021da618b792f4e8cb475",
+    "docs\\results\\2026-09-19-reference-resume-upright-diagnosis.json": "3fd74ca4f8527f525695b00da48c6b9d0787d4fcfa67818e524006672e06cfcd"
+  },
+  "comparisons": [
+    {
+      "seed": 53,
+      "parent_sha256": "8bb2c41cd43838810587fee1f0e5a16e0a388ef5c37aa8e2c93f1e53de9b5b77",
+      "recovery": {
+        "iteration": 150,
+        "before_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.2516297996044159,
+          "raw_action_max_abs": 5.761280059814453,
+          "mean_gaussian_kl": 50.65403747558594,
+          "leg_target_rms_rad": 0.05676174536347389,
+          "wheel_target_rms_rad_s": 1.2436434030532837,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "after_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.2503078281879425,
+          "raw_action_max_abs": 5.830780029296875,
+          "mean_gaussian_kl": 50.12320327758789,
+          "leg_target_rms_rad": 0.05627637356519699,
+          "wheel_target_rms_rad_s": 1.2418944835662842,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "same_observations": true,
+        "update_action_rms": 0.016265355050563812,
+        "update_action_max_abs": 0.29932403564453125,
+        "gravity_z_mean": -0.8416346907615662,
+        "not_upright_fraction": 0.114990234375,
+        "mean_abs_yaw_command": 0.573884129524231
+      },
+      "upright": {
+        "iteration": 150,
+        "before_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.043243683874607086,
+          "raw_action_max_abs": 0.3678157329559326,
+          "mean_gaussian_kl": 1.4960129261016846,
+          "leg_target_rms_rad": 0.00804084911942482,
+          "wheel_target_rms_rad_s": 0.2840231657028198,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "after_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.04291044548153877,
+          "raw_action_max_abs": 0.37002187967300415,
+          "mean_gaussian_kl": 1.4730448722839355,
+          "leg_target_rms_rad": 0.007975888438522816,
+          "wheel_target_rms_rad_s": 0.2811625897884369,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "same_observations": true,
+        "update_action_rms": 0.0038222912698984146,
+        "update_action_max_abs": 0.03461313247680664,
+        "gravity_z_mean": -0.9991335272789001,
+        "not_upright_fraction": 0.0,
+        "mean_abs_yaw_command": 0.5425087213516235
+      },
+      "recovery_groups": {
+        "upright_gravity_z_le_minus05": {
+          "count": 3625,
+          "raw_rms": 0.12529537081718445,
+          "squared_error_share": 0.21942898631095886
+        },
+        "not_upright_gravity_z_gt_minus05": {
+          "count": 471,
+          "raw_rms": 0.6555982828140259,
+          "squared_error_share": 0.7805710434913635
+        }
+      },
+      "probe_tensor_path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_17-39-16-573003_ref_resume_probe_s53_20260919\\reference_update_150.pt",
+      "probe_tensor_sha256": "3dfd7bcf7ec2884e8a9e2d4d8142a65a598379b9a0a581294b8cf3b9b81c0963",
+      "same_parent": true
+    },
+    {
+      "seed": 52,
+      "parent_sha256": "d31095e37b3c9f00d7efdd507522b49d9b4992de5838cdd244587ae2de091a67",
+      "recovery": {
+        "iteration": 150,
+        "before_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.18036633729934692,
+          "raw_action_max_abs": 3.208984375,
+          "mean_gaussian_kl": 26.025609970092773,
+          "leg_target_rms_rad": 0.039028678089380264,
+          "wheel_target_rms_rad_s": 0.9451544284820557,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "after_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.18123990297317505,
+          "raw_action_max_abs": 3.0443506240844727,
+          "mean_gaussian_kl": 26.2783203125,
+          "leg_target_rms_rad": 0.038980141282081604,
+          "wheel_target_rms_rad_s": 0.9478283524513245,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "same_observations": true,
+        "update_action_rms": 0.03916700556874275,
+        "update_action_max_abs": 0.8552613854408264,
+        "gravity_z_mean": -0.8506150245666504,
+        "not_upright_fraction": 0.10595703125,
+        "mean_abs_yaw_command": 0.5670502781867981
+      },
+      "upright": {
+        "iteration": 150,
+        "before_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.06688345968723297,
+          "raw_action_max_abs": 0.32503747940063477,
+          "mean_gaussian_kl": 3.5787181854248047,
+          "leg_target_rms_rad": 0.009526155889034271,
+          "wheel_target_rms_rad_s": 0.527618408203125,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "after_update_reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.06467222422361374,
+          "raw_action_max_abs": 0.31793212890625,
+          "mean_gaussian_kl": 3.3459978103637695,
+          "leg_target_rms_rad": 0.009484886191785336,
+          "wheel_target_rms_rad_s": 0.5008184909820557,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "same_observations": true,
+        "update_action_rms": 0.005116806831210852,
+        "update_action_max_abs": 0.04430830478668213,
+        "gravity_z_mean": -0.9990254640579224,
+        "not_upright_fraction": 0.0,
+        "mean_abs_yaw_command": 0.5274625420570374
+      },
+      "recovery_groups": {
+        "upright_gravity_z_le_minus05": {
+          "count": 3662,
+          "raw_rms": 0.10566199570894241,
+          "squared_error_share": 0.30682098865509033
+        },
+        "not_upright_gravity_z_gt_minus05": {
+          "count": 434,
+          "raw_rms": 0.46133169531822205,
+          "squared_error_share": 0.6931790113449097
+        }
+      },
+      "probe_tensor_path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_17-39-45-252563_ref_resume_probe_s52_20260919\\reference_update_150.pt",
+      "probe_tensor_sha256": "420163390d0cb8ed7c8b85b4fe24a8933603301d81a50932d529338af076fa4a",
+      "same_parent": true
+    }
+  ],
+  "decision": "Continue from both original model_149 checkpoints for200 updates with only upright reset orientation; drift limit0.25 unchanged",
+  "validation": {
+    "tests": 107,
+    "lightweight_tests": 107,
+    "expected_lightweight_skips": 31
+  }
+}

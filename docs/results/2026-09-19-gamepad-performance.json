@@ -1,0 +1,169 @@
+{
+  "status": "verified_interactive_viewer",
+  "recorded_utc": "2026-09-19T20:13:48.973095+00:00",
+  "scope": "Single simulated robot playback; not a new CPU training/policy qualification.",
+  "current_session": "logs/teleop/20260919T201113Z/status.json",
+  "runtime": {
+    "isaac_sim": "5.1.0",
+    "isaac_lab": "2.3.2",
+    "kit": "107.3.3+production.229672.69cbf6ad.gl",
+    "storm_bridge": "omni.hydra.pxr-1.2.4",
+    "viewport_bundle": "omni.kit.viewport.pxr-104.0.2"
+  },
+  "experience_base": {
+    "path": ".runtime/IsaacLab/apps/isaaclab.python.headless.kit",
+    "sha256": "ce9961116ec844addf1338aa0eebfbc93965ded1a13e13b341c027069ade282a"
+  },
+  "snapshot": {
+    "status": "running",
+    "started_utc": "20260919T201113Z",
+    "policy_seed": 54,
+    "task": "RobotLab-Isaac-Velocity-Flat-Unitree-B2W-v0",
+    "policy": "logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+    "policy_sha256": "f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee",
+    "checkpoint_sha256": "3eeb00963e528f6b31607a0188691f123b9ba533288a58c931c98ef790cab4fc",
+    "controller": "Windows XInput Xbox",
+    "gamepad_index": 0,
+    "graphics_api": "vulkan",
+    "simulation_device": "cpu",
+    "simulation_only": true,
+    "num_envs": 1,
+    "physics_dt": 0.005,
+    "policy_dt": 0.02,
+    "command_limits_vx_vy_yaw": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "renderer_requested": "storm",
+    "rendering_mode": "performance",
+    "dead_zone": 0.15,
+    "source_sha256": {
+      "scripts\\play_b2w_gamepad.py": "6c7963034c9b38399496784744005a733f43605e474da11dec7c361e63cce3a9",
+      "scripts\\b2w_gamepad.py": "8a1f47181a4e081b2eae91c8dacee73efff46723e3d713a2b6af726bfd09eefb",
+      "scripts\\b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+      "scripts\\check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+      "apps\\b2w.gamepad.storm.kit": "5751837f5bcced6867f65538474f8dd42aa69d6171862bb2038a91dcdd5084f3"
+    },
+    "ui_automation_note": "Computer Use helper unavailable (Windows1058); viewport captured through native Kit API",
+    "original_main_rate_limit": {
+      "enabled": false,
+      "frequency": 120
+    },
+    "viewport_engine": "pxr",
+    "viewport_delegate": "HdStormRendererPlugin",
+    "renderer_active": "pxr",
+    "renderer_enabled": "pxr",
+    "pxr_delegate": "HdStormRendererPlugin",
+    "usd_pose_updates": true,
+    "fabric_enabled": false,
+    "updated_utc": "2026-09-19T20:13:25.037156+00:00",
+    "policy_frames": 5826,
+    "sim_seconds": 116.52,
+    "wall_seconds": 119.57740039998316,
+    "gamepad_connected": true,
+    "gamepad_packet": 17642,
+    "packet_changes": 1456,
+    "buttons": 0,
+    "sticks": [
+      615,
+      -383,
+      -480,
+      -198
+    ],
+    "command": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "root_position": [
+      1.3215398788452148,
+      2.5667340755462646,
+      0.6221899390220642
+    ],
+    "actual_velocity": [
+      0.06069003790616989,
+      0.03526545315980911,
+      0.0005538015393540263
+    ],
+    "actual_yaw_rate": -0.0006289357552304864,
+    "resets": 0,
+    "motion_command_frames": 3081,
+    "fallen": false,
+    "live_observation_max_error": 0.0,
+    "live_action_target_max_error": 0.0,
+    "visual_body_position_max_error_m": 0.0,
+    "performance": {
+      "policy_fps": 48.78143963775329,
+      "realtime_factor": 0.9756287927550658,
+      "mean_ms": {
+        "policy": 1.3094530021771789,
+        "physics": 7.520224000327289,
+        "rendering": 4.277114000578877,
+        "other": 0.24474799633026123
+      }
+    },
+    "viewport_resolution": [
+      1280,
+      720
+    ],
+    "viewport_fps": 48.80556106567383,
+    "viewport_capture": "logs\\teleop\\20260919T201113Z\\viewport.png",
+    "gui_status": "READY - hold LB to move"
+  },
+  "comparison": [
+    {
+      "session": "20260919T194532Z",
+      "backend": "GPU PhysX / GPU policy / RTX D3D12",
+      "sim_seconds": 47.9,
+      "wall_seconds": 142.0,
+      "realtime_factor": 0.3373239436619718,
+      "note": "Historical initial viewer; stopped before optimization."
+    },
+    {
+      "session": "20260919T195234Z",
+      "backend": "GPU PhysX / GPU policy / RTX performance",
+      "policy_fps": 23.04,
+      "realtime_factor": 0.4608,
+      "mean_ms": {
+        "physics": 27.533,
+        "rendering": 7.884
+      },
+      "note": "Historical sampled window; stopped."
+    },
+    {
+      "session": "20260919T195525Z",
+      "backend": "CPU PhysX Fabric / CPU policy / RTX performance",
+      "policy_fps": 48.8423,
+      "realtime_factor": 0.976845,
+      "note": "Historical sampled window; stopped to replace RTX."
+    }
+  ],
+  "observed_lateral_sample": {
+    "session": "20260919T200602Z",
+    "sampled_utc": "2026-09-19T20:07:29.145064+00:00",
+    "command_vy_m_s": -0.9495546990426164,
+    "actual_vy_m_s": -0.9384835958480835,
+    "fallen": false,
+    "note": "Live user input, single telemetry sample, not a tracking-error evaluation."
+  },
+  "visual_review": {
+    "path": "docs/results/2026-09-19-gamepad-storm.png",
+    "sha256": "6c5356ef2fbdbfc2896739049a4f554ae217b227951597154af4ddaf2ca8ab36",
+    "observed": "B2W visible with a one-meter floor grid; simple raster shading, no path-tracing noise."
+  },
+  "known_diagnostics": [
+    "URDF importer emitted a float-underflow diagnostic for -9.26E-47 during cache conversion; actual CPU articulation runs with finite states and live parity checks."
+  ],
+  "sources": [
+    "https://docs.omniverse.nvidia.com/kit/docs/omni.kit.viewport.pxr/latest/Overview.html",
+    "https://docs.omniverse.nvidia.com/kit/docs/omni.hydra.pxr/latest/Overview.html"
+  ],
+  "changes": [
+    "Use single-robot CPU physics/inference with one Torch thread and a measured loop clock.",
+    "Default Pixar Storm/Vulkan experience enables pxr only; no RTX renderer, DLSS or ray tracing.",
+    "Author simple USD materials and visual-only one-meter grid before PhysX tensor initialization.",
+    "CPU USD pose writes validated against all rigid-body positions once per second.",
+    "Command maxima vx/vy/yaw 1/1/1; slew 2/2/3."
+  ]
+}

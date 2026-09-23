@@ -1,0 +1,111 @@
+{
+  "checked_utc": "2026-09-20T12:07:23.2408572Z",
+  "cpu_tests": {
+    "command": ".venv/Scripts/python.exe -B -m unittest discover -s tests -v",
+    "count": 165,
+    "exit_code": 0
+  },
+  "vendor_verification": {
+    "files": 1290,
+    "pinned_sources": 6,
+    "passed": true
+  },
+  "preflight": "docs/results/rough_precision_preflight_20260920_1.json",
+  "preflight_sha256": "fd6330db4487e49bd0021c9b7e0cbf1a0584f676e36f64d2c491d4759132039b",
+  "frozen_inputs_verified": 45,
+  "native_train_resume_passed": true,
+  "stages": [
+    {
+      "precision_validation": {
+        "only_reward_changes": [
+          "rewards.track_lin_vel_xy_exp.params.std",
+          "rewards.track_ang_vel_z_exp.params.std"
+        ],
+        "old_std": 0.5,
+        "new_std": 0.25,
+        "weights": {
+          "linear": 3.0,
+          "yaw": 1.5
+        },
+        "scope": "all Flat and Rough environments",
+        "complete_mdp_comparison_passed": true,
+        "ppo_preserved": true,
+        "historical_route_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_06-28-02-986982_rough_route_preflight_20260920_1_train\\manifest.json",
+        "historical_route_manifest_sha256": "3801215746a7cf7a43dfa690a88608f12b1a3a678093af5b8b562f82c7b938d2",
+        "native_fixture": {
+          "passed": true,
+          "native_terms": {
+            "track_lin_vel_xy_exp": {
+              "std": 0.25,
+              "weight": 3.0,
+              "max_abs_error": 0.0
+            },
+            "track_ang_vel_z_exp": {
+              "std": 0.25,
+              "weight": 1.5,
+              "max_abs_error": 0.0
+            }
+          },
+          "synthetic_cases": 5,
+          "live_cases": 64,
+          "simulator_state_modified": false
+        },
+        "training_manifest_sha256": "ea7d4178733641d7e08c6b01d21ff21804084c6c21f814a4e68c01b448346979",
+        "env_yaml_sha256": "2e0df8b776f8d9a3955b48384305a683887d4ea04b01a7338d5eb7a19ceb25ec",
+        "agent_yaml_sha256": "9c51003c12b781a97b3614045787dbfd3f8dd1e32dd319b7ac233ded70ac6578"
+      },
+      "external_exit_code": 0,
+      "flat_bank_drift": 0.041823577135801315,
+      "optimizer_max_step": 40.0,
+      "rough_drift": 0.0342455618083477,
+      "name": "train"
+    },
+    {
+      "precision_validation": {
+        "only_reward_changes": [
+          "rewards.track_lin_vel_xy_exp.params.std",
+          "rewards.track_ang_vel_z_exp.params.std"
+        ],
+        "old_std": 0.5,
+        "new_std": 0.25,
+        "weights": {
+          "linear": 3.0,
+          "yaw": 1.5
+        },
+        "scope": "all Flat and Rough environments",
+        "complete_mdp_comparison_passed": true,
+        "ppo_preserved": true,
+        "historical_route_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_06-28-02-986982_rough_route_preflight_20260920_1_train\\manifest.json",
+        "historical_route_manifest_sha256": "3801215746a7cf7a43dfa690a88608f12b1a3a678093af5b8b562f82c7b938d2",
+        "native_fixture": {
+          "passed": true,
+          "native_terms": {
+            "track_lin_vel_xy_exp": {
+              "std": 0.25,
+              "weight": 3.0,
+              "max_abs_error": 0.0
+            },
+            "track_ang_vel_z_exp": {
+              "std": 0.25,
+              "weight": 1.5,
+              "max_abs_error": 0.0
+            }
+          },
+          "synthetic_cases": 5,
+          "live_cases": 64,
+          "simulator_state_modified": false
+        },
+        "training_manifest_sha256": "93e2af222cdadfaa0e6bfacd8082aca8c639ca1d14df7f6db224ac30b1ea7bed",
+        "env_yaml_sha256": "d77f4e9f0f395c7eb8e00e8e8942e2a5fc54b68c51bfeb119bfd47f8667ed69d",
+        "agent_yaml_sha256": "b1983af2d23ee7f50a9e1bfff6693c0d2f4c8d8eb16c9718b13ef2e9a7ad6136"
+      },
+      "external_exit_code": 0,
+      "flat_bank_drift": 0.05625961720943451,
+      "optimizer_max_step": 80.0,
+      "rough_drift": 0.04796483740210533,
+      "name": "resume"
+    }
+  ],
+  "policy_quality_accepted": false,
+  "note": "Technical preflight only; all 64-env smoke weights are discarded."
+}

@@ -1,0 +1,156 @@
+{
+  "created_utc": "2026-09-18T06:29:22.951828+00:00",
+  "created_moscow": "2026-09-18T09:29:22.951828+03:00",
+  "status": "parallel_initial",
+  "job": "logs\\ablations\\flat_schedule_parallel_seed48_20260918\\job.json",
+  "supervisor_pid": 11912,
+  "handoff": {
+    "old_supervisor_pid": 18884,
+    "old_supervisor_created": 1789711640.817962,
+    "trainer_pid": 23476,
+    "trainer_created": 1789711795.492454,
+    "trainer_restarted": false,
+    "progress_before": {
+      "updated_utc": "2026-09-18T06:25:33.318481+00:00",
+      "iteration": 406,
+      "updates_completed_this_run": 407,
+      "updates_requested_this_run": 2500,
+      "transitions_this_run": 40009728,
+      "collection_seconds": 1.661292314529419,
+      "learning_seconds": 0.18390607833862305,
+      "losses": {
+        "value_function": 0.6736549824476242,
+        "surrogate": -0.004940685628389474,
+        "entropy": 34.61653003692627
+      },
+      "command_distribution": {
+        "env_command_steps": 40009728,
+        "standing_fraction": 0.02000056086359797,
+        "pure_yaw_abs_gt_005_fraction": 0.2680107697807893,
+        "positive_pure_yaw_fraction": 0.13443570523648649,
+        "negative_pure_yaw_fraction": 0.13357506454430282,
+        "mean_abs_yaw_rad_s": 0.5266322332001875,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 0.0012974633789062506,
+      "policy_quality_evaluated": false
+    }
+  },
+  "progress": {
+    "constant": {
+      "pid": 23476,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_06-09-55-753350_flat_schedule_seed48_20260918_constant_0\\manifest.json",
+      "updated_utc": "2026-09-18T06:29:21.654998+00:00",
+      "iteration": 484,
+      "updates_completed_this_run": 485,
+      "updates_requested_this_run": 2500,
+      "transitions_this_run": 47677440,
+      "collection_seconds": 2.932429075241089,
+      "learning_seconds": 0.2530553340911865,
+      "losses": {
+        "value_function": 1.4540236175060273,
+        "surrogate": -0.003463203803403303,
+        "entropy": 36.53883609771729
+      },
+      "command_distribution": {
+        "env_command_steps": 47677440,
+        "standing_fraction": 0.020106113079896907,
+        "pure_yaw_abs_gt_005_fraction": 0.2668443188224871,
+        "positive_pure_yaw_fraction": 0.13386698195205113,
+        "negative_pure_yaw_fraction": 0.132977336870436,
+        "mean_abs_yaw_rad_s": 0.5090413278935292,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 0.0002562890625000001,
+      "policy_quality_evaluated": false
+    },
+    "staged": {
+      "pid": 13688,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_06-25-35-699985_flat_schedule_seed48_20260918_staged_0\\manifest.json",
+      "updated_utc": "2026-09-18T06:29:22.905309+00:00",
+      "iteration": 42,
+      "updates_completed_this_run": 43,
+      "updates_requested_this_run": 2500,
+      "transitions_this_run": 4227072,
+      "collection_seconds": 2.951918601989746,
+      "learning_seconds": 0.2340869903564453,
+      "losses": {
+        "value_function": 0.06769562847912311,
+        "surrogate": -0.006716437856084667,
+        "entropy": 24.019327259063722
+      },
+      "command_distribution": {
+        "env_command_steps": 4227072,
+        "standing_fraction": 0.020214701807776164,
+        "pure_yaw_abs_gt_005_fraction": 0.029744466145833332,
+        "positive_pure_yaw_fraction": 0.014334272044573644,
+        "negative_pure_yaw_fraction": 0.01541019410125969,
+        "mean_abs_yaw_rad_s": 0.6673572047274242,
+        "scope": "Cumulative commands after command-manager updates, including initial resets"
+      },
+      "learning_rate": 0.0008779149519890263,
+      "policy_quality_evaluated": false
+    }
+  },
+  "source_sha256": {
+    "run_flat_schedule_parallel.py": "4addd26d36dec3dfec58dd220a1387f67b67a84df708a63b6fe989e226f340fb",
+    "schedule_parallel_handoff.py": "d29dd4742af8237fd58c93bb9d28059137677a12da74087fcbb7a9792eaa8fba",
+    "parallel_flat_baseline.py": "453db54afee27e6b97cfbc5f8094242438264674b1d757cc255987c4b22e3af6",
+    "run_flat_schedule_ablation.py": "6ba004d29461c6468de3b3878386cc1e326183a2164c92b4b506c46e526f7bde",
+    "train_b2w.py": "5fe1fab54257b9d87960199317522dcb6e61337f23e9392aa0806d51219c291d",
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "benchmark_parallel4096.py": "129ba37110a42f493ae2dd537550fb4f9fc3a49a9fadac2258191b66cbb857dc",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "replay_reference_b2w.py": "c588e754ffea3f3f693867ef9337adcbd347d4005200fa82f58121290e25e6b8",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859"
+  },
+  "protocol_sha256": "3e1ddf39254408c749f2afaae0c885c028f1a51f80f033ae67ebe792f90aeb54",
+  "measured_speed": {
+    "solo_prior_100_updates_transitions_s": 43920.31813708625,
+    "parallel_common_window_seconds": 103.32755780220032,
+    "parallel_event_count": {
+      "constant": 31,
+      "staged": 32
+    },
+    "parallel_per_arm_transitions_s": {
+      "constant": 29248.934354504792,
+      "staged": 30072.66409539861
+    },
+    "parallel_total_transitions_s": 59321.5984499034,
+    "ratio_to_prior_solo": 1.3506641337329552,
+    "interpretation": "Short startup observation after10 staged warmup updates, not a matched sustained benchmark; ETA and savings provisional."
+  },
+  "resource_samples": 45,
+  "peak_gpu_used_mib": 9671.0,
+  "minimum_gpu_headroom_fraction": 0.21258752646148835,
+  "last_resource_sample": {
+    "utc": "2026-09-18T06:29:19.141675+00:00",
+    "elapsed_seconds": 224.35899999999992,
+    "constant": {
+      "process_tree_rss_bytes": 6684381184,
+      "process_tree_count": 4,
+      "system_available_ram_bytes": 11719557120,
+      "system_total_ram_bytes": 34277982208
+    },
+    "staged": {
+      "process_tree_rss_bytes": 6665641984,
+      "process_tree_count": 3,
+      "system_available_ram_bytes": 11719839744,
+      "system_total_ram_bytes": 34277982208
+    },
+    "gpu_total_mib": 12282.0,
+    "gpu_used_mib": 9669.0,
+    "gpu_utilization_percent": 92.0,
+    "gpu_temperature_c": 45.0,
+    "gpu_headroom_fraction": 0.2127503663898388
+  },
+  "tests_passed": 46,
+  "policy_quality_evaluated": false
+}

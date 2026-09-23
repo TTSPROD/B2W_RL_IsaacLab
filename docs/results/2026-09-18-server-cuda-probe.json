@@ -1,0 +1,21 @@
+{
+  "started_utc": "2026-09-18T12:03:45.933841+00:00",
+  "scope": "Synthetic CUDA only; GPU0 only; no queue changes",
+  "source_sha256": "f410bcb9df20d89150a56ef0ce9e3bae3d88d7476f4b975bd322b92470bf14fd",
+  "gpu_before": [
+    "index, uuid, name, memory.total [MiB], memory.free [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n0, GPU-b6b25f61-2fd9-412e-e1b9-2fc39fa514f8, NVIDIA Graphics Device, 95830 MiB, 67971 MiB, 0 %, 135.68 W, 45\n1, GPU-42dd5604-5a0f-d84a-02f9-8f808c2b1284, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 141.48 W, 49\n2, GPU-e8ce9049-f67c-2c53-ed0b-5b20296e16ac, NVIDIA Graphics Device, 95830 MiB, 69053 MiB, 0 %, 128.13 W, 41\n3, GPU-96ef07ab-a384-3356-485e-7edf9e2951fd, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 128.20 W, 40\n",
+    "index, uuid, name, memory.total [MiB], memory.free [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n0, GPU-b6b25f61-2fd9-412e-e1b9-2fc39fa514f8, NVIDIA Graphics Device, 95830 MiB, 67971 MiB, 0 %, 135.72 W, 45\n1, GPU-42dd5604-5a0f-d84a-02f9-8f808c2b1284, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 141.52 W, 49\n2, GPU-e8ce9049-f67c-2c53-ed0b-5b20296e16ac, NVIDIA Graphics Device, 95830 MiB, 69053 MiB, 0 %, 128.20 W, 41\n3, GPU-96ef07ab-a384-3356-485e-7edf9e2951fd, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 128.15 W, 40\n",
+    "index, uuid, name, memory.total [MiB], memory.free [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n0, GPU-b6b25f61-2fd9-412e-e1b9-2fc39fa514f8, NVIDIA Graphics Device, 95830 MiB, 67971 MiB, 0 %, 135.75 W, 45\n1, GPU-42dd5604-5a0f-d84a-02f9-8f808c2b1284, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 141.48 W, 49\n2, GPU-e8ce9049-f67c-2c53-ed0b-5b20296e16ac, NVIDIA Graphics Device, 95830 MiB, 69053 MiB, 0 %, 128.24 W, 41\n3, GPU-96ef07ab-a384-3356-485e-7edf9e2951fd, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 128.20 W, 40\n"
+  ],
+  "compile": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "probe": {
+    "status": "timeout",
+    "limit_seconds": 45
+  },
+  "gpu_after": "index, uuid, name, memory.total [MiB], memory.free [MiB], utilization.gpu [%], power.draw [W], temperature.gpu\n0, GPU-b6b25f61-2fd9-412e-e1b9-2fc39fa514f8, NVIDIA Graphics Device, 95830 MiB, 67971 MiB, 3 %, 135.94 W, 45\n1, GPU-42dd5604-5a0f-d84a-02f9-8f808c2b1284, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 141.08 W, 49\n2, GPU-e8ce9049-f67c-2c53-ed0b-5b20296e16ac, NVIDIA Graphics Device, 95830 MiB, 69053 MiB, 0 %, 128.02 W, 40\n3, GPU-96ef07ab-a384-3356-485e-7edf9e2951fd, NVIDIA Graphics Device, 95830 MiB, 14573 MiB, 0 %, 128.06 W, 40\n",
+  "finished_utc": "2026-09-18T12:04:34.718634+00:00"
+}

@@ -1,0 +1,3675 @@
+{
+  "status": "completed_staged_qualification",
+  "started_utc": "2026-09-18T09:59:24.972208+00:00",
+  "finished_utc": "2026-09-18T16:08:16.215133+00:00",
+  "qualification": {
+    "per_seed_profile_pass": {
+      "reference": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed49": {
+        "nominal": true,
+        "bounded_v1": true
+      },
+      "seed50": {
+        "nominal": false,
+        "bounded_v1": false
+      },
+      "seed51": {
+        "nominal": false,
+        "bounded_v1": true
+      }
+    },
+    "reference_all_profiles_pass": true,
+    "controlled_three_seed_bounded_flat_thresholds_met": false,
+    "matched_planned_restart_after_updates": 2500,
+    "decision": "three_seed_gate_not_met",
+    "release_accepted": false,
+    "automatic_extension": false,
+    "automatic_rough_promotion": false,
+    "scope": "Fixed nominal and bounded_v1 Flat suites only; no sim2sim or hardware acceptance."
+  },
+  "source_sha256": {
+    "run_flat_schedule_ablation.py": "6ba004d29461c6468de3b3878386cc1e326183a2164c92b4b506c46e526f7bde",
+    "train_b2w.py": "5fe1fab54257b9d87960199317522dcb6e61337f23e9392aa0806d51219c291d",
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "benchmark_parallel4096.py": "129ba37110a42f493ae2dd537550fb4f9fc3a49a9fadac2258191b66cbb857dc",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "replay_reference_b2w.py": "c588e754ffea3f3f693867ef9337adcbd347d4005200fa82f58121290e25e6b8",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859",
+    "run_staged_qualification.py": "cd67a5d9a29b3ea1409afe564ea6648f2b00baa7f5387a142cbbebb8719d430a"
+  },
+  "captured_utc": "2026-09-18T20:23:31.193441+00:00",
+  "job": "logs/qualification_runs/flat_staged_seeds49_51_20260918/job.json",
+  "job_sha256": "f33cd75aa13f5c5054124dda936a0eb935858646d969e658c3bd07bebdc8e2e0",
+  "training": {
+    "train_pair_0": {
+      "status": "validated",
+      "started_utc": "2026-09-18T09:59:25.082328+00:00",
+      "finished_utc": "2026-09-18T12:06:45.769406+00:00",
+      "resources": {
+        "samples": 1504,
+        "telemetry_errors": 0,
+        "peak_gpu_used_mib": 10038.0,
+        "minimum_gpu_headroom_fraction": 0.18270639960918417,
+        "peak_gpu_temperature_c": 65.0,
+        "minimum_system_available_ram_bytes": 9334165504
+      },
+      "wall_seconds": 7640.687000000002,
+      "runs": [
+        {
+          "seed": 49,
+          "num_envs": 4096,
+          "iterations": 2500,
+          "starting_runner_iteration": 0,
+          "ending_runner_iteration": 2499,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-323347_flat_staged_seeds49_51_20260918_seed49_0\\manifest.json",
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-323347_flat_staged_seeds49_51_20260918_seed49_0\\model_2499.pt",
+          "final_checkpoint_sha256": "382f0be5c80bba2219dc930d9b3f7e1b59b4891630d2ca83bb7c83fd2a8c540a",
+          "checkpoint_validation_status": "passed",
+          "checkpoint_sha256_verified": true
+        },
+        {
+          "seed": 50,
+          "num_envs": 4096,
+          "iterations": 2500,
+          "starting_runner_iteration": 0,
+          "ending_runner_iteration": 2499,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\manifest.json",
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "final_checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+          "checkpoint_validation_status": "passed",
+          "checkpoint_sha256_verified": true
+        }
+      ]
+    },
+    "train_pair_1": {
+      "status": "validated",
+      "started_utc": "2026-09-18T12:07:00.760680+00:00",
+      "finished_utc": "2026-09-18T13:21:45.505194+00:00",
+      "resources": {
+        "samples": 883,
+        "telemetry_errors": 0,
+        "peak_gpu_used_mib": 9709.0,
+        "minimum_gpu_headroom_fraction": 0.20949356782283016,
+        "peak_gpu_temperature_c": 63.0,
+        "minimum_system_available_ram_bytes": 10010955776
+      },
+      "wall_seconds": 4484.733999999997,
+      "runs": [
+        {
+          "seed": 49,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "ending_runner_iteration": 3999,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed49_1\\manifest.json",
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed49_1\\model_3999.pt",
+          "final_checkpoint_sha256": "7d434dce388d4e191d0666f3f6dc825e32aeea3501229c3b0e857233bb8ba12c",
+          "checkpoint_validation_status": "passed",
+          "checkpoint_sha256_verified": true
+        },
+        {
+          "seed": 50,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "ending_runner_iteration": 3999,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed50_1\\manifest.json",
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed50_1\\model_3999.pt",
+          "final_checkpoint_sha256": "4c08c11d4cc3fb285bb6856c96d75b34aebf1e0babf33cd2e5aeb05c6e8765ea",
+          "checkpoint_validation_status": "passed",
+          "checkpoint_sha256_verified": true
+        }
+      ]
+    },
+    "train_tail_0": {
+      "status": "validated",
+      "started_utc": "2026-09-18T13:21:49.195676+00:00",
+      "finished_utc": "2026-09-18T15:02:28.053421+00:00",
+      "resources": {
+        "samples": 1187,
+        "telemetry_errors": 0,
+        "peak_gpu_used_mib": 5199.0,
+        "minimum_gpu_headroom_fraction": 0.5766976062530532,
+        "peak_gpu_temperature_c": 62.0,
+        "minimum_system_available_ram_bytes": 15086170112
+      },
+      "wall_seconds": 6037.811999999998,
+      "runs": [
+        {
+          "seed": 51,
+          "num_envs": 4096,
+          "iterations": 2500,
+          "starting_runner_iteration": 0,
+          "ending_runner_iteration": 2499,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_13-21-49-478799_flat_staged_seeds49_51_20260918_seed51_0\\manifest.json",
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_13-21-49-478799_flat_staged_seeds49_51_20260918_seed51_0\\model_2499.pt",
+          "final_checkpoint_sha256": "1ae577294c380b2964bdfb85b0869dce3342c4fb604227899fa994b006e29122",
+          "checkpoint_validation_status": "passed",
+          "checkpoint_sha256_verified": true
+        }
+      ]
+    },
+    "train_tail_1": {
+      "status": "validated",
+      "started_utc": "2026-09-18T15:02:30.031018+00:00",
+      "finished_utc": "2026-09-18T15:59:59.195832+00:00",
+      "resources": {
+        "samples": 678,
+        "telemetry_errors": 0,
+        "peak_gpu_used_mib": 5304.0,
+        "minimum_gpu_headroom_fraction": 0.5681485100146556,
+        "peak_gpu_temperature_c": 62.0,
+        "minimum_system_available_ram_bytes": 15920955392
+      },
+      "wall_seconds": 3449.1719999999987,
+      "runs": [
+        {
+          "seed": 51,
+          "num_envs": 4096,
+          "iterations": 1500,
+          "starting_runner_iteration": 2500,
+          "ending_runner_iteration": 3999,
+          "status": "validated",
+          "external_exit_code": 0,
+          "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_15-02-30-359568_flat_staged_seeds49_51_20260918_seed51_1\\manifest.json",
+          "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_15-02-30-359568_flat_staged_seeds49_51_20260918_seed51_1\\model_3999.pt",
+          "final_checkpoint_sha256": "27ad06198fece6938c211fa53d5fcb9a544f319c682e5014d9df66229fb3e92a",
+          "checkpoint_validation_status": "passed",
+          "checkpoint_sha256_verified": true
+        }
+      ]
+    }
+  },
+  "exports": {
+    "seed49": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed49\\export\\report.json",
+      "report_sha256": "6b27dffd8d955c1d7354718ba0b62a51407a9df37e2951cbae6f8dd05e4c58ad",
+      "export_sha256": "403e2ee602cc59260b46cd5a8735c773ccd0592c887ee66f74e023ed4a4d8aa2",
+      "training_export": {
+        "status": "passed",
+        "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed49_1\\model_3999.pt",
+        "checkpoint_sha256": "7d434dce388d4e191d0666f3f6dc825e32aeea3501229c3b0e857233bb8ba12c",
+        "checkpoint_iteration": 3999,
+        "agent_sha256": "d1dca06c21d65a71f9cd6ed583958586d8c57b867b20a53b816e0e524d6da3fb",
+        "export": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed49\\export\\policy-contract-export\\policy.pt",
+        "export_sha256": "403e2ee602cc59260b46cd5a8735c773ccd0592c887ee66f74e023ed4a4d8aa2",
+        "exporter_sha256": "30e2a297241311917708c99aacf0a083038e8035079ffbde27e60cab2a362661",
+        "fixture_and_random_count": 295,
+        "random_seed": 20260917,
+        "max_abs_error": 0.0,
+        "tolerance": 1e-05,
+        "normalizer": "Identity",
+        "policy_quality_evaluated": false
+      },
+      "report_and_export_sha256_verified": true
+    },
+    "seed50": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed50\\export\\report.json",
+      "report_sha256": "255cc5bf63d46d7b617bd275e0b45b6d17b786f1df7d228a0a2f752485a2b309",
+      "export_sha256": "5f611aefb9be21ddbf8998476dfd2923349dbd8ba9f10ba930bb53dfae04d656",
+      "training_export": {
+        "status": "passed",
+        "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_12-07-01-956158_flat_staged_seeds49_51_20260918_seed50_1\\model_3999.pt",
+        "checkpoint_sha256": "4c08c11d4cc3fb285bb6856c96d75b34aebf1e0babf33cd2e5aeb05c6e8765ea",
+        "checkpoint_iteration": 3999,
+        "agent_sha256": "56fc2d6e294575fcab7ed756457539a4a814bbcbb989926a03edb4f1c1322227",
+        "export": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed50\\export\\policy-contract-export\\policy.pt",
+        "export_sha256": "5f611aefb9be21ddbf8998476dfd2923349dbd8ba9f10ba930bb53dfae04d656",
+        "exporter_sha256": "30e2a297241311917708c99aacf0a083038e8035079ffbde27e60cab2a362661",
+        "fixture_and_random_count": 295,
+        "random_seed": 20260917,
+        "max_abs_error": 0.0,
+        "tolerance": 1e-05,
+        "normalizer": "Identity",
+        "policy_quality_evaluated": false
+      },
+      "report_and_export_sha256_verified": true
+    },
+    "seed51": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed51\\export\\report.json",
+      "report_sha256": "7b4a76531f9ca254e2c66abc2a0bc25596ee2a98cc00979cfa1df258d6d8bf77",
+      "export_sha256": "e89c16c5882dde16379db89de880c5dbb7dca8a754a5a55a27b0718cbaf20d7e",
+      "training_export": {
+        "status": "passed",
+        "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_15-02-30-359568_flat_staged_seeds49_51_20260918_seed51_1\\model_3999.pt",
+        "checkpoint_sha256": "27ad06198fece6938c211fa53d5fcb9a544f319c682e5014d9df66229fb3e92a",
+        "checkpoint_iteration": 3999,
+        "agent_sha256": "56ed24d86eab42adea152f974d5ad8213af5ac242258704ddca97b41c934c3f0",
+        "export": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed51\\export\\policy-contract-export\\policy.pt",
+        "export_sha256": "e89c16c5882dde16379db89de880c5dbb7dca8a754a5a55a27b0718cbaf20d7e",
+        "exporter_sha256": "30e2a297241311917708c99aacf0a083038e8035079ffbde27e60cab2a362661",
+        "fixture_and_random_count": 295,
+        "random_seed": 20260917,
+        "max_abs_error": 0.0,
+        "tolerance": 1e-05,
+        "normalizer": "Identity",
+        "policy_quality_evaluated": false
+      },
+      "report_and_export_sha256_verified": true
+    }
+  },
+  "evaluations": {
+    "reference_nominal_20261201": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\reference\\nominal_20261201.json",
+      "report_sha256": "a8392829ed0000225f4903f30ef033b15278a1c011872228f58877f48a45e390",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 99,
+        "pooled_rms_vx_vy_yaw": [
+          0.05001102960203626,
+          0.06794022805909933,
+          0.08012595748238535
+        ],
+        "episode_rms_p95": [
+          0.06670798361301422,
+          0.1494738757610321,
+          0.17882241308689117
+        ],
+        "episode_rms_max": [
+          0.0743415504693985,
+          0.17672374844551086,
+          0.2910551130771637
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04115900391803261,
+              0.013211637997759243,
+              0.011929807907272152
+            ],
+            "episode_rms_p95": [
+              0.04967905580997467,
+              0.017625978216528893,
+              0.013049103319644928
+            ],
+            "episode_rms_max": [
+              0.04967905580997467,
+              0.017625978216528893,
+              0.013049103319644928
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.034106016424961104,
+              0.02130415618353089,
+              0.035111558281963384
+            ],
+            "episode_rms_p95": [
+              0.04858269914984703,
+              0.028844747692346573,
+              0.04338754341006279
+            ],
+            "episode_rms_max": [
+              0.04858269914984703,
+              0.028844747692346573,
+              0.04338754341006279
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.05964202636117555,
+              0.026046530193887706,
+              0.04651565488304991
+            ],
+            "episode_rms_p95": [
+              0.06729136407375336,
+              0.035023778676986694,
+              0.05265362560749054
+            ],
+            "episode_rms_max": [
+              0.06729136407375336,
+              0.035023778676986694,
+              0.05265362560749054
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04447495134722014,
+              0.15119048646958338,
+              0.06924264114884146
+            ],
+            "episode_rms_p95": [
+              0.05865078419446945,
+              0.17672374844551086,
+              0.08605962991714478
+            ],
+            "episode_rms_max": [
+              0.05865078419446945,
+              0.17672374844551086,
+              0.08605962991714478
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 11,
+            "pooled_rms_vx_vy_yaw": [
+              0.05032764467429429,
+              0.0699801707794299,
+              0.1884659698102159
+            ],
+            "episode_rms_p95": [
+              0.06956551223993301,
+              0.10300218313932419,
+              0.2910551130771637
+            ],
+            "episode_rms_max": [
+              0.06956551223993301,
+              0.10300218313932419,
+              0.2910551130771637
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05305107210806478,
+              0.08153533166436143,
+              0.08216090270081844
+            ],
+            "episode_rms_p95": [
+              0.06253442913293839,
+              0.09694110602140427,
+              0.09633465856313705
+            ],
+            "episode_rms_max": [
+              0.06253442913293839,
+              0.09694110602140427,
+              0.09633465856313705
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.048012345683659204,
+              0.017726032525032333,
+              0.025743118437901624
+            ],
+            "episode_rms_p95": [
+              0.05728664621710777,
+              0.02533648908138275,
+              0.03324870020151138
+            ],
+            "episode_rms_max": [
+              0.05728664621710777,
+              0.02533648908138275,
+              0.03324870020151138
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06401720597585801,
+              0.020663786352032237,
+              0.03925588331758611
+            ],
+            "episode_rms_p95": [
+              0.0743415504693985,
+              0.02460361085832119,
+              0.05115385353565216
+            ],
+            "episode_rms_max": [
+              0.0743415504693985,
+              0.02460361085832119,
+              0.05115385353565216
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [],
+      "physical_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+        "end_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876"
+      }
+    },
+    "reference_bounded_v1_20261202": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\reference\\bounded_v1_20261202.json",
+      "report_sha256": "d936230c74cf7c5e4ebb9c8ba5a6baebbe2284f857279b42ab633f0d2eb7020b",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 100,
+        "pooled_rms_vx_vy_yaw": [
+          0.050142573000850524,
+          0.06653046701215881,
+          0.07870167000624877
+        ],
+        "episode_rms_p95": [
+          0.07047214359045029,
+          0.17384843528270721,
+          0.1873806267976761
+        ],
+        "episode_rms_max": [
+          0.07660891115665436,
+          0.18690231442451477,
+          0.2441205233335495
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.040933877584505875,
+              0.012788430522432804,
+              0.012119886355604246
+            ],
+            "episode_rms_p95": [
+              0.05316868796944618,
+              0.014873419888317585,
+              0.013833477161824703
+            ],
+            "episode_rms_max": [
+              0.05316868796944618,
+              0.014873419888317585,
+              0.013833477161824703
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.034300961809730635,
+              0.009168084730887448,
+              0.023865586949144275
+            ],
+            "episode_rms_p95": [
+              0.04254087060689926,
+              0.010981621220707893,
+              0.029073256999254227
+            ],
+            "episode_rms_max": [
+              0.04254087060689926,
+              0.010981621220707893,
+              0.029073256999254227
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.060184144870405645,
+              0.015037398818102884,
+              0.03407497936265956
+            ],
+            "episode_rms_p95": [
+              0.07506470382213593,
+              0.02095215581357479,
+              0.04235392436385155
+            ],
+            "episode_rms_max": [
+              0.07506470382213593,
+              0.02095215581357479,
+              0.04235392436385155
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04221961730975973,
+              0.16189245984603656,
+              0.04204022645532491
+            ],
+            "episode_rms_p95": [
+              0.056193988770246506,
+              0.18690231442451477,
+              0.06710755079984665
+            ],
+            "episode_rms_max": [
+              0.056193988770246506,
+              0.18690231442451477,
+              0.06710755079984665
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.03771765944338464,
+              0.06107645064353487,
+              0.1948438996796481
+            ],
+            "episode_rms_p95": [
+              0.05079163238406181,
+              0.08543515205383301,
+              0.2441205233335495
+            ],
+            "episode_rms_max": [
+              0.05079163238406181,
+              0.08543515205383301,
+              0.2441205233335495
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05655481691248096,
+              0.061900164099053946,
+              0.08875573632690265
+            ],
+            "episode_rms_p95": [
+              0.07518122345209122,
+              0.08219625800848007,
+              0.10379746556282043
+            ],
+            "episode_rms_max": [
+              0.07518122345209122,
+              0.08219625800848007,
+              0.10379746556282043
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05221798781054457,
+              0.013561521536534234,
+              0.025332750590434123
+            ],
+            "episode_rms_p95": [
+              0.05777564272284508,
+              0.017174046486616135,
+              0.03889056667685509
+            ],
+            "episode_rms_max": [
+              0.05777564272284508,
+              0.017174046486616135,
+              0.03889056667685509
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06826197078928958,
+              0.015281259111968195,
+              0.03441092339533208
+            ],
+            "episode_rms_p95": [
+              0.07660891115665436,
+              0.01931232027709484,
+              0.04114825278520584
+            ],
+            "episode_rms_max": [
+              0.07660891115665436,
+              0.01931232027709484,
+              0.04114825278520584
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [],
+      "physical_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+        "end_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c"
+      }
+    },
+    "seed49_nominal_20261201": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed49\\nominal_20261201.json",
+      "report_sha256": "80abad799f3b30880c6bf802a85c9767fddf091a8e581fea66935451c2157baf",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 100,
+        "pooled_rms_vx_vy_yaw": [
+          0.04731982442457239,
+          0.06467430566451585,
+          0.0966927687492097
+        ],
+        "episode_rms_p95": [
+          0.06848493218421936,
+          0.1470928192138672,
+          0.21440163254737854
+        ],
+        "episode_rms_max": [
+          0.09076306968927383,
+          0.16274413466453552,
+          0.22167053818702698
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0009111871631543903,
+              0.00031991718990473145,
+              0.000998914099151165
+            ],
+            "episode_rms_p95": [
+              0.0017763803480193019,
+              0.000495433050673455,
+              0.001583225792273879
+            ],
+            "episode_rms_max": [
+              0.0017763803480193019,
+              0.000495433050673455,
+              0.001583225792273879
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0445719918180545,
+              0.015928358800467276,
+              0.01831924943249126
+            ],
+            "episode_rms_p95": [
+              0.07166534662246704,
+              0.020858848467469215,
+              0.02170032635331154
+            ],
+            "episode_rms_max": [
+              0.07166534662246704,
+              0.020858848467469215,
+              0.02170032635331154
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.051356666521543075,
+              0.010403587062026579,
+              0.014642132737991875
+            ],
+            "episode_rms_p95": [
+              0.0660049095749855,
+              0.013276491314172745,
+              0.017505323514342308
+            ],
+            "episode_rms_max": [
+              0.0660049095749855,
+              0.013276491314172745,
+              0.017505323514342308
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.043116248458296605,
+              0.12554037240532118,
+              0.05828461371502893
+            ],
+            "episode_rms_p95": [
+              0.051753364503383636,
+              0.16274413466453552,
+              0.08824887126684189
+            ],
+            "episode_rms_max": [
+              0.051753364503383636,
+              0.16274413466453552,
+              0.08824887126684189
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05616902059094016,
+              0.08189143421731737,
+              0.21229768016538414
+            ],
+            "episode_rms_p95": [
+              0.07320675998926163,
+              0.10473372787237167,
+              0.22167053818702698
+            ],
+            "episode_rms_max": [
+              0.07320675998926163,
+              0.10473372787237167,
+              0.22167053818702698
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.06363992079811938,
+              0.10230264854916345,
+              0.1681627667605719
+            ],
+            "episode_rms_p95": [
+              0.09076306968927383,
+              0.13608059287071228,
+              0.18062607944011688
+            ],
+            "episode_rms_max": [
+              0.09076306968927383,
+              0.13608059287071228,
+              0.18062607944011688
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.047753334173740884,
+              0.012180643177317407,
+              0.012978926151108131
+            ],
+            "episode_rms_p95": [
+              0.06048329919576645,
+              0.017872696742415428,
+              0.016813797876238823
+            ],
+            "episode_rms_max": [
+              0.06048329919576645,
+              0.017872696742415428,
+              0.016813797876238823
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.046367990232777635,
+              0.008366833179471924,
+              0.010856704234500265
+            ],
+            "episode_rms_p95": [
+              0.051693204790353775,
+              0.009847988374531269,
+              0.012438827194273472
+            ],
+            "episode_rms_max": [
+              0.051693204790353775,
+              0.009847988374531269,
+              0.012438827194273472
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [],
+      "physical_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+        "end_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876"
+      }
+    },
+    "seed49_bounded_v1_20261202": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed49\\bounded_v1_20261202.json",
+      "report_sha256": "8321002b645feca5db072bdbf16756df683f40a42ce09b8c3e1577e758a377a7",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 100,
+        "pooled_rms_vx_vy_yaw": [
+          0.04336459245703954,
+          0.05929810345401973,
+          0.0892570432425141
+        ],
+        "episode_rms_p95": [
+          0.06400352716445923,
+          0.135641410946846,
+          0.2069176286458969
+        ],
+        "episode_rms_max": [
+          0.08070282638072968,
+          0.1739320605993271,
+          0.2364012897014618
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0010569026707319756,
+              0.0003222220345260845,
+              0.0008048155139610982
+            ],
+            "episode_rms_p95": [
+              0.002178379101678729,
+              0.000643668812699616,
+              0.0017513707280158997
+            ],
+            "episode_rms_max": [
+              0.002178379101678729,
+              0.000643668812699616,
+              0.0017513707280158997
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04778412910253597,
+              0.013246233062702204,
+              0.015154499327054307
+            ],
+            "episode_rms_p95": [
+              0.08070282638072968,
+              0.024465173482894897,
+              0.017200060188770294
+            ],
+            "episode_rms_max": [
+              0.08070282638072968,
+              0.024465173482894897,
+              0.017200060188770294
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.04269982214651662,
+              0.009808062541852599,
+              0.011807613245667412
+            ],
+            "episode_rms_p95": [
+              0.07655821740627289,
+              0.01426078099757433,
+              0.013909273780882359
+            ],
+            "episode_rms_max": [
+              0.07655821740627289,
+              0.01426078099757433,
+              0.013909273780882359
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.028278926215199666,
+              0.13109715932637564,
+              0.02882690093060704
+            ],
+            "episode_rms_p95": [
+              0.04528637230396271,
+              0.1739320605993271,
+              0.052522070705890656
+            ],
+            "episode_rms_max": [
+              0.04528637230396271,
+              0.1739320605993271,
+              0.052522070705890656
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05149004136958217,
+              0.07683033995050187,
+              0.20578359444056593
+            ],
+            "episode_rms_p95": [
+              0.07083112746477127,
+              0.10277062654495239,
+              0.2364012897014618
+            ],
+            "episode_rms_max": [
+              0.07083112746477127,
+              0.10277062654495239,
+              0.2364012897014618
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05153457663162389,
+              0.06560099234043008,
+              0.15018774043570587
+            ],
+            "episode_rms_p95": [
+              0.060609132051467896,
+              0.08372020721435547,
+              0.19720487296581268
+            ],
+            "episode_rms_max": [
+              0.060609132051467896,
+              0.08372020721435547,
+              0.19720487296581268
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.05330756987682673,
+              0.011177707455539952,
+              0.010992720715017492
+            ],
+            "episode_rms_p95": [
+              0.06527140736579895,
+              0.014714380726218224,
+              0.014027487486600876
+            ],
+            "episode_rms_max": [
+              0.06527140736579895,
+              0.014714380726218224,
+              0.014027487486600876
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04696418646239826,
+              0.0076022491722529595,
+              0.008081056471248082
+            ],
+            "episode_rms_p95": [
+              0.0586441271007061,
+              0.012655521742999554,
+              0.009634037502110004
+            ],
+            "episode_rms_max": [
+              0.0586441271007061,
+              0.012655521742999554,
+              0.009634037502110004
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [],
+      "physical_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+        "end_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c"
+      }
+    },
+    "seed50_nominal_20261201": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed50\\nominal_20261201.json",
+      "report_sha256": "b5a758dfe7b732c5f6a41644b74ce13399ad3df01bae49ecfcde43c0993a26f1",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 88,
+        "no_fall_fraction": 0.88,
+        "no_fall_wilson95": [
+          0.8018790057328857,
+          0.9300059356298052
+        ],
+        "tracking_pass_count": 82,
+        "pooled_rms_vx_vy_yaw": [
+          0.11695078029556702,
+          0.06306952616290556,
+          0.1202020117736989
+        ],
+        "episode_rms_p95": [
+          0.26578181982040405,
+          0.15060050785541534,
+          0.31277865171432495
+        ],
+        "episode_rms_max": [
+          0.36110374331474304,
+          0.1859111189842224,
+          0.3898080885410309
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.004664029188452212,
+              0.0021036215890240756,
+              0.0036724811994875016
+            ],
+            "episode_rms_p95": [
+              0.009469885379076004,
+              0.004102673381567001,
+              0.00728931138291955
+            ],
+            "episode_rms_max": [
+              0.009469885379076004,
+              0.004102673381567001,
+              0.00728931138291955
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.050419271861586595,
+              0.012997581151938602,
+              0.020972543511746287
+            ],
+            "episode_rms_p95": [
+              0.05807119980454445,
+              0.015257417224347591,
+              0.023271579295396805
+            ],
+            "episode_rms_max": [
+              0.05807119980454445,
+              0.015257417224347591,
+              0.023271579295396805
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 11,
+            "pooled_rms_vx_vy_yaw": [
+              0.16051479978277539,
+              0.013212345780153076,
+              0.016020913002386193
+            ],
+            "episode_rms_p95": [
+              0.2211885303258896,
+              0.020828833803534508,
+              0.019801711663603783
+            ],
+            "episode_rms_max": [
+              0.2211885303258896,
+              0.020828833803534508,
+              0.019801711663603783
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.07145705974588028,
+              0.14919869048515114,
+              0.049213519293937545
+            ],
+            "episode_rms_p95": [
+              0.09483054280281067,
+              0.1859111189842224,
+              0.07068407535552979
+            ],
+            "episode_rms_max": [
+              0.09483054280281067,
+              0.1859111189842224,
+              0.07068407535552979
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 1,
+            "no_fall_fraction": 0.08333333333333333,
+            "no_fall_wilson95": [
+              0.014865094404917095,
+              0.35387991114111694
+            ],
+            "tracking_pass_count": 4,
+            "pooled_rms_vx_vy_yaw": [
+              0.060648049630565616,
+              0.042656658195667184,
+              0.2998260100539469
+            ],
+            "episode_rms_p95": [
+              0.08677861839532852,
+              0.059664543718099594,
+              0.3898080885410309
+            ],
+            "episode_rms_max": [
+              0.08677861839532852,
+              0.059664543718099594,
+              0.3898080885410309
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 11,
+            "no_fall_fraction": 0.9166666666666666,
+            "no_fall_wilson95": [
+              0.646120088858883,
+              0.9851349055950829
+            ],
+            "tracking_pass_count": 4,
+            "pooled_rms_vx_vy_yaw": [
+              0.24404602119022328,
+              0.0814334742416983,
+              0.16343872617086952
+            ],
+            "episode_rms_p95": [
+              0.36110374331474304,
+              0.10106702148914337,
+              0.23503585159778595
+            ],
+            "episode_rms_max": [
+              0.36110374331474304,
+              0.10106702148914337,
+              0.23503585159778595
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04976459934056447,
+              0.010695200928316564,
+              0.015960033759446827
+            ],
+            "episode_rms_p95": [
+              0.0614984966814518,
+              0.01323862187564373,
+              0.018354574218392372
+            ],
+            "episode_rms_max": [
+              0.0614984966814518,
+              0.01323862187564373,
+              0.018354574218392372
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.109748185318569,
+              0.009511138034226369,
+              0.01219896259733686
+            ],
+            "episode_rms_p95": [
+              0.1425814926624298,
+              0.012194788083434105,
+              0.014674709178507328
+            ],
+            "episode_rms_max": [
+              0.1425814926624298,
+              0.012194788083434105,
+              0.014674709178507328
+            ]
+          }
+        },
+        "all_scenario_tracking_met": false,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [
+        {
+          "env": 4,
+          "scenario": "yaw_positive",
+          "time_s": 6.79,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 2.7495110034942627,
+          "height_m": 0.5014727115631104,
+          "contact_n": 114.64250946044922,
+          "contact_bodies": {
+            "RL_calf": 114.64250946044922
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.3861139416694641
+          ],
+          "actual_vx_vy_yaw": [
+            0.19755761325359344,
+            -0.0698821097612381,
+            0.08870198577642441
+          ],
+          "joint_positions_policy_order": [
+            -0.4044979214668274,
+            0.8775370121002197,
+            -1.399614930152893,
+            -0.6135081648826599,
+            1.0614514350891113,
+            -1.9575878381729126,
+            -0.16020777821540833,
+            1.034932255744934,
+            -1.771138072013855,
+            0.670579731464386,
+            0.5801758170127869,
+            -0.9725825190544128,
+            -2.9310638904571533,
+            2.0318667888641357,
+            0.015718407928943634,
+            -3.9899909496307373
+          ],
+          "applied_torques_policy_order": [
+            44.30492401123047,
+            1.5953505039215088,
+            66.39482879638672,
+            127.24214172363281,
+            -12.633271217346191,
+            1.8566999435424805,
+            -10.939737319946289,
+            10.922141075134277,
+            14.804557800292969,
+            -152.6406707763672,
+            -45.52503204345703,
+            2.9120731353759766,
+            9.391998291015625,
+            2.8567259311676025,
+            -3.820913314819336,
+            -3.7783894538879395
+          ]
+        },
+        {
+          "env": 36,
+          "scenario": "yaw_positive",
+          "time_s": 6.835,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.48166561126709,
+          "height_m": 0.46967172622680664,
+          "contact_n": 249.42169189453125,
+          "contact_bodies": {
+            "RL_calf": 249.42169189453125
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.45675531029701233
+          ],
+          "actual_vx_vy_yaw": [
+            0.22312936186790466,
+            -0.18850095570087433,
+            0.1387862116098404
+          ],
+          "joint_positions_policy_order": [
+            -0.39809030294418335,
+            0.932224690914154,
+            -1.5902117490768433,
+            -0.5111688375473022,
+            0.9850960969924927,
+            -2.1774861812591553,
+            -0.2695204019546509,
+            1.1778098344802856,
+            -1.6960333585739136,
+            0.715031087398529,
+            0.6430582404136658,
+            -0.9532747864723206,
+            0.6308573484420776,
+            4.043542385101318,
+            3.028743267059326,
+            5.86862850189209
+          ],
+          "applied_torques_policy_order": [
+            37.10139846801758,
+            -9.369216918945312,
+            103.44783020019531,
+            99.54290771484375,
+            2.7277565002441406,
+            33.844322204589844,
+            16.997648239135742,
+            -14.446877479553223,
+            -6.616273880004883,
+            -163.69192504882812,
+            -50.401268005371094,
+            -22.51377296447754,
+            7.784454822540283,
+            -5.566207408905029,
+            0.37587928771972656,
+            0.4163827896118164
+          ]
+        },
+        {
+          "env": 28,
+          "scenario": "yaw_positive",
+          "time_s": 7.12,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.252753257751465,
+          "height_m": 0.47122713923454285,
+          "contact_n": 209.0924530029297,
+          "contact_bodies": {
+            "RL_calf": 209.0924530029297
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.44757041335105896
+          ],
+          "actual_vx_vy_yaw": [
+            0.25635015964508057,
+            -0.2847456932067871,
+            0.022036680951714516
+          ],
+          "joint_positions_policy_order": [
+            -0.43576356768608093,
+            0.8934345841407776,
+            -1.4664475917816162,
+            -0.5850327014923096,
+            1.069964051246643,
+            -2.14692759513855,
+            -0.2645111083984375,
+            1.1330146789550781,
+            -1.7105751037597656,
+            0.7443027496337891,
+            0.5951633453369141,
+            -0.9217426776885986,
+            0.44737711548805237,
+            3.6858456134796143,
+            3.7628567218780518,
+            -6.098982810974121
+          ],
+          "applied_torques_policy_order": [
+            52.230812072753906,
+            15.54010009765625,
+            57.5026741027832,
+            130.38107299804688,
+            -3.570324182510376,
+            38.257713317871094,
+            6.860419273376465,
+            -2.3896493911743164,
+            -2.1792969703674316,
+            -165.80833435058594,
+            -43.07899475097656,
+            1.9070112705230713,
+            4.050792694091797,
+            4.425159454345703,
+            4.779666900634766,
+            4.936523914337158
+          ]
+        },
+        {
+          "env": 60,
+          "scenario": "yaw_positive",
+          "time_s": 7.31,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.478902339935303,
+          "height_m": 0.49099671840667725,
+          "contact_n": 66.30455780029297,
+          "contact_bodies": {
+            "RL_calf": 66.30455780029297
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.42889487743377686
+          ],
+          "actual_vx_vy_yaw": [
+            -0.0656341165304184,
+            -0.0035727303475141525,
+            0.11300348490476608
+          ],
+          "joint_positions_policy_order": [
+            -0.40763625502586365,
+            0.7727338671684265,
+            -1.321422815322876,
+            -0.48982036113739014,
+            0.9514595866203308,
+            -1.957511305809021,
+            -0.15986628830432892,
+            1.0184766054153442,
+            -1.9037445783615112,
+            0.7401080131530762,
+            0.5447700619697571,
+            -1.0339832305908203,
+            0.376340389251709,
+            4.053446292877197,
+            5.589897155761719,
+            -4.9700493812561035
+          ],
+          "applied_torques_policy_order": [
+            50.675682067871094,
+            36.613956451416016,
+            49.3767204284668,
+            83.0181655883789,
+            -13.643815040588379,
+            18.763763427734375,
+            40.3524055480957,
+            39.36662673950195,
+            70.9298095703125,
+            -168.5367431640625,
+            -24.186683654785156,
+            1.6852720975875854,
+            7.667889595031738,
+            -3.9942073822021484,
+            9.876426696777344,
+            -9.705032348632812
+          ]
+        },
+        {
+          "env": 76,
+          "scenario": "yaw_positive",
+          "time_s": 7.45,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.944705486297607,
+          "height_m": 0.48605382442474365,
+          "contact_n": 9.781386375427246,
+          "contact_bodies": {
+            "RL_calf": 9.781386375427246
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.43261227011680603
+          ],
+          "actual_vx_vy_yaw": [
+            0.12468045204877853,
+            -0.026855386793613434,
+            0.11650267988443375
+          ],
+          "joint_positions_policy_order": [
+            -0.4143475592136383,
+            0.7998271584510803,
+            -1.3498194217681885,
+            -0.6444211006164551,
+            1.0426222085952759,
+            -1.930142879486084,
+            -0.17560073733329773,
+            0.9471716284751892,
+            -1.8670212030410767,
+            0.7685311436653137,
+            0.554228663444519,
+            -0.9470601081848145,
+            1.2828246355056763,
+            4.055677890777588,
+            2.3370392322540283,
+            -3.229045867919922
+          ],
+          "applied_torques_policy_order": [
+            53.177345275878906,
+            21.88437843322754,
+            55.46609878540039,
+            119.72247314453125,
+            -16.957883834838867,
+            -2.908193588256836,
+            3.597259283065796,
+            43.86888885498047,
+            45.01777267456055,
+            -168.5172882080078,
+            -33.780982971191406,
+            -1.342815637588501,
+            7.27589225769043,
+            -0.3583660125732422,
+            7.633518218994141,
+            -6.791269779205322
+          ]
+        },
+        {
+          "env": 12,
+          "scenario": "yaw_positive",
+          "time_s": 7.835,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.369777679443359,
+          "height_m": 0.5057653188705444,
+          "contact_n": 243.89804077148438,
+          "contact_bodies": {
+            "RL_calf": 243.89804077148438
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.36187270283699036
+          ],
+          "actual_vx_vy_yaw": [
+            0.12756198644638062,
+            0.0650835633277893,
+            0.19456236064434052
+          ],
+          "joint_positions_policy_order": [
+            -0.42011427879333496,
+            0.7945463061332703,
+            -1.248364806175232,
+            -0.574478030204773,
+            0.9490488767623901,
+            -1.8888243436813354,
+            -0.12762854993343353,
+            0.9798558354377747,
+            -1.8512299060821533,
+            0.7015429735183716,
+            0.598558783531189,
+            -1.0007555484771729,
+            -2.4218413829803467,
+            2.766287088394165,
+            2.6600236892700195,
+            -3.7994980812072754
+          ],
+          "applied_torques_policy_order": [
+            59.00056076049805,
+            20.883970260620117,
+            43.11532974243164,
+            102.96151733398438,
+            -2.8677079677581787,
+            17.772306442260742,
+            11.01323127746582,
+            30.664012908935547,
+            43.30343246459961,
+            -163.1612091064453,
+            -38.21968460083008,
+            -2.7491514682769775,
+            8.41798210144043,
+            -2.594351291656494,
+            6.577310562133789,
+            -2.8014416694641113
+          ]
+        },
+        {
+          "env": 20,
+          "scenario": "yaw_positive",
+          "time_s": 8.82,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 2.640491008758545,
+          "height_m": 0.5032880902290344,
+          "contact_n": 243.04368591308594,
+          "contact_bodies": {
+            "RL_calf": 243.04368591308594
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.2844359278678894
+          ],
+          "actual_vx_vy_yaw": [
+            0.1332227885723114,
+            -0.10762371122837067,
+            0.06527882069349289
+          ],
+          "joint_positions_policy_order": [
+            -0.36784127354621887,
+            0.875357449054718,
+            -1.48909330368042,
+            -0.5425037145614624,
+            1.0160821676254272,
+            -2.021491527557373,
+            -0.20155273377895355,
+            1.1097229719161987,
+            -1.6453641653060913,
+            0.628976047039032,
+            0.6698423624038696,
+            -1.0128370523452759,
+            -3.5978569984436035,
+            2.9600746631622314,
+            1.6756616830825806,
+            -3.991384983062744
+          ],
+          "applied_torques_policy_order": [
+            40.00950622558594,
+            12.671518325805664,
+            77.43070983886719,
+            118.05744171142578,
+            -6.489972114562988,
+            20.566499710083008,
+            1.4460817575454712,
+            -11.348172187805176,
+            0.8860583305358887,
+            -152.54849243164062,
+            -46.35658264160156,
+            2.7765893936157227,
+            9.110918045043945,
+            4.143514633178711,
+            7.293944358825684,
+            2.2479166984558105
+          ]
+        },
+        {
+          "env": 52,
+          "scenario": "yaw_positive",
+          "time_s": 9.05,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 2.4101345539093018,
+          "height_m": 0.5152614116668701,
+          "contact_n": 5.967331886291504,
+          "contact_bodies": {
+            "RL_calf": 5.967331886291504
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.2993844747543335
+          ],
+          "actual_vx_vy_yaw": [
+            0.12747454643249512,
+            -0.01584467478096485,
+            0.206961989402771
+          ],
+          "joint_positions_policy_order": [
+            -0.3609912097454071,
+            0.8245670199394226,
+            -1.4218324422836304,
+            -0.5495032668113708,
+            1.0018762350082397,
+            -1.9285619258880615,
+            -0.14750666916370392,
+            0.9886099696159363,
+            -1.7908154726028442,
+            0.6255394220352173,
+            0.6521222591400146,
+            -1.017759919166565,
+            -1.3160613775253296,
+            3.4964706897735596,
+            2.3730833530426025,
+            -3.929189443588257
+          ],
+          "applied_torques_policy_order": [
+            42.86692810058594,
+            12.757698059082031,
+            69.63947296142578,
+            104.27879333496094,
+            -13.073090553283691,
+            15.3932466506958,
+            6.845932483673096,
+            14.277560234069824,
+            37.47677993774414,
+            -152.49191284179688,
+            -45.188751220703125,
+            -2.0348424911499023,
+            5.0749831199646,
+            -1.0000941753387451,
+            3.7932586669921875,
+            -5.046989917755127
+          ]
+        },
+        {
+          "env": 84,
+          "scenario": "yaw_positive",
+          "time_s": 9.195,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 2.7087719440460205,
+          "height_m": 0.5127066373825073,
+          "contact_n": 19.410429000854492,
+          "contact_bodies": {
+            "RL_calf": 19.410429000854492
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.313973069190979
+          ],
+          "actual_vx_vy_yaw": [
+            0.1446450650691986,
+            -0.039043769240379333,
+            0.0906900018453598
+          ],
+          "joint_positions_policy_order": [
+            -0.3956926763057709,
+            0.8421855568885803,
+            -1.3697539567947388,
+            -0.611208975315094,
+            1.0654555559158325,
+            -1.921748399734497,
+            -0.1380559504032135,
+            0.9761834144592285,
+            -1.7620587348937988,
+            0.6327162981033325,
+            0.6190716624259949,
+            -0.9893741607666016,
+            -0.9316971302032471,
+            2.919605255126953,
+            0.2675588130950928,
+            -3.9537124633789062
+          ],
+          "applied_torques_policy_order": [
+            44.62154769897461,
+            14.751364707946777,
+            62.0340461730957,
+            127.7960205078125,
+            -7.499810695648193,
+            3.2769241333007812,
+            -12.595186233520508,
+            25.926347732543945,
+            20.291147232055664,
+            -146.52952575683594,
+            -40.617469787597656,
+            7.61980676651001,
+            6.4904279708862305,
+            4.432149410247803,
+            3.7094717025756836,
+            -0.5314903259277344
+          ]
+        },
+        {
+          "env": 44,
+          "scenario": "yaw_positive",
+          "time_s": 10.975000000000001,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.913275241851807,
+          "height_m": 0.5026602149009705,
+          "contact_n": 236.70620727539062,
+          "contact_bodies": {
+            "RL_calf": 236.70620727539062
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.30064472556114197
+          ],
+          "actual_vx_vy_yaw": [
+            -0.04273519665002823,
+            -0.004598584026098251,
+            0.041321080178022385
+          ],
+          "joint_positions_policy_order": [
+            -0.3835635781288147,
+            0.7931879162788391,
+            -1.2982439994812012,
+            -0.5241457223892212,
+            0.9303756356239319,
+            -1.9003607034683228,
+            -0.1454184651374817,
+            0.9955740571022034,
+            -1.8574316501617432,
+            0.7415195107460022,
+            0.6078247427940369,
+            -0.9986391067504883,
+            -1.8630493879318237,
+            3.4276015758514404,
+            4.301024913787842,
+            -3.72560715675354
+          ],
+          "applied_torques_policy_order": [
+            53.74382400512695,
+            28.346553802490234,
+            48.01386642456055,
+            86.68556213378906,
+            -5.334508895874023,
+            19.305179595947266,
+            30.06583023071289,
+            30.029001235961914,
+            54.79929733276367,
+            -165.27767944335938,
+            -36.16616439819336,
+            -4.108593463897705,
+            7.533320426940918,
+            -3.7950260639190674,
+            8.213946342468262,
+            -3.8654088973999023
+          ]
+        },
+        {
+          "env": 85,
+          "scenario": "yaw_negative",
+          "time_s": 12.485000000000001,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.592104911804199,
+          "height_m": 0.5154072046279907,
+          "contact_n": 577.0110473632812,
+          "contact_bodies": {
+            "FL_calf": 577.0110473632812
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            -0.44767269492149353
+          ],
+          "actual_vx_vy_yaw": [
+            -0.4026467204093933,
+            -0.02541428804397583,
+            -0.22291338443756104
+          ],
+          "joint_positions_policy_order": [
+            -0.05455120652914047,
+            0.764708936214447,
+            -1.7736116647720337,
+            0.6220629811286926,
+            0.6774380207061768,
+            -0.9880481362342834,
+            -0.3148273825645447,
+            0.9420483708381653,
+            -1.5400218963623047,
+            -0.7043622732162476,
+            0.7116243839263916,
+            -1.8189661502838135,
+            4.446466445922852,
+            5.818679332733154,
+            -4.20021915435791,
+            0.34956488013267517
+          ],
+          "applied_torques_policy_order": [
+            -5.852243423461914,
+            -43.474788665771484,
+            9.257745742797852,
+            -138.15200805664062,
+            46.4025993347168,
+            41.8505859375,
+            61.62710189819336,
+            -29.737449645996094,
+            -0.35858863592147827,
+            101.9137954711914,
+            -2.2031335830688477,
+            11.632051467895508,
+            -12.562932968139648,
+            1.3892067670822144,
+            -3.308072090148926,
+            -4.058989524841309
+          ]
+        },
+        {
+          "env": 92,
+          "scenario": "yaw_positive",
+          "time_s": 15.025,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.493062734603882,
+          "height_m": 0.49326449632644653,
+          "contact_n": 232.94813537597656,
+          "contact_bodies": {
+            "RL_calf": 232.94813537597656
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.20063269138336182
+          ],
+          "actual_vx_vy_yaw": [
+            0.13995221257209778,
+            -0.22986260056495667,
+            -0.0028989510610699654
+          ],
+          "joint_positions_policy_order": [
+            -0.3852398097515106,
+            0.8845130801200867,
+            -1.498332142829895,
+            -0.5585591793060303,
+            1.0417622327804565,
+            -2.073918581008911,
+            -0.22501295804977417,
+            1.114986538887024,
+            -1.6421970129013062,
+            0.6614502668380737,
+            0.6127901077270508,
+            -1.0281126499176025,
+            -3.422508716583252,
+            3.5717432498931885,
+            4.3414692878723145,
+            -2.5029850006103516
+          ],
+          "applied_torques_policy_order": [
+            36.5236930847168,
+            -4.315003395080566,
+            103.01803588867188,
+            115.58958435058594,
+            0.14607524871826172,
+            20.57858657836914,
+            2.2196216583251953,
+            -12.055253982543945,
+            -8.012125968933105,
+            -156.1131591796875,
+            -36.00641632080078,
+            14.832681655883789,
+            10.955636978149414,
+            -0.46730709075927734,
+            1.316549301147461,
+            -3.952387809753418
+          ]
+        }
+      ],
+      "physical_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+        "end_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876"
+      }
+    },
+    "seed50_bounded_v1_20261202": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed50\\bounded_v1_20261202.json",
+      "report_sha256": "2e2632d5c966c55740cd312044b849ba366512183d658ff2e25f21344abbf191",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 93,
+        "no_fall_fraction": 0.93,
+        "no_fall_wilson95": [
+          0.8625048526092651,
+          0.9656807389327273
+        ],
+        "tracking_pass_count": 86,
+        "pooled_rms_vx_vy_yaw": [
+          0.11744959278547466,
+          0.0581093926681201,
+          0.10913079551804478
+        ],
+        "episode_rms_p95": [
+          0.282145231962204,
+          0.14810864627361298,
+          0.26301753520965576
+        ],
+        "episode_rms_max": [
+          0.3746526539325714,
+          0.17732548713684082,
+          0.3707513213157654
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0023448220550126952,
+              0.0010878249906864216,
+              0.002564802095302643
+            ],
+            "episode_rms_p95": [
+              0.007033683359622955,
+              0.0028462973423302174,
+              0.0046753427013754845
+            ],
+            "episode_rms_max": [
+              0.007033683359622955,
+              0.0028462973423302174,
+              0.0046753427013754845
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.06446849759696205,
+              0.011053251359961564,
+              0.01743119507510397
+            ],
+            "episode_rms_p95": [
+              0.09201440960168839,
+              0.014807844534516335,
+              0.020169805735349655
+            ],
+            "episode_rms_max": [
+              0.09201440960168839,
+              0.014807844534516335,
+              0.020169805735349655
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 11,
+            "pooled_rms_vx_vy_yaw": [
+              0.16603699946095,
+              0.014073585272719335,
+              0.015305398445172643
+            ],
+            "episode_rms_p95": [
+              0.21454143524169922,
+              0.01923271082341671,
+              0.01869097352027893
+            ],
+            "episode_rms_max": [
+              0.21454143524169922,
+              0.01923271082341671,
+              0.01869097352027893
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.05420340666970931,
+              0.14099067707534552,
+              0.030962457650344652
+            ],
+            "episode_rms_p95": [
+              0.07963038235902786,
+              0.17732548713684082,
+              0.05275525897741318
+            ],
+            "episode_rms_max": [
+              0.07963038235902786,
+              0.17732548713684082,
+              0.05275525897741318
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 5,
+            "no_fall_fraction": 0.4166666666666667,
+            "no_fall_wilson95": [
+              0.19326031365875665,
+              0.6804886874504503
+            ],
+            "tracking_pass_count": 6,
+            "pooled_rms_vx_vy_yaw": [
+              0.07402179039132134,
+              0.0497638765639764,
+              0.2696709860234345
+            ],
+            "episode_rms_p95": [
+              0.12738025188446045,
+              0.10192849487066269,
+              0.3707513213157654
+            ],
+            "episode_rms_max": [
+              0.12738025188446045,
+              0.10192849487066269,
+              0.3707513213157654
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 6,
+            "pooled_rms_vx_vy_yaw": [
+              0.23573994579909988,
+              0.060022177285763444,
+              0.15678114172116916
+            ],
+            "episode_rms_p95": [
+              0.3746526539325714,
+              0.08767469227313995,
+              0.23012825846672058
+            ],
+            "episode_rms_max": [
+              0.3746526539325714,
+              0.08767469227313995,
+              0.23012825846672058
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.0600772729612571,
+              0.00941351241271041,
+              0.013669260046016042
+            ],
+            "episode_rms_p95": [
+              0.08565789461135864,
+              0.01062070857733488,
+              0.015157460235059261
+            ],
+            "episode_rms_max": [
+              0.08565789461135864,
+              0.01062070857733488,
+              0.015157460235059261
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.1128476228170312,
+              0.009399422492366152,
+              0.011306578732777416
+            ],
+            "episode_rms_p95": [
+              0.17905732989311218,
+              0.012912509962916374,
+              0.015064194798469543
+            ],
+            "episode_rms_max": [
+              0.17905732989311218,
+              0.012912509962916374,
+              0.015064194798469543
+            ]
+          }
+        },
+        "all_scenario_tracking_met": false,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [
+        {
+          "env": 44,
+          "scenario": "yaw_positive",
+          "time_s": 7.6,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.6653923988342285,
+          "height_m": 0.5018492937088013,
+          "contact_n": 8.851761817932129,
+          "contact_bodies": {
+            "RL_calf": 8.851761817932129
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.42606356739997864
+          ],
+          "actual_vx_vy_yaw": [
+            0.08532924205064774,
+            -0.025783777236938477,
+            0.04734237864613533
+          ],
+          "joint_positions_policy_order": [
+            -0.4339681565761566,
+            0.7595897316932678,
+            -1.2263730764389038,
+            -0.5596554279327393,
+            0.9641173481941223,
+            -1.907536268234253,
+            -0.09484830498695374,
+            0.9797390699386597,
+            -1.9019770622253418,
+            0.7299256920814514,
+            0.552958607673645,
+            -0.9431255459785461,
+            -0.20569996535778046,
+            3.9439241886138916,
+            1.4463320970535278,
+            -4.367341995239258
+          ],
+          "applied_torques_policy_order": [
+            52.719200134277344,
+            33.80828857421875,
+            37.56853103637695,
+            87.29485321044922,
+            -19.350767135620117,
+            23.381298065185547,
+            26.44855308532715,
+            45.80363464355469,
+            66.81771850585938,
+            -156.51339721679688,
+            -38.543392181396484,
+            -11.84885025024414,
+            7.594685077667236,
+            -1.6929259300231934,
+            7.83802604675293,
+            -7.805200576782227
+          ]
+        },
+        {
+          "env": 68,
+          "scenario": "yaw_positive",
+          "time_s": 7.6899999999999995,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.243953227996826,
+          "height_m": 0.4897747337818146,
+          "contact_n": 41.569923400878906,
+          "contact_bodies": {
+            "RL_calf": 41.569923400878906
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.4150294363498688
+          ],
+          "actual_vx_vy_yaw": [
+            0.12805798649787903,
+            -0.15015311539173126,
+            -0.006478021387010813
+          ],
+          "joint_positions_policy_order": [
+            -0.4727381765842438,
+            0.7964783310890198,
+            -1.3067827224731445,
+            -0.6067745685577393,
+            1.0789614915847778,
+            -2.0366222858428955,
+            -0.20163139700889587,
+            1.1031036376953125,
+            -1.7078077793121338,
+            0.7057518362998962,
+            0.5474777221679688,
+            -0.9095190167427063,
+            -1.4140359163284302,
+            2.9047112464904785,
+            4.266522407531738,
+            -4.960230350494385
+          ],
+          "applied_torques_policy_order": [
+            55.15968322753906,
+            25.608522415161133,
+            55.57180404663086,
+            128.97320556640625,
+            -12.63369083404541,
+            23.174230575561523,
+            2.8856489658355713,
+            4.131750106811523,
+            2.0639541149139404,
+            -165.55943298339844,
+            -40.727264404296875,
+            1.7022018432617188,
+            8.447854042053223,
+            6.3494391441345215,
+            6.997576713562012,
+            1.1986005306243896
+          ]
+        },
+        {
+          "env": 12,
+          "scenario": "yaw_positive",
+          "time_s": 8.035,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 2.386467218399048,
+          "height_m": 0.5045874714851379,
+          "contact_n": 16.726238250732422,
+          "contact_bodies": {
+            "RL_calf": 16.726238250732422
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.47856786847114563
+          ],
+          "actual_vx_vy_yaw": [
+            0.07935113459825516,
+            -0.011167669668793678,
+            0.26468029618263245
+          ],
+          "joint_positions_policy_order": [
+            -0.4507787823677063,
+            0.8428038954734802,
+            -1.2702984809875488,
+            -0.4932761490345001,
+            0.9996235370635986,
+            -1.9706158638000488,
+            -0.17010663449764252,
+            1.0761072635650635,
+            -1.8130626678466797,
+            0.6609562039375305,
+            0.5671651363372803,
+            -0.9849240183830261,
+            -5.797814846038818,
+            6.272332668304443,
+            -2.1866071224212646,
+            4.6561970710754395
+          ],
+          "applied_torques_policy_order": [
+            59.44159698486328,
+            9.383617401123047,
+            51.556396484375,
+            84.5389633178711,
+            -20.876651763916016,
+            27.986709594726562,
+            24.507404327392578,
+            13.12791633605957,
+            34.225624084472656,
+            -164.03610229492188,
+            -39.92744827270508,
+            -11.402885437011719,
+            10.231338500976562,
+            -2.248521327972412,
+            2.360130786895752,
+            -9.203227996826172
+          ]
+        },
+        {
+          "env": 60,
+          "scenario": "yaw_positive",
+          "time_s": 8.2,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 1.8640365600585938,
+          "height_m": 0.4885989725589752,
+          "contact_n": 267.7279357910156,
+          "contact_bodies": {
+            "RL_calf": 267.7279357910156
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.4392499029636383
+          ],
+          "actual_vx_vy_yaw": [
+            0.16460788249969482,
+            -0.12084940075874329,
+            0.14023934304714203
+          ],
+          "joint_positions_policy_order": [
+            -0.4897133708000183,
+            0.8495705127716064,
+            -1.347474455833435,
+            -0.6213145852088928,
+            1.0381290912628174,
+            -2.0574328899383545,
+            -0.22023619711399078,
+            1.0941812992095947,
+            -1.734994888305664,
+            0.6728528738021851,
+            0.573037326335907,
+            -0.9284571409225464,
+            3.1909170150756836,
+            4.484543323516846,
+            -4.862482070922852,
+            -6.167647838592529
+          ],
+          "applied_torques_policy_order": [
+            54.092918395996094,
+            9.10951042175293,
+            64.73033905029297,
+            118.22391510009766,
+            -2.5915708541870117,
+            20.700838088989258,
+            4.7921552658081055,
+            1.8186674118041992,
+            9.369815826416016,
+            -164.0293426513672,
+            -47.43476867675781,
+            -0.3112826943397522,
+            8.25672435760498,
+            1.1480166912078857,
+            6.822526454925537,
+            -1.4761216640472412
+          ]
+        },
+        {
+          "env": 4,
+          "scenario": "yaw_positive",
+          "time_s": 8.675,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.5695769786834717,
+          "height_m": 0.49758026003837585,
+          "contact_n": 60.468109130859375,
+          "contact_bodies": {
+            "RL_calf": 60.468109130859375
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.44118425250053406
+          ],
+          "actual_vx_vy_yaw": [
+            0.14040100574493408,
+            -0.10843241959810257,
+            0.09590360522270203
+          ],
+          "joint_positions_policy_order": [
+            -0.46433278918266296,
+            0.8149166107177734,
+            -1.262898325920105,
+            -0.6208375096321106,
+            1.0762882232666016,
+            -1.989214301109314,
+            -0.1458718627691269,
+            1.0246715545654297,
+            -1.7666337490081787,
+            0.7027745842933655,
+            0.5750558376312256,
+            -0.8889882564544678,
+            0.7904484272003174,
+            4.024957180023193,
+            1.8569413423538208,
+            -6.199085712432861
+          ],
+          "applied_torques_policy_order": [
+            57.576744079589844,
+            16.43067169189453,
+            39.53893280029297,
+            128.3849639892578,
+            -11.303335189819336,
+            20.67810821533203,
+            -6.529730796813965,
+            17.936004638671875,
+            5.4569549560546875,
+            -158.56640625,
+            -52.61716079711914,
+            -9.795419692993164,
+            8.36729621887207,
+            2.4395925998687744,
+            2.0196595191955566,
+            -1.4978389739990234
+          ]
+        },
+        {
+          "env": 20,
+          "scenario": "yaw_positive",
+          "time_s": 11.375,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 4.284914493560791,
+          "height_m": 0.4992373585700989,
+          "contact_n": 11.300344467163086,
+          "contact_bodies": {
+            "RL_calf": 11.300344467163086
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.37351536750793457
+          ],
+          "actual_vx_vy_yaw": [
+            0.11045873165130615,
+            0.01385924220085144,
+            0.048997662961483
+          ],
+          "joint_positions_policy_order": [
+            -0.45473340153694153,
+            0.773965060710907,
+            -1.2025965452194214,
+            -0.5920560956001282,
+            0.9570497870445251,
+            -1.9153999090194702,
+            -0.07077653706073761,
+            0.9950298070907593,
+            -1.9324793815612793,
+            0.7277824282646179,
+            0.5712164640426636,
+            -0.9424983263015747,
+            3.5737106800079346,
+            4.9012675285339355,
+            4.61285400390625,
+            -5.0914177894592285
+          ],
+          "applied_torques_policy_order": [
+            62.63761901855469,
+            28.78083610534668,
+            36.79924774169922,
+            85.5915756225586,
+            -14.737699508666992,
+            25.880229949951172,
+            20.96327781677246,
+            38.776588439941406,
+            61.88256072998047,
+            -160.61158752441406,
+            -46.102500915527344,
+            -15.445273399353027,
+            7.454126358032227,
+            -3.7793545722961426,
+            8.050599098205566,
+            -8.52680778503418
+          ]
+        },
+        {
+          "env": 52,
+          "scenario": "yaw_positive",
+          "time_s": 17.195,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 3.3569552898406982,
+          "height_m": 0.49750635027885437,
+          "contact_n": 13.226916313171387,
+          "contact_bodies": {
+            "RL_calf": 13.226916313171387
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.2731238901615143
+          ],
+          "actual_vx_vy_yaw": [
+            -0.0076849330216646194,
+            -0.03370363265275955,
+            -0.07383265346288681
+          ],
+          "joint_positions_policy_order": [
+            -0.47233015298843384,
+            0.7707542181015015,
+            -1.2126225233078003,
+            -0.609787106513977,
+            1.0167291164398193,
+            -1.9202085733413696,
+            -0.09509365260601044,
+            0.957942545413971,
+            -1.909806251525879,
+            0.7062293887138367,
+            0.5642499923706055,
+            -0.951956570148468,
+            -1.486466884613037,
+            2.0302929878234863,
+            0.6441513299942017,
+            -5.5591654777526855
+          ],
+          "applied_torques_policy_order": [
+            56.73250198364258,
+            28.755788803100586,
+            38.38352966308594,
+            89.15504455566406,
+            -21.12784767150879,
+            20.862777709960938,
+            14.049276351928711,
+            39.667423248291016,
+            56.592308044433594,
+            -148.44644165039062,
+            -42.98283386230469,
+            -10.42764949798584,
+            6.400558948516846,
+            0.48869094252586365,
+            11.3557767868042,
+            -8.980693817138672
+          ]
+        }
+      ],
+      "physical_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+        "end_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c"
+      }
+    },
+    "seed51_nominal_20261201": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed51\\nominal_20261201.json",
+      "report_sha256": "277319538af330acfee8c2bf1062e982ad65232144412aff99b2c9e634a83cb6",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 96,
+        "no_fall_fraction": 0.96,
+        "no_fall_wilson95": [
+          0.9016292856411208,
+          0.9843366960084523
+        ],
+        "tracking_pass_count": 96,
+        "pooled_rms_vx_vy_yaw": [
+          0.07886229695033517,
+          0.06820770787945309,
+          0.09246846188102607
+        ],
+        "episode_rms_p95": [
+          0.14587447047233582,
+          0.15225134789943695,
+          0.210357666015625
+        ],
+        "episode_rms_max": [
+          0.15111513435840607,
+          0.1994839906692505,
+          0.31319400668144226
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0017894226857933953,
+              0.0005645305219360806,
+              0.0024138315300009498
+            ],
+            "episode_rms_p95": [
+              0.005889393854886293,
+              0.0015924007166177034,
+              0.0036301768850535154
+            ],
+            "episode_rms_max": [
+              0.005889393854886293,
+              0.0015924007166177034,
+              0.0036301768850535154
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.03813342880516831,
+              0.011176073524259167,
+              0.018646845890063053
+            ],
+            "episode_rms_p95": [
+              0.04422894865274429,
+              0.014361733570694923,
+              0.0217074453830719
+            ],
+            "episode_rms_max": [
+              0.04422894865274429,
+              0.014361733570694923,
+              0.0217074453830719
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.12805166911754634,
+              0.010019011297390242,
+              0.012712677386190611
+            ],
+            "episode_rms_p95": [
+              0.15111513435840607,
+              0.014678871259093285,
+              0.01542314887046814
+            ],
+            "episode_rms_max": [
+              0.15111513435840607,
+              0.014678871259093285,
+              0.01542314887046814
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.07750082344821872,
+              0.13342039415969878,
+              0.06754382393432948
+            ],
+            "episode_rms_p95": [
+              0.0955842137336731,
+              0.1994839906692505,
+              0.10013225674629211
+            ],
+            "episode_rms_max": [
+              0.0955842137336731,
+              0.1994839906692505,
+              0.10013225674629211
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 8,
+            "no_fall_fraction": 0.6666666666666666,
+            "no_fall_wilson95": [
+              0.39062208887279953,
+              0.8618799089087867
+            ],
+            "tracking_pass_count": 8,
+            "pooled_rms_vx_vy_yaw": [
+              0.0789751093378863,
+              0.09068603685799219,
+              0.2200443059272712
+            ],
+            "episode_rms_p95": [
+              0.11046123504638672,
+              0.10647603869438171,
+              0.31319400668144226
+            ],
+            "episode_rms_max": [
+              0.11046123504638672,
+              0.10647603869438171,
+              0.31319400668144226
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09709534298839974,
+              0.1041557142100948,
+              0.13064301025614483
+            ],
+            "episode_rms_p95": [
+              0.12456873059272766,
+              0.13259188830852509,
+              0.17285537719726562
+            ],
+            "episode_rms_max": [
+              0.12456873059272766,
+              0.13259188830852509,
+              0.17285537719726562
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.045387670096364525,
+              0.009533856067341962,
+              0.01338456056779885
+            ],
+            "episode_rms_p95": [
+              0.05470815673470497,
+              0.01243068277835846,
+              0.01603948324918747
+            ],
+            "episode_rms_max": [
+              0.05470815673470497,
+              0.01243068277835846,
+              0.01603948324918747
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.09084704831166317,
+              0.008775421381926276,
+              0.009317194756826018
+            ],
+            "episode_rms_p95": [
+              0.1422530859708786,
+              0.011770841665565968,
+              0.0107777900993824
+            ],
+            "episode_rms_max": [
+              0.1422530859708786,
+              0.011770841665565968,
+              0.0107777900993824
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": false,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [
+        {
+          "env": 76,
+          "scenario": "yaw_positive",
+          "time_s": 11.265,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.889892101287842,
+          "height_m": 0.526078462600708,
+          "contact_n": 870.293212890625,
+          "contact_bodies": {
+            "RL_calf": 870.293212890625
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.43261227011680603
+          ],
+          "actual_vx_vy_yaw": [
+            -0.0030750036239624023,
+            -0.33842334151268005,
+            0.3586471378803253
+          ],
+          "joint_positions_policy_order": [
+            -0.2789437174797058,
+            0.6346760988235474,
+            -1.386665940284729,
+            -0.6509051322937012,
+            0.9440745115280151,
+            -1.700271487236023,
+            -0.3986838459968567,
+            1.3146939277648926,
+            -1.6354281902313232,
+            0.6891672015190125,
+            0.6496996879577637,
+            -0.965391218662262,
+            -0.44001808762550354,
+            5.364686489105225,
+            3.8551549911499023,
+            -5.439815044403076
+          ],
+          "applied_torques_policy_order": [
+            55.40605926513672,
+            35.917354583740234,
+            48.47291564941406,
+            137.1117706298828,
+            -9.123023986816406,
+            29.37605094909668,
+            4.021722793579102,
+            -2.958782196044922,
+            9.259162902832031,
+            -180.8023223876953,
+            -39.71269226074219,
+            10.455297470092773,
+            3.820284366607666,
+            5.671099662780762,
+            16.113746643066406,
+            1.115945816040039
+          ]
+        },
+        {
+          "env": 36,
+          "scenario": "yaw_positive",
+          "time_s": 14.68,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 6.236431121826172,
+          "height_m": 0.5141915082931519,
+          "contact_n": 94.01262664794922,
+          "contact_bodies": {
+            "RL_calf": 94.01262664794922
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.45675531029701233
+          ],
+          "actual_vx_vy_yaw": [
+            0.031983137130737305,
+            -0.17232680320739746,
+            0.2267008274793625
+          ],
+          "joint_positions_policy_order": [
+            -0.27194496989250183,
+            0.6448841691017151,
+            -1.4204115867614746,
+            -0.7158379554748535,
+            1.0479633808135986,
+            -1.6481351852416992,
+            -0.24920137226581573,
+            1.1074656248092651,
+            -1.7011995315551758,
+            0.7189274430274963,
+            0.6181215643882751,
+            -1.0062147378921509,
+            -4.9383015632629395,
+            -5.556082725524902,
+            0.9035842418670654,
+            3.937859058380127
+          ],
+          "applied_torques_policy_order": [
+            61.28173828125,
+            42.396697998046875,
+            48.171630859375,
+            140.19674682617188,
+            -40.14393997192383,
+            17.273401260375977,
+            -11.581047058105469,
+            28.442447662353516,
+            26.421783447265625,
+            -162.8760528564453,
+            -49.17439270019531,
+            -5.386499404907227,
+            4.1986918449401855,
+            1.6910178661346436,
+            1.0721397399902344,
+            -10.450343132019043
+          ]
+        },
+        {
+          "env": 28,
+          "scenario": "yaw_positive",
+          "time_s": 15.88,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.543972969055176,
+          "height_m": 0.5272954702377319,
+          "contact_n": 32.16110610961914,
+          "contact_bodies": {
+            "RL_calf": 32.16110610961914
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.44757041335105896
+          ],
+          "actual_vx_vy_yaw": [
+            0.05395463854074478,
+            -0.15602681040763855,
+            0.28646987676620483
+          ],
+          "joint_positions_policy_order": [
+            -0.262273907661438,
+            0.6814671158790588,
+            -1.4235364198684692,
+            -0.6874523162841797,
+            0.976986289024353,
+            -1.646559238433838,
+            -0.26934000849723816,
+            1.0821477174758911,
+            -1.6220672130584717,
+            0.6577918529510498,
+            0.6994273662567139,
+            -1.0538501739501953,
+            -2.8175487518310547,
+            5.694556713104248,
+            -0.43419116735458374,
+            2.412714958190918
+          ],
+          "applied_torques_policy_order": [
+            64.1631851196289,
+            42.12228775024414,
+            49.07597351074219,
+            143.00167846679688,
+            -26.359399795532227,
+            16.43426513671875,
+            -14.733928680419922,
+            24.513904571533203,
+            5.3192596435546875,
+            -158.4676971435547,
+            -50.73969268798828,
+            8.758726119995117,
+            10.383337020874023,
+            2.4452075958251953,
+            4.764104843139648,
+            -0.5946972370147705
+          ]
+        },
+        {
+          "env": 12,
+          "scenario": "yaw_positive",
+          "time_s": 19.965,
+          "reasons": [
+            "body_contact"
+          ],
+          "tilt_deg": 5.642085552215576,
+          "height_m": 0.5268339514732361,
+          "contact_n": 200.6977081298828,
+          "contact_bodies": {
+            "RL_calf": 200.6977081298828
+          },
+          "command_vx_vy_yaw": [
+            0.0,
+            0.0,
+            0.36187270283699036
+          ],
+          "actual_vx_vy_yaw": [
+            -0.0966760516166687,
+            -0.29180824756622314,
+            0.33911120891571045
+          ],
+          "joint_positions_policy_order": [
+            -0.23927125334739685,
+            0.6459193825721741,
+            -1.4491477012634277,
+            -0.656836748123169,
+            0.948815107345581,
+            -1.6863880157470703,
+            -0.3572121262550354,
+            1.2507870197296143,
+            -1.5947637557983398,
+            0.6579877734184265,
+            0.6672117114067078,
+            -1.0397506952285767,
+            2.292755126953125,
+            -5.686938762664795,
+            -5.838407516479492,
+            -4.7450127601623535
+          ],
+          "applied_torques_policy_order": [
+            47.818424224853516,
+            25.390634536743164,
+            98.32107543945312,
+            132.88267517089844,
+            -6.008644104003906,
+            19.216777801513672,
+            -7.062135696411133,
+            2.445140838623047,
+            13.958659172058105,
+            -165.31500244140625,
+            -37.266292572021484,
+            25.718992233276367,
+            2.8485517501831055,
+            0.5554275512695312,
+            13.712379455566406,
+            0.9031107425689697
+          ]
+        }
+      ],
+      "physical_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876",
+        "end_properties_sha256": "0d03a61c05811da4b7e557b4085c4cdc9739821c02fee564c22bc3b79282f876"
+      }
+    },
+    "seed51_bounded_v1_20261202": {
+      "external_exit_code": 0,
+      "report": "logs\\qualification\\flat_staged_seeds49_51_20260918\\seed51\\bounded_v1_20261202.json",
+      "report_sha256": "4649d80d23fd27314f639da603d322c4a77b9b5ae9638f17eeeb359524ecb849",
+      "summary": {
+        "episodes": 100,
+        "no_fall_count": 100,
+        "no_fall_fraction": 1.0,
+        "no_fall_wilson95": [
+          0.9630065017930143,
+          1.0
+        ],
+        "tracking_pass_count": 99,
+        "pooled_rms_vx_vy_yaw": [
+          0.06562546887855256,
+          0.06663551650961486,
+          0.07098622103092617
+        ],
+        "episode_rms_p95": [
+          0.1366722732782364,
+          0.13233241438865662,
+          0.15561413764953613
+        ],
+        "episode_rms_max": [
+          0.150472953915596,
+          0.19862721860408783,
+          0.25146907567977905
+        ],
+        "by_scenario": {
+          "stand": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.0006225615328435237,
+              0.00028140659499607985,
+              0.0026269394570010655
+            ],
+            "episode_rms_p95": [
+              0.0011086752638220787,
+              0.000496844993904233,
+              0.003575748996809125
+            ],
+            "episode_rms_max": [
+              0.0011086752638220787,
+              0.000496844993904233,
+              0.003575748996809125
+            ]
+          },
+          "forward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.041245987851945616,
+              0.011199554030221992,
+              0.014309184788571145
+            ],
+            "episode_rms_p95": [
+              0.056772276759147644,
+              0.016388487070798874,
+              0.017599595710635185
+            ],
+            "episode_rms_max": [
+              0.056772276759147644,
+              0.016388487070798874,
+              0.017599595710635185
+            ]
+          },
+          "backward": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.11731619326618732,
+              0.009219064894816918,
+              0.011603225136289225
+            ],
+            "episode_rms_p95": [
+              0.150472953915596,
+              0.01631886512041092,
+              0.013792376033961773
+            ],
+            "episode_rms_max": [
+              0.150472953915596,
+              0.01631886512041092,
+              0.013792376033961773
+            ]
+          },
+          "lateral": {
+            "episodes": 13,
+            "no_fall_count": 13,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7719046276458016,
+              0.9999999999999999
+            ],
+            "tracking_pass_count": 13,
+            "pooled_rms_vx_vy_yaw": [
+              0.049136165987037246,
+              0.139356983672717,
+              0.027500708091800354
+            ],
+            "episode_rms_p95": [
+              0.06953740119934082,
+              0.19862721860408783,
+              0.05361288785934448
+            ],
+            "episode_rms_max": [
+              0.06953740119934082,
+              0.19862721860408783,
+              0.05361288785934448
+            ]
+          },
+          "yaw_positive": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 11,
+            "pooled_rms_vx_vy_yaw": [
+              0.056023820514758314,
+              0.0922658372993216,
+              0.15788735497314568
+            ],
+            "episode_rms_p95": [
+              0.07776907086372375,
+              0.11770526319742203,
+              0.25146907567977905
+            ],
+            "episode_rms_max": [
+              0.07776907086372375,
+              0.11770526319742203,
+              0.25146907567977905
+            ]
+          },
+          "yaw_negative": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.061330642583149145,
+              0.08391837581807904,
+              0.12512798555444032
+            ],
+            "episode_rms_p95": [
+              0.08925244212150574,
+              0.11126783490180969,
+              0.1621793955564499
+            ],
+            "episode_rms_max": [
+              0.08925244212150574,
+              0.11126783490180969,
+              0.1621793955564499
+            ]
+          },
+          "forward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.04944123669742644,
+              0.010059612410268518,
+              0.011528819916226547
+            ],
+            "episode_rms_p95": [
+              0.06722314655780792,
+              0.013160374015569687,
+              0.013502324000000954
+            ],
+            "episode_rms_max": [
+              0.06722314655780792,
+              0.013160374015569687,
+              0.013502324000000954
+            ]
+          },
+          "backward_stop": {
+            "episodes": 12,
+            "no_fall_count": 12,
+            "no_fall_fraction": 1.0,
+            "no_fall_wilson95": [
+              0.7575059933447592,
+              1.0
+            ],
+            "tracking_pass_count": 12,
+            "pooled_rms_vx_vy_yaw": [
+              0.0847091432046507,
+              0.008898565941497395,
+              0.008900993099489945
+            ],
+            "episode_rms_p95": [
+              0.14296072721481323,
+              0.010940088890492916,
+              0.010790115222334862
+            ],
+            "episode_rms_max": [
+              0.14296072721481323,
+              0.010940088890492916,
+              0.010790115222334862
+            ]
+          }
+        },
+        "all_scenario_tracking_met": true,
+        "single_policy_flat_thresholds_met": true,
+        "three_training_seed_acceptance_complete": false,
+        "confidence_note": "Wilson interval is descriptive within this fixed case suite; physical-domain randomization and training-seed variability are not included."
+      },
+      "first_failures": [],
+      "physical_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+      "report_sha256_verified": true,
+      "diagnostics": {
+        "live_observation_max_error": 0.0,
+        "live_action_target_max_error": 0.0,
+        "raw_action_saturation_steps": 0,
+        "observation_saturation_mismatch_steps": 0
+      },
+      "physical_evidence": {
+        "applied_properties_verified": true,
+        "persistent_through_replay": true,
+        "properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c",
+        "end_properties_sha256": "5eef7bb60b87f1e998fa8b9dc874c18792349e397bf90a1ba8f7656835224a4c"
+      }
+    }
+  },
+  "verification": {
+    "checkpoint_report_export_sha256": "passed",
+    "physical_digest_same_across_policies_per_profile": true,
+    "note": "Read-only verification of saved artifacts; no training or evaluation rerun."
+  }
+}

@@ -1,0 +1,32 @@
+[package]
+title = "B2W Flat Gamepad - Raster"
+description = "Project-only Isaac Lab viewer using Pixar Storm, without RTX rendering"
+version = "1.0.0"
+
+[dependencies]
+"isaaclab.python.headless" = {}
+"omni.kit.uiapp" = {}
+"omni.kit.viewport.window" = {}
+"omni.kit.viewport.utility" = {}
+"omni.kit.viewport.pxr" = {version = "104.0.2", exact = true}
+"omni.hydra.pxr" = {version = "1.2.4", exact = true}
+"omni.kit.window.toolbar" = {}
+"omni.kit.manipulator.camera" = {}
+"isaacsim.asset.importer.urdf" = {version = "2.4.31", exact = true}
+
+[settings]
+app.window.hideUi = false
+app.enableStdoutOutput = true
+app.window.title = "B2W Flat - Gamepad - Pixar Storm (Raster)"
+app.vulkan = true
+app.useFabricSceneDelegate = false
+renderer.multiGpu.enabled = false
+renderer.multiGpu.autoEnable = false
+renderer.multiGpu.maxGpuCount = 1
+renderer.enabled = "pxr"
+renderer.active = "pxr"
+pxr.rendermode = "HdStormRendererPlugin"
+physics.updateToUsd = true
+physics.updateVelocitiesToUsd = true
+physics.fabricEnabled = false
+ngx.enabled = false

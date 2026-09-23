@@ -1,8 +1,70 @@
 # Источники и решения для обучения Unitree B2W
 
+> Исходное исследование upstream, сохранённое как исторический документ. Последующие локальные результаты и текущие решения: [план](../PROJECT_PLAN.md), [отчёт](../TRAINING_PROGRESS.md). Формулировки о невыполненных тестах ниже относятся к моменту исходного исследования.
+
+
 Проверено: **17 сентября 2026**. Это исследование исходного кода и первичных публикаций, а не отчёт об уже проведённом обучении. Проекты, ранее находившиеся на сервере пользователя, не использовались. Предлагаемые критерии и эксперименты ниже — проектные решения, а не заявленные авторами результаты для нашего робота.
 
-## Вывод для архитектуры
+## Актуализация20сентября2026
+
+[Новое исследование Rough](../ROUGH_RESEARCH_2026-09-20.md) сопоставляет
+официальный Unitree RL Lab, ETH/Swiss-Mile, Go2-W ATRos/MUJICA,
+Parkour fine-tuning и CaT; содержит проверенные первичные ссылки.
+[Аудит350](../results/2026-09-20-rough-latest-audit.json) проверил199 hashes:
+57/58 не прошли Rough, curriculum остался на level0. World practice не
+подтверждает, что memoryless actor57 эквивалентен history/estimator policy.
+
+[Следующая проверка](../ROUGH_ROUTE_CORRECTION.md), пока подготовка:
+59/60 от qualified reference-derived actor54,50+100+200 single4096;
+Rough-only route-compatible commands/reset/22с, Flat30% прежние20с/команды.
+PPO/rewards/drift и gates сохраняются.
+[Job](../../logs/rough/rough_route_correction_20260920/job.json).
+
+[Frozen reference comparator](../results/rough_reference_baseline_20260920.json)
+завершён на random0 nominal/bounded: reference42/45, anchor54 39/47 из100.
+Все четыре full gates failed. Это ограниченный раскрытый baseline, не
+all-terrain сравнение или hold-out; безусловная Rough BC к reference не вводится.
+
+## Решение после Flat qualification — 19 сентября 2026
+
+Seeds54/55/56 прошли все шесть новых Flat evaluations; результаты и66 hashes
+[проверены отдельно](../results/2026-09-19-reference-qualification-verification.json).
+Текущий [Rough/Stairs план](../ROUGH_STAIRS_PLAN.md) заменяет предварительные
+порядок вычислений и training budgets исторического исследования ниже.
+Сначала переносим квалифицированный Flat actor57→16, калибруем свежий Rough
+critic с height scan; GPU qualification и развитие сложности отдельные.
+Текущая площадка — desktop Windows, сервер не квалифицирован.
+
+Проверка pinned Isaac Lab v2.3.2 выявила два практических ограничения:
+[uniform height field](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab/isaaclab/terrains/height_field/hf_terrains.py)
+игнорирует difficulty; [штатный curriculum](https://github.com/isaac-sim/IsaacLab/blob/v2.3.2/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/mdp/curriculums.py)
+повышает уровень по distance, не по safe traversal. Поэтому нужны явные geometry
+presets и success-aware promotion, реализованные вне vendor. Численные уровни,
+50+100+200 updates, доли task mix и приёмочные пороги — локальные гипотезы,
+не рецепт или результаты авторов публикаций.
+
+## Дополнение 19 сентября 2026: переиспользование навыка
+
+[Parkour in the Wild, §2.3](https://arxiv.org/html/2505.11164v1#S2.SS3)
+описывает RL fine-tuning после дистилляции на ANYmal D. Авторы отмечают
+деградацию при наивном fine-tuning и используют предварительное обучение critic
+при замороженном actor, меньший action noise и консервативные параметры RL.
+Это основание проверить actor-only transfer нашего совместимого reference;
+работа не подтверждает конкретный бюджет 50+100+200 или результат для B2W.
+
+[MUJICA, 2026](https://arxiv.org/html/2605.13058v1) проверяет многозадачное
+проприоцептивное управление на Unitree Go2-W: estimator, skill indicators,
+asymmetric critics и учёт DC-motor constraints. Полезный вывод для последующих
+этапов — учитывать наблюдаемость контактов и torque-speed ограничения;
+этот preprint не является готовым B2W pipeline или доказательством нашего transfer.
+
+Историческая локальная проверка19.09 — [reference transfer](../REFERENCE_TRANSFER.md)
+с новым critic и ограниченным PPO-бюджетом. Реализация и фактические результаты
+должны оцениваться отдельно от опубликованных авторами результатов.
+Серверный вариант исходного исследования ниже не реализован: действующая
+квалифицированная площадка — [Windows desktop](../COMPUTE_DECISION.md).
+
+## Исходный вывод для архитектуры — 17 сентября
 
 Начать с воспроизводимого `robot_lab` + Isaac Lab + RSL-RL PPO, сохранить контракт B2W из `rl_sar`, сравнивать новые политики с опубликованным `policy.pt`. Обучать совместно 12 суставов ног и 4 колеса; отдельный ручной переключатель «идти/ехать» не требуется для первого baseline. Flat нужен для проверки модели и скорости итераций, rough — для общей устойчивости, stairs — отдельная задача с измеримым прохождением марша. Промышленные лестницы требуют собственного генератора геометрии и отдельной проверки наблюдаемости.
 

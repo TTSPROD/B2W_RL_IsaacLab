@@ -1,0 +1,342 @@
+{
+  "checked_utc": "2026-09-19T08:57:20.674557+00:00",
+  "job": "logs\\ablations\\flat_height_floor_dev50_51_20260919\\job.json",
+  "job_sha256_at_check": "6a3b513c740da62e1b30b8d1b0e368369ee1cbff1aacc3bedde013140f39f748",
+  "status": "train_seed50",
+  "supervisor_pid": 18812,
+  "smoke": {
+    "status": "validated",
+    "started_utc": "2026-09-19T08:54:17.000960+00:00",
+    "runs": [
+      {
+        "arm": "control",
+        "seed": 50,
+        "num_envs": 16,
+        "iterations": 12,
+        "starting_runner_iteration": 2500,
+        "run_name": "flat_height_floor_dev50_51_20260919_s50_control_smoke",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+        "checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+        "extra_args": [
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-3"
+        ],
+        "expected_manifest": {
+          "seed": 50,
+          "num_steps_per_env": 24,
+          "pure_yaw_fraction": 0.25,
+          "effective_yaw_tracking_weight": 1.5,
+          "effective_undesired_contact_weight": -3.0,
+          "effective_base_height_weight": 0.0,
+          "effective_base_height_form": "disabled",
+          "effective_base_height_target_m": null,
+          "starting_learning_rate": 0.0002562890625000001
+        },
+        "label": "flat_height_floor_dev50_51_20260919_s50_control_smoke",
+        "command": [
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-u",
+          "scripts/train_b2w.py",
+          "--headless",
+          "--device",
+          "cuda:0",
+          "--num_envs",
+          "16",
+          "--seed",
+          "50",
+          "--max_iterations",
+          "12",
+          "--run_name",
+          "flat_height_floor_dev50_51_20260919_s50_control_smoke",
+          "--resume",
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-3"
+        ],
+        "pid": 25876,
+        "status": "validated",
+        "external_exit_code": 0,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-17-322879_flat_height_floor_dev50_51_20260919_s50_control_smoke\\manifest.json",
+        "checkpoint_validation": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_2500.pt",
+              "sha256": "1591c5a58e0927a80140c2fc35275f8ff260eb61e14c0ccdb5669dc2986b7f8c",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            },
+            {
+              "path": "model_2511.pt",
+              "sha256": "bd5ebfe4ef1d5815ccadb5648d5cda6f829834ab450e30dcb39b1ad8ff0f85da",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 376,
+          "warmup_updates_excluded": 10,
+          "measured_updates": 2,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 384,
+          "measured_transitions": 768,
+          "rollout_seconds": 3.2391979694366455,
+          "learning_seconds": 0.49576640129089355,
+          "ppo_timed_seconds": 3.734964370727539,
+          "mean_rollout_seconds_per_update": 1.6195989847183228,
+          "mean_learning_seconds_per_update": 0.24788320064544678,
+          "mean_seconds_per_update": 1.8674821853637695,
+          "median_seconds_per_update": 1.8674821853637695,
+          "transitions_per_second": 205.62445147245145,
+          "rollout_transitions_per_second": 237.09572778398874,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+          "measured_event_wall_seconds": 3.8310093879699707,
+          "event_wall_transitions_per_second": 200.46935995814897
+        },
+        "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-17-322879_flat_height_floor_dev50_51_20260919_s50_control_smoke\\model_2511.pt",
+        "final_checkpoint_sha256": "bd5ebfe4ef1d5815ccadb5648d5cda6f829834ab450e30dcb39b1ad8ff0f85da",
+        "ending_runner_iteration": 2511
+      },
+      {
+        "arm": "floorl1",
+        "seed": 50,
+        "num_envs": 16,
+        "iterations": 12,
+        "starting_runner_iteration": 2500,
+        "run_name": "flat_height_floor_dev50_51_20260919_s50_floorl1_smoke",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+        "checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+        "extra_args": [
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-3",
+          "--base_height_weight",
+          "-10.0",
+          "--base_height_form",
+          "lower_l1"
+        ],
+        "expected_manifest": {
+          "seed": 50,
+          "num_steps_per_env": 24,
+          "pure_yaw_fraction": 0.25,
+          "effective_yaw_tracking_weight": 1.5,
+          "effective_undesired_contact_weight": -3.0,
+          "effective_base_height_weight": -10.0,
+          "effective_base_height_form": "lower_l1",
+          "effective_base_height_target_m": 0.6,
+          "starting_learning_rate": 0.0002562890625000001
+        },
+        "label": "flat_height_floor_dev50_51_20260919_s50_floorl1_smoke",
+        "command": [
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-u",
+          "scripts/train_b2w.py",
+          "--headless",
+          "--device",
+          "cuda:0",
+          "--num_envs",
+          "16",
+          "--seed",
+          "50",
+          "--max_iterations",
+          "12",
+          "--run_name",
+          "flat_height_floor_dev50_51_20260919_s50_floorl1_smoke",
+          "--resume",
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-3",
+          "--base_height_weight",
+          "-10.0",
+          "--base_height_form",
+          "lower_l1"
+        ],
+        "pid": 14316,
+        "status": "validated",
+        "external_exit_code": 0,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-17-334880_flat_height_floor_dev50_51_20260919_s50_floorl1_smoke\\manifest.json",
+        "checkpoint_validation": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_2500.pt",
+              "sha256": "e7f1e2094dc830110b21d6b696425cde55c8d4dd7a538d0d43d67265b656c5a8",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            },
+            {
+              "path": "model_2511.pt",
+              "sha256": "425aa431162e3ce89a3fe18d570fa610c2682dcc962c8ac388904b02e3637765",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 388,
+          "warmup_updates_excluded": 10,
+          "measured_updates": 2,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 384,
+          "measured_transitions": 768,
+          "rollout_seconds": 3.2202911376953125,
+          "learning_seconds": 0.4621555805206299,
+          "ppo_timed_seconds": 3.6824467182159424,
+          "mean_rollout_seconds_per_update": 1.6101455688476562,
+          "mean_learning_seconds_per_update": 0.23107779026031494,
+          "mean_seconds_per_update": 1.8412233591079712,
+          "median_seconds_per_update": 1.8412233591079712,
+          "transitions_per_second": 208.5569890803682,
+          "rollout_transitions_per_second": 238.48775379658366,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+          "measured_event_wall_seconds": 3.7869935035705566,
+          "event_wall_transitions_per_second": 202.79939727276883
+        },
+        "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-17-334880_flat_height_floor_dev50_51_20260919_s50_floorl1_smoke\\model_2511.pt",
+        "final_checkpoint_sha256": "425aa431162e3ce89a3fe18d570fa610c2682dcc962c8ac388904b02e3637765",
+        "ending_runner_iteration": 2511
+      }
+    ],
+    "resources": {
+      "samples": 8,
+      "telemetry_errors": 0,
+      "peak_gpu_used_mib": 6056.0,
+      "minimum_gpu_headroom_fraction": 0.5069206969548934,
+      "peak_gpu_temperature_c": 59.0,
+      "minimum_system_available_ram_bytes": 13931851776
+    },
+    "minimum_gpu_headroom_fraction": 0.05,
+    "finished_utc": "2026-09-19T08:54:57.762181+00:00",
+    "wall_seconds": 40.75,
+    "paired_configuration_check": {
+      "only_env_differences": [
+        "log_dir",
+        "rewards.base_height_lower_l1"
+      ],
+      "height_form": "lower_l1",
+      "height_weight": -10.0,
+      "height_target_m": 0.6
+    }
+  },
+  "active_runs": [
+    {
+      "arm": "control",
+      "pid": 4852,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-636898_flat_height_floor_dev50_51_20260919_s50_control\\manifest.json",
+      "manifest_sha256": "11a3b8d57ca7eb848e8eb590f0b07e4c28bdfef26cc89d29fd04c9555a64216a",
+      "progress": {
+        "updated_utc": "2026-09-19T08:57:19.880792+00:00",
+        "iteration": 2534,
+        "updates_completed_this_run": 35,
+        "updates_requested_this_run": 1500,
+        "transitions_this_run": 3440640,
+        "collection_seconds": 2.6871337890625,
+        "learning_seconds": 0.25455617904663086,
+        "losses": {
+          "value_function": 0.03965033665299415,
+          "surrogate": -0.005226059333654121,
+          "entropy": 22.01230392456055
+        },
+        "command_distribution": {
+          "env_command_steps": 3440640,
+          "standing_fraction": 0.017723156156994047,
+          "pure_yaw_abs_gt_005_fraction": 0.2732270740327381,
+          "positive_pure_yaw_fraction": 0.13779558454241073,
+          "negative_pure_yaw_fraction": 0.13543148949032738,
+          "mean_abs_yaw_rad_s": 0.28840341394146285,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.00038443359375000017,
+        "policy_quality_evaluated": false
+      },
+      "effective_height_form": "disabled",
+      "effective_height_weight": 0.0,
+      "effective_height_target_m": null
+    },
+    {
+      "arm": "floorl1",
+      "pid": 27204,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_08-54-58-637898_flat_height_floor_dev50_51_20260919_s50_floorl1\\manifest.json",
+      "manifest_sha256": "f81bb12d38f2642789b365669bbc3de669559d456db331b83d5ffcdbd939715b",
+      "progress": {
+        "updated_utc": "2026-09-19T08:57:19.505210+00:00",
+        "iteration": 2534,
+        "updates_completed_this_run": 35,
+        "updates_requested_this_run": 1500,
+        "transitions_this_run": 3440640,
+        "collection_seconds": 2.628136157989502,
+        "learning_seconds": 0.28257060050964355,
+        "losses": {
+          "value_function": 0.05705476738512516,
+          "surrogate": 0.0016378692496800795,
+          "entropy": 22.098948287963868
+        },
+        "command_distribution": {
+          "env_command_steps": 3440640,
+          "standing_fraction": 0.017723156156994047,
+          "pure_yaw_abs_gt_005_fraction": 0.2732631138392857,
+          "positive_pure_yaw_fraction": 0.1379879906063988,
+          "negative_pure_yaw_fraction": 0.1352751232328869,
+          "mean_abs_yaw_rad_s": 0.28853631573063987,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.00017085937500000009,
+        "policy_quality_evaluated": false
+      },
+      "effective_height_form": "lower_l1",
+      "effective_height_weight": -10.0,
+      "effective_height_target_m": 0.6
+    }
+  ],
+  "paired_configuration_check": {
+    "only_env_differences": [
+      "log_dir",
+      "rewards.base_height_lower_l1"
+    ],
+    "height_form": "lower_l1",
+    "height_weight": -10.0,
+    "height_target_m": 0.6
+  },
+  "gpu": {
+    "gpu_total_mib": 12282.0,
+    "gpu_used_mib": 9658.0,
+    "gpu_utilization_percent": 92.0,
+    "gpu_temperature_c": 50.0,
+    "gpu_headroom_fraction": 0.21364598599576617
+  },
+  "tests": {
+    "project_passed": 82,
+    "log_sha256": "a21e3eaba92267fe7cfff90690a354e0045d69a4e465825ce4bc3c4fc8cacd26"
+  },
+  "policy_quality_evaluated": false,
+  "seed51_status": "queued",
+  "seed49": "unchanged; not part of this training queue"
+}

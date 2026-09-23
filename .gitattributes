@@ -7,6 +7,8 @@ vendor/manifest.json text eol=lf
 policies/experimental/** -text whitespace=cr-at-eol
 policies/experimental/README.md text eol=lf
 docs/results/evidence/** -text whitespace=cr-at-eol
+policies/desktop/** -text whitespace=cr-at-eol
+policies/desktop/**/README.md text eol=lf
 *.onnx binary
 *.dae binary
 *.STL binary

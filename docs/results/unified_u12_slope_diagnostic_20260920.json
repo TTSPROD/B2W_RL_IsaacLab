@@ -1,0 +1,37 @@
+{
+  "status": "completed_diagnostic_rejected_recipe",
+  "scope": "Post-stop frozen-policy slope_up level0 nominal diagnosis; no training updates and no qualification claim.",
+  "parent_result": "docs/results/unified_u12_training_20260920.json",
+  "recipe_change": "undesired_contacts -1 to -3 on top of U1.1 sampling",
+  "threshold": 0.95,
+  "seeds": {
+    "73": {
+      "policy_sha256": "7886a21b2d73b944a19e90b7a3f083c3cc5a9d487ff654bd375a30e210b98a2b",
+      "success": 74,
+      "episodes": 100,
+      "traverse": "34/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "failure_reasons": {"body_contact": 26},
+      "contact_bodies": {"FL_calf": 17, "FR_calf": 10},
+      "report": "logs/qualification/unified_u12_training_20260920/s73_u150_slope_up_l0_nominal_diagnostic.json",
+      "report_sha256": "4ce22e79e69c8cd1d1d4150e6b4022e96d47887316080aac37f7819a1f57e05c"
+    },
+    "74": {
+      "policy_sha256": "7f1a3a9229cb2b231cc8286616707ee26e6dc3e3d9e70d347981b782a159b186",
+      "success": 73,
+      "episodes": 100,
+      "traverse": "33/60",
+      "stand": "20/20",
+      "turn": "20/20",
+      "failure_reasons": {"body_contact": 27},
+      "contact_bodies": {"FL_calf": 22, "FR_calf": 5},
+      "report": "logs/qualification/unified_u12_training_20260920/s74_u150_slope_up_l0_nominal_diagnostic.json",
+      "report_sha256": "172a4ced7b9c0f3f7591907b0de249d2eec22cd13a6dae1605120bae8b081c68"
+    }
+  },
+  "interpretation": "The -3 contact penalty worsened both Flat retention and deterministic slope_up traversal; reject U1.2.",
+  "training_updates_performed_by_diagnostic": 0,
+  "policy_quality_accepted": false,
+  "hardware_release_accepted": false
+}

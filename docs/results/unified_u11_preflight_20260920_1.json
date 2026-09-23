@@ -1,0 +1,612 @@
+{
+  "status": "passed",
+  "started_utc": "2026-09-20T18:41:48.202414+00:00",
+  "stages": [
+    {
+      "name": "nominal",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_rough_b2w.py",
+        "--fixture",
+        "--evaluation_mode",
+        "locomotion",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rough\\unified_u11_preflight_20260920_1\\nominal.json",
+        "--family",
+        "blocks",
+        "--level",
+        "2",
+        "--physical_profile",
+        "nominal"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-20T18:41:48.292474+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 868.0,
+        "gpu_utilization_percent": 5.0,
+        "gpu_temperature_c": 54.0,
+        "gpu_headroom_fraction": 0.9293274710959127
+      },
+      "pid": 2320,
+      "external_exit_code": 0,
+      "elapsed_seconds": 14.764999999999418,
+      "finished_utc": "2026-09-20T18:42:03.058549+00:00",
+      "resources": {
+        "sample_count": 8,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 4253.0,
+        "minimum_gpu_headroom_fraction": 0.6537208923628074,
+        "mean_gpu_utilization_percent": 7.625,
+        "peak_gpu_temperature_c": 54.0,
+        "peak_process_tree_rss_bytes": 4392894464,
+        "minimum_system_available_ram_bytes": 19382104064,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "report": "logs\\rough\\unified_u11_preflight_20260920_1\\nominal.json",
+      "report_sha256": "d2a6157a48aade5aa2dadd835d20d6a8e3b6393477bcdc20ac992ac6ef4539ef"
+    },
+    {
+      "name": "bounded_v1",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_rough_b2w.py",
+        "--fixture",
+        "--evaluation_mode",
+        "locomotion",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rough\\unified_u11_preflight_20260920_1\\bounded_v1.json",
+        "--family",
+        "random",
+        "--level",
+        "2",
+        "--physical_profile",
+        "bounded_v1"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-20T18:42:03.132040+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 868.0,
+        "gpu_utilization_percent": 6.0,
+        "gpu_temperature_c": 54.0,
+        "gpu_headroom_fraction": 0.9293274710959127
+      },
+      "pid": 20108,
+      "external_exit_code": 0,
+      "elapsed_seconds": 14.563000000000102,
+      "finished_utc": "2026-09-20T18:42:17.696330+00:00",
+      "resources": {
+        "sample_count": 7,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 4253.0,
+        "minimum_gpu_headroom_fraction": 0.6537208923628074,
+        "mean_gpu_utilization_percent": 9.571428571428571,
+        "peak_gpu_temperature_c": 54.0,
+        "peak_process_tree_rss_bytes": 4370362368,
+        "minimum_system_available_ram_bytes": 19389997056,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "report": "logs\\rough\\unified_u11_preflight_20260920_1\\bounded_v1.json",
+      "report_sha256": "2a557dac2f1ea77748aeb8761f8eb40ac2e9b51e383ecbd2c2570e95618c3c86"
+    },
+    {
+      "name": "full_nominal_random_l0",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/replay_rough_b2w.py",
+        "--evaluation_mode",
+        "locomotion",
+        "--policy",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--report",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rough\\unified_u11_preflight_20260920_1\\full_nominal_random_l0.json",
+        "--family",
+        "random",
+        "--level",
+        "0",
+        "--physical_profile",
+        "nominal"
+      ],
+      "timeout_seconds": 1800,
+      "started_utc": "2026-09-20T18:42:17.774923+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 867.0,
+        "gpu_utilization_percent": 7.0,
+        "gpu_temperature_c": 54.0,
+        "gpu_headroom_fraction": 0.929408891060088
+      },
+      "pid": 15604,
+      "external_exit_code": 0,
+      "elapsed_seconds": 83.59400000000005,
+      "finished_utc": "2026-09-20T18:43:41.360464+00:00",
+      "resources": {
+        "sample_count": 40,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 4394.0,
+        "minimum_gpu_headroom_fraction": 0.642240677414102,
+        "mean_gpu_utilization_percent": 23.875,
+        "peak_gpu_temperature_c": 56.0,
+        "peak_process_tree_rss_bytes": 4433805312,
+        "minimum_system_available_ram_bytes": 19321438208,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "report": "logs\\rough\\unified_u11_preflight_20260920_1\\full_nominal_random_l0.json",
+      "report_sha256": "9b29a6f3972e48be7e09812db68c1d1f25c81023fcb0155c2cc00dec2fb4719f",
+      "parent_baseline_summary": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 60,
+            "success_fraction": 1.0,
+            "wilson95": [
+              0.93982814785791,
+              0.9999999999999998
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.045148943185600934,
+              0.017951546671284846,
+              0.028009140926621382
+            ],
+            "passed": true
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 20,
+            "success_fraction": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.05149799693480584,
+              0.01746365359642398,
+              0.026771740817609493
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 20,
+            "success_fraction": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0528718888695421,
+              0.03467010349632056,
+              0.1051089042198239
+            ],
+            "passed": true
+          }
+        },
+        "threshold": 0.95,
+        "passed": true,
+        "success": 100,
+        "episodes": 100
+      },
+      "quality_is_preflight_gate": false
+    },
+    {
+      "name": "train",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/train_b2w.py",
+        "--unified_u1",
+        "--rough_transfer",
+        "--rough_tilt_termination",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--num_envs",
+        "64",
+        "--seed",
+        "7101",
+        "--max_iterations",
+        "2",
+        "--run_name",
+        "unified_u11_preflight_20260920_1_train",
+        "--reference_init",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--pure_yaw_fraction",
+        ".25",
+        "--reference_update_probe",
+        "--critic_warmup_updates",
+        "1",
+        "--reference_drift_limit",
+        ".25",
+        "--rough_stage",
+        "0",
+        "--unified_u11"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-20T18:43:41.446994+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 866.0,
+        "gpu_utilization_percent": 6.0,
+        "gpu_temperature_c": 55.0,
+        "gpu_headroom_fraction": 0.9294903110242632
+      },
+      "pid": 11816,
+      "external_exit_code": 0,
+      "elapsed_seconds": 22.375,
+      "finished_utc": "2026-09-20T18:44:03.826578+00:00",
+      "resources": {
+        "sample_count": 11,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 4547.0,
+        "minimum_gpu_headroom_fraction": 0.6297834228952939,
+        "mean_gpu_utilization_percent": 11.0,
+        "peak_gpu_temperature_c": 56.0,
+        "peak_process_tree_rss_bytes": 5435338752,
+        "minimum_system_available_ram_bytes": 18300178432,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "validation": {
+        "seed": 7101,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-43-42-482165_unified_u11_preflight_20260920_1_train\\manifest.json",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-43-42-482165_unified_u11_preflight_20260920_1_train\\model_1.pt",
+        "checkpoint_sha256": "9b29c7224c24c251f6891afb68a99768b72b5d7c5adebb5c97e6a3d9cd5bac2a",
+        "policy": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-43-42-482165_unified_u11_preflight_20260920_1_train\\export\\policy.pt",
+        "policy_sha256": "0b8db93dd85776763969c4fd828a8af17d721a22e35d829287947b3e6bffdd8e",
+        "actor_equal_to_anchor": false,
+        "optimizer_max_step": 40.0,
+        "curriculum": {
+          "cap": 0,
+          "levels": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "windows": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              7,
+              0
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              9,
+              0
+            ]
+          ],
+          "history": [],
+          "total_episodes": [
+            17,
+            6,
+            7,
+            6,
+            9
+          ],
+          "total_successes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "family_by_type": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            2,
+            3,
+            4,
+            4
+          ],
+          "physics_ticks": 216,
+          "tilt_failed_episodes_since_restart": 1,
+          "scope": "Per-family safe traversal; no reward or termination changes; partial episodes reset on restart"
+        },
+        "final_rough_drift": {
+          "sample_count": 64,
+          "raw_action_rms": 0.041074853390455246,
+          "raw_action_max_abs": 0.25908517837524414,
+          "mean_gaussian_kl": 1.349714994430542,
+          "leg_target_rms_rad": 0.0069252788089215755,
+          "wheel_target_rms_rad_s": 0.2837173342704773,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "flat_bank_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.041281722486019135,
+          "raw_action_max_abs": 0.3919264078140259,
+          "mean_gaussian_kl": 1.363344430923462,
+          "leg_target_rms_rad": 0.007196508813649416,
+          "wheel_target_rms_rad_s": 0.2843779921531677,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "checkpoints": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_0.pt",
+              "sha256": "d6ccbe033081bbe408416ce99bdd96df6479d17508108803c8fc6d6b8ade182d",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 24
+              }
+            },
+            {
+              "path": "model_1.pt",
+              "sha256": "9b29c7224c24c251f6891afb68a99768b72b5d7c5adebb5c97e6a3d9cd5bac2a",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 48
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 68,
+          "warmup_updates_excluded": 0,
+          "measured_updates": 2,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 1536,
+          "measured_transitions": 3072,
+          "rollout_seconds": 3.7013931274414062,
+          "learning_seconds": 0.3305623531341553,
+          "ppo_timed_seconds": 4.0319554805755615,
+          "mean_rollout_seconds_per_update": 1.8506965637207031,
+          "mean_learning_seconds_per_update": 0.16528117656707764,
+          "mean_seconds_per_update": 2.0159777402877808,
+          "median_seconds_per_update": 2.0159777402877808,
+          "transitions_per_second": 761.9131745873027,
+          "rollout_transitions_per_second": 829.9577737973283,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead."
+        }
+      }
+    },
+    {
+      "name": "resume",
+      "status": "completed",
+      "command": [
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+        "-B",
+        "-u",
+        "scripts/train_b2w.py",
+        "--unified_u1",
+        "--rough_transfer",
+        "--rough_tilt_termination",
+        "--headless",
+        "--device",
+        "cuda:0",
+        "--num_envs",
+        "64",
+        "--seed",
+        "7101",
+        "--max_iterations",
+        "2",
+        "--run_name",
+        "unified_u11_preflight_20260920_1_resume",
+        "--reference_init",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\qualification\\flat_reference_qualification_20260919_resume1\\seed54\\export\\policy-contract-export\\policy.pt",
+        "--pure_yaw_fraction",
+        ".25",
+        "--reference_update_probe",
+        "--critic_warmup_updates",
+        "1",
+        "--reference_drift_limit",
+        ".25",
+        "--rough_stage",
+        "0",
+        "--unified_u11",
+        "--resume",
+        "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-43-42-482165_unified_u11_preflight_20260920_1_train\\model_1.pt"
+      ],
+      "timeout_seconds": 3600,
+      "started_utc": "2026-09-20T18:44:05.798333+00:00",
+      "initial_device": {
+        "gpu_total_mib": 12282.0,
+        "gpu_used_mib": 866.0,
+        "gpu_utilization_percent": 5.0,
+        "gpu_temperature_c": 55.0,
+        "gpu_headroom_fraction": 0.9294903110242632
+      },
+      "pid": 20868,
+      "external_exit_code": 0,
+      "elapsed_seconds": 20.89100000000053,
+      "finished_utc": "2026-09-20T18:44:26.689296+00:00",
+      "resources": {
+        "sample_count": 11,
+        "gpu_total_mib": 12282.0,
+        "peak_gpu_used_mib": 4553.0,
+        "minimum_gpu_headroom_fraction": 0.6292949031102426,
+        "mean_gpu_utilization_percent": 9.363636363636363,
+        "peak_gpu_temperature_c": 55.0,
+        "peak_process_tree_rss_bytes": 5428072448,
+        "minimum_system_available_ram_bytes": 18044100608,
+        "scope": "GPU metrics cover the entire device, not only this child; RSS covers only its process tree."
+      },
+      "validation": {
+        "seed": 7101,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-44-06-713330_unified_u11_preflight_20260920_1_resume\\manifest.json",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-44-06-713330_unified_u11_preflight_20260920_1_resume\\model_3.pt",
+        "checkpoint_sha256": "a442bc728f9c3ca5757827c3aa4c25cb9ff0b417a3c821a2e7c405dce8ea24c1",
+        "policy": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_18-44-06-713330_unified_u11_preflight_20260920_1_resume\\export\\policy.pt",
+        "policy_sha256": "5667e1ae99e8c1d740c2c2367e28ebeb509fc0ca17cec85607149897e4f8523a",
+        "actor_equal_to_anchor": false,
+        "optimizer_max_step": 80.0,
+        "curriculum": {
+          "cap": 0,
+          "levels": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "windows": [
+            [
+              0,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              14,
+              0
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              18,
+              0
+            ]
+          ],
+          "history": [],
+          "total_episodes": [
+            34,
+            12,
+            14,
+            12,
+            18
+          ],
+          "total_successes": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "family_by_type": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            2,
+            2,
+            3,
+            4,
+            4
+          ],
+          "physics_ticks": 216,
+          "tilt_failed_episodes_since_restart": 1,
+          "scope": "Per-family safe traversal; no reward or termination changes; partial episodes reset on restart"
+        },
+        "final_rough_drift": {
+          "sample_count": 64,
+          "raw_action_rms": 0.04856942966580391,
+          "raw_action_max_abs": 0.24043631553649902,
+          "mean_gaussian_kl": 1.8871915340423584,
+          "leg_target_rms_rad": 0.00855286419391632,
+          "wheel_target_rms_rad_s": 0.3241722583770752,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "flat_bank_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.05292825400829315,
+          "raw_action_max_abs": 0.45022356510162354,
+          "mean_gaussian_kl": 2.241119861602783,
+          "leg_target_rms_rad": 0.009344213642179966,
+          "wheel_target_rms_rad_s": 0.36247289180755615,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "checkpoints": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_3.pt",
+              "sha256": "a442bc728f9c3ca5757827c3aa4c25cb9ff0b417a3c821a2e7c405dce8ea24c1",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 48
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 68,
+          "warmup_updates_excluded": 0,
+          "measured_updates": 2,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 1536,
+          "measured_transitions": 3072,
+          "rollout_seconds": 3.8099448680877686,
+          "learning_seconds": 0.4189341068267822,
+          "ppo_timed_seconds": 4.228878974914551,
+          "mean_rollout_seconds_per_update": 1.9049724340438843,
+          "mean_learning_seconds_per_update": 0.2094670534133911,
+          "mean_seconds_per_update": 2.1144394874572754,
+          "median_seconds_per_update": 2.1144394874572754,
+          "transitions_per_second": 726.4336525644064,
+          "rollout_transitions_per_second": 806.3108801734061,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead."
+        }
+      }
+    }
+  ],
+  "seed": 7101,
+  "scope": "unified_u11 technical preflight only; all weights discarded",
+  "evaluation_mode": "locomotion",
+  "unified_u11": true,
+  "actor_observations": 57,
+  "critic_observations": 247,
+  "actions": 16,
+  "source_sha256": {
+    "scripts/train_b2w.py": "2dd17cd016117be935816fcb86b3dd2ef823b1e18bd667299418e268c25cff9a",
+    "scripts/b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "scripts/b2w_rough_runtime.py": "05d5503893be645815726837132d5094a5378922d8384f652c28bbfaf2a48f72",
+    "scripts/b2w_rough_terrain.py": "4983626f1420d01cc90e5da7e587d81d1b0fcaf2ca116acf1cd661d738e1ffd0",
+    "scripts/rough_curriculum.py": "8815af414c3a9e496e7f05f6e64029c81c731120cc135739c93c1d7fd178d9d7",
+    "scripts/rough_tilt_termination.py": "cf97a57b3c80c1638d7b7e1f09efc5a5ece408315b34343d4112c573cd2d9270",
+    "scripts/reference_transfer.py": "9f58b032b87ad98af6d44c558f010af59d9eaef51945803826b1e66ba38273d9",
+    "scripts/b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "scripts/yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "scripts/b2w_height_rewards.py": "63b8dfc8e338be39d25de32a1c9a23c931a13af8ecfa859409b2c4ca1b6ab150",
+    "scripts/rough_evaluation.py": "47b6ac82f5c025a0d8e5c5fe15dd01dcace980d33bff15937e004c54b3ffa210",
+    "scripts/rough_metrics.py": "9be42c2634e2a92370829383d17d2de24f7f754ae79e7e15036d90017c71c65c",
+    "scripts/replay_rough_b2w.py": "43b17884fe1a69b9a68e155ffef30f0cff5f2dd175732e1637c9a87442a3bcfc",
+    "scripts/physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "scripts/replay_reference_b2w.py": "a306cb631f8b63d26decb37595f6d98eb192745f5a6dcd8d8267898eb023b4e8",
+    "scripts/flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "scripts/check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "scripts/smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859",
+    "scripts/benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "scripts/run_rough_r0.py": "fb555ad23588e85826d32829c20cec7a9fe7d1a0f150ef2233628be3fe6a6342",
+    "scripts/rough_training_protocol.py": "731571b67ffc1fed3cba1d5abe435e5eb2daa0b97a08e95997222461d3bb7629",
+    "scripts/run_unified_u1_preflight.py": "090932f351348f49a7323ea61a72f08b11cdac80521ed6ceb6a1861abce3e817"
+  },
+  "finished_utc": "2026-09-20T18:44:26.754807+00:00"
+}

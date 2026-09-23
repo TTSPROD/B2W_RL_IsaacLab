@@ -10,7 +10,11 @@
 - [Активное автономное дообучение inverse57](2026-09-23-inverse57-overnight-plan.md)
 - [Первичные JSON и снимок evaluator](evidence/README.md)
 
-## История по датам
+## Настольная линия
+
+Результаты,JSON evidence и протоколы настольной RTX4070Ti сохранены из origin/main: [TRAINING_PROGRESS](../TRAINING_PROGRESS.md), [ROUGH_STAIRS_PLAN](../ROUGH_STAIRS_PLAN.md). Они не смешиваются с ноутбучными stair-v3 метриками.
+
+## Ноутбучная и серверная история по датам
 
 - [2026-09-21 — Продолжение stair-training: остановка и повторный старт](2026-09-21-continued-training.md)
 - [2026-09-21 — Локальная проверка B2W на RTX 4080 Laptop](2026-09-21-local-4080.md)

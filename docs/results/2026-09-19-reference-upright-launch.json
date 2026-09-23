@@ -1,0 +1,139 @@
+{
+  "captured_utc": "2026-09-19T17:52:20.419347+00:00",
+  "captured_moscow": "2026-09-19T20:52:20.419347+03:00",
+  "status": "training_to_350",
+  "job": "logs\\transfer\\flat_reference_upright_resume_20260919\\job.json",
+  "job_sha256_at_capture": "aebd7a03c84df550ce983652a26ce82acd1d3c1729172879a6dbf3bb94d4fefa",
+  "code_commit": "d32c7acb375e087ee8b093b258b03f5c81df87b1",
+  "supervisor_pid": 19024,
+  "frozen_sources_verified": true,
+  "runs": [
+    {
+      "seed": 52,
+      "pid": 26776,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_17-50-31-518061_flat_ref_upright_s52_20260919\\manifest.json",
+      "progress": {
+        "updated_utc": "2026-09-19T17:52:17.305925+00:00",
+        "iteration": 176,
+        "updates_completed_this_run": 27,
+        "updates_requested_this_run": 200,
+        "transitions_this_run": 2654208,
+        "collection_seconds": 2.720789909362793,
+        "learning_seconds": 0.2364509105682373,
+        "losses": {
+          "value_function": 0.08395670875906944,
+          "surrogate": 0.015161929008900187,
+          "entropy": -14.138346672058105
+        },
+        "command_distribution": {
+          "env_command_steps": 2654208,
+          "standing_fraction": 0.022165557484567902,
+          "pure_yaw_abs_gt_005_fraction": 0.2740508656442901,
+          "positive_pure_yaw_fraction": 0.14325516312210648,
+          "negative_pure_yaw_fraction": 0.13079570252218364,
+          "mean_abs_yaw_rad_s": 0.2681939430580831,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.0001,
+        "reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.06513914465904236,
+          "raw_action_max_abs": 0.36719226837158203,
+          "mean_gaussian_kl": 3.394486427307129,
+          "leg_target_rms_rad": 0.010908843949437141,
+          "wheel_target_rms_rad_s": 0.4414716064929962,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "training_phase": "ppo",
+        "policy_quality_evaluated": false
+      },
+      "configuration_check": {
+        "only_environment_changes": [
+          "log_dir",
+          "reset_pose.roll",
+          "reset_pose.pitch"
+        ],
+        "ppo_preserved": true
+      },
+      "parent_sha256": "d31095e37b3c9f00d7efdd507522b49d9b4992de5838cdd244587ae2de091a67"
+    },
+    {
+      "seed": 53,
+      "pid": 31468,
+      "manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_17-50-31-522060_flat_ref_upright_s53_20260919\\manifest.json",
+      "progress": {
+        "updated_utc": "2026-09-19T17:52:18.478052+00:00",
+        "iteration": 176,
+        "updates_completed_this_run": 27,
+        "updates_requested_this_run": 200,
+        "transitions_this_run": 2654208,
+        "collection_seconds": 2.6604936122894287,
+        "learning_seconds": 0.22369003295898438,
+        "losses": {
+          "value_function": 0.07599491141736507,
+          "surrogate": 0.01397171565622557,
+          "entropy": -14.138346672058105
+        },
+        "command_distribution": {
+          "env_command_steps": 2654208,
+          "standing_fraction": 0.01810935691550926,
+          "pure_yaw_abs_gt_005_fraction": 0.2672443154417438,
+          "positive_pure_yaw_fraction": 0.13200849368248457,
+          "negative_pure_yaw_fraction": 0.13523582175925927,
+          "mean_abs_yaw_rad_s": 0.2667658847791177,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.0001,
+        "reference_drift": {
+          "sample_count": 4096,
+          "raw_action_rms": 0.03931284695863724,
+          "raw_action_max_abs": 0.5310478210449219,
+          "mean_gaussian_kl": 1.2363998889923096,
+          "leg_target_rms_rad": 0.00772661529481411,
+          "wheel_target_rms_rad_s": 0.21793223917484283,
+          "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+        },
+        "training_phase": "ppo",
+        "policy_quality_evaluated": false
+      },
+      "configuration_check": {
+        "only_environment_changes": [
+          "log_dir",
+          "reset_pose.roll",
+          "reset_pose.pitch"
+        ],
+        "ppo_preserved": true
+      },
+      "parent_sha256": "8bb2c41cd43838810587fee1f0e5a16e0a388ef5c37aa8e2c93f1e53de9b5b77"
+    }
+  ],
+  "protocol": {
+    "parent_updates": 150,
+    "new_updates_per_seed": 200,
+    "final_updates": 350,
+    "seeds": [
+      52,
+      53
+    ],
+    "num_envs": 4096,
+    "rollout_steps": 24,
+    "new_training_transitions": 39321600,
+    "reset_roll_pitch": [
+      -0.1,
+      0.1
+    ],
+    "reference_drift_limit": 0.25,
+    "other_mdp_and_ppo_settings": "unchanged",
+    "only_final350_candidate": true,
+    "discarded_diagnostic_transitions": 393216,
+    "evaluation_scope": "Same disclosed development cases; no release acceptance"
+  },
+  "new_policy_quality_evaluated": false,
+  "release_accepted": false,
+  "tests": {
+    "project": 107,
+    "lightweight": 107,
+    "expected_skips": 31,
+    "vendor_files_verified": 1290
+  }
+}

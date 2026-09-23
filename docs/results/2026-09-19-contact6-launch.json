@@ -1,0 +1,346 @@
+{
+  "checked_utc": "2026-09-19T13:20:43.818124+00:00",
+  "job": "logs\\ablations\\flat_contact6_dev50_51_20260919\\job.json",
+  "job_snapshot_sha256": "a2268164987f25384ae6245d26b06788c84f08d216924f1dafc80451eec7fbfe",
+  "status": "train_seed50",
+  "supervisor_pid": 2696,
+  "source_sha256": {
+    "run_flat_schedule_ablation.py": "6ba004d29461c6468de3b3878386cc1e326183a2164c92b4b506c46e526f7bde",
+    "train_b2w.py": "904be9366727c12d35a787ad8d0c0a872e6aced68085382bd6a6b8eaf56939a7",
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "benchmark_parallel4096.py": "129ba37110a42f493ae2dd537550fb4f9fc3a49a9fadac2258191b66cbb857dc",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "replay_reference_b2w.py": "a306cb631f8b63d26decb37595f6d98eb192745f5a6dcd8d8267898eb023b4e8",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859",
+    "run_contact6_ablation.py": "76b0a37e05d9c9fa564dd56cf2c564960f1c926293a029f9f0754a1de5eb58e4",
+    "yaw_trace.py": "75e7048cbba4e8c1ba592d74645f7eaa2b04d486fb053723e1bcab74de6581bd",
+    "b2w_height_rewards.py": "63b8dfc8e338be39d25de32a1c9a23c931a13af8ecfa859409b2c4ca1b6ab150"
+  },
+  "protocol_sha256": "519faa17c342387aa43b036ae09f04b3366f6f80e4a078e5075aefc00d63a63e",
+  "smoke": {
+    "status": "validated",
+    "started_utc": "2026-09-19T13:16:38.034698+00:00",
+    "runs": [
+      {
+        "arm": "control",
+        "seed": 50,
+        "num_envs": 16,
+        "iterations": 12,
+        "starting_runner_iteration": 2500,
+        "run_name": "flat_contact6_dev50_51_20260919_s50_control_smoke",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+        "checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+        "extra_args": [
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-3.0"
+        ],
+        "expected_manifest": {
+          "seed": 50,
+          "num_steps_per_env": 24,
+          "pure_yaw_fraction": 0.25,
+          "effective_yaw_tracking_weight": 1.5,
+          "effective_undesired_contact_weight": -3.0,
+          "effective_base_height_weight": 0.0,
+          "effective_base_height_form": "disabled",
+          "starting_learning_rate": 0.0002562890625000001
+        },
+        "label": "flat_contact6_dev50_51_20260919_s50_control_smoke",
+        "command": [
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-u",
+          "scripts/train_b2w.py",
+          "--headless",
+          "--device",
+          "cuda:0",
+          "--num_envs",
+          "16",
+          "--seed",
+          "50",
+          "--max_iterations",
+          "12",
+          "--run_name",
+          "flat_contact6_dev50_51_20260919_s50_control_smoke",
+          "--resume",
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-3.0"
+        ],
+        "pid": 19640,
+        "status": "validated",
+        "external_exit_code": 0,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_13-16-38-292344_flat_contact6_dev50_51_20260919_s50_control_smoke\\manifest.json",
+        "checkpoint_validation": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_2500.pt",
+              "sha256": "1591c5a58e0927a80140c2fc35275f8ff260eb61e14c0ccdb5669dc2986b7f8c",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            },
+            {
+              "path": "model_2511.pt",
+              "sha256": "bd5ebfe4ef1d5815ccadb5648d5cda6f829834ab450e30dcb39b1ad8ff0f85da",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 376,
+          "warmup_updates_excluded": 10,
+          "measured_updates": 2,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 384,
+          "measured_transitions": 768,
+          "rollout_seconds": 3.407632350921631,
+          "learning_seconds": 0.4411590099334717,
+          "ppo_timed_seconds": 3.8487913608551025,
+          "mean_rollout_seconds_per_update": 1.7038161754608154,
+          "mean_learning_seconds_per_update": 0.22057950496673584,
+          "mean_seconds_per_update": 1.9243956804275513,
+          "median_seconds_per_update": 1.9243956804275513,
+          "transitions_per_second": 199.54316251358716,
+          "rollout_transitions_per_second": 225.37642589062935,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+          "measured_event_wall_seconds": 3.901303768157959,
+          "event_wall_transitions_per_second": 196.857267631487
+        },
+        "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_13-16-38-292344_flat_contact6_dev50_51_20260919_s50_control_smoke\\model_2511.pt",
+        "final_checkpoint_sha256": "bd5ebfe4ef1d5815ccadb5648d5cda6f829834ab450e30dcb39b1ad8ff0f85da",
+        "ending_runner_iteration": 2511
+      },
+      {
+        "arm": "contact6",
+        "seed": 50,
+        "num_envs": 16,
+        "iterations": 12,
+        "starting_runner_iteration": 2500,
+        "run_name": "flat_contact6_dev50_51_20260919_s50_contact6_smoke",
+        "checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+        "checkpoint_sha256": "2a0f3bacc6e51430be7758c8266a46db0f72fb20ecdc7a9394eda933a101b78d",
+        "extra_args": [
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-6.0"
+        ],
+        "expected_manifest": {
+          "seed": 50,
+          "num_steps_per_env": 24,
+          "pure_yaw_fraction": 0.25,
+          "effective_yaw_tracking_weight": 1.5,
+          "effective_undesired_contact_weight": -6.0,
+          "effective_base_height_weight": 0.0,
+          "effective_base_height_form": "disabled",
+          "starting_learning_rate": 0.0002562890625000001
+        },
+        "label": "flat_contact6_dev50_51_20260919_s50_contact6_smoke",
+        "command": [
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\.venv\\Scripts\\python.exe",
+          "-B",
+          "-u",
+          "scripts/train_b2w.py",
+          "--headless",
+          "--device",
+          "cuda:0",
+          "--num_envs",
+          "16",
+          "--seed",
+          "50",
+          "--max_iterations",
+          "12",
+          "--run_name",
+          "flat_contact6_dev50_51_20260919_s50_contact6_smoke",
+          "--resume",
+          "D:\\Work\\GitProjects\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_flat\\2026-09-18_09-59-25-327860_flat_staged_seeds49_51_20260918_seed50_0\\model_2499.pt",
+          "--pure_yaw_fraction",
+          ".25",
+          "--yaw_tracking_weight",
+          "1.5",
+          "--undesired_contact_weight",
+          "-6.0"
+        ],
+        "pid": 25188,
+        "status": "validated",
+        "external_exit_code": 0,
+        "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_13-16-38-298343_flat_contact6_dev50_51_20260919_s50_contact6_smoke\\manifest.json",
+        "checkpoint_validation": {
+          "status": "passed",
+          "checkpoints": [
+            {
+              "path": "model_2500.pt",
+              "sha256": "9e73c671d5e454178bd2b18d671614a019275a7f83cdcf83bebc243df1796c03",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            },
+            {
+              "path": "model_2511.pt",
+              "sha256": "768522e5a539dcda5e85db685293469e4e492e8088579b0f757127b277b05568",
+              "finite_tensors": {
+                "model_state_dict": 17,
+                "optimizer_state_dict": 51
+              }
+            }
+          ],
+          "load_device": "cpu"
+        },
+        "timings": {
+          "finite_scalar_count": 376,
+          "warmup_updates_excluded": 10,
+          "measured_updates": 2,
+          "meets_200_measured_update_requirement": false,
+          "transitions_per_update": 384,
+          "measured_transitions": 768,
+          "rollout_seconds": 3.152097702026367,
+          "learning_seconds": 0.3435671329498291,
+          "ppo_timed_seconds": 3.4956648349761963,
+          "mean_rollout_seconds_per_update": 1.5760488510131836,
+          "mean_learning_seconds_per_update": 0.17178356647491455,
+          "mean_seconds_per_update": 1.7478324174880981,
+          "median_seconds_per_update": 1.7478324174880981,
+          "transitions_per_second": 219.70069679326957,
+          "rollout_transitions_per_second": 243.64727004060856,
+          "timing_note": "RSL-RL collection+learning timers exclude startup and logging/checkpoint overhead.",
+          "measured_event_wall_seconds": 3.586695432662964,
+          "event_wall_transitions_per_second": 214.12467671663822
+        },
+        "final_checkpoint": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_13-16-38-298343_flat_contact6_dev50_51_20260919_s50_contact6_smoke\\model_2511.pt",
+        "final_checkpoint_sha256": "768522e5a539dcda5e85db685293469e4e492e8088579b0f757127b277b05568",
+        "ending_runner_iteration": 2511
+      }
+    ],
+    "resources": {
+      "samples": 8,
+      "telemetry_errors": 0,
+      "peak_gpu_used_mib": 5815.0,
+      "minimum_gpu_headroom_fraction": 0.5265429083211204,
+      "peak_gpu_temperature_c": 62.0,
+      "minimum_system_available_ram_bytes": 13921808384
+    },
+    "minimum_gpu_headroom_fraction": 0.05,
+    "finished_utc": "2026-09-19T13:17:18.749951+00:00",
+    "wall_seconds": 40.71899999999732,
+    "paired_configuration_check": {
+      "only_env_differences": [
+        "log_dir",
+        "rewards.undesired_contacts.weight"
+      ],
+      "contact_weights": {
+        "control": -3.0,
+        "contact6": -6.0
+      },
+      "height_terms": "disabled"
+    }
+  },
+  "runs": [
+    {
+      "arm": "control",
+      "pid": 23536,
+      "training_directory": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_13-17-19-589044_flat_contact6_dev50_51_20260919_s50_control",
+      "manifest_sha256": "4bd770880265ab5c90c3ec845d852f1385c9b6ab9e342557484679be4de57852",
+      "progress": {
+        "updated_utc": "2026-09-19T13:20:42.842415+00:00",
+        "iteration": 2558,
+        "updates_completed_this_run": 59,
+        "updates_requested_this_run": 1500,
+        "transitions_this_run": 5799936,
+        "collection_seconds": 2.781489849090576,
+        "learning_seconds": 0.24159002304077148,
+        "losses": {
+          "value_function": 0.07203915864229202,
+          "surrogate": -0.002497840981232002,
+          "entropy": 21.816971111297608
+        },
+        "command_distribution": {
+          "env_command_steps": 5799936,
+          "standing_fraction": 0.017904507911811442,
+          "pure_yaw_abs_gt_005_fraction": 0.272047829493291,
+          "positive_pure_yaw_fraction": 0.1378679006113171,
+          "negative_pure_yaw_fraction": 0.13417992888197386,
+          "mean_abs_yaw_rad_s": 0.2677827898918067,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.00017085937500000009,
+        "policy_quality_evaluated": false
+      }
+    },
+    {
+      "arm": "contact6",
+      "pid": 13352,
+      "training_directory": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-19_13-17-19-611042_flat_contact6_dev50_51_20260919_s50_contact6",
+      "manifest_sha256": "8e23fe5a2c211c9f31be586bf247783942c638c3a78ce6e1dbe826d72a35ce74",
+      "progress": {
+        "updated_utc": "2026-09-19T13:20:40.647491+00:00",
+        "iteration": 2557,
+        "updates_completed_this_run": 58,
+        "updates_requested_this_run": 1500,
+        "transitions_this_run": 5701632,
+        "collection_seconds": 2.6951489448547363,
+        "learning_seconds": 0.23655033111572266,
+        "losses": {
+          "value_function": 0.07557677440345287,
+          "surrogate": -0.003355423314496875,
+          "entropy": 21.948313903808593
+        },
+        "command_distribution": {
+          "env_command_steps": 5701632,
+          "standing_fraction": 0.01792118467133621,
+          "pure_yaw_abs_gt_005_fraction": 0.27222451396372127,
+          "positive_pure_yaw_fraction": 0.13808853324802442,
+          "negative_pure_yaw_fraction": 0.13413598071569685,
+          "mean_abs_yaw_rad_s": 0.2678855672457266,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.00011390625000000006,
+        "policy_quality_evaluated": false
+      }
+    }
+  ],
+  "active_paired_configuration_check": {
+    "only_env_differences": [
+      "log_dir",
+      "rewards.undesired_contacts.weight"
+    ],
+    "contact_weights": {
+      "control": -3.0,
+      "contact6": -6.0
+    },
+    "height_terms": "disabled"
+  },
+  "gpu": {
+    "gpu_total_mib": 12282.0,
+    "gpu_used_mib": 9421.0,
+    "gpu_utilization_percent": 94.0,
+    "gpu_temperature_c": 48.0,
+    "gpu_headroom_fraction": 0.2329425175052923
+  },
+  "seed49_export_unchanged": true,
+  "heartbeat": "lower-l1 absent: automation_update reports it no longer exists; no replacement created",
+  "quality_evaluated": false
+}

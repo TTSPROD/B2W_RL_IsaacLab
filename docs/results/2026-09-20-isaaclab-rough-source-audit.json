@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-20",
+  "upstream_main_commit": "b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8",
+  "pinned_runtime_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+  "runtime_changed": false,
+  "vendor_changed": false,
+  "scope": "Source/config comparison only, not NVIDIA/B2W policy reproduction",
+  "source_files": [
+    {
+      "path": "source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/rough_env_cfg.py",
+      "pinned_sha256": "6d31140968214ba96388a3094eb87877bdd9cdacdbae2c7ebdc4be0645093f40",
+      "main_url": "https://github.com/isaac-sim/IsaacLab/blob/b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/rough_env_cfg.py",
+      "pinned_url": "https://github.com/isaac-sim/IsaacLab/blob/37ddf626871758333d6ed89cf64ad702aef127d0/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/rough_env_cfg.py"
+    },
+    {
+      "path": "source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/velocity_env_cfg.py",
+      "pinned_sha256": "3656e2046dee3817c7f061213c639b6b2b995e4fcbb127138cd96f2d647b3bc8",
+      "main_url": "https://github.com/isaac-sim/IsaacLab/blob/b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/velocity_env_cfg.py",
+      "pinned_url": "https://github.com/isaac-sim/IsaacLab/blob/37ddf626871758333d6ed89cf64ad702aef127d0/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/velocity_env_cfg.py"
+    },
+    {
+      "path": "source/isaaclab/isaaclab/terrains/config/rough.py",
+      "pinned_sha256": "2b4bfef23627dab9a1f8d0c63c54607beeb93bacee95ccbce2c241d3866b965e",
+      "main_url": "https://github.com/isaac-sim/IsaacLab/blob/b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8/source/isaaclab/isaaclab/terrains/config/rough.py",
+      "pinned_url": "https://github.com/isaac-sim/IsaacLab/blob/37ddf626871758333d6ed89cf64ad702aef127d0/source/isaaclab/isaaclab/terrains/config/rough.py"
+    },
+    {
+      "path": "source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/agents/rsl_rl_ppo_cfg.py",
+      "pinned_sha256": "c17cf1ff16141c337a7d62594413c13e54c93529d8a0b83f43a811b9211b63a5",
+      "main_url": "https://github.com/isaac-sim/IsaacLab/blob/b0542fe2d45bf91c4e1d9ef6952b9c709c80b4e8/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/agents/rsl_rl_ppo_cfg.py",
+      "pinned_url": "https://github.com/isaac-sim/IsaacLab/blob/37ddf626871758333d6ed89cf64ad702aef127d0/source/isaaclab_tasks/isaaclab_tasks/manager_based/locomotion/velocity/config/go2/agents/rsl_rl_ppo_cfg.py"
+    }
+  ],
+  "finding": "Go2 actor receives velocity and terrain scan; B2W blind57 did not. Separate sim teacher247 and locomotion/navigation contracts."
+}

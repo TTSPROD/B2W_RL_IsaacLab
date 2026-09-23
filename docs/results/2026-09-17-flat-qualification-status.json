@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "job_status": "training_pair",
+  "supervisor_pid": 11652,
+  "job_path": "logs\\qualification_runs\\flat_three_seed_20260917\\job.json",
+  "runs": [
+    {
+      "seed": 45,
+      "pid": 22764,
+      "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_16-36-10-146647_flat_qualification_seed45_20260917\\manifest.json",
+      "progress_path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_16-36-10-146647_flat_qualification_seed45_20260917\\progress.json",
+      "progress_sha256": "d9a89fd6fae69397df2e1f2da16947232ab90f127f095ecd8c532bf6976ffcf3",
+      "progress": {
+        "updated_utc": "2026-09-17T17:10:36.910967+00:00",
+        "iteration": 690,
+        "updates_completed_this_run": 691,
+        "updates_requested_this_run": 2500,
+        "transitions_this_run": 67928064,
+        "collection_seconds": 2.739459753036499,
+        "learning_seconds": 0.2440330982208252,
+        "losses": {
+          "value_function": 1.4270303606987,
+          "surrogate": -0.004887610132573173,
+          "entropy": 39.772294998168945
+        },
+        "command_distribution": {
+          "env_command_steps": 67928064,
+          "standing_fraction": 0.019924209822909128,
+          "pure_yaw_abs_gt_005_fraction": 0.2681054033867357,
+          "positive_pure_yaw_fraction": 0.13373438701270804,
+          "negative_pure_yaw_fraction": 0.13437101637402768,
+          "mean_abs_yaw_rad_s": 0.45634819867311327,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.0008649755859375004,
+        "policy_quality_evaluated": false
+      },
+      "recent_window_updates": 200,
+      "recent_seconds_per_update": 2.975324046611786,
+      "estimated_remaining_seconds": 5382.361200320721,
+      "num_envs": 4096,
+      "rollout_steps": 24,
+      "resume": null
+    },
+    {
+      "seed": 46,
+      "pid": 18348,
+      "training_manifest": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_16-36-10-146647_flat_qualification_seed46_20260917\\manifest.json",
+      "progress_path": "logs\\rsl_rl\\unitree_b2w_flat\\2026-09-17_16-36-10-146647_flat_qualification_seed46_20260917\\progress.json",
+      "progress_sha256": "fd84c82ebfa77c467f557a4af8ead1a766c5d32ef918e2d0d24db979892557ce",
+      "progress": {
+        "updated_utc": "2026-09-17T17:10:38.682605+00:00",
+        "iteration": 691,
+        "updates_completed_this_run": 692,
+        "updates_requested_this_run": 2500,
+        "transitions_this_run": 68026368,
+        "collection_seconds": 2.6632797718048096,
+        "learning_seconds": 0.22005724906921387,
+        "losses": {
+          "value_function": 2.116529053449631,
+          "surrogate": -0.005335633156937547,
+          "entropy": 40.77584438323974
+        },
+        "command_distribution": {
+          "env_command_steps": 68026368,
+          "standing_fraction": 0.02000364035310543,
+          "pure_yaw_abs_gt_005_fraction": 0.26586518627600403,
+          "positive_pure_yaw_fraction": 0.13304930523411157,
+          "negative_pure_yaw_fraction": 0.13281588104189246,
+          "mean_abs_yaw_rad_s": 0.45825371469921916,
+          "scope": "Cumulative commands after command-manager updates, including initial resets"
+        },
+        "learning_rate": 0.00038443359375000017,
+        "policy_quality_evaluated": false
+      },
+      "recent_window_updates": 200,
+      "recent_seconds_per_update": 2.989038174152374,
+      "estimated_remaining_seconds": 5404.181018867493,
+      "num_envs": 4096,
+      "rollout_steps": 24,
+      "resume": null
+    }
+  ],
+  "pending_training_seeds": [
+    47
+  ],
+  "three_seed_acceptance_complete": false,
+  "source_hashes_unchanged_verified": true,
+  "source_sha256": {
+    "run_flat_qualification.py": "7fa6c681b55037897b3f16cf15c3288241974f7aa65e719b650dcc3c6ec78507",
+    "train_b2w.py": "5fe1fab54257b9d87960199317522dcb6e61337f23e9392aa0806d51219c291d",
+    "b2w_runtime.py": "9cca642821a1a1be922741be77cdac6425d8c803545e0f2b0908d31dc79afbb6",
+    "b2w_yaw_commands.py": "9b38a2f3e852af2221229514eb92d0626e99df8604e22cd01c223482a37b9cde",
+    "yaw_command_sampling.py": "230f7851dc7b5af99a8cb8ee65d45270c95c5151ffdfe810140f3869d94387f0",
+    "benchmark_parallel4096.py": "b1c5ebd4f6f08cdbaf1ba6a04fa6f534e75434d18c7e2dfc5c7db8849ecae973",
+    "run_flat_baseline.py": "76213714c74f7df610d43e241a01b15cfd68577a484c24b8d30c5ba39783634f",
+    "benchmark_b2w.py": "f7876dabcc6701527db8d73dbfd78bee7083c5991dc0627f90c4c52aacb10a8c",
+    "replay_reference_b2w.py": "c588e754ffea3f3f693867ef9337adcbd347d4005200fa82f58121290e25e6b8",
+    "check_policy_contract.py": "4d8bb0784cb01c61b80d7b672a4f8fc2067f7465bcc6dd9fdbcfa48b4747670b",
+    "check_stand_b2w.py": "26cafd459c33eeab1f8756d67185b6951d5d9936f8d74b7a96db20dd492cb7ce",
+    "flat_evaluation.py": "2bc4f5c12a2c845ea61b08a9181d33bd410fcd56dcba1af1c8d85d75c6ea65d4",
+    "physical_evaluation.py": "bf0317bbfd867492cd3a21bb4c440e8bdd38965d5afcee062be31dd9a5678123",
+    "smoke_b2w.py": "9bd3d2128ae56faac2c350f53996ae7a0d05f83e2e3133ed5a10cc7772026859"
+  },
+  "resources_so_far": {
+    "samples": 409,
+    "telemetry_errors": 0,
+    "peak_gpu_used_mib": 9629.0,
+    "minimum_gpu_headroom_fraction": 0.2160071649568474,
+    "maximum_gpu_temperature_c": 62.0
+  },
+  "captured_utc": "2026-09-17T17:10:40.089010+00:00",
+  "captured_moscow": "2026-09-17T20:10:40.089010+03:00",
+  "eta": {
+    "training_pair_utc": "2026-09-17T18:40:44.270029+00:00",
+    "whole_queue_moscow_estimate": "2026-09-17 22:45–23:15 UTC+03:00",
+    "method": "Pair extrapolated from last 200 event wall-time intervals; seed47 single4096 throughput is not yet measured, so whole-queue range remains provisional."
+  }
+}

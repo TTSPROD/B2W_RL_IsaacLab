@@ -1,0 +1,958 @@
+{
+  "checked_utc": "2026-09-20T13:16:59.063265+00:00",
+  "source_result": "docs\\results\\rough_precision_training_20260920.json",
+  "source_sha256": "fda06fb0e0ebe04585e965f44096574d77835748e023b02766fe78111659a811",
+  "status": "stopped_quality_gate",
+  "stopped_at": 150,
+  "finished_utc": "2026-09-20T12:56:59.504822+00:00",
+  "stages": 28,
+  "all_exit0": true,
+  "rough_success": 1124,
+  "rough_episodes": 1600,
+  "rough_suites_passed": 0,
+  "rough_suites": 16,
+  "first_failure_reasons": {
+    "corridor": 476
+  },
+  "rough": {
+    "61": {
+      "random/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 51,
+            "success_fraction": 0.85,
+            "wilson95": [
+              0.7388541093022145,
+              0.9190255941983225
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.02698600550115409,
+              0.01733989935591959,
+              0.027017455982344063
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 17,
+            "success_fraction": 0.85,
+            "wilson95": [
+              0.6395811352592431,
+              0.9476312541037835
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0342046971401992,
+              0.014360082027807362,
+              0.025738242082888788
+            ],
+            "passed": false
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 10,
+            "success_fraction": 0.5,
+            "wilson95": [
+              0.2992980081982123,
+              0.7007019918017877
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.040278494856834615,
+              0.03554682407794701,
+              0.11144782749765159
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 78,
+        "episodes": 100
+      },
+      "random/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 56,
+            "success_fraction": 0.9333333333333333,
+            "wilson95": [
+              0.8407464268680283,
+              0.9737713012754938
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.027971359784711394,
+              0.01828505916524864,
+              0.02660145102770244
+            ],
+            "passed": true
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 19,
+            "success_fraction": 0.95,
+            "wilson95": [
+              0.763868806553258,
+              0.9911185511992047
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03535719675931084,
+              0.01341855257477176,
+              0.0277754420483913
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 12,
+            "success_fraction": 0.6,
+            "wilson95": [
+              0.3865815007622531,
+              0.781193467627183
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04001119896460706,
+              0.0265129615871206,
+              0.10622822184920878
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 87,
+        "episodes": 100
+      },
+      "slope_up/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 35,
+            "success_fraction": 0.5833333333333334,
+            "wilson95": [
+              0.45728081022640116,
+              0.6993572144165838
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.034144541677972276,
+              0.009252746130633238,
+              0.02093818778478837
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 14,
+            "success_fraction": 0.7,
+            "wilson95": [
+              0.4810271816464765,
+              0.8545227551323956
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04255756294644267,
+              0.012422678009804865,
+              0.02101936725353273
+            ],
+            "passed": false
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 9,
+            "success_fraction": 0.45,
+            "wilson95": [
+              0.2581978582556243,
+              0.6579146575496577
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0430511852536543,
+              0.02637831938960858,
+              0.11248108943311572
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 58,
+        "episodes": 100
+      },
+      "slope_up/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 25,
+            "success_fraction": 0.4166666666666667,
+            "wilson95": [
+              0.30064278558341617,
+              0.5427191897735989
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04054192192435728,
+              0.008915936301506298,
+              0.02001111769619029
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 18,
+            "success_fraction": 0.9,
+            "wilson95": [
+              0.6989663547715128,
+              0.9721335187862319
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.046743366875004785,
+              0.012341524976876581,
+              0.02241357456977893
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 12,
+            "success_fraction": 0.6,
+            "wilson95": [
+              0.3865815007622531,
+              0.781193467627183
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.044094056942829155,
+              0.02175669877422448,
+              0.11835180126168368
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 55,
+        "episodes": 100
+      },
+      "slope_down/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 54,
+            "success_fraction": 0.9,
+            "wilson95": [
+              0.7985053527602123,
+              0.9533571655261158
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.028202094097087963,
+              0.009851009805146504,
+              0.020144174196497555
+            ],
+            "passed": true
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 10,
+            "success_fraction": 0.5,
+            "wilson95": [
+              0.2992980081982123,
+              0.7007019918017877
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03328139125990999,
+              0.012348365946729778,
+              0.021875835300573732
+            ],
+            "passed": false
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 8,
+            "success_fraction": 0.4,
+            "wilson95": [
+              0.21880653237281705,
+              0.6134184992377469
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.036370624949322666,
+              0.030013851063954843,
+              0.10881736762450647
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 72,
+        "episodes": 100
+      },
+      "slope_down/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 35,
+            "success_fraction": 0.5833333333333334,
+            "wilson95": [
+              0.45728081022640116,
+              0.6993572144165838
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0329589375361357,
+              0.009667052639800066,
+              0.01982095049396515
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 12,
+            "success_fraction": 0.6,
+            "wilson95": [
+              0.3865815007622531,
+              0.781193467627183
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0379508336499591,
+              0.010679760267823232,
+              0.02387824846432232
+            ],
+            "passed": false
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 8,
+            "success_fraction": 0.4,
+            "wilson95": [
+              0.21880653237281705,
+              0.6134184992377469
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0405625113618009,
+              0.025295415251839697,
+              0.10640378302180482
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 55,
+        "episodes": 100
+      },
+      "blocks/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 48,
+            "success_fraction": 0.8,
+            "wilson95": [
+              0.6821819419437211,
+              0.8817149467710251
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03180879986322349,
+              0.021024198792149142,
+              0.030768771910054248
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 7,
+            "success_fraction": 0.35,
+            "wilson95": [
+              0.18119182410108206,
+              0.5671457233147638
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03959488041083765,
+              0.021225765447776726,
+              0.029772055074067705
+            ],
+            "passed": false
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 6,
+            "success_fraction": 0.3,
+            "wilson95": [
+              0.1454772448676043,
+              0.5189728183535235
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.040712946989881,
+              0.031432821576956774,
+              0.11539150457234221
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 61,
+        "episodes": 100
+      },
+      "blocks/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 55,
+            "success_fraction": 0.9166666666666666,
+            "wilson95": [
+              0.8193105798166558,
+              0.9638795433982692
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0350675745860037,
+              0.02127362627834541,
+              0.030803877506157068
+            ],
+            "passed": true
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 18,
+            "success_fraction": 0.9,
+            "wilson95": [
+              0.6989663547715128,
+              0.9721335187862319
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.038975309109027884,
+              0.01866090797617459,
+              0.029272049469080182
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 9,
+            "success_fraction": 0.45,
+            "wilson95": [
+              0.2581978582556243,
+              0.6579146575496577
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.0426997953192252,
+              0.029282046965213207,
+              0.11105047845260763
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 82,
+        "episodes": 100
+      }
+    },
+    "62": {
+      "random/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 44,
+            "success_fraction": 0.7333333333333333,
+            "wilson95": [
+              0.6099128690331636,
+              0.8286735999671945
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.030728348457090073,
+              0.018103093290133838,
+              0.0276507359376006
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 18,
+            "success_fraction": 0.9,
+            "wilson95": [
+              0.6989663547715128,
+              0.9721335187862319
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03904380679125661,
+              0.015688809255663294,
+              0.02456442396986145
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 15,
+            "success_fraction": 0.75,
+            "wilson95": [
+              0.531299122381256,
+              0.8881382985923343
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04271564777665853,
+              0.032141596157736596,
+              0.10652372837901225
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 77,
+        "episodes": 100
+      },
+      "random/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 51,
+            "success_fraction": 0.85,
+            "wilson95": [
+              0.7388541093022145,
+              0.9190255941983225
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03250121482693853,
+              0.018741322005931715,
+              0.02736027628708346
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 20,
+            "success_fraction": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03921426656256265,
+              0.014717787701033684,
+              0.027221531943702904
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 13,
+            "success_fraction": 0.65,
+            "wilson95": [
+              0.43285427668523624,
+              0.818808175898918
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.043415805970420704,
+              0.02925485746284072,
+              0.10171391072752341
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 84,
+        "episodes": 100
+      },
+      "slope_up/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 30,
+            "success_fraction": 0.5,
+            "wilson95": [
+              0.3773502424155577,
+              0.6226497575844423
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03740561791175143,
+              0.009603308730980363,
+              0.019282672407132183
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 20,
+            "success_fraction": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04565219232124941,
+              0.012797315339604088,
+              0.01908289338334228
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 13,
+            "success_fraction": 0.65,
+            "wilson95": [
+              0.43285427668523624,
+              0.818808175898918
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04599549564045589,
+              0.028616593992612047,
+              0.11093112938010527
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 63,
+        "episodes": 100
+      },
+      "slope_up/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 21,
+            "success_fraction": 0.35,
+            "wilson95": [
+              0.24167774406017556,
+              0.47637381158245135
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04289515188261641,
+              0.009203535978308437,
+              0.018373452396593864
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 20,
+            "success_fraction": 1.0,
+            "wilson95": [
+              0.8388748419471806,
+              1.0
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.048856676466945775,
+              0.011714931342702808,
+              0.020807488734553802
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 17,
+            "success_fraction": 0.85,
+            "wilson95": [
+              0.6395811352592431,
+              0.9476312541037835
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04626191842672953,
+              0.02200759492390135,
+              0.11734235536683721
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 58,
+        "episodes": 100
+      },
+      "slope_down/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 43,
+            "success_fraction": 0.7166666666666667,
+            "wilson95": [
+              0.5923271483560882,
+              0.8149317157156729
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.031006990891683225,
+              0.01016264834964341,
+              0.018298804048431504
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 17,
+            "success_fraction": 0.85,
+            "wilson95": [
+              0.6395811352592431,
+              0.9476312541037835
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03881048872707546,
+              0.013037533042395863,
+              0.019744862028469683
+            ],
+            "passed": false
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 13,
+            "success_fraction": 0.65,
+            "wilson95": [
+              0.43285427668523624,
+              0.818808175898918
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03944953834169287,
+              0.027261029514750637,
+              0.10629222827305926
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 73,
+        "episodes": 100
+      },
+      "slope_down/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 34,
+            "success_fraction": 0.5666666666666667,
+            "wilson95": [
+              0.44103438776125564,
+              0.6842760319531324
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03591872363311081,
+              0.009450385377147387,
+              0.017945884447473002
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 19,
+            "success_fraction": 0.95,
+            "wilson95": [
+              0.763868806553258,
+              0.9911185511992047
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.041126100476159146,
+              0.011195224440175741,
+              0.022589331027232665
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 14,
+            "success_fraction": 0.7,
+            "wilson95": [
+              0.4810271816464765,
+              0.8545227551323956
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.042946690948609346,
+              0.02524140081534572,
+              0.10693875569465248
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 67,
+        "episodes": 100
+      },
+      "blocks/0/nominal": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 44,
+            "success_fraction": 0.7333333333333333,
+            "wilson95": [
+              0.6099128690331636,
+              0.8286735999671945
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03410142497253069,
+              0.02063190534861101,
+              0.029236505743737564
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 18,
+            "success_fraction": 0.9,
+            "wilson95": [
+              0.6989663547715128,
+              0.9721335187862319
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04280807625407045,
+              0.02131179942800254,
+              0.025710278938735863
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 11,
+            "success_fraction": 0.55,
+            "wilson95": [
+              0.34208534245034233,
+              0.7418021417443759
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.044692498241014185,
+              0.034561627951273176,
+              0.10596670040892257
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 73,
+        "episodes": 100
+      },
+      "blocks/0/bounded_v1": {
+        "by_kind": {
+          "traverse": {
+            "episodes": 60,
+            "success": 49,
+            "success_fraction": 0.8166666666666667,
+            "wilson95": [
+              0.7008024625353194,
+              0.8944220311080237
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.03765883326078682,
+              0.020343547384949503,
+              0.03002090935738278
+            ],
+            "passed": false
+          },
+          "stand": {
+            "episodes": 20,
+            "success": 19,
+            "success_fraction": 0.95,
+            "wilson95": [
+              0.763868806553258,
+              0.9911185511992047
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04285696658030089,
+              0.01925124596149072,
+              0.02859855423887693
+            ],
+            "passed": true
+          },
+          "turn": {
+            "episodes": 20,
+            "success": 13,
+            "success_fraction": 0.65,
+            "wilson95": [
+              0.43285427668523624,
+              0.818808175898918
+            ],
+            "pooled_rms_vx_vy_yaw": [
+              0.04467679962681227,
+              0.03035031352916187,
+              0.11139099755012838
+            ],
+            "passed": false
+          }
+        },
+        "threshold": 0.9,
+        "passed": false,
+        "success": 81,
+        "episodes": 100
+      }
+    }
+  },
+  "flat": {
+    "61": {
+      "nominal": {
+        "safe": 100,
+        "absolute_pass": true,
+        "relative_pass": true
+      },
+      "bounded_v1": {
+        "safe": 100,
+        "absolute_pass": true,
+        "relative_pass": true
+      }
+    },
+    "62": {
+      "nominal": {
+        "safe": 100,
+        "absolute_pass": true,
+        "relative_pass": true
+      },
+      "bounded_v1": {
+        "safe": 100,
+        "absolute_pass": true,
+        "relative_pass": true
+      }
+    }
+  },
+  "trace_subset_random0_nominal": {
+    "61": {
+      "negative_y": {
+        "count": 18,
+        "median_first_time_s": 20.82,
+        "mean_prefailure_vx_bias": 0.0185587619845238,
+        "mean_heading_rad": -0.7906845907370249
+      },
+      "forward": {
+        "count": 4,
+        "median_first_time_s": 21.777500000000003,
+        "mean_prefailure_vx_bias": 0.019777291920036077,
+        "mean_heading_rad": -0.11136863566935062
+      }
+    },
+    "62": {
+      "forward": {
+        "count": 16,
+        "median_first_time_s": 21.6025,
+        "mean_prefailure_vx_bias": 0.024073365842923522,
+        "mean_heading_rad": -0.10268460540100932
+      },
+      "negative_y": {
+        "count": 7,
+        "median_first_time_s": 19.955000000000002,
+        "mean_prefailure_vx_bias": 0.025880062420453345,
+        "mean_heading_rad": -1.205754531281335
+      }
+    }
+  },
+  "verified_sha256": {
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_random_l0_nominal.json": "76170842b92f6b69a25ac576fff34bd2b51b31bb016c7485b541cb4a4019e291",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_random_l0_bounded_v1.json": "4d39639de4030f3eaa479cd85668d5056281c6dd24b0fc0daab0cfe764f2e19a",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_slope_up_l0_nominal.json": "5363bbfd4c4dbcc11f0bab6a0701540b8a4a0034708f2dddcba077a345dad158",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_slope_up_l0_bounded_v1.json": "dc6a78e306b8e5039e2dd53eb7914ab494b4d646a16abfffea769834126d2ec5",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_slope_down_l0_nominal.json": "806b1a5a8a1e564279c40796b1f579ad468d566c024b3f84601265e10571e772",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_slope_down_l0_bounded_v1.json": "a6414449bb07c8bd0299367349a53458db6d9f680015cd34c9db2cee8d37fb03",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_blocks_l0_nominal.json": "6b34ed2e88fb1462c64e93283eb8eb8c7e4782ed0df8e26e13685ee239e79292",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_blocks_l0_bounded_v1.json": "6b9dcb74904fabfc8cc2d31ce3c91bf557547a37ca4ac7451fe43ddc879d5e72",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_random_l0_nominal.json": "4ffcd2b3a4244b0bb2e2966b932209c379ffadb2bc162079c791a578e7e92af4",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_random_l0_bounded_v1.json": "6a509b4df035831c9fdc59962177f9885d93ed15e7b55d7b4195664a6b581c31",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_slope_up_l0_nominal.json": "b2dfa95282ed719b297e0a8833ef9709915349f48a35e4e01ffe445fb063f3c7",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_slope_up_l0_bounded_v1.json": "0759c655cf78aee720d19bf36a281618086792b8491b488a4925337c0df49ac1",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_slope_down_l0_nominal.json": "3108ff8e920d2fa1b67e32f0efbdae22754ac82adeb8842ef8e5314b8152caee",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_slope_down_l0_bounded_v1.json": "eb90ec17471e9d704affb71ab4a765ff20f04d6060c34c7b8adeaad0e3617f92",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_blocks_l0_nominal.json": "60f987a81b354e3d6132ad26e0e0ff160b5c774b410e09c67c43db0280f2fe4d",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_blocks_l0_bounded_v1.json": "2f4041285d80b386f68591c7159a8ea4d201dafa33f87767d988a7040aa5e297",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_flat_nominal.json": "5986d295afc12e850f4719a570bf611f6988a8febd313a9ffc2761c65c0dd549",
+    "logs\\qualification\\rough_precision_training_20260920\\s61_u150_flat_bounded_v1.json": "5a2d9f94be8e15bfaf725db33d90b2041ac61c0a7e29ea3d916f29cdce9df763",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_flat_nominal.json": "4cc9c65fcef18b589e7097f5cdefdb616d32ecd9e5c9ec8028508adf3861d46c",
+    "logs\\qualification\\rough_precision_training_20260920\\s62_u150_flat_bounded_v1.json": "fa2a1397af0ce7a639aefbd9faf627a02716c930112345805426f3977c295642",
+    "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_12-19-22-295550_rough_precision_training_20260920_s61_stage1\\model_149.pt": "b94d6f8609fa9387620298789ef67133c396e152a80e2a6536bb24d37cf5f945",
+    "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_12-19-22-295550_rough_precision_training_20260920_s61_stage1\\export\\policy.pt": "b3f903bb2aaaa53b07b038e79e4b77ce4f6bb2dd41421e1655a0783f605fb5b7",
+    "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_12-25-18-621358_rough_precision_training_20260920_s62_stage1\\model_149.pt": "fbef1c4385e3f50d19814d1f54e4e612c0e77caead6ea6d326c08fa973d5b8a4",
+    "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_12-25-18-621358_rough_precision_training_20260920_s62_stage1\\export\\policy.pt": "b47adc7678fc439fd91144c349c5f272d76df269b4fc97f8bc667d0fda9389cd",
+    "logs\\rough\\rough_corridor_trace_20260920\\s61_random0_nominal.json": "75c18a02f89f8d2b02d65f7ac0b778945a0479c6576360e858ea33a41385fe3b",
+    "logs\\rough\\rough_corridor_trace_20260920\\s62_random0_nominal.json": "f23e0804596db4f2961ecb2bec46ce1bc871aea2ffa5e154b09896b7227fbd01"
+  },
+  "hash_mismatches": 0,
+  "policy_quality_accepted": false,
+  "next_recipe": "Rough-only wheel corridor terminal plus consistent curriculum; precision rewards and all Flat/Rough evaluation gates preserved"
+}

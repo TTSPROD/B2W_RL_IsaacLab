@@ -1,0 +1,70 @@
+{
+  "observed_utc": "2026-09-20T00:11:04.627570+00:00",
+  "status_at_observation": "training",
+  "job": "logs\\rough\\rough_requested_continue_20260920\\job.json",
+  "supervisor_pid": 29092,
+  "seeds": [
+    57,
+    58
+  ],
+  "num_envs": 4096,
+  "concurrent_seeds": 1,
+  "new_updates_per_seed": 200,
+  "final_updates_per_seed": 350,
+  "source_guards_verified": true,
+  "new_coordinator_tests_passed": 3,
+  "training_code_unchanged": true,
+  "training_manifest": "logs\\rsl_rl\\unitree_b2w_rough\\2026-09-20_00-09-18-556052_rough_requested_continue_20260920_s57_stage2\\manifest.json",
+  "progress": {
+    "updated_utc": "2026-09-20T00:11:01.427680+00:00",
+    "iteration": 168,
+    "updates_completed_this_run": 19,
+    "updates_requested_this_run": 200,
+    "transitions_this_run": 1867776,
+    "collection_seconds": 3.518430709838867,
+    "learning_seconds": 0.17805004119873047,
+    "losses": {
+      "value_function": 0.20001934766769408,
+      "surrogate": 0.013708892668364569,
+      "entropy": -14.138346672058105
+    },
+    "command_distribution": {
+      "env_command_steps": 1867776,
+      "standing_fraction": 0.019697222793311403,
+      "pure_yaw_abs_gt_005_fraction": 0.27222215083607454,
+      "positive_pure_yaw_fraction": 0.13166782312225878,
+      "negative_pure_yaw_fraction": 0.1405543277138158,
+      "mean_abs_yaw_rad_s": 0.2623171800453412,
+      "scope": "Cumulative commands after command-manager updates, including initial resets"
+    },
+    "learning_rate": 0.0001,
+    "reference_drift": {
+      "sample_count": 4096,
+      "raw_action_rms": 0.051032550632953644,
+      "raw_action_max_abs": 2.631258010864258,
+      "mean_gaussian_kl": 2.0834569931030273,
+      "leg_target_rms_rad": 0.011319112963974476,
+      "wheel_target_rms_rad_s": 0.2732532024383545,
+      "scope": "Same observations, deterministic means; target deltas before physical target clipping"
+    },
+    "training_phase": "ppo",
+    "policy_quality_evaluated": false
+  },
+  "latest_resources": {
+    "utc": "2026-09-20T00:11:03.797226+00:00",
+    "elapsed_seconds": 106.20300000000861,
+    "process_tree_rss_bytes": 7031992320,
+    "process_tree_count": 4,
+    "system_available_ram_bytes": 13940502528,
+    "system_total_ram_bytes": 34277982208,
+    "gpu_total_mib": 12282.0,
+    "gpu_used_mib": 6857.0,
+    "gpu_utilization_percent": 58.0,
+    "gpu_temperature_c": 61.0,
+    "gpu_headroom_fraction": 0.4417033056505455
+  },
+  "environment_and_ppo_preservation_verified": true,
+  "prior_milestone150_passed": false,
+  "policy_quality_accepted": false,
+  "note": "Requested diagnostic continuation. This is a launch snapshot; final/live coordinator takes precedence."
+}
