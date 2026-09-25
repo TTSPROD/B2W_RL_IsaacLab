@@ -1,5 +1,17 @@
 # Windows RTX 4080 Laptop worker
 
+## Актуальная область использования
+
+Инструкции описывают runtime конкретной вычислительной линии; приведенные результаты
+остаются квалификацией на дату запуска. Текущая цель policy — низкоуровневое
+исполнение внешних команд, ABI57→16. Throughput, headless/GUI smoke и старые
+cycle/corridor gates не являются новой приемкой locomotion.
+Следующий запуск и бюджет задает [PROJECT_PLAN.md](PROJECT_PLAN.md), распределение
+работ — [COMPUTE_DECISION.md](COMPUTE_DECISION.md). Development `locomotion57_v1`
+уже выполнен локально для трех серверных checkpoints ([отчет](results/2026-09-25-upstream-locomotion57.md));
+это не новая runtime qualification desktop/server. Команды исторических экспериментов не являются текущим
+планом запуска или новым разрешением на server/hardware.
+
 18 сентября 2026. Пользователь разрешил подключить ноутбук в локальной сети:
 `192.168.1.129`, Windows 11, RTX 4080 Laptop 12 GB, RAM 32 GB.
 Проект: `D:\Work\GitProjects\B2W_RL_IsaacLab`, пользователь SSH

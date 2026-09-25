@@ -1,0 +1,54 @@
+{
+  "schema": "replay57_19999_execution_v1",
+  "policy": 19999,
+  "seeds": [
+    7201,
+    7202,
+    7203,
+    7204
+  ],
+  "terrain": "up_14x32",
+  "case": "forward_0.30",
+  "command": [
+    0.3,
+    0,
+    0
+  ],
+  "snapshot_time_s": 27.0,
+  "capture_horizon_s": 45.0,
+  "physics_dt_s": 0.002,
+  "policy_dt_s": 0.02,
+  "replay_horizon_s": 5.0,
+  "budget": {
+    "captures": 4,
+    "fresh_replays": 12,
+    "serialized_continuation_checks": 4
+  },
+  "conditions": [
+    "isaac_nominal",
+    "mujoco_cooked_shapes",
+    "mujoco_source_shapes"
+  ],
+  "contact_measurement": {
+    "minimum_normal_force_N": 5.0,
+    "slip": "normal-load-weighted RMS tangent velocity at physical contact points",
+    "sampling": "each physics step, post step; no change to actor feedback"
+  },
+  "reward_ledger": "all nonzero saved reward terms; raw rates and dt-scaled integral; actual upstream functions",
+  "qualification": "diagnostic only; no new acceptance threshold or policy promotion",
+  "restrictions": [
+    "no PPO",
+    "no server",
+    "no robot",
+    "no upstream10000",
+    "no navigation feedback"
+  ],
+  "input_sha256": {
+    "configs\\locomotion57_19999_replay_plan_20260925.json": "42458a8673e944b06764f8342fef08114872975a7e097c868d698542467b8d22",
+    "artifacts\\upstream\\2026-09-23_model_19999\\env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+    "logs\\locomotion57_upstream_20260925\\export19999\\policy-contract-export\\policy.pt": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff",
+    "artifacts\\upstream\\2026-09-23_model_19999\\upstream_model_19999.pt": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+    "configs\\contact57_geometry_20260925.json": "2993da0ae7569130e6fb7898f68c2298b2d8c4a6fb2043868bd7b3dc240c2aca",
+    "configs\\contact57b_cooked_geometry_20260925.json": "ac9eca8295634fcd33017e05066ef8a56e928dba22dcc796467752eda2344ac5"
+  }
+}

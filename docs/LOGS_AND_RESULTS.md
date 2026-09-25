@@ -1,5 +1,10 @@
 # Логи и результаты B2W
 
+Приемка проекта теперь относится к низкоуровневой locomotion по внешним командам.
+Новые результаты `locomotion57_v1` должны храниться отдельно от cycle/corridor suites;
+первый выполненный screen трех upstream milestones сохранен в `logs/locomotion57_upstream_20260925/development` и [компактном evidence](results/evidence/upstream_locomotion57_20260925/summary.json). Исходные JSON, evaluator snapshots, SHA и raw logs
+не пересчитываются и не переименовываются под новые критерии.
+
 Актуально на **25 сентября 2026**. Этот документ объясняет, где искать вывод,
 первичные метрики и локальные runtime-артефакты. Он не дублирует журнал и не
 заменяет реестр политик.
@@ -25,8 +30,9 @@
 | Raw | `logs/`, TensorBoard, stdout/stderr, локальные checkpoints | Локально, вне Git; не является acceptance само по себе |
 
 Датированный report не переписывается под новое решение. Если вывод изменился,
-обновляются активный статус/матрица и добавляется новый report с явной ссылкой на
-старое evidence.
+обновляются активный статус/матрица и добавляется новое решение с явной ссылкой на
+старое evidence. Разрешена отдельная scope-пометка над исходным текстом отчета;
+она не меняет его исторические результаты.
 
 ## Снимок локальных логов
 
@@ -46,7 +52,7 @@ Omniverse log. **40** избыточных checkpoint-копий в 21 SHA-гр�
 hard links: все 410 исходных путей и SHA сохранены, физически освобождено ещё
 **221.3 MiB**. Проверка file ID подтвердила общий inode во всех 21 группах.
 
-В `docs/results/` находится **194 файла / 11.3 MiB**: 50 датированных reports,
+Снимок до последующего аудита и правки scope: в `docs/results/` было **194 файла / 11.3 MiB**: 50 датированных reports,
 128 JSON, три PNG и компактные evaluator/config snapshots. Байтовых дублей здесь
 нет. Большие JSON — первичные case records, поэтому уменьшение активной
 документации достигается индексом и матрицей, а не потерей evidence.
@@ -57,8 +63,11 @@ hard links: все 410 исходных путей и SHA сохранены, ф
 
 1. experiment id, machine line, дата, parent SHA, ABI, training seed и budget;
 2. effective config/patch и версии runtime;
-3. заранее объявленные development/validation protocol и evaluator hash;
-4. агрегат по всем строкам и seeds, включая unsafe/incomplete/failures;
+3. заранее объявленные protocol id, development/validation splits, evaluator/config hash,
+   command schedules и frames, terrain/command envelope, horizons и settling windows;
+4. агрегат по каждой terrain×command строке и seeds: outcomes, tracking/transition/zero
+   traces, проходимость, physics-step safety и actuation; все failure flags и denominator;
+   источник каждого limit и отличия safety predicates между движками;
 5. выбранный checkpoint и final checkpoint — это разные роли;
 6. короткое решение: `accepted`, `research-only` или `rejected`, с причиной.
 

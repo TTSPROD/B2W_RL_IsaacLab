@@ -6,9 +6,9 @@
 
 - Принят только Desktop Flat54 в собственном Flat scope.
 - Принятой общей Rough/Stairs или payload policy нет.
-- Research parent: inverse57 update3000. Диагностический candidate: cycle57 model3000.
+- Parent прежней постановки: inverse57 update3000. Вместе с cycle57 model3000 и reference он входит в кандидаты нового парного baseline; low-level qualification еще не выполнена.
 - SDK2 и реальный робот закрыты.
-- Следующая работа: actuator/physics parity Isaac↔MuJoCo, затем повтор frozen suite.
+- Development `locomotion57_v1` выполнен для трех upstream milestones. Следующая работа: measurement/physics parity и расширение baseline; полный старый цикл не является gate.
 
 ## Хронология решений
 
@@ -30,8 +30,43 @@
 | 25.09 | Late-hold PPO | 347/384 против parent350/384; stop failures 36 против34 | model3049 rejected; не продолжать. [Latch/late-hold](results/2026-09-25-cycle57-settled-latch-and-late-hold.md) |
 | 25.09 | Frozen multi-seed MuJoCo | Flat80/80, down60/60, up23/60; 37 unsafe, calf limits и wheel saturation | Sim2sim failed; SDK2 закрыт. [MuJoCo gate](results/2026-09-25-cycle57-mujoco-multiseed.md) |
 | 25.09 | Репозиторный аудит | Разделены Isaac stop и MuJoCo ascent failure modes; документация и статусы сведены | Следующий этап — physics/actuator parity. [Сводный аудит](results/2026-09-25-repository-experiment-review.md), [план](PROJECT_PLAN.md) |
+| 25.09, до новых low-level прогонов | Уточнение пользователя и согласование документации | Только низкоуровневая locomotion по внешним командам; cycle/corridor/landing-stop исключены из новой приемки | Обновлены план, контракт, реестр и руководства; архивные выводы сохранены с пометкой области. `locomotion57_v1` еще не реализован и не выполнен, новых train/rollout нет. [План](PROJECT_PLAN.md) |
+
+## Новое испытание после уточнения scope
+
+25.09 выполнен `locomotion57_v1` development-screen: upstream10000/15000/19999,
+5184 эпизода в двух движках. Все три не приняты. Добавлены общий протокол, физическая
+телеметрия и сравнение без навигации; 277 unit tests и 1290 vendor hashes — OK.
+Новых training updates нет. [Отчет](results/2026-09-25-upstream-locomotion57.md).
+
+## Последующая диагностика physics57
+
+Локальный physics57 этап: compiled readback17 bodies; подтверждено
+дублирование passive damping и wheel collision geoms в MuJoCo.120 diagnostic
+episodes: damping-only10000 16/20 против8/20, 19999 12/20 против5/20, без promotion.
+Следующий этап — collision/contact profile;281 tests и1290 vendor hashes — OK.
+[Physics57](results/2026-09-25-physics57-diagnostics.md).
+
+## Последующая диагностика contact57
+
+Последующий contact57:20 source collision shapes и frames перенесены;192 коротких
+probes и40 новых policy episodes.19999 достиг17/20 против8/20 control, unsafe0;
+низкая команда на лестнице остается проблемной.285 tests и1290 vendor hashes — OK.
+[Отчет](results/2026-09-25-contact57-diagnostics.md). Следующий этап — cooked hulls,
+contact offsets и независимые impact probes, с19999 для policy feedback.
+
+## Последующая диагностика contact57b
+
+Contact57b:8/8 valid isolated cooking results,42/34 vertices у calf/wheel; runtime
+contact offsets0.5–3.04mm, rest offsets=0. Выполнены36 policy-free probes и20 новых19999 episodes:12/20, unsafe0.
+Два slow-ascent stalls локализованы отдельно от transition/zero failures.
+Следующий шаг — full-state capture/replay19999 и reward ledger.287 tests — OK.
+[Отчет](results/2026-09-25-contact57b-19999.md).
 
 ## Закрытые направления
+
+**По последующему указанию пользователя upstream10000 больше не исследовать и не
+запускать.** Выполненное evidence сохраняется; из очереди новых работ он исключен.
 
 - Дальнейшее обучение `model3998`, payload C и late-hold model3049.
 - Повтор stop-pulse, wheel clamp, latch, feedback и gain sweeps без новой причинной информации.

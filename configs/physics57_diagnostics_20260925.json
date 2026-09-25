@@ -1,0 +1,109 @@
+{
+  "schema": "physics57_diagnostics_v1",
+  "purpose": "source-backed mechanical/adapter diagnosis, not policy acceptance or hardware identification",
+  "policy_dt_s": 0.02,
+  "airborne_cases": [
+    "hold",
+    "hip_step",
+    "thigh_chirp",
+    "calf_step",
+    "wheel_step"
+  ],
+  "contact_cases": [
+    "stand",
+    "roll_brake",
+    "slope_roll",
+    "step_roll"
+  ],
+  "airborne_seconds": 4.0,
+  "contact_seconds": 10.0,
+  "isaac_dt_s": [
+    0.005,
+    0.002
+  ],
+  "mujoco_dt_s": [
+    0.005,
+    0.002,
+    0.001
+  ],
+  "mujoco_variants": [
+    "vendor",
+    "damping_only",
+    "armature_only",
+    "inertials_only",
+    "effort_only",
+    "mechanics",
+    "mechanics_implicit"
+  ],
+  "variant_semantics": {
+    "vendor": "immutable vendor mechanics, explicit wheel PD, original integrator",
+    "damping_only": "zero passive viscous damping; retain actuator damping",
+    "armature_only": "copy compiled Isaac armature",
+    "inertials_only": "copy compiled Isaac body-frame mass, COM and full inertia",
+    "effort_only": "copy source contract calf actuator effort bound 320 Nm",
+    "mechanics": "combine damping/armature/inertials/effort; explicit wheel PD unchanged",
+    "mechanics_implicit": "mechanics plus force-limited wheel velocity servos and implicitfast"
+  },
+  "reference": "current nominal Isaac training asset; not measured real B2W",
+  "kinematic_poses": [
+    "default",
+    "offset_leg_pose_1",
+    "offset_leg_pose_2"
+  ],
+  "static_tolerances": {
+    "position_m": 1e-05,
+    "rotation_rad": 0.0001,
+    "mass_kg": 0.0001,
+    "com_m": 1e-05,
+    "inertia_kg_m2": 1e-05
+  },
+  "airborne_diagnostic_tolerances": {
+    "leg_q_max_abs_rad": 0.03,
+    "wheel_steady_velocity_max_abs_rad_s": 0.2,
+    "wheel_final_speed_max_rad_s": 0.05
+  },
+  "contact_probe": "same initial state and full recorded targets from Isaac upstream10000, no actor feedback in MuJoCo replay",
+  "contact_interpretation": "finite-horizon descriptive divergence; no long-trajectory equivalence/pass claim",
+  "micro_screen": {
+    "policies": [
+      10000,
+      19999
+    ],
+    "variants": [
+      "vendor",
+      "damping_only",
+      "mechanics_implicit"
+    ],
+    "terrains": [
+      "flat",
+      "up_14x32"
+    ],
+    "cases": {
+      "flat": [
+        "vx_+0.50",
+        "vx_+1.00"
+      ],
+      "up_14x32": [
+        "forward_0.30",
+        "forward_0.70",
+        "interrupted"
+      ]
+    },
+    "seeds": [
+      7201,
+      7202,
+      7203,
+      7204
+    ],
+    "dt_s": 0.002,
+    "criteria": "unchanged locomotion57_v1, diagnostic subset only; 120 episodes"
+  },
+  "budget": "local only, short probes and 120 diagnostic policy episodes; no PPO or server jobs",
+  "not_covered": [
+    "measured hardware parameters",
+    "full collision/contact equivalence",
+    "closed validation",
+    "policy release acceptance",
+    "training repeatability"
+  ]
+}

@@ -1,0 +1,316 @@
+{
+  "schema": "b2w_locomotion_review_evidence_v1",
+  "review_date": "2026-09-25",
+  "git_commit": "0d70c410580b2d36c1153383cedda35097f85e8c",
+  "scope": "Read-only audit of local code, copied server evidence, raw local logs; no new policy rollout or training.",
+  "sources": {
+    "coarse": {
+      "path": "docs/results/evidence/cycle57_coarse_screen_20260924/summary.json",
+      "sha256": "15d64be91b982be25c2d6298ba29d6034531cf44663bf34ff1f1502c0898d0fd"
+    },
+    "heldout": {
+      "path": "logs/heldout_validation/cycle57_model3005_heldout_20260924/summary.json",
+      "sha256": "9c00213933e4ba8a96c67f150b1f452abadd7dfd7d5ee0429ac0283b57eda38f"
+    },
+    "corridor": {
+      "path": "logs/corridor_qualification/cycle57_model3000_holdtrace_actor_seed510x_20260925/summary.json",
+      "sha256": "8a17fa69e6fa10025198cc6ec83a55814cfe4b162823bfafa24337b058854a0d"
+    },
+    "corridor_nominal_up": {
+      "path": "logs/corridor_qualification/cycle57_model3000_holdtrace_actor_seed510x_20260925/nominal_up_seed5101_n64.json",
+      "sha256": "a0946822f305e14325b8f088f31a14b3c22bd91ed9c238eedbdabeeb5dcbc0a6"
+    },
+    "mujoco": {
+      "path": "logs/sim2sim/cycle57_model3000_multiseed_v1/report.json",
+      "sha256": "112d0437405a59543fa173eafdbecf233da7c37c617743491c3c12553046b614"
+    },
+    "parent_manifest": {
+      "path": "logs/rsl_rl/unitree_b2w_stair/2026-09-24_09-47-49_cycle57_v1_A_full_seed54_20260924_094742/stair_parent.json",
+      "sha256": "a59caea618bafd848093d8b4b2c5e399868a24f61bfa3f826594d166823e1001"
+    },
+    "train_stdout": {
+      "path": "logs/train_cycle57_v1_A_full_20260924_094741.stdout.log",
+      "sha256": "47bc50ba0e2fca8d8d3480a925403df676dd76df06b3fc404b3abff4675fcfd8"
+    },
+    "isaac_evaluator": {
+      "path": "scripts/eval_stair_b2w.py",
+      "sha256": "cd715db78ad4d3db151554a421e054f842bcaa6ecf95ee27a27224b574c44d74"
+    },
+    "isaac_telemetry": {
+      "path": "scripts/stair_safety_telemetry.py",
+      "sha256": "5fbb07db919f50f388771afe435cdff3f1b53e5f5754db56f5025b10f034b929"
+    },
+    "mujoco_evaluator": {
+      "path": "scripts/sim2sim_mujoco_b2w.py",
+      "sha256": "04803a410287b6ba8285bf4328df3fe4abe57a247a83636c03fbbc41599cdb7e"
+    },
+    "trainer": {
+      "path": "scripts/train_stair_b2w.py",
+      "sha256": "32879f9c3c0448059e6552fea3f803871b0df354a8df2c8ce29123af68161a71"
+    }
+  },
+  "coarse": [
+    {
+      "iteration": 3000,
+      "success": 61,
+      "unsafe": 1,
+      "incomplete": 0,
+      "n": 64
+    },
+    {
+      "iteration": 3050,
+      "success": 58,
+      "unsafe": 1,
+      "incomplete": 0,
+      "n": 64
+    },
+    {
+      "iteration": 3200,
+      "success": 51,
+      "unsafe": 5,
+      "incomplete": 4,
+      "n": 64
+    },
+    {
+      "iteration": 3600,
+      "success": 28,
+      "unsafe": 1,
+      "incomplete": 32,
+      "n": 64
+    },
+    {
+      "iteration": 3400,
+      "success": 25,
+      "unsafe": 6,
+      "incomplete": 30,
+      "n": 64
+    },
+    {
+      "iteration": 3998,
+      "success": 19,
+      "unsafe": 5,
+      "incomplete": 39,
+      "n": 64
+    },
+    {
+      "iteration": 3800,
+      "success": 12,
+      "unsafe": 2,
+      "incomplete": 49,
+      "n": 64
+    }
+  ],
+  "heldout_cycle3000": {
+    "policy": "reference",
+    "checkpoint": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\unitree_b2w_stair\\2026-09-24_09-47-49_cycle57_v1_A_full_seed54_20260924_094742\\model_3000.pt",
+    "policy_sha256": "20c4a34c20282b549186c9fc9d58d79e10211cc536dd37336768678aea90de17",
+    "minimum_cell_success": 49.0,
+    "total_success": 329.0,
+    "total_unsafe": 10.0,
+    "total_stop_failed": 45.0,
+    "total_timeouts": 0.0,
+    "total_incomplete": 0.0,
+    "wheel_saturation_fraction_worst": 0.12945778050463994,
+    "leg_saturation_fraction_worst": 0.00043672401598622936,
+    "wheel_rolling_residual_rms_worst_m_s": 0.36104555476545275,
+    "action_delta_rms_worst": 0.6103929488526526
+  },
+  "corridor_cycle3000": {
+    "minimum_cell_success": 56.0,
+    "total_success": 350.0,
+    "total_unsafe": 0.0,
+    "total_stop_failed": 34.0
+  },
+  "isaac_nominal_up_example": {
+    "n": 64,
+    "success": 58,
+    "unsafe": 0,
+    "leg_speed_utilization_max": 1.0118151903152466,
+    "wheel_speed_utilization_max": 1.291582465171814,
+    "wheel_saturation_fraction": 0.12276504490014743,
+    "soft_joint_margin_fraction_min": -0.056067075580358505,
+    "sampling": "post-policy-step; actuator metrics do not enter unsafe predicate"
+  },
+  "mujoco": {
+    "total_episodes": 200,
+    "unsafe": 37,
+    "reasons": {
+      "joint_position_limit": 2,
+      "joint_velocity_limit": 35
+    },
+    "groups": [
+      {
+        "name": "stand",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "maximum": 0.0
+        }
+      },
+      {
+        "name": "forward_0p5",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "maximum": 0.0
+        }
+      },
+      {
+        "name": "yaw_pos_0p5",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.0,
+          "median": 0.0,
+          "p95": 0.0007575000000000001,
+          "maximum": 0.0009
+        }
+      },
+      {
+        "name": "yaw_neg_0p5",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.0,
+          "median": 0.0,
+          "p95": 0.0007650000000000009,
+          "maximum": 0.002
+        }
+      },
+      {
+        "name": "nominal_up",
+        "episodes": 20,
+        "qualification_passed": 9,
+        "unsafe_episodes": 11,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.158493031358885,
+          "median": 0.2015657863687197,
+          "p95": 0.22664425201978808,
+          "maximum": 0.2598003629764065
+        }
+      },
+      {
+        "name": "nominal_down",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.009162717219589257,
+          "median": 0.011150394942745721,
+          "p95": 0.012464566929133858,
+          "maximum": 0.012913385826771654
+        }
+      },
+      {
+        "name": "steep_up",
+        "episodes": 20,
+        "qualification_passed": 5,
+        "unsafe_episodes": 15,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.13187442713107242,
+          "median": 0.1805407221737867,
+          "p95": 0.23031614573365905,
+          "maximum": 0.2380529225908373
+        }
+      },
+      {
+        "name": "steep_down",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.011701277955271566,
+          "median": 0.013,
+          "p95": 0.013392000000000001,
+          "maximum": 0.014
+        }
+      },
+      {
+        "name": "shallow_up",
+        "episodes": 20,
+        "qualification_passed": 9,
+        "unsafe_episodes": 11,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.15617283950617283,
+          "median": 0.17005898441414852,
+          "p95": 0.2978819029499251,
+          "maximum": 0.2983706720977597
+        }
+      },
+      {
+        "name": "shallow_down",
+        "episodes": 20,
+        "qualification_passed": 20,
+        "unsafe_episodes": 0,
+        "wheel_torque_saturation_fraction": {
+          "minimum": 0.007689274447949527,
+          "median": 0.008668217044635981,
+          "p95": 0.010703616352201257,
+          "maximum": 0.010927672955974842
+        }
+      }
+    ]
+  },
+  "loaded_ppo": {
+    "lr": [
+      5e-05
+    ],
+    "std_frozen": true,
+    "leg_std_range": [
+      0.7537987232208252,
+      1.0215431451797485
+    ],
+    "wheel_std_range": [
+      2.0756163597106934,
+      2.1167986392974854
+    ],
+    "wheel_target_std_rad_s": [
+      10.378081798553467,
+      10.583993196487427
+    ],
+    "std_mean": 1.1658144183456898
+  },
+  "statistics": {
+    "wilson_two_sided_95": {
+      "19/20": [
+        0.763868806553258,
+        0.9911185511992047
+      ],
+      "20/20": [
+        0.8388748419471806,
+        1.0
+      ],
+      "61/64": [
+        0.8710034625990631,
+        0.983930983213707
+      ],
+      "122/128": [
+        0.9015024775490568,
+        0.9783421558280763
+      ],
+      "127/128": [
+        0.9570737405611394,
+        0.9986195681071257
+      ]
+    },
+    "unsafe_zero_of_299_one_sided_upper95": 0.009969146792899286,
+    "assumption": "Independent Bernoulli episodes from the declared stratum; not a hardware reliability claim."
+  },
+  "verification": {
+    "vendor_files": 1290,
+    "vendor_sources": 6,
+    "unit_tests_passed": 267,
+    "new_training_runs": 0,
+    "new_rollouts": 0
+  }
+}

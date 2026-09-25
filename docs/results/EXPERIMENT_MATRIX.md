@@ -1,10 +1,25 @@
 # Матрица экспериментов B2W
 
+Строки исторической таблицы — результаты прежних протоколов. Новый
+`locomotion57_v1` выполнен отдельным development-screen для трех upstream checkpoints
+([новый отчет](2026-09-25-upstream-locomotion57.md)); cycle/corridor/landing gates
+не переносятся в приемку низкоуровневой policy. Статусы таблицы исторические,
+а новые критерии находятся в [плане](../PROJECT_PLAN.md).
+
 Актуально на **25 сентября 2026**. Таблица объединяет только выводы, которые
 изменили parent, статус, blocker или следующий этап. Метрики разных evaluators,
 geometry sets, horizons и machine lines напрямую не сравниваются.
 
-## Итог по веткам
+## Новый low-level development-screen
+
+| Проверка | Результат | Решение | Evidence |
+|---|---|---|---|
+| Contact57b, только19999 | Cooked-copy hulls42/34 vertices;36 policy-free probes;19999 source17→cooked12/20, unsafe0 | Геометрическая чувствительность; следующий шаг full-state failure replay/reward ledger; нет promotion | [Отчет](2026-09-25-contact57b-19999.md) |
+| Contact57 source geometry | 20 collision shapes и frames;192 probes;40 новых policy episodes;19999 success8→17/20, unsafe0 | Opt-in; cooked hulls/solver открыты. По указанию пользователя10000 исключен из дальнейших работ | [Отчет](2026-09-25-contact57-diagnostics.md) |
+| Physics57 compiled/actuator diagnosis | Лишний passive damping уменьшает no-load wheel response10→5rad/s; исправление повышает micro success10000 8→16/20, 19999 5→12/20 | Adapter opt-in; contact geometry/masks/parity остаются открытыми, promotion нет | [Отчет](2026-09-25-physics57-diagnostics.md) |
+| Upstream10000/15000/19999, ABI57→16, внешние команды | 5184 эпизода, Isaac + MuJoCo; 54 сценария и 16 общих reset seeds | Все три **rejected in development screen**; 19999 сильнее в Isaac, универсального победителя в sim2sim нет | [Отчет](2026-09-25-upstream-locomotion57.md) |
+
+## Исторический итог по веткам
 
 | Ветка | Сопоставимый результат | Решение | Основной evidence |
 |---|---|---|---|
@@ -31,9 +46,12 @@ geometry sets, horizons и machine lines напрямую не сравнива�
 4. Большинство training branches имеют один seed. Сотни vectorized evaluation
    episodes дают полезную development-диагностику, но не multi-seed training
    evidence и не release claim.
-5. Следующий эксперимент — не PPO: сначала actuator/physics parity, затем тот же
-   frozen 200-episode MuJoCo suite. Новый bounded pilot допустим только после
-   отделения model mismatch от policy failure.
+5. Evaluator исполнения внешних команд реализован; upstream10000/15000/19999
+   проверены. Следующий этап — actuator/physics parity, дополнение measurement
+   coverage и парный baseline reference/inverse57/cycle57. Frozen 200-episode MuJoCo suite сохраняет
+   диагностическую ценность, но его навигационные условия не блокируют новую задачу.
+   Bounded PPO A/B проектируется после измерений на общей velocity-command task;
+   контроль и treatment сравниваются по одному новому протоколу.
 
 Текущая интерпретация и артефакты: [TRAINING_STATUS.md](../TRAINING_STATUS.md) и
 [POLICY_REGISTRY.md](../POLICY_REGISTRY.md). Хронология без промежуточного шума:

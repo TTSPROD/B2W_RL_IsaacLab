@@ -1,5 +1,54 @@
 # Инструменты B2W
 
+Выполненное сравнение low-level upstream milestones: [протокол и результаты](../docs/results/2026-09-25-upstream-locomotion57.md).
+`run_locomotion57_upstream.py` фиксирует SHA/config и запускает локальные evaluators;
+`summarize_locomotion57_upstream.py` проверяет полноту 5184 эпизодов и собирает evidence.
+Запуски требуют локальных экспортов с проверенным SHA. Существующие output paths
+защищены от перезаписи; это инструменты оценки, новых training updates они не делают.
+
+## Текущая задача и состояние инструментов
+
+Contact57b: `inspect_contact57_cooking.py` успешно выгружает cooked hulls отдельной
+неинстансированной копии; `contact57b_model.py` добавляет opt-in cooked profile;
+`probe_contact57b_impacts.py` выполняет policy-free contact sensitivity.
+`eval_contact57b_19999.py` допускает только19999, сохраняет дополнительные traces.
+`verify_contact57b_geometry.py`, `summarize_contact57b.py`, `plot_contact57b.py`
+проверяют и публикуют [результаты](../docs/results/2026-09-25-contact57b-19999.md).
+Full-state failure replay пока только запланирован, не выполнен.
+
+Contact57: `export_contact57_geometry.py`, `prepare_contact57.py`, `contact57_model.py`,
+`probe_contact57.py`, `eval_contact57_micro.py`, `summarize_contact57.py`, `plot_contact57.py`.
+Source geometry и план заморожены в `configs/contact57_*_20260925.json`.
+Профиль opt-in, не default. [Результаты](../docs/results/2026-09-25-contact57-diagnostics.md).
+`export_contact57_cooked.py` и `export_contact57_cooked_mesh.py` сохраняют попытки
+public cooking readback; они вернули ошибки для текущих instance proxies и не
+подтверждают cooked geometry. Следующий readback нужен на отдельной копии asset.
+**Замороженный micro runner содержит уже выполненную пару10000/19999. Не запускать
+его повторно: пользователь исключил10000 из дальнейших работ. Новый protocol/runner
+должен явно ограничивать последующие policy runs checkpoint19999.**
+
+Physics57 diagnostics: `physics57_protocol.py`, `probe_physics57_isaac.py`,
+`probe_physics57_mujoco.py`, `probe_physics57_contact_states.py`,
+`physics57_mujoco_model.py`, `eval_physics57_micro.py`, `summarize_physics57.py`.
+Они реализуют отдельные opt-in model profiles и probes; исходные frozen evaluators
+сохраняют свою физику. [Выполненные результаты и воспроизводимость](../docs/results/2026-09-25-physics57-diagnostics.md).
+
+Цель — низкоуровневое исполнение внешних `(vx, vy, omega_z)` с ABI57→16.
+План и критерии: [PROJECT_PLAN.md](../docs/PROJECT_PLAN.md).
+Development evaluator `locomotion57_v1` реализован и выполнен для upstream10000/15000/19999
+([отчет](../docs/results/2026-09-25-upstream-locomotion57.md)). Новая training task
+и полный qualification suite еще не реализованы; старые scripts сохранены.
+
+| Инструменты | Применение после уточнения scope |
+|---|---|
+| Runtime, export/ABI fixtures, physics probes, ручные viewers и command replay | Переиспользуемая инфраструктура; отдельно проверить measurement/adapter contract |
+| `eval_stair_suite.py`, `evaluate_cycle57_corridor_suite.ps1`, текущий MuJoCo multi-seed batch | Историческая диагностика со своими версиями и predicates; cycle/corridor/landing outcomes не являются новой приемкой |
+| Stop controllers, wheel latch, route/landing brake profiles, late-hold launchers | Сохраненные эксперименты; не участвуют в новой actor-only qualification |
+| `locomotion57_protocol.py`, `eval_locomotion57_isaac.py`, `eval_locomotion57_mujoco.py` | Реализованный development-screen: фиксированные внешние schedules, physics-step safety, 57→16, два движка; новая training task остается P4 |
+
+Численные gates берутся только из плана. Существующие примеры ниже сохраняют
+контекст прежних запусков и не являются командой на их повтор или продолжение.
+
 ## Разделение параллельных линий
 
 Ниже исторический каталог настольной линии. После объединения Git совпадавшие entrypoints этой линии называются `train_b2w_desktop.py`, `smoke_b2w_desktop.py`, `play_b2w_gamepad_desktop.py`; её callers и tests обновлены. Старые evidence сохраняют исходные имена и hashes на дату запуска.
@@ -14,7 +63,7 @@
 ## Завершённый Rough wide corridor experiment
 
 65/66 завершились18:28МСК на150 с quality stop; продолжение350 не выполнялось.
-[Следующая диагностика двух ширин](../docs/ROUGH_NEXT_DIAGNOSTICS.md) пока
+[Историческое предложение диагностики двух ширин](../docs/ROUGH_NEXT_DIAGNOSTICS.md)
 не реализована и не запускалась. Приведённые ниже команды сохраняют provenance
 проведённого опыта; существующие output directories повторно не запускаются.
 

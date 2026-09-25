@@ -1,0 +1,78 @@
+{
+  "schema": "contact57b_diagnostics_v1",
+  "policy": 19999,
+  "excluded_policy": 10000,
+  "cooked_geometry_sha256": "ac9eca8295634fcd33017e05066ef8a56e928dba22dcc796467752eda2344ac5",
+  "policy_dt_s": 0.02,
+  "seeds": [
+    7201,
+    7202,
+    7203,
+    7204
+  ],
+  "micro_screen": {
+    "policies": [
+      19999
+    ],
+    "variants": [
+      "cooked_shapes"
+    ],
+    "terrains": [
+      "flat",
+      "up_14x32"
+    ],
+    "cases": {
+      "flat": [
+        "vx_+0.50",
+        "vx_+1.00"
+      ],
+      "up_14x32": [
+        "forward_0.30",
+        "forward_0.70",
+        "interrupted"
+      ]
+    },
+    "seeds": [
+      7201,
+      7202,
+      7203,
+      7204
+    ],
+    "dt_s": 0.002
+  },
+  "impact": {
+    "cases": [
+      "drop",
+      "roll_brake"
+    ],
+    "duration_s": 4.0,
+    "root_height_m": {
+      "drop": 0.85,
+      "roll_brake": 0.65
+    },
+    "dt_s": [
+      0.005,
+      0.002
+    ],
+    "isaac_robot_restitution": [
+      1.0,
+      0.5,
+      0.0
+    ],
+    "isaac_ground_restitution": 1.0,
+    "mujoco_shapes": [
+      "source_shapes",
+      "cooked_shapes"
+    ],
+    "mujoco_solref_timeconst_s": 0.02,
+    "mujoco_solref_dampratio": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "interpretation": "open-loop whole-robot sensitivity, not an estimate of restitution; no mapping between coefficient and solref ratio"
+  },
+  "selection": "cooked geometry chosen by model provenance; no score-based solver choice",
+  "budget": "20 new policy episodes, 12 Isaac and 24 MuJoCo 4-second open-loop probes; no PPO/server/hardware",
+  "source_sha256": "8eac7ab2bacb81abd2132ee0fb0f72d0b2fcb3b74b0cf5d42e647b34a62eaaf7"
+}

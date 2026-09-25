@@ -2,6 +2,20 @@
 
 Этот документ фиксирует deployable actor ABI. Статус checkpoints ведётся в [POLICY_REGISTRY.md](POLICY_REGISTRY.md); на 25 сентября 2026 принятой Rough/Stairs policy нет.
 
+## Назначение и граница ответственности
+
+По уточнению пользователя policy выполняет **только низкоуровневую locomotion**.
+Внешний уровень задает `(vx, vy, omega_z)`, policy исполняет их посредством targets
+ног и колес. Маршрут, waypoint, абсолютный heading, распознавание площадки и момент
+смены команд находятся снаружи policy. Нулевая команда требует затухания скорости
+и устойчивости, но не возврата в исходную точку или удержания абсолютного курса.
+
+Reference tracking сравнивает команды с `root_lin_vel_b.xy` и `root_ang_vel_b.z`.
+Семантика команд — body frame; yaw slot означает угловую скорость, а не угол heading.
+Это сохраняет существующий контракт, включая режимы на наклонной поверхности.
+Критерии и command/terrain envelope: [низкоуровневая приемка](PROJECT_PLAN.md#acceptance-gates-низкоуровневая-locomotion-policy).
+Navigation controller и action-level stop adapters не участвуют в actor-only qualification.
+
 ## Сеть и частота
 
 - Actor: `57 → 512 → 256 → 128 → 16`, ELU, `Identity` normalizer.
@@ -48,6 +62,9 @@ Articulation order локального Isaac runtime отличается. Пр
 - robot asset hashes, mass/COM/inertia source и actuator limits;
 - physics/policy timestep, solver/contact parameters;
 - normalizer, deterministic/stochastic eval mode;
+- версия приемки, evaluator/config hash и результат в явно заявленном scope;
+- body-frame command semantics, совместный command/terrain envelope и command schedules;
+- зафиксированные observation/action adapters, actuator gains, latency и runtime watchdog;
 - policy→SDK permutation, signs, units и firmware mode после их проверки.
 
 ## Parity gates
@@ -64,7 +81,7 @@ Articulation order локального Isaac runtime отличается. Пр
 
 - `rl_sar` и Isaac Lab по-разному упорядочивают scale/clip для экстремальных observations/actions. Deployment adapter обязан выбрать и протестировать точную семантику.
 - MuJoCo physics `dt=0.002 s` использует 10 substeps на policy period; inertial/contact/actuator модели пока не эквивалентны Isaac.
-- Frozen MuJoCo quality gate провален на подъёме: `23/60`, `37` unsafe. Parity export не является sim2sim pass.
+- Исторический frozen MuJoCo gate провален на подъёме: `23/60`, `37` unsafe. Новый development `locomotion57_v1` выполнен для upstream10000/15000/19999, все три не приняты; parity export не является sim2sim quality pass.
 - SDK2 order/signs, real torque-speed/current/thermal limits, estimator frames, latency и watchdog остаются непроверенными.
 
 Следующий gate описан в [PROJECT_PLAN.md](PROJECT_PLAN.md).

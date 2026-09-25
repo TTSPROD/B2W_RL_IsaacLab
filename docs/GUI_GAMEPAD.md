@@ -1,5 +1,14 @@
 # B2W: 3D-окно с геймпадом
 
+## Область ручной проверки
+
+Геймпад — внешний источник `(vx, vy, omega_z)` для низкоуровневой policy57→16.
+Нулевая команда означает запрос остановки; она не задает возврат в точку или
+удержание абсолютного heading. Ручная сессия и replay служат диагностикой,
+а качество принимается по [PROJECT_PLAN.md](PROJECT_PLAN.md).
+Development `locomotion57_v1` выполнен для трех upstream checkpoints ([отчет](results/2026-09-25-upstream-locomotion57.md)); старый cycle/corridor batch
+не заменяет этот протокол. Командные диапазоны viewer — настройки интерфейса, а не подтвержденный operating envelope policy.
+
 Этот документ описывает **Isaac Sim physics + внешний OpenGL renderer**. Для
 отдельного MuJoCo3.14 viewer с XInput, выбираемыми TorchScript policy и полными
 MJCF/XML-картами см. [MUJOCO_GAMEPAD](MUJOCO_GAMEPAD.md). Эти два runtime не

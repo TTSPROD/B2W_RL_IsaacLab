@@ -2,16 +2,30 @@
 
 Проект обучения и проверки локомоции Unitree B2W в Isaac Lab/RSL-RL. Текущая линия сохраняет референсный контракт **57 наблюдений → 16 действий**: 12 position targets ног и 4 velocity targets колёс, policy rate 50 Hz.
 
+Назначение policy — **низкоуровневое исполнение внешних команд скорости** `(vx, vy, omega_z)`.
+Навигация находится снаружи. Приемка оценивает tracking, устойчивость, проходимость,
+реакцию на смену/обнуление команды и приводы; прежние cycle/corridor scores остаются
+историческими diagnostics. [Актуальные критерии](docs/PROJECT_PLAN.md#acceptance-gates-низкоуровневая-locomotion-policy).
+
 ## Состояние на 25 сентября 2026
 
 - Принятой общей политики Rough/Stairs нет; SDK2 и испытания реального робота не открыты.
-- Серверные `upstream20000` и `inverse57` завершены. `inverse57 update3000` — непринятый research parent.
-- Локальный `cycle57 model3000` — research-only. Isaac held-out gate и frozen MuJoCo gate провалены.
-- MuJoCo: Flat `80/80`, спуск `60/60`, подъём только `23/60` и `37` unsafe. Основные признаки — calf-limit stops и длительное насыщение колёс.
-- Финальный `cycle57 model3998` coarse-screened и отклонён: `19/64` полных циклов против `61/64` у `model3000`, `5` unsafe и `39` incomplete.
-- Stop-controller, settled latch, late-hold fine-tune и payload A/B/C не дали кандидата для promotion.
+- `locomotion57_v1` реализован для development-screen: upstream10000/15000/19999 проверены в 5184 эпизодах Isaac/MuJoCo. Ни один не принят по полному набору критериев. [Результаты](docs/results/2026-09-25-upstream-locomotion57.md).
+- Серверные `upstream20000` и `inverse57` завершены. `inverse57 update3000`, локальный `cycle57 model3000` и внешний reference — кандидаты для сопоставимого baseline по внешним командам.
+- Исторический MuJoCo suite у model3000 дал Flat `80/80`, спуск `60/60`, подъём `23/60` и `37` unsafe. Различия физики и определения actuator limits требуют диагностики.
+- Отрицательные результаты cycle57, stop-controller и payload-веток сохранены в [матрице](docs/results/EXPERIMENT_MATRIX.md); их прежние cycle/corridor gates не переносятся в новую приемку.
+- [Contact57](docs/results/2026-09-25-contact57-diagnostics.md): source collision geometry перенесена в opt-in MuJoCo профиль;19999 получил17/20 в micro-screen, unsafe0. Полная parity/qualification открыта.
+- [Contact57b](docs/results/2026-09-25-contact57b-19999.md): с cooked geometry тот же19999 дал12/20, unsafe0; выполнены36 policy-free probes, локализованы два slow-ascent stalls. Следующий шаг — full-state replay/reward ledger19999.
 
-Следующий шаг — **не новый PPO run**, а выравнивание actuator/physics-моделей Isaac↔MuJoCo и повтор неизменённого 200-episode suite. После этого принимается отдельное решение о bounded training experiment.
+По указанию пользователя upstream10000 исключен из дальнейших запусков и обучения.
+Сохранены его исторические результаты; основной upstream кандидат для продолжения —19999.
+
+Следующий шаг — дополнить реализованный evaluator и согласовать
+**actuator/physics-модели Isaac↔MuJoCo**, затем расширить парный baseline на
+reference/inverse57/cycle57. Первое сравнение трех upstream milestones уже выполнено. По его результатам выбирается один ограниченный PPO A/B в задаче velocity
+tracking без goal/landing state machine. Полная последовательность и численные
+критерии находятся в [плане](docs/PROJECT_PLAN.md). Аудит исходных данных — в
+[разборе обучения и приемки](docs/results/2026-09-25-locomotion-training-review.md).
 
 ## С чего читать
 

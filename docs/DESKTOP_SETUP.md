@@ -1,5 +1,17 @@
 # Настольный ПК: окружение B2W
 
+## Актуальная область использования
+
+Инструкции описывают runtime конкретной вычислительной линии; приведенные результаты
+остаются квалификацией на дату запуска. Текущая цель policy — низкоуровневое
+исполнение внешних команд, ABI57→16. Throughput, headless/GUI smoke и старые
+cycle/corridor gates не являются новой приемкой locomotion.
+Следующий запуск и бюджет задает [PROJECT_PLAN.md](PROJECT_PLAN.md), распределение
+работ — [COMPUTE_DECISION.md](COMPUTE_DECISION.md). Development `locomotion57_v1`
+уже выполнен локально для трех серверных checkpoints ([отчет](results/2026-09-25-upstream-locomotion57.md));
+это не новая runtime qualification desktop/server. Команды исторических экспериментов не являются текущим
+планом запуска или новым разрешением на server/hardware.
+
 Рабочий каталог: `D:\Work\GitProjects\B2W_RL_IsaacLab`.
 Обследование 17 сентября 2026: Windows 11 Pro build 26200, Ryzen 9 5900X
 (12 ядер / 24 потока), 31.9 GiB RAM, RTX 4070 Ti 12 282 MiB, NVIDIA driver 616.92.

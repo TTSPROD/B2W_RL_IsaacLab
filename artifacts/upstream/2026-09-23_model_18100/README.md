@@ -1,5 +1,13 @@
 # Upstream B2W — checkpoint 18100
 
+<!-- locomotion-scope-2026-09-25 -->
+> Исторический документ. С 25.09.2026 цель — низкоуровневая locomotion57→16 по
+> внешним командам скорости. Cycle/corridor/landing-stop и навигационные условия
+> ниже относятся к исходному протоколу; его результаты, статусы и текст сохранены.
+> Прежние следующие шаги не являются текущим планом. Актуальная приемка и порядок
+> работ: [PROJECT_PLAN.md](../../../docs/PROJECT_PLAN.md). Состояние новой приемки указано в действующем плане.
+<!-- /locomotion-scope-2026-09-25 -->
+
 Downloaded on 2026-09-23 from this session's server training run
 `upstream_b2w_20000_4gpu_20260922`. This was the latest saved checkpoint at
 selection time; it is not the final 20000-iteration model.

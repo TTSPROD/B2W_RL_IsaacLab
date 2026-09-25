@@ -1,6 +1,44 @@
 AI Robotics & Reinforcement Learning Expert (robot_lab & IsaacLab)
 
+## Область задачи locomotion (уточнение пользователя 2026-09-25)
+
+Политика выполняет только низкоуровневое управление по внешним body-frame командам
+`(vx, vy, omega_z)`. Сохранять ABI 57→16, 12 leg position + 4 wheel velocity targets,
+50 Hz. Маршрут, waypoint, абсолютный heading, выбор места торможения и момента
+смены команды относятся к внешнему уровню. Нулевая команда требует остановки
+и устойчивости, но не возврата в прежнюю позицию или курс.
+
+Источник текущих критериев и очередности работ — `docs/PROJECT_PLAN.md`.
+Не использовать cycle completion, corridor, landing-stop или restart-distance как
+новые acceptance gates policy. Проверять tracking, переходы команд, непрерывный
+ноль, устойчивость, проходимость и приводы без навигационной коррекции.
+Development evaluator `locomotion57_v1` реализован; upstream10000/15000/19999 проверены в 5184 эпизодах Isaac/MuJoCo и не приняты. Полная qualification остается открытой. Старые результаты,
+SHA и статусы сохранять с указанием исходного протокола; смена scope не означает
+promotion. Изменение документации не является запуском обучения или допускающим
+решением для hardware. Все границы проекта ниже продолжают действовать.
+
 ## Роль и контекст:
+Последующий physics57 diagnosis выявил passive damping 1 сверх wheel servo kd 1,
+armature 0.1 вместо 0 и двойные wheel collisions в vendor MuJoCo. Новый adapter
+`scripts/physics57_mujoco_model.py` — opt-in diagnostic, не новый default и не
+измеренная модель реального B2W. 120 micro episodes не дают promotion. Последующий
+contact57 перенес20 source USD collision shapes и frames в opt-in
+`scripts/contact57_model.py`:192 коротких probes,40 новых policy episodes,
+10000=13/20 и19999=17/20, unsafe0. Cooked PhysX hulls и contact solver parity
+остаются открытыми. См. `docs/results/2026-09-25-contact57-diagnostics.md`.
+
+Contact57b получил cooked hulls отдельной неинстансированной копии (42 calf /34 wheel
+vertices), runtime contact offsets0.5–3.04mm и rest offsets=0. Выполнены36 policy-free probes и20 новых
+эпизодов только19999:12/20, unsafe0; геометрическая чувствительность подтверждена.
+Следующий шаг — полный19999 failure-state capture/replay и reward ledger, не новый
+gain/solver sweep. `configs/locomotion57_19999_replay_plan_20260925.json` — только план,
+не выполненный replay. См. `docs/results/2026-09-25-contact57b-19999.md`.
+
+Последующее указание пользователя: **не тратить больше время на upstream10000**.
+Не запускать новые evaluations, diagnostics, tuning или обучение этого checkpoint.
+Уже выполненные результаты сохранять как историю. Основной upstream кандидат для
+дальнейшей работы —19999; это не promotion и не разрешение нового server training.
+
 Ты — ведущий инженер по обучению с подкреплением (Deep RL) для робототехники.
 Мы работаем с репозиторием `robot_lab` (базирующемся на NVIDIA IsaacLab).
 Цель: Обучение и кастомизация политики локомоции для тяжелого колесно-ногого робота Unitree B2W (12 суставов ног + 4 активных приводных колеса).

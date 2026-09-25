@@ -1,12 +1,18 @@
 # Инфраструктура B2W
 
+Текущая цель — низкоуровневая locomotion57→16 по внешним командам скорости.
+Runtime qualification отделена от приемки policy: development `locomotion57_v1`
+выполнен локально на RTX4080 Laptop в Isaac и CPU MuJoCo для трех серверных checkpoints.
+Новые серверные jobs не запускались; полной policy qualification пока нет. Его критерии и очередность работ задает
+[PROJECT_PLAN.md](PROJECT_PLAN.md).
+
 Актуально на **25 сентября 2026**.
 
 ## Вычислительные линии
 
 | Линия | Подтверждённый scope | Текущее использование |
 |---|---|---|
-| RTX 4080 Laptop, Windows 11, 12 GB | Isaac headless до 4096 env, evaluation, MuJoCo batch/viewer | Actuator/physics parity и локальная диагностика |
+| RTX 4080 Laptop, Windows 11, 12 GB | Isaac headless до 4096 env, evaluation, MuJoCo batch/viewer | Новый evaluator внешних команд, actuator/physics parity и парный baseline |
 | RTX 4070 Ti desktop, 12 GB | Отдельная Flat-линия со своим runtime/evidence | Не смешивать checkpoints и seeds с ноутбуком |
 | 4×Hopper server, Ubuntu 22.04 | Завершённые upstream20000 и inverse57 headless runs | Историческая линия; новый job только по явному разрешению |
 
@@ -24,7 +30,10 @@ python scripts/vendor_materials.py verify
 & .\scripts\run_local.ps1 -m unittest discover -s tests -q
 ```
 
-Проверено: 1290 vendor-файлов, 267 tests — OK.
+После contact57b diagnosis проверено:1290 vendor-файлов,287 tests — OK.
+Последний этап:36 policy-free probes и20 новых19999 episodes выполнены локально;
+[отчет и ограничения](results/2026-09-25-contact57b-19999.md).
+По последующему указанию пользователя upstream10000 больше не запускается.
 
 ## Пути и границы
 
@@ -41,4 +50,7 @@ python scripts/vendor_materials.py verify
 
 ## Решение по compute
 
-Сейчас compute выделяется на parity/evaluation, а не на длинное обучение. Исторический ноутбучный probe `4096×25` подтвердил throughput и память, но не качество. Новый train разрешается только после P1–P2 из [PROJECT_PLAN.md](PROJECT_PLAN.md) и с заранее зафиксированным budget/gate.
+Сейчас compute выделяется на evaluator/parity/evaluation, а не на длинное обучение.
+Исторический ноутбучный probe `4096×25` подтвердил throughput и память, но не качество.
+Предлагаемый новый train следует после P1–P3 из [PROJECT_PLAN.md](PROJECT_PLAN.md)
+с заранее зафиксированным budget/gate; новый серверный job требует отдельного решения.

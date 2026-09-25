@@ -1,11 +1,48 @@
 # Модели B2W: сравнение и результаты Isaac
 
+Модель и probes проверяются для низкоуровневой policy по внешним командам.
+Навигационный успех не подтверждает физическую достоверность; no-load/solver limits
+не являются измеренными аппаратными пределами. Старые результаты ниже сохраняют
+исходный scope. Актуальная очередность — P1–P3 в [плане](PROJECT_PLAN.md).
+
 Исходное сравнение выполнено 17 сентября 2026 скриптом
 `scripts/compare_robot_models.py`. Статус sim2sim актуализирован 25 сентября.
 Эталон для текущего upstream обучения — URDF из `vendor/robot_lab/source/robot_lab/data`
 (полный путь приведён в JSON). Он побайтово совпадает с предоставленным
 `vendor/unitree_ros/robots/b2w_description/urdf/b2w_description.urdf`.
 `vendor/` и физические параметры обучения не изменялись.
+
+## Compiled diagnosis 25 сентября
+
+Последний [contact57b](results/2026-09-25-contact57b-19999.md) получил valid cooked
+hulls отдельной копии и live articulation offsets. Cooked wheel hulls отличаются
+от source до8.68mm по опорной функции;19999 чувствителен к этому изменению.
+Оболочки не прочитаны напрямую из live GPU buffer; solver force peaks остаются
+разными. Модель реального робота этим не идентифицирована.
+
+Последующий [contact57](results/2026-09-25-contact57-diagnostics.md) исправляет frames,
+source collision geometry и masks в отдельном opt-in adapter.20 форм совпадают с
+исходным USD; cooked PhysX hulls еще не проверены. В100ms probes leg-q error
+уменьшилась, root-position error выросла. Ни solver parity, ни hardware fidelity
+не заявлены. Ниже сохранены исходные physics57 findings до этой коррекции.
+
+Выполнены runtime readback17 bodies, joint/servo probes, dt sensitivity и короткие
+парные contact probes: [отчет physics57](results/2026-09-25-physics57-diagnostics.md),
+[compiled properties и traces hashes](results/evidence/physics57_20260925/summary.json).
+
+- Isaac armature=0 и passive joint friction=0; vendor MuJoCo armature0.1 и damping1.
+  Последний добавляется к wheel servo kd1 и уменьшает свободную скорость10→5rad/s.
+  Однофакторное удаление damping устранило этот эффект.
+- Adapter вне vendor переносит compiled mass/COM/full inertia и согласует calf effort,
+  armature и implicit wheel servo. Max leg q discrepancy без контакта при dt0.002s
+  уменьшилась0.031635→0.000570rad.
+- Полная parity не достигнута: right-wheel frame delta≈1mm; Isaac20 collision shapes,
+  MJCF36 robot collision geoms, включая две активные mesh-геометрии каждого колеса.
+  Contact masks/shapes/restitution и dt sensitivity остаются открытыми.
+- Это отдельные opt-in profiles. Исторический `locomotion57_v1` и его результаты
+  сохраняют исходные модели;120 новых diagnostic episodes не являются qualification.
+
+## Исходная инвентаризация
 
 | Параметр | Training URDF / unitree_ros | unitree_mujoco b2w.xml |
 |---|---|---|
@@ -104,9 +141,13 @@ saturation выше gate; это отрицательный diagnostic result, �
 3. Сопоставить contact/friction, solver settings и velocity-dependent
    torque envelope; отдельно проверить compiled модели и trajectories.
    Параметры конкретного реального робота пока не измерены.
-4. Export/adapter parity и frozen MuJoCo suite уже исполнены. Согласовать
-   обнаруженные model/actuator gaps, затем без изменения policy повторить тот же
-   20-seed suite и только после pass расширять held-out geometry. Текущий полный
-   результат: [multi-seed MuJoCo](results/2026-09-25-cycle57-mujoco-multiseed.md).
-   Hardware gates из [PROJECT_PLAN.md](PROJECT_PLAN.md) остаются обязательными;
+4. Export/adapter parity и исторический frozen MuJoCo suite уже исполнены.
+   Согласовать model/actuator gaps и общий measurement contract, затем выполнить
+   парный baseline `locomotion57_v1` по внешним командам в обоих движках. Новый
+   evaluator реализован, первый screen трех upstream milestones выполнен
+   ([отчет](results/2026-09-25-upstream-locomotion57.md)); physics parity остается открытой.
+   Повтор прежнего 20-seed suite допустим как
+   диагностика; его cycle/corridor pass не является условием нового pilot.
+   Исходный результат: [multi-seed MuJoCo](results/2026-09-25-cycle57-mujoco-multiseed.md).
+   Qualification и hardware gates задает [PROJECT_PLAN.md](PROJECT_PLAN.md);
    управление реальным роботом не запускалось.

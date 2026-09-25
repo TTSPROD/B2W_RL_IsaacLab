@@ -1,5 +1,13 @@
 # Stair cycle v3: парный A/B pilot
 
+<!-- locomotion-scope-2026-09-25 -->
+> Исторический документ. С 25.09.2026 цель — низкоуровневая locomotion57→16 по
+> внешним командам скорости. Cycle/corridor/landing-stop и навигационные условия
+> ниже относятся к исходному протоколу; его результаты, статусы и текст сохранены.
+> Прежние следующие шаги не являются текущим планом. Актуальная приемка и порядок
+> работ: [PROJECT_PLAN.md](../PROJECT_PLAN.md). Состояние новой приемки указано в действующем плане.
+<!-- /locomotion-scope-2026-09-25 -->
+
 22 сентября 2026. Локальная RTX 4080 Laptop, Isaac Sim 5.1 / Isaac Lab 2.3.2. Parent — rough seed 54 `model_349.pt`, SHA-256 `916bf5c5b4e5ca43ecfacd4bde6c5a92b164b9c0a6d5c9257a6c7ed68662febf`.
 
 Проверка общего stop protocol: 2 CPU fixtures прошли. Smoke v3: 4096 сред × 1 PPO update, reset probes 410/410 landing starts и 204 inverse rough, без опасных состояний в первые 10 шагов; actor 57→16. Затем обучены четыре run от одного parent, каждый 4096 сред × 25 новых PPO updates = 2 457 600 transitions. Общий бюджет — 9 830 400 transitions. Во всех run: protocol v3, 30/30% подъём/спуск, 10% landing starts, 15% flat, 10% random rough, 5% inverse rough, ступени 5–16 см / 30–42 см, фиксированный exploration std 0.1 и LR 1e-4. A использует резкую остановку 0.7→0; B — торможение на последних 1.2 м до 0.25 м/с перед остановкой.
