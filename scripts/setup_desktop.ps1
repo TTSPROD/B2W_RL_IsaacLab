@@ -93,7 +93,7 @@ try {
         installed_utc=[DateTime]::UtcNow.ToString('o')
         qualification='Installation only; run smoke_b2w_desktop.py before training'
     } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $ReportDir 'bootstrap-runtime.json') -Encoding utf8
-    Write-Host 'Installation and dependency checks passed. See docs/DESKTOP_SETUP.md for GPU smoke and training.'
+    Write-Host 'Installation and dependency checks passed. See docs/INFRASTRUCTURE.md for runtime usage.'
 }
 finally {
     foreach ($Name in $PreviousEnvironment.Keys) {

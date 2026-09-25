@@ -1,59 +1,64 @@
 # Инфраструктура B2W
 
-Текущая цель — низкоуровневая locomotion57→16 по внешним командам скорости.
-Runtime qualification отделена от приемки policy: development `locomotion57_v1`
-выполнен локально на RTX4080 Laptop в Isaac и CPU MuJoCo для трех серверных checkpoints.
-Новые серверные jobs не запускались; полной policy qualification пока нет. Его критерии и очередность работ задает
-[PROJECT_PLAN.md](PROJECT_PLAN.md).
+Baseline runtime: Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11, RSL-RL 3.1.2.
+Исходники robot_lab и остальных upstream компонентов закреплены в `vendor/manifest.json`.
+Точный [состав vendor](VENDOR_INVENTORY.md) включает докачанные SDK2/MuJoCo bridge
+и ROS2 packages. Их Linux build и DDS qualification пока не выполнены.
+Текущий локальный MuJoCo viewer исполняет policy внутри процесса и не проверяет
+SDK2 transport. Будущий C++/ROS2 runtime собирается отдельно от vendor и Windows
+окружения; выбор MuJoCo engine version фиксируется до сравнения результатов.
 
-Актуально на **25 сентября 2026**.
+## Локальное окружение
 
-## Вычислительные линии
+Проект: `C:\Users\ra.suragin\Documents\ChatGPT\B2W_RL_IsaacLab`.
+Локальный launcher `scripts/run_local.ps1` использует `.venv`, `.runtime/IsaacLab`
+и Sim packages из `D:\isaacsim51`; путь можно задать через `B2W_ISAAC_SIM_ENV`.
+Системный Python и `.venv` без launcher могут не видеть Torch/Isaac dependencies.
+Конфигурация Windows runtime и lock-файлы находятся в `requirements/`.
+`scripts/setup_desktop.ps1` — отдельный installer проектного desktop окружения;
+его не нужно запускать при уже работающем runtime ноутбука.
 
-| Линия | Подтверждённый scope | Текущее использование |
-|---|---|---|
-| RTX 4080 Laptop, Windows 11, 12 GB | Isaac headless до 4096 env, evaluation, MuJoCo batch/viewer | Новый evaluator внешних команд, actuator/physics parity и парный baseline |
-| RTX 4070 Ti desktop, 12 GB | Отдельная Flat-линия со своим runtime/evidence | Не смешивать checkpoints и seeds с ноутбуком |
-| 4×Hopper server, Ubuntu 22.04 | Завершённые upstream20000 и inverse57 headless runs | Историческая линия; новый job только по явному разрешению |
-
-Headless B2W qualification не подтверждает GUI, RTX rendering, камеры или произвольные Isaac Sim workloads.
-
-## Runtime
-
-- Baseline: robot_lab/Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11, RSL-RL 3.1.2.
-- Ноутбук: проектное `.venv` + `.runtime/IsaacLab`; бинарные Sim packages из `D:\isaacsim51`.
-- Полный локальный Python запускается через `scripts/run_local.ps1`; системный Python не содержит Torch/Isaac dependencies.
-- Vendor snapshots неизменны и проверяются `python scripts/vendor_materials.py verify`.
+Линии RTX4080 Laptop, RTX4070Ti desktop и server сохраняют отдельные runtime
+характеристики. Текущая проверка 19999 выполнена на RTX4080 Laptop, Isaac headless.
 
 ```powershell
 python scripts/vendor_materials.py verify
 & .\scripts\run_local.ps1 -m unittest discover -s tests -q
+& .\scripts\run_local.ps1 scripts/verify_project.py
 ```
 
-После replay57 проверено:1290 vendor-файлов,290 tests — OK.
-Последний этап:4 captures,4 exact continuation checks,12 replay19999 и17 reward terms
-выполнены локально; [отчет и ограничения](results/2026-09-25-replay57-19999.md).
-Isaac contact filter должен указывать на collider `/World/ground/terrain/mesh`,
-а не Xform terrain. Неполные попытки сохранены отдельно; rewards и движение
-исправленного batch точно совпали с исходным. Новый PPO/server job не запускался.
-По последующему указанию пользователя upstream10000 больше не запускается.
+## Evidence и воспроизводимость
 
-## Пути и границы
+Постоянные данные последней проверки: `docs/results/evidence/operating57_19999_20260925/`.
+Raw JSON и NPZ перенесены из logs без изменения байтов. Пути внутри raw JSON
+фиксируют место исходного запуска; актуальное расположение задаёт manifest рядом.
+Captured protocol/source hashes относятся к выполненному запуску, current source
+hashes — к коду после рефакторинга. Сравнение по сохранённым traces проверяет
+неизменность всех 1152 оценок без повторной симуляции.
 
-- Локальный проект: `C:\Users\ra.suragin\Documents\ChatGPT\B2W_RL_IsaacLab`.
-- Основной серверный каталог: `/home/user/projects/B2W_RL_IsaacLab`.
+Перестроение таблиц и рисунка:
+
+```powershell
+& .\scripts\run_local.ps1 scripts/summarize_operating57.py
+& .\scripts\run_local.ps1 scripts/report_operating57.py
+```
+
+Новый запуск screen записывается в отдельный путь и не заменяет retained evidence:
+
+```powershell
+& .\scripts\run_local.ps1 scripts/eval_operating57_isaac.py --terrain flat --output logs/operating57_new/isaac_flat.json
+```
+
+Live logs/outputs/caches игнорируются Git. Единственный текущий report и его
+проверяемые raw данные хранятся в `docs/results/`; веса — в `policies/server/`.
+
+## Сервер
+
+- Рабочий каталог: `/home/user/projects/B2W_RL_IsaacLab`.
 - Transfer cache: `/home/user/.cache/B2W_RL_IsaacLab-sync`.
-- Исторически разрешённая завершённая линия: `/home/user/B2W_RL_IsaacLab_Server`.
+- Завершённые разрешённые runs: `/home/user/B2W_RL_IsaacLab_Server`.
 
-Не открывать старые B2W-проекты, не менять глобальные drivers/packages и не вытеснять чужие workloads. Logs, caches и environments не добавлять в Git. Экспериментальные policies допускаются только с manifest/SHA и явным статусом `not accepted`.
-
-## Синхронизация
-
-Обычный путь — Git fast-forward с чистым tracked state. `scripts/sync_server.ps1` не удаляет файлы и не делает force/reset. Для машин с неисправным DNS используется [github-dns-bypass](../skills/github-dns-bypass/SKILL.md); TLS verification сохраняется. На desktop, где GitHub доступен штатно, bypass не нужен.
-
-## Решение по compute
-
-Сейчас compute выделяется на evaluator/parity/evaluation, а не на длинное обучение.
-Исторический ноутбучный probe `4096×25` подтвердил throughput и память, но не качество.
-Предлагаемый новый train следует после P1–P3 из [PROJECT_PLAN.md](PROJECT_PLAN.md)
-с заранее зафиксированным budget/gate; новый серверный job требует отдельного решения.
+`scripts/sync_server.ps1` переносит committed HEAD через Git bundle и fast-forward.
+Чистка выполнена локально; удалённые jobs и файлы этим действием не изменяются.
+Новые server training jobs требуют отдельного явного решения.
+При сбое GitHub DNS использовать [проектный skill](../skills/github-dns-bypass/SKILL.md).

@@ -1,0 +1,1327 @@
+{
+  "schema": "operating57_v1_refactor1",
+  "stage": "development_screen",
+  "qualification": false,
+  "frozen_at_utc": "2026-09-25T18:50:56.935192+00:00",
+  "policy": 19999,
+  "checkpoint_sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+  "export_path": "policies/server/upstream_19999/export/policy.pt",
+  "export_sha256": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff",
+  "source_sha256": {
+    "operating57_protocol.py": "b5574c434b35ffa63e481ed1f97edc198d21b4068531be830a5ffbab69989371",
+    "eval_operating57_isaac.py": "e1ee46d38dafb6b63e828fb3d97008ff98b60dbeacf67341f0ed42f70b652d69",
+    "locomotion57_protocol.py": "3deba5b552f4c786f4cdb10c2115f27deaaf61cd8b055913f2aac45410568ff6",
+    "local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00"
+  },
+  "training_env_sha256": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+  "reset_seeds": [
+    8201,
+    8202,
+    8203,
+    8204,
+    8205,
+    8206,
+    8207,
+    8208,
+    8209,
+    8210,
+    8211,
+    8212,
+    8213,
+    8214,
+    8215,
+    8216,
+    8217,
+    8218,
+    8219,
+    8220,
+    8221,
+    8222,
+    8223,
+    8224,
+    8225,
+    8226,
+    8227,
+    8228,
+    8229,
+    8230,
+    8231,
+    8232
+  ],
+  "cases": [
+    {
+      "name": "stand",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_-0.30",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_+0.30",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_-0.50",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.5,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_+0.50",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_-0.70",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_+0.70",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_-1.00",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vx_+1.00",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_-0.30",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_+0.30",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_-0.50",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            -0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_+0.50",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_-0.70",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_+0.70",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_-1.00",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "vy_+1.00",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_-0.30",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_+0.30",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_-0.50",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_+0.50",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_-0.70",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_+0.70",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_-1.00",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "wz_+1.00",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "diagonal_-1_-1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.5,
+            -0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "turning_-1_-1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.5,
+            0.0,
+            -0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "diagonal_-1_+1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.5,
+            0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "turning_-1_+1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            -0.5,
+            0.0,
+            0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "diagonal_+1_-1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.5,
+            -0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "turning_+1_-1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.5,
+            0.0,
+            -0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "diagonal_+1_+1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.5,
+            0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "turning_+1_+1",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 30,
+          "command": [
+            0.5,
+            0.0,
+            0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "transitions_vx",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            -0.5,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "transitions_vy",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.0,
+            -0.5,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "transitions_wz",
+      "terrain": "flat",
+      "segments": [
+        {
+          "seconds": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 10,
+          "command": [
+            0.0,
+            0.0,
+            -0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    }
+  ],
+  "episodes": 1152,
+  "criteria": {
+    "flat_rmse": [
+      0.2,
+      0.2,
+      0.25
+    ],
+    "flat_response_fraction": 0.8,
+    "flat_settling_s": 2,
+    "moving_rmse_window_s": 1,
+    "continuous_zero_s": 10,
+    "zero_xy_speed_m_s": 0.1,
+    "zero_yaw_speed_rad_s": 0.1,
+    "development_success_flat": 0.99,
+    "unsafe_allowed": 0
+  },
+  "safety": {
+    "tilt_deg": 60,
+    "base_hip_net_force_n": 5,
+    "hard_joint_tolerance_rad": 0.001,
+    "startup_grace_s": 0,
+    "no_load_speed_is_hard_limit": false
+  },
+  "actor_abi": [
+    57,
+    16
+  ],
+  "policy_hz": 50,
+  "navigation_feedback": false,
+  "automatic_deadband": false,
+  "physics": "Isaac nominal; bounded upright reset variations",
+  "evaluation_mode": "deterministic frozen actor; no PPO, no reset on failure",
+  "scope": "Isaac Flat: 36 cases x 32 reset seeds; no Rough/Stairs qualification",
+  "limitations": [
+    "Not the full training distribution: no heading controller or startup DR",
+    "32 reset seeds are not independent training seeds",
+    "30s constant-command segments intentionally exceed the 10s training resampling time",
+    "No MuJoCo qualification in this screen"
+  ],
+  "captured_protocol_sha256": "2ee3df4fbe94bec7a728abdd9877904e1f0482b5588f2a9cafc23342e4bc2ad5",
+  "captured_result_sha256": "98bb178713b1a477a40b9452a7df7b6f8ef89e804323af7d55e0848d60eca69d",
+  "captured_source_sha256": {
+    "operating57_protocol.py": "6c172b5369ea130916219f135652517bef4fd66f6f6c39738b505807befe0013",
+    "eval_operating57_isaac.py": "4e41c173821cf08cff949e75cfddfb671257d12fa253da34912b215434b558cb",
+    "locomotion57_protocol.py": "4b81b0a24cfc8265227ee0401c14b7277b773e806bab79ab55c4a679aba422ef",
+    "local_b2w_assets.py": "07fb6a1fd1eac599c1a59ff52ae68b3770d9103c38a0f2f47d57972c3b617739"
+  },
+  "maintenance_note": "Paths and implementation refactored; captured result/protocol hashes identify the unchanged executed run. Current source hashes are separate."
+}

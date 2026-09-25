@@ -1,15 +1,12 @@
-# Сохранённые политики B2W
+# Серверные policies B2W
 
-Политики предназначаются для низкоуровневого исполнения внешних body-frame команд
-`(vx, vy, omega_z)`, ABI57→16. Критерии: [PROJECT_PLAN.md](../docs/PROJECT_PLAN.md).
-Development `locomotion57_v1` выполнен для upstream10000/15000/19999; все три не приняты. [Отчет](../docs/results/2026-09-25-upstream-locomotion57.md). Статусы и cycle/corridor
-scores в вложенных snapshot README/manifest относятся к исходным протоколам.
-Архивные handoff/snapshot файлы сохраняются без переписывания; отсутствие новой
-оценки не повышает статус весов. ABI60 не совместима с действующим контрактом.
+`server/` содержит только серверные checkpoints, их training configs и происхождение.
+Рабочий кандидат — `upstream_19999`; рядом сохранён использованный в operating57
+TorchScript export. Байты checkpoint и export не менялись при чистке.
 
-- [Канонический реестр всех линий, SHA и решений](../docs/POLICY_REGISTRY.md). На 25 сентября новой low-level qualification нет; inverse57 update3000 и cycle57 model3000 — непринятые кандидаты для baseline по внешним командам.
-- [75 экспериментальных checkpoints ноутбука и сервера](experimental/README.md): **не приняты**, включая snapshots остановленных runs; SHA и ABI в manifest.
-- [Настольный Flat seed54](desktop/flat54/README.md): checkpoint и TorchScript из ранее опубликованного handoff. Квалификация относится только к Flat по настольному протоколу; не принятая Rough/Stairs политика.
-- [Внешний reference rl_sar](../vendor/rl_sar/policy/b2w/robot_lab/policy.pt): исходный опубликованный файл, не результат обучения этого проекта.
+[Machine-readable registry](manifest.json) · [Статусы и SHA](../docs/POLICY_REGISTRY.md).
+Остальные checkpoints хранятся для восстановления серверной линии. Наличие весов
+не означает qualification или hardware approval. Upstream10000 не запускать.
 
-Три параллельные линии имеют разные истории seeds и gates. [Общая сводка](../docs/TRAINING_STATUS.md). Git snapshot `experimental/` зафиксирован 23 сентября и намеренно не переписывается задним числом: завершённые позже inverse57, cycle57 и payload57 перечислены в реестре, но не опубликованы в этом каталоге. Наличие весов не разрешает управление реальным роботом.
+Внешняя policy внутри immutable `vendor/rl_sar` является частью upstream snapshot
+и используется software contract fixtures; это не активный проектный кандидат.

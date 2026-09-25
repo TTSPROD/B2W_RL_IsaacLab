@@ -1,0 +1,24 @@
+{
+  "files": {
+    "scripts/operating57_protocol.py": "b5574c434b35ffa63e481ed1f97edc198d21b4068531be830a5ffbab69989371",
+    "scripts/eval_operating57_isaac.py": "e1ee46d38dafb6b63e828fb3d97008ff98b60dbeacf67341f0ed42f70b652d69",
+    "scripts/locomotion57_protocol.py": "3deba5b552f4c786f4cdb10c2115f27deaaf61cd8b055913f2aac45410568ff6",
+    "scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "configs/locomotion57_19999_operating_screen_20260925.json": "06df220b11bcd1984911e7d2e0ecf9a229ac4bfb70002822588a681342d3125f",
+    "docs/results/2026-09-25-operating57-19999.md": "2af132a67111f21b02a8bbb7064067ddb92f73ff70e2e1576e1ddf4f2baf0455",
+    "docs/results/figures/operating57_19999_20260925.png": "86d2ada1d511362c74f747cbcaefe8c5a9a2731e47d6e41bdcfd401f67ba5b74",
+    "docs/results/evidence/operating57_19999_20260925/summary.json": "cb7e896b941150e2ece6bc88c97c3fd0e78c719beb5353028048bba66d3edd81",
+    "docs/results/evidence/operating57_19999_20260925/episodes.csv": "c6a2d48c3aff5a7a5a424f715b5ed4089ae35a5c91db5ac4a28f81b09bd1e7c4",
+    "docs/results/evidence/operating57_19999_20260925/isaac_flat.json": "98bb178713b1a477a40b9452a7df7b6f8ef89e804323af7d55e0848d60eca69d",
+    "docs/results/evidence/operating57_19999_20260925/isaac_flat.npz": "9b334f5b7dc176fe22dc68fe067eb669cfe928e21c5b59069a07598e4d4e866b",
+    "scripts/summarize_operating57.py": "d2311663462b629706dfb8348b12e48e1d8cb5b50ed3932f1bf6b3bd9de35924",
+    "scripts/report_operating57.py": "b2d73f2c80638dc6579e77b12c03552065b9c96311879059ff3f66384414c077",
+    "tests/test_operating57.py": "b61e4190fe48850200befa1f747167dfc04227cff2cdb0f84eac2e85538b6132"
+  },
+  "new_episodes": 1152,
+  "training_updates": 0,
+  "new_server_jobs": 0,
+  "qualification": false
+}

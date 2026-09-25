@@ -1,0 +1,5 @@
+# CPU checks and evidence regeneration; Isaac is only needed for fresh simulation.
+numpy==1.26.0
+PyYAML==6.0.2
+mujoco==3.14.0
+matplotlib==3.10.3

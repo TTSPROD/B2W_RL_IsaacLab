@@ -12,26 +12,10 @@
     },
     "metadata_patch": "requirements/isaaclab-sim51-metadata.patch",
     "metadata_patch_sha256": "3a03a8af205afdcead0daad2d41c168d74bc9147a5a80b56eaddfd8de388d13c",
-    "runtime_setup_sha256": "f5d750120f1108a0ffc0cc7cc2fc7ca52d29fe0a1fe58a6221400b462030f47b"
+    "runtime_setup_sha256": "85444292f762d7636887e894f58abd52c1397e44e8a13916fe513ceb7c88c2ef"
   },
   "vendor_manifest_sha256": "2f0e2ea83aa9808dc10787f6dc34f6dd23ec7bb96c45acd4b747250ee72dfa1a",
   "requirements_lock_sha256": "85b755c671c96ae2fe481a5a68d29f2b7a8760d3cf644f46185896444184aa15",
-  "simulator_qualification": {
-    "date": "2026-09-17",
-    "hardware": "RTX 4070 Ti / Windows 11 Pro 26200 / NVIDIA 616.92",
-    "compatibility_checker": "PASSED; exit 0",
-    "gpu_smoke": "10000 physics steps; 16 envs; finite; GPU PhysX/Fabric; exit 0",
-    "ppo_smoke": "256 envs; 2 updates; checkpoint; exit 0",
-    "resume": "1 update; model/optimizer/learning rate restored; exit 0",
-    "bootstrap": "idempotent install and pip check passed",
-    "evidence": "logs/setup/",
-    "policy_quality_evaluated": false,
-    "stand_stability_evaluated": false,
-    "parity_tested": false,
-    "long_training_started": false
-  },
-  "snapshot_scope": "Initial desktop bootstrap observations; qualification flags below are historical, not the current project status.",
-  "current_results": "docs/results/2026-09-17.json",
   "hash_semantics": "Existing SHA256 fields record observed local bytes at bootstrap (including CRLF). canonical_lf_sha256 normalizes CRLF/CR to LF for cross-checkout text comparison; vendor files are unchanged.",
   "canonical_lf_sha256": {
     "metadata_patch": {

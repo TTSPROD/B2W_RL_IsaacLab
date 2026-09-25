@@ -11,8 +11,7 @@ checkpoints/
 *.tar.gz
 *.partial
 .pytest_cache/
-# Live delivery is mutable; publish reviewed snapshots in policies/experimental.
-artifacts/upstream/inverse57_4gpu_20260923/
+# Live delivery is mutable; retain reviewed server checkpoints under policies/server.
+artifacts/
 .env
 !.env.example
-.runtime/

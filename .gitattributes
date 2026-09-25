@@ -1,14 +1,12 @@
 * text=auto eol=lf
 vendor/** -text
 vendor/README.md text eol=lf
-vendor/manifest.json text eol=lf
+vendor/manifest.json -text whitespace=cr-at-eol
 *.pt binary
 # Preserve byte hashes of archived configs and evaluation evidence.
-policies/experimental/** -text whitespace=cr-at-eol
-policies/experimental/README.md text eol=lf
+policies/server/** -text whitespace=cr-at-eol
 docs/results/evidence/** -text whitespace=cr-at-eol
-policies/desktop/** -text whitespace=cr-at-eol
-policies/desktop/**/README.md text eol=lf
+*.npz binary
 *.onnx binary
 *.dae binary
 *.STL binary

@@ -31,7 +31,7 @@ from mujoco_safety_recorder import (
     load_command_trace,
     validate_trace_context,
 )
-from sim2sim_mujoco_b2w import (
+from mujoco_model import (
     DEFAULT_POLICY,
     DEFAULT_XML,
     build_model,

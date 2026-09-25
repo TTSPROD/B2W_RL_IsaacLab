@@ -1,0 +1,127 @@
+{
+  "schema": "b2w_server_policies_v1",
+  "active_candidate": "upstream_19999",
+  "hardware_qualified": false,
+  "checkpoints": [
+    {
+      "id": "upstream_10000",
+      "checkpoint": "policies/server/upstream_10000/upstream_model_10000.pt",
+      "sha256": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "saved_iteration": 10000,
+      "seed": 44,
+      "server_run": "upstream_b2w_20000_4gpu_20260922",
+      "status": "stored_server_checkpoint",
+      "evaluation": null,
+      "files": {
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "provenance.json": "6828c2a5907bc7b728c27946dceb48472b56428668f4f5444862ba5e74b5fca3",
+        "upstream_model_10000.pt": "611dba2dfbb53f828c2a6e005a44c612970a5ca42e8f9261bb22b5f9c4659caa"
+      }
+    },
+    {
+      "id": "upstream_15000",
+      "checkpoint": "policies/server/upstream_15000/upstream_model_15000.pt",
+      "sha256": "9d97dfa997f5d759d8bbf1e63a558321fa0dbf455df27a77dd10b6d8732c654c",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "saved_iteration": 15000,
+      "seed": 44,
+      "server_run": "upstream_b2w_20000_4gpu_20260922",
+      "status": "stored_server_checkpoint",
+      "evaluation": null,
+      "files": {
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "provenance.json": "522a83c56bdf65c61f39ecec96460d1051782cf98132b1e2eccba5ce22c1eb50",
+        "upstream_model_15000.pt": "9d97dfa997f5d759d8bbf1e63a558321fa0dbf455df27a77dd10b6d8732c654c"
+      }
+    },
+    {
+      "id": "upstream_18100",
+      "checkpoint": "policies/server/upstream_18100/upstream_model_18100.pt",
+      "sha256": "cc3ff9a993d18979c8874005565ebfc7503fc7b529e80e4eb64556912dadddf7",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "saved_iteration": 18100,
+      "seed": 44,
+      "server_run": "upstream_b2w_20000_4gpu_20260922",
+      "status": "stored_server_checkpoint",
+      "evaluation": null,
+      "files": {
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "provenance.json": "c76cd0d5b4ed2ae127881ba5edd371a55d4ea5ff541d11a99b723100414135a2",
+        "upstream_model_18100.pt": "cc3ff9a993d18979c8874005565ebfc7503fc7b529e80e4eb64556912dadddf7"
+      }
+    },
+    {
+      "id": "upstream_19999",
+      "checkpoint": "policies/server/upstream_19999/upstream_model_19999.pt",
+      "sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "saved_iteration": 19999,
+      "seed": 44,
+      "server_run": "upstream_b2w_20000_4gpu_20260922",
+      "status": "development_candidate",
+      "evaluation": "docs/results/2026-09-25-operating57-19999.md",
+      "files": {
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "provenance.json": "a7e7e60413f527553bd15a02552de4df16b38c6bd9f65c35bfb0897dc66eb970",
+        "server_completion.json": "6249fe506fe6ce989c86ca8fdd44dcf7d93a69efc6a2c48e0410b188addf10fb",
+        "upstream_model_19999.pt": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc"
+      }
+    },
+    {
+      "id": "upstream_5000",
+      "checkpoint": "policies/server/upstream_5000/upstream_model_5000.pt",
+      "sha256": "316b845412d171a77a529345d72e2ca8fc6344c3092a3e153cd5cde95867ded2",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "saved_iteration": 5000,
+      "seed": 44,
+      "server_run": "upstream_b2w_20000_4gpu_20260922",
+      "status": "stored_server_checkpoint",
+      "evaluation": null,
+      "files": {
+        "agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+        "provenance.json": "73d1f6e5b141a2ffb6d4c333e80be0304e409d0f068d6e104137411b9d5d4cce",
+        "upstream_model_5000.pt": "316b845412d171a77a529345d72e2ca8fc6344c3092a3e153cd5cde95867ded2"
+      }
+    },
+    {
+      "id": "inverse57_2999",
+      "checkpoint": "policies/server/inverse57_2999/selected_policy.pt",
+      "sha256": "73fb165c4d9bb0b17ae3128a445d5f3801d66360efc5286469872199726ecafa",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "saved_iteration": 2999,
+      "server_run": "inverse57_4gpu_20260923",
+      "status": "stored_server_checkpoint",
+      "evaluation": null,
+      "files": {
+        "agent.yaml": "a18a19db5957d5b4a36683848f2c2f4e3b904ec1d154ffe707154829cd359488",
+        "env.yaml": "22aed186a7223f6492a2e351bbc50409035e8546aca383a1527b524e40da02fe",
+        "provenance.json": "741e62a95558db9b77b51a85dfbfd8fe387e285f9b14cfa296b2a10cab2df2e3",
+        "selected_policy.pt": "73fb165c4d9bb0b17ae3128a445d5f3801d66360efc5286469872199726ecafa"
+      }
+    }
+  ]
+}

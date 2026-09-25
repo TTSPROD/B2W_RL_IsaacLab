@@ -14,7 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from check_policy_contract import load_contract
 from play_mujoco_b2w_gamepad import B2WMujocoRuntime, run_headless_smoke
 from mujoco_safety_recorder import CommandTraceWriter, load_command_trace, validate_trace_context
-from sim2sim_mujoco_b2w import DEFAULT_POLICY, DEFAULT_XML, build_model, validate_model_contract
+from mujoco_model import DEFAULT_POLICY, DEFAULT_XML, build_model, validate_model_contract
 
 
 class MujocoGamepadRuntimeTest(unittest.TestCase):

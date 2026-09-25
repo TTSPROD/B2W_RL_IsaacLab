@@ -1,46 +1,17 @@
 # Документация B2W
 
-Назначение проекта — низкоуровневая locomotion по внешним body-frame командам
-`(vx, vy, omega_z)`, с неизменным actor ABI **57→16**. Планирование маршрута и места
-торможения относится к внешнему уровню. Численные критерии хранятся только в
-[приемке PROJECT_PLAN](PROJECT_PLAN.md#acceptance-gates-низкоуровневая-locomotion-policy).
-Development evaluator `locomotion57_v1` реализован и выполнен для трех upstream checkpoints. [Результаты и ограничения](results/2026-09-25-upstream-locomotion57.md); полная qualification остается открытой.
-
-Последний этап: [replay57 — состояния, контакты и17 reward terms19999](results/2026-09-25-replay57-19999.md).
-По указанию пользователя10000 исключен из дальнейших работ; основной upstream
-кандидат —19999, без изменения статуса приемки.
-
-Активная документация сведена к семи источникам истины:
+Актуальный контекст проекта — низкоуровневая policy 57→16 и серверный кандидат 19999.
 
 | Документ | Назначение |
 |---|---|
-| [PROJECT_PLAN.md](PROJECT_PLAN.md) | Текущая цель, очередность работ и gates |
-| [TRAINING_STATUS.md](TRAINING_STATUS.md) | Краткая аналитика последних экспериментов |
-| [TRAINING_PROGRESS.md](TRAINING_PROGRESS.md) | Сжатый хронологический журнал решений |
-| [POLICY_REGISTRY.md](POLICY_REGISTRY.md) | Checkpoint, SHA-256, provenance и статус |
-| [POLICY_CONTRACT.md](POLICY_CONTRACT.md) | Технический ABI 57→16 и parity-требования |
-| [INFRASTRUCTURE.md](INFRASTRUCTURE.md) | Runtime, вычислительные линии и границы доступа |
-| [LOGS_AND_RESULTS.md](LOGS_AND_RESULTS.md) | Карта логов, evidence, retention и очистки |
+| [PROJECT_PLAN](PROJECT_PLAN.md) | Цель, критерии и порядок следующих работ |
+| [TRAINING_STATUS](TRAINING_STATUS.md) | Текущий результат и открытые вопросы |
+| [Последняя проверка](results/2026-09-25-operating57-19999.md) | 1152 эпизода operating57, таблицы и evidence |
+| [POLICY_CONTRACT](POLICY_CONTRACT.md) | Входы, выходы и временной контракт |
+| [POLICY_REGISTRY](POLICY_REGISTRY.md) | Сохранённые серверные checkpoints |
+| [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md) | Архитектура и этапы будущего деплоя |
+| [VENDOR_INVENTORY](VENDOR_INVENTORY.md) | SDK, контроллеры, ROS1/ROS2, MuJoCo: точные файлы, версии и зависимости |
+| [INFRASTRUCTURE](INFRASTRUCTURE.md) | Runtime, пути, команды проверки |
+| [MUJOCO_GAMEPAD](MUJOCO_GAMEPAD.md) | Ручной просмотр в симуляторе |
 
-Практические руководства: [MuJoCo + XInput](MUJOCO_GAMEPAD.md), [Isaac Sim viewer](GUI_GAMEPAD.md),
-[desktop gamepad](GAMEPAD_PLAY.md), [каталог scripts](../scripts/README.md).
-Runtime/setup: [desktop](DESKTOP_SETUP.md), [laptop](LAPTOP_WORKER.md),
-[server performance](SERVER_PERFORMANCE.md). Их технические инструкции не заменяют
-приемку policy. Решение по вычислениям: [COMPUTE_DECISION.md](COMPUTE_DECISION.md).
-Физические различия и проверка моделей: [ROBOT_MODEL_COMPARISON.md](ROBOT_MODEL_COMPARISON.md).
-
-## Evidence и история
-
-- [results/EXPERIMENT_MATRIX.md](results/EXPERIMENT_MATRIX.md) — одна строка на экспериментальную ветку и её итог.
-- [results/README.md](results/README.md) — короткий индекс актуальных отчётов; остальные датированные файлы — архив экспериментов.
-- `docs/research/` — источники и исследовательские заметки, не текущий план.
-
-Все прочие верхнеуровневые документы описывают отдельные ранние ablation/qualification runs. Они не должны использоваться для выбора следующего запуска без сверки с `PROJECT_PLAN.md` и `TRAINING_STATUS.md`.
-
-## Правило обновления
-
-1. Текущий статус меняется только в `TRAINING_STATUS.md` и `POLICY_REGISTRY.md`.
-2. План меняется только в `PROJECT_PLAN.md`.
-3. Новый эксперимент получает один датированный отчёт и компактное machine-readable evidence.
-4. Исходный текст и числа старых отчётов не переписываются задним числом; допустима отдельная пометка об актуальной области приемки. Текущая интерпретация записывается в активные документы.
-5. Training reward, наличие checkpoint или ручное видео не меняют acceptance-статус.
+Старые исследовательские ветки исключены из актуальной документации.

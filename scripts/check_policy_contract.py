@@ -337,9 +337,9 @@ def check_training_export(checkpoint, output_directory, report):
     from tensordict import TensorDict
 
     checkpoint = checkpoint.resolve()
-    approved_roots = (ROOT / "logs/rsl_rl", ROOT / "artifacts/upstream")
+    approved_roots = (ROOT / "logs/rsl_rl", ROOT / "policies/server")
     require(any(checkpoint.is_relative_to(root) for root in approved_roots),
-            "Checkpoint must be in project logs/rsl_rl or artifacts/upstream")
+            "Checkpoint must be in project logs/rsl_rl or policies/server")
     agent_candidates = (checkpoint.parent / "params/agent.yaml", checkpoint.parent / "agent.yaml")
     agent_paths = [path for path in agent_candidates if path.is_file()]
     require(len(agent_paths) == 1, f"Expected exactly one adjacent agent config, got {agent_paths}")
@@ -401,7 +401,7 @@ def check_training_export(checkpoint, output_directory, report):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--report", type=Path, default=ROOT / "logs/setup/policy-contract.json")
-    parser.add_argument("--training-checkpoint", type=Path, help="Optional actual PPO checkpoint in project logs/rsl_rl")
+    parser.add_argument("--training-checkpoint", type=Path, help="PPO checkpoint in policies/server or logs/rsl_rl")
     args = parser.parse_args()
     report_path = args.report.resolve()
     require(report_path.is_relative_to(ROOT) and not report_path.is_relative_to(ROOT / "vendor"),

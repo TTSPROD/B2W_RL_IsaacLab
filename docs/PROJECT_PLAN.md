@@ -1,405 +1,105 @@
-# План проекта B2W
+# План B2W
 
-Актуально на **25 сентября 2026**, дополнено по повторному аудиту и low-level
-проверке трех upstream checkpoints. Выполненные этапы помечены отдельно; остальные
-пункты — **предложенный порядок дальнейшей работы**, без разрешения на новые
-training/hardware runs.
+Актуально на 25 сентября 2026.
 
-Основание изменений: [разбор обучения и приемки](results/2026-09-25-locomotion-training-review.md).
+## Цель
 
-**Последующее уточнение пользователя:** требуется только низкоуровневая locomotion
-policy. Команды навигации поступают извне. Это уточнение заменяет прежнюю приемку
-по полному навигационному циклу; критерии ниже относятся к исполнению команд скорости.
+Получить воспроизводимую низкоуровневую политику движения B2W и runtime для её
+деплоя через Unitree SDK2. Внешний уровень подаёт body-frame `(vx, vy, omega_z)`;
+policy управляет 12 суставами ног по положению и четырьмя колёсами по скорости.
+ABI 57→16 и частота 50 Hz сохраняются. Целевые условия — Flat, Rough и заранее
+объявленные лестницы. Для каждого условия нужна отдельная проверка.
 
-**Последующее ограничение:** не тратить больше время на upstream10000. Новые
-evaluations, diagnostics, tuning и обучение этого checkpoint исключены из очереди.
-Выполненное evidence сохраняется. Дальнейший upstream кандидат —19999, без promotion.
+## Текущий baseline
 
-## Цель и неизменяемые ограничения
+Серверный upstream19999 проверен в [operating57](results/2026-09-25-operating57-19999.md):
+36 сценариев × 32 reset seeds, только Isaac Flat. Получено 716/1152 полных успехов
+и 3 небольших нарушения compiled hard joint range заднего правого hip.
+Все шесть продольных точек ±0.3/0.5/0.7 и боковые ±0.5/0.7 прошли 32/32.
+Повороты и остановка после них остаются основной проблемой текущего screen.
+Принятой для реального робота policy пока нет.
 
-Цель — воспроизводимая низкоуровневая политика B2W, которая устойчиво исполняет внешние
-команды `(vx, vy, omega_z)` на Flat, Rough и заявленных лестницах. Она управляет
-12 position targets ног и 4 velocity targets колес. Выбор маршрута, целевой точки,
-абсолютного курса и момента смены команд выполняет внешний уровень.
+## Контракт оценки
 
-- Actor ABI остаётся **57 observations → 16 actions**, совместимым с reference.
-- Команды и tracking сохраняют reference body-frame semantics; абсолютный heading,
-  waypoint, corridor error и phase лестничного маршрута actor не получает.
-- `vendor/` не изменяется; адаптеры и физические коррекции реализуются снаружи.
-- Flat, Rough, Stairs и payload оцениваются раздельно; средний результат не маскирует провал строки.
-- Реальное управление роботом не разрешено до offline, sim2sim и hardware safety gates.
-- Новые серверные jobs требуют отдельного явного решения пользователя.
+Команды задаются извне по времени. Ground truth используется для измерений,
+но не для коррекции курса, траектории или действий policy.
+Нулевая команда требует затухания скорости и устойчивого стояния. Сохранение
+абсолютной позиции и heading не требуется. Precision ±0.1 не является текущим приоритетом.
 
-## Текущая точка
+Сохранённые критерии operating57:
 
-`inverse57 update3000` — прежний research parent, а `cycle57 model3000` — локальный диагностический кандидат. Ни один не принят по новой постановке. `cycle57 model3998` отклонён по историческому coarse screen: `19/64` циклов против `61/64` у `model3000`. Это не сравнительная оценка cycle57 по low-level протоколу; продолжение закрытой ветки этим планом не открывается.
+| Проверка | Flat development screen |
+|---|---|
+| Tracking | RMSE по `(vx, vy, omega_z)` ≤ `(0.20, 0.20, 0.25)` после 2 s settling |
+| Отклик | Средняя скорость по заданному направлению/вращению ≥80% команды |
+| Переходы | Все moving RMSE окна 1 s, заканчивающиеся после 2 s от смены команды, в допуске |
+| Ноль | После 2 s удерживать `norm(vxy)≤0.10 m/s`, `abs(omega_z)≤0.10 rad/s` непрерывно 10 s |
+| Safety | На каждом physics step: finite, наклон ≤60°, base/hip force ≤5 N, hard joint range с tolerance 0.001 rad |
+| Решение по строке | ≥99% полных успехов и 0 unsafe; не усреднять отказ строки с успешными строками |
 
-Stop-specific ветка закрыта: filtered controller, wheel-only settled latch и late-hold PPO не улучшили все строки. Payload-ветка также закрыта до появления принятой nominal policy. MuJoCo подъём: `23/60`, `37` unsafe и wheel saturation p95 `22.7–29.8%` против диагностического gate `5%`.
+Это зафиксированные симуляционные критерии последнего screen. Они не подтверждают
+аппаратные limits. Torque-speed, current, thermal limits и watchdog проверяются отдельно.
+32/32 наблюдения не доказывают 99% надёжность. При итоговой qualification объём,
+статистический критерий и независимая validation фиксируются до запуска.
 
-Это результаты прежних протоколов. Cycle completion, landing stop и corridor scores
-больше не определяют приемку низкоуровневой policy. Сохраняются диагностические данные
-об устойчивости, скорости и приводах. Development `locomotion57_v1` реализован и выполнен для upstream10000/15000/19999:
-5184 эпизода Isaac/MuJoCo, все три не приняты. [Отчет](results/2026-09-25-upstream-locomotion57.md).
-Reference/inverse57/cycle57 по новому suite пока не проверены. Полная qualification,
-canonical physics parity и аппаратные измерения остаются открытыми.
+## Основание sim2real-плана
 
-Последующий [physics57 diagnosis](results/2026-09-25-physics57-diagnostics.md)
-причинно подтвердил лишнее passive wheel damping в MuJoCo: цель10rad/s дает5rad/s,
-после удаления потери —10rad/s. В120 парных эпизодах success10000 вырос8→16/20,
-19999 —5→12/20; полного pass нет. Согласованная mechanical model совпадает с Isaac
-в бесконтактных probes гораздо лучше, но контактная динамика остается различной.
-Обнаружены двойные wheel collision geoms и offset правых wheel frames1mm.
+Источники проверены 25 сентября 2026. Официальный
+[Unitree RL Lab](https://github.com/unitreerobotics/unitree_rl_lab/blob/main/README.md)
+использует MuJoCo sim2sim перед SDK2 sim2real. Его готовые deploy-примеры относятся
+к другим моделям Unitree; инструкции для нашей B2W policy 19999 там нет.
+Для B2W опорные интерфейсы — официальный
+[SDK2 stand example](https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/b2w/b2w_stand_example.cpp)
+и [Unitree MuJoCo](https://github.com/unitreerobotics/unitree_mujoco).
 
-Затем выполнен [contact57](results/2026-09-25-contact57-diagnostics.md):20 training USD
-форм и joint frames перенесены в opt-in профиль;192 коротких contact probes и40 новых
-policy episodes. У19999 success17/20 против8/20 mechanical control, unsafe0, но
-up14×32 при0.3m/s только1/4. Cooked PhysX hulls и solver/restitution остаются открытыми.
+Реальные испытания похожего интерфейса — 12 leg position + 4 wheel velocity targets,
+50 Hz — описаны у Lee et al.,
+[Science Robotics, 2024](https://arxiv.org/html/2405.01792v1).
+Их колёсно-ногий робот, рекуррентная perceptive policy и приводы отличаются от B2W.
+Применима методика проверки и моделирования приводов; их сеть, gains и результаты
+не подтверждают нашу policy. Из [Tan et al., 2018](https://arxiv.org/html/1804.10332),
+с физическими испытаниями Minitaur, берём system identification, учёт actuator
+dynamics/latency и randomization измеренных неопределённостей.
 
-Последующий [contact57b](results/2026-09-25-contact57b-19999.md) получил cooked hulls
-отдельной копии, runtime contact/rest offsets и36 policy-free probes.19999 на cooked
-geometry дал12/20, unsafe0. При0.3m/s два stalls, один transition и один zero failure.
-Это чувствительность policy к контактам. Затем выполнен
-[replay57](results/2026-09-25-replay57-19999.md):4 полных captures,4 точных проверки
-сериализованного продолжения и12 replay с fresh contacts, unsafe0. Состояние7203
-остается застрявшим и в Isaac;7201 в Isaac начинает восстанавливаться к концу5s.
-Все17 reward terms проверены; движущиеся контроли имеют больший reward.
-Следующий конкретный pilot — recovery reset mixture20% против0%, после общей task
-и stochastic-reset preflight. Rewards и actuator limits сохраняются.
+Ниже — инженерная адаптация первичных источников под наш контракт. Условия
+переходов являются требованиями проекта, а не сертификацией Unitree. Конкретные
+hardware limits, допустимая задержка и fault behavior требуют измерений.
+Детали — в [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md), фактический состав исходников —
+в [VENDOR_INVENTORY](VENDOR_INVENTORY.md).
 
-Для интерпретации исторических результатов нужна поправка измерений: прежние evaluators
-Isaac и MuJoCo использовали разные unsafe predicates, частоты telemetry и joint-limit
-semantics. В прежнем Isaac nominal-up
-с `unsafe=0` уже есть leg/wheel speed utilization `1.0118/1.2916` и wheel saturation
-`12.28%`. `DCMotor.velocity_limit=14` задает no-load speed модели, а не подтвержденный
-hardware safety limit. Исходный MuJoCo fail сохраняется; аппаратная интерпретация уточняется.
+## Этапы и условия перехода
 
-В новом development-screen predicates согласованы, safety записывается на каждом
-physics step без startup grace. Сохраняются различия самих моделей и частот physics:
-200 Hz Isaac против 500 Hz MuJoCo; аппаратные limits не подтверждены.
-
-## Критический путь
-
-| Приоритет | Работа | Выходной критерий |
+| Этап | Работа | Проверяемый результат / условие перехода |
 |---|---|---|
-| P0 — выполнено | Повторный аудит первичных данных и исходников | 1290 vendor-файлов и 267 tests — OK; отрицательные результаты сохранены |
-| P1 — частично выполнено | Единый измерительный контракт | Development `locomotion57_v1` работает в двух движках; остаются полный DR/validation, solver torque/current instrumentation и измеренные limits |
-| P2 — частично выполнено | Canonical actuator/physics model | Mechanics/frames/source shapes/cooked-copy profiles и contact offsets измерены; contact force dynamics различаются, hardware fidelity открыта |
-| P3 — частично выполнено | Парный baseline и диагностика постановки | Upstream19999:12 replay,17 reward terms; переносимый stall подтвержден, unsafe0. Расширение baseline и независимая state validation открыты;10000 исключен |
-| P4 — условно | Один causal PPO A/B | Улучшение primary metric на двух seeds при соблюдении regression/safety gates |
-| P5 | Curriculum, DR и qualification | Замороженный рецепт, 3 fine-tune seeds, новая закрытая validation, export и оба движка |
-| P6 | Staged hardware после отдельного допуска | Offline replay → suspended/sign checks → stand/stop → low-speed Flat → Rough → Stairs |
+| S0. Зафиксировать кандидат | 19999 checkpoint/export SHA, observations, scales/clips, previous action, targets, gains и 50 Hz; отдельно hardware mapping | Версионированный deployment manifest; export parity уже сохранена, аппаратные поля остаются открытыми |
+| S1. Offline runtime | Один observation adapter, deterministic actor, mapper, state machine и watchdog; replay без сети | Совпадение observation/action/targets с эталоном, включая clipping и reset; invalid inputs блокируют policy; отчёт parity |
+| S2. Runtime через DDS в MuJoCo | Тот же executable получает LowState и отправляет LowCmd через официальный bridge; timing и fault injection | Изолированный sim domain/interface, проверенные mapping/CRC/timing и все fault cases; это отдельная проверка от качества locomotion |
+| S3. Измерить B2W | Сначала read-only telemetry; затем отдельно разрешённая идентификация на страховке/стенде без locomotion policy | Firmware/motor map, frames, delays, response приводов, saturations, доступные current/thermal limits; калиброванная модель с интервалами неопределённости |
+| S4. Qualification в симуляции | Исправить yaw/stop 19999; проверить кандидат в Isaac/MuJoCo с моделью S3, задержками и объявленными вариациями | Независимая validation диапазона: tracking, transitions, continuous zero, safety и приводы. Для первого hardware этапа — отдельно принятый Flat поддиапазон; текущий screen его ещё не квалифицирует |
+| S5. Первый policy запуск на роботе | После допуска: передача управления, поддерживаемая поза, policy с нулём, постепенная нагрузка на опору | Проверенные stand/stop и аварийная процедура на целевом B2W; нет неожиданных targets, violations, stale state или насыщения |
+| S6. Ограниченный Flat | Профили из принятого S4 поддиапазона: прямой/боковой ход, yaw, реверс, остановка; расширять по одному фактору | Реальные скорости и нагрузка записаны; каждый профиль проходит заранее объявленные tracking/zero/actuator критерии без навигационной коррекции |
+| S7. Условия эксплуатации | Отдельно Rough, измеренные склоны/лестницы, затем продолжительность и payload | Для каждого условия свой проверенный диапазон; release привязан к policy SHA, runtime, firmware и конфигурации робота |
 
-Offline export/SDK-adapter fixtures, записанные состояния, profiling и fault injection
-можно разрабатывать параллельно. Подключение к роботу и публикация команд этим планом
-не разрешаются.
+S1–S2 можно выполнять до финальной qualification. S3 требует разрешения на
+подключение/стендовые команды и не требует запускать непринятую policy.
+S5 зависит от S1–S4 и явного допуска. Новое покрытие сначала проверяется в
+симуляции. Симуляция не заменяет измерений аппаратных ограничений.
 
-### P1. Единый измерительный контракт
+## Ближайшая очередь
 
-1. Старые evaluator/config/results сохранить с исходными именами, версиями и hashes.
-   Development-протокол имеет отдельный id `locomotion57_v1`; его реализация
-   не переименовывает старый stair/cycle evaluator. Довести общий словарь:
-   hard joint range, soft reward margin, no-load speed, solver velocity limit,
-   firmware speed/current/thermal limit. Указать источник и неизвестные величины.
-2. В обоих движках агрегировать safety на каждом physics step до autoreset:
-   joint position/velocity, requested/applied torque, время насыщения, контакты,
-   non-finite. Согласовать body masks, force thresholds и startup grace.
-3. Outcomes должны быть взаимоисключающими и суммироваться в N:
-   `unsafe | tracking_failure | command_transition_failure | standstill_failure |
-   terrain_stall | success`. Отдельно записывать все диагностические flags;
-   primary outcome назначается по этому приоритету. Infrastructure error аннулирует
-   запуск с явной причиной, но не исключает неудачный эпизод policy из denominator.
-4. Основной тест — actor-only под заранее заданными внешними командами. Отключить
-   corridor yaw correction, goal/landing brake profile, wheel latch и stop feedback.
-   Команды задаются временем/seed, а не расстоянием до цели. Ground truth разрешен
-   для измерений и safety abort, но не для скрытой коррекции команд/actions.
-5. Проверять реакцию на внешние команды: старт, разгон, замедление, ноль, реверс,
-   ±yaw и допустимые сочетания. Ноль означает затухание скорости и устойчивое
-   стояние; возврат в прежнюю позицию/heading не требуется. После новой ненулевой
-   команды проверяется tracking, а не достижение restart-distance.
+1. По сохранённым трассам 19999 локализовать побочную скорость при yaw и остаточное
+   движение после нуля; проверить ABI и измерения до изменения rewards.
+2. Реализовать S0–S1, затем собрать SDK2/MuJoCo bridge для S2 на отдельном Linux
+   runtime. Его исходники и ROS2 interfaces уже закреплены в vendor; сборка и
+   transport qualification ещё не выполнены. ROS2 нужен для интеграции/telemetry
+   при выбранной ROS-архитектуре, прямой SDK2 loop может работать без него.
+3. Подготовить S3: перечень измерений, приборы, допустимые воздействия и abort limits.
+   Не подбирать физику ради прохождения screen.
+4. Только при подтверждённой необходимости — один ограниченный эксперимент на
+   19999: гипотеза, control, seeds, бюджет, stop/regression criteria. Измеренный
+   sim2real gap определяет изменения actuator model и DR. Новое обучение и server
+   job требуют отдельного решения.
 
-Выход P1 — проверенный измерительный инструмент, а не принятая policy. Нужны tests
-на substep spikes, pre-reset terminal state, joint soft/hard distinction, phase
-boundaries, outcome precedence и физические единицы.
-
-### P2. Canonical actuator/physics model
-
-Выполненная часть: [physics57 report](results/2026-09-25-physics57-diagnostics.md).
-`physics57_mujoco_model.py` дает opt-in профили для однофакторных и combined probes.
-Нельзя выбирать профиль по policy success: `damping_only` лучше на маленьком screen,
-но оставляет неверные относительно training reference inertials/collisions.
-Последующий [contact57](results/2026-09-25-contact57-diagnostics.md) воспроизвел
-source collision geometry/masks и joint frames. Максимальная ошибка поз bodies
-0.000431mm; короткая contact leg-q error снизилась0.095607→0.049752rad, но root error
-выросла7.698→10.490mm. Это частичное согласование, не закрытый physics gate.
-Contact57b выполнил cooking отдельной копии asset, runtime offset readback и36
-drop/rolling probes при объявленных restitution/solref/dt. Прямое чтение live GPU
-hull buffers не выполнено; source/cooked остаются раздельными opt-in profiles.
-Nominal restitution1 не является измеренным параметром B2W. Contact force peaks
-сильно различаются при близком интегральном импульсе; полная solver parity не заявлена.
-При необходимости policy feedback использовать только19999, не10000.
-
-1. Зафиксировать training URDF как текущий baseline и отдельно описать, какая модель должна соответствовать реальному B2W. Не подгонять MuJoCo только ради pass.
-2. Сопоставить все 17 rigid bodies: mass, COM, inertia, joint frames и collision geometry. В vendor MuJoCo исходное превышение массы `4.750435 kg`; opt-in mechanical/source-shapes profiles его устраняют. Cooked contact shape equivalence еще не подтверждена.
-3. Согласовать calf effort (`±320 Nm` Isaac против `±300 Nm` MuJoCo), раздельные velocity limits, torque-speed clipping, armature/damping и wheel friction. Проверить applied torque после solver clipping, а не только отправленный control.
-4. Добавить trajectory-level parity probes: stand, single-joint, wheel spin, slope contact и stair impact. Отчёт должен разделять model mismatch и policy failure.
-5. Реальные torque/current/thermal limits не выдумывать. До измерения использовать их только как неизвестный blocker.
-
-Проверяются скомпилированные модели после import/merge-fixed-links/DR, а не только XML/URDF.
-Матрица probes: stand; single-joint step/chirp; unloaded wheel spin; rolling/braking;
-slope; single-step impact. Сначала одинаковые начальные состояния и управляющие targets,
-затем closed-loop policy. Заранее определить допуски на response/forces; провести
-dt-convergence и contact sensitivity. Буквальное совпадение длинных контактных trajectories
-разных движков не требуется и не является критерием физической достоверности.
-
-После физической коррекции можно повторить тот же export, seeds `6101…6120` и frozen
-исторический config для сравнения; navigation outcomes этого теста не блокируют
-low-level приемку. Новый locomotion suite запускается отдельно с явно новым hash.
-Не менять policy, evaluator и физику одновременно. Hardware-derived неизвестные параметры
-не подменять удобными значениями; можно исследовать объявленный sensitivity envelope.
-
-### P3. Парный baseline и решение об обучении
-
-[19999 replay plan](../configs/locomotion57_19999_replay_plan_20260925.json) выполнен
-по отдельному [execution config](../configs/replay57_19999_execution_20260925.json):
-4 captures и12 коротких replay, все6 base velocities, previous action, full integration
-state и17 reward terms. Recapture и4 warm continuation checks точны; contact-point
-slip измерен. Исходный план сохраняет первоначальный статус, итог исполнения — в
-[отчете](results/2026-09-25-replay57-19999.md). Не делать новый общий gain/solver sweep.
-
-Ближайшая работа — подготовить common velocity task и проверить reset/stochastic
-safety для [recovery pilot](../configs/locomotion57_19999_recovery_pilot_plan_20260925.json).
-Это еще **не запущенный PPO**. Training critic и height scan сохраняются; replay
-evaluator с отключенным critic не используется как готовая training task.
-
-- Upstream10000/15000/19999 уже проверены. 19999 — сильный Isaac baseline;
-  он выбран для дальнейших upstream diagnostics. 10000 больше не запускать по
-  указанию пользователя; его ранее измеренные результаты остаются историческим
-  контролем. Все три отклонены по development gates. Contact57 у19999 дал17/20,
-  что не является принятым parent и не позволяет менять пороги после результатов.
-- Сравнить `inverse57 update3000`, `cycle57 model3000` и reference на одном locomotion
-  development protocol, одинаковых external-command/reset/DR conditions, без навигационного
-  controller. Desktop Flat54 проверяется только
-  в своем заявленном scope. Оба движка исполняют один проверенный exported artifact.
-- Успех старой policy на лестнице **не является prerequisite нового training pilot**.
-  Prerequisite — достоверный evaluator, документированная модель и измеренный failure.
-  Иначе возникает замкнутый gate: улучшать policy нельзя до ее успешной приемки.
-- Остаточный отказ только в MuJoCo требует локализации. Он не доказывает автоматически
-  незавершенный parity: это может быть чувствительность policy к contact solver/model
-  uncertainty. Причина устанавливается probes и sensitivity, не итоговым pass/fail.
-- Восстановить effective settings после load/hooks. У cycle57 std ног0.754…1.022,
-  колес2.076…2.117 raw actions, frozen; `init_noise_std=0.1` не является effective std.
-  Сопоставить deterministic и stochastic rollout quality без обучения.
-- Проверить reward units и return по outcome. В старой задаче терминальный weight250
-  давал5 при dt0.02, upright weight3 — до12/s. Для новой задачи существенна конкуренция
-  rewards между исполнением ненулевой команды и безопасным стоянием/застреванием.
-  Навигационные goal/landing/phase bonuses не являются целью locomotion recipe.
-
-Сохраняется fail исторического 200-episode suite. Его19/20, saturation≤5% и lateral≤0.50m
-остаются диагностическими порогами исходного cycle57/MuJoCo протокола. Lateral corridor threshold не
-переносится в low-level gate; saturation исследуется по нагрузке и длительности.
-
-### P4. Один bounded PPO A/B
-
-Pilot проектируется после P1–P3; новый серверный job требует отдельного явного решения.
-Сохранить RSL-RL/PPO, actor57→16, 50Hz и pinned runtime. Текущий privileged critic
-247-D уже существует. Его расширение, history/RNN или изменение optimizer state не
-добавляются попутно к reward experiment.
-
-По replay57 выбран **один** следующий treatment: доля записанных failure-state resets
-в подходящих14×32cm upward stair environments20% против0% в контроле. Parent19999,
-seeds83/84, исходные states7201/7203 поровну. Гипотеза — дополнительный опыт
-восстановления улучшит выход из застреваний; текущие результаты этого еще не доказывают.
-Сначала нужны точное соответствие terrain tile/frame, q/dq/COM velocities/previous
-action, измерение effective exploration std и stochastic safety без изменения std.
-Независимые failure states для закрытой проверки фиксируются до обучения;
-training states не входят в primary metric. Rewards и actuator gains/limits не менять.
-
-Другие гипотезы ниже остаются условными альтернативами, не дополнительными arms:
-
-| Наблюдение P3 | Единственный treatment |
-|---|---|
-| Большой stochastic/deterministic gap при inherited frozen std | Заранее заданное уменьшение exploration std, например0.5×parent; без reward/DR/LR изменений |
-| При ненулевой команде выгоднее стоять/застревать | Одна поправка velocity-tracking/progress objective; без goal, route phase, noise/physics изменений |
-| Подтверждена эксплуатация actuator envelope | Один normalized actuator cost с раздельным учетом ног/колес; пределы названы по источнику |
-| Stall переносится в Isaac, движущиеся контроли имеют больший reward | **Выбран сейчас:** один recovery reset mixture20%/0%; без reward/physics/std изменений |
-
-Это альтернативы, а не три последовательных обязательных sweep. Stop/latch/gain ablations
-не повторять без новой причинной информации. Не штрафовать полезное качение как sliding.
-
-Сначала зафиксировать общую velocity-command task без landing/goal state machine
-и с тем же critic, что у выбранного parent19999. Требуемый fixed stair subset есть
-в обоих arms; перенос failure-state pose на произвольную generated stair геометрию
-запрещён. Любая общая адаптация terrain/command task — отдельное изменение постановки;
-эффект reset mixture доказывается против нового control, не historical upstream return.
-
-- Control и treatment: общий parent SHA, два одинаковых training seeds, одинаковые
-  config/commands/terrain/DR/PPO/optimizer initialization и4096×24 rollout.
-- Начальный бюджет: **50 новых updates на arm/seed**; четыре runs —19,660,800 transitions.
-  Сохранять parent и updates1/2/5/10/25/50. Это важно: cycle57 model3000 соответствовал
-  только двум новым updates, хотя выглядел «трехтысячным» checkpoint.
-- До запуска зафиксировать primary metric, selection rule и список screens. Для обычного
-  recovery pilot — худшая upward-stair command-tracking строка на независимых reset seeds;
-  Flat/Rough/small commands/transitions/continuous zero остаются regression gates.
-  Для общего task pilot — худшая доля успешных command-tracking episodes по terrain×command
-  strata; для actuator pilot — safety exposure при non-inferiority tracking и
-  traversability. Один и тот же criterion действует для обоих seeds.
-- Task-пилот продлевается только при worst-row improvement≥5п.п. на обоих seeds,
-  без падения traversability/Flat/Rough и роста unsafe. Для safety-пилота target reduction
-  и допустимая non-inferiority margin фиксируются до запуска, не выбираются после.
-- Сначала paired screen64/row, затем128/row для подтверждения; анализировать paired
-  episode differences и uncertainty. Выигрыш5п.п. сам по себе не означает значимость.
-- После pass — последовательные100/200 updates; **300/arm/seed — предельный бюджет**,
-  не целевой объем. Два последовательных ухудшения safety или пять заранее назначенных
-  screens без улучшения primary metric закрывают ветку. Начальный wall-clock cap2h,
-  включая eval; extension требует нового зафиксированного бюджета.
-
-Если bounded pilot не проходит gate, вычисления останавливаются. Следующее решение пользователя: сузить release до Flat/Rough либо отдельно пересмотреть наблюдаемость/архитектуру, сохраняя явный ABI-контракт.
-
-### P5. Curriculum, DR и qualification
-
-После причинного выигрыша расширять задачу ступенчато: standstill и исполнение
-внешних команд на Flat → низкие препятствия/Rough → короткий марш up/down → полные
-марши под внешней командой → расширение геометрий и commands. Нулевые команды,
-переходы и возмущения проверяются отдельно на каждом заявленном terrain. Сохранять
-Flat, ordinary/inverse rough и легкие уровни в replay mixture. Difficulty зависит
-от устойчивости, tracking и traversability. Curriculum change — отдельная стадия после A/B.
-
-Предлагаемый первый nominal operating envelope: Flat vx−0.5…1.0m/s, vy±0.2m/s,
-yaw±0.5rad/s; stairs сначала0.3m/s с расширением до0.7m/s, rise12–16cm/run29–38cm,
-широкие прямые марши. Это целевой ограниченный scope, не подтвержденная способность.
-Начальный training curriculum может включать5–8cm и1–2 ступени. Higher speed,
-узкие/поворотные/industrial stairs — новые strata после baseline.
-
-Domain randomization расширять по одному семейству с readback: inertials/COM →
-actuation/gains/delay → wheel-ground contact → sensors → disturbances. Измеренные
-диапазоны предпочтительны; до измерений sensitivity ranges маркируются явно.
-Полезное качение, боковое скольжение и slip на кромке должны различаться.
-
-1. Заморозить config, parent SHA, effective PPO values, robot asset hashes и selection rule.
-2. Повторить рецепт на трёх training seeds. Для fine-tune от одного parent это проверка
-   условной воспроизводимости, а не три независимых обучения с нуля. Не выбирать самый
-   удачный seed по закрытой validation.
-3. Выбирать checkpoint только по development: safety → worst-row command-tracking
-   success → traversability и переходы → tracking error → actuator/energy metrics.
-4. Один раз открыть новую заранее зафиксированную validation с отдельными geometry,
-   physics/reset seeds и command schedules. Ранее раскрытые410x/510x/610x считать
-   regression/development evidence. После провала тест не используется для tuning
-   с сохранением названия «закрытая validation».
-5. Выполнить exact export parity и один и тот же artifact проверить в Isaac и MuJoCo.
-
-## Acceptance gates: низкоуровневая locomotion policy
-
-Объект приемки — deterministic actor57→16 с зафиксированными observation/action
-adapter, PD/velocity actuator settings и policy rate50Hz. На входе — внешние
-`vx, vy, omega_z`; на выходе — targets приводов. Критерии ниже — предложенные
-инженерные требования протокола `locomotion57_v1`. Их development-подмножество
-реализовано и исполнено для трех upstream checkpoints в 5184 эпизодах; полный
-qualification scope еще не закрыт. [Замороженный config](../configs/locomotion57_v1_upstream_development.json)
-фиксирует выполненную матрицу и непроверенные критерии; [отчет](results/2026-09-25-upstream-locomotion57.md)
-содержит результаты. Таблица здесь — единый источник численных порогов. Для каждого
-нового run фиксировать evaluator/config hash, envelope, horizons и limits до запуска;
-изменение порогов после просмотра результатов требует новой версии протокола.
-
-### Матрица испытаний и измерения
-
-- Flat: ноль, ±vx, ±vy, ±omega_z, движение с поворотом, диагональные команды,
-  ramps/steps/reversals в объявленном совместном command envelope.
-- Rough: slopes, random rough, obstacles и inverse terrain; каждая family отдельно.
-- Stairs: up/down, несколько rise/run, внешняя продольная команда. Подготовка теста
-  задает стартовое направление; policy сама координирует ноги/колеса. Полный марш
-  служит тестом физической проходимости. Точность прибытия на площадку и остановка
-  именно на ней не оцениваются. Боковые/поворотные команды на лестнице не объявляются
-  поддержанными без отдельной qualification.
-- Внешние нулевые/повторные команды подаются по заранее заданному времени, в том
-  числе во время прохождения rough/stairs; эпизоды не отбрасываются из-за неудобной
-  фазы контакта. Контроллер маршрута не корректирует действия испытуемой policy.
-- Номинальные и randomized conditions, payload/no-payload — отдельные strata.
-  Declared DR и disturbances (включая magnitude/duration/timing) фиксируются до теста.
-
-Tracking измеряется по reference body frame: `root_lin_vel_b.xy` и
-`root_ang_vel_b.z`, как в используемых rewards. Истинная скорость доступна evaluator,
-но не добавляется в actor. Нельзя смешивать yaw angular velocity с абсолютным heading.
-RMSE считать отдельно по осям и эпизодам; публиковать bias/p95/peaks и переходный
-процесс. После command change выделяется фиксированное окно settling, а остальные
-ошибки, включая контакт со ступенями, не вырезаются. Для обычных segments использовать
-30s, для отдельно заданного нуля —10s после settling. Terrain course/horizon должен
-быть достаточен для объявленной команды и полного препятствия.
-
-| Критерий | Предлагаемый gate |
-|---|---|
-| Устойчивость и safety | Ноль падений, заранее определенных запрещенных контактов, NaN/Inf и нарушений подтвержденных hard limits во всем qualification suite; safety записывается на всех physics steps, включая settling |
-| Flat tracking | После settling, в каждом эпизоде RMSE по `vx` и `vy` ≤0.20m/s, по `omega_z` ≤0.25rad/s |
-| Rough/Stairs tracking | После settling RMSE по `vx` и `vy` ≤0.30m/s, по `omega_z` ≤0.35rad/s; препятствия входят в измерение, up/down и family проверяются раздельно |
-| Выполнение ненулевой команды | Для постоянной команды с `norm(vxy_cmd)≥0.2m/s` средняя фактическая скорость вдоль ее направления после settling ≥80% заданной на Flat и ≥60% на Rough/Stairs; не допускать pass за безопасное стояние при ненулевой команде |
-| Выполнение команды вращения | Для постоянной `abs(omega_z_cmd)≥0.2rad/s` средняя угловая скорость после settling имеет заданный знак и модуль ≥80% команды на Flat и ≥60% на заявленных Rough strata; RMSE gate действует одновременно. Вращение на лестнице требует отдельной qualification |
-| Малые команды | Отдельные Flat tests для ±0.10m/s по каждой линейной оси и ±0.10rad/s вращения: RMSE активной оси ≤0.05 в соответствующих единицах, средний отклик имеет заданный знак и модуль ≥50% команды. Это не позволяет засчитать нулевой отклик; сочетания и малые команды на Rough/Stairs требуют своих строк |
-| Проходимость | Безопасно преодолено заданное физическое препятствие/марш под внешней командой за заранее установленный horizon, без застревания и внешней коррекции; arrival pose, corridor и landing-stop не являются gates |
-| Смена команды | В течение2s на Flat и3s на Rough/Stairs выйти в указанные tracking допуски по1s moving RMSE и сохранять их до следующей команды; полный transition trace сохраняется |
-| Внешняя нулевая команда | В течение2s на Flat и3s на Rough/Stairs получить `norm(vxy)≤0.10m/s`, `abs(omega_z)≤0.10rad/s`, затем удерживать эти границы на всех policy samples в течение10s при непрерывном нуле, без новых возмущений; без требования вернуться в исходную позицию/курс |
-| Возмущения | После окончания заранее заданного disturbance восстановить tracking или zero-command bounds в течение3s без unsafe; смещение от прежней точки само по себе не является отказом |
-| Приводы и плавность | Соблюдение source-backed torque-speed/current limits; per-joint torque RMS/p99/max, longest saturation streak, physical target slew, slip и contact impulse опубликованы. Численные thermal/slew thresholds требуют обоснования до hardware gate |
-| Симуляционная приемка | Тот же export и adapter semantics проходят соответствующие абсолютные gates в Isaac и MuJoCo; одинаковы command schedules и критерии, физические расхождения документированы |
-
-Эпизод считается успешным только при выполнении всех применимых поведенческих gates.
-Доля успешных эпизодов development: **Flat≥99%, Rough/Stairs≥95% в каждой
-terrain×command строке**. Нулевое число unsafe — дополнительное жесткое условие;
-допустимый процент поведенческих отказов не разрешает падения. Малые команды
-проверяются отдельным precision protocol; перечисленные0.10 tests — начальные точки,
-не доказательство разрешения интерфейса вплоть до произвольно малых значений.
-Численные допуски крупных команд не должны засчитывать неподвижность как tracking.
-Минимальная воспроизводимая команда и фактический deadband измеряются и публикуются;
-новый программный deadband или изменение ABI этим планом не вводятся.
-
-Сравнение с parent не заменяет абсолютных gates. При развитии уже принятой policy
-сохранять ее заявленный scope; tracking error не ухудшается более чем на10%, safety
-не ухудшается. Новый criterion не позволяет автоматически принять исторические artifacts.
-
-**Исключено из приемки policy:** waypoint/goal reaching, cross-track error к маршруту,
-удержание абсолютного heading, выбор траектории/обход препятствий, распознавание
-площадки, самостоятельный выбор места торможения, полный cycle score, restart-distance
-и возврат в прежнюю точку после толчка. Эти обязанности принадлежат внешнему уровню.
-Текущая интеграция пути или drift могут сохраняться как diagnostics, без navigation pass/fail.
-
-### Статистика и runtime
-
-Три training seeds проверяют повторяемость рецепта; у fine-tune от общего parent
-это условная повторяемость. Checkpoint выбирается по development, затем одна новая
-закрытая validation с новыми reset/physics seeds и terrain geometries. Для финального
-утверждения success≥99% Flat или≥95% Rough/Stairs нижняя граница Wilson95 должна
-достигать соответствующего порога. Примеры для независимых эпизодов одной строки:
-381/381 для99%, 127/128 для95%. Объем и правило остановки теста фиксируются заранее.
-Training seeds и geometry clusters не смешивать; для одновременного утверждения по
-многим строкам учитывать множественность. Hardware reliability из этого не следует.
-
-Policy-runtime проверяется отдельно: exact export parity, motor order/signs/scales,
-previous-action semantics, 50Hz и полный observation→command p99<20ms с запасом под
-low-level loop. Stale command/observation, NaN и deadline miss обрабатывает проверенный
-внешний runtime/watchdog, а не обученная логика навигации. Тепловую приемку и реальные
-current limits подтверждать измерениями конкретного B2W; saturation5% остается
-историческим diagnostic guardrail, а не универсальным пределом для всех terrain.
-
-Payload11kg проходит те же low-level gates отдельным stratum после nominal policy.
-Industrial terrain добавляется по измеренным rise/run, nosing, gaps и friction;
-успех низкоуровневой policy не означает готовность автономного industrial маршрута.
-
-### P6. Staged hardware
-
-После отдельного допуска: offline fixtures/recorded replay → suspended motor mapping →
-stand/stop → low-speed Flat → declared Flat envelope → Rough → Stairs. Проверить
-firmware motor order/signs/units, estimator frames, timing, watchdog и emergency stop;
-назначить operator/страховку/abort conditions и rollback artifact. Длительный thermal
-test с per-motor measurements следует после коротких безопасных этапов, отдельно для
-nominal/payload. Read-only SDK work не является разрешением actuation.
-
-## Не делать
-
-- Не продолжать run из-за роста mean reward или уменьшения одного failure counter.
-- Не открывать validation для выбора checkpoint.
-- Не повторять late-hold, wheel clamp, stop-pulse и gain sweeps без новой причинной информации.
-- Не смешивать physics correction и training change в одном сравнении.
-- Не считать viewer, единичный rollout или SDK2 dry-run разрешением на робот.
-- Не сравнивать одинаково названный `unsafe` при разных predicates и частотах sampling.
-- Не объявлять init config effective PPO и no-load speed аппаратным safety limit.
-- Не требовать pass старой policy как условие исследования исправленной policy.
-
-Текущая доказательная сводка: [TRAINING_STATUS.md](TRAINING_STATUS.md). Детали физического mismatch: [ROBOT_MODEL_COMPARISON.md](ROBOT_MODEL_COMPARISON.md).
+Upstream10000 повторно не оценивать и не обучать. Изменение документации не
+разрешает actuation. Абсолютный heading, corridor, waypoint и выбор момента
+торможения остаются во внешнем уровне и не становятся gates policy.

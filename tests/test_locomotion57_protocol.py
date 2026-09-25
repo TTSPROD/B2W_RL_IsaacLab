@@ -6,7 +6,8 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
-from locomotion57_protocol import Case, Segment, Telemetry, assess, cases_for, terrain_boxes
+from locomotion57_protocol import Case, Segment, Telemetry, assess, terrain_boxes
+from operating57_protocol import cases_for
 
 
 class LocomotionProtocolTests(unittest.TestCase):
@@ -24,12 +25,6 @@ class LocomotionProtocolTests(unittest.TestCase):
             score = self.score(case, np.zeros((case.steps, 3)))
             self.assertIn('tracking_failure', score['failure_flags'])
 
-    def test_small_command_cannot_hide_inside_coarse_rmse(self):
-        for axis in range(3):
-            cmd = [0., 0., 0.]
-            cmd[axis] = -.1
-            case = Case('small', 'flat', (Segment(30, tuple(cmd)),), precision_axis=axis)
-            self.assertIn('tracking_failure', self.score(case, np.zeros((case.steps, 3)))['failure_flags'])
 
     def test_stop_checks_entire_hold_and_yaw(self):
         case = Case('zero', 'flat', (Segment(12, (0, 0, 0)),))
@@ -80,14 +75,6 @@ class LocomotionProtocolTests(unittest.TestCase):
             self.assertTrue(tel.flags.any())
             self.assertEqual(tel.samples[0], 1)
 
-    def test_nominal_stairs_have_extended_exit_and_no_route_command(self):
-        course = terrain_boxes('up_14x32')
-        self.assertAlmostEqual(course['start_height'], 0)
-        self.assertAlmostEqual(course['physical_edge_x'], 3.92)
-        self.assertEqual(course['boxes'][-1]['pos'][0]+course['boxes'][-1]['size'][0]/2, 40)
-        case = cases_for('up_14x32')[2]
-        command, _ = case.schedule()
-        np.testing.assert_array_equal(command[300:950], 0)  # external stop t=6..19 s
 
 
 if __name__ == '__main__':

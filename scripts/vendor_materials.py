@@ -22,7 +22,7 @@ SOURCES = [
     ('rl_sar', 'fan-ziqi/rl_sar', '376d42c9b128f963ab08579762d5a216a976ce39', 'Apache-2.0', 'raw'),
     ('unitree_ros', 'unitreerobotics/unitree_ros', 'ccfc6fd8430a17ba3dacef9a1e2faf64ff3b0aee', 'BSD-3-Clause', 'raw'),
     ('unitree_mujoco', 'unitreerobotics/unitree_mujoco', '1eb6642e3f3fdfb7fb13a9794fd6a2dd93ea0e7d', 'BSD-3-Clause', 'raw'),
-    ('sru_deployment', 'leggedrobotics/sru-robot-deployment', '568a96c6c704d9dede4d7293fa09b98d9cbff4e0', 'MIT', 'raw'),
+    ('unitree_ros2', 'unitreerobotics/unitree_ros2', '668d1ec5a05d1c38d3306bdca7d59f2ba3581a88', 'BSD-3-Clause', 'raw'),
 ]
 
 
@@ -41,10 +41,12 @@ def selected(name, path):
         # The complete B2W mesh set already exists in robot_lab; do not duplicate 72MB meshes.
         return path in ('robots/b2w_description/urdf/b2w_description.urdf', 'robots/b2w_description/README.md', 'robots/b2w_description/package.xml')
     if name == 'unitree_mujoco':
-        return path.startswith('unitree_robots/b2w/')
-    if name == 'sru_deployment':
-        return ((path.startswith('b2w_sim/b2w_controllers/') and '/third_party/' not in path)
-                or path == 'b2w_sim/README.md' or path.startswith('b2w_sim/b2w_description_ros2/urdf/'))
+        return (path.startswith(('unitree_robots/b2w/', 'simulate/', 'simulate_python/', 'example/', 'doc/'))
+                or path in ('readme.md', 'readme_zh.md'))
+    if name == 'unitree_ros2':
+        # Preserve complete message/example packages so upstream CMake targets resolve.
+        return (path.startswith(('cyclonedds_ws/', 'example/'))
+                or path in ('setup.sh', 'setup_local.sh', 'setup_default.sh', 'CHANGELOG.md', 'version.txt'))
     return False
 
 
@@ -96,7 +98,7 @@ def fetch_one(source, entry):
 def fetch():
     if MANIFEST.exists():
         raise SystemExit('Manifest already exists; use restore or verify. Deliberate upstream updates require a new lock review.')
-    manifest = {'schema_version': 1, 'snapshot_date': '2026-09-17', 'sources': [],
+    manifest = {'schema_version': 1, 'snapshot_date': '2026-09-25', 'sources': [],
                 'reference_only': [{'repository': 'LauraMQuiros/b2w-rl', 'commit': 'ad82b971bf69a84170f027035c1e2e3bf97e4ef9', 'reason': 'No license found at this revision; source not redistributed.'}]}
     for source in SOURCES:
         name, repo, commit, license_name, transport = source
