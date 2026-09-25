@@ -14,7 +14,14 @@ Contact57b: `inspect_contact57_cooking.py` успешно выгружает coo
 `eval_contact57b_19999.py` допускает только19999, сохраняет дополнительные traces.
 `verify_contact57b_geometry.py`, `summarize_contact57b.py`, `plot_contact57b.py`
 проверяют и публикуют [результаты](../docs/results/2026-09-25-contact57b-19999.md).
-Full-state failure replay пока только запланирован, не выполнен.
+Full-state replay выполнен: `replay57_mujoco.py` сохраняет4 состояния19999 и
+проверяет exact continuation; `replay57_contactmesh.py` — проверенный Isaac launcher
+с правильным ground collider filter. `replay57_rewards.py` использует17 сохраненных
+upstream reward functions; `replay57_summary.py` и `plot_replay57.py` публикуют
+[результаты](../docs/results/2026-09-25-replay57-19999.md). Базовый `replay57_isaac.py`
+сохраняет исходную неудачную instrumentation attempt; для новых запусков нужен
+launcher `replay57_contactmesh.py` и отдельный output namespace. Существующие
+артефакты не перезаписываются. Новый recovery pilot пока только planned.
 
 Contact57: `export_contact57_geometry.py`, `prepare_contact57.py`, `contact57_model.py`,
 `probe_contact57.py`, `eval_contact57_micro.py`, `summarize_contact57.py`, `plot_contact57.py`.

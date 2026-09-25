@@ -10,6 +10,11 @@
 
 ## Аудит обучения и приемки — 25 сентября
 
+[replay57_19999_20260925/summary.json](replay57_19999_20260925/summary.json):4 full
+captures,4 точных continuation checks,12 replay, contact-point slip и все17 reward
+terms. Включены hashes неполной Isaac instrumentation attempt; исправление не
+изменило trajectory. Один stall переносится в Isaac. Unsafe0; policy не принята.
+
 [contact57b_20260925/summary.json](contact57b_20260925/summary.json): isolated cooking,
 runtime offsets,36 policy-free probes и20 новых19999 episodes.17/20 source и12/20
 cooked — разные физические profiles, не разные веса. Unsafe0; promotion нет.

@@ -15,6 +15,7 @@ Development `locomotion57_v1` реализован и выполнен: [сра�
 
 ## Выполненная low-level проверка
 
+- [Replay57:4 full states,12 replay и17 reward terms19999](2026-09-25-replay57-19999.md)
 - [Contact57b: cooked hulls,36 policy-free probes и20 эпизодов19999](2026-09-25-contact57b-19999.md)
 - [Contact57: source geometry,192 probes и40 новых policy episodes](2026-09-25-contact57-diagnostics.md)
 - [Physics57: диагностика приводов и моделей, 120 парных эпизодов](2026-09-25-physics57-diagnostics.md)

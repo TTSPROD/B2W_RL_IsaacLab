@@ -36,6 +36,14 @@
 
 ## Снимок локальных логов
 
+После приведенного ниже исторического снимка добавлен
+`logs/replay57_19999_20260925/`:4 полных state captures,4 continuation checks,
+12 replay и reward ledgers19999. Полные NPZ остаются локально, summaries/SHA — в
+[replay57 evidence](results/evidence/replay57_19999_20260925/summary.json).
+Сохранены неполный Isaac batch с неверным collider filter и логи коротких
+неудачных instrumentation probes. Они не включены в12 валидных replay и не
+переименованы в policy failures. [Протокол и ограничения](results/2026-09-25-replay57-19999.md).
+
 После очистки 25 сентября `logs/` содержит **3 152 файла / 2.29 GiB логического
 объёма** и уже исключён из Git. Основной объём:
 

@@ -58,8 +58,13 @@ up14×32 при0.3m/s только1/4. Cooked PhysX hulls и solver/restitution 
 Последующий [contact57b](results/2026-09-25-contact57b-19999.md) получил cooked hulls
 отдельной копии, runtime contact/rest offsets и36 policy-free probes.19999 на cooked
 geometry дал12/20, unsafe0. При0.3m/s два stalls, один transition и один zero failure.
-Это чувствительность policy к контактам; следующий этап — full-state capture/replay
-19999 и reward ledger, а не подбор решателя ради pass.
+Это чувствительность policy к контактам. Затем выполнен
+[replay57](results/2026-09-25-replay57-19999.md):4 полных captures,4 точных проверки
+сериализованного продолжения и12 replay с fresh contacts, unsafe0. Состояние7203
+остается застрявшим и в Isaac;7201 в Isaac начинает восстанавливаться к концу5s.
+Все17 reward terms проверены; движущиеся контроли имеют больший reward.
+Следующий конкретный pilot — recovery reset mixture20% против0%, после общей task
+и stochastic-reset preflight. Rewards и actuator limits сохраняются.
 
 Для интерпретации исторических результатов нужна поправка измерений: прежние evaluators
 Isaac и MuJoCo использовали разные unsafe predicates, частоты telemetry и joint-limit
@@ -79,7 +84,7 @@ physics step без startup grace. Сохраняются различия са�
 | P0 — выполнено | Повторный аудит первичных данных и исходников | 1290 vendor-файлов и 267 tests — OK; отрицательные результаты сохранены |
 | P1 — частично выполнено | Единый измерительный контракт | Development `locomotion57_v1` работает в двух движках; остаются полный DR/validation, solver torque/current instrumentation и измеренные limits |
 | P2 — частично выполнено | Canonical actuator/physics model | Mechanics/frames/source shapes/cooked-copy profiles и contact offsets измерены; contact force dynamics различаются, hardware fidelity открыта |
-| P3 — начато | Парный baseline и диагностика постановки | Upstream19999: source17/20, cooked12/20, unsafe0; следующий шаг — full-state failure replay и reward ledger.10000 исключен |
+| P3 — частично выполнено | Парный baseline и диагностика постановки | Upstream19999:12 replay,17 reward terms; переносимый stall подтвержден, unsafe0. Расширение baseline и независимая state validation открыты;10000 исключен |
 | P4 — условно | Один causal PPO A/B | Улучшение primary metric на двух seeds при соблюдении regression/safety gates |
 | P5 | Curriculum, DR и qualification | Замороженный рецепт, 3 fine-tune seeds, новая закрытая validation, export и оба движка |
 | P6 | Staged hardware после отдельного допуска | Offline replay → suspended/sign checks → stand/stop → low-speed Flat → Rough → Stairs |
@@ -154,11 +159,17 @@ low-level приемку. Новый locomotion suite запускается о�
 
 ### P3. Парный baseline и решение об обучении
 
-Ближайшая конкретная работа — [19999 replay plan](../configs/locomotion57_19999_replay_plan_20260925.json),
-**planned, не выполнен**:4 полных state captures и12 коротких replays. Записать все6
-base velocities и previous action; текущие pose/planar traces недостаточны для exact
-replay. Разделить два stalls на0.3m/s от transition/zero failures, затем измерить
-reward components и contact slip. Не делать очередной общий gain/solver sweep.
+[19999 replay plan](../configs/locomotion57_19999_replay_plan_20260925.json) выполнен
+по отдельному [execution config](../configs/replay57_19999_execution_20260925.json):
+4 captures и12 коротких replay, все6 base velocities, previous action, full integration
+state и17 reward terms. Recapture и4 warm continuation checks точны; contact-point
+slip измерен. Исходный план сохраняет первоначальный статус, итог исполнения — в
+[отчете](results/2026-09-25-replay57-19999.md). Не делать новый общий gain/solver sweep.
+
+Ближайшая работа — подготовить common velocity task и проверить reset/stochastic
+safety для [recovery pilot](../configs/locomotion57_19999_recovery_pilot_plan_20260925.json).
+Это еще **не запущенный PPO**. Training critic и height scan сохраняются; replay
+evaluator с отключенным critic не используется как готовая training task.
 
 - Upstream10000/15000/19999 уже проверены. 19999 — сильный Isaac baseline;
   он выбран для дальнейших upstream diagnostics. 10000 больше не запускать по
@@ -194,21 +205,32 @@ Pilot проектируется после P1–P3; новый серверны
 247-D уже существует. Его расширение, history/RNN или изменение optimizer state не
 добавляются попутно к reward experiment.
 
-Выбрать **одну** гипотезу по диагностике:
+По replay57 выбран **один** следующий treatment: доля записанных failure-state resets
+в подходящих14×32cm upward stair environments20% против0% в контроле. Parent19999,
+seeds83/84, исходные states7201/7203 поровну. Гипотеза — дополнительный опыт
+восстановления улучшит выход из застреваний; текущие результаты этого еще не доказывают.
+Сначала нужны точное соответствие terrain tile/frame, q/dq/COM velocities/previous
+action, измерение effective exploration std и stochastic safety без изменения std.
+Независимые failure states для закрытой проверки фиксируются до обучения;
+training states не входят в primary metric. Rewards и actuator gains/limits не менять.
+
+Другие гипотезы ниже остаются условными альтернативами, не дополнительными arms:
 
 | Наблюдение P3 | Единственный treatment |
 |---|---|
 | Большой stochastic/deterministic gap при inherited frozen std | Заранее заданное уменьшение exploration std, например0.5×parent; без reward/DR/LR изменений |
 | При ненулевой команде выгоднее стоять/застревать | Одна поправка velocity-tracking/progress objective; без goal, route phase, noise/physics изменений |
 | Подтверждена эксплуатация actuator envelope | Один normalized actuator cost с раздельным учетом ног/колес; пределы названы по источнику |
+| Stall переносится в Isaac, движущиеся контроли имеют больший reward | **Выбран сейчас:** один recovery reset mixture20%/0%; без reward/physics/std изменений |
 
 Это альтернативы, а не три последовательных обязательных sweep. Stop/latch/gain ablations
 не повторять без новой причинной информации. Не штрафовать полезное качение как sliding.
 
-Сначала зафиксировать отдельную velocity-command task без landing/goal state machine.
-Ее переход от cycle task — явная смена постановки, а не single-factor A/B. Control
-и treatment обучаются уже в одной и той же новой постановке; старый cycle score
-не используется для доказательства выигрыша.
+Сначала зафиксировать общую velocity-command task без landing/goal state machine
+и с тем же critic, что у выбранного parent19999. Требуемый fixed stair subset есть
+в обоих arms; перенос failure-state pose на произвольную generated stair геометрию
+запрещён. Любая общая адаптация terrain/command task — отдельное изменение постановки;
+эффект reset mixture доказывается против нового control, не historical upstream return.
 
 - Control и treatment: общий parent SHA, два одинаковых training seeds, одинаковые
   config/commands/terrain/DR/PPO/optimizer initialization и4096×24 rollout.
@@ -216,7 +238,9 @@ Pilot проектируется после P1–P3; новый серверны
   Сохранять parent и updates1/2/5/10/25/50. Это важно: cycle57 model3000 соответствовал
   только двум новым updates, хотя выглядел «трехтысячным» checkpoint.
 - До запуска зафиксировать primary metric, selection rule и список screens. Для обычного
-  task pilot — худшая доля успешных command-tracking episodes по terrain×command
+  recovery pilot — худшая upward-stair command-tracking строка на независимых reset seeds;
+  Flat/Rough/small commands/transitions/continuous zero остаются regression gates.
+  Для общего task pilot — худшая доля успешных command-tracking episodes по terrain×command
   strata; для actuator pilot — safety exposure при non-inferiority tracking и
   traversability. Один и тот же criterion действует для обоих seeds.
 - Task-пилот продлевается только при worst-row improvement≥5п.п. на обоих seeds,

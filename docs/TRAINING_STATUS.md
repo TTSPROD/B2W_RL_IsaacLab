@@ -51,8 +51,21 @@ shapes и frames. У19999 micro success17/20 против8/20 mechanical control
 Последующий [Contact57b](results/2026-09-25-contact57b-19999.md): cooked-copy profiles,
 runtime offsets и36 policy-free probes выполнены.19999:12/20 против17/20 source,
 unsafe0. Из четырех slow-ascent episodes два застряли; два прошли марш, но нарушили
-transition/zero gates. Следующий шаг — полный state capture/replay и reward ledger;
-[план replay](../configs/locomotion57_19999_replay_plan_20260925.json) еще не выполнен.
+transition/zero gates. Последующий replay выполнен, результаты ниже.
+
+## Replay57: перенос состояний и17 reward terms
+
+[Выполнено](results/2026-09-25-replay57-19999.md):4 full captures,4 точных
+serialized-continuation checks и12 свежих replay, unsafe0. State7203 в Isaac дает
+0.0135m/s при command0.3, в MuJoCo≈0; контроли Isaac≈0.30m/s. State7201 в Isaac
+начинает восстанавливаться в последнюю секунду, в MuJoCo нет. Измерены contact-point
+slip и physics-step requested/applied torques. Движущиеся контроли имеют больший
+reward; гипотеза о выгодности stall не подтверждена. Proxy всех17 термов совпадает
+с live RewardManager с ошибкой≤9.54e−7.
+
+Выбран следующий [pilot](../configs/locomotion57_19999_recovery_pilot_plan_20260925.json):
+recovery reset mixture20%/0%, неизменные rewards/actuators/ABI. Пока planned,
+PPO не запускался; сначала common task и stochastic-reset preflight.290 tests — OK.
 
 ## Исторические результаты
 
@@ -112,8 +125,9 @@ post-policy sampling против physics-step abort, разные contact masks
 Общий development evaluator уже исполняет внешние команды без навигационной
 коррекции; проверены три upstream milestones. Следующий этап — закрыть оставшиеся
 measurement/actuator/physics gaps и дополнить baseline reference/inverse57/cycle57.
-Cooking-copy inspection и независимые impact probes выполнены. Приоритет — full-state
-replay и reward-component diagnosis19999. Повторные запуски10000 исключены.
+Cooking-copy inspection и независимые impact probes выполнены. Приоритет —
+common velocity task и stochastic-reset preflight для recovery mixture19999;
+replay и reward-component diagnosis завершены. Повторные запуски10000 исключены.
 Исходный frozen MuJoCo suite сохраняется как историческая диагностика; новый
 locomotion evaluator получает отдельный id `locomotion57_v1`. Training pilot допускается к проектированию после
 локализации failure, без требования заранее получить stair pass старой policy.

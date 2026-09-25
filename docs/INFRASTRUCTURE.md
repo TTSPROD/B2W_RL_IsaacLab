@@ -30,9 +30,12 @@ python scripts/vendor_materials.py verify
 & .\scripts\run_local.ps1 -m unittest discover -s tests -q
 ```
 
-После contact57b diagnosis проверено:1290 vendor-файлов,287 tests — OK.
-Последний этап:36 policy-free probes и20 новых19999 episodes выполнены локально;
-[отчет и ограничения](results/2026-09-25-contact57b-19999.md).
+После replay57 проверено:1290 vendor-файлов,290 tests — OK.
+Последний этап:4 captures,4 exact continuation checks,12 replay19999 и17 reward terms
+выполнены локально; [отчет и ограничения](results/2026-09-25-replay57-19999.md).
+Isaac contact filter должен указывать на collider `/World/ground/terrain/mesh`,
+а не Xform terrain. Неполные попытки сохранены отдельно; rewards и движение
+исправленного batch точно совпали с исходным. Новый PPO/server job не запускался.
 По последующему указанию пользователя upstream10000 больше не запускается.
 
 ## Пути и границы

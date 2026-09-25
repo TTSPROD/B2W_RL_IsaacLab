@@ -30,9 +30,15 @@ contact57 перенес20 source USD collision shapes и frames в opt-in
 Contact57b получил cooked hulls отдельной неинстансированной копии (42 calf /34 wheel
 vertices), runtime contact offsets0.5–3.04mm и rest offsets=0. Выполнены36 policy-free probes и20 новых
 эпизодов только19999:12/20, unsafe0; геометрическая чувствительность подтверждена.
-Следующий шаг — полный19999 failure-state capture/replay и reward ledger, не новый
-gain/solver sweep. `configs/locomotion57_19999_replay_plan_20260925.json` — только план,
-не выполненный replay. См. `docs/results/2026-09-25-contact57b-19999.md`.
+Следующий replay57 выполнен:4 full captures,4 exact continuation checks,12 fresh-contact
+replays,17 saved reward terms, unsafe0. State7203 остается stalled в обоих движках;
+7201 начинает восстанавливаться в Isaac. Движущиеся контроли имеют больший reward;
+усиление posture×5 при command0.3 не активно. См. `docs/results/2026-09-25-replay57-19999.md`.
+Следующий единственный PPO pilot пока только planned: recovery reset mixture20%/0%
+на19999, без изменения rewards/gains/limits/std. До PPO нужны common velocity task,
+stochastic-reset preflight и независимая state validation. Не запускать новый gain/solver
+sweep. `configs/locomotion57_19999_recovery_pilot_plan_20260925.json` задает этот план;
+исходный replay plan сохранен как датированный предварительный документ.
 
 Последующее указание пользователя: **не тратить больше время на upstream10000**.
 Не запускать новые evaluations, diagnostics, tuning или обучение этого checkpoint.

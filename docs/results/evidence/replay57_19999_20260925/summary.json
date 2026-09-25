@@ -1,0 +1,3895 @@
+{
+  "schema": "replay57_19999_summary_v1",
+  "policy": 19999,
+  "accepted": false,
+  "config_sha256": "3bbca8890a9fe3c84a3c151f7fca48dade94f9ec19b0197582cddbf2891e15be",
+  "seeds": [
+    7201,
+    7202,
+    7203,
+    7204
+  ],
+  "counts": {
+    "source_captures": 4,
+    "valid_fresh_replays": 12,
+    "exact_continuation_checks": 4,
+    "incomplete_isaac_full_replays": 4,
+    "aborted_contact_report_probe_batches": 2,
+    "aborted_probe_envs": 4,
+    "aborted_probe_seconds": 0.12,
+    "pre_rollout_yaml_failure": 1
+  },
+  "recapture_max_abs_error": 0.0,
+  "warm_continuation_max_abs_error": 0.0,
+  "instrumentation_repair_trace_max_abs_error": 0.0,
+  "isaac_initial_state_errors": {
+    "pose_max_abs_error": 1.1920928955078125e-07,
+    "root_com_velocity_max_abs_error": 0.0,
+    "joint_pos_max_abs_error": 0.0,
+    "joint_vel_max_abs_error": 0.0
+  },
+  "reward_proxy_max_errors": {
+    "lin_vel_z_l2": 1.4901161193847656e-08,
+    "ang_vel_xy_l2": 3.725290298461914e-09,
+    "joint_torques_l2": 8.940696716308594e-08,
+    "joint_acc_l2": 1.1920928955078125e-07,
+    "joint_pos_limits": 0.0,
+    "joint_power": 1.862645149230957e-09,
+    "stand_still": 0.0,
+    "joint_pos_penalty": 1.1920928955078125e-07,
+    "joint_mirror": 5.587935447692871e-09,
+    "action_rate_l2": 1.4901161193847656e-08,
+    "undesired_contacts": 0.0,
+    "contact_forces": 5.960464477539063e-08,
+    "track_lin_vel_xy_exp": 4.76837158203125e-07,
+    "track_ang_vel_z_exp": 2.384185791015625e-07,
+    "feet_contact_without_cmd": 0.0,
+    "upward": 9.5367431640625e-07,
+    "joint_acc_wheel_l2": 3.725290298461914e-09
+  },
+  "maximum_contacts_per_wheel_pair": 13,
+  "reward_source_terms": {
+    "lin_vel_z_l2": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:lin_vel_z_l2",
+      "params": {},
+      "weight": -2.0
+    },
+    "ang_vel_xy_l2": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:ang_vel_xy_l2",
+      "params": {},
+      "weight": -0.05
+    },
+    "joint_torques_l2": {
+      "func": "isaaclab.envs.mdp.rewards:joint_torques_l2",
+      "params": {
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_hip_joint",
+            "FR_thigh_joint",
+            "FR_calf_joint",
+            "FL_hip_joint",
+            "FL_thigh_joint",
+            "FL_calf_joint",
+            "RR_hip_joint",
+            "RR_thigh_joint",
+            "RR_calf_joint",
+            "RL_hip_joint",
+            "RL_thigh_joint",
+            "RL_calf_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        }
+      },
+      "weight": -1e-05
+    },
+    "joint_acc_l2": {
+      "func": "isaaclab.envs.mdp.rewards:joint_acc_l2",
+      "params": {
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_hip_joint",
+            "FR_thigh_joint",
+            "FR_calf_joint",
+            "FL_hip_joint",
+            "FL_thigh_joint",
+            "FL_calf_joint",
+            "RR_hip_joint",
+            "RR_thigh_joint",
+            "RR_calf_joint",
+            "RL_hip_joint",
+            "RL_thigh_joint",
+            "RL_calf_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        }
+      },
+      "weight": -1e-07
+    },
+    "joint_pos_limits": {
+      "func": "isaaclab.envs.mdp.rewards:joint_pos_limits",
+      "params": {
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_hip_joint",
+            "FR_thigh_joint",
+            "FR_calf_joint",
+            "FL_hip_joint",
+            "FL_thigh_joint",
+            "FL_calf_joint",
+            "RR_hip_joint",
+            "RR_thigh_joint",
+            "RR_calf_joint",
+            "RL_hip_joint",
+            "RL_thigh_joint",
+            "RL_calf_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        }
+      },
+      "weight": -5.0
+    },
+    "joint_power": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:joint_power",
+      "params": {
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_hip_joint",
+            "FR_thigh_joint",
+            "FR_calf_joint",
+            "FL_hip_joint",
+            "FL_thigh_joint",
+            "FL_calf_joint",
+            "RR_hip_joint",
+            "RR_thigh_joint",
+            "RR_calf_joint",
+            "RL_hip_joint",
+            "RL_thigh_joint",
+            "RL_calf_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        }
+      },
+      "weight": -1e-05
+    },
+    "stand_still": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:stand_still",
+      "params": {
+        "command_name": "base_velocity",
+        "command_threshold": 0.1,
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_hip_joint",
+            "FR_thigh_joint",
+            "FR_calf_joint",
+            "FL_hip_joint",
+            "FL_thigh_joint",
+            "FL_calf_joint",
+            "RR_hip_joint",
+            "RR_thigh_joint",
+            "RR_calf_joint",
+            "RL_hip_joint",
+            "RL_thigh_joint",
+            "RL_calf_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        }
+      },
+      "weight": -2.0
+    },
+    "joint_pos_penalty": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:joint_pos_penalty",
+      "params": {
+        "command_name": "base_velocity",
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_hip_joint",
+            "FR_thigh_joint",
+            "FR_calf_joint",
+            "FL_hip_joint",
+            "FL_thigh_joint",
+            "FL_calf_joint",
+            "RR_hip_joint",
+            "RR_thigh_joint",
+            "RR_calf_joint",
+            "RL_hip_joint",
+            "RL_thigh_joint",
+            "RL_calf_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        },
+        "stand_still_scale": 5.0,
+        "velocity_threshold": 0.5,
+        "command_threshold": 0.1
+      },
+      "weight": -1.0
+    },
+    "joint_mirror": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:joint_mirror",
+      "params": {
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": null,
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        },
+        "mirror_joints": [
+          [
+            "FR_(hip|thigh|calf).*",
+            "RL_(hip|thigh|calf).*"
+          ],
+          [
+            "FL_(hip|thigh|calf).*",
+            "RR_(hip|thigh|calf).*"
+          ]
+        ]
+      },
+      "weight": -0.05
+    },
+    "action_rate_l2": {
+      "func": "isaaclab.envs.mdp.rewards:action_rate_l2",
+      "params": {},
+      "weight": -0.01
+    },
+    "undesired_contacts": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:undesired_contacts",
+      "params": {
+        "sensor_cfg": {
+          "name": "contact_forces",
+          "joint_names": null,
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": [
+            "^(?!.*.*_foot).*"
+          ],
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        },
+        "threshold": 1.0
+      },
+      "weight": -1.0
+    },
+    "contact_forces": {
+      "func": "isaaclab.envs.mdp.rewards:contact_forces",
+      "params": {
+        "sensor_cfg": {
+          "name": "contact_forces",
+          "joint_names": null,
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": [
+            ".*_foot"
+          ],
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        },
+        "threshold": 100.0
+      },
+      "weight": -0.00015
+    },
+    "track_lin_vel_xy_exp": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:track_lin_vel_xy_exp",
+      "params": {
+        "command_name": "base_velocity",
+        "std": 0.5
+      },
+      "weight": 3.0
+    },
+    "track_ang_vel_z_exp": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:track_ang_vel_z_exp",
+      "params": {
+        "command_name": "base_velocity",
+        "std": 0.5
+      },
+      "weight": 1.5
+    },
+    "feet_contact_without_cmd": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:feet_contact_without_cmd",
+      "params": {
+        "sensor_cfg": {
+          "name": "contact_forces",
+          "joint_names": null,
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": [
+            ".*_foot"
+          ],
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        },
+        "command_name": "base_velocity"
+      },
+      "weight": 0.1
+    },
+    "upward": {
+      "func": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:upward",
+      "params": {},
+      "weight": 3.0
+    },
+    "joint_acc_wheel_l2": {
+      "func": "isaaclab.envs.mdp.rewards:joint_acc_l2",
+      "params": {
+        "asset_cfg": {
+          "name": "robot",
+          "joint_names": [
+            "FR_foot_joint",
+            "FL_foot_joint",
+            "RR_foot_joint",
+            "RL_foot_joint"
+          ],
+          "joint_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "fixed_tendon_names": null,
+          "fixed_tendon_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "body_names": null,
+          "body_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "object_collection_names": null,
+          "object_collection_ids": {
+            "slice": [
+              null,
+              null,
+              null
+            ]
+          },
+          "preserve_order": false
+        }
+      },
+      "weight": -2.5e-10
+    }
+  },
+  "rows": [
+    {
+      "condition": "mujoco_cooked_shapes",
+      "seed": 7201,
+      "source_state": "stall",
+      "mean_body_velocity": [
+        0.06059443100153915,
+        -0.0779698558513552,
+        0.0037845880537383247,
+        0.0010069780849482036,
+        0.003345600687563537,
+        -0.009648862234294812
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.24888922385160117,
+        0.0948479810966504,
+        0.06596374398024095
+      ],
+      "diagnostic_dx_m": 0.013211993707155312,
+      "last_second_vx_m_s": 0.03469869087544205,
+      "wheel_slip_rms_m_s": [
+        0.27235323156876856,
+        0.5923541481342369,
+        0.2098439705724996,
+        0.9327497067066999
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        274.5076569210943,
+        231.98013817661564,
+        432.37598879447876,
+        60.18868948117615
+      ],
+      "wheel_saturation_fraction": [
+        0.2568,
+        0.0104,
+        0.0,
+        0.0056
+      ],
+      "wheel_requested_peak_nm": [
+        32.24384741118674,
+        23.049761876078836,
+        17.219425451615887,
+        22.35219543877585
+      ],
+      "wheel_applied_peak_nm": [
+        20.0,
+        20.0,
+        17.219425451615887,
+        20.0
+      ],
+      "leg_requested_peak_nm": [
+        66.9397672062395,
+        30.6106428815606,
+        140.40197151116803,
+        38.40048084949444,
+        47.797059145217176,
+        89.41926669681595,
+        75.05646121995527,
+        80.26490038644485,
+        179.8794323513914,
+        30.23761781567873,
+        46.359410827935555,
+        86.27579261093409
+      ],
+      "leg_applied_peak_nm": [
+        66.9397672062395,
+        30.6106428815606,
+        140.40197151116803,
+        38.40048084949444,
+        47.797059145217176,
+        89.41926669681595,
+        75.05646121995527,
+        80.26490038644485,
+        179.8794323513914,
+        30.23761781567873,
+        46.359410827935555,
+        86.27579261093409
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.01280579436570406,
+        "ang_vel_xy_l2": -0.004329892806708813,
+        "joint_torques_l2": -0.20983998477458954,
+        "joint_acc_l2": -0.007125961594283581,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0016619557281956077,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.689129650592804,
+        "joint_mirror": -0.015741150826215744,
+        "action_rate_l2": -0.017369737848639488,
+        "undesired_contacts": -0.23999999463558197,
+        "contact_forces": -0.10170699656009674,
+        "track_lin_vel_xy_exp": 2.2821223735809326,
+        "track_ang_vel_z_exp": 1.4747889041900635,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.90804386138916,
+        "joint_acc_wheel_l2": -0.0001266335602849722
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.06402897089719772,
+        "ang_vel_xy_l2": -0.02164946310222149,
+        "joint_torques_l2": -1.0491999387741089,
+        "joint_acc_l2": -0.03562980890274048,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.00830977875739336,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -3.445648193359375,
+        "joint_mirror": -0.07870575040578842,
+        "action_rate_l2": -0.086848683655262,
+        "undesired_contacts": -1.1999999284744263,
+        "contact_forces": -0.5085349678993225,
+        "track_lin_vel_xy_exp": 11.410611152648926,
+        "track_ang_vel_z_exp": 7.3739447593688965,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.540218353271484,
+        "joint_acc_wheel_l2": -0.0006331677432172
+      },
+      "total_reward_rate_mean": 14.365123748779297,
+      "total_reward_rate_after_100ms": 14.373299598693848,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          17.182422701864137,
+          14.053636410986469,
+          63.071217535247285,
+          8.697556194350025,
+          10.027497085450184,
+          34.622795987263444,
+          35.453208222232426,
+          40.88282679025775,
+          108.95813723268812,
+          9.863062824113701,
+          8.643549738711318,
+          17.160007974722564,
+          15.262624271857927,
+          10.023649695996893,
+          8.946003470783406,
+          5.456247690823123
+        ],
+        "torque_p99_bin_upper_nm": [
+          46.0,
+          28.000000000000004,
+          118.4,
+          26.0,
+          28.000000000000004,
+          80.0,
+          72.0,
+          70.0,
+          176.0,
+          22.0,
+          32.0,
+          67.2,
+          20.2,
+          20.0,
+          16.4,
+          18.400000000000002
+        ],
+        "torque_peak_nm": [
+          66.9397672062395,
+          30.6106428815606,
+          140.40197151116803,
+          38.40048084949444,
+          47.797059145217176,
+          89.41926669681595,
+          75.05646121995527,
+          80.26490038644485,
+          179.8794323513914,
+          30.23761781567873,
+          46.359410827935555,
+          86.27579261093409,
+          20.0,
+          20.0,
+          17.219425451615887,
+          20.0
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.3072,
+          0.02,
+          0.0,
+          0.0088
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.272,
+          0.032,
+          0.0,
+          0.03
+        ],
+        "speed_peak_rad_s": [
+          1.7099464874347539,
+          1.961600083088546,
+          2.9198670273295315,
+          1.1633975595998458,
+          2.5287798886860564,
+          4.336126760546833,
+          4.801475971020118,
+          5.129765888579793,
+          9.759601714045711,
+          1.622280191736687,
+          3.6551234479378647,
+          8.101464235425883,
+          24.09815732571292,
+          25.195515612470682,
+          12.474819187199278,
+          36.378959410023825
+        ],
+        "hard_joint_margin_min_rad": [
+          0.6895131482377913,
+          1.8610189133284698,
+          1.0591432866536858,
+          0.6977902144100242,
+          1.8381796205061764,
+          0.7898665770020155,
+          0.4890050714576276,
+          1.6044776524621778,
+          0.7345032733440238,
+          0.6976226962665113,
+          1.7528214071605677,
+          0.6549479281364077
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 10.671896198440352,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_cooked_shapes",
+      "seed": 7202,
+      "source_state": "moving_control",
+      "mean_body_velocity": [
+        0.22468546640994086,
+        0.004192215010363372,
+        0.003808659326966619,
+        0.005338846128209571,
+        -0.0006568658695806997,
+        0.005305515627681603
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.08916488547223426,
+        0.06161809062848632,
+        0.053540636052011085
+      ],
+      "diagnostic_dx_m": 1.060373773697398,
+      "last_second_vx_m_s": 0.21999571322805167,
+      "wheel_slip_rms_m_s": [
+        0.0836701336032406,
+        0.09465307244557754,
+        0.07026758337772687,
+        0.08763637388263136
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        171.31256454627754,
+        201.49596921538395,
+        179.13021789896843,
+        148.86824473929542
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        10.12519780159238,
+        13.691139101284222,
+        8.280227353900425,
+        7.147257281320921
+      ],
+      "wheel_applied_peak_nm": [
+        10.12519780159238,
+        13.691139101284222,
+        8.280227353900425,
+        7.147257281320921
+      ],
+      "leg_requested_peak_nm": [
+        24.792553346255325,
+        34.16958160002302,
+        81.15971555556162,
+        26.487323838498625,
+        53.35202698504265,
+        90.96452188189465,
+        29.953220037287263,
+        28.164902153572758,
+        63.38911162704242,
+        26.04731502171028,
+        31.90026418788892,
+        53.76912942430804
+      ],
+      "leg_applied_peak_nm": [
+        24.792553346255325,
+        34.16958160002302,
+        81.15971555556162,
+        26.487323838498625,
+        53.35202698504265,
+        90.96452188189465,
+        29.953220037287263,
+        28.164902153572758,
+        63.38911162704242,
+        26.04731502171028,
+        31.90026418788892,
+        53.76912942430804
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.02046377770602703,
+        "ang_vel_xy_l2": -0.0014987523900344968,
+        "joint_torques_l2": -0.08535430580377579,
+        "joint_acc_l2": -0.004622470587491989,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0009695322369225323,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.18505369126796722,
+        "joint_mirror": -0.0013650116743519902,
+        "action_rate_l2": -0.004046977031975985,
+        "undesired_contacts": -0.4440000057220459,
+        "contact_forces": -0.061295151710510254,
+        "track_lin_vel_xy_exp": 2.8642265796661377,
+        "track_ang_vel_z_exp": 1.4831292629241943,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.997649192810059,
+        "joint_acc_wheel_l2": -5.354057066142559e-06
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.10231888294219971,
+        "ang_vel_xy_l2": -0.007493761833757162,
+        "joint_torques_l2": -0.42677152156829834,
+        "joint_acc_l2": -0.023112351074814796,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.004847661126405001,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.9252684712409973,
+        "joint_mirror": -0.006825058255344629,
+        "action_rate_l2": -0.020234884694218636,
+        "undesired_contacts": -2.2200000286102295,
+        "contact_forces": -0.30647575855255127,
+        "track_lin_vel_xy_exp": 14.32113265991211,
+        "track_ang_vel_z_exp": 7.415646076202393,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.98824691772461,
+        "joint_acc_wheel_l2": -2.6770285330712795e-05
+      },
+      "total_reward_rate_mean": 15.536332130432129,
+      "total_reward_rate_after_100ms": 15.557454109191895,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          13.775869102838943,
+          9.964159546197873,
+          42.5508813468099,
+          20.468856143011234,
+          15.031201652908058,
+          46.46829567738813,
+          20.68016360240797,
+          8.231420166985933,
+          40.66699065460001,
+          15.0732587903767,
+          10.158015224914019,
+          33.28688189104255,
+          2.780920874383409,
+          3.3442361188325536,
+          2.826096292312979,
+          2.316443037271616
+        ],
+        "torque_p99_bin_upper_nm": [
+          24.0,
+          30.0,
+          67.2,
+          28.000000000000004,
+          50.0,
+          83.2,
+          30.0,
+          26.0,
+          60.8,
+          26.0,
+          28.000000000000004,
+          51.2,
+          7.6,
+          11.6,
+          7.6,
+          6.4
+        ],
+        "torque_peak_nm": [
+          24.792553346255325,
+          34.16958160002302,
+          81.15971555556162,
+          26.487323838498625,
+          53.35202698504265,
+          90.96452188189465,
+          29.953220037287263,
+          28.164902153572758,
+          63.38911162704242,
+          26.04731502171028,
+          31.90026418788892,
+          53.76912942430804,
+          10.12519780159238,
+          13.691139101284222,
+          8.280227353900425,
+          7.147257281320921
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.7959680041092223,
+          2.1238723901662593,
+          3.6973892667562267,
+          0.3995224601677752,
+          2.205818644536483,
+          3.443733310253359,
+          0.5211953950073408,
+          2.166476679289956,
+          4.294708716259406,
+          0.3805835966441099,
+          1.763255000549437,
+          3.7304532137046786,
+          8.535230588394372,
+          11.306515255447957,
+          8.138803520137982,
+          7.720210935802588
+        ],
+        "hard_joint_margin_min_rad": [
+          0.7712835991545556,
+          1.676646996692281,
+          0.9466823510603894,
+          0.7814342655390885,
+          1.7097243923662746,
+          0.9437886299428906,
+          0.7735823949051894,
+          1.6863324540253855,
+          0.881210872912422,
+          0.7968980857786135,
+          1.6969606771400456,
+          0.9259592850830671
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 1.8872728000679275,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_cooked_shapes",
+      "seed": 7203,
+      "source_state": "stall",
+      "mean_body_velocity": [
+        0.0004851067256308449,
+        -0.00023768612468963188,
+        0.00042166006625809913,
+        -0.00021352580054875424,
+        -0.002001111066174051,
+        0.00642764810688853
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.3005069867471167,
+        0.016194841454308502,
+        0.024323191279448104
+      ],
+      "diagnostic_dx_m": 0.0016501653709273256,
+      "last_second_vx_m_s": 0.00672782505842302,
+      "wheel_slip_rms_m_s": [
+        0.8212857880520381,
+        0.342805491739657,
+        0.007577312563177449,
+        0.0038526727801012446
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        109.41010931186203,
+        299.44961781990645,
+        327.0013381707882,
+        219.63452964877956
+      ],
+      "wheel_saturation_fraction": [
+        0.002,
+        0.6488,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        20.998246007899773,
+        28.77770178492388,
+        11.446061113132833,
+        6.806695109648667
+      ],
+      "wheel_applied_peak_nm": [
+        20.0,
+        20.0,
+        11.446061113132833,
+        6.806695109648667
+      ],
+      "leg_requested_peak_nm": [
+        19.47924524097981,
+        35.47449112293415,
+        39.5554594341309,
+        33.73803897716915,
+        35.75010292241778,
+        77.11541987503689,
+        55.293959412672905,
+        73.43323922164335,
+        104.91551873143052,
+        39.531910564430234,
+        32.30392378067107,
+        70.7576981568168
+      ],
+      "leg_applied_peak_nm": [
+        19.47924524097981,
+        35.47449112293415,
+        39.5554594341309,
+        33.73803897716915,
+        35.75010292241778,
+        77.11541987503689,
+        55.293959412672905,
+        73.43323922164335,
+        104.91551873143052,
+        39.531910564430234,
+        32.30392378067107,
+        70.7576981568168
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.0015645172679796815,
+        "ang_vel_xy_l2": -0.00032013506279326975,
+        "joint_torques_l2": -0.2234119325876236,
+        "joint_acc_l2": -0.001791044371202588,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0007539591169916093,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.5934045910835266,
+        "joint_mirror": -0.017114993184804916,
+        "action_rate_l2": -0.008821732364594936,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.08063328266143799,
+        "track_lin_vel_xy_exp": 2.0920491218566895,
+        "track_ang_vel_z_exp": 1.4964674711227417,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.719441413879395,
+        "joint_acc_wheel_l2": -0.00012986859655939043
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.007822586223483086,
+        "ang_vel_xy_l2": -0.0016006752848625183,
+        "joint_torques_l2": -1.117059588432312,
+        "joint_acc_l2": -0.008955221623182297,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.003769795410335064,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -2.9670228958129883,
+        "joint_mirror": -0.08557496964931488,
+        "action_rate_l2": -0.044108662754297256,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.40316641330718994,
+        "track_lin_vel_xy_exp": 10.460245132446289,
+        "track_ang_vel_z_exp": 7.482337474822998,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 58.597206115722656,
+        "joint_acc_wheel_l2": -0.0006493429536931217
+      },
+      "total_reward_rate_mean": 14.380013465881348,
+      "total_reward_rate_after_100ms": 14.378792762756348,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          11.18247038285476,
+          13.770100313327053,
+          23.285457359709902,
+          28.699628243557836,
+          16.722177453085546,
+          59.59046013852321,
+          50.883690243060066,
+          50.25385810530641,
+          87.20983455748794,
+          34.352018729842555,
+          20.664471255660835,
+          50.462078741979546,
+          9.497051088895384,
+          18.500435627531996,
+          6.820279746261038,
+          3.2002446574767216
+        ],
+        "torque_p99_bin_upper_nm": [
+          18.0,
+          32.0,
+          38.4,
+          34.0,
+          28.000000000000004,
+          76.8,
+          56.00000000000001,
+          68.0,
+          105.60000000000001,
+          40.0,
+          32.0,
+          67.2,
+          17.6,
+          20.2,
+          11.0,
+          6.2
+        ],
+        "torque_peak_nm": [
+          19.47924524097981,
+          35.47449112293415,
+          39.5554594341309,
+          33.73803897716915,
+          35.75010292241778,
+          77.11541987503689,
+          55.293959412672905,
+          73.43323922164335,
+          104.91551873143052,
+          39.531910564430234,
+          32.30392378067107,
+          70.7576981568168,
+          20.0,
+          20.0,
+          11.446061113132833,
+          6.806695109648667
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.004,
+          0.6832,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.016,
+          0.328,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.41175935395423063,
+          1.7609054530265047,
+          2.784506282699431,
+          0.4477659798641974,
+          1.8107485762516775,
+          2.398525506017548,
+          0.20960304614390524,
+          0.7076188458669661,
+          0.612019248795093,
+          0.22790502091392054,
+          0.35588710954955427,
+          0.490104210840276,
+          25.32340276098107,
+          19.35992986167131,
+          3.960907865115317,
+          0.9078617938477114
+        ],
+        "hard_joint_margin_min_rad": [
+          0.6535607509846847,
+          1.731782852396714,
+          1.0261752643394082,
+          0.6733173092673495,
+          1.78887384127731,
+          1.0387444242016317,
+          0.7208887169566079,
+          1.6445145407745567,
+          0.7789091611170644,
+          0.7519222981117089,
+          1.745925585157698,
+          0.8511173573706006
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 12.956518002028533,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_cooked_shapes",
+      "seed": 7204,
+      "source_state": "moving_control",
+      "mean_body_velocity": [
+        0.23631385283684805,
+        0.005445601177857384,
+        0.0032857485259847686,
+        -0.003124562192819855,
+        -0.0010134179078685843,
+        0.007362043859551337
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.07429043074342818,
+        0.04197741158063045,
+        0.04570727845463574
+      ],
+      "diagnostic_dx_m": 1.1431335941600151,
+      "last_second_vx_m_s": 0.22604450724766983,
+      "wheel_slip_rms_m_s": [
+        0.06292759206065296,
+        0.09640467610849177,
+        0.08081854549206301,
+        0.08971062767684912
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        183.71681732977606,
+        201.43283893350758,
+        179.68619508298994,
+        151.37350889158733
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        9.567496847254619,
+        12.82767640135907,
+        7.81033967971255,
+        7.888459818888042
+      ],
+      "wheel_applied_peak_nm": [
+        9.567496847254619,
+        12.82767640135907,
+        7.81033967971255,
+        7.888459818888042
+      ],
+      "leg_requested_peak_nm": [
+        36.79339910696353,
+        33.43751579731985,
+        90.35589718464858,
+        36.244666042789675,
+        34.15128312708709,
+        80.17669321329265,
+        23.515476923469986,
+        35.20801481011226,
+        61.8588148369544,
+        22.581436455693098,
+        21.58566510232173,
+        51.55740544920471
+      ],
+      "leg_applied_peak_nm": [
+        36.79339910696353,
+        33.43751579731985,
+        90.35589718464858,
+        36.244666042789675,
+        34.15128312708709,
+        80.17669321329265,
+        23.515476923469986,
+        35.20801481011226,
+        61.8588148369544,
+        22.581436455693098,
+        21.58566510232173,
+        51.55740544920471
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.01382700726389885,
+        "ang_vel_xy_l2": -0.001473301905207336,
+        "joint_torques_l2": -0.08629884570837021,
+        "joint_acc_l2": -0.004760893527418375,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0008496062946505845,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.19766104221343994,
+        "joint_mirror": -0.0016729783965274692,
+        "action_rate_l2": -0.004057958722114563,
+        "undesired_contacts": -0.40799999237060547,
+        "contact_forces": -0.06790534406900406,
+        "track_lin_vel_xy_exp": 2.9144203662872314,
+        "track_ang_vel_z_exp": 1.4876105785369873,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.994832038879395,
+        "joint_acc_wheel_l2": -5.952419996901881e-06
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.06913503259420395,
+        "ang_vel_xy_l2": -0.007366509176790714,
+        "joint_torques_l2": -0.43149420619010925,
+        "joint_acc_l2": -0.02380446530878544,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.004248031415045261,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.9883052110671997,
+        "joint_mirror": -0.00836489163339138,
+        "action_rate_l2": -0.020289791747927666,
+        "undesired_contacts": -2.0399999618530273,
+        "contact_forces": -0.3395267128944397,
+        "track_lin_vel_xy_exp": 14.572101593017578,
+        "track_ang_vel_z_exp": 7.438052654266357,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.974159240722656,
+        "joint_acc_wheel_l2": -2.9762100894004107e-05
+      },
+      "total_reward_rate_mean": 15.6103515625,
+      "total_reward_rate_after_100ms": 15.600072860717773,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          22.10503897605602,
+          9.642035168723888,
+          43.7228741354279,
+          26.441140212632362,
+          10.900882715374873,
+          43.95987467223458,
+          17.81696035651285,
+          8.232139448243128,
+          40.6766338956195,
+          15.421557320751862,
+          6.471786518011144,
+          32.53836759679799,
+          2.65606983674175,
+          3.0159669809607434,
+          2.8732435570571786,
+          2.5507093686753235
+        ],
+        "torque_p99_bin_upper_nm": [
+          36.0,
+          28.000000000000004,
+          73.60000000000001,
+          36.0,
+          32.0,
+          73.60000000000001,
+          24.0,
+          30.0,
+          60.8,
+          22.0,
+          18.0,
+          51.2,
+          7.800000000000001,
+          10.2,
+          7.199999999999999,
+          6.4
+        ],
+        "torque_peak_nm": [
+          36.79339910696353,
+          33.43751579731985,
+          90.35589718464858,
+          36.244666042789675,
+          34.15128312708709,
+          80.17669321329265,
+          23.515476923469986,
+          35.20801481011226,
+          61.8588148369544,
+          22.581436455693098,
+          21.58566510232173,
+          51.55740544920471,
+          9.567496847254619,
+          12.82767640135907,
+          7.81033967971255,
+          7.888459818888042
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          1.0582674638517124,
+          1.911637242192441,
+          3.9898976825129018,
+          0.34232246325972093,
+          1.9329268072728094,
+          3.4929896384090404,
+          0.26860618974557793,
+          2.8059355632002267,
+          4.616029115674124,
+          0.22026656264426883,
+          1.5428827445587427,
+          3.6622878117045397,
+          8.300463431195052,
+          9.425387642322622,
+          8.003527557507354,
+          6.940550827987888
+        ],
+        "hard_joint_margin_min_rad": [
+          0.7336814801085891,
+          1.6674310682541207,
+          0.9392864813684647,
+          0.75407952370074,
+          1.6901608640927468,
+          0.9214237144334372,
+          0.80253095294678,
+          1.6703848010349316,
+          0.9165415732894,
+          0.8042733907581833,
+          1.7075429830994162,
+          0.9286610850339159
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 3.2068114113545927,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_source_shapes",
+      "seed": 7201,
+      "source_state": "stall",
+      "mean_body_velocity": [
+        0.059079567090693105,
+        -0.04656760749975993,
+        0.006662563583919167,
+        -0.009455571847346671,
+        -0.005409505839625276,
+        -0.028094166835348194
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.25329591262924506,
+        0.08117958751206436,
+        0.08029916320315192
+      ],
+      "diagnostic_dx_m": 0.09789881072247164,
+      "last_second_vx_m_s": 0.07428306399899175,
+      "wheel_slip_rms_m_s": [
+        0.22499224107290866,
+        0.605865328364289,
+        0.17963560578376242,
+        0.947227179073574
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        287.70618861723693,
+        239.22386286926113,
+        416.36804772821716,
+        89.23485364400673
+      ],
+      "wheel_saturation_fraction": [
+        0.1988,
+        0.0036,
+        0.0,
+        0.0056
+      ],
+      "wheel_requested_peak_nm": [
+        27.141182042722235,
+        21.214403874730127,
+        11.626497761658612,
+        22.918132903143164
+      ],
+      "wheel_applied_peak_nm": [
+        20.0,
+        20.0,
+        11.626497761658612,
+        20.0
+      ],
+      "leg_requested_peak_nm": [
+        48.2259411654271,
+        34.44548653386772,
+        132.17494450273546,
+        27.574638650554114,
+        46.42449453790124,
+        111.61643717243695,
+        72.86847043623057,
+        75.92314978467459,
+        186.91515855197372,
+        34.05875467312785,
+        44.17207789380884,
+        99.18602302215797
+      ],
+      "leg_applied_peak_nm": [
+        48.2259411654271,
+        34.44548653386772,
+        132.17494450273546,
+        27.574638650554114,
+        46.42449453790124,
+        111.61643717243695,
+        72.86847043623057,
+        75.92314978467459,
+        186.91515855197372,
+        34.05875467312785,
+        44.17207789380884,
+        99.18602302215797
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.00949755497276783,
+        "ang_vel_xy_l2": -0.00537017360329628,
+        "joint_torques_l2": -0.2114831805229187,
+        "joint_acc_l2": -0.005388971418142319,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.001596032059751451,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.7062084674835205,
+        "joint_mirror": -0.016453929245471954,
+        "action_rate_l2": -0.01605875790119171,
+        "undesired_contacts": -0.13600000739097595,
+        "contact_forces": -0.10360044986009598,
+        "track_lin_vel_xy_exp": 2.2852628231048584,
+        "track_ang_vel_z_exp": 1.465147614479065,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.901611328125,
+        "joint_acc_wheel_l2": -0.0001211975613841787
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.047487773001194,
+        "ang_vel_xy_l2": -0.02685086615383625,
+        "joint_torques_l2": -1.0574158430099487,
+        "joint_acc_l2": -0.026944855228066444,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.007980159483850002,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -3.5310423374176025,
+        "joint_mirror": -0.08226964622735977,
+        "action_rate_l2": -0.08029378950595856,
+        "undesired_contacts": -0.6800000071525574,
+        "contact_forces": -0.5180022120475769,
+        "track_lin_vel_xy_exp": 11.426314353942871,
+        "track_ang_vel_z_exp": 7.325737953186035,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.508056640625,
+        "joint_acc_wheel_l2": -0.0006059877923689783
+      },
+      "total_reward_rate_mean": 14.440239906311035,
+      "total_reward_rate_after_100ms": 14.451098442077637,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          16.850898150376263,
+          12.515560915676508,
+          64.78176828941618,
+          8.106807142734123,
+          10.927178988573436,
+          28.5443041542513,
+          36.54864166163404,
+          44.24778036946002,
+          107.27596715065118,
+          10.72412136988262,
+          16.436994554561807,
+          21.509773805932863,
+          15.376065831133584,
+          8.875728136248265,
+          6.111143111865524,
+          5.854374485633448
+        ],
+        "torque_p99_bin_upper_nm": [
+          42.0,
+          30.0,
+          118.4,
+          24.0,
+          34.0,
+          60.8,
+          68.0,
+          70.0,
+          166.4,
+          28.000000000000004,
+          44.0,
+          89.60000000000001,
+          20.2,
+          16.8,
+          10.8,
+          19.2
+        ],
+        "torque_peak_nm": [
+          48.2259411654271,
+          34.44548653386772,
+          132.17494450273546,
+          27.574638650554114,
+          46.42449453790124,
+          111.61643717243695,
+          72.86847043623057,
+          75.92314978467459,
+          186.91515855197372,
+          34.05875467312785,
+          44.17207789380884,
+          99.18602302215797,
+          20.0,
+          20.0,
+          11.626497761658612,
+          20.0
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.2456,
+          0.004,
+          0.0,
+          0.0104
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.216,
+          0.02,
+          0.0,
+          0.03
+        ],
+        "speed_peak_rad_s": [
+          1.4964358309754786,
+          1.439860764303953,
+          2.0594531295979897,
+          1.1688635132341132,
+          3.280524394147516,
+          5.720929385518348,
+          3.4439184256480244,
+          4.616116613822949,
+          7.627293223737481,
+          1.1391687285677325,
+          2.4682383745416137,
+          6.261456831566944,
+          16.935645940366896,
+          23.197941828178664,
+          10.046779986003264,
+          34.080984601421484
+        ],
+        "hard_joint_margin_min_rad": [
+          0.721143959447623,
+          1.8330073068857913,
+          0.9947917208563717,
+          0.6811544319789479,
+          1.8039893099352187,
+          0.7583072932522592,
+          0.49799738434221946,
+          1.5761284593002074,
+          0.6931871353565557,
+          0.6838476301239351,
+          1.6906377870050302,
+          0.7297763955333145
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 10.23601293564084,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_source_shapes",
+      "seed": 7202,
+      "source_state": "moving_control",
+      "mean_body_velocity": [
+        0.23745952902624798,
+        -0.0012725116836990393,
+        0.00593125623801015,
+        0.004721165602269455,
+        0.0018094019999240244,
+        0.002928548171473915
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.08423836127693393,
+        0.053336515310570036,
+        0.06529153447693528
+      ],
+      "diagnostic_dx_m": 1.1072529726131588,
+      "last_second_vx_m_s": 0.24248658922006647,
+      "wheel_slip_rms_m_s": [
+        0.07328187020992379,
+        0.0706708417639363,
+        0.09505582433294713,
+        0.07302691746831372
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        173.23251708375432,
+        198.34444241995465,
+        170.9712461256145,
+        145.8975786477708
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        5.253121033753306,
+        6.444985550063148,
+        4.3625587631198846,
+        5.15739635526512
+      ],
+      "wheel_applied_peak_nm": [
+        5.253121033753306,
+        6.444985550063148,
+        4.3625587631198846,
+        5.15739635526512
+      ],
+      "leg_requested_peak_nm": [
+        28.315880715721192,
+        41.82108546171431,
+        75.89036863449944,
+        30.391200907231465,
+        56.34143014396889,
+        72.80616665774525,
+        33.64228662749766,
+        26.889147608644762,
+        68.82052618683466,
+        31.34481369252933,
+        34.92514528976672,
+        53.29840937260889
+      ],
+      "leg_applied_peak_nm": [
+        28.315880715721192,
+        41.82108546171431,
+        75.89036863449944,
+        30.391200907231465,
+        56.34143014396889,
+        72.80616665774525,
+        33.64228662749766,
+        26.889147608644762,
+        68.82052618683466,
+        31.34481369252933,
+        34.92514528976672,
+        53.29840937260889
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.015602457337081432,
+        "ang_vel_xy_l2": -0.0011950888438150287,
+        "joint_torques_l2": -0.0856604129076004,
+        "joint_acc_l2": -0.0047798603773117065,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.000867806316819042,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.20366372168064117,
+        "joint_mirror": -0.0015961118042469025,
+        "action_rate_l2": -0.0022016000002622604,
+        "undesired_contacts": -0.5040000081062317,
+        "contact_forces": -0.063597172498703,
+        "track_lin_vel_xy_exp": 2.884737968444824,
+        "track_ang_vel_z_exp": 1.4749376773834229,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.997397422790527,
+        "joint_acc_wheel_l2": -1.0061764896818204e-06
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.07801228016614914,
+        "ang_vel_xy_l2": -0.005975444335490465,
+        "joint_torques_l2": -0.4283020794391632,
+        "joint_acc_l2": -0.023899301886558533,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.004339031409472227,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -1.0183186531066895,
+        "joint_mirror": -0.007980559021234512,
+        "action_rate_l2": -0.011008000001311302,
+        "undesired_contacts": -2.5199999809265137,
+        "contact_forces": -0.317985862493515,
+        "track_lin_vel_xy_exp": 14.423689842224121,
+        "track_ang_vel_z_exp": 7.374688148498535,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.98698425292969,
+        "joint_acc_wheel_l2": -5.0308822210354265e-06
+      },
+      "total_reward_rate_mean": 15.473907470703125,
+      "total_reward_rate_after_100ms": 15.48956298828125,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          16.248556363545017,
+          10.214851241137675,
+          42.59952417432697,
+          23.930621809555575,
+          13.117038188355476,
+          45.19015537494652,
+          23.668881333099044,
+          6.131011043661519,
+          39.018397226828796,
+          18.267269235426173,
+          10.467801628750786,
+          31.612055241040643,
+          1.2527236347407578,
+          1.593035932150532,
+          1.4268575670409096,
+          1.4467902840390747
+        ],
+        "torque_p99_bin_upper_nm": [
+          26.0,
+          30.0,
+          70.4,
+          30.0,
+          46.0,
+          70.4,
+          34.0,
+          20.0,
+          60.8,
+          32.0,
+          30.0,
+          48.0,
+          3.8,
+          5.0,
+          4.2,
+          4.4
+        ],
+        "torque_peak_nm": [
+          28.315880715721192,
+          41.82108546171431,
+          75.89036863449944,
+          30.391200907231465,
+          56.34143014396889,
+          72.80616665774525,
+          33.64228662749766,
+          26.889147608644762,
+          68.82052618683466,
+          31.34481369252933,
+          34.92514528976672,
+          53.29840937260889,
+          5.253121033753306,
+          6.444985550063148,
+          4.3625587631198846,
+          5.15739635526512
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.6991318426852624,
+          1.6913164996262604,
+          3.329853973980697,
+          0.2933365829568693,
+          2.1152983001644543,
+          4.03351830924356,
+          0.39595906537683945,
+          1.9327275859086612,
+          3.867015886799545,
+          0.30503154027227,
+          1.8913898580009443,
+          3.4972445108740384,
+          6.96476022634079,
+          9.54273430238382,
+          6.24994033340077,
+          6.433324218629607
+        ],
+        "hard_joint_margin_min_rad": [
+          0.7819883982673581,
+          1.6835353958298784,
+          0.9626646232366205,
+          0.7618972747943971,
+          1.7063248139957685,
+          0.9476340618416352,
+          0.7698565266364665,
+          1.670361415255972,
+          0.9086720354421054,
+          0.7848197775742048,
+          1.704219366001575,
+          0.9053817630667329
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 2.032448294304829,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_source_shapes",
+      "seed": 7203,
+      "source_state": "stall",
+      "mean_body_velocity": [
+        -0.0007232443222569243,
+        0.0003738013435176454,
+        0.0007785406155728962,
+        -0.0006130635086047838,
+        -0.0011514419340824878,
+        0.004557002006769786
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.30091852612900766,
+        0.006678779219615779,
+        0.017564927033700526
+      ],
+      "diagnostic_dx_m": -0.004313477553052447,
+      "last_second_vx_m_s": 0.0009380870125057378,
+      "wheel_slip_rms_m_s": [
+        0.8093595660358577,
+        0.3173782705629611,
+        0.004847177461367371,
+        0.003616875300763432
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        95.59423011393473,
+        352.61559590811686,
+        334.23249809887295,
+        215.0265240675587
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.6504,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        15.398169478540133,
+        28.399846478611202,
+        6.481247546958524,
+        4.279430987037538
+      ],
+      "wheel_applied_peak_nm": [
+        15.398169478540133,
+        20.0,
+        6.481247546958524,
+        4.279430987037538
+      ],
+      "leg_requested_peak_nm": [
+        18.861611798599256,
+        32.683197116166795,
+        40.55658407302572,
+        32.61597837480927,
+        30.13345972350085,
+        73.83089861972165,
+        53.21406378080937,
+        63.74945226746948,
+        104.37041312534589,
+        38.42357454244272,
+        30.065079473570233,
+        62.540336308983235
+      ],
+      "leg_applied_peak_nm": [
+        18.861611798599256,
+        32.683197116166795,
+        40.55658407302572,
+        32.61597837480927,
+        30.13345972350085,
+        73.83089861972165,
+        53.21406378080937,
+        63.74945226746948,
+        104.37041312534589,
+        38.42357454244272,
+        30.065079473570233,
+        62.540336308983235
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.00130851985886693,
+        "ang_vel_xy_l2": -0.0002434997004456818,
+        "joint_torques_l2": -0.22296538949012756,
+        "joint_acc_l2": -0.0017325637163594365,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0007084435783326626,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.5852784514427185,
+        "joint_mirror": -0.01672302559018135,
+        "action_rate_l2": -0.009259765967726707,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.08671528100967407,
+        "track_lin_vel_xy_exp": 2.088747024536133,
+        "track_ang_vel_z_exp": 1.4981530904769897,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.713421821594238,
+        "joint_acc_wheel_l2": -0.0001300174044445157
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.006542598828673363,
+        "ang_vel_xy_l2": -0.0012174984440207481,
+        "joint_torques_l2": -1.1148269176483154,
+        "joint_acc_l2": -0.008662818931043148,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.003542217891663313,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -2.926392078399658,
+        "joint_mirror": -0.08361513167619705,
+        "action_rate_l2": -0.04629882797598839,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.433576375246048,
+        "track_lin_vel_xy_exp": 10.443735122680664,
+        "track_ang_vel_z_exp": 7.49076509475708,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 58.567108154296875,
+        "joint_acc_wheel_l2": -0.0006500869640149176
+      },
+      "total_reward_rate_mean": 14.375256538391113,
+      "total_reward_rate_after_100ms": 14.373924255371094,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          10.66279677764362,
+          13.305907234529352,
+          22.492959295034797,
+          26.67157300503964,
+          16.21864245326201,
+          60.201528639240934,
+          48.965832564565744,
+          52.14592561699921,
+          88.81558986177107,
+          34.406050501262406,
+          19.51566225410265,
+          48.69072344355956,
+          8.967939562423817,
+          18.72918409452235,
+          4.7129791724216314,
+          2.208039978428113
+        ],
+        "torque_p99_bin_upper_nm": [
+          18.0,
+          30.0,
+          35.2,
+          32.0,
+          26.0,
+          73.60000000000001,
+          54.0,
+          64.0,
+          102.4,
+          40.0,
+          30.0,
+          64.0,
+          14.0,
+          20.2,
+          6.4,
+          3.8
+        ],
+        "torque_peak_nm": [
+          18.861611798599256,
+          32.683197116166795,
+          40.55658407302572,
+          32.61597837480927,
+          30.13345972350085,
+          73.83089861972165,
+          53.21406378080937,
+          63.74945226746948,
+          104.37041312534589,
+          38.42357454244272,
+          30.065079473570233,
+          62.540336308983235,
+          15.398169478540133,
+          20.0,
+          6.481247546958524,
+          4.279430987037538
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.7016,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.12,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.39807349507476797,
+          1.5373940388599694,
+          2.4083457322467763,
+          0.3254703367566573,
+          1.2994483854826144,
+          1.4049286669839585,
+          0.17394468846586406,
+          0.3583360842354777,
+          0.37954308695046834,
+          0.16385549328944196,
+          0.2561890691682993,
+          0.3374862509126371,
+          23.443517619876946,
+          16.89071752707521,
+          0.6516095964163111,
+          0.7538370889040032
+        ],
+        "hard_joint_margin_min_rad": [
+          0.6586060597401413,
+          1.7426525341545407,
+          1.0259398639907478,
+          0.6808489292093313,
+          1.807459431880437,
+          1.0407429706387124,
+          0.7307607078572065,
+          1.658135194993138,
+          0.8094297646104092,
+          0.7508736883523714,
+          1.7522696201682102,
+          0.8708051992405859
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 12.776688303969813,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "mujoco_source_shapes",
+      "seed": 7204,
+      "source_state": "moving_control",
+      "mean_body_velocity": [
+        0.2453717843925082,
+        0.0004977183870295052,
+        0.0027391554639018562,
+        -0.0025763641995881718,
+        -0.0002255455698557749,
+        0.0017477126923120506
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.06536900935015956,
+        0.044610329128699715,
+        0.046977331438728454
+      ],
+      "diagnostic_dx_m": 1.1754429674205262,
+      "last_second_vx_m_s": 0.2416046875671783,
+      "wheel_slip_rms_m_s": [
+        0.06930206464616172,
+        0.07916055194866913,
+        0.08058299200459278,
+        0.07642476116269128
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        185.6147102967779,
+        200.8530018762115,
+        178.4975893001205,
+        148.60216643997902
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        4.6341627475920895,
+        6.887863306248208,
+        3.943975287174166,
+        3.388333318767577
+      ],
+      "wheel_applied_peak_nm": [
+        4.6341627475920895,
+        6.887863306248208,
+        3.943975287174166,
+        3.388333318767577
+      ],
+      "leg_requested_peak_nm": [
+        31.816837352542525,
+        41.19896607676863,
+        80.75324587473088,
+        36.55597196969101,
+        38.92387465644354,
+        75.69702119748649,
+        23.73027589561983,
+        35.73434693072354,
+        61.70814145919793,
+        24.926079779688887,
+        21.542322707645784,
+        47.1853178595071
+      ],
+      "leg_applied_peak_nm": [
+        31.816837352542525,
+        41.19896607676863,
+        80.75324587473088,
+        36.55597196969101,
+        38.92387465644354,
+        75.69702119748649,
+        23.73027589561983,
+        35.73434693072354,
+        61.70814145919793,
+        24.926079779688887,
+        21.542322707645784,
+        47.1853178595071
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.009451474994421005,
+        "ang_vel_xy_l2": -0.0014920126413926482,
+        "joint_torques_l2": -0.08318033814430237,
+        "joint_acc_l2": -0.004527091048657894,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0007776741404086351,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.2002689093351364,
+        "joint_mirror": -0.0017110725166276097,
+        "action_rate_l2": -0.0019191877217963338,
+        "undesired_contacts": -0.40799999237060547,
+        "contact_forces": -0.06647650897502899,
+        "track_lin_vel_xy_exp": 2.9263033866882324,
+        "track_ang_vel_z_exp": 1.4869014024734497,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.994906425476074,
+        "joint_acc_wheel_l2": -1.2007192253804533e-06
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.047257374972105026,
+        "ang_vel_xy_l2": -0.007460062857717276,
+        "joint_torques_l2": -0.41590166091918945,
+        "joint_acc_l2": -0.022635454311966896,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0038883707020431757,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -1.0013445615768433,
+        "joint_mirror": -0.008555362932384014,
+        "action_rate_l2": -0.00959593802690506,
+        "undesired_contacts": -2.0399999618530273,
+        "contact_forces": -0.33238252997398376,
+        "track_lin_vel_xy_exp": 14.63151741027832,
+        "track_ang_vel_z_exp": 7.434506893157959,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.97452926635742,
+        "joint_acc_wheel_l2": -6.003596354275942e-06
+      },
+      "total_reward_rate_mean": 15.630305290222168,
+      "total_reward_rate_after_100ms": 15.62037467956543,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          21.727104289189114,
+          8.949890294704336,
+          42.467096826160486,
+          26.556662050164206,
+          10.664975891095047,
+          43.52248147216859,
+          18.034379892533273,
+          7.619225733864008,
+          39.902353555834594,
+          15.50173215572792,
+          6.115101191393899,
+          31.28859677788444,
+          1.1141763859294191,
+          1.5313809614101828,
+          1.4324275520887746,
+          1.2304518291510373
+        ],
+        "torque_p99_bin_upper_nm": [
+          32.0,
+          32.0,
+          70.4,
+          36.0,
+          36.0,
+          70.4,
+          24.0,
+          32.0,
+          57.599999999999994,
+          26.0,
+          20.0,
+          44.800000000000004,
+          3.8,
+          5.4,
+          3.5999999999999996,
+          3.0
+        ],
+        "torque_peak_nm": [
+          31.816837352542525,
+          41.19896607676863,
+          80.75324587473088,
+          36.55597196969101,
+          38.92387465644354,
+          75.69702119748649,
+          23.73027589561983,
+          35.73434693072354,
+          61.70814145919793,
+          24.926079779688887,
+          21.542322707645784,
+          47.1853178595071,
+          4.6341627475920895,
+          6.887863306248208,
+          3.943975287174166,
+          3.388333318767577
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.5286107906054206,
+          1.8663060500052668,
+          3.7816262688420164,
+          0.4875771110058239,
+          1.9708621684176364,
+          3.360000852721647,
+          0.22783030659226663,
+          2.8586402915506497,
+          4.684153625715628,
+          0.4954744715666939,
+          1.825567826188688,
+          4.277726019912343,
+          7.530599675951878,
+          7.289659632358875,
+          6.613330882840957,
+          5.544291095804051
+        ],
+        "hard_joint_margin_min_rad": [
+          0.7466420202116487,
+          1.6825156924638687,
+          0.9713472488618973,
+          0.7541540649329705,
+          1.6974369858488054,
+          0.9219316229362191,
+          0.7984967631767815,
+          1.6854744673607291,
+          0.9154038495565473,
+          0.7998099582381956,
+          1.7137205032146536,
+          0.9284282549395908
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 2.892025462803708,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "isaac_contactmesh",
+      "seed": 7201,
+      "source_state": "stall",
+      "mean_body_velocity": [
+        0.1317395567893982,
+        -0.020944450050592422,
+        0.015424646437168121,
+        -0.005199255421757698,
+        0.007913030683994293,
+        0.0018442973960191011
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.2190682760615756,
+        0.09600792998795583,
+        0.07406715591408895
+      ],
+      "diagnostic_dx_m": 0.4781634767997631,
+      "last_second_vx_m_s": 0.3466245234012604,
+      "wheel_slip_rms_m_s": [
+        0.4700568778216651,
+        0.4245835595965386,
+        0.153935129175372,
+        0.3533590175901069
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        231.1617660057068,
+        173.84534474105834,
+        364.6927950683594,
+        133.5989493455887
+      ],
+      "wheel_saturation_fraction": [
+        0.4016,
+        0.2832,
+        0.0632,
+        0.0624
+      ],
+      "wheel_requested_peak_nm": [
+        50.15508270263672,
+        69.89400482177734,
+        35.801536560058594,
+        37.235652923583984
+      ],
+      "wheel_applied_peak_nm": [
+        20.0,
+        20.0,
+        20.0,
+        20.0
+      ],
+      "leg_requested_peak_nm": [
+        58.20115280151367,
+        69.9628677368164,
+        145.698486328125,
+        67.71920013427734,
+        58.58808517456055,
+        119.04391479492188,
+        74.4662094116211,
+        94.62489318847656,
+        184.98764038085938,
+        63.63498306274414,
+        62.01163101196289,
+        159.32313537597656
+      ],
+      "leg_applied_peak_nm": [
+        58.20115280151367,
+        69.9628677368164,
+        145.698486328125,
+        67.71920013427734,
+        58.58808517456055,
+        119.04391479492188,
+        74.4662094116211,
+        94.62489318847656,
+        184.98764038085938,
+        63.63498306274414,
+        62.01163101196289,
+        159.32313537597656
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.01722291111946106,
+        "ang_vel_xy_l2": -0.0050559090450406075,
+        "joint_torques_l2": -0.2325729876756668,
+        "joint_acc_l2": -0.03093441016972065,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0018856264650821686,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.7608919739723206,
+        "joint_mirror": -0.016448095440864563,
+        "action_rate_l2": -0.018111182376742363,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.14907033741474152,
+        "track_lin_vel_xy_exp": 2.4278018474578857,
+        "track_ang_vel_z_exp": 1.4682084321975708,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.877331733703613,
+        "joint_acc_wheel_l2": -0.001676867133937776
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.0861145555973053,
+        "ang_vel_xy_l2": -0.025279544293880463,
+        "joint_torques_l2": -1.1628649234771729,
+        "joint_acc_l2": -0.1546720415353775,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.009428132325410843,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -3.804459810256958,
+        "joint_mirror": -0.08224047720432281,
+        "action_rate_l2": -0.09055591374635696,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.7453516721725464,
+        "track_lin_vel_xy_exp": 12.139008522033691,
+        "track_ang_vel_z_exp": 7.341041564941406,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.38665771484375,
+        "joint_acc_wheel_l2": -0.008384335786104202
+      },
+      "total_reward_rate_mean": 14.539469718933105,
+      "total_reward_rate_after_100ms": 14.552375793457031,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          19.739587379753036,
+          22.082006841522787,
+          58.59709964787662,
+          23.513149302890465,
+          18.016005800889086,
+          46.52480048666623,
+          33.650571140638455,
+          43.850852387653596,
+          100.07797854481342,
+          16.466170753602757,
+          22.395480546716794,
+          46.994084560835134,
+          15.052520439409912,
+          13.79460689038815,
+          11.518233810647079,
+          10.88071037526239
+        ],
+        "torque_p99_bin_upper_nm": [
+          54.0,
+          64.0,
+          137.6,
+          54.0,
+          54.0,
+          115.19999999999999,
+          68.0,
+          90.0,
+          169.60000000000002,
+          54.0,
+          57.99999999999999,
+          156.8,
+          20.2,
+          20.2,
+          20.2,
+          20.2
+        ],
+        "torque_peak_nm": [
+          58.20115280151367,
+          69.9628677368164,
+          145.698486328125,
+          67.71920013427734,
+          58.58808517456055,
+          119.04391479492188,
+          74.4662094116211,
+          94.62489318847656,
+          184.98764038085938,
+          63.63498306274414,
+          62.01163101196289,
+          159.32313537597656,
+          20.0,
+          20.0,
+          20.0,
+          20.0
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.4188,
+          0.3112,
+          0.0832,
+          0.0764
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.34400000000000003,
+          0.9500000000000001,
+          0.16,
+          0.214
+        ],
+        "speed_peak_rad_s": [
+          3.8827388286590576,
+          3.487461566925049,
+          5.472887992858887,
+          2.592514991760254,
+          5.4877028465271,
+          5.972299575805664,
+          2.8985321521759033,
+          3.6267895698547363,
+          4.627182960510254,
+          1.442021369934082,
+          3.9397459030151367,
+          7.216872215270996,
+          23.232023239135742,
+          28.599729537963867,
+          23.66460418701172,
+          25.699031829833984
+        ],
+        "hard_joint_margin_min_rad": [
+          0.6629328727722168,
+          1.8442373275756836,
+          0.9117721319198608,
+          0.6459263563156128,
+          1.7785152196884155,
+          0.712893009185791,
+          0.48281803727149963,
+          1.580264687538147,
+          0.47711387276649475,
+          0.6785005331039429,
+          1.7006661891937256,
+          0.8128174543380737
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 12.320625305175781,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "isaac_contactmesh",
+      "seed": 7202,
+      "source_state": "moving_control",
+      "mean_body_velocity": [
+        0.2972317934036255,
+        -0.0018417701357975602,
+        0.007451451383531094,
+        0.003898284398019314,
+        0.004651759751141071,
+        0.0009275285992771387
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.016091803259727668,
+        0.017817754324780707,
+        0.02468869795899791
+      ],
+      "diagnostic_dx_m": 1.3859202411701066,
+      "last_second_vx_m_s": 0.3010733723640442,
+      "wheel_slip_rms_m_s": [
+        0.04131713487688595,
+        0.0350203678018309,
+        0.01322971290462106,
+        0.022912407159284765
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        214.5987825805664,
+        219.94716669921874,
+        195.52922159729005,
+        178.5594574798584
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        13.33572006225586,
+        9.883718490600586,
+        7.3106794357299805,
+        11.740819931030273
+      ],
+      "wheel_applied_peak_nm": [
+        13.33572006225586,
+        9.883718490600586,
+        7.3106794357299805,
+        11.740819931030273
+      ],
+      "leg_requested_peak_nm": [
+        32.27268981933594,
+        20.725828170776367,
+        77.11482238769531,
+        35.44379425048828,
+        17.21099853515625,
+        86.25945281982422,
+        26.35958480834961,
+        16.584793090820312,
+        47.64449691772461,
+        24.3445987701416,
+        33.66893005371094,
+        69.17515563964844
+      ],
+      "leg_applied_peak_nm": [
+        32.27268981933594,
+        20.725828170776367,
+        77.11482238769531,
+        35.44379425048828,
+        17.21099853515625,
+        86.25945281982422,
+        26.35958480834961,
+        16.584793090820312,
+        47.64449691772461,
+        24.3445987701416,
+        33.66893005371094,
+        69.17515563964844
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.0018650363199412823,
+        "ang_vel_xy_l2": -0.00014621656737290323,
+        "joint_torques_l2": -0.08596684783697128,
+        "joint_acc_l2": -0.003846406703814864,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.00034000579034909606,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.18674179911613464,
+        "joint_mirror": -0.0016371053643524647,
+        "action_rate_l2": -0.004142686724662781,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.06919170916080475,
+        "track_lin_vel_xy_exp": 2.99316668510437,
+        "track_ang_vel_z_exp": 1.4963572025299072,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.996099472045898,
+        "joint_acc_wheel_l2": -1.4519539945467841e-05
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.009325182065367699,
+        "ang_vel_xy_l2": -0.0007310828659683466,
+        "joint_torques_l2": -0.429834246635437,
+        "joint_acc_l2": -0.01923203282058239,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0017000288935378194,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.9337090253829956,
+        "joint_mirror": -0.008185526356101036,
+        "action_rate_l2": -0.020713433623313904,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.34595856070518494,
+        "track_lin_vel_xy_exp": 14.96583366394043,
+        "track_ang_vel_z_exp": 7.481785774230957,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.98049545288086,
+        "joint_acc_wheel_l2": -7.259769336087629e-05
+      },
+      "total_reward_rate_mean": 16.131731033325195,
+      "total_reward_rate_after_100ms": 16.14162254333496,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          22.279631694098594,
+          4.447701184566415,
+          43.58139130668977,
+          28.795411307034815,
+          6.284444512216609,
+          42.822813560704795,
+          21.757445478838925,
+          4.059144400302201,
+          39.30548652443895,
+          17.735750052070404,
+          4.915010229521125,
+          33.295754413298454,
+          3.269530703974864,
+          3.5665499485953878,
+          3.0850957804625176,
+          2.6511196975324656
+        ],
+        "torque_p99_bin_upper_nm": [
+          30.0,
+          14.000000000000002,
+          54.400000000000006,
+          36.0,
+          14.000000000000002,
+          60.8,
+          28.000000000000004,
+          14.000000000000002,
+          48.0,
+          26.0,
+          16.0,
+          44.800000000000004,
+          7.800000000000001,
+          7.6,
+          6.6000000000000005,
+          6.4
+        ],
+        "torque_peak_nm": [
+          32.27268981933594,
+          20.725828170776367,
+          77.11482238769531,
+          35.44379425048828,
+          17.21099853515625,
+          86.25945281982422,
+          26.35958480834961,
+          16.584793090820312,
+          47.64449691772461,
+          24.3445987701416,
+          33.66893005371094,
+          69.17515563964844,
+          13.33572006225586,
+          9.883718490600586,
+          7.3106794357299805,
+          11.740819931030273
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.4829731583595276,
+          2.0799121856689453,
+          4.045466899871826,
+          0.2741616368293762,
+          1.4825029373168945,
+          1.3737154006958008,
+          0.20246610045433044,
+          0.8276152014732361,
+          1.220932960510254,
+          0.3019590973854065,
+          2.716630220413208,
+          4.380241394042969,
+          7.46525239944458,
+          6.902746677398682,
+          5.9578118324279785,
+          7.737227439880371
+        ],
+        "hard_joint_margin_min_rad": [
+          0.7390539646148682,
+          1.7071938514709473,
+          1.0434291362762451,
+          0.7342504262924194,
+          1.7219380140304565,
+          1.0367748737335205,
+          0.7895330786705017,
+          1.6897025108337402,
+          1.0371805429458618,
+          0.7894515991210938,
+          1.7284619808197021,
+          0.9444154500961304
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 1.7775120735168457,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "isaac_contactmesh",
+      "seed": 7203,
+      "source_state": "stall",
+      "mean_body_velocity": [
+        0.01354648545384407,
+        0.0014910598983988166,
+        -0.00023198663257062435,
+        0.0022523351944983006,
+        -0.0046801152639091015,
+        0.0035758300218731165
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.28826065701466086,
+        0.015110163471759513,
+        0.023477636154926138
+      ],
+      "diagnostic_dx_m": 0.07162174294989265,
+      "last_second_vx_m_s": 0.0008752281428314745,
+      "wheel_slip_rms_m_s": [
+        1.0285832866844498,
+        0.2588937641178206,
+        0.008869135961435862,
+        0.0048900191684157655
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        113.72444108581543,
+        326.4808823654175,
+        324.97360559692385,
+        236.49056422729493
+      ],
+      "wheel_saturation_fraction": [
+        0.1868,
+        0.9744,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        47.20092010498047,
+        50.980403900146484,
+        16.695127487182617,
+        13.618216514587402
+      ],
+      "wheel_applied_peak_nm": [
+        20.0,
+        20.0,
+        16.695127487182617,
+        13.618216514587402
+      ],
+      "leg_requested_peak_nm": [
+        19.152318954467773,
+        42.96746063232422,
+        40.693939208984375,
+        37.77370834350586,
+        29.245376586914062,
+        82.52179718017578,
+        57.72868728637695,
+        76.70470428466797,
+        114.91548156738281,
+        40.516265869140625,
+        41.37355041503906,
+        90.21088409423828
+      ],
+      "leg_applied_peak_nm": [
+        19.152318954467773,
+        42.96746063232422,
+        40.693939208984375,
+        37.77370834350586,
+        29.245376586914062,
+        82.52179718017578,
+        57.72868728637695,
+        76.70470428466797,
+        114.91548156738281,
+        40.516265869140625,
+        41.37355041503906,
+        90.21088409423828
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.0006171903805807233,
+        "ang_vel_xy_l2": -0.0003424568276386708,
+        "joint_torques_l2": -0.23998811841011047,
+        "joint_acc_l2": -0.01125981193035841,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.00050118297804147,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.6520841717720032,
+        "joint_mirror": -0.019420722499489784,
+        "action_rate_l2": -0.006033991929143667,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.11554645001888275,
+        "track_lin_vel_xy_exp": 2.1560423374176025,
+        "track_ang_vel_z_exp": 1.4967243671417236,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.694876670837402,
+        "joint_acc_wheel_l2": -0.002005075104534626
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.0030859517864882946,
+        "ang_vel_xy_l2": -0.0017122840508818626,
+        "joint_torques_l2": -1.19994056224823,
+        "joint_acc_l2": -0.056299060583114624,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0025059147737920284,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -3.260420799255371,
+        "joint_mirror": -0.09710361063480377,
+        "action_rate_l2": -0.030169958248734474,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.5777322053909302,
+        "track_lin_vel_xy_exp": 10.780210494995117,
+        "track_ang_vel_z_exp": 7.483621597290039,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 58.47438430786133,
+        "joint_acc_wheel_l2": -0.01002537552267313
+      },
+      "total_reward_rate_mean": 14.299845695495605,
+      "total_reward_rate_after_100ms": 14.297981262207031,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          8.761429875112952,
+          8.901369652573559,
+          20.527667346974628,
+          27.374088667630577,
+          11.172559882407072,
+          54.37322731597677,
+          49.17409099858491,
+          59.00429592928257,
+          91.09611036714705,
+          30.69558415507178,
+          30.1080530541202,
+          59.99783280225042,
+          13.504527660579885,
+          19.891993242554737,
+          10.38568701088923,
+          6.859141081940591
+        ],
+        "torque_p99_bin_upper_nm": [
+          18.0,
+          34.0,
+          38.4,
+          36.0,
+          24.0,
+          70.4,
+          57.99999999999999,
+          74.0,
+          112.0,
+          40.0,
+          42.0,
+          86.4,
+          20.2,
+          20.2,
+          16.0,
+          13.0
+        ],
+        "torque_peak_nm": [
+          19.152318954467773,
+          42.96746063232422,
+          40.693939208984375,
+          37.77370834350586,
+          29.245376586914062,
+          82.52179718017578,
+          57.72868728637695,
+          76.70470428466797,
+          114.91548156738281,
+          40.516265869140625,
+          41.37355041503906,
+          90.21088409423828,
+          20.0,
+          20.0,
+          16.695127487182617,
+          13.618216514587402
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.2048,
+          0.976,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.02,
+          2.49,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          1.1215671300888062,
+          4.278688907623291,
+          3.5271544456481934,
+          0.7005205750465393,
+          2.671598434448242,
+          3.1742587089538574,
+          0.3742121756076813,
+          0.6838431358337402,
+          0.5568220019340515,
+          0.3711000680923462,
+          0.4953289330005646,
+          0.5973146557807922,
+          26.285310745239258,
+          21.98729705810547,
+          4.589222431182861,
+          2.583804130554199
+        ],
+        "hard_joint_margin_min_rad": [
+          0.665064811706543,
+          1.7550606727600098,
+          1.0319026708602905,
+          0.6787630319595337,
+          1.8322789669036865,
+          1.026297926902771,
+          0.7171853184700012,
+          1.6536130905151367,
+          0.7657437324523926,
+          0.7639341354370117,
+          1.7077237367630005,
+          0.8207798004150391
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 13.767800331115723,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    },
+    {
+      "condition": "isaac_contactmesh",
+      "seed": 7204,
+      "source_state": "moving_control",
+      "mean_body_velocity": [
+        0.30422157049179077,
+        0.0030589676462113857,
+        0.006655311211943626,
+        -0.00038684328319504857,
+        0.0031644171103835106,
+        0.0028819176368415356
+      ],
+      "tracking_rmse_vx_vy_wz": [
+        0.010736056686699552,
+        0.011682894752882991,
+        0.026410171001994723
+      ],
+      "diagnostic_dx_m": 1.460044512506781,
+      "last_second_vx_m_s": 0.308823823928833,
+      "wheel_slip_rms_m_s": [
+        0.03515270498972414,
+        0.04277882683029458,
+        0.009871942607093342,
+        0.02234402466659687
+      ],
+      "wheel_mean_loaded_normal_force_n": [
+        219.58809897155763,
+        218.6053357269287,
+        191.19888139343263,
+        179.4877804748535
+      ],
+      "wheel_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "wheel_requested_peak_nm": [
+        8.690906524658203,
+        10.251230239868164,
+        8.735084533691406,
+        7.862393379211426
+      ],
+      "wheel_applied_peak_nm": [
+        8.690906524658203,
+        10.251230239868164,
+        8.735084533691406,
+        7.862393379211426
+      ],
+      "leg_requested_peak_nm": [
+        46.162010192871094,
+        11.46403694152832,
+        56.81166458129883,
+        44.597293853759766,
+        18.34221649169922,
+        56.013328552246094,
+        26.26127052307129,
+        7.981235980987549,
+        52.195674896240234,
+        28.6107120513916,
+        9.177098274230957,
+        46.88832092285156
+      ],
+      "leg_applied_peak_nm": [
+        46.162010192871094,
+        11.46403694152832,
+        56.81166458129883,
+        44.597293853759766,
+        18.34221649169922,
+        56.013328552246094,
+        26.26127052307129,
+        7.981235980987549,
+        52.195674896240234,
+        28.6107120513916,
+        9.177098274230957,
+        46.88832092285156
+      ],
+      "reward_rate_mean": {
+        "lin_vel_z_l2": -0.0009363014833070338,
+        "ang_vel_xy_l2": -0.00011220367741771042,
+        "joint_torques_l2": -0.09489526599645615,
+        "joint_acc_l2": -0.0013204298447817564,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.0003095754364039749,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -0.22498741745948792,
+        "joint_mirror": -0.0022235296200960875,
+        "action_rate_l2": -0.004377147648483515,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.06794843077659607,
+        "track_lin_vel_xy_exp": 2.996985673904419,
+        "track_ang_vel_z_exp": 1.4958306550979614,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 11.993463516235352,
+        "joint_acc_wheel_l2": -4.672020622820128e-06
+      },
+      "reward_integral": {
+        "lin_vel_z_l2": -0.004681507125496864,
+        "ang_vel_xy_l2": -0.0005610184161923826,
+        "joint_torques_l2": -0.47447630763053894,
+        "joint_acc_l2": -0.006602148991078138,
+        "joint_pos_limits": 0.0,
+        "joint_power": -0.001547877211123705,
+        "stand_still": 0.0,
+        "joint_pos_penalty": -1.1249370574951172,
+        "joint_mirror": -0.011117647401988506,
+        "action_rate_l2": -0.021885737776756287,
+        "undesired_contacts": 0.0,
+        "contact_forces": -0.33974215388298035,
+        "track_lin_vel_xy_exp": 14.9849271774292,
+        "track_ang_vel_z_exp": 7.479153156280518,
+        "feet_contact_without_cmd": 0.0,
+        "upward": 59.96731948852539,
+        "joint_acc_wheel_l2": -2.3360102204605937e-05
+      },
+      "total_reward_rate_mean": 16.08916473388672,
+      "total_reward_rate_after_100ms": 16.0887393951416,
+      "safety": {
+        "physics_samples": 2500,
+        "unsafe_flags": [],
+        "unsafe_time_s": null,
+        "torque_rms_nm": [
+          32.274887190381556,
+          4.888360047289592,
+          43.55782670946023,
+          35.29848358303397,
+          7.139697828586744,
+          41.423661085537724,
+          21.193191828431814,
+          3.193805833452791,
+          38.89243236528266,
+          20.680575684553155,
+          4.356091778320621,
+          32.98010003754276,
+          3.56536352678301,
+          3.7467215275802372,
+          3.2689234065111035,
+          2.718166845085525
+        ],
+        "torque_p99_bin_upper_nm": [
+          46.0,
+          12.0,
+          57.599999999999994,
+          46.0,
+          18.0,
+          54.400000000000006,
+          26.0,
+          8.0,
+          48.0,
+          30.0,
+          10.0,
+          48.0,
+          7.800000000000001,
+          8.4,
+          7.6,
+          6.800000000000001
+        ],
+        "torque_peak_nm": [
+          46.162010192871094,
+          11.46403694152832,
+          56.81166458129883,
+          44.597293853759766,
+          18.34221649169922,
+          56.013328552246094,
+          26.26127052307129,
+          7.981235980987549,
+          52.195674896240234,
+          28.6107120513916,
+          9.177098274230957,
+          46.88832092285156,
+          8.690906524658203,
+          10.251230239868164,
+          8.735084533691406,
+          7.862393379211426
+        ],
+        "torque_saturation_fraction": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "longest_saturation_s": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed_peak_rad_s": [
+          0.14496290683746338,
+          0.6474774479866028,
+          0.8473821878433228,
+          0.1852644383907318,
+          0.6880695223808289,
+          1.2598257064819336,
+          0.14711464941501617,
+          0.720892071723938,
+          0.8032240271568298,
+          0.13258053362369537,
+          0.7296867966651917,
+          0.8648691177368164,
+          5.223709583282471,
+          5.778969764709473,
+          5.46360445022583,
+          5.398519039154053
+        ],
+        "hard_joint_margin_min_rad": [
+          0.6770698428153992,
+          1.715561866760254,
+          1.044257640838623,
+          0.7060396671295166,
+          1.7165954113006592,
+          1.024458885192871,
+          0.7996520400047302,
+          1.696340799331665,
+          1.0549169778823853,
+          0.7822303771972656,
+          1.7157167196273804,
+          0.9977277517318726
+        ],
+        "base_hip_force_peak_n": 0.0,
+        "tilt_peak_deg": 2.3192527294158936,
+        "physical_target_slew_peak": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "wheel_rolling_residual_peak_m_s": 0.0
+      }
+    }
+  ],
+  "inputs": {
+    "logs\\replay57_19999_20260925\\capture.json": "9567af0234fad1d21853366b59b57f05daeff56d36cce53595e08d629396ef4d",
+    "logs\\replay57_19999_20260925\\isaac_contactmesh.json": "5c0431f24dee2e0406f8d55bb527690c4add8372faaaff87cd3181fb38e22aae",
+    "logs\\replay57_19999_20260925\\isaac_nominal.json": "6e3262084028c15bf1c9a5d3806604d8449976df689cde0b6faaec7bfb33a4a2",
+    "logs\\replay57_19999_20260925\\mujoco_cooked_shapes.json": "eef74df8f6cd0adad2569fbc2333b760f67d53de28a593ff6771ad9ab4ce72bc",
+    "logs\\replay57_19999_20260925\\mujoco_cooked_shapes_ledger.json": "fc4edba3e73a5d4e4dc29449988537f5b2c8c6b7c967e934434c12b66bc01c77",
+    "logs\\replay57_19999_20260925\\mujoco_source_shapes.json": "1c6d15de18e2b2758e8e5ffbf12912e13a4434967eb9a711c7fae1fa667ce6d9",
+    "logs\\replay57_19999_20260925\\mujoco_source_shapes_ledger.json": "e2b936f9cbcc1a73c25b5dc598d4fcf8b81cb1d0ed488d846fafb70094d6ff6e",
+    "logs\\replay57_19999_20260925\\warm_check.json": "a31318a170920c8f540530b025d114572e3f8ecb5d756b2b7849b687d6468b27",
+    "logs\\replay57_19999_20260925\\warm_check_ledger.json": "265ffa45df0c790a5918e72309febb2c8b70ca580d9f8ef4ad9c68e559613f01",
+    "logs\\replay57_19999_20260925\\capture.npz": "cdc218462d9f6f136383cb842fe90abe70082ea19a164e24c41d332cef145174",
+    "logs\\replay57_19999_20260925\\isaac_contactmesh.npz": "22f6650c10771b0408425813165d2f49b8046da0d50c448ee4d5aedee3a58870",
+    "logs\\replay57_19999_20260925\\isaac_nominal.npz": "9efdd4be0d01710dc66b725ba14115400e3d467621b6ba5b1ff6dd6f4a7618f4",
+    "logs\\replay57_19999_20260925\\mujoco_cooked_shapes.npz": "88792d97c242d2310b0fc71235ae68b4e308661e9b28c5b10ebe13867a79dd24",
+    "logs\\replay57_19999_20260925\\mujoco_cooked_shapes_ledger.npz": "3bfacbd4efe2af273259e7241c397b15d07f06cbce8b66f9d5f0e9a0a799750d",
+    "logs\\replay57_19999_20260925\\mujoco_source_shapes.npz": "1b092c1bf117d6fd741ed726c70b1f9ec937d6e9e585aa938ec1153ea0f0f54d",
+    "logs\\replay57_19999_20260925\\mujoco_source_shapes_ledger.npz": "712abb8fbbe8a1a7bf87bb6865a3d3d6655919edac6dce6f92490cdaea23235f",
+    "logs\\replay57_19999_20260925\\warm_check.npz": "ebcc4278d687b61c0559af424081617bd1a7babf1c047d6b5bad907f6befdb26",
+    "logs\\replay57_19999_20260925\\warm_check_ledger.npz": "20d4537dab018e4a669f9fdd59d5f2c75dab7547af0891ad57b3216877b9bfca"
+  },
+  "sources": {
+    "replay57_contactmesh.py": "f4392e0dd6d1398ee1e9d29ae0cece983e998a10dfc813fc11de3bce5e69f23a",
+    "replay57_contactreports.py": "ea411d12988764de561142bbcace6927cbdf5b381bc531a5796f4edf35b3a7fc",
+    "replay57_isaac.py": "dbfd8f4ba99bd4fc0d0d14bcac83ed37f4bb9cfae2b7cbf8e2ab6cacc316de1a",
+    "replay57_mujoco.py": "24036554861fc0b678339f7d25c81e6c72e6293d120edc22d3f6739dd44d0d06",
+    "replay57_protocol.py": "52ba4d4122b293a5a05bbdae7480bad9c805c936b6f5da10e6bd30ed473f8d8a",
+    "replay57_rewards.py": "94f0ffaa2e4b97619a929e39a59e3cb69dfaaeb9e5c6615470aea19a8b4f4404",
+    "replay57_summary.py": "cd1f87712269380333fc923d2e4eb34935aff9dc5c5a49d98d7b0c452f14331a"
+  },
+  "initial_loader_revision": {
+    "path": "docs\\results\\evidence\\replay57_19999_20260925\\replay57_protocol_initial.py.txt",
+    "sha256": "8602fedb1358afd8e37a876514bee47c3023bfb80015249badf464acedcbe72d"
+  },
+  "limitations": [
+    "four selected states, not independent qualification episodes",
+    "fresh solver contacts; original warmstart available only for same-engine check",
+    "MuJoCo post-step contact velocity has a 2 ms kinematic/velocity staging difference",
+    "Isaac wheel applied torque is implicit PD estimate, MuJoCo is solver actuator force",
+    "saved reward functions on diagnostic physics/command traces, not complete original training returns",
+    "moving states and stalled states have different terrain/body poses; reward comparisons are not causal rescue rollouts"
+  ],
+  "decision": "Prepare one recovery-reset-mixture PPO A/B; preserve all rewards and actuator limits. No PPO executed."
+}

@@ -14,6 +14,7 @@ geometry sets, horizons и machine lines напрямую не сравнива�
 
 | Проверка | Результат | Решение | Evidence |
 |---|---|---|---|
+| Replay57, только19999 | 4 full states,4 exact continuation checks,12 fresh replay; unsafe0;17 reward terms | Один stall переносится в Isaac; движущиеся контроли имеют больший reward. Выбран planned reset-mixture20%/0% pilot; PPO не запускался | [Отчет](2026-09-25-replay57-19999.md) |
 | Contact57b, только19999 | Cooked-copy hulls42/34 vertices;36 policy-free probes;19999 source17→cooked12/20, unsafe0 | Геометрическая чувствительность; следующий шаг full-state failure replay/reward ledger; нет promotion | [Отчет](2026-09-25-contact57b-19999.md) |
 | Contact57 source geometry | 20 collision shapes и frames;192 probes;40 новых policy episodes;19999 success8→17/20, unsafe0 | Opt-in; cooked hulls/solver открыты. По указанию пользователя10000 исключен из дальнейших работ | [Отчет](2026-09-25-contact57-diagnostics.md) |
 | Physics57 compiled/actuator diagnosis | Лишний passive damping уменьшает no-load wheel response10→5rad/s; исправление повышает micro success10000 8→16/20, 19999 5→12/20 | Adapter opt-in; contact geometry/masks/parity остаются открытыми, promotion нет | [Отчет](2026-09-25-physics57-diagnostics.md) |

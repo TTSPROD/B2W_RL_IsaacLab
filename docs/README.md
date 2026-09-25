@@ -6,7 +6,7 @@
 [приемке PROJECT_PLAN](PROJECT_PLAN.md#acceptance-gates-низкоуровневая-locomotion-policy).
 Development evaluator `locomotion57_v1` реализован и выполнен для трех upstream checkpoints. [Результаты и ограничения](results/2026-09-25-upstream-locomotion57.md); полная qualification остается открытой.
 
-Последний этап: [contact57b cooking и19999 failure diagnosis](results/2026-09-25-contact57b-19999.md).
+Последний этап: [replay57 — состояния, контакты и17 reward terms19999](results/2026-09-25-replay57-19999.md).
 По указанию пользователя10000 исключен из дальнейших работ; основной upstream
 кандидат —19999, без изменения статуса приемки.
 

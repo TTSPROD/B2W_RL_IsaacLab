@@ -15,15 +15,16 @@
 - Исторический MuJoCo suite у model3000 дал Flat `80/80`, спуск `60/60`, подъём `23/60` и `37` unsafe. Различия физики и определения actuator limits требуют диагностики.
 - Отрицательные результаты cycle57, stop-controller и payload-веток сохранены в [матрице](docs/results/EXPERIMENT_MATRIX.md); их прежние cycle/corridor gates не переносятся в новую приемку.
 - [Contact57](docs/results/2026-09-25-contact57-diagnostics.md): source collision geometry перенесена в opt-in MuJoCo профиль;19999 получил17/20 в micro-screen, unsafe0. Полная parity/qualification открыта.
-- [Contact57b](docs/results/2026-09-25-contact57b-19999.md): с cooked geometry тот же19999 дал12/20, unsafe0; выполнены36 policy-free probes, локализованы два slow-ascent stalls. Следующий шаг — full-state replay/reward ledger19999.
+- [Contact57b](docs/results/2026-09-25-contact57b-19999.md): с cooked geometry тот же19999 дал12/20, unsafe0; выполнены36 policy-free probes, локализованы два slow-ascent stalls.
+- [Replay57](docs/results/2026-09-25-replay57-19999.md):4 captures,4 точных continuation checks,12 replay и17 reward terms; один stall устойчиво переносится в Isaac, unsafe0. Следующий pilot — recovery reset mixture20%/0%, после task/stochastic preflight; PPO пока не запущен.
 
 По указанию пользователя upstream10000 исключен из дальнейших запусков и обучения.
 Сохранены его исторические результаты; основной upstream кандидат для продолжения —19999.
 
-Следующий шаг — дополнить реализованный evaluator и согласовать
-**actuator/physics-модели Isaac↔MuJoCo**, затем расширить парный baseline на
-reference/inverse57/cycle57. Первое сравнение трех upstream milestones уже выполнено. По его результатам выбирается один ограниченный PPO A/B в задаче velocity
-tracking без goal/landing state machine. Полная последовательность и численные
+Следующий шаг — common velocity task и stochastic-reset preflight выбранного
+recovery pilot19999. Согласование **actuator/physics-моделей Isaac↔MuJoCo** и расширение
+baseline на reference/inverse57/cycle57 остаются открытыми. Первое сравнение трех
+upstream milestones уже выполнено. Полная последовательность и численные
 критерии находятся в [плане](docs/PROJECT_PLAN.md). Аудит исходных данных — в
 [разборе обучения и приемки](docs/results/2026-09-25-locomotion-training-review.md).
 

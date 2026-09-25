@@ -23,12 +23,20 @@ ABI60 остается несовместимой отклонённой абл�
 source geometry. Это один artifact в разных моделях, статус `not accepted` сохранен.
 [Contact57b](results/2026-09-25-contact57b-19999.md).
 
+[Replay57](results/2026-09-25-replay57-19999.md): тот же19999 прошел12 диагностических
+5s replay, unsafe0; stall7203 переносится в Isaac,17 reward terms проверены.
+Новых обученных весов нет, статус `not accepted` сохраняется.19999 выбран как
+исследовательский parent одного запланированного recovery-mixture pilot, не как
+квалифицированная policy; расширенный baseline остается отдельной работой.
+
 Все cycle/corridor/landing scores и решения в таблицах ниже относятся к исходным
 протоколам. Их отрицательные результаты сохранены; они не являются оценкой по
 новому suite. Unsafe/actuator traces остаются обязательными данными диагностики.
-Кандидаты первоначального парного baseline: inverse57 update3000, cycle57 model3000
-и внешний reference. Parent для нового обучения выбирается после этого baseline
-по [актуальным критериям](PROJECT_PLAN.md#acceptance-gates-низкоуровневая-locomotion-policy).
+Кандидаты расширенного парного baseline: inverse57 update3000, cycle57 model3000
+и внешний reference. Он остается открытым; локализация переносимого stall уже
+позволяет подготовить bounded causal pilot от19999, не требуя предварительной
+приемки этого parent. Решения о qualification — только по
+[актуальным критериям](PROJECT_PLAN.md#acceptance-gates-низкоуровневая-locomotion-policy).
 
 ## Новый low-level development-screen
 

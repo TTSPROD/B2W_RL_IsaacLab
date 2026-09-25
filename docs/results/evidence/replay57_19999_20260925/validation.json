@@ -1,0 +1,27 @@
+{
+  "source_capture_trace_max_abs_error": 0.0,
+  "warm_continuation_full_71_column_detail_max_abs_error": 0.0,
+  "valid_replays": 12,
+  "unsafe": 0,
+  "physics_samples_per_episode": 2500,
+  "tests_passed": 290,
+  "vendor_files_verified": 1290,
+  "vendor_sources": 6,
+  "new_and_active_document_links_checked": 226,
+  "runtime_log_sha256": {
+    "logs\\replay57_19999_capture.log": "2e8ea0e58d6579a8b2dd4c932c86e9945f1afc4b5a56855baa6f58440d48432d",
+    "logs\\replay57_19999_contacts_debug.log": "072ace9df027309d94040a40d00918aea370d10f8acefb78923cc34ebc780f06",
+    "logs\\replay57_19999_cooked_shapes.log": "ae28571e9989fa56814a95b57fd29fe70c3a9f2d8f2b429dcc942df1ee57dfde",
+    "logs\\replay57_19999_isaac.log": "8f0f3a9fc955a5c619197fa7d41f5307d277cd4973fa717f7353457374912e96",
+    "logs\\replay57_19999_isaac_contactmesh.log": "2aa1052f246238e4833167a7fdcce6b064edebe27cd6aba38d8153d07b5d6a95",
+    "logs\\replay57_19999_isaac_contactreports.log": "545b36552668a23bbc301a448a02f91fa8f6857929c950e5a4daf70e09bdc0e6",
+    "logs\\replay57_19999_isaac_retry1.log": "b2572df01cc5cdef62ad80aab46927f9de385c8ca0a12fdee355585e48f162a5",
+    "logs\\replay57_19999_source_shapes.log": "c4037cea126b4f7f0bfa3e2d912693c09f82973d38dd8e75057677e54ce95578",
+    "logs\\replay57_19999_tests.log": "beb69862b079f1837d7917de21864c7fbb44d504ceae346f3d872970983362e9",
+    "logs\\replay57_19999_warm.log": "49a007b42cfb9ee916addecea6bc9256d54be192b10afd51d6132bcb3baef36b"
+  },
+  "source_sha256": "3b02ea9ca1222d3dc7035e2b7e628fa6e02067f368d8f8b83f83b6289d8a35b9",
+  "summary_sha256": "6f196c9bbf80a84a3751826659a8f6ffa5851f4653cd68840ff035e718de2623",
+  "pilot_plan_sha256": "b93fbf437cee421d1d94007991c05fbbeed78b99f03af568e04a4880cdfdd547",
+  "no_training_executed": true
+}

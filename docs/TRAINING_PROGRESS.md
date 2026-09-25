@@ -63,6 +63,17 @@ contact offsets0.5–3.04mm, rest offsets=0. Выполнены36 policy-free pr
 Следующий шаг — full-state capture/replay19999 и reward ledger.287 tests — OK.
 [Отчет](results/2026-09-25-contact57b-19999.md).
 
+## Последующий replay57 и решение по pilot
+
+Только19999:4 full captures,4 exact continuation checks,12 fresh-contact replay,
+unsafe0. State7203 остается stalled в Isaac и обоих MuJoCo-профилях;7201 в Isaac
+начинает восстанавливаться в конце5s. Контактное скольжение измерено в точках
+контакта,17 reward terms проверены; moving controls имеют больший reward.
+Выбран один planned pilot — recovery reset mixture20%/0%, parent19999, seeds83/84,
+без reward/actuator/std изменений. Сначала common task и stochastic-reset preflight;
+PPO не запускался.290 tests,1290 vendor-файлов — OK.
+[Отчет](results/2026-09-25-replay57-19999.md), [план](PROJECT_PLAN.md#p4-один-bounded-ppo-ab).
+
 ## Закрытые направления
 
 **По последующему указанию пользователя upstream10000 больше не исследовать и не

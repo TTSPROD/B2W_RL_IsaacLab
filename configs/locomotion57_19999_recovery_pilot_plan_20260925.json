@@ -1,0 +1,59 @@
+{
+  "schema": "locomotion57_19999_recovery_pilot_plan_v1",
+  "status": "planned_not_executed",
+  "parent": {
+    "policy": 19999,
+    "checkpoint_sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc"
+  },
+  "evidence": "docs/results/evidence/replay57_19999_20260925/summary.json",
+  "hypothesis": "Additional on-policy exposure to recorded low-speed stair stalls improves recovery without reward or actuator changes. Current evidence does not establish that stalls receive more reward than moving states.",
+  "single_factor": "probability of recorded failure-state initialization within eligible upward 14x32 cm stair environments",
+  "control_probability": 0.0,
+  "treatment_probability": 0.2,
+  "source_states": {
+    "artifact": "logs/replay57_19999_20260925/capture.npz",
+    "snapshot_time_s": 27.0,
+    "seeds": [7201, 7203],
+    "mix": [0.5, 0.5],
+    "restore": ["root link pose", "root COM world linear velocity", "world angular velocity", "q", "dq", "previous raw action"],
+    "physics_contacts": "fresh solver state in Isaac; no MuJoCo warmstart transfer",
+    "geometry_requirement": "same up_14x32 physical staircase and body-frame alignment; no placement on arbitrary generated stairs"
+  },
+  "common_task_preflight": {
+    "required_before_training": true,
+    "actor_abi": [57, 16],
+    "policy_hz": 50,
+    "critic": "preserve saved training critic and height scan; replay evaluator with disabled critic is not a training task",
+    "terrain": "retain common Flat/Rough/Stairs mixture in both arms; eligible fixed 14x32 stair subset identical in both arms",
+    "commands": "external time-based velocity commands, identical distribution in both arms; initial failure-state command [0.3,0,0], then common timed schedule; zero/turn/reverse retained",
+    "rewards": "all 17 nonzero terms from parent env.yaml unchanged",
+    "actuators": "all gains, torque limits and action scales unchanged",
+    "stochastic_check": "measure effective loaded exploration std and stochastic reset safety before PPO; do not silently shrink std",
+    "paired_control": "both arms share any task adaptation; compare treatment against this control, not historical upstream returns",
+    "reset_test": "physics-step safety, exact q/dq/previous-action restore, correct tile frame, no autoreset leakage"
+  },
+  "budget": {
+    "training_seeds": [83, 84],
+    "arms": ["control", "recovery_mix20"],
+    "environments": 4096,
+    "rollout_steps": 24,
+    "initial_new_updates_per_arm_seed": 50,
+    "initial_total_transitions": 19660800,
+    "checkpoints_new_updates": [0, 1, 2, 5, 10, 25, 50],
+    "initial_total_wall_clock_cap_hours": 2,
+    "extension": "only after paired success and safety/retention gates; no automatic extension"
+  },
+  "evaluation": {
+    "primary": "worst upward-stair command-tracking success row on independent reset seeds",
+    "initial_screen_episodes_per_row": 64,
+    "confirmation_episodes_per_row": 128,
+    "minimum_paired_improvement_each_training_seed_percentage_points": 5,
+    "regressions": "no increase of unsafe; no loss of Flat/Rough/Stairs traversal, small commands, command transitions or continuous-zero performance",
+    "uncertainty": "paired differences and confidence intervals; 5 pp point estimate alone is insufficient",
+    "state_bank": "training states 7201/7203 are diagnostic secondary results only; create and freeze independent held-out failure states before training",
+    "no_navigation": true,
+    "acceptance": "pilot pass is not policy qualification or hardware approval"
+  },
+  "execution": "not launched; complete common-task and stochastic reset preflight first; no new server job authorized by this plan",
+  "excluded_policy": 10000
+}
