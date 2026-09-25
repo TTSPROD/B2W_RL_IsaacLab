@@ -1,0 +1,4 @@
+interface:
+  display_name: "B2W Gamepad — Isaac Sim"
+  short_description: "Choose a B2W checkpoint and map, then drive in Isaac Sim"
+  default_prompt: "Use $isaacsim-b2w-gamepad-window to select my B2W checkpoint and map and launch gamepad control at the selected policy's training command limits."

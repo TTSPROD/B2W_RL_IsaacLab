@@ -7,11 +7,11 @@ param(
     [ValidateRange(0, 3)]
     [int]$GamepadIndex = 0,
     [ValidateRange(0.01, 1.0)]
-    [double]$MaxForward = 0.7,
+    [double]$MaxForward = 1.0,
     [ValidateRange(0.01, 1.0)]
-    [double]$MaxLateral = 0.4,
+    [double]$MaxLateral = 1.0,
     [ValidateRange(0.01, 1.0)]
-    [double]$MaxYaw = 0.5,
+    [double]$MaxYaw = 1.0,
     [ValidateRange(0, 1000000)]
     [int]$SmokeSteps = 0,
     [string]$Log = '',

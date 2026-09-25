@@ -53,3 +53,15 @@ jobs, общие драйверы и глобальные пакеты. Лока
 и этапов из `docs/SDK2_DEPLOYMENT.md`. Настройка репозитория и симуляции его не дают.
 
 Отвечать кратко по-русски; проверенные факты, планы и ограничения различать явно.
+
+## Проектные skills для интерактивной симуляции
+
+Эти файлы входят в репозиторий и являются основными версиями на любом ПК.
+При запросе соответствующего skill читать проектный файл, даже если installed
+копия отсутствует или устарела:
+
+- [mujoco-b2w-gamepad-window](skills/mujoco-b2w-gamepad-window/SKILL.md) — выбор checkpoint и карты, gamepad в MuJoCo.
+- [isaacsim-b2w-gamepad-window](skills/isaacsim-b2w-gamepad-window/SKILL.md) — тот же выбор, gamepad в Isaac Sim.
+
+Единый workflow: [GAMEPAD_VIEWERS](docs/GAMEPAD_VIEWERS.md). Установка/синхронизация
+в пользовательский каталог skills — `scripts/install_gamepad_skills.ps1`.

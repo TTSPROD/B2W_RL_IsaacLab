@@ -1,0 +1,4 @@
+interface:
+  display_name: "B2W Gamepad — MuJoCo"
+  short_description: "Choose a B2W checkpoint and map, then drive in MuJoCo"
+  default_prompt: "Use $mujoco-b2w-gamepad-window to select my B2W checkpoint and map and launch gamepad control at the selected policy's training command limits."

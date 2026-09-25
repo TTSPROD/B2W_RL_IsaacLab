@@ -317,9 +317,9 @@ def main() -> int:
     parser.add_argument("--terrain", choices=("flat", "stair_up", "stair_down", "scene"), default="flat",
                         help="scene loads the supplied XML without adding generated stairs")
     parser.add_argument("--gamepad-index", type=int, choices=range(4), default=0)
-    parser.add_argument("--max-forward", type=float, default=0.7)
-    parser.add_argument("--max-lateral", type=float, default=0.4)
-    parser.add_argument("--max-yaw", type=float, default=0.5)
+    parser.add_argument("--max-forward", type=float, default=1.0)
+    parser.add_argument("--max-lateral", type=float, default=1.0)
+    parser.add_argument("--max-yaw", type=float, default=1.0)
     parser.add_argument("--log", type=Path, default=DEFAULT_LOG)
     parser.add_argument("--smoke-steps", type=int, default=0,
                         help="Headless zero-command policy steps; does not open XInput or a window")
@@ -369,6 +369,8 @@ def main() -> int:
         "policy": str(policy_path),
         "policy_sha256": sha256(policy_path),
         "policy_abi": "57 observations -> 16 actions",
+        "command_limits": {"vx_m_s": args.max_forward, "vy_m_s": args.max_lateral,
+                           "yaw_rad_s": args.max_yaw},
         "xml": str(xml_path),
         "xml_sha256": sha256(xml_path),
         "terrain": terrain,

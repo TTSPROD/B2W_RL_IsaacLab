@@ -24,6 +24,7 @@
 - [Серверные checkpoints](docs/POLICY_REGISTRY.md): веса, конфиги обучения и SHA-256.
 - [Инфраструктура](docs/INFRASTRUCTURE.md), [ручной просмотр MuJoCo](docs/MUJOCO_GAMEPAD.md).
 - [Скрипты](scripts/README.md), [карта документации](docs/README.md).
+- [Выбор checkpoint/карты и gamepad skills для обоих симуляторов](docs/GAMEPAD_VIEWERS.md).
 
 `vendor/` содержит закреплённые исходники robot_lab, rl_sar, моделей, SDK2 и ROS2.
 Старые эксперименты удалены из рабочего дерева; восстановление tracked-файлов — через Git.
