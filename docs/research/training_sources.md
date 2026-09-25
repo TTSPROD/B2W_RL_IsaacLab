@@ -18,7 +18,7 @@ Parkour fine-tuning и CaT; содержит проверенные первич
 59/60 от qualified reference-derived actor54,50+100+200 single4096;
 Rough-only route-compatible commands/reset/22с, Flat30% прежние20с/команды.
 PPO/rewards/drift и gates сохраняются.
-[Job](../../logs/rough/rough_route_correction_20260920/job.json).
+[Итоговый job summary](../results/rough_route_correction_20260920.json).
 
 [Frozen reference comparator](../results/rough_reference_baseline_20260920.json)
 завершён на random0 nominal/bounded: reference42/45, anchor54 39/47 из100.

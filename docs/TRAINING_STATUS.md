@@ -1,84 +1,44 @@
-# Обучение B2W: сервер, локальные эксперименты и политики
+# B2W: аналитика последних экспериментов
 
-Серверный снимок на **23 сентября 2026, 18:41 МСК**. Пользователь подтвердил три самостоятельные параллельные линии: **настольная RTX4070Ti, ноутбучная RTX4080 Laptop и сервер**. Текущий интерфейс — **57 входов → 16 действий**, как у референса. Расширение входов пользователь отклонил; предложение stair-v4 остаётся нереализованным архивом. **Принятой rough/stair политики пока нет.**
+Актуально на **25 сентября 2026**. Принятой Rough/Stairs policy нет. Текущий контракт — **57→16**; исторические 60-D artifacts остаются отклонённой абляцией.
 
-## Где и что обучалось
+## Краткий результат
 
-| Линия | Машина | Фактическое состояние |
+| Ветка | Наблюдение | Решение |
 |---|---|---|
-| Локальные flat/rough/stair эксперименты | Windows11, RTX4080 Laptop12GB, i9-14900HX, RAM32GB | Qualification и множество pilots завершены; rough seeds54–56, stair control57/basevel60/teacher-anchor оценены. Некоторые scratch/pilot runs остановлены; сохранённые файлы не означают завершение |
-| Upstream scratch → continuation | Ubuntu22.04, 4×Hopper по 95830MiB, Xeon6527P, RAM503GiB | Исходный scratch перешёл через собственный model100 на четыре GPU; общий целевой бюджет 20000 updates завершён 23 сентября 17:36:05 МСК, ExitCode0, без OOM |
-| Inverse57 fine-tune от upstream10000 | Тот же сервер, 4GPU×1024 среды | Автономный пилот запущен. На снимке идёт первый блок 500; завершённого дообученного кандидата и его оценок ещё нет |
-| Настольная Flat/Rough линия | Windows11, RTX4070Ti12GB | Отдельная квалифицированная линия, получена из origin/main (20002fa). Flat54/55/56 прошли собственные gates; Rough U1/U1.1/U1.2 и другие experiments описаны в TRAINING_PROGRESS. Это другие seeds/checkpoints и evaluation, чем одноимённые ноутбучные |
+| Server upstream | 20000 updates завершены; финал `model19999` не лучший по общему suite | Хранить как experimental, не release |
+| Server inverse57 | `update3000` выбран по development, но validation провалена | Research parent |
+| Cycle57 long run | Coarse screen: `model3000` 61/64 циклов, `model3998` 19/64; у финала 5 unsafe и 39 incomplete | Late training деградировало задачу; `model3998` rejected |
+| Cycle57 model3000 | Held-out `329/384`, минимум `49/64`; corridor `350/384`, unsafe 0 | Research-only, stair gate failed |
+| Stop fixes | Filtered gains максимум `355/384`, но с row regressions; latch `348/384` без улучшения; late-hold `347/384` против parent `350/384` | Ветка закрыта |
+| Payload57 | Лучший B model3098: up `107/128`, down `115/128`; C-long деградировал до `95/128` и `93/128` | Все payload candidates rejected |
+| MuJoCo model3000 | Flat `80/80`, down `60/60`, up `23/60`, unsafe 37 | Sim2sim gate failed; SDK2 закрыт |
 
-Базовый стек: robot_lab/IsaacLab v2.3.2, IsaacSim5.1, RSL-RL3.1.2. Ноутбучный runtime гибридный, бинарные пакеты из `D:\isaacsim51`; серверный — pinned Docker с узким URDF2.4.30 adapter; настольный имеет отдельный lock в `requirements/`. Квалификация headless B2W не означает поддержку серверного GUI/RT/cameras. Vendor неизменен.
+Machine-readable coarse screen сохранён в [evidence/cycle57_coarse_screen_20260924](results/evidence/cycle57_coarse_screen_20260924/summary.json). Полный сводный аудит: [2026-09-25-repository-experiment-review.md](results/2026-09-25-repository-experiment-review.md). Итоги всех веток без промежуточных запусков: [EXPERIMENT_MATRIX.md](results/EXPERIMENT_MATRIX.md).
 
-## Настольная RTX4070Ti: отдельная история
+## Что показывают данные
 
-Документы этой параллельной линии сохранены из GitHub, а не получены повторным запуском на ноутбуке. [Статус/история настольной линии](TRAINING_PROGRESS.md), [установка и квалификация](DESKTOP_SETUP.md), [план Rough/Stairs](ROUGH_STAIRS_PLAN.md), [Flat54 portable handoff](../policies/desktop/flat54/README.md). Статусы отдельных процессов в этих датированных отчётах не являются текущим опросом настольного ПК.
+1. **Больше updates не означает лучше.** В cycle57 полный long run научился избегать части stop-failures ценой недохода и incomplete. Похожий loophole повторился в payload C-long.
+2. **Stop problem диагностирован, но локальные fixes исчерпаны.** Все 34/34 Isaac stop-failure сначала достигают безопасной скорости, затем повторно разгоняются. Wheel-only latch и late-hold reward не дают стабильного multi-row улучшения.
+3. **Главный sim2sim blocker другой.** В MuJoCo финальная остановка чистая; аварии сосредоточены на подъёме: 35 calf velocity-limit и 2 calf position-limit stops, плюс длительное wheel saturation.
+4. **Physics gap достаточно велик, чтобы мешать выводу о policy.** MuJoCo тяжелее training URDF на `4.750435 kg`, calf effort отличается, также не выровнены damping/contact/solver.
+5. **Статистическая доказательность пока ограничена.** Evaluation содержит много environment variations, но большинство training branches — один seed. Это development evidence, не generalization claim.
 
-Подтверждена GPU PhysX/Fabric квалификация, в том числе два одновременных4096-env runs. Flat42 исходного pilot не прошёл quality gate96/100 против reference100/100; последующая reference-transfer линия Flat54/55/56 оценивается по собственным nominal/bounded gates. Rough precision61/62 дал1124/1600, corridor63/64 —327/1600, wide65/66 —564/1600; это маршрутные критерии, **не** наши ноутбучные stair-v3 циклы. U1 seeds69/70 остановлен после cumulative150:69 прошёл Flat regression,70 — нет; U1.1 seeds71/72 и U1.2 seeds73/74 тоже остановлены по своим Flat relative gates. Репликация U1.1 seeds75/76 также остановлена на150:75 сохранил Flat,76 провалил relative gate; Rough75 slope_up95/89 и slope_down100/88 на двух profiles. Эти данные не добавляются в общую таблицу768 эпизодов без одинакового evaluator.
+## Текущие артефакты
 
-Совпавшие entrypoints разведены: ноутбучные `scripts/{train,smoke,play}_b2w...` сохранены; настольные — `train_b2w_desktop.py`, `smoke_b2w_desktop.py`, `play_b2w_gamepad_desktop.py`, их callers обновлены. Старые настольные версии общих документов сохранены как `*_DESKTOP_HISTORY.md`; общий статус задаётся этим документом.
+| Роль | Artifact | Статус |
+|---|---|---|
+| Research parent | inverse57 update3000, SHA `73fb165c…` | Validation rejected |
+| Nominal diagnostic | cycle57 model3000, SHA `20c4a34c…` | Isaac и MuJoCo gates failed |
+| Export | model3000 TorchScript, SHA `2af4c341…` | Exact parity пройдена; quality gate failed |
+| Flat-only | Desktop Flat54, SHA `f3509a69…` | Только собственный Flat scope |
+| Payload best-development | B model3098, SHA `4fac5e08…` | Rejected |
+| Cycle57 final | model3998, SHA `1fc381f7…` | Coarse-screened, rejected |
 
-## Общая парная оценка восьми политик — локально
+Полные SHA и provenance: [POLICY_REGISTRY.md](POLICY_REGISTRY.md).
 
-**Место обучения и место оценки различаются:** все числа в этой таблице получены на локальной RTX4080 Laptop, включая серверные upstream checkpoints. 72 завершённых сценария: девять на каждую из восьми моделей. Ранее выполненные результаты повторно не выдаются за новые прогоны; сверены SHA evaluators/config и моделей.
+## Текущее решение
 
-Протокол: flat seed1005, 128×1000 шагов; rough seeds2009/2010, по 512×1000, level9, reset tilt±0.3; stair-v3 development, шесть строк 14/32,16/30,18/27 см вверх/вниз, по 128×900 шагов. Brake1.2 м, min0.25 м/с, hold100 шагов, stop≤0.15 м/с, drift≤0.35 м, restart≥0.35 м. Без wheel clamp. Flat у всех 128/128; stair timeouts у всех 0.
+Новые PPO runs, stop controllers и payload continuation не запускать. Сначала завершить actuator/physics parity и повторить неизменённый frozen MuJoCo suite. Затем выполнить decision gate из [PROJECT_PLAN.md](PROJECT_PLAN.md).
 
-| Политика / место обучения | Rough safe /1024 | Inverse2009;2010 /102 | Passage /768 | Полный цикл /768 | Unsafe stair | Stop failed |
-|---|---:|---:|---:|---:|---:|---:|
-| Upstream5000 / сервер | 964 | 85;80 | 690 | 475 (61.8%) | 84 | 199 |
-| Upstream10000 / сервер | 1003 | 92;95 | 722 | 637 (82.9%) | 39 | 81 |
-| Upstream15000 / сервер | 988 | 91;89 | 740 | 630 (82.0%) | 26 | 108 |
-| Upstream18100 / сервер | 999 | 95;95 | 712 | 639 (83.2%) | 58 | 63 |
-| Upstream20000, файл 19999 / сервер | 1004 | 97;95 | 729 | 620 (80.7%) | 41 | 103 |
-| Референс rl_sar / внешняя опубликованная модель | 1014 | 99;100 | 695 | 566 (73.7%) | 81 | 104 |
-| Moving teacher-anchor seed54 / локально | 1019 | 100;100 | 685 | 535 (69.7%) | 80 | 128 |
-| Moving teacher-anchor seed55 / локально | 1015 | 100;97 | 660 | 557 (72.5%) | 90 | 84 |
-
-Upstream10000 — выбранный исследовательский parent: почти максимум циклов при меньшем unsafe, чем 18100. Upstream15000 имеет минимум unsafe и максимум passage, но больше ошибок остановки; финальный 20000 не является лучшим по циклу. Ни один upstream не прошёл inverse≥97/102 на обоих mesh seeds. Референс и anchor54/55 прошли данный rough development gate; **ни одна из восьми моделей не достигла 95% полного цикла в каждой лестничной строке**. Это не релизные политики.
-
-[Полные числа, RMS и строки лестниц](results/2026-09-23-upstream-final-comparison.md) · [JSON](results/2026-09-23-upstream-final-comparison.json) · [Исходные записи прогонов и снимок evaluators](results/evidence/README.md).
-
-## Что означают локальные seeds54/55
-
-Seed не идентифицирует модель без названия эксперимента и SHA. В общей таблице выше это **moving-state teacher-anchor, model422**, а не исходные rough и не control57.
-
-| Локальная линия | ABI | Seed | Rough2009/2010 safe /1024 | Цикл /768 | Unsafe stair | Stop failed |
-|---|---:|---:|---:|---:|---:|---:|
-| Control57, model398 | 57→16 | 54 | 1019 | 542 | 78 | 132 |
-| Control57, model398 | 57→16 | 55 | 1019 | 564 | 91 | 83 |
-| Basevel60, model398, отклонённая абляция | 60→16 | 54 | 1017 | 546 | 93 | 75 |
-| Basevel60, model398, отклонённая абляция | 60→16 | 55 | 1014 | 518 | 81 | 155 |
-| Moving teacher-anchor, model422 | 57→16 | 54 | 1019 | 535 | 80 | 128 |
-| Moving teacher-anchor, model422 | 57→16 | 55 | 1015 | 557 | 90 | 84 |
-
-Это отдельные локальные исследования, не новый общий парный прогон с upstream. Control57 суммарно 1106/1536 циклов,169unsafe; basevel60 —1064/1536,174unsafe; anchor —1092/1536,170unsafe. Добавление скорости или moving-action anchor не дало устойчивого улучшения относительно собственного контроля. [Актуальные исходные отчёты](results/2026-09-23-actor-base-velocity.md), [anchor](results/2026-09-23-moving-teacher-anchor.md).
-
-Исходные rough54/55/56 — другая линия, model349. В ранней оценке 2001–2003 они дали 1515/1536,1523/1536,1524/1536 безопасных эпизодов. В более поздней независимой оценке 2011–2013 rough55 дал 1521/1536, rough56 —1516/1536, но каждый провалил хотя бы один inverse mesh:95/102 и 92/102 соответственно. Поэтому ранний агрегат не закрывает rough stage. [Первичный отчёт](results/2026-09-21-local-4080.md), [финальная rough-оценка](results/2026-09-23-rough-final-selection.md).
-
-Сравнение 22 сентября использовало **другой протокол**: 64 среды на stair-строку и 800 шагов. Там rough54 дал 296/384 циклов,19unsafe против референса 281/384,31unsafe; rough безопасность 1013/1024 против 1015/1024. Эти числа нельзя объединять с таблицей 768 эпизодов. Импортированный flat actor, от которого обучали локальные rough, **отличается** от опубликованного rl_sar reference. [Происхождение и сравнение](results/2026-09-22-reference-comparison.md).
-
-## Завершённое серверное upstream обучение
-
-Run: `upstream_b2w_20000_4gpu_20260922`, `/home/user/B2W_RL_IsaacLab_Server/logs/`. Финальный файл `model_19999.pt` означает завершённые 20000 updates с нумерацией от 0; файл `model_20000.pt` не создавался. Последние mean reward256.58, curriculum terrain_levels5.9018; training reward не заменяет оценку безопасности. SHA финала `e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc`.
-
-Первоначальное обучение началось с нуля; 4-GPU continuation восстановил **собственный** model100 и optimizer, а не исторические веса другого проекта. Для итоговых 20000 updates continuation выполнил 19899 обновлений с индекса 101. Четыре GPU обучали одну синхронизированную PPO-политику,4096 сред суммарно. [История запуска](results/2026-09-22-upstream-rough-scratch.md), [масштабирование](results/2026-09-22-server-upstream-speedcheck.md).
-
-## Текущий автономный inverse57 — результат ещё не получен
-
-Run: `inverse57_4gpu_20260923`. Parent — upstream10000; ABI57→16, rewards/commands/actions неизменны. LR1e-4 fixed, inverse terrain35%, половина сред на уровнях 7–9. Все 4 rank прошли перенос model state и квалификационные 2 updates. На снимке 18:41 МСК идёт первый блок 500; дообученные checkpoints пока не оценены и не приняты.
-
-Отдельный **серверный parent baseline** уже завершён: flat128/128; rough1001/1024; inverse93/102 и 94/102; цикл 636/768; unsafe40; stop failures77. Отличия от Windows-таблицы учитываются: автоматический отбор использует серверный parent, не смешивает платформы.
-
-Пилот 1000 updates, максимум 8000; оценка каждые 500, checkpoint каждые 100. Продолжение зависит от измеренного прогресса; повторная деградация/плато останавливают run. Блоки train/eval завершаются до 24 сентября 05:18:50 МСК; общий дедлайн до 09:18:50. Заранее выделена validation на новых seeds; закрытые stair4101–4104 не используются. [Точный план, gates и реализация](results/2026-09-23-inverse57-overnight-plan.md).
-
-Контейнер, управляющий скрипт и отдельный deadline watchdog работают без открытого чата. Часовой Codex heartbeat **отключён пользователем**. Локальный collector скачает результаты и перепроверит новую выбранную модель; ноутбук должен быть включён. Git-публикация фиксирует этот снимок и не объявляет завтрашний результат заранее.
-
-## Политики в Git
-
-[policies/experimental](../policies/experimental/README.md) содержит 75 снимков: последние сохранённые checkpoints70 локальных non-smoke запусков и 5 серверных milestones. Остановленные и неполные runs также сохранены как исследовательские артефакты, без утверждения о завершении. Manifest включает SHA-256, исходный путь, seed, размер ABI, iteration и конфиги. Все отмечены `experimental_not_accepted`; исторические 60-D веса явно выделены. Референс остаётся в `vendor/rl_sar/policy/b2w/robot_lab/policy.pt`.
-
-Требования принятия сохраняются: gates по каждой строке/family, отдельная validation, export parity и sim2sim; реальное управление роботом не разрешено. Полные истории промежуточных опытов доступны в [индексе отчётов](results/README.md).
+Ручной viewer остаётся диагностическим инструментом. Наличие checkpoint, export parity и успешный Flat rollout не разрешают SDK2 actuation или испытания робота.

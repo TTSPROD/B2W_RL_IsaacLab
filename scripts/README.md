@@ -42,6 +42,18 @@ results сохранены как история. Существующие оч�
 | check_policy_contract.py | CPU fixtures и экспорт реального project checkpoint через закреплённый exporter |
 | play_b2w_gamepad_desktop.py | Isaac Sim Storm/Vulkan, CPU physics/policy,1 B2W Flat54/55/56 и Xbox; лимиты 1/1/1 через CLI, около real time; [управление](../docs/GAMEPAD_PLAY.md) |
 | b2w_gamepad.py | Windows XInput, dead zone, body-frame velocity mapping, LB/stop/disconnect; simulator only |
+| play_mujoco_b2w_gamepad.py / run_mujoco_gamepad.ps1 | Визуальный MuJoCo3.14 sim2sim: выбираемые 57→16 TorchScript policy и полный MJCF/XML, Flat или 6-step stairs14/32; XInput dead-man, 500 Hz safety aggregation/unsafe HUD, command record/replay, smoke и JSONL; [управление](../docs/MUJOCO_GAMEPAD.md), [evidence](../docs/results/2026-09-25-mujoco-gamepad-viewer.md) |
+| mujoco_safety_recorder.py | Episode-level full-rate safety metrics, 2 s raw failure window и строгий 50 Hz command-trace contract с policy/XML/map/rate guards |
+| sim2sim_mujoco_b2w.py / sim2sim_mujoco_b2w_multiseed.py | Headless MuJoCo evaluator и SHA-guarded 20-seed batch: bounded reset perturbations, flat и три stair geometries up/down, 500 Hz limit/contact checks, Wilson intervals и per-group gates; [результат](../docs/results/2026-09-25-cycle57-mujoco-multiseed.md) |
+| b2w_stop_controller.py | Внешний hold-only wheel adapter: legacy feedback и stateful low-pass/hysteresis/ramp/action-slew bounds; leg/traversal actions и ABI не меняет |
+| hold_tail_reward.py | Чистая PyTorch-функция late-hold hinge cost; без Isaac imports, используется training adapter и unit tests |
+| eval_stair_stop_replay_b2w.py | SHA-guarded paired replay v2 nominal post-passage states; диагностический screen с reproduction gate, не замена end-to-end qualification |
+| evaluate_cycle57_corridor_suite.ps1 | Шестистрочный randomized end-to-end corridor/cycle suite; поддерживает явно выбранный pre-registered filtered stop-controller variant и optional full-rate hold traces |
+| run_cycle57_late_hold_local.ps1 | SHA-guarded smoke/pilot launcher единственного pre-registered late-hold fine-tune; 57→16, без payload |
+| summarize_cycle57_late_hold.py | Проверяет exact seeds и multi-row promotion gate late-hold pilot; пишет машиночитаемое решение |
+| summarize_cycle57_stop_controller_sweep.py | Проверяет полный набор зарегистрированных вариантов и multi-row gate; общий рост не может скрыть регрессию отдельной строки |
+| stair_hold_trace.py | Пассивно записывает passage+100 hold samples: body velocity/pitch, wheel actions, torque/clipping, contacts и rolling residual; ABI/physics/actions не меняет |
+| classify_cycle57_hold_traces.py | Сопоставляет stop-failure с ближайшим по passage speed success той же ячейки и применяет заранее зарегистрированные phenotype rules |
 | replay_reference_b2w.py | Diagnostic либо flat100, profiles nominal/bounded_v1; выбранный экспорт, по умолчанию скачанный reference |
 | flat_evaluation.py | Детерминированные cases, статистика и thresholds evaluator |
 | compare_robot_models.py | Таблицы source mass/COM/inertia; не динамическая sim2sim equivalence |

@@ -29,6 +29,14 @@ class GamepadTests(unittest.TestCase):
         self.assertEqual(m.advance(PadState(True,buttons=LB|B,ly=32767),.02)[0],(0.,0.,0.))
         self.assertEqual(m.advance(moving,.02)[0],(0.,0.,0.))
 
+    def test_external_safety_block_requires_lb_release(self):
+        m=CommandMapper();moving=PadState(True,buttons=LB,ly=32767)
+        self.assertGreater(m.advance(moving,.02)[0][0],0.)
+        m.block()
+        self.assertEqual(m.advance(moving,.02)[0],(0.,0.,0.))
+        m.advance(PadState(True),.02)
+        self.assertGreater(m.advance(moving,.02)[0][0],0.)
+
     def test_reset_edge_and_slew_limit(self):
         m=CommandMapper();moving=PadState(True,buttons=LB,ly=32767)
         self.assertAlmostEqual(m.advance(moving,.02)[0][0],.04)

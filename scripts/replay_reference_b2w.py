@@ -11,6 +11,7 @@ import traceback
 sys.dont_write_bytecode = True
 from b2w_runtime import PROJECT_ROOT, FLAT_TASK, configure_process, make_flat_env_cfg, project_kit_args
 from check_stand_b2w import _nominal_cfg
+from local_b2w_assets import configure_b2w_env, configure_ground_plane
 from smoke_b2w_desktop import _check_tensors, _gpu_evidence, _write_report
 
 from flat_evaluation import SCENARIOS, make_cases, summarize
@@ -75,7 +76,10 @@ def main():
         import gymnasium as gym
         import torch
         torch.set_num_threads(4)
-        cfg = make_flat_env_cfg(num_envs=args.num_envs, device=args.device, seed=args.seed, headless=True)
+        configure_ground_plane()
+        cfg = configure_b2w_env(
+            make_flat_env_cfg(num_envs=args.num_envs, device=args.device, seed=args.seed, headless=True)
+        )
         report['disabled_events'] = _nominal_cfg(cfg)
         report['physical_profile'] = configure_physical_evaluation(cfg, args.physical_profile)
         cfg.scene.env_spacing = 25.

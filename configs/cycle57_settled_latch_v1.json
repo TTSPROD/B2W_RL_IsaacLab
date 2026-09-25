@@ -1,0 +1,56 @@
+{
+  "schema": "b2w_settled_latch_experiment_v1",
+  "status": "pre_registered_before_new_seed_evaluation",
+  "frozen_date": "2026-09-25",
+  "scope": "cycle57_model3000_no_payload_hold_only_single_candidate",
+  "policy_sha256": "20c4a34c20282b549186c9fc9d58d79e10211cc536dd37336768678aea90de17",
+  "policy_abi": "57 observations -> 16 actions",
+  "policy_weights_changed": false,
+  "traversal_actions_changed": false,
+  "rewards_changed": false,
+  "physics_changed": false,
+  "diagnostic_basis": {
+    "trace_suite": "cycle57_model3000_holdtrace_actor_seed510x_20260925",
+    "stop_failures": 34,
+    "late_reacceleration_after_settle": 34,
+    "oscillatory_velocity_reversal": 28,
+    "actor_wheel_drive": 21,
+    "longitudinal_dominant": 25,
+    "lateral_dominant": 9
+  },
+  "development_suite": {
+    "seeds": {
+      "nominal": 5201,
+      "steep": 5202,
+      "shallow": 5203
+    },
+    "directions": ["up", "down"],
+    "environments_per_cell": 64,
+    "physics_profile": "randomized",
+    "evaluation_mode": "deterministic_actor",
+    "baseline_required_on_same_new_seeds": true,
+    "hold_steps": 100
+  },
+  "variants": [
+    {
+      "name": "settled_latch_v1",
+      "mode": "settled_hold_latch",
+      "settle_speed_m_s": 0.12,
+      "settle_dwell_steps": 5,
+      "max_action_delta_per_step": 0.1
+    }
+  ],
+  "acceptance_gate": {
+    "passage_success_min": 384,
+    "unsafe_max": 0,
+    "minimum_cell_success_min": 61,
+    "each_cell_regression_max_successes": 0,
+    "total_stop_failure_reduction_fraction_min": 0.5,
+    "latched_environment_count_min": 384,
+    "hold_wheel_saturation_fraction_worst_not_above_baseline": true,
+    "hold_leg_joint_margin_min_not_below_baseline_by_more_than": 0.01,
+    "note": "Passing this gate nominates the supervisor for held-out evaluation; it does not authorize sim2real."
+  },
+  "no_parameter_tuning_from_this_suite": true,
+  "next_gate_if_accepted": "fresh held-out seeds and geometries, then Isaac-to-MuJoCo parity"
+}

@@ -1,8 +1,13 @@
 # B2W: 3D-окно с геймпадом
 
+Этот документ описывает **Isaac Sim physics + внешний OpenGL renderer**. Для
+отдельного MuJoCo3.14 viewer с XInput, выбираемыми TorchScript policy и полными
+MJCF/XML-картами см. [MUJOCO_GAMEPAD](MUJOCO_GAMEPAD.md). Эти два runtime не
+являются физически эквивалентными и имеют отдельные evidence/ограничения.
+
 Локальная физика и инференс выполняются в Isaac Sim 5.1 / Isaac Lab 2.3.2. Отдельное видимое окно OpenGL показывает COLLADA-модель B2W и фактическую сетку рельефа, переданную физике Isaac Sim. Это не встроенный viewport Kit и не RTX-рендерер.
 
-Сценарий принимает **выбранный** checkpoint RSL-RL (`--checkpoint`) либо экспортированный TorchScript actor (`--policy`). Выбор сцены обязателен: `--terrain flat`, `rough`, `stair` или `map`. Контракт actor проверяется при запуске: 57 наблюдений → 16 действий.
+Сценарий принимает **выбранный** checkpoint RSL-RL (`--checkpoint`) либо экспортированный TorchScript actor (`--policy`). Выбор сцены обязателен: `--terrain flat`, `rough`, `stair` или `map`. Контракт actor проверяется при запуске: 57 наблюдений → 16 действий. Актуальные SHA и ограничения кандидатов перечислены в [реестре политик](POLICY_REGISTRY.md); визуальный запуск не меняет их статус acceptance.
 
 Пример запуска rough-политики (путь к модели заменить на требуемый):
 

@@ -1,41 +1,37 @@
 # B2W RL · Isaac Lab
 
-Проект воспроизводимого обучения Unitree B2W: **flat → rough → stairs → промышленные лестницы**, затем перенос через Unitree SDK2.
+Проект обучения и проверки локомоции Unitree B2W в Isaac Lab/RSL-RL. Текущая линия сохраняет референсный контракт **57 наблюдений → 16 действий**: 12 position targets ног и 4 velocity targets колёс, policy rate 50 Hz.
 
-Три параллельные линии: **RTX4070Ti desktop, RTX4080 Laptop, 4-GPU сервер**. [Настольная история](docs/TRAINING_PROGRESS.md), [её план](docs/ROUGH_STAIRS_PLAN.md), [общая сводка](docs/TRAINING_STATUS.md). Сопоставляйте модели по SHA и протоколу, а не только по номеру seed.
+## Состояние на 25 сентября 2026
 
-На 23 сентября 2026 локальные rough/stair эксперименты выполнены, серверный upstream завершил 20000 итераций на четырёх GPU. Пять серверных milestones, референс и локальные teacher-anchor seeds54/55 проверены в 72 локальных сценариях. Принятой rough/stair политики пока нет. По решению пользователя сохраняется ABI **57→16**; расширение входов stair-v4 не реализовано и отложено.
+- Принятой общей политики Rough/Stairs нет; SDK2 и испытания реального робота не открыты.
+- Серверные `upstream20000` и `inverse57` завершены. `inverse57 update3000` — непринятый research parent.
+- Локальный `cycle57 model3000` — research-only. Isaac held-out gate и frozen MuJoCo gate провалены.
+- MuJoCo: Flat `80/80`, спуск `60/60`, подъём только `23/60` и `37` unsafe. Основные признаки — calf-limit stops и длительное насыщение колёс.
+- Финальный `cycle57 model3998` coarse-screened и отклонён: `19/64` полных циклов против `61/64` у `model3000`, `5` unsafe и `39` incomplete.
+- Stop-controller, settled latch, late-hold fine-tune и payload A/B/C не дали кандидата для promotion.
 
-На сервере запущен автономный inverse57 от upstream10000, лимит 15 часов; на снимке 18:41 МСК результат ещё не получен. Чат не требуется, часовой контроль отключён. Политики сохранены в Git как **экспериментальные, не принятые**.
+Следующий шаг — **не новый PPO run**, а выравнивание actuator/physics-моделей Isaac↔MuJoCo и повтор неизменённого 200-episode suite. После этого принимается отдельное решение о bounded training experiment.
 
-- [Актуальный статус: локальное/серверное обучение и точные сравнения](docs/TRAINING_STATUS.md)
-- [Каталог 75 экспериментальных checkpoints с SHA-256](policies/experimental/README.md)
-- [Общее сравнение восьми политик](docs/results/2026-09-23-upstream-final-comparison.md)
-- [Автономный inverse57: бюджет и критерии остановки](docs/results/2026-09-23-inverse57-overnight-plan.md)
-- [Индекс отчётов](docs/results/README.md)
+## С чего читать
 
-- [План и критерии готовности](docs/PROJECT_PLAN.md)
-- [Локальные эксперименты и архив отложенного stair-v4](docs/LOCAL_TRAINING_PLAN.md)
-- [Исследование обучения](docs/research/training_sources.md)
-- [Исследование деплоя](docs/research/deployment_sources.md)
-- [Сервер и синхронизация](docs/INFRASTRUCTURE.md)
-- [3D окно B2W с геймпадом без RTX](docs/GUI_GAMEPAD.md)
-- [Локальное обучение или сервер](docs/COMPUTE_DECISION.md)
-- [Результаты локального обучения на RTX 4080](docs/results/2026-09-21-local-4080.md)
-- [Первый benchmark лестниц и stair-training pilots](docs/results/2026-09-21-stair-benchmark.md)
-- [Вендорские материалы и лицензии](vendor/README.md)
-- [Навык push/merge без DNS](skills/github-dns-bypass/SKILL.md)
+1. [Карта документации](docs/README.md)
+2. [Скорректированный план](docs/PROJECT_PLAN.md)
+3. [Краткий журнал экспериментов](docs/TRAINING_PROGRESS.md)
+4. [Аналитика экспериментов и текущий статус](docs/TRAINING_STATUS.md)
+5. [Реестр checkpoint/SHA/статусов](docs/POLICY_REGISTRY.md)
+6. [Контракт 57→16](docs/POLICY_CONTRACT.md)
+7. [Карта логов и матрица результатов](docs/LOGS_AND_RESULTS.md)
 
-## Быстрая проверка без Isaac Sim
+Датированные отчёты в [docs/results](docs/results/README.md) — evidence на момент запуска. Их старые «следующие шаги» не заменяют текущий план.
 
-```bash
+## Проверка репозитория
+
+```powershell
 python scripts/vendor_materials.py verify
-python -m unittest discover -s tests -v
-python -m unittest discover -s skills/github-dns-bypass/tests -v
+& .\scripts\run_local.ps1 -m unittest discover -s tests -q
 ```
 
-Базовый стек: robot_lab/Isaac Lab **v2.3.2**, Isaac Sim **5.1.0**, Python **3.11**, RSL-RL **3.1.2**. Локальный runtime: [lock](docs/results/2026-09-21-local-4080-runtime.json). Сервер квалифицирован для данного headless B2W workload, включая завершённое 4-GPU обучение; GUI/RTX/cameras этим не квалифицированы.
+На текущем runtime проверены 1290 vendor-файлов и пройдены 267 unit tests. Обычный системный Python не содержит Isaac/PyTorch-зависимости; для полного набора нужен `scripts/run_local.ps1`.
 
-Оригинальная политика `rl_sar/policy/b2w/robot_lab/policy.pt` хранится вместе с конфигурацией. Загрузка весов не даёт совместимости с произвольным observation/action layout.
-
-Исходный код проекта и third-party материалы имеют разные правовые основания: лицензии upstream сохранены рядом с материалами. Общая лицензия для нового кода владельцем пока не выбрана.
+Стек baseline: robot_lab/Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11, RSL-RL 3.1.2. `vendor/` — неизменяемые upstream snapshots; их происхождение и лицензии описаны в [vendor/README.md](vendor/README.md).

@@ -1,0 +1,51 @@
+{
+  "schema": "b2w_cycle57_mujoco_multiseed_v1",
+  "date": "2026-09-25",
+  "status": "pre_registered_unrun",
+  "scope": "Diagnostic Isaac-to-MuJoCo transfer evaluation only; no policy selection, promotion, SDK, DDS, or robot actuation.",
+  "promotion_authorized": false,
+  "payload_kg": 0.0,
+  "policy": {
+    "checkpoint_sha256": "20c4a34c20282b549186c9fc9d58d79e10211cc536dd37336768678aea90de17",
+    "export_path": "logs/sim2sim/cycle57_model3000_20260924/export/policy-contract-export/policy.pt",
+    "export_sha256": "2af4c3417216211b12ee01e5088ace421df07872cd0922fcdc5bd1655c2a36c7",
+    "observations": 57,
+    "actions": 16,
+    "deterministic_inference": true
+  },
+  "model": {
+    "xml_path": "vendor/unitree_mujoco/unitree_robots/b2w/scene.xml",
+    "xml_sha256": "171d4bc592e1e3eaf15179bcdf0ab5aa1fba3fb0d157fe3bfb285ba0a0316908",
+    "physics_rate_hz": 500,
+    "policy_rate_hz": 50
+  },
+  "seeds": [6101, 6102, 6103, 6104, 6105, 6106, 6107, 6108, 6109, 6110,
+            6111, 6112, 6113, 6114, 6115, 6116, 6117, 6118, 6119, 6120],
+  "initial_perturbation": {
+    "lateral_offset_max_m": 0.10,
+    "yaw_max_rad": 0.08,
+    "leg_position_delta_max_rad": 0.02,
+    "leg_velocity_max_rad_s": 0.05,
+    "wheel_velocity_max_rad_s": 0.20
+  },
+  "flat_scenarios": ["stand", "forward_0p5", "yaw_pos_0p5", "yaw_neg_0p5"],
+  "stair_geometries": [
+    {"name": "nominal", "rise_m": 0.14, "run_m": 0.32},
+    {"name": "steep", "rise_m": 0.16, "run_m": 0.29},
+    {"name": "shallow", "rise_m": 0.12, "run_m": 0.38}
+  ],
+  "stair_directions": ["up", "down"],
+  "stair_controller": "fixed corridor yaw outer loop; no hold action adapter",
+  "diagnostic_gate": {
+    "minimum_pass_fraction_each_group": 0.95,
+    "unsafe_episode_count_max": 0,
+    "wheel_torque_saturation_fraction_max": 0.05,
+    "stair_lateral_drift_max_m": 0.50
+  },
+  "interpretation": [
+    "Each of the ten groups has 20 independently perturbed resets; 95% therefore requires at least 19/20.",
+    "Any full-rate forbidden contact, fall/tilt, joint-position limit, joint-velocity limit, non-finite state, or invalid policy output is unsafe.",
+    "Passing is diagnostic evidence only because the Isaac stair gate already failed and the physical models are not equivalent.",
+    "A wheel saturation guardrail failure keeps actuator and sim2real readiness blocked even if cycle completion passes."
+  ]
+}

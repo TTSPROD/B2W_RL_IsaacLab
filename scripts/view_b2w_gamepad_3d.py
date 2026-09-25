@@ -38,6 +38,8 @@ parser.add_argument("--terrain-level", type=int, default=9)
 parser.add_argument("--seed", type=int, default=2002)
 parser.add_argument("--device", choices=("cpu", "cuda:0"), default="cpu")
 parser.add_argument("--fps", type=int, default=144)
+parser.add_argument("--payload-urdf", type=Path,
+                    help="Optional payload-enabled B2W URDF used by the Isaac Sim child process")
 parser.add_argument("--stair-direction", choices=("up", "down"), default="up")
 parser.add_argument("--stair-rise", type=float, default=0.14)
 parser.add_argument("--stair-run", type=float, default=0.32)
@@ -49,6 +51,10 @@ if not 30 <= args.fps <= 240:
 model_path = args.policy or args.checkpoint
 if not model_path.is_file():
     parser.error(f"Model not found: {model_path}")
+if args.payload_urdf:
+    if not args.payload_urdf.is_file():
+        parser.error(f"Payload URDF not found: {args.payload_urdf}")
+    os.environ["B2W_PAYLOAD_URDF"] = str(args.payload_urdf.resolve())
 if args.terrain == "rough" and not 0 <= args.terrain_level <= 9:
     parser.error("--terrain-level must be from 0 to 9")
 

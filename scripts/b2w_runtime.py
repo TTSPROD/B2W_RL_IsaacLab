@@ -116,8 +116,12 @@ def make_flat_env_cfg(
 def project_kit_args() -> str:
     """Keep Kit data/cache/logs inside this project using official portable mode."""
     portable_root = PROJECT_ROOT / ".cache/kit"
+    extension_root = PROJECT_ROOT / ".runtime/extensions"
     portable_root.mkdir(parents=True, exist_ok=True)
+    if not extension_root.is_dir():
+        raise FileNotFoundError(extension_root)
     # AppLauncher splits kit_args on whitespace rather than using shell parsing.
-    if any(character.isspace() for character in str(portable_root)):
-        raise ValueError("AppLauncher portable-root currently requires a project path without spaces")
-    return f"--portable --portable-root {portable_root.as_posix()}"
+    if any(character.isspace() for path in (portable_root, extension_root) for character in str(path)):
+        raise ValueError("AppLauncher portable and extension roots require project paths without spaces")
+    return (f"--portable --portable-root {portable_root.as_posix()} "
+            f"--ext-folder {extension_root.as_posix()}")

@@ -3,6 +3,7 @@ isaacsim==5.1.0
 torch==2.7.0+cu128
 torchvision==0.22.0+cu128
 rsl-rl-lib==3.1.2
+mujoco==3.14.0
 numpy==1.26.0
 setuptools==80.9.0
 

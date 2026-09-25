@@ -26,6 +26,7 @@ parser.add_argument("--speed", type=float, default=0.7)
 parser.add_argument("--num-envs", type=int, default=128)
 parser.add_argument("--horizon", type=int, default=500)
 parser.add_argument("--seed", type=int, default=3001)
+parser.add_argument("--scenario-label", help="Stable suite cell label stored in diagnostic artifacts")
 parser.add_argument("--cycle", action="store_true", help="Evaluate passage, stop on landing, and restart")
 parser.add_argument("--cycle-protocol-v3", action="store_true")
 parser.add_argument("--suite-sha256")
@@ -44,9 +45,27 @@ parser.add_argument("--hold-wheel-action-scale", type=float, default=1.0,
                     help="Scale the final four wheel actions only during the external hold phase")
 parser.add_argument("--hold-wheel-ramp-steps", type=int, default=0,
                     help="Linearly ramp from scale 1 to --hold-wheel-action-scale after passage")
+parser.add_argument("--hold-wheel-feedback-gain", type=float, default=0.0,
+                    help="Hold only: wheel target opposes measured forward speed; zero disables")
+parser.add_argument("--hold-wheel-feedback-ramp-steps", type=int, default=10,
+                    help="Blend actor wheel actions into velocity feedback during hold")
 parser.add_argument("--output", type=Path)
 parser.add_argument("--capture-stop-states", type=Path,
                     help="Save safe first-arrival states whose later hold fails")
+parser.add_argument("--hold-trace", type=Path,
+                    help="Save every post-physics hold sample for all environments as compressed .npz")
+parser.add_argument("--physics-profile", choices=("randomized", "nominal"), default="randomized",
+                    help="Nominal disables physical/push randomization for exact recorded-state replay")
+parser.add_argument("--stop-controller-config", type=Path,
+                    help="Pre-registered stop-controller sweep JSON")
+parser.add_argument("--stop-controller-variant",
+                    help="Filtered-hysteretic variant name from --stop-controller-config")
+parser.add_argument("--settled-latch-config", type=Path,
+                    help="Pre-registered settled-hold latch experiment JSON")
+parser.add_argument("--settled-latch-variant",
+                    help="Settled-latch variant name from --settled-latch-config")
+parser.add_argument("--corridor-controller", action="store_true",
+                    help="Outer-loop Y/heading feedback through the existing yaw command; ABI stays 57-D")
 args = parser.parse_args()
 if (args.checkpoint is None) == (args.policy is None):
     parser.error("Specify exactly one of --checkpoint and --policy")
@@ -79,10 +98,56 @@ if args.hold_wheel_ramp_steps < 0 or args.hold_wheel_ramp_steps >= args.hold_ste
     parser.error("--hold-wheel-ramp-steps must be non-negative and shorter than the hold window")
 if args.hold_wheel_ramp_steps and (not args.cycle or args.hold_wheel_action_scale == 1.0):
     parser.error("--hold-wheel-ramp-steps requires --cycle and a wheel scale below 1")
+if args.hold_wheel_feedback_gain < 0.0 or args.hold_wheel_feedback_ramp_steps < 0:
+    parser.error("Wheel feedback gain and ramp steps must be non-negative")
+if args.hold_wheel_feedback_gain > 0.0 and (not args.cycle or args.hold_wheel_action_scale != 1.0
+                                            or args.hold_wheel_ramp_steps != 0):
+    parser.error("Wheel feedback requires --cycle and is mutually exclusive with wheel action scaling")
 if args.capture_stop_states is not None and not args.cycle:
     parser.error("--capture-stop-states requires --cycle")
+if args.hold_trace is not None and (not args.cycle or args.hold_trace.suffix.lower() != ".npz"):
+    parser.error("--hold-trace requires --cycle and a .npz path")
 if args.cycle_protocol_v3 and not args.cycle:
     parser.error("--cycle-protocol-v3 requires --cycle")
+if args.corridor_controller and not args.cycle:
+    parser.error("--corridor-controller requires --cycle")
+if (args.stop_controller_config is None) != (args.stop_controller_variant is None):
+    parser.error("--stop-controller-config and --stop-controller-variant are required together")
+if (args.settled_latch_config is None) != (args.settled_latch_variant is None):
+    parser.error("--settled-latch-config and --settled-latch-variant are required together")
+if args.stop_controller_config is not None and args.settled_latch_config is not None:
+    parser.error("Filtered stop controller and settled latch are mutually exclusive")
+filtered_variant = None
+filtered_sweep_hash = None
+if args.stop_controller_config is not None:
+    if not args.cycle or args.hold_wheel_action_scale != 1.0 or args.hold_wheel_feedback_gain > 0.0:
+        parser.error("Filtered stop controller requires --cycle and is exclusive with legacy wheel adapters")
+    sweep_bytes = args.stop_controller_config.read_bytes()
+    filtered_sweep_hash = hashlib.sha256(sweep_bytes).hexdigest()
+    sweep_definition = json.loads(sweep_bytes)
+    if sweep_definition.get("schema") != "b2w_stop_controller_sweep_v1":
+        parser.error("Unsupported stop-controller sweep schema")
+    matches = [item for item in sweep_definition.get("variants", [])
+               if item.get("name") == args.stop_controller_variant]
+    if len(matches) != 1 or matches[0].get("mode") != "filtered_hysteretic":
+        parser.error("Selected full-suite variant must be one registered filtered_hysteretic controller")
+    filtered_variant = matches[0]
+settled_latch_variant = None
+settled_latch_config_hash = None
+if args.settled_latch_config is not None:
+    if (not args.cycle or args.hold_wheel_action_scale != 1.0
+            or args.hold_wheel_ramp_steps != 0 or args.hold_wheel_feedback_gain > 0.0):
+        parser.error("Settled latch requires --cycle and is exclusive with legacy wheel adapters")
+    latch_bytes = args.settled_latch_config.read_bytes()
+    settled_latch_config_hash = hashlib.sha256(latch_bytes).hexdigest()
+    latch_definition = json.loads(latch_bytes)
+    if latch_definition.get("schema") != "b2w_settled_latch_experiment_v1":
+        parser.error("Unsupported settled-latch experiment schema")
+    matches = [item for item in latch_definition.get("variants", [])
+               if item.get("name") == args.settled_latch_variant]
+    if len(matches) != 1 or matches[0].get("mode") != "settled_hold_latch":
+        parser.error("Selected variant is not one registered settled_hold_latch controller")
+    settled_latch_variant = matches[0]
 
 from isaaclab.app import AppLauncher
 
@@ -100,9 +165,21 @@ import torch
 import robot_lab.tasks  # noqa: F401
 from isaaclab.terrains import TerrainGeneratorCfg
 from isaaclab_tasks.utils import parse_env_cfg
+from b2w_corridor_controller import corridor_controller_manifest, corridor_yaw_command
+from b2w_stop_controller import (
+    FilteredHystereticStopController,
+    FilteredStopControllerConfig,
+    SettledHoldLatch,
+    SettledLatchConfig,
+    feedback_wheel_actions,
+    filtered_stop_controller_manifest,
+    stop_controller_manifest,
+)
 from local_b2w_assets import configure_b2w_env, configure_ground_plane, enable_policy_base_lin_vel
 from stair_command_profile import braking_speed
 from stair_cycle_protocol import stop_outcome
+from stair_hold_trace import B2WHoldTraceRecorder
+from stair_safety_telemetry import B2WSafetyTelemetry
 from stair_terrain import GOAL_X, START_X, TILE_X, TILE_Y, StairFlightCfg
 
 
@@ -147,6 +224,17 @@ try:
                 roll=(-0.05, 0.05), pitch=(-0.05, 0.05), yaw=(-0.05, 0.05))
     velocity = cfg.events.randomize_reset_base.params["velocity_range"]
     velocity.update({axis: (0.0, 0.0) for axis in velocity})
+    if args.physics_profile == "nominal":
+        for event_name in (
+            "randomize_rigid_body_material",
+            "randomize_rigid_body_mass_base",
+            "randomize_rigid_body_mass_others",
+            "randomize_com_positions",
+            "randomize_apply_external_force_torque",
+            "randomize_actuator_gains",
+            "randomize_push_robot",
+        ):
+            setattr(cfg.events, event_name, None)
     configure_ground_plane()
     configure_b2w_env(cfg)
     if actor_dim == 60:
@@ -189,12 +277,39 @@ try:
     hip_ids = contact.find_bodies(".*_hip")[0]
     if len(base_ids) != 1 or len(hip_ids) != 4:
         raise RuntimeError("Unexpected contact sensor body order")
+    safety_telemetry = B2WSafetyTelemetry(robot, contact, cfg.sim.dt)
+    hold_trace_recorder = (
+        B2WHoldTraceRecorder(robot, contact, safety_telemetry, args.hold_steps)
+        if args.hold_trace is not None else None
+    )
+    filtered_stop_controller = None
+    filtered_stop_manifest = {"enabled": False}
+    if filtered_variant is not None:
+        filtered_config = FilteredStopControllerConfig.from_dict({
+            key: value for key, value in filtered_variant.items() if key not in ("name", "mode")
+        })
+        filtered_stop_controller = FilteredHystereticStopController(
+            filtered_config, args.num_envs, device=device, dtype=observations["policy"].dtype
+        )
+        filtered_stop_manifest = filtered_stop_controller_manifest(filtered_config)
+        filtered_stop_manifest["variant"] = args.stop_controller_variant
+        filtered_stop_manifest["sweep_sha256"] = filtered_sweep_hash
+    settled_latch_controller = None
+    settled_latch_manifest = {"enabled": False}
+    if settled_latch_variant is not None:
+        settled_config = SettledLatchConfig.from_dict({
+            key: value for key, value in settled_latch_variant.items() if key not in ("name", "mode")
+        })
+        settled_latch_controller = SettledHoldLatch(
+            settled_config, args.num_envs, device=device, dtype=observations["policy"].dtype
+        )
     # Isaac Lab resets terminated environments inside step(). Preserve the
     # terminal physics state before _reset_idx for v3 failure attribution.
     if args.cycle_protocol_v3:
         pre_reset_seen = torch.zeros(args.num_envs, dtype=torch.bool, device=device)
         pre_reset_progress = torch.zeros(args.num_envs, device=device)
         pre_reset_speed = torch.zeros(args.num_envs, device=device)
+        pre_reset_lateral = torch.zeros(args.num_envs, device=device)
         pre_reset_base_bad = torch.zeros_like(pre_reset_seen)
         pre_reset_hip_bad = torch.zeros_like(pre_reset_seen)
         pre_reset_tilt_bad = torch.zeros_like(pre_reset_seen)
@@ -205,6 +320,8 @@ try:
             pre_reset_progress[ids] = (robot.data.root_pos_w[ids, 0]
                                        - scene.terrain.env_origins[ids, 0])
             pre_reset_speed[ids] = torch.linalg.vector_norm(robot.data.root_lin_vel_b[ids, :2], dim=-1)
+            pre_reset_lateral[ids] = (robot.data.root_pos_w[ids, 1]
+                                      - scene.terrain.env_origins[ids, 1])
             forces = contact.data.net_forces_w
             pre_reset_base_bad[ids] = (torch.linalg.vector_norm(forces[ids][:, base_ids], dim=-1) > 5.0).any(dim=-1)
             pre_reset_hip_bad[ids] = (torch.linalg.vector_norm(forces[ids][:, hip_ids], dim=-1) > 5.0).any(dim=-1)
@@ -244,11 +361,22 @@ try:
     failure_step = torch.zeros_like(reached_step)
     reason_code = torch.zeros(args.num_envs, dtype=torch.int8, device=device)
     max_progress = torch.full((args.num_envs,), -1e9, device=device)
+    initial_lateral = robot.data.root_pos_w[:, 1] - scene.terrain.env_origins[:, 1]
+    initial_quaternion = robot.data.root_quat_w.clone()
+    initial_yaw = torch.atan2(
+        2.0 * (initial_quaternion[:, 0] * initial_quaternion[:, 3]
+               + initial_quaternion[:, 1] * initial_quaternion[:, 2]),
+        1.0 - 2.0 * (initial_quaternion[:, 2].square() + initial_quaternion[:, 3].square()),
+    )
+    max_abs_lateral_drift = torch.zeros(args.num_envs, device=device)
+    passage_lateral_drift = torch.zeros(args.num_envs, device=device)
     goal_distance = GOAL_X - START_X
     command_term = env.unwrapped.command_manager.get_term("base_velocity")
     started = time.monotonic()
     with torch.inference_mode():
         for step in range(1, args.horizon + 1):
+            active_before_step = active.clone()
+            stage_before_step = stage.clone()
             if args.cycle_protocol_v3:
                 pre_reset_seen.zero_()
             if args.cycle:
@@ -269,6 +397,19 @@ try:
                     desired_speed[pulsing] = args.stop_pulse_speed
                 command_term.vel_command_b[:, 0] = desired_speed
                 command_term.vel_command_b[:, 1:] = 0.0
+                if args.corridor_controller:
+                    quaternion = robot.data.root_quat_w
+                    yaw = torch.atan2(
+                        2.0 * (quaternion[:, 0] * quaternion[:, 3]
+                               + quaternion[:, 1] * quaternion[:, 2]),
+                        1.0 - 2.0 * (quaternion[:, 2].square() + quaternion[:, 3].square()),
+                    )
+                    heading_error = torch.atan2(torch.sin(yaw - initial_yaw), torch.cos(yaw - initial_yaw))
+                    lateral_error = (robot.data.root_pos_w[:, 1]
+                                     - scene.terrain.env_origins[:, 1] - initial_lateral)
+                    yaw_command = corridor_yaw_command(lateral_error, heading_error)
+                    yaw_command[holding] = 0.0
+                    command_term.vel_command_b[:, 2] = yaw_command
                 command_start = 9 if actor_dim == 60 else 6
                 observations["policy"][:, command_start:command_start + 3] = command_term.command
             actions = model(observations["policy"])
@@ -286,13 +427,49 @@ try:
                     actions[holding, -4:] *= wheel_scale.unsqueeze(-1)
                 else:
                     actions[holding, -4:] *= args.hold_wheel_action_scale
+            if args.cycle and args.hold_wheel_feedback_gain > 0.0:
+                holding = stage == 1
+                if holding.any():
+                    actions[holding, -4:] = feedback_wheel_actions(
+                        actions[holding, -4:],
+                        robot.data.root_lin_vel_b[holding, 0],
+                        (step - passage_step[holding]).clamp_min(0),
+                        args.hold_wheel_feedback_gain,
+                        args.hold_wheel_feedback_ramp_steps,
+                    )
+            if filtered_stop_controller is not None:
+                holding = stage == 1
+                hold_step = (step - passage_step).clamp_min(0)
+                actions[:, -4:] = filtered_stop_controller.apply(
+                    actions[:, -4:], robot.data.root_lin_vel_b[:, 0], hold_step, holding
+                )
+            if settled_latch_controller is not None:
+                holding = stage == 1
+                hold_step = (step - passage_step).clamp_min(0)
+                planar_speed = torch.linalg.vector_norm(robot.data.root_lin_vel_b[:, :2], dim=-1)
+                actions = settled_latch_controller.apply(actions, planar_speed, hold_step, holding)
+            safety_telemetry.record_actions(actions, active_before_step, stage_before_step)
             observations, _, terminated, truncated, _ = env.step(actions)
             if not torch.isfinite(observations["policy"]).all():
                 raise RuntimeError(f"Non-finite observation at step {step}")
+            if args.cycle_protocol_v3:
+                safety_telemetry.record_terminal_exclusions(
+                    active_before_step & pre_reset_seen, stage_before_step
+                )
+                safety_state_valid = active_before_step & ~pre_reset_seen
+            else:
+                safety_state_valid = active_before_step
+            safety_telemetry.record_state(safety_state_valid, stage_before_step)
             progress = robot.data.root_pos_w[:, 0] - scene.terrain.env_origins[:, 0]
+            lateral = robot.data.root_pos_w[:, 1] - scene.terrain.env_origins[:, 1]
             if args.cycle_protocol_v3:
                 progress = torch.where(pre_reset_seen, pre_reset_progress, progress)
+                lateral = torch.where(pre_reset_seen, pre_reset_lateral, lateral)
             max_progress = torch.where(active, torch.maximum(max_progress, progress), max_progress)
+            max_abs_lateral_drift = torch.where(
+                active, torch.maximum(max_abs_lateral_drift, (lateral - initial_lateral).abs()),
+                max_abs_lateral_drift,
+            )
             forces = contact.data.net_forces_w
             base_force = torch.linalg.vector_norm(forces[:, base_ids], dim=-1)
             hip_force = torch.linalg.vector_norm(forces[:, hip_ids], dim=-1)
@@ -322,6 +499,7 @@ try:
             reason_code[(failure | timeout) & ~contact_bad & ~tilt_bad & ~terminated & truncated] = 5
             reached_step[goal] = step
             passage_speed[goal] = torch.linalg.vector_norm(robot.data.root_lin_vel_b[goal, :2], dim=-1)
+            passage_lateral_drift[goal] = (lateral[goal] - initial_lateral[goal]).abs()
             if args.capture_stop_states is not None and goal.any():
                 captured_root[goal] = robot.data.root_state_w[goal]
                 captured_joint_pos[goal] = robot.data.joint_pos[goal]
@@ -337,6 +515,21 @@ try:
                 stop_origin[goal] = progress[goal]
                 hold_speed_samples[goal, 0] = passage_speed[goal]
                 hold_speed_observed[goal, 0] = True
+                if hold_trace_recorder is not None:
+                    hold_trace_recorder.record(
+                        goal & safety_state_valid,
+                        torch.zeros_like(passage_step),
+                        actions,
+                        progress,
+                        stop_origin,
+                    )
+                    hold_trace_recorder.record(
+                        active_before_step & (stage_before_step == 1) & safety_state_valid,
+                        step - passage_step,
+                        actions,
+                        progress,
+                        stop_origin,
+                    )
                 speed = torch.linalg.vector_norm(robot.data.root_lin_vel_b[:, :2], dim=-1)
                 if args.cycle_protocol_v3:
                     speed = torch.where(pre_reset_seen, pre_reset_speed, speed)
@@ -375,29 +568,83 @@ try:
                       f"unsafe={int(unsafe.sum())} elapsed_s={time.monotonic()-started:.1f}", flush=True)
             if not active.any():
                 break
+    hold_trace_result = None
+    if hold_trace_recorder is not None:
+        hold_trace_result = hold_trace_recorder.save(
+            args.hold_trace,
+            metadata={
+                "schema": "b2w_hold_trace_v1",
+                "policy_sha256": model_hash,
+                "policy_actor_observation_dim": actor_dim,
+                "seed": args.seed,
+                "scenario": args.scenario_label,
+                "direction": args.direction,
+                "rise_m": args.rise,
+                "run_m": args.run,
+                "num_steps": args.num_steps,
+                "hold_steps": args.hold_steps,
+                "stop_speed_m_s": args.stop_speed,
+                "max_stop_drift_m": args.max_stop_drift,
+                "physics_profile": args.physics_profile,
+                "suite_sha256": args.suite_sha256,
+                "controller": (
+                    args.settled_latch_variant if settled_latch_controller is not None else
+                    args.stop_controller_variant if filtered_stop_controller is not None else
+                    "actor_baseline"
+                ),
+            },
+            passage_success=passage_success,
+            stop_success=stop_success,
+            stop_failed=stop_failed,
+            unsafe=unsafe,
+            timed_out=timed_out,
+            incomplete=active,
+            stop_reason_code=stop_reason_code,
+            passage_step=passage_step,
+        )
+    if settled_latch_controller is not None:
+        settled_latch_manifest = settled_latch_controller.manifest()
+        settled_latch_manifest["variant"] = args.settled_latch_variant
+        settled_latch_manifest["experiment_sha256"] = settled_latch_config_hash
     result = {
         "schema": ("b2w_stair_eval_v3" if args.cycle_protocol_v3 else
                    "b2w_stair_eval_v2" if args.cycle else "b2w_stair_eval_v1"),
         "suite_sha256": args.suite_sha256,
         "source_sha256": {name: hashlib.sha256((root / "scripts" / name).read_bytes()).hexdigest()
-                          for name in ("eval_stair_b2w.py", "stair_cycle_protocol.py",
+                          for name in ("eval_stair_b2w.py", "b2w_corridor_controller.py", "b2w_stop_controller.py",
+                                       "stair_hold_trace.py",
+                                       "stair_cycle_protocol.py", "stair_safety_telemetry.py",
                                        "stair_command_profile.py", "stair_terrain.py")},
         "task": task,
         "policy": str(model_path.resolve()),
         "policy_sha256": model_hash,
         "policy_actor_observation_dim": actor_dim,
+        "physics_profile": args.physics_profile,
         "policy_observation_terms": policy_terms,
         "seed": args.seed,
+        "scenario_label": args.scenario_label,
         "geometry": {"direction": args.direction, "rise_m": args.rise, "run_m": args.run,
                      "num_steps": args.num_steps, "width_m": TILE_Y,
                      "start_x_m": START_X, "goal_x_m": GOAL_X},
         "command_vx_m_s": args.speed,
+        "corridor_controller": (corridor_controller_manifest()
+                                if args.corridor_controller else {"enabled": False}),
         "num_envs": args.num_envs,
         "horizon_policy_steps": args.horizon,
         "policy_hz": round(1.0 / (cfg.sim.dt * cfg.decimation), 6),
         "success": int(success.sum().item()),
         "passage_success": int(passage_success.sum().item()),
         "passage_speed_median_m_s": float(passage_speed[passage_success].median().item()) if passage_success.any() else None,
+        "passage_abs_lateral_drift_m": {
+            "median": float(passage_lateral_drift[passage_success].median().item()) if passage_success.any() else None,
+            "p95": float(torch.quantile(passage_lateral_drift[passage_success], 0.95).item()) if passage_success.any() else None,
+            "maximum": float(passage_lateral_drift[passage_success].max().item()) if passage_success.any() else None,
+        },
+        "max_abs_lateral_drift_m": {
+            "median": float(max_abs_lateral_drift.median().item()),
+            "p95": float(torch.quantile(max_abs_lateral_drift, 0.95).item()),
+            "maximum": float(max_abs_lateral_drift.max().item()),
+        },
         "hold_speed_profile": {
             str(sample_step): {
                 "count": int(hold_speed_observed[:, sample_index].sum().item()),
@@ -409,6 +656,7 @@ try:
             }
             for sample_index, sample_step in enumerate(hold_sample_steps)
         } if args.cycle else None,
+        "hold_trace": hold_trace_result,
         "stop_success": int(stop_success.sum().item()) if args.cycle else None,
         "stop_failed": int(stop_failed.sum().item()) if args.cycle else None,
         "stop_failure_reasons": {"drift_only": int((stop_reason_code == 1).sum().item()),
@@ -427,7 +675,12 @@ try:
                    "stop_pulse_speed_m_s": args.stop_pulse_speed,
                    "stop_pulse_steps": args.stop_pulse_steps,
                    "hold_wheel_action_scale": args.hold_wheel_action_scale,
-                   "hold_wheel_ramp_steps": args.hold_wheel_ramp_steps} if args.cycle else None,
+                   "hold_wheel_ramp_steps": args.hold_wheel_ramp_steps,
+                   "wheel_feedback": (stop_controller_manifest(
+                       args.hold_wheel_feedback_gain, args.hold_wheel_feedback_ramp_steps
+                   ) if args.hold_wheel_feedback_gain > 0.0 else {"enabled": False}),
+                   "filtered_stop_controller": filtered_stop_manifest,
+                   "settled_latch": settled_latch_manifest} if args.cycle else None,
         "unsafe": int(unsafe.sum().item()),
         "timeouts": int(timed_out.sum().item()),
         "incomplete": int(active.sum().item()),
@@ -448,6 +701,7 @@ try:
         "success_step_median": float(reached_step[success].float().median().item()) if success.any() else None,
         "cycle_success_step_median": float(cycle_step[success].float().median().item()) if args.cycle and success.any() else None,
         "first_failure_step_median": float(failure_step[unsafe].float().median().item()) if unsafe.any() else None,
+        "safety_telemetry": safety_telemetry.result(),
         "elapsed_s": time.monotonic() - started,
     }
     print("STAIR_EVAL=" + json.dumps(result, sort_keys=True), flush=True)
@@ -474,8 +728,9 @@ try:
                 "hip_force_max_n": float(captured_hip_force[index].item()),
                 "projected_gravity_z": float(captured_gravity_z[index].item()),
             })
-        capture = {"schema": "b2w_stair_stop_failure_states_v1", "geometry": result["geometry"],
+        capture = {"schema": "b2w_stair_stop_failure_states_v2", "geometry": result["geometry"],
                    "seed": args.seed, "policy_sha256": model_hash,
+                   "physics_profile": args.physics_profile,
                    "joint_names": robot.joint_names, "states": states}
         args.capture_stop_states.parent.mkdir(parents=True, exist_ok=True)
         args.capture_stop_states.write_text(json.dumps(capture, indent=2), encoding="utf-8")

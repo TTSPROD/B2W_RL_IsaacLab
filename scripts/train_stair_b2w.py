@@ -25,6 +25,7 @@ from stair_command_profile import braking_speed
 from stair_cycle_protocol import stop_outcome
 from wheel_head_training import configure_wheel_head_only
 from moving_teacher_anchor import install_moving_teacher_anchor
+from hold_tail_reward import late_hold_speed_excess_squared
 
 parser = argparse.ArgumentParser(add_help=False)
 parser.add_argument("--parent-checkpoint", type=Path, required=True)
@@ -37,6 +38,10 @@ parser.add_argument("--cycle-protocol-v3", action="store_true",
 parser.add_argument("--rough-replay-fraction", type=float, default=0.15)
 parser.add_argument("--up-fraction", type=float, help="Fraction of uphill terrain tiles; downhill gets the remaining stair tiles")
 parser.add_argument("--stop-speed-reward-weight", type=float, default=0.0)
+parser.add_argument("--late-hold-speed-penalty-weight", type=float, default=0.0,
+                    help="Positive magnitude for a late-hold planar-speed hinge penalty")
+parser.add_argument("--late-hold-start-step", type=int, default=40)
+parser.add_argument("--late-hold-speed-threshold", type=float, default=0.10)
 parser.add_argument("--landing-approach-speed", type=float)
 parser.add_argument("--slowdown-distance", type=float, default=1.0)
 parser.add_argument("--brake-profile", action="store_true")
@@ -50,6 +55,8 @@ parser.add_argument("--max-stair-rise", type=float, default=0.16)
 parser.add_argument("--min-stair-run", type=float, default=0.30)
 parser.add_argument("--inverse-rough-fraction", type=float, default=0.0)
 parser.add_argument("--passage-reward-weight", type=float, default=0.0)
+parser.add_argument("--hold-reward-weight", type=float, default=0.0,
+                    help="One-shot reward for completing the 100-step safe hold")
 parser.add_argument("--failure-replay-up", type=Path)
 parser.add_argument("--failure-replay-down", type=Path)
 parser.add_argument("--failure-replay-probe", action="store_true")
@@ -62,10 +69,22 @@ parser.add_argument("--wheel-head-only", action="store_true",
 parser.add_argument("--teacher-anchor-weight", type=float, default=0.0,
                     help="Behavior-cloning weight to the parent actor on nonzero-command rollout states")
 parser.add_argument("--fresh-optimizer", action="store_true")
+parser.add_argument("--learning-rate", type=float, default=1e-4,
+                    help="Fixed PPO learning rate; recorded in stair_parent.json")
+parser.add_argument("--save-interval", type=int, default=25,
+                    help="Checkpoint interval in PPO updates")
+parser.add_argument("--observation-noise-scale", type=float, default=1.0,
+                    help="Scale existing policy sensor-noise ranges without changing the 57-D ABI")
 parser.add_argument("--reset-probe", action="store_true")
 extra, passthrough = parser.parse_known_args(sys.argv[1:])
 if extra.landing_stability_weight < 0:
     parser.error("--landing-stability-weight must be nonnegative")
+if not 1e-6 <= extra.learning_rate <= 1e-3:
+    parser.error("--learning-rate must be in [1e-6, 1e-3]")
+if not 1 <= extra.save_interval <= 100:
+    parser.error("--save-interval must be in [1, 100]")
+if not 0.5 <= extra.observation_noise_scale <= 2.0:
+    parser.error("--observation-noise-scale must be in [0.5, 2.0]")
 if extra.restart_after_stop and not extra.stop_on_landing:
     parser.error("--restart-after-stop requires --stop-on-landing")
 if extra.strict_stop_deadline and not extra.restart_after_stop:
@@ -73,8 +92,8 @@ if extra.strict_stop_deadline and not extra.restart_after_stop:
 if extra.cycle_protocol_v3 and not extra.restart_after_stop:
     parser.error("--cycle-protocol-v3 requires --restart-after-stop")
 strict_deadline = extra.strict_stop_deadline or extra.cycle_protocol_v3
-if not (0.05 <= extra.rough_replay_fraction <= 0.45):
-    parser.error("--rough-replay-fraction must be in [0.05, 0.45]")
+if not (0.05 <= extra.rough_replay_fraction <= 0.50):
+    parser.error("--rough-replay-fraction must be in [0.05, 0.50]")
 stair_total_fraction = 0.85 - extra.rough_replay_fraction
 up_fraction = stair_total_fraction / 2 if extra.up_fraction is None else extra.up_fraction
 down_fraction = stair_total_fraction - up_fraction
@@ -82,6 +101,14 @@ if not (0.1 <= up_fraction <= stair_total_fraction - 0.1):
     parser.error("--up-fraction must leave at least 0.1 for uphill and downhill stair tiles")
 if extra.stop_speed_reward_weight < 0 or (extra.stop_speed_reward_weight and not extra.restart_after_stop):
     parser.error("--stop-speed-reward-weight requires --restart-after-stop and must be nonnegative")
+if extra.late_hold_speed_penalty_weight < 0 or (
+    extra.late_hold_speed_penalty_weight and not extra.restart_after_stop
+):
+    parser.error("--late-hold-speed-penalty-weight requires --restart-after-stop and must be nonnegative")
+if not 1 <= extra.late_hold_start_step < 100:
+    parser.error("--late-hold-start-step must be in [1, 99]")
+if not 0 < extra.late_hold_speed_threshold <= 0.15:
+    parser.error("--late-hold-speed-threshold must be in (0, 0.15]")
 if extra.landing_approach_speed is not None and (
     not extra.stop_on_landing or not 0 < extra.landing_approach_speed < 0.7 or extra.slowdown_distance <= 0
 ):
@@ -111,8 +138,10 @@ if extra.reset_probe and (extra.landing_tiles_fraction == 0 or extra.landing_sta
     parser.error("--reset-probe requires landing tiles and a positive start probability")
 if not (0.05 <= extra.max_stair_rise <= 0.20 and 0.25 <= extra.min_stair_run <= 0.42):
     parser.error("Invalid stair training geometry range")
-if extra.inverse_rough_fraction not in (0.0, 0.05):
-    parser.error("--inverse-rough-fraction must be 0 or 0.05 for the 20-column terrain")
+if (extra.inverse_rough_fraction < 0.0
+        or extra.inverse_rough_fraction > extra.rough_replay_fraction
+        or abs(extra.inverse_rough_fraction * 20 - round(extra.inverse_rough_fraction * 20)) > 1e-9):
+    parser.error("--inverse-rough-fraction must be a 0.05 multiple within rough replay")
 if extra.inverse_rough_fraction and not extra.landing_tiles_fraction:
     parser.error("Inverse rough replay requires fixed landing tiles")
 if extra.rough_reset_probe and not extra.inverse_rough_fraction:
@@ -129,13 +158,15 @@ if extra.wheel_head_only and (not extra.fresh_optimizer or extra.actor_base_lin_
 if extra.teacher_anchor_weight < 0:
     parser.error("--teacher-anchor-weight must be nonnegative")
 if extra.teacher_anchor_weight and (not extra.fresh_optimizer or extra.actor_base_lin_vel
-                                    or extra.wheel_head_only or not extra.stop_speed_reward_weight
+                                    or not extra.stop_speed_reward_weight
                                     or not extra.diverse_replay_commands):
     parser.error("Teacher anchor requires fresh 57-D PPO, stop-speed reward, and diverse replay commands")
 if extra.actor_base_lin_vel and (extra.failure_replay_up is not None or extra.failure_replay_probe):
     parser.error("--actor-base-lin-vel is not implemented with failure-state replay")
 if extra.passage_reward_weight < 0 or (extra.passage_reward_weight and not extra.restart_after_stop):
     parser.error("--passage-reward-weight requires --restart-after-stop and must be nonnegative")
+if extra.hold_reward_weight < 0 or (extra.hold_reward_weight and not extra.restart_after_stop):
+    parser.error("--hold-reward-weight requires --restart-after-stop and must be nonnegative")
 if (extra.failure_replay_up is None) != (extra.failure_replay_down is None):
     parser.error("Failure-state replay requires both up and down snapshot files")
 if extra.failure_replay_up is not None and (
@@ -156,6 +187,9 @@ accepted_parent_hashes = {
     "64a9646efc52285934170efc623753550f497c34f4e1ab8536a9403c144f1465",  # rough seed 56
     "49c50eabfc3d9ce640dc3cc46fb15f45fb8f071351e53a768afc2a406b474801",  # control57 seed 54
     "f5d7403f98853374b3cdaf6dc329461b29f0f0658e308c0d6a47b890c2371ff2",  # control57 seed 55
+    "73fb165c4d9bb0b17ae3128a445d5f3801d66360efc5286469872199726ecafa",  # inverse57 update3000
+    "4fac5e083e334790933e2cec755f97f833f52b995bb53b8097120d42bd000c7c",  # payload57 variant B model3098
+    "20c4a34c20282b549186c9fc9d58d79e10211cc536dd37336768678aea90de17",  # cycle57 A model3000
 }
 if parent_sha not in accepted_parent_hashes:
     raise ValueError(f"Unexpected parent checkpoint SHA-256: {parent_sha}")
@@ -204,11 +238,12 @@ def init_with_local_paths(self, *args, **kwargs):
 
 AppLauncher.__init__ = init_with_local_paths
 task_hooks_installed = False
+applied_policy_noise = {}
 
 
 def install_task_hooks():
     """Patch task creation only after Isaac Sim has initialized."""
-    global task_hooks_installed
+    global task_hooks_installed, applied_policy_noise
     if task_hooks_installed:
         return
     import gymnasium as gym
@@ -540,6 +575,20 @@ def install_task_hooks():
         return ((term.stop_start_step < 0) & (progress >= GOAL_X - START_X)
                 & ~unsafe_state(env) & ~cycle_exclusion_mask(env))
 
+    def safe_hold_completion(env):
+        """One reward at the evaluator-aligned boundary of a successful hold."""
+        term = env.command_manager.get_term("base_velocity")
+        robot = env.scene["robot"]
+        progress = robot.data.root_pos_w[:, 0] - env.scene.terrain.env_origins[:, 0]
+        _, completed, _ = stop_outcome(
+            (term.phase == 1) & (term.stop_start_step >= 0),
+            env.episode_length_buf - term.stop_start_step,
+            (progress - term.stop_origin).abs(),
+            torch.linalg.vector_norm(robot.data.root_lin_vel_b[:, :2], dim=-1),
+            hold_steps=100, max_drift_m=0.35, max_speed_m_s=0.15)
+        # Reward is computed before command_manager.compute() advances phase 1 -> 2.
+        return completed & ~unsafe_state(env) & ~cycle_exclusion_mask(env)
+
     def overshot_landing(env):
         term = env.command_manager.get_term("base_velocity")
         progress = env.scene["robot"].data.root_pos_w[:, 0] - env.scene.terrain.env_origins[:, 0]
@@ -577,6 +626,21 @@ def install_task_hooks():
         return (holding.float() * (~unsafe_state(env)).float() *
                 (~cycle_exclusion_mask(env)).float() * torch.exp(-20.0 * speed_sq))
 
+    def late_hold_speed_penalty(env):
+        """Penalize only late-hold speed above the pre-registered safe margin."""
+        term = env.command_manager.get_term("base_velocity")
+        elapsed = env.episode_length_buf - term.stop_start_step
+        return late_hold_speed_excess_squared(
+            env.scene["robot"].data.root_lin_vel_b[:, :2],
+            term.phase,
+            elapsed,
+            unsafe_state(env),
+            cycle_exclusion_mask(env),
+            start_step=extra.late_hold_start_step,
+            end_step=100,
+            speed_threshold_m_s=extra.late_hold_speed_threshold,
+        )
+
     def stair_levels(env, env_ids):
         """Advance only after a clean landing; lower failed episodes."""
         terrain = env.scene.terrain
@@ -600,11 +664,21 @@ def install_task_hooks():
     original_make = gym.make
 
     def make_stair_task(task, *args, **kwargs):
+        global applied_policy_noise
         if task == "RobotLab-Isaac-Velocity-Rough-Unitree-B2W-v0":
             configure_ground_plane()
             cfg = configure_b2w_env(kwargs["cfg"])
             if extra.actor_base_lin_vel:
                 enable_policy_base_lin_vel(cfg)
+            applied_policy_noise = {}
+            for term_name in ("base_lin_vel", "base_ang_vel", "projected_gravity", "joint_pos", "joint_vel"):
+                term = getattr(cfg.observations.policy, term_name, None)
+                noise = getattr(term, "noise", None) if term is not None else None
+                if noise is None:
+                    continue
+                noise.n_min *= extra.observation_noise_scale
+                noise.n_max *= extra.observation_noise_scale
+                applied_policy_noise[term_name] = [noise.n_min, noise.n_max]
             sub_terrains = {
                 "stairs_up": StairFlightCfg(proportion=regular_up, direction="up", min_rise=0.05,
                                              max_rise=extra.max_stair_rise, min_run=extra.min_stair_run, max_run=0.42),
@@ -663,6 +737,8 @@ def install_task_hooks():
             cfg.rewards.stair_goal = RewTerm(func=reached_landing, weight=250.0)
             if extra.passage_reward_weight:
                 cfg.rewards.safe_passage = RewTerm(func=safe_first_passage, weight=extra.passage_reward_weight)
+            if extra.hold_reward_weight:
+                cfg.rewards.safe_hold = RewTerm(func=safe_hold_completion, weight=extra.hold_reward_weight)
             if extra.stop_on_landing:
                 if extra.diverse_replay_commands:
                     cfg.commands.base_velocity.class_type = DiverseReplayCycleCommand
@@ -678,6 +754,11 @@ def install_task_hooks():
                     func=landing_stability, weight=extra.landing_stability_weight)
             if extra.stop_speed_reward_weight:
                 cfg.rewards.stop_speed = RewTerm(func=stop_speed_reward, weight=extra.stop_speed_reward_weight)
+            if extra.late_hold_speed_penalty_weight:
+                cfg.rewards.late_hold_speed = RewTerm(
+                    func=late_hold_speed_penalty,
+                    weight=-extra.late_hold_speed_penalty_weight,
+                )
             cfg.commands.base_velocity.heading_command = False
             cfg.commands.base_velocity.rel_standing_envs = 0.0
             cfg.commands.base_velocity.rel_heading_envs = 0.0
@@ -705,8 +786,16 @@ def install_task_hooks():
                 "cycle_protocol": "v3" if extra.cycle_protocol_v3 else "legacy",
                 "actor_observation_dim": 60 if extra.actor_base_lin_vel else 57,
                 "actor_base_lin_vel": extra.actor_base_lin_vel,
+                "observation_noise_scale": extra.observation_noise_scale,
+                "policy_observation_noise_ranges": applied_policy_noise,
                 "stop_hold_steps": 100 if extra.stop_on_landing else None,
                 "stop_speed_reward_weight": extra.stop_speed_reward_weight,
+                "late_hold_speed_penalty": {
+                    "weight": -extra.late_hold_speed_penalty_weight,
+                    "start_step": extra.late_hold_start_step,
+                    "end_step": 100,
+                    "speed_threshold_m_s": extra.late_hold_speed_threshold,
+                } if extra.late_hold_speed_penalty_weight else None,
                 "landing_approach_speed_m_s": extra.landing_approach_speed,
                 "slowdown_distance_m": extra.slowdown_distance if extra.landing_approach_speed is not None else None,
                 "brake_profile": extra.brake_profile,
@@ -721,6 +810,7 @@ def install_task_hooks():
                                            "yaw": [-1.0, 1.0], "standing_fraction": 0.02}
                     if extra.diverse_replay_commands else None,
                 "passage_reward_weight": extra.passage_reward_weight,
+                "hold_reward_weight": extra.hold_reward_weight,
                 "failure_replay_sha256": replay_hashes,
                 "parent_sha256": parent_sha,
             }), flush=True)
@@ -795,9 +885,9 @@ original_update_cfg = cli_args.update_rsl_rl_cfg
 def update_agent_cfg(agent_cfg, args_cli):
     agent_cfg = original_update_cfg(agent_cfg, args_cli)
     agent_cfg.experiment_name = "unitree_b2w_stair"
-    agent_cfg.save_interval = 25
+    agent_cfg.save_interval = extra.save_interval
     agent_cfg.policy.init_noise_std = 0.1
-    agent_cfg.algorithm.learning_rate = 1e-4
+    agent_cfg.algorithm.learning_rate = extra.learning_rate
     agent_cfg.algorithm.schedule = "fixed"
     agent_cfg.algorithm.entropy_coef = 0.0
     agent_cfg.algorithm.clip_param = 0.1
@@ -828,6 +918,9 @@ def init_from_rough(self, env, train_cfg, log_dir=None, device="cpu"):
         print(f"B2W_STAIR_PARENT_WEIGHTS_LOADED fresh_optimizer=true iteration={source['iter']}", flush=True)
     else:
         self.load(str(extra.parent_checkpoint.resolve()), load_optimizer=True)
+    self.alg.learning_rate = extra.learning_rate
+    for group in self.alg.optimizer.param_groups:
+        group["lr"] = extra.learning_rate
     self.alg.policy.std.requires_grad_(False)
     wheel_head_manifest = None
     if extra.wheel_head_only:
@@ -845,7 +938,8 @@ def init_from_rough(self, env, train_cfg, log_dir=None, device="cpu"):
         "code_sha256": {name: hashlib.sha256((root / "scripts" / name).read_bytes()).hexdigest()
                         for name in ("train_stair_b2w.py", "stair_cycle_protocol.py",
                                      "stair_command_profile.py", "stair_terrain.py",
-                                     "wheel_head_training.py", "moving_teacher_anchor.py")},
+                                     "wheel_head_training.py", "moving_teacher_anchor.py",
+                                     "hold_tail_reward.py")},
         "actor_critic_optimizer": "weights_resumed_optimizer_fresh" if extra.fresh_optimizer else "resumed",
         "actor_observation_dim": 60 if extra.actor_base_lin_vel else 57,
         "actor_base_lin_vel": extra.actor_base_lin_vel,
@@ -854,8 +948,12 @@ def init_from_rough(self, env, train_cfg, log_dir=None, device="cpu"):
         "teacher_anchor_weight": extra.teacher_anchor_weight,
         "teacher_anchor": teacher_anchor_manifest,
         "optimizer_learning_rates": [group["lr"] for group in self.alg.optimizer.param_groups],
+        "fixed_learning_rate": extra.learning_rate,
+        "save_interval_updates": extra.save_interval,
+        "observation_noise_scale": extra.observation_noise_scale,
+        "policy_observation_noise_ranges": applied_policy_noise,
         "exploration_std_values": self.alg.policy.std.detach().cpu().tolist(),
-        "exploration_std": "fixed_0.1",
+        "exploration_std": "restored_from_parent_then_frozen",
         "safe_goal_and_curriculum": True,
         "landing_stability_weight": extra.landing_stability_weight,
         "stop_on_landing": extra.stop_on_landing,
@@ -866,6 +964,12 @@ def init_from_rough(self, env, train_cfg, log_dir=None, device="cpu"):
         "up_fraction": up_fraction,
         "down_fraction": down_fraction,
         "stop_speed_reward_weight": extra.stop_speed_reward_weight,
+        "late_hold_speed_penalty": {
+            "weight": -extra.late_hold_speed_penalty_weight,
+            "start_step": extra.late_hold_start_step,
+            "end_step": 100,
+            "speed_threshold_m_s": extra.late_hold_speed_threshold,
+        } if extra.late_hold_speed_penalty_weight else None,
         "landing_approach_speed_m_s": extra.landing_approach_speed,
         "slowdown_distance_m": extra.slowdown_distance if extra.landing_approach_speed is not None else None,
         "brake_profile": extra.brake_profile,
@@ -879,6 +983,7 @@ def init_from_rough(self, env, train_cfg, log_dir=None, device="cpu"):
         "inverse_rough_fraction": extra.inverse_rough_fraction,
         "diverse_replay_commands": extra.diverse_replay_commands,
         "passage_reward_weight": extra.passage_reward_weight,
+        "hold_reward_weight": extra.hold_reward_weight,
         "failure_replay_sha256": replay_hashes,
         "failure_replay_state_count": {direction: len(data["states"]) for direction, data in replay_data.items()},
     }, indent=2), encoding="utf-8")

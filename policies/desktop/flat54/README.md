@@ -6,4 +6,4 @@
 - `policy.pt` — экспортированный TorchScript actor57→16, SHA `f3509a695591ca5235c0a68df7051379ffa315df6dc4515481db4209aa8f8cee`.
 - `agent.yaml`, `env.yaml`, `export_manifest.json`, `nominal.json`, `bounded_v1.json` — исходные конфиги и свидетельства проверки.
 
-**Квалифицирован только для Flat по своему симуляционному протоколу; не принят для Rough/Stairs и не разрешён для реального робота.** Это не внешний rl_sar reference. История и ограничения: [настольные результаты](../../../docs/TRAINING_PROGRESS.md), [общая карта трёх линий](../../../docs/TRAINING_STATUS.md).
+**Квалифицирован только для Flat по своему симуляционному протоколу; не принят для Rough/Stairs и не разрешён для реального робота.** Это не внешний rl_sar reference. История и ограничения: [настольные результаты](../../../docs/TRAINING_PROGRESS.md), [реестр политик](../../../docs/POLICY_REGISTRY.md), [общая карта трёх линий](../../../docs/TRAINING_STATUS.md).

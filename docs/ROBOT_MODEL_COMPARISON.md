@@ -1,6 +1,7 @@
 # Модели B2W: сравнение и результаты Isaac
 
-Проверено 17 сентября 2026 скриптом `scripts/compare_robot_models.py`.
+Исходное сравнение выполнено 17 сентября 2026 скриптом
+`scripts/compare_robot_models.py`. Статус sim2sim актуализирован 25 сентября.
 Эталон для текущего upstream обучения — URDF из `vendor/robot_lab/source/robot_lab/data`
 (полный путь приведён в JSON). Он побайтово совпадает с предоставленным
 `vendor/unitree_ros/robots/b2w_description/urdf/b2w_description.urdf`.
@@ -34,8 +35,10 @@ Fixed links URDF объединены по исходным transforms; COM/iner
 к системам координат именованных rigid bodies, проверены сохранение массы
 и положительность tensors. Совпадение kinematics и Mesh/contact equivalence,
 реальные torque-speed curves и параметры конкретного робота ещё не измерены.
-Перед sim2sim нужна явная адаптация MuJoCo вне `vendor/` к выбранному training
-эталону. Автоматически подменять XML или считать исходные модели идентичными нельзя.
+Базовый adapter теперь реализован вне `vendor/`: policy ABI, mixed actuators и
+Isaac-compatible leg torque-speed clipping воспроизводятся в batch и interactive
+MuJoCo runners. Это не устраняет перечисленные физические расхождения.
+Автоматически подменять XML или считать исходные модели идентичными нельзя.
 
 ## После объединения fixed links
 
@@ -83,23 +86,27 @@ mass/inertia и actuator gains: каждый получил 100/100 без от�
 Readback и одинаковые properties digests подтвердили применённую физику.
 [Отчёт](results/2026-09-17-flat-qualification-preflight.json). Это инженерные
 диапазоны, не измеренные параметры робота; COM/noise/latency/pushes исключены.
-Приёмка трёх fresh training seeds и MuJoCo replay остаются открытыми.
+Приёмка трёх fresh training seeds остаётся открытой. Frozen multi-seed MuJoCo
+replay model3000 теперь выполнен, но провален: ascent23/60,37 unsafe и wheel
+saturation выше gate; это отрицательный diagnostic result, не release evidence.
 Источники: `logs/qualification/reference_replay_20260917.json`,
 `logs/qualification/flat_seed42_final/{nominal_replay,flat100,reference_flat100}.json`.
 Пути и хэши проверенного экспорта: [POLICY_CONTRACT.md](POLICY_CONTRACT.md).
 
-## Gate перед sim2sim
+## Gate перед release-quality sim2sim
 
 1. Сохранить training URDF и текущие actuator параметры как явно выбранный
    эталон этого baseline. Результаты seeds с иным числом сред учитывать по
    manifest; throughput не является проверкой физических параметров.
-2. Создать адаптацию MuJoCo вне `vendor/`: согласовать kinematic frames,
+2. Базовый adapter вне `vendor/` уже создан. Дальше согласовать kinematic frames,
    fixed-body mass/COM/inertia, joints/limits, wheel geometry и collision shapes.
-   Таблица выше задаёт обнаруженные различия, но не готовую адаптацию.
+   Таблица выше задаёт обнаруженные различия, которые runtime пока не устраняет.
 3. Сопоставить contact/friction, solver settings и velocity-dependent
    torque envelope; отдельно проверить compiled модели и trajectories.
    Параметры конкретного реального робота пока не измерены.
-4. После export/adapter parity выполнить одинаковые stand, velocity, yaw
-   и stop сценарии в двух симуляторах с неизменными failure критериями;
-   опубликовать tracking и success gap. Hardware gates из [PROJECT_PLAN.md](PROJECT_PLAN.md)
-   остаются обязательными после sim2sim; управление реальным роботом не запускалось.
+4. Export/adapter parity и frozen MuJoCo suite уже исполнены. Согласовать
+   обнаруженные model/actuator gaps, затем без изменения policy повторить тот же
+   20-seed suite и только после pass расширять held-out geometry. Текущий полный
+   результат: [multi-seed MuJoCo](results/2026-09-25-cycle57-mujoco-multiseed.md).
+   Hardware gates из [PROJECT_PLAN.md](PROJECT_PLAN.md) остаются обязательными;
+   управление реальным роботом не запускалось.

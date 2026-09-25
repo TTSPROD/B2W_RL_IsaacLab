@@ -35,6 +35,31 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def resolve_obs_groups(agent):
+    """Resolve the explicit and RSL-RL inferred forms to one checked contract."""
+    expected = {"policy": ["policy"], "critic": ["critic"]}
+    configured = agent.get("obs_groups")
+    require(configured in ({}, expected), "Unexpected observation groups")
+    return expected
+
+
+def checkpoint_network_dimensions(model_state):
+    """Read the feed-forward ABI from the tensors that will actually be exported."""
+    required = ("actor.0.weight", "actor.6.weight", "critic.0.weight", "std")
+    require(all(name in model_state for name in required), "Unexpected ActorCritic state dictionary")
+    dimensions = {
+        "actor_observations": int(model_state["actor.0.weight"].shape[1]),
+        "actions": int(model_state["actor.6.weight"].shape[0]),
+        "critic_observations": int(model_state["critic.0.weight"].shape[1]),
+        "std_actions": int(model_state["std"].numel()),
+    }
+    require(dimensions["actor_observations"] == 57, "Training checkpoint actor ABI must remain 57-D")
+    require(dimensions["actions"] == dimensions["std_actions"] == 16,
+            "Training checkpoint action ABI must remain 16-D")
+    require(dimensions["critic_observations"] > 0, "Invalid critic observation dimension")
+    return dimensions
+
+
 def assignment(tree, target):
     return next(node.value for node in ast.walk(tree) if isinstance(node, ast.Assign)
                 and any(ast.unparse(item) == target for item in node.targets))
@@ -312,10 +337,15 @@ def check_training_export(checkpoint, output_directory, report):
     from tensordict import TensorDict
 
     checkpoint = checkpoint.resolve()
-    require(checkpoint.is_relative_to(ROOT / "logs/rsl_rl"), "Checkpoint must be in project logs/rsl_rl")
-    agent_path = checkpoint.parent / "params/agent.yaml"
+    approved_roots = (ROOT / "logs/rsl_rl", ROOT / "artifacts/upstream")
+    require(any(checkpoint.is_relative_to(root) for root in approved_roots),
+            "Checkpoint must be in project logs/rsl_rl or artifacts/upstream")
+    agent_candidates = (checkpoint.parent / "params/agent.yaml", checkpoint.parent / "agent.yaml")
+    agent_paths = [path for path in agent_candidates if path.is_file()]
+    require(len(agent_paths) == 1, f"Expected exactly one adjacent agent config, got {agent_paths}")
+    agent_path = agent_paths[0]
     agent = yaml.safe_load(agent_path.read_text())
-    require(agent["obs_groups"] == {"policy": ["policy"], "critic": ["critic"]}, "Unexpected observation groups")
+    obs_groups = resolve_obs_groups(agent)
     policy_options = dict(agent["policy"])
     require(policy_options.pop("class_name") == "ActorCritic", "Only feed-forward ActorCritic supported")
     require(not policy_options["actor_obs_normalization"] and not policy_options["critic_obs_normalization"],
@@ -324,12 +354,14 @@ def check_training_export(checkpoint, output_directory, report):
     raw = torch.load(checkpoint, map_location="cpu", weights_only=True)
     for name, value in raw["model_state_dict"].items():
         require(torch.isfinite(value).all(), f"Non-finite checkpoint tensor: {name}")
+    dimensions = checkpoint_network_dimensions(raw["model_state_dict"])
     observations = torch.tensor([fixture["observation"] for fixture in report["fixtures"]])
     generator = torch.Generator(device="cpu").manual_seed(20260917)
     observations = torch.cat([observations, 2 * torch.rand((256, 57), generator=generator) - 1])
-    td = TensorDict({"policy": observations, "critic": torch.zeros((len(observations), 60))},
+    td = TensorDict({"policy": observations,
+                     "critic": torch.zeros((len(observations), dimensions["critic_observations"]))},
                     batch_size=[len(observations)])
-    policy = ActorCritic(td, agent["obs_groups"], 16, **policy_options).cpu().eval()
+    policy = ActorCritic(td, obs_groups, dimensions["actions"], **policy_options).cpu().eval()
     policy.load_state_dict(raw["model_state_dict"], strict=True)
     exporter_path = ROOT / ".runtime/IsaacLab/source/isaaclab_rl/isaaclab_rl/rsl_rl/exporter.py"
     # This standalone module imports only copy, os, torch. Bypass package __init__
@@ -356,7 +388,9 @@ def check_training_export(checkpoint, output_directory, report):
               "exporter_sha256": hashlib.sha256(exporter_path.read_bytes()).hexdigest(),
               "fixture_and_random_count": len(observations), "random_seed": 20260917,
               "max_abs_error": (before - after).abs().max().item(), "tolerance": TOLERANCE,
-              "normalizer": "Identity", "policy_quality_evaluated": False}
+              "normalizer": "Identity", "network_dimensions": dimensions,
+              "configured_obs_groups": agent.get("obs_groups"), "resolved_obs_groups": obs_groups,
+              "policy_quality_evaluated": False}
     (output_directory / "manifest.json").write_text(
         json.dumps({"export_validation": result, "contract": report["contract"],
                     "contract_scope": "Reference IO settings matched to pinned upstream; clipping differs as documented",

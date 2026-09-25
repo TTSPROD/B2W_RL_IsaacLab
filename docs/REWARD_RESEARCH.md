@@ -10,7 +10,7 @@ Rough57/58 не приняты;2250/4800 успешных episodes и10/48 full 
 сейчас подготовка: согласовать Rough commands/reset/22с на конечном tile,
 оставить Flat30%/20с и его sampler. Actor от qualified seed54, новые critics,
 50+100+200 single4096. Rewards, PPO, tilt terminal, drift0,25 и frozen gates
-сохраняются. [Job](../logs/rough/rough_route_correction_20260920/job.json).
+сохраняются. [Итоговый job summary](results/rough_route_correction_20260920.json).
 
 Reference уже применена через actor transfer в seed54. Дополнительный
 [frozen comparator](results/rough_reference_baseline_20260920.json) завершён:

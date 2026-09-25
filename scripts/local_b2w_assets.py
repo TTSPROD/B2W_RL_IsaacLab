@@ -2,6 +2,7 @@
 
 import hashlib
 import copy
+import os
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,9 +28,22 @@ def configure_ground_plane():
 
 def configure_b2w_env(cfg):
     """Route generated USD and visual resources to local project paths."""
-    cfg.scene.robot.spawn.usd_dir = str(ROOT / ".cache" / "usd" / "b2w")
+    payload_urdf = os.environ.get("B2W_PAYLOAD_URDF")
+    if payload_urdf:
+        payload_path = Path(payload_urdf).resolve()
+        allowed_root = (ROOT / ".cache" / "assets" / "b2w_payload_v1").resolve()
+        if not payload_path.is_file() or not payload_path.is_relative_to(allowed_root):
+            raise RuntimeError(f"Invalid project-local payload URDF: {payload_path}")
+        cfg.scene.robot.spawn.asset_path = str(payload_path)
+        cfg.scene.robot.spawn.usd_dir = str(ROOT / ".cache" / "usd" / "b2w_payload_v1")
+        cfg.events.randomize_rigid_body_mass_base.params["mass_distribution_params"] = (-2.0, 4.0)
+        print(f"B2W_PAYLOAD_URDF={payload_path}", flush=True)
+        print("B2W_PAYLOAD_MASS nominal_kg=11.0 randomized_equivalent_kg=9.0..15.0", flush=True)
+    else:
+        cfg.scene.robot.spawn.usd_dir = str(ROOT / ".cache" / "usd" / "b2w")
     cfg.scene.terrain.visual_material = None
-    cfg.scene.sky_light.spawn.texture_file = None
+    if cfg.scene.sky_light is not None:
+        cfg.scene.sky_light.spawn.texture_file = None
     cfg.commands.base_velocity.debug_vis = False
     return cfg
 

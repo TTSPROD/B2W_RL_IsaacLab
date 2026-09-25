@@ -1,0 +1,41 @@
+{
+  "schema": "b2w_hold_trace_analysis_v1",
+  "status": "pre_registered_before_trace_capture",
+  "frozen_date": "2026-09-25",
+  "scope": "cycle57_model3000_no_payload_actor_baseline_randomized_six_cell_suite",
+  "policy_sha256": "20c4a34c20282b549186c9fc9d58d79e10211cc536dd37336768678aea90de17",
+  "policy_abi": "57 observations -> 16 actions",
+  "evaluation_mode": "deterministic_actor",
+  "seeds": [5101, 5102, 5103],
+  "cells": 6,
+  "environments_per_cell": 64,
+  "hold_steps": 100,
+  "analysis_population": "safe passage episodes with complete hold traces; stop failures are compared to nearest-passage-speed stop successes in the same cell",
+  "no_tuning_from_this_run": true,
+  "thresholds": {
+    "settled_speed_m_s": 0.15,
+    "settled_margin_speed_m_s": 0.12,
+    "late_window_steps": 25,
+    "reacceleration_delta_m_s": 0.05,
+    "velocity_sign_deadband_m_s": 0.03,
+    "oscillatory_reversal_count": 2,
+    "wheel_torque_saturation_fraction": 0.25,
+    "wheel_torque_saturation_excess_vs_match": 0.10,
+    "low_contact_wheel_count": 2,
+    "contact_loss_fraction": 0.10,
+    "rolling_residual_rms_m_s": 0.50,
+    "rolling_residual_excess_vs_match_m_s": 0.20,
+    "late_wheel_action_abs_mean": 0.20,
+    "late_wheel_action_excess_vs_match": 0.05
+  },
+  "primary_class_order": [
+    "late_reacceleration_after_settle",
+    "oscillatory_velocity_reversal",
+    "persistent_with_contact_loss",
+    "persistent_with_torque_saturation",
+    "persistent_with_high_rolling_residual",
+    "persistent_with_actor_wheel_drive",
+    "persistent_unresolved"
+  ],
+  "interpretation": "Classes are trace phenotypes, not causal proof. Paired deltas are descriptive because vectorized environments within a cell are not independent training seeds."
+}

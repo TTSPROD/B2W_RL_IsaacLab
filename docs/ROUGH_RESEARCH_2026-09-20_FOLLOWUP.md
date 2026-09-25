@@ -19,7 +19,7 @@
 Поэтому его эффект следует отделить от исправления curriculum.
 Это гипотеза о причине ухудшения, а не установленный результат.
 
-В [логе seed63](../logs/rough/rough_corridor_training_20260920/s63_to150/console.log)
+В [зафиксированном audit seed63](results/2026-09-20-corridor150-audit.json)
 на последней итерации mean reward составляет+173.90; episode terms:
 `upward` +6.2563, linear tracking +1.2953, yaw tracking +0.6781.
 Гипотеза, что агент завершает эпизоды ради избегания в целом отрицательной

@@ -59,6 +59,11 @@ class CommandMapper:
         self.command = (0., 0., 0.)
         self.blocked = False
 
+    def block(self):
+        """Latch zero command until LB is released after an external safety stop."""
+        self.blocked = True
+        self.command = (0., 0., 0.)
+
     def advance(self, state, dt):
         if not math.isfinite(dt) or dt <= 0:
             raise ValueError('Invalid command timestep')
