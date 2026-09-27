@@ -1,4 +1,4 @@
-"""Candidate operating57 screen derived from the frozen evaluator; identical physics/scoring."""
+"""Paired full-cycle terrain comparison with frozen scoring and physics-step safety."""
 from __future__ import annotations
 
 import argparse
@@ -10,34 +10,36 @@ import sys
 import time
 
 from b2w_runtime import configure_process
-from evaluation_policy import policy_id, validate_export
+from evaluation_policy import policy_id
 configure_process()
 if os.environ.get('B2W_PAYLOAD_URDF'):
     raise RuntimeError('Nominal test refuses a payload override')
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--terrain', required=True)
-parser.add_argument('--policy', type=Path, required=True, help='Verified 57-to-16 TorchScript export')
-parser.add_argument('--policy-id', type=policy_id, required=True)
-parser.add_argument('--export-manifest', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--seeds', type=int, default=32)
 parser.add_argument('--smoke-steps', type=int, default=0)
+parser.add_argument('--policy-map', type=Path, help='JSON mapping two policy IDs to verified export directories')
 args = parser.parse_args()
-args.policy = args.policy.resolve()
-if not args.policy.is_file() or not args.export_manifest.is_file():
-    raise FileNotFoundError('Policy export and manifest are required')
 if args.output.exists():
     raise FileExistsError(args.output)
 
-from operating57_protocol import SEED_START, SEEDS, cases_for, protocol_manifest
-POLICIES = (args.policy_id,)
-frozen_plan = protocol_manifest()
+from fullcycle_eval_protocol import (SEED_START, SEEDS, POLICIES, EXPORT_DIRS, cases_for, protocol_manifest,
+                                    geometry, meshes_for, stair_exposure, coverage)
+if args.policy_map:
+    root_path = Path(__file__).resolve().parents[1]
+    selection = json.loads(args.policy_map.read_text(encoding='utf-8-sig'))
+    EXPORT_DIRS = {policy_id(policy): (root_path / folder).resolve() for policy, folder in selection.items()}
+    if any(not folder.is_relative_to(root_path) for folder in EXPORT_DIRS.values()):
+        raise ValueError('Policy exports must remain inside this project')
+    POLICIES = tuple(EXPORT_DIRS)
+frozen_plan = protocol_manifest(EXPORT_DIRS)
 import torch
 import tensordict  # noqa: F401
 from isaaclab.app import AppLauncher
 root = Path(__file__).resolve().parents[1]
-sys.argv = [sys.argv[0], '--portable-root', str(root/f'.cache/kit-candidate-{os.getpid()}'),
+sys.argv = [sys.argv[0], '--portable-root', str(root/f'.cache/kit-fullcycle-{os.getpid()}'),
             '--ext-folder', str(root/'.runtime/extensions')]
 launcher = AppLauncher({'headless': True})
 app = launcher.app
@@ -58,25 +60,16 @@ from locomotion57_protocol import (
     reset_sample, sha256, terrain_boxes,
 )
 
-def export_path(iteration=None):
-    return args.policy
-
-
-export_manifest = json.loads(args.export_manifest.read_text(encoding='utf-8'))
-export_validation = validate_export(args.policy_id, args.policy, export_manifest)
+def export_path(iteration):
+    return EXPORT_DIRS[iteration]/'policy.pt'
 
 register_b2w_tasks()
 torch.set_num_threads(4)
-definition = terrain_boxes(args.terrain)
+definition = geometry(args.terrain)
 
 
 def terrain_function(difficulty, cfg):
-    meshes = []
-    for box in definition['boxes']:
-        transform = trimesh.transformations.rotation_matrix(box['pitch'], [0, 1, 0])
-        transform[:3, 3] = np.asarray(box['pos']) + [40, 40, 0]
-        meshes.append(trimesh.creation.box(box['size'], transform))
-    return meshes, np.array([40.0, 40.0, definition['start_height']])
+    return meshes_for(args.terrain)
 
 
 @configclass
@@ -86,8 +79,8 @@ class EvaluationTerrainCfg(SubTerrainBaseCfg):
 
 env = None
 try:
-    if args.terrain != "flat" or args.seeds != SEEDS:
-        raise ValueError("Use the frozen Flat screen with 32 seeds")
+    if args.seeds != SEEDS:
+        raise ValueError("The declared suite requires 32 paired seeds")
     cases = cases_for(args.terrain)
     if args.smoke_steps:
         cases = cases[:1]
@@ -98,7 +91,7 @@ try:
     cfg = parse_env_cfg(task, device='cuda:0', num_envs=n, use_fabric=True)
     cfg.seed = SEED_START - 1
     cfg.scene.terrain.terrain_generator = TerrainGeneratorCfg(
-        seed=20260925, size=(80., 80.), border_width=0, num_rows=1, num_cols=1,
+        seed=20260927, size=(80., 80.), border_width=0, num_rows=1, num_cols=1,
         curriculum=False, use_cache=False, sub_terrains={'course': EvaluationTerrainCfg()})
     cfg.scene.terrain.max_init_terrain_level = 0
     cfg.scene.height_scanner = None
@@ -127,6 +120,9 @@ try:
     if names != contract['joint_names']:
         raise RuntimeError('Joint order mismatch')
     protected_ids = contact.find_bodies(['base_link', '.*_hip'])[0]
+    wheel_names = ['FR_foot', 'FL_foot', 'RR_foot', 'RL_foot']
+    wheel_ids = robot.find_bodies(wheel_names, preserve_order=True)[0]
+    contact_wheel_ids = contact.find_bodies(wheel_names, preserve_order=True)[0]
     if len(protected_ids) != 5:
         raise RuntimeError('Safety contact mask mismatch')
     if abs(env.step_dt-DT) > 1e-10:
@@ -138,7 +134,7 @@ try:
     for i, (_, case, seed) in enumerate(entries):
         sample = reset_sample(seed)
         roots[i, :2] += torch.as_tensor(sample['xy'], device=device)
-        yaw = sample['yaw']
+        yaw = sample['yaw'] + (np.pi if case.name == 'backward_traverse' else 0.)
         roots[i, 3:7] = torch.tensor([np.cos(yaw/2), 0, 0, np.sin(yaw/2)], device=device)
         positions[i, joint_ids[:12]] += torch.as_tensor(sample['qdelta'], device=device, dtype=torch.float32)
         velocities[i, joint_ids] = torch.as_tensor(sample['dq'], device=device, dtype=torch.float32)
@@ -171,13 +167,20 @@ try:
     steps = min(int(lengths.max()), args.smoke_steps) if args.smoke_steps else int(lengths.max())
     trace = np.full((steps, n, 6), np.nan, np.float32)
     alive = np.ones(n, bool)
+    is_stairs = definition['kind'] == 'stairs'
+    exposure = np.zeros((steps, n), bool)
+    # Full q/dq/tau samples at 10 Hz supplement 200 Hz safety/statistics.
+    joint_trace = np.full(((steps+4)//5, n, 48), np.nan, np.float32)
+    action_trace = np.full(((steps+4)//5, n, 16), np.nan, np.float32)
+    wheels_trace = np.full((steps, n, 4, 4), np.nan, np.float32) if is_stairs else None
+    attitude_trace = np.full(((steps+4)//5, n, 4), np.nan, np.float32)
     source_hashes = {name: sha256(root/'scripts'/name) for name in
-                     ('locomotion57_protocol.py', 'operating57_protocol.py', 'eval_operating57_isaac.py', 'eval_candidate_operating57_isaac.py', 'local_b2w_assets.py', 'evaluation_policy.py')}
+                     ('locomotion57_protocol.py', 'operating57_protocol.py', 'fullcycle_eval_protocol.py', 'eval_fullcycle_terrain.py', 'local_b2w_assets.py', 'evaluation_policy.py')}
     metadata = {
-        'engine': 'Isaac', 'protocol': protocol_manifest(), 'source_sha256': source_hashes,
-        'protocol_role': 'Frozen schedules and scoring; evaluated policy identity is in policy_exports',
-        'evaluated_export_manifest': export_manifest,
-        'evaluated_export_manifest_sha256': sha256(args.export_manifest),
+        'engine': 'Isaac', 'protocol': frozen_plan, 'source_sha256': source_hashes,
+        'protocol_role': 'Declared terrain extension; unchanged operating57 assess and Telemetry',
+        'evaluated_export_manifests': {p: json.loads((folder/'manifest.json').read_text()) for p, folder in EXPORT_DIRS.items()},
+        'geometry': definition,
         'runtime': {'torch': torch.__version__, 'gpu': torch.cuda.get_device_name()},
         'physics_dt_s': cfg.sim.dt, 'policy_dt_s': DT, 'smoke': bool(args.smoke_steps),
         'compiled_model': {'body_names': robot.body_names,
@@ -236,6 +239,18 @@ try:
             measured = torch.cat((robot.data.root_lin_vel_b[:, :2], robot.data.root_ang_vel_b[:, 2:3],
                                   robot.data.root_pos_w-scene.env_origins), dim=1).cpu().numpy()
             trace[step, alive] = measured[alive]
+            if step % 5 == 0:
+                joint_trace[step//5, alive] = packed[alive, :48]
+                action_trace[step//5, alive] = actions.cpu().numpy()[alive]
+                attitude_trace[step//5, alive] = robot.data.root_quat_w.cpu().numpy()[alive]
+            if is_stairs:
+                wheel_xyz = robot.data.body_pos_w[:, wheel_ids].clone()
+                wheel_xyz[..., :2] -= scene.env_origins[:, None, :2]
+                wheel_xyz = wheel_xyz.cpu().numpy()
+                wheel_force = contact.data.net_forces_w[:, contact_wheel_ids, 2].cpu().numpy()
+                exposure[step] = stair_exposure(args.terrain, measured[:,3:], wheel_xyz, wheel_force) & alive
+                wheels_trace[step, alive, :, :3] = wheel_xyz[alive]
+                wheels_trace[step, alive, :, 3] = wheel_force[alive]
             telemetry.slip_peak = np.maximum(telemetry.slip_peak,
                 np.max(np.abs(packed[:, 28:32]*.0875-measured[:, 0:1]), axis=1)*alive)
             if step % 500 == 0:
@@ -245,10 +260,26 @@ try:
         valid_count = int(np.isfinite(trace[:, i, 0]).sum())
         result = assess(case, trace[:valid_count, i, :3], trace[:valid_count, i, 3:],
                         telemetry.result(i), valid_count == case.steps, definition)
-        records.append({'policy': policy, 'terrain': args.terrain, 'case': case.name, 'seed': seed, **result})
+        valid = np.isfinite(trace[:, i, 0])
+        terrain_coverage = coverage(case, exposure[:, i], trace[:, i, 3:], valid)
+        if terrain_coverage is not None:
+            by_segment = {s['segment']: s for s in result['segments']}
+            for window in terrain_coverage['zero_windows']:
+                window['exposed_zero_success'] = bool(window['exposure_pass'] and
+                    by_segment.get(window['segment'], {}).get('continuous_zero_pass', False))
+            covered = (terrain_coverage['moving_exposure_pass'] and
+                       all(w['exposed_zero_success'] for w in terrain_coverage['zero_windows']))
+        else:
+            covered = True
+        records.append({'policy': policy, 'terrain': args.terrain, 'case': case.name, 'seed': seed,
+                        'terrain_exposure': terrain_coverage,
+                        'covered_scenario_success': bool(covered and result['outcome'] == 'success'), **result})
     args.output.parent.mkdir(parents=True, exist_ok=True)
     trace_path = args.output.with_suffix('.npz')
-    np.savez_compressed(trace_path, trace=trace, lengths=lengths,
+    extra_traces = {'joints_10hz': joint_trace, 'raw_actions_10hz': action_trace, 'quaternion_wxyz_10hz': attitude_trace, 'stair_exposure': exposure}
+    if wheels_trace is not None:
+        extra_traces['wheels_xyz_upforce_50hz'] = wheels_trace
+    np.savez_compressed(trace_path, trace=trace, lengths=lengths, **extra_traces,
                         commands=np.stack([np.pad(s, ((0, int(lengths.max())-len(s)), (0, 0)), constant_values=np.nan)
                                            for s in schedules]))
     metadata.update({'command_observation_max_abs': command_observation_error, 'wall_seconds': time.monotonic()-start_time, 'records': records,
@@ -263,4 +294,5 @@ finally:
     if env is not None:
         env.close()
     app.close()
+
 

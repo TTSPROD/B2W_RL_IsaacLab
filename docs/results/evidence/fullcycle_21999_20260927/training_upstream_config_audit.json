@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "differences": [],
+  "scope": "unchanged upstream configuration, before declared continuation adaptations",
+  "sha256": {
+    "policies\\server\\upstream_19999\\env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+    "policies\\server\\upstream_19999\\agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+    "vendor\\robot_lab\\scripts\\reinforcement_learning\\rsl_rl\\train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+  }
+}

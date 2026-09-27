@@ -127,6 +127,11 @@ def install_runner(parent, parent_sha, root, *, expected_iteration=19999, lr_cap
             }
             write_json(self.run_path / "continuation_manifest.json", self.manifest)
             command = self.env.unwrapped.command_manager.get_term("base_velocity")
+            if hasattr(command, "training_profile"):
+                self.manifest["training_profile"] = command.training_profile
+                basis = root / command.training_profile["basis_report"]
+                self.manifest["basis_report_sha256"] = hashlib.sha256(basis.read_bytes()).hexdigest()
+                shutil.copyfile(basis, captured / basis.name)
             if hasattr(command, "original_cohort"):
                 self.manifest["original_vendor_cohort_envs"] = int(command.original_cohort.sum())
                 self.manifest["direct_command_cohort_envs"] = int((~command.original_cohort).sum())

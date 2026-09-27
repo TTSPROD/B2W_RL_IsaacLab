@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>B2W · Прогресс обучения</title>
+  <meta name="description" content="Живые графики обучения B2W, checkpoints и результаты проверки policy.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101822'/%3E%3Cpath d='M6 23V9h9l-5 7h11l-5 7h10' fill='none' stroke='%234ce0ba' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-mark">B<span>2</span>W</span><span class="brand-sub">LOCOMOTION LAB</span></a>
+    <div class="nav-label">РАБОЧАЯ ОБЛАСТЬ</div>
+    <nav aria-label="Разделы">
+      <button data-view="overview" class="nav active"><span>◫</span> Обзор обучения</button>
+      <button data-view="metrics" class="nav"><span>⌁</span> Все графики <b id="metricCount">—</b></button>
+      <button data-view="evaluation" class="nav"><span>▥</span> Последний тест</button>
+      <button data-view="checkpoints" class="nav"><span>▧</span> Checkpoints</button>
+    </nav>
+    <div class="sidebar-note"><div class="eyebrow">КОНТРАКТ POLICY</div><strong>57 <span>→</span> 16</strong><p>observations → actions</p><div class="contract"><span>12 суставов + 4 колеса</span><span>50 Hz · body frame</span></div></div>
+    <div class="sidebar-footer"><span class="local-icon">◉</span> Локальные данные<p>Только чтение логов</p></div>
+  </aside>
+  <main>
+    <header class="topbar"><div class="breadcrumb">B2W <span>/</span> Монитор обучения</div><div class="connection"><span id="connectionDot" class="dot"></span><span id="connection">Подключение…</span></div></header>
+    <div class="workspace">
+      <div id="error" class="alert error" role="alert" hidden></div>
+      <div class="page-heading"><div><div class="eyebrow" id="pageEyebrow">ЛОКАЛЬНОЕ ДООБУЧЕНИЕ</div><h1 id="pageTitle">Прогресс обучения</h1><p id="pageSubtitle">Загрузка данных запуска…</p></div><span class="status" id="runStatus">Загрузка</span></div>
+      <div class="toolbar"><label class="run-field">Запуск <select id="runSelect" aria-label="Выбрать запуск"><option>Загрузка…</option></select></label><div class="toolbar-end"><label class="auto"><input id="autoRefresh" type="checkbox" checked> Авто · 10 с</label><button id="refresh" class="button" title="Обновить данные">↻ <span>Обновить</span></button></div></div>
+      <div id="evaluationStatus" class="alert" hidden></div><section id="overview" class="view"><div id="stats" class="stats"></div><div class="section-heading"><h2>Динамика обучения</h2><label class="smoothing">Сглаживание <input id="smooth" type="range" min="0" max="0.95" step="0.05" value="0.6"><output id="smoothValue">0.60</output></label></div><div id="overviewCharts" class="chart-grid"></div><div class="bottom-grid"><section class="panel"><div class="panel-heading"><h2>Распределение команд</h2><span class="muted">Выборки генератора</span></div><div id="commands"></div><p class="footnote">Количество выборок, не доля времени. Нулевые команды длятся дольше.</p></section><section class="panel"><div class="panel-heading"><h2>Параметры запуска</h2><span class="tag">PPO</span></div><div id="configuration"></div></section></div><p class="footnote scope">Учебные метрики включают exploration, noise и randomization. Качество policy оценивается отдельно в разделе «Последний тест».</p></section>
+      <section id="metrics" class="view" hidden><div class="section-heading wrap"><div><h2>Все скалярные метрики</h2><p class="muted">Все точки из TensorBoard. Наведите на график для точного значения.</p></div><div class="filters"><input id="metricSearch" type="search" placeholder="Найти метрику…" aria-label="Поиск метрики"><select id="metricGroup" aria-label="Группа метрик"><option value="">Все группы</option></select></div></div><div id="allCharts" class="chart-grid"></div><div id="metricsEmpty" class="empty" hidden>Метрики не найдены. Измените фильтр.</div></section>
+      <section id="evaluation" class="view" hidden><div class="section-heading"><label class="run-field">Сравнение с <select id="evaluationReference" aria-label="Контроль для сравнения"></select></label><span id="evaluationSource" class="muted"></span></div><div id="evaluationNotice" class="alert caution">21999 улучшила общий результат, но потеряла часть навыков. Рост среднего не компенсирует регрессы отдельных сценариев. Текущая дообучаемая policy ещё не проверена.</div><div id="evalStats" class="stats"></div><div class="bottom-grid"><section class="panel"><div class="panel-heading"><h2>Полный успех по геометриям</h2><div class="legend"><span class="baseline">19999</span><span class="candidate">21999</span></div></div><div id="terrainComparison"></div></section><section class="panel"><div class="panel-heading"><h2>Ноль на ступенях</h2><span class="muted">Успешные окна</span></div><div id="stairComparison"></div><p class="footnote">Одновременно: физическое покрытие ступеней и непрерывный ноль. Остановка на площадке не подтверждает этот навык.</p><div id="safetySummary"></div></section></div><div class="section-heading wrap"><h2>Все 234 сценария</h2><div class="filters"><select id="terrainFilter" aria-label="Геометрия"><option value="">Все геометрии</option></select><select id="resultFilter" aria-label="Результат сравнения"><option value="">Все результаты</option><option value="regressed">Регрессы</option><option value="improved">Улучшения</option><option value="lost">Потерянные 32/32</option></select><input id="caseSearch" type="search" placeholder="Найти сценарий…" aria-label="Поиск сценария"></div></div><div class="panel table-wrap"><table><thead><tr><th>Геометрия / сценарий</th><th id="beforePolicy">19999</th><th id="afterPolicy">21999</th><th>Изменение</th><th id="unsafePolicies">Unsafe 19999 → 21999</th></tr></thead><tbody id="evalRows"></tbody></table></div><p class="footnote">14 976 эпизодов · 32 reset seeds на сценарий · Isaac development comparison, 27.09.2026. 32/32 не доказывает 99% надёжность. Hardware approval отсутствует.</p></section>
+      <section id="checkpoints" class="view" hidden><section class="panel"><div class="panel-heading"><h2>Сохранённые состояния</h2><span id="checkpointCount" class="muted"></span></div><p class="muted">Checkpoint содержит состояние обучения. Его сохранение не означает прохождение проверки качества.</p><div class="table-wrap"><table><thead><tr><th>Checkpoint</th><th>Дополнительных updates</th><th>Размер</th><th>Сохранён</th><th>Тип</th></tr></thead><tbody id="checkpointRows"></tbody></table></div></section><section class="panel provenance"><h2>Происхождение</h2><div id="provenance"></div></section></section>
+      <footer><span>UNITREE B2W <span class="footer-slash">/</span> Isaac Lab · RSL-RL</span><span id="lastUpdate">Ожидание данных</span></footer>
+    </div>
+  </main><div id="tooltip" class="tooltip" role="status" hidden></div>
+</body>
+</html>

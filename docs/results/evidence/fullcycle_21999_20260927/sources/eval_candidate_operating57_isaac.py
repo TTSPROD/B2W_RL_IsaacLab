@@ -10,7 +10,6 @@ import sys
 import time
 
 from b2w_runtime import configure_process
-from evaluation_policy import policy_id, validate_export
 configure_process()
 if os.environ.get('B2W_PAYLOAD_URDF'):
     raise RuntimeError('Nominal test refuses a payload override')
@@ -18,7 +17,7 @@ if os.environ.get('B2W_PAYLOAD_URDF'):
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--terrain', required=True)
 parser.add_argument('--policy', type=Path, required=True, help='Verified 57-to-16 TorchScript export')
-parser.add_argument('--policy-id', type=policy_id, required=True)
+parser.add_argument('--policy-id', type=int, required=True)
 parser.add_argument('--export-manifest', type=Path, required=True)
 parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--seeds', type=int, default=32)
@@ -63,7 +62,11 @@ def export_path(iteration=None):
 
 
 export_manifest = json.loads(args.export_manifest.read_text(encoding='utf-8'))
-export_validation = validate_export(args.policy_id, args.policy, export_manifest)
+export_validation = export_manifest.get('export_validation', export_manifest)
+if export_validation.get('export_sha256') != sha256(args.policy):
+    raise RuntimeError('Export SHA does not match its manifest')
+if export_validation.get('checkpoint_iteration', args.policy_id) != args.policy_id:
+    raise RuntimeError('Policy ID does not match checkpoint iteration')
 
 register_b2w_tasks()
 torch.set_num_threads(4)
@@ -172,7 +175,7 @@ try:
     trace = np.full((steps, n, 6), np.nan, np.float32)
     alive = np.ones(n, bool)
     source_hashes = {name: sha256(root/'scripts'/name) for name in
-                     ('locomotion57_protocol.py', 'operating57_protocol.py', 'eval_operating57_isaac.py', 'eval_candidate_operating57_isaac.py', 'local_b2w_assets.py', 'evaluation_policy.py')}
+                     ('locomotion57_protocol.py', 'operating57_protocol.py', 'eval_operating57_isaac.py', 'eval_candidate_operating57_isaac.py', 'local_b2w_assets.py')}
     metadata = {
         'engine': 'Isaac', 'protocol': protocol_manifest(), 'source_sha256': source_hashes,
         'protocol_role': 'Frozen schedules and scoring; evaluated policy identity is in policy_exports',
@@ -263,4 +266,5 @@ finally:
     if env is not None:
         env.close()
     app.close()
+
 

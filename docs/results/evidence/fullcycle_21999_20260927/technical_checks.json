@@ -1,0 +1,62 @@
+{
+  "unit_tests": {
+    "passed": 58,
+    "failed": 0
+  },
+  "vendor": {
+    "pinned_sources": 6,
+    "files_verified": 1463
+  },
+  "original_evidence": {
+    "rescored_episodes": 1152,
+    "unchanged": true
+  },
+  "provenance_verification": {
+    "server_checkpoints": 6,
+    "local_candidates": 3,
+    "status": "passed"
+  },
+  "export_parity": {
+    "status": "passed",
+    "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+    "checkpoint": "logs\\rsl_rl\\b2w_19999_fullcycle2000_local\\2026-09-27_15-15-53_retention_flat_rough_stairs\\model_21999.pt",
+    "checkpoint_sha256": "f8f3c7d4fa2600453ebe3af0fdd68d2b105d28fbaa24d3c4d86cb08786d2afd0",
+    "checkpoint_iteration": 21999,
+    "agent_sha256": "eaf6d140827f9fe07ca019f76b95cd264f98b98d6137a899b3b2bff8d5af010b",
+    "export": "logs\\fullcycle21999_validation_20260927\\contract\\policy-contract-export\\policy.pt",
+    "export_sha256": "0557e7a7bfb5844b15c5202119112c463b3598eaab129daa43aa68c3445d3e16",
+    "exporter_sha256": "9f58909058b969923921d1ea052f912eb1ae3f7ecbe3d947164c06b584737e16",
+    "fixture_and_random_count": 295,
+    "random_seed": 20260917,
+    "max_abs_error": 0.0,
+    "tolerance": 1e-05,
+    "normalizer": "Identity",
+    "network_dimensions": {
+      "actor_observations": 57,
+      "actions": 16,
+      "critic_observations": 247,
+      "std_actions": 16
+    },
+    "configured_obs_groups": {},
+    "resolved_obs_groups": {
+      "policy": [
+        "policy"
+      ],
+      "critic": [
+        "critic"
+      ]
+    },
+    "policy_quality_evaluated": false
+  },
+  "project_verifier": {
+    "status": "passed",
+    "server_checkpoints": 6,
+    "local_candidates": 3,
+    "retained_assessments": 1152,
+    "local_document_links": 150
+  },
+  "terrain_replay": {
+    "episodes": 12672,
+    "outcome_flags_segments_mismatches": 0
+  }
+}

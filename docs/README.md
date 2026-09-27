@@ -6,7 +6,10 @@
 |---|---|
 | [PROJECT_PLAN](PROJECT_PLAN.md) | Цель, критерии и порядок следующих работ |
 | [TRAINING_STATUS](TRAINING_STATUS.md) | Текущий результат и открытые вопросы |
-| [Последняя проверка](results/2026-09-25-operating57-19999.md) | 1152 эпизода operating57, таблицы и evidence |
+| [Локальный сайт мониторинга](../dashboard/README.md) | Живой прогресс, все TensorBoard scalar-графики, checkpoints и последний тест |
+| [Проверка 23999](results/2026-09-27-fullcycle-23999-vs-21999.md) | Последний локальный checkpoint: 14 976 новых эпизодов, свежая 21999 и сохранённая 19999 |
+| [Сравнение 21999 и 19999](results/2026-09-27-fullcycle-21999-vs-19999.md) | 14 976 эпизодов: Flat/Rough/блоки/уклоны/лестницы, улучшения и регрессы |
+| [Сохранённая проверка 19999](results/2026-09-25-operating57-19999.md) | 1152 эпизода operating57, неизменённые таблицы и evidence |
 | [Разбор yaw/zero](analysis/operating57_19999_yaw_stop/README.md) | Offline-анализ тех же 1152 эпизодов и проверка условий resume |
 | [Предложение эксперимента](experiments/19999_yaw_stop_v1.md) | Ограниченный A/B-пилот по распределению команд; не запускался |
 | [POLICY_CONTRACT](POLICY_CONTRACT.md) | Входы, выходы и временной контракт |
