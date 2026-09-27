@@ -35,6 +35,11 @@ class RegressionVelocityCommand(RecoveryVelocityCommand):
         self.rehearsal_case = torch.zeros(self.num_envs, dtype=torch.long, device=self.device)
         self.rehearsal_phase = torch.full_like(self.rehearsal_case, -1)
         self.rehearsal_banks = {name: RehearsalBank(cases, self.device) for name, cases in PLAN['banks'].items()}
+        self.training_profile = {**self.training_profile, 'cohort_envs': {
+            'original_vendor': int(self.original_cohort.sum()),
+            'parent_recovery': int((~self.original_cohort & ~self.rehearsal_cohort).sum()),
+            'regression_rehearsal': int(self.rehearsal_cohort.sum()),
+            'regression_stairs': int((self.rehearsal_cohort & self.stairs).sum())}}
 
     def _resample_command(self, env_ids):
         if isinstance(env_ids, slice):

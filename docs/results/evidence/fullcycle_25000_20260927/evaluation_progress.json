@@ -1,0 +1,23 @@
+﻿{
+    "total_jobs":  12,
+    "status":  "completed",
+    "completed":  [
+                      "flat_24499",
+                      "flat_25000",
+                      "rough_04",
+                      "boxes_10",
+                      "slope_up_10",
+                      "slope_down_10",
+                      "stairs_up_06",
+                      "stairs_down_06",
+                      "stairs_up_12",
+                      "stairs_down_12",
+                      "stairs_up_18",
+                      "stairs_down_18"
+                  ],
+    "policies":  [
+                     "24499",
+                     "25000"
+                 ],
+    "updated":  "2026-09-27T22:36:45.0511120+03:00"
+}

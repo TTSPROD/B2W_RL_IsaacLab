@@ -1,0 +1,36 @@
+{
+  "checkpoint_iteration": 24499,
+  "additional_updates": 500,
+  "source_run": "logs/rsl_rl/b2w_23999_rehearsal500_local/2026-09-27_20-27-29_regression_rehearsal",
+  "parent_checkpoint": "policies/local/recovery_23999/model_23999.pt",
+  "parent_sha256": "780a8b486ff25c15f2eb1cadc2bc135a14534c5e5e31debd4583ce1c74c31f81",
+  "training_seed": 9704,
+  "num_envs": 4096,
+  "evaluation": "docs/results/2026-09-27-fullcycle-24499-vs-23999.md",
+  "status": "development_evaluated",
+  "hardware_approval": false,
+  "accepted": false,
+  "no_regression_demonstrated": false,
+  "files_sha256": {
+    "agent.yaml": "3d7b51249a40be0156f07d6a19f19959baf181fa2c620ee745df23af0a659540",
+    "env.yaml": "f9e42012289b697fd1451aa7cbf451bdf23ff047fdd585ee9a7d6867d9049a6d",
+    "model_24499.pt": "c6c6494780d11ffc822bc08447a759e3a57945e71e6588befd8bc709cd031368",
+    "export/manifest.json": "d5feee0bf8157ee8baa647969daded34dd450d5f38904fdb8a6573d03aa0bcff",
+    "export/policy.pt": "178722d0e781c7d4210b4ab82dabe87e37609b238477ea06e34a29557967e9cc"
+  },
+  "evaluation_summary": "docs/results/evidence/fullcycle_24499_20260927/summary.json",
+  "evaluation_summary_sha256": "e92d9845a5b66ae521fc51d3990cc709356dae153b6f9c22980dbc5e088726f3",
+  "evaluation_metrics": {
+    "episodes": 7488,
+    "success": 4616,
+    "unsafe": 7,
+    "exposed_zero_success": 573
+  },
+  "restoration": {
+    "target_count": 43,
+    "improved": 23,
+    "restored_full": 14,
+    "restored_full_zero": 13,
+    "lost_perfect_restored": 2
+  }
+}

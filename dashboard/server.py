@@ -20,8 +20,35 @@ LOGS = ROOT / "logs/rsl_rl"
 EVIDENCE = ROOT / "docs/results/evidence/fullcycle_21999_20260927/summary.json"
 LATEST_EVIDENCE = ROOT / "docs/results/evidence/fullcycle_23999_20260927/summary.json"
 EVALUATION_PROGRESS = ROOT / "logs/fullcycle23999_validation_20260927/evaluation_progress.json"
+REFERENCE_EVIDENCE = ROOT / "docs/results/evidence/rl_sar_fullcycle_20260927/summary.json"
+REFERENCE_PROGRESS = ROOT / "logs/rl_sar_fullcycle_20260927/evaluation_progress.json"
+REHEARSAL_EVIDENCE = ROOT / "docs/results/evidence/fullcycle_24499_20260927/summary.json"
+REHEARSAL_PROGRESS = ROOT / "logs/fullcycle24499_validation_20260927/evaluation_progress.json"
+REPAIR_EVIDENCE = ROOT / "docs/results/evidence/fullcycle_25000_20260927/summary.json"
+REPAIR_PROGRESS = ROOT / "logs/fullcycle25000_validation_20260927/evaluation_progress.json"
 LOCK = threading.Lock()
 CACHE = {}
+
+
+def evaluation_path():
+    return next(path for path in (REPAIR_EVIDENCE, REHEARSAL_EVIDENCE, REFERENCE_EVIDENCE, LATEST_EVIDENCE, EVIDENCE) if path.is_file())
+
+
+def evaluation_state():
+    for progress_path,summary_path in ((REPAIR_PROGRESS,REPAIR_EVIDENCE),
+            (REHEARSAL_PROGRESS,REHEARSAL_EVIDENCE),(EVALUATION_PROGRESS,LATEST_EVIDENCE)):
+        if progress_path.is_file():
+            progress=read_json(progress_path)
+            postprocessing=progress_path.parent/'postprocessing_status.json'
+            if not summary_path.is_file() and postprocessing.is_file() and read_json(postprocessing)['status']=='failed':
+                progress={**progress,'status':'failed','current':'проверка траекторий'}
+            return {'evaluation_progress':progress,'latest_evaluation_ready':summary_path.is_file()}
+    return {'evaluation_progress':None,'latest_evaluation_ready':False}
+
+
+def evaluation_revision():
+    path = evaluation_path()
+    return f"{path.parent.name}:{path.stat().st_mtime_ns}"
 
 
 def read_json(path):
@@ -47,6 +74,11 @@ def runs():
 def safe_number(value):
     value = float(value)
     return value if math.isfinite(value) else None
+
+
+def training_queue():
+    paths = sorted((ROOT / 'logs').glob('local_rehearsal500_*/queue_status.json'), reverse=True)
+    return read_json(paths[0]) if paths else None
 
 
 def run_data(run_id):
@@ -90,8 +122,9 @@ def run_data(run_id):
         safe_manifest = {key: value for key, value in manifest.items()
                          if key not in {"parent", "sources_sha256", "upstream_config_audit"}}
         return {"run": available[run_id], "status": status, "age_seconds": age,
-                "evaluation_progress": read_json(EVALUATION_PROGRESS) if EVALUATION_PROGRESS.is_file() else None,
-                "latest_evaluation_ready": LATEST_EVIDENCE.is_file(),
+                "training_queue": training_queue(),
+                **evaluation_state(),
+                "evaluation_revision": evaluation_revision(),
                 "progress": progress, "manifest": safe_manifest, "series": entry["series"],
                 "scalar_count": len(entry["series"]),
                 "eta_seconds": max(0, total - count) * seconds_per_update if seconds_per_update and status == "running" else None,
@@ -100,15 +133,23 @@ def run_data(run_id):
 
 
 def evaluation_data():
-    summary = read_json(LATEST_EVIDENCE if LATEST_EVIDENCE.is_file() else EVIDENCE)
+    summary = read_json(evaluation_path())
     policies = summary.get("comparison_policies", [19999, 21999])
     keys = ("episodes", "success", "unsafe", "complete_zero_segments_pass", "exposed_zero_success",
             "stair_stop_windows", "exposed_stair_stop_windows", "max_wheel_speed_rad_s",
             "max_wheel_saturation_fraction", "min_hard_joint_margin_rad")
     compact = lambda data: {key: data.get(key) for key in keys}
     return {"date": "2026-09-27", "policies": policies,
-            "reference_options": [int(p) for p in summary["overall"] if int(p) != policies[-1]],
+            "revision": evaluation_revision(),
+            "reference_options": [p for p in summary["overall"] if p != str(policies[-1])],
             "retained_reference_policy": summary.get("retained_reference_policy"),
+            "retained_reference_policies": summary.get("retained_reference_policies", [summary.get("retained_reference_policy")]),
+            "policy_labels": summary.get("policy_labels", {}),
+            "reference_identity": summary.get("reference_identity"),
+            "reference_progress": read_json(REFERENCE_PROGRESS) if REFERENCE_PROGRESS.is_file() else None,
+            "control_drift": summary.get("fresh_parent_vs_retained", summary.get("fresh_candidate_vs_retained")),
+            "control_drift_policy": policies[0] if "fresh_parent_vs_retained" in summary else policies[-1],
+            "restoration": {k:v for k,v in summary.get("restoration", {}).items() if k != "targets"},
             "overall": {key: compact(value) for key, value in summary["overall"].items()},
             "terrains": {key: {policy: compact(value[policy]) for policy in summary["overall"]}
                          for key, value in summary["terrains"].items()},

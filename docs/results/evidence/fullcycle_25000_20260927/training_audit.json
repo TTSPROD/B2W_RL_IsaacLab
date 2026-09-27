@@ -1,0 +1,43 @@
+{
+  "model_state_exact": true,
+  "adam_state_exact_except_declared_lr": true,
+  "completed_updates": 501,
+  "checkpoint_iteration": 25000,
+  "final_model_finite": true,
+  "declared_config_changes": [
+    {
+      "path": "rewards.joint_pos_limits.weight",
+      "saved": "-5.0",
+      "current": "-7.5"
+    },
+    {
+      "path": "rewards.track_ang_vel_z_exp.func",
+      "saved": "b2w_correction_cfg:track_moderate_yaw",
+      "current": "b2w_repair501_rewards:track_angular"
+    },
+    {
+      "path": "rewards.track_ang_vel_z_exp.params.zero_std",
+      "saved": null,
+      "current": "0.15"
+    },
+    {
+      "path": "rewards.track_lin_vel_xy_exp.func",
+      "saved": "robot_lab.tasks.manager_based.locomotion.velocity.mdp.rewards:track_lin_vel_xy_exp",
+      "current": "b2w_repair501_rewards:track_linear"
+    },
+    {
+      "path": "rewards.track_lin_vel_xy_exp.params.zero_std",
+      "saved": null,
+      "current": "0.15"
+    },
+    {
+      "path": "commands.base_velocity.class_type",
+      "saved": "b2w_regression500_cfg:RegressionVelocityCommand",
+      "current": "b2w_repair501_cfg:RepairVelocityCommand"
+    }
+  ],
+  "unexpected_config_changes": [],
+  "parent_sha256": "c6c6494780d11ffc822bc08447a759e3a57945e71e6588befd8bc709cd031368",
+  "checkpoint_sha256": "a8a51a251aea2fc79c627a0df24f0dca31b39d6d81f454777a89a57ea28406ba",
+  "training_audit_sha256": "02d8c281d4dde8cf0a7640f6c959626bdc2956fa8f1228d1551a8fbacdaeae64"
+}

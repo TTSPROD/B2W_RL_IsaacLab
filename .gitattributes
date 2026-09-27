@@ -5,6 +5,9 @@ vendor/manifest.json -text whitespace=cr-at-eol
 *.pt binary
 # Preserve byte hashes of archived configs and evaluation evidence.
 policies/server/** -text whitespace=cr-at-eol
+policies/local/** -text whitespace=cr-at-eol
+configs/*.json -text whitespace=cr-at-eol
+docs/results/*.md -text whitespace=cr-at-eol
 docs/results/evidence/** -text whitespace=cr-at-eol
 *.npz binary
 *.onnx binary

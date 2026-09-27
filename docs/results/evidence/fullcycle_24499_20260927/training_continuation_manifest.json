@@ -1,0 +1,1419 @@
+{
+  "created_utc": "2026-09-27T17:27:44.280484+00:00",
+  "parent": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\policies\\local\\recovery_23999\\model_23999.pt",
+  "parent_sha256": "780a8b486ff25c15f2eb1cadc2bc135a14534c5e5e31debd4583ce1c74c31f81",
+  "parent_iteration": 23999,
+  "first_update_index": 24000,
+  "additional_updates": 500,
+  "num_envs": 4096,
+  "rollout_steps": 24,
+  "seed": 9704,
+  "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU",
+  "torch": "2.7.0+cu128",
+  "rsl_rl": "3.1.2",
+  "saved_adam_lr": 2.5e-05,
+  "restored_adam_lr": 2.5e-05,
+  "initial_finetune_lr": 1e-05,
+  "lr_cap": 1e-05,
+  "parent_state_exact": true,
+  "actor_observations": 57,
+  "critic_observations": 247,
+  "actions": 16,
+  "policy_hz": 50,
+  "command_probabilities_general_cohort": {},
+  "stair_stop_cohort_envs": 461,
+  "terrain_proportions": {
+    "pyramid_stairs": 0.15000000000000002,
+    "pyramid_stairs_inv": 0.15000000000000002,
+    "boxes": 0.15000000000000002,
+    "random_rough": 0.15000000000000002,
+    "hf_pyramid_slope": 0.07500000000000001,
+    "hf_pyramid_slope_inv": 0.07500000000000001,
+    "flat_rehearsal": 0.25
+  },
+  "retention_measures": [
+    "all upstream terrain families and difficulty rows",
+    "25 percent flat terrain rehearsal",
+    "translation, mixed and zero commands retained",
+    "original mass, actuators, observation noise and domain randomization",
+    "Adam/critic/actor/std restoration, smaller PPO clipping and capped adaptive LR",
+    "half of environments preserve original command distribution, 20s horizon and terrain curriculum"
+  ],
+  "reward_configuration": "unchanged from 23999, including moderate-yaw kernel; command rehearsal only",
+  "qualification": "not evaluated; training diagnostics do not establish skill retention",
+  "sources_sha256": {
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\train_b2w_19999.py": "dc5c456ba144671f92191cc6652afb880a6e6491cb849dfab916208e5af9a83b",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_finetune_cfg.py": "41327c7cbcd74b96b5a4bad7178814d4a8a9be0b8d0cea5564a8be54ba6c710f",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_finetune_runner.py": "8e17fe93c17b1700a7eebf5d11f24b7ab651e621e48489c00c602e113e8a4f09",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_finetune_sampling.py": "c21dd836b321822498e490635f852b60b90fc621221abb2158d1c0e60092a5f1",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\robot_lab\\scripts\\reinforcement_learning\\rsl_rl\\train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "D:\\isaacsim51\\Lib\\site-packages\\rsl_rl\\algorithms\\ppo.py": "4373ac1b2f9fdf14d9da57516968fc95d8f605d2967fee01dc61bf0d09423478",
+    "D:\\isaacsim51\\Lib\\site-packages\\rsl_rl\\runners\\on_policy_runner.py": "6ffaee7e154a49ae55eebf53a7b1549f0461a1742d92dd34af5bb4b785d19cf2",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\train_b2w_23999.py": "60470b44aacbf4299d580d139f0ad61001407b2303aecba8ffbbbc2e201a3133",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_regression500_cfg.py": "9ffc6fa27a0c0f842d7f2f41ef0243ef0b6958db4c875464082dbdb582640214",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_regression500_sampling.py": "9aae90a1c3cd60414f7b8dc0db543a670431430a7d8736c6ffc4895e99d1394c",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\..\\configs\\23999_rehearsal500_20260927.json": "1ea513deef4f9690e0d38d6c0e25c2dacc54b7437bdca535e6fdcbcb403f976c",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_recovery_cfg.py": "4d8e5c7f4d9f20b6b54e5ab8b870be7e53bf2a324078555252bb22a14c514794",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_recovery_sampling.py": "7545a659a8facecab3a8c6d3bd47d2691bbd525e7557eae6903b9ba1cfead5fe",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_retention_cfg.py": "601bfd2377951ba2b123822fa91ccce2ce5cdd704b08f6dd6fdb87c5a905abba",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_correction_cfg.py": "ce04581efcc26f7da193c8b57cd226038ee349633546f1d39695de75f0af2e47",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\scripts\\b2w_training_audit.py": "b082ae46ba753ae611718de610728702e5b3dd4bfb65ce81760004afe9e42d55",
+    "c:\\users\\ra.suragin\\documents\\chatgpt\\b2w_rl_isaaclab\\.runtime\\isaaclab\\source\\isaaclab\\isaaclab\\terrains\\config\\rough.py": "286241292927189a511cfb2cb6d3b04c7e370de439b042dddcf51f9e0674cb12",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\vendor\\robot_lab\\source\\robot_lab\\robot_lab\\tasks\\manager_based\\locomotion\\velocity\\config\\wheeled\\unitree_b2w\\rough_env_cfg.py": "9a9e0c6fb084cccda55f2ac27c427169930f2e9ab29eb34967aaa571dba1cc1b"
+  },
+  "training_profile": {
+    "parent_iteration": 23999,
+    "additional_updates": 500,
+    "final_iteration": 24499,
+    "seed": 9704,
+    "num_envs": 4096,
+    "lr_cap": 1e-05,
+    "basis_report": "docs/results/2026-09-27-fullcycle-23999-vs-21999.md",
+    "basis_report_sha256": "b004284bc415088272f10398434ab37feca7b8f989758f79a3ab1353782d8c33",
+    "basis_summary": "docs/results/evidence/fullcycle_23999_20260927/summary.json",
+    "basis_summary_sha256": "9237bf0300d50459186ecf8849f54099ebbb54949d2084f9c4827f5820beb6a0",
+    "cohort_fractions": {
+      "original_vendor": 0.5,
+      "parent_recovery": 0.25,
+      "regression_rehearsal": 0.25
+    },
+    "target_rows": [
+      {
+        "terrain": "flat",
+        "case": "vx_+1.00",
+        "parent_full": 19,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "flat",
+        "case": "vy_-1.00",
+        "parent_full": 31,
+        "candidate_full": 30,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "flat",
+        "case": "wz_-1.00",
+        "parent_full": 31,
+        "candidate_full": 30,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "flat",
+        "case": "diagonal_+1_+1",
+        "parent_full": 32,
+        "candidate_full": 31,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "rough_04",
+        "case": "vx_-1.00",
+        "parent_full": 27,
+        "candidate_full": 14,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "rough_04",
+        "case": "vx_+1.00",
+        "parent_full": 6,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "rough_04",
+        "case": "vy_+0.30",
+        "parent_full": 2,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "rough_04",
+        "case": "vy_+0.70",
+        "parent_full": 28,
+        "candidate_full": 27,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "rough_04",
+        "case": "vy_+1.00",
+        "parent_full": 21,
+        "candidate_full": 15,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "rough_04",
+        "case": "wz_-1.00",
+        "parent_full": 32,
+        "candidate_full": 28,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "rough_04",
+        "case": "turning_-1_-1",
+        "parent_full": 32,
+        "candidate_full": 31,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "rough_04",
+        "case": "diagonal_+1_+1",
+        "parent_full": 32,
+        "candidate_full": 30,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "rough_04",
+        "case": "transitions_vy",
+        "parent_full": 7,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "boxes_10",
+        "case": "vx_-0.30",
+        "parent_full": 10,
+        "candidate_full": 8,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "boxes_10",
+        "case": "vx_+0.50",
+        "parent_full": 9,
+        "candidate_full": 2,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "boxes_10",
+        "case": "vx_-0.70",
+        "parent_full": 1,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "boxes_10",
+        "case": "transitions_vx",
+        "parent_full": 5,
+        "candidate_full": 3,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "vx_+1.00",
+        "parent_full": 22,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "vy_-0.70",
+        "parent_full": 32,
+        "candidate_full": 29,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "vy_-1.00",
+        "parent_full": 8,
+        "candidate_full": 2,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "vy_+1.00",
+        "parent_full": 31,
+        "candidate_full": 28,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "wz_-1.00",
+        "parent_full": 31,
+        "candidate_full": 30,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "wz_+1.00",
+        "parent_full": 32,
+        "candidate_full": 24,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "slope_up_10",
+        "case": "diagonal_-1_-1",
+        "parent_full": 32,
+        "candidate_full": 14,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "vx_-1.00",
+        "parent_full": 2,
+        "candidate_full": 0,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "vy_-0.70",
+        "parent_full": 31,
+        "candidate_full": 27,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "vy_-1.00",
+        "parent_full": 20,
+        "candidate_full": 10,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "vy_+1.00",
+        "parent_full": 5,
+        "candidate_full": 4,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "wz_-0.70",
+        "parent_full": 32,
+        "candidate_full": 31,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "wz_-1.00",
+        "parent_full": 29,
+        "candidate_full": 27,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "wz_+1.00",
+        "parent_full": 31,
+        "candidate_full": 27,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "diagonal_-1_-1",
+        "parent_full": 30,
+        "candidate_full": 2,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "diagonal_+1_-1",
+        "parent_full": 31,
+        "candidate_full": 28,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "diagonal_+1_+1",
+        "parent_full": 28,
+        "candidate_full": 22,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "slope_down_10",
+        "case": "turning_+1_+1",
+        "parent_full": 32,
+        "candidate_full": 31,
+        "lost_perfect": true
+      },
+      {
+        "terrain": "stairs_up_06",
+        "case": "traverse_0.3",
+        "parent_full": 31,
+        "candidate_full": 26,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_up_06",
+        "case": "traverse_0.5",
+        "parent_full": 31,
+        "candidate_full": 30,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_up_06",
+        "case": "traverse_0.7",
+        "parent_full": 24,
+        "candidate_full": 15,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_up_06",
+        "case": "stair_stop_restart_0.3",
+        "parent_full": 30,
+        "candidate_full": 18,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_up_06",
+        "case": "stair_stop_reverse",
+        "parent_full": 31,
+        "candidate_full": 24,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_up_12",
+        "case": "traverse_0.7",
+        "parent_full": 22,
+        "candidate_full": 12,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_down_12",
+        "case": "stair_stop_restart_0.5",
+        "parent_full": 31,
+        "candidate_full": 30,
+        "lost_perfect": false
+      },
+      {
+        "terrain": "stairs_up_18",
+        "case": "traverse_0.7",
+        "parent_full": 2,
+        "candidate_full": 1,
+        "lost_perfect": false
+      }
+    ],
+    "banks": {
+      "nonstairs": [
+        {
+          "case": "vx_+1.00",
+          "weight": 5.0,
+          "max_full_loss": 22,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vy_-1.00",
+          "weight": 3.5,
+          "max_full_loss": 10,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "wz_-1.00",
+          "weight": 4.0,
+          "max_full_loss": 4,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "seconds": 30,
+              "mode": 1
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "diagonal_+1_+1",
+          "weight": 4.5,
+          "max_full_loss": 6,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                0.5,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 4
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vx_-1.00",
+          "weight": 4.25,
+          "max_full_loss": 13,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vy_+0.30",
+          "weight": 1.5,
+          "max_full_loss": 2,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vy_+0.70",
+          "weight": 1.25,
+          "max_full_loss": 1,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                0.7,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vy_+1.00",
+          "weight": 2.5,
+          "max_full_loss": 6,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "turning_-1_-1",
+          "weight": 3.25,
+          "max_full_loss": 1,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                -0.5,
+                0.0,
+                -0.5
+              ],
+              "seconds": 30,
+              "mode": 6
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "transitions_vy",
+          "weight": 2.75,
+          "max_full_loss": 7,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "seconds": 10,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.7,
+                0.0
+              ],
+              "seconds": 10,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                -0.5,
+                0.0
+              ],
+              "seconds": 10,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vx_-0.30",
+          "weight": 1.5,
+          "max_full_loss": 2,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                -0.3,
+                0.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vx_+0.50",
+          "weight": 2.75,
+          "max_full_loss": 7,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                0.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vx_-0.70",
+          "weight": 1.25,
+          "max_full_loss": 1,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                -0.7,
+                0.0,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "transitions_vx",
+          "weight": 1.5,
+          "max_full_loss": 2,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.3,
+                0.0,
+                0.0
+              ],
+              "seconds": 10,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.7,
+                0.0,
+                0.0
+              ],
+              "seconds": 10,
+              "mode": 2
+            },
+            {
+              "command": [
+                -0.5,
+                0.0,
+                0.0
+              ],
+              "seconds": 10,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "vy_-0.70",
+          "weight": 4.0,
+          "max_full_loss": 4,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                -0.7,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 3
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "wz_+1.00",
+          "weight": 5.0,
+          "max_full_loss": 8,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "seconds": 30,
+              "mode": 1
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "diagonal_-1_-1",
+          "weight": 7.0,
+          "max_full_loss": 28,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                -0.5,
+                -0.5,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 4
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "wz_-0.70",
+          "weight": 3.25,
+          "max_full_loss": 1,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                -0.7
+              ],
+              "seconds": 30,
+              "mode": 1
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "diagonal_+1_-1",
+          "weight": 1.75,
+          "max_full_loss": 3,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                -0.5,
+                0.0
+              ],
+              "seconds": 30,
+              "mode": 4
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "turning_+1_+1",
+          "weight": 3.25,
+          "max_full_loss": 1,
+          "lost_perfect": true,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                0.0,
+                0.5
+              ],
+              "seconds": 30,
+              "mode": 6
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        }
+      ],
+      "stairs": [
+        {
+          "case": "traverse_0.3",
+          "weight": 2.25,
+          "max_full_loss": 5,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.3,
+                0,
+                0
+              ],
+              "seconds": 20,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "traverse_0.5",
+          "weight": 1.25,
+          "max_full_loss": 1,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                0,
+                0
+              ],
+              "seconds": 20,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "traverse_0.7",
+          "weight": 3.5,
+          "max_full_loss": 10,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.7,
+                0,
+                0
+              ],
+              "seconds": 20,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "stair_stop_restart_0.3",
+          "weight": 4.0,
+          "max_full_loss": 12,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.3,
+                0,
+                0
+              ],
+              "seconds": 5.0,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.3,
+                0,
+                0
+              ],
+              "seconds": 14,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "stair_stop_reverse",
+          "weight": 2.75,
+          "max_full_loss": 7,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.3,
+                0,
+                0
+              ],
+              "seconds": 5,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            },
+            {
+              "command": [
+                -0.3,
+                0,
+                0
+              ],
+              "seconds": 8,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        },
+        {
+          "case": "stair_stop_restart_0.5",
+          "weight": 1.25,
+          "max_full_loss": 1,
+          "lost_perfect": false,
+          "segments": [
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 2,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                0,
+                0
+              ],
+              "seconds": 4.0,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            },
+            {
+              "command": [
+                0.5,
+                0,
+                0
+              ],
+              "seconds": 14,
+              "mode": 2
+            },
+            {
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "seconds": 14.0,
+              "mode": 0
+            }
+          ]
+        }
+      ]
+    },
+    "scope": "training rehearsal of known development regressions; no independent validation",
+    "command_feedback": "time only; no position, heading or measured velocity correction",
+    "terminal_zero_seconds": 14,
+    "physics_rewards_abi": "unchanged from 23999",
+    "plan_sha256": "1ea513deef4f9690e0d38d6c0e25c2dacc54b7437bdca535e6fdcbcb403f976c",
+    "sampling_probability_note": "Use bank weights and cohort fractions; actual resamples are logged.",
+    "stair_exposure_limit": "Assigned stair tile only; step coverage requires evaluation.",
+    "cohort_envs": {
+      "original_vendor": 2048,
+      "parent_recovery": 1024,
+      "regression_rehearsal": 1024,
+      "regression_stairs": 308
+    }
+  },
+  "basis_report_sha256": "b004284bc415088272f10398434ab37feca7b8f989758f79a3ab1353782d8c33",
+  "original_vendor_cohort_envs": 2048,
+  "direct_command_cohort_envs": 2048,
+  "command_distribution_note": "50% of environments per cohort, not 50% of resampling events; original: vendor sampler/heading, 10s resampling, 2% stand, 20s episodes; direct: focused sampling, 60s episodes, stair move/stop subcohort",
+  "upstream_config_audit": {
+    "status": "passed",
+    "differences": [],
+    "scope": "unchanged upstream configuration, before declared continuation adaptations",
+    "sha256": {
+      "policies\\server\\upstream_19999\\env.yaml": "612bcc007543c59db0ad46739d7dfe22d6ccc1759ac5a5e7b2ede5f15cb18c47",
+      "policies\\server\\upstream_19999\\agent.yaml": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+      "vendor\\robot_lab\\scripts\\reinforcement_learning\\rsl_rl\\train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+    }
+  }
+}
