@@ -1,0 +1,13 @@
+{
+  "retrieved_date": "2026-09-27",
+  "server_run": "upstream_b2w_20000_4gpu_20260922",
+  "files_sha256": {
+    "launch.sh": "8260ab1b0444a43270b9c04b24b36995db4492a278aae6f07ee6cd0e2cf31140",
+    "README.md": "00da935f24d865eb484987758e8ed0e33cdb89ea553e3557226384c16642dc13",
+    "resume_rank0.json": "8d794e599127220aea30017524b092652240ba6f5fb3178b84aa36a33104bf6d",
+    "RUN.md": "5a81999791c31b9dd96833715407847809f28e54d906e261c3d5e003b1b41e45",
+    "runtime_bootstrap.py": "2caa5c5fdd94eba6a6f73bd46f9c0992a611fdf77e929712f8276eeef2312f39",
+    "train.py": "115c977856b0b31e1d161b165a0aa2abbe7220dd7469cb5fae35354665a02d2a"
+  },
+  "train_lf_normalized_sha256": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+}

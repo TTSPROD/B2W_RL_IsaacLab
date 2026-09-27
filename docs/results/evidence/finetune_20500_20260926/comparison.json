@@ -1,0 +1,4991 @@
+{
+  "parent": {
+    "episodes": 1152,
+    "success": 716,
+    "success_fraction": 0.6215277777777778,
+    "wilson95_episode_descriptive": [
+      0.5931603773392672,
+      0.6490873789280017
+    ],
+    "unsafe": 3,
+    "outcomes": {
+      "success": 716,
+      "command_transition_failure": 203,
+      "tracking_failure": 210,
+      "standstill_failure": 20,
+      "unsafe": 3
+    },
+    "all_failure_flags": {
+      "command_transition_failure": 312,
+      "tracking_failure": 213,
+      "standstill_failure": 70,
+      "unsafe": 3
+    },
+    "unsafe_reasons": {
+      "hard_joint_position": 3
+    },
+    "complete_nonzero_segments": 1309,
+    "complete_zero_segments": 1149,
+    "complete_zero_segments_pass": 1079,
+    "rmse_complete_nonzero_segments_median": [
+      0.05040916055440903,
+      0.07683014869689941,
+      0.07546291500329971
+    ],
+    "rmse_complete_nonzero_segments_max": [
+      0.20575092732906342,
+      0.18788330256938934,
+      0.3016461431980133
+    ],
+    "physical_traversal": 0,
+    "max_wheel_speed_rad_s": 38.54602813720703,
+    "max_wheel_saturation_fraction": 0.07181818181818182,
+    "max_wheel_saturation_streak_s": 0.2,
+    "min_hard_joint_margin_rad": -0.0015545487403869629
+  },
+  "candidate": {
+    "episodes": 1152,
+    "success": 766,
+    "success_fraction": 0.6649305555555556,
+    "wilson95_episode_descriptive": [
+      0.6371652582917208,
+      0.6915995537852869
+    ],
+    "unsafe": 0,
+    "outcomes": {
+      "success": 766,
+      "command_transition_failure": 87,
+      "tracking_failure": 298,
+      "standstill_failure": 1
+    },
+    "all_failure_flags": {
+      "command_transition_failure": 91,
+      "tracking_failure": 298,
+      "standstill_failure": 1
+    },
+    "unsafe_reasons": {},
+    "complete_nonzero_segments": 1312,
+    "complete_zero_segments": 1152,
+    "complete_zero_segments_pass": 1151,
+    "rmse_complete_nonzero_segments_median": [
+      0.04239001125097275,
+      0.07485221698880196,
+      0.07105863466858864
+    ],
+    "rmse_complete_nonzero_segments_max": [
+      0.18776214122772217,
+      0.1544349640607834,
+      0.18467223644256592
+    ],
+    "physical_traversal": 0,
+    "max_wheel_speed_rad_s": 37.78558349609375,
+    "max_wheel_saturation_fraction": 0.04681818181818182,
+    "max_wheel_saturation_streak_s": 0.14,
+    "min_hard_joint_margin_rad": 0.35917818546295166
+  },
+  "parent_actuators": {
+    "physics_samples_sum": 9910041,
+    "unsafe_episodes_included": true,
+    "joint_order": "compiled_model joint_names; legs first, then wheels",
+    "torque_rms_nm_episode_max": [
+      47.536389787637866,
+      42.46593240022775,
+      69.76933997513075,
+      51.237336391634656,
+      31.560886540651854,
+      64.3806523225463,
+      47.14563602204344,
+      25.227526314810024,
+      68.22680830471649,
+      47.33511089917202,
+      16.168176103470714,
+      65.39654560986317,
+      7.491600100264527,
+      10.299875208171613,
+      6.5194533551865534,
+      6.577147961266092
+    ],
+    "torque_rms_nm_episode_median": [
+      27.28134389079024,
+      16.915069904897145,
+      44.963312642339744,
+      29.344972441921996,
+      13.81149896199932,
+      44.503553075209275,
+      22.8826751370256,
+      9.702418008648142,
+      48.13056190540666,
+      25.638152876176534,
+      10.256450265680868,
+      39.42591393291107,
+      4.021847582577091,
+      4.06134336339022,
+      3.9370017096219847,
+      3.71383009552427
+    ],
+    "torque_p99_bin_upper_nm_episode_max": [
+      115.99999999999999,
+      166.0,
+      185.6,
+      138.0,
+      120.0,
+      153.6,
+      112.00000000000001,
+      80.0,
+      163.2,
+      118.0,
+      42.0,
+      160.0,
+      20.2,
+      20.2,
+      20.2,
+      20.2
+    ],
+    "torque_p99_bin_upper_nm_episode_median": [
+      50.0,
+      48.0,
+      115.19999999999999,
+      48.0,
+      42.0,
+      92.8,
+      52.0,
+      30.0,
+      102.4,
+      56.00000000000001,
+      30.0,
+      89.60000000000001,
+      11.6,
+      11.399999999999999,
+      10.2,
+      10.4
+    ],
+    "torque_peak_nm_episode_max": [
+      147.34213256835938,
+      200.0,
+      320.0,
+      160.69911193847656,
+      200.0,
+      320.0,
+      145.4021453857422,
+      98.42647552490234,
+      320.0,
+      147.41384887695312,
+      93.2744140625,
+      320.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "torque_peak_nm_episode_median": [
+      66.02770233154297,
+      79.55205154418945,
+      174.90394592285156,
+      58.9174919128418,
+      73.48894119262695,
+      130.40253448486328,
+      71.12322998046875,
+      48.29788398742676,
+      138.08164978027344,
+      68.90877532958984,
+      47.31463050842285,
+      138.92195892333984,
+      20.0,
+      20.0,
+      20.0,
+      19.793611526489258
+    ],
+    "torque_saturation_fraction_episode_max": [
+      0.0,
+      0.005909090909090909,
+      0.00045454545454545455,
+      0.0,
+      0.0017045454545454545,
+      0.0006818181818181819,
+      0.0,
+      0.0,
+      0.00034090909090909094,
+      0.0,
+      0.0,
+      0.0010227272727272728,
+      0.015909090909090907,
+      0.07181818181818182,
+      0.017366136034732273,
+      0.015681818181818182
+    ],
+    "torque_saturation_fraction_episode_median": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0006818181818181819,
+      0.00022727272727272727,
+      0.00011363636363636364,
+      0.00011363636363636364
+    ],
+    "longest_saturation_s_episode_max": [
+      0.0,
+      0.075,
+      0.02,
+      0.0,
+      0.04,
+      0.025,
+      0.0,
+      0.0,
+      0.015,
+      0.0,
+      0.0,
+      0.02,
+      0.08,
+      0.2,
+      0.075,
+      0.08
+    ],
+    "longest_saturation_s_episode_median": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.005,
+      0.005,
+      0.005,
+      0.005
+    ],
+    "speed_peak_rad_s_episode_max": [
+      14.528151512145996,
+      10.378545761108398,
+      18.96105194091797,
+      12.136149406433105,
+      9.022095680236816,
+      18.202762603759766,
+      11.441394805908203,
+      8.912233352661133,
+      17.54692840576172,
+      9.444601058959961,
+      10.103328704833984,
+      15.47085952758789,
+      38.54602813720703,
+      34.83564758300781,
+      38.355873107910156,
+      31.511947631835938
+    ],
+    "speed_peak_rad_s_episode_median": [
+      3.874508500099182,
+      4.885757684707642,
+      8.644710540771484,
+      3.9656126499176025,
+      3.8085527420043945,
+      7.614736557006836,
+      3.608382821083069,
+      3.550503730773926,
+      6.921894073486328,
+      3.3133503198623657,
+      3.5840017795562744,
+      6.69445013999939,
+      21.26698589324951,
+      17.74637794494629,
+      17.17850971221924,
+      16.34035587310791
+    ],
+    "physical_target_slew_peak_episode_max": [
+      26.169586181640625,
+      63.225303649902344,
+      63.932037353515625,
+      26.819488525390625,
+      43.805389404296875,
+      91.69694519042969,
+      31.868453979492188,
+      25.09078025817871,
+      69.18565368652344,
+      29.28447151184082,
+      25.665081024169922,
+      69.87071990966797,
+      1021.0451049804688,
+      1007.8954467773438,
+      1051.5408935546875,
+      783.424072265625
+    ],
+    "physical_target_slew_peak_episode_median": [
+      9.292487621307373,
+      15.15188217163086,
+      26.141907691955566,
+      7.831228494644165,
+      14.030003547668457,
+      20.159865379333496,
+      9.580238819122314,
+      10.586663722991943,
+      19.959193229675293,
+      9.215042114257812,
+      10.242013454437256,
+      18.525507926940918,
+      507.6460418701172,
+      521.6474609375,
+      440.7664031982422,
+      420.7123107910156
+    ],
+    "wheel_rolling_residual_peak_m_s_episode_max": 3.510474920272827,
+    "base_hip_force_peak_n_episode_max": 0.0,
+    "tilt_peak_deg_episode_max": 11.303448677062988
+  },
+  "candidate_actuators": {
+    "physics_samples_sum": 9932800,
+    "unsafe_episodes_included": true,
+    "joint_order": "compiled_model joint_names; legs first, then wheels",
+    "torque_rms_nm_episode_max": [
+      54.424041428114414,
+      25.50590873277122,
+      57.25948417117759,
+      51.824817726207094,
+      24.85686746138256,
+      62.64808877375364,
+      50.65433053561247,
+      14.618325353747517,
+      61.937165964770195,
+      50.464560954800184,
+      17.633263055520796,
+      61.29514416399416,
+      8.399254002147023,
+      9.09746893880451,
+      6.519754033129563,
+      6.760171392022027
+    ],
+    "torque_rms_nm_episode_median": [
+      27.677667924703975,
+      14.961951918610549,
+      44.04654949650532,
+      24.67659849489738,
+      15.182428297567903,
+      48.631884570215746,
+      21.397507672677776,
+      9.58731842513928,
+      45.851024866370295,
+      25.218534837029516,
+      10.215489326647589,
+      41.631560496306165,
+      3.677852215290681,
+      4.1942908029571715,
+      3.7517403622158607,
+      3.7081415495560672
+    ],
+    "torque_p99_bin_upper_nm_episode_max": [
+      118.0,
+      80.0,
+      140.8,
+      110.00000000000001,
+      74.0,
+      176.0,
+      113.99999999999999,
+      46.0,
+      147.20000000000002,
+      122.0,
+      46.0,
+      153.6,
+      20.2,
+      20.2,
+      18.0,
+      18.6
+    ],
+    "torque_p99_bin_upper_nm_episode_median": [
+      48.0,
+      42.0,
+      102.4,
+      48.0,
+      42.0,
+      96.0,
+      48.0,
+      28.000000000000004,
+      99.2,
+      52.0,
+      30.0,
+      105.60000000000001,
+      10.8,
+      12.4,
+      10.8,
+      11.0
+    ],
+    "torque_peak_nm_episode_max": [
+      155.6426239013672,
+      200.0,
+      320.0,
+      131.84645080566406,
+      200.0,
+      320.0,
+      148.92425537109375,
+      95.30416870117188,
+      320.0,
+      159.0727996826172,
+      107.6488265991211,
+      320.0,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "torque_peak_nm_episode_median": [
+      58.10762977600098,
+      68.78630447387695,
+      139.07221221923828,
+      58.381317138671875,
+      65.05743026733398,
+      123.79328536987305,
+      59.895931243896484,
+      44.61460304260254,
+      128.58519744873047,
+      65.28998565673828,
+      45.178226470947266,
+      143.3999786376953,
+      20.0,
+      20.0,
+      20.0,
+      20.0
+    ],
+    "torque_saturation_fraction_episode_max": [
+      0.0,
+      0.00022727272727272727,
+      0.0006818181818181819,
+      0.0,
+      0.00022727272727272727,
+      0.00034090909090909094,
+      0.0,
+      0.0,
+      0.0005681818181818182,
+      0.0,
+      0.0,
+      0.00045454545454545455,
+      0.03840909090909091,
+      0.04681818181818182,
+      0.0055681818181818185,
+      0.008068181818181818
+    ],
+    "torque_saturation_fraction_episode_median": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.00034090909090909094,
+      0.00034090909090909094,
+      0.00011363636363636364,
+      0.00011363636363636364
+    ],
+    "longest_saturation_s_episode_max": [
+      0.0,
+      0.005,
+      0.01,
+      0.0,
+      0.005,
+      0.01,
+      0.0,
+      0.0,
+      0.015,
+      0.0,
+      0.0,
+      0.01,
+      0.12,
+      0.14,
+      0.04,
+      0.105
+    ],
+    "longest_saturation_s_episode_median": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.005,
+      0.005,
+      0.005,
+      0.005
+    ],
+    "speed_peak_rad_s_episode_max": [
+      9.428753852844238,
+      9.600354194641113,
+      16.06708335876465,
+      8.348953247070312,
+      8.516173362731934,
+      18.173757553100586,
+      7.240479946136475,
+      9.82906723022461,
+      16.72075843811035,
+      5.866202354431152,
+      13.172342300415039,
+      20.193025588989258,
+      31.531538009643555,
+      37.78558349609375,
+      28.81118392944336,
+      29.20764923095703
+    ],
+    "speed_peak_rad_s_episode_median": [
+      3.031194567680359,
+      3.300643563270569,
+      6.666882514953613,
+      3.4613722562789917,
+      3.555474042892456,
+      7.301577091217041,
+      2.987279176712036,
+      3.7984379529953003,
+      6.866528034210205,
+      3.001348376274109,
+      3.2324308156967163,
+      6.445062637329102,
+      17.049421310424805,
+      16.636850357055664,
+      16.33107280731201,
+      15.932273387908936
+    ],
+    "physical_target_slew_peak_episode_max": [
+      27.694412231445312,
+      33.091156005859375,
+      76.60919952392578,
+      29.55845069885254,
+      39.67912673950195,
+      61.58169937133789,
+      27.979469299316406,
+      17.82234001159668,
+      49.87347412109375,
+      32.032020568847656,
+      21.215316772460938,
+      66.84172058105469,
+      841.7548217773438,
+      1151.5738525390625,
+      816.648681640625,
+      909.9189453125
+    ],
+    "physical_target_slew_peak_episode_median": [
+      9.16386604309082,
+      12.25653886795044,
+      19.60934066772461,
+      8.332831859588623,
+      12.648072719573975,
+      18.497136116027832,
+      9.850493431091309,
+      8.796958446502686,
+      16.422999382019043,
+      9.505428314208984,
+      9.672659873962402,
+      18.102922439575195,
+      473.0820007324219,
+      527.78076171875,
+      424.93019104003906,
+      449.3633728027344
+    ],
+    "wheel_rolling_residual_peak_m_s_episode_max": 2.7597744464874268,
+    "base_hip_force_peak_n_episode_max": 0.0,
+    "tilt_peak_deg_episode_max": 15.887187957763672
+  },
+  "rows": [
+    {
+      "case": "stand",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 0,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": null,
+        "rmse_complete_nonzero_segments_max": null,
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 10.059934616088867,
+        "max_wheel_saturation_fraction": 0.0,
+        "max_wheel_saturation_streak_s": 0.0,
+        "min_hard_joint_margin_rad": 0.8288639187812805,
+        "measured_velocity_complete_segments_median": null,
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": null,
+        "moving_rmse_peak_complete_episodes_median": null,
+        "moving_window_failure_complete_episodes_by_axis": null
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 0,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": null,
+        "rmse_complete_nonzero_segments_max": null,
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 9.936391830444336,
+        "max_wheel_saturation_fraction": 0.0,
+        "max_wheel_saturation_streak_s": 0.0,
+        "min_hard_joint_margin_rad": 0.8263365030288696,
+        "measured_velocity_complete_segments_median": null,
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": null,
+        "moving_rmse_peak_complete_episodes_median": null,
+        "moving_window_failure_complete_episodes_by_axis": null
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_-0.30",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04142551310360432,
+          0.007858374621719122,
+          0.027016527950763702
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.047456368803977966,
+          0.00845249742269516,
+          0.03010888397693634
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 10.521469116210938,
+        "max_wheel_saturation_fraction": 0.00022727272727272727,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.6267040967941284,
+        "measured_velocity_complete_segments_median": [
+          -0.26167985796928406,
+          9.82279125310015e-05,
+          0.003219179925508797
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.05879763571314048,
+          0.011892413927231584,
+          0.0385617497765048
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.01074349507689476,
+          0.01016920106485486,
+          0.021246076561510563
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.012013202533125877,
+          0.010791736654937267,
+          0.022580387070775032
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 10.064077377319336,
+        "max_wheel_saturation_fraction": 0.00045454545454545455,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.7114843130111694,
+        "measured_velocity_complete_segments_median": [
+          -0.3065997511148453,
+          0.00037799788697157055,
+          0.005895809503272176
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.01811873468717498,
+          0.015803344438445513,
+          0.030405699643601736
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_+0.30",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.014357618987560272,
+          0.007883476093411446,
+          0.026900560595095158
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.01922912709414959,
+          0.010915365070104599,
+          0.02899875119328499
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 10.059934616088867,
+        "max_wheel_saturation_fraction": 0.0,
+        "max_wheel_saturation_streak_s": 0.0,
+        "min_hard_joint_margin_rad": 0.6486302018165588,
+        "measured_velocity_complete_segments_median": [
+          0.28902560472488403,
+          0.0008603300666436553,
+          0.0010870538535527885
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.02027108891320553,
+          0.012067019759833743,
+          0.035637791247782824
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.03560742177069187,
+          0.011165004223585129,
+          0.019255872815847397
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04070379585027695,
+          0.012118207290768623,
+          0.023175042122602463
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 9.936391830444336,
+        "max_wheel_saturation_fraction": 0.0,
+        "max_wheel_saturation_streak_s": 0.0,
+        "min_hard_joint_margin_rad": 0.7455624341964722,
+        "measured_velocity_complete_segments_median": [
+          0.2658349275588989,
+          0.0002554833481553942,
+          -0.0013788379728794098
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.04133437540590967,
+          0.015215207566922944,
+          0.025877301188046924
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_-0.50",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.02705824188888073,
+          0.008471282664686441,
+          0.036590853706002235
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.02950918674468994,
+          0.00895414873957634,
+          0.0373515747487545
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 14.502138137817383,
+        "max_wheel_saturation_fraction": 0.0022727272727272726,
+        "max_wheel_saturation_streak_s": 0.04,
+        "min_hard_joint_margin_rad": 0.6535342335700989,
+        "measured_velocity_complete_segments_median": [
+          -0.47972825169563293,
+          0.0009102899639401585,
+          0.026023440062999725
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.05974042167162635,
+          0.01252143107373897,
+          0.046427270914297866
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.01852805633097887,
+          0.010301148518919945,
+          0.03715330362319946
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.02064700424671173,
+          0.012068981304764748,
+          0.03775361552834511
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 15.914928436279297,
+        "max_wheel_saturation_fraction": 0.0022727272727272726,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.7298851013183594,
+        "measured_velocity_complete_segments_median": [
+          -0.5084929764270782,
+          0.0011756927124224603,
+          0.02768188901245594
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.03396103641191164,
+          0.016101211713345387,
+          0.0451572652797302
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_+0.50",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.01729373075067997,
+          0.008223762270063162,
+          0.025566136464476585
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.01883506216108799,
+          0.009041511453688145,
+          0.02701539173722267
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 17.14602279663086,
+        "max_wheel_saturation_fraction": 0.00034090909090909094,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.673699140548706,
+        "measured_velocity_complete_segments_median": [
+          0.4890407472848892,
+          -0.00020606392354238778,
+          -0.000713362212991342
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.030748112074857573,
+          0.012960175478277304,
+          0.03497289531188058
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.015605248976498842,
+          0.011564652435481548,
+          0.02666110172867775
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.01815858669579029,
+          0.013504672795534134,
+          0.027517376467585564
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 15.529582023620605,
+        "max_wheel_saturation_fraction": 0.00034090909090909094,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.7278668880462646,
+        "measured_velocity_complete_segments_median": [
+          0.4984160363674164,
+          -0.0012058052234351635,
+          -0.005867321975529194
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.03074875313855805,
+          0.019625046664773747,
+          0.03504904895124836
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_-0.70",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.06678725406527519,
+          0.010100096464157104,
+          0.058827610686421394
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.07261723279953003,
+          0.0109293507412076,
+          0.059785548597574234
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 20.87571907043457,
+        "max_wheel_saturation_fraction": 0.008295454545454545,
+        "max_wheel_saturation_streak_s": 0.1,
+        "min_hard_joint_margin_rad": 0.659387469291687,
+        "measured_velocity_complete_segments_median": [
+          -0.6405245661735535,
+          0.002107297768816352,
+          0.0499431062489748
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10082091399706554,
+          0.015164662214313517,
+          0.07036570025171963
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04515361785888672,
+          0.011309252586215734,
+          0.05193728394806385
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04928185045719147,
+          0.012175782583653927,
+          0.05330091714859009
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 19.976207733154297,
+        "max_wheel_saturation_fraction": 0.003863636363636364,
+        "max_wheel_saturation_streak_s": 0.08,
+        "min_hard_joint_margin_rad": 0.7464141845703125,
+        "measured_velocity_complete_segments_median": [
+          -0.6651564240455627,
+          0.001348394900560379,
+          0.04379233531653881
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.070996543229599,
+          0.01797518072341276,
+          0.06135752903501346
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_+0.70",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05354083329439163,
+          0.010344545356929302,
+          0.02753701526671648
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.056458331644535065,
+          0.011128289625048637,
+          0.028736373409628868
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.850984573364258,
+        "max_wheel_saturation_fraction": 0.0011363636363636363,
+        "max_wheel_saturation_streak_s": 0.015,
+        "min_hard_joint_margin_rad": 0.6889854669570923,
+        "measured_velocity_complete_segments_median": [
+          0.650516152381897,
+          -0.0014981412678025663,
+          -0.0006445723702199757
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07361668598377721,
+          0.016422080706932594,
+          0.036733508749624624
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04081846587359905,
+          0.02099501620978117,
+          0.037384435534477234
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04217209666967392,
+          0.02409597672522068,
+          0.039936549961566925
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 21.823436737060547,
+        "max_wheel_saturation_fraction": 0.001931818181818182,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.7252476215362549,
+        "measured_velocity_complete_segments_median": [
+          0.6656402349472046,
+          -0.0017943565617315471,
+          -0.010095137171447277
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06116952437600669,
+          0.037362381078704585,
+          0.0499308523526778
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_-1.00",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 15,
+          "tracking_failure": 17
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 32,
+          "tracking_failure": 17
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.20031233876943588,
+          0.016216527670621872,
+          0.06936824694275856
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.20575092732906342,
+          0.018227245658636093,
+          0.07162801921367645
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.542572021484375,
+        "max_wheel_saturation_fraction": 0.04113636363636364,
+        "max_wheel_saturation_streak_s": 0.16,
+        "min_hard_joint_margin_rad": 0.6706969738006592,
+        "measured_velocity_complete_segments_median": [
+          -0.8048292994499207,
+          0.0018530397792346776,
+          0.05563926137983799
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 15,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.24968347867621793,
+          0.026732819406659624,
+          0.08457389768068113
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          32,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.18052267283201218,
+          0.018369896337389946,
+          0.039354851469397545
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.18776214122772217,
+          0.020554522052407265,
+          0.0407683365046978
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.326704025268555,
+        "max_wheel_saturation_fraction": 0.019431818181818182,
+        "max_wheel_saturation_streak_s": 0.12,
+        "min_hard_joint_margin_rad": 0.7604192495346069,
+        "measured_velocity_complete_segments_median": [
+          -0.8264901638031006,
+          -0.003179311170242727,
+          0.023753845132887363
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.22877265765818552,
+          0.031177249808620317,
+          0.04976449365608349
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          32,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vx_+1.00",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.19481847435235977,
+          0.01831615623086691,
+          0.03978947177529335
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.1981894075870514,
+          0.021179785951972008,
+          0.04152417182922363
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.61471176147461,
+        "max_wheel_saturation_fraction": 0.006590909090909091,
+        "max_wheel_saturation_streak_s": 0.08,
+        "min_hard_joint_margin_rad": 0.6834506988525391,
+        "measured_velocity_complete_segments_median": [
+          0.8087043166160583,
+          -0.0033483036095276475,
+          0.006343403598293662
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.23000577272911876,
+          0.030261109911974303,
+          0.05133296194987516
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          32,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 2,
+        "success_fraction": 0.0625,
+        "wilson95_episode_descriptive": [
+          0.017310567031640967,
+          0.2014712314415458
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 30,
+          "success": 2
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 30
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.1730375662446022,
+          0.0422363318502903,
+          0.051879335194826126
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.17892268300056458,
+          0.045120514929294586,
+          0.05362413078546524
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.8475284576416,
+        "max_wheel_saturation_fraction": 0.007272727272727273,
+        "max_wheel_saturation_streak_s": 0.08,
+        "min_hard_joint_margin_rad": 0.7290582656860352,
+        "measured_velocity_complete_segments_median": [
+          0.8310153186321259,
+          -0.004955219803377986,
+          -0.0064625488594174385
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.20879760669586503,
+          0.06494147445296786,
+          0.0691285381059839
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          30,
+          0,
+          0
+        ]
+      },
+      "success_delta": 2,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_-0.30",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.044746773317456245,
+          0.07700460031628609,
+          0.048377443104982376
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04748506844043732,
+          0.08559921383857727,
+          0.05167185142636299
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.979623794555664,
+        "max_wheel_saturation_fraction": 0.0007954545454545455,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.5355954170227051,
+        "measured_velocity_complete_segments_median": [
+          -0.004773074062541127,
+          -0.23160041123628616,
+          -0.005873305490240455
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.066755671306688,
+          0.12792912921607735,
+          0.06862675041264626
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32,
+          "command_transition_failure": 2
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.03593051619827747,
+          0.08698238059878349,
+          0.06105786748230457
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.03848981112241745,
+          0.0987708792090416,
+          0.06401437520980835
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.216068267822266,
+        "max_wheel_saturation_fraction": 0.00034090909090909094,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.617816686630249,
+        "measured_velocity_complete_segments_median": [
+          -0.011120280716568232,
+          -0.22156450897455215,
+          -0.03399483300745487
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.058265978991046456,
+          0.1331900266948766,
+          0.08060906137457718
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          2,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_+0.30",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04239775240421295,
+          0.08982586115598679,
+          0.05991218611598015
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04846804961562157,
+          0.09898897260427475,
+          0.06709634512662888
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 34.287593841552734,
+        "max_wheel_saturation_fraction": 0.0007954545454545455,
+        "max_wheel_saturation_streak_s": 0.03,
+        "min_hard_joint_margin_rad": 0.49854379892349243,
+        "measured_velocity_complete_segments_median": [
+          0.01457961555570364,
+          0.22528934478759766,
+          -0.008641037624329329
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06890812397281662,
+          0.14446087769731025,
+          0.09161995634186317
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04080363176763058,
+          0.09708129242062569,
+          0.051209574565291405
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04450411722064018,
+          0.10637600719928741,
+          0.05400677025318146
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 36.835960388183594,
+        "max_wheel_saturation_fraction": 0.0010227272727272728,
+        "max_wheel_saturation_streak_s": 0.015,
+        "min_hard_joint_margin_rad": 0.5687657594680786,
+        "measured_velocity_complete_segments_median": [
+          -0.018638722598552704,
+          0.21463493257761002,
+          -0.02077491208910942
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07485190754112903,
+          0.1460149825157444,
+          0.07149451281059338
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_-0.50",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.040718693286180496,
+          0.06240764074027538,
+          0.06477690860629082
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04483184218406677,
+          0.07043927907943726,
+          0.06868091970682144
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 34.71509552001953,
+        "max_wheel_saturation_fraction": 0.0017045454545454545,
+        "max_wheel_saturation_streak_s": 0.015,
+        "min_hard_joint_margin_rad": 0.4730917513370514,
+        "measured_velocity_complete_segments_median": [
+          -0.013238789513707161,
+          -0.45794059336185455,
+          -0.008211992681026459
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06587607907828189,
+          0.11211926323374105,
+          0.09116222754015388
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04191773012280464,
+          0.053239135071635246,
+          0.06965557858347893
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04540804773569107,
+          0.06105678901076317,
+          0.07267938554286957
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.660839080810547,
+        "max_wheel_saturation_fraction": 0.0025,
+        "max_wheel_saturation_streak_s": 0.02,
+        "min_hard_joint_margin_rad": 0.565276026725769,
+        "measured_velocity_complete_segments_median": [
+          -0.012474121991544962,
+          -0.4724825322628021,
+          -0.033096982166171074
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0675659292143691,
+          0.09857765458139758,
+          0.0908994268378493
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_+0.50",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.03760940209031105,
+          0.0649380087852478,
+          0.08652855455875397
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.043129462748765945,
+          0.07637577503919601,
+          0.09209977835416794
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 31.02996063232422,
+        "max_wheel_saturation_fraction": 0.001931818181818182,
+        "max_wheel_saturation_streak_s": 0.015,
+        "min_hard_joint_margin_rad": 0.5214526653289795,
+        "measured_velocity_complete_segments_median": [
+          -0.010157193057239056,
+          0.46195709705352783,
+          -0.016521237790584564
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0646952796430799,
+          0.11845921130117468,
+          0.1223660460521936
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04772430844604969,
+          0.07601336389780045,
+          0.06221763417124748
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05167339742183685,
+          0.08632727712392807,
+          0.06558309495449066
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 37.78558349609375,
+        "max_wheel_saturation_fraction": 0.0036363636363636364,
+        "max_wheel_saturation_streak_s": 0.02,
+        "min_hard_joint_margin_rad": 0.5370200276374817,
+        "measured_velocity_complete_segments_median": [
+          -0.02880920097231865,
+          0.44579100608825684,
+          -0.013321559876203537
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07919867561461184,
+          0.13100000695379202,
+          0.08354568031984858
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_-0.70",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.03874228894710541,
+          0.0630948469042778,
+          0.07202493026852608
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04460291564464569,
+          0.06917040795087814,
+          0.07810329645872116
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 30.320154190063477,
+        "max_wheel_saturation_fraction": 0.0017045454545454545,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.435181200504303,
+        "measured_velocity_complete_segments_median": [
+          0.006207362283021212,
+          -0.6660235524177551,
+          -0.012636604718863964
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06384771660710414,
+          0.1142598181916271,
+          0.10146924370356913
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04104039631783962,
+          0.05867390334606171,
+          0.0778685212135315
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.046807996928691864,
+          0.06548090279102325,
+          0.08109106868505478
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.48015785217285,
+        "max_wheel_saturation_fraction": 0.005,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.5205422639846802,
+        "measured_velocity_complete_segments_median": [
+          0.003039563074707985,
+          -0.6665003895759583,
+          -0.030802229419350624
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06868298466052916,
+          0.1010191465703634,
+          0.10074687073219762
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_+0.70",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04156683385372162,
+          0.07700037583708763,
+          0.09044947102665901
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04604058340191841,
+          0.08846314996480942,
+          0.09488075226545334
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 24.566375732421875,
+        "max_wheel_saturation_fraction": 0.0032954545454545454,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.5008717775344849,
+        "measured_velocity_complete_segments_median": [
+          -0.017783142626285553,
+          0.6506771147251129,
+          -0.013573208823800087
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07196546379132462,
+          0.13782165845035232,
+          0.12129045370688665
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05152328684926033,
+          0.09110331907868385,
+          0.06463152542710304
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05649411305785179,
+          0.102135069668293,
+          0.06832044571638107
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 30.46988296508789,
+        "max_wheel_saturation_fraction": 0.006136363636363636,
+        "max_wheel_saturation_streak_s": 0.04,
+        "min_hard_joint_margin_rad": 0.5332677364349365,
+        "measured_velocity_complete_segments_median": [
+          -0.034461041912436485,
+          0.6251421570777893,
+          -0.007015404989942908
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.08546331226675559,
+          0.14478343029823998,
+          0.08756664749944304
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "vy_-1.00",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05708066374063492,
+          0.08463140204548836,
+          0.09396162629127502
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.06654775142669678,
+          0.09628620743751526,
+          0.09950102865695953
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 38.02348327636719,
+        "max_wheel_saturation_fraction": 0.003863636363636364,
+        "max_wheel_saturation_streak_s": 0.015,
+        "min_hard_joint_margin_rad": 0.3317452073097229,
+        "measured_velocity_complete_segments_median": [
+          0.041269417852163315,
+          -0.9456596970558167,
+          -0.030854756012558937
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10622361452742617,
+          0.14953083007006387,
+          0.13113876330708635
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 29,
+        "success_fraction": 0.90625,
+        "wilson95_episode_descriptive": [
+          0.7578184527161212,
+          0.9675984487016337
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 29,
+          "command_transition_failure": 2,
+          "standstill_failure": 1
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 2,
+          "standstill_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 31,
+        "rmse_complete_nonzero_segments_median": [
+          0.04872630536556244,
+          0.10010121762752533,
+          0.08920381218194962
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.054410822689533234,
+          0.10880489647388458,
+          0.09246491640806198
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 34.18297576904297,
+        "max_wheel_saturation_fraction": 0.007272727272727273,
+        "max_wheel_saturation_streak_s": 0.04,
+        "min_hard_joint_margin_rad": 0.4580531120300293,
+        "measured_velocity_complete_segments_median": [
+          0.013803994283080101,
+          -0.9209847152233124,
+          -0.022093485109508038
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.08714709463079941,
+          0.16073725100154745,
+          0.11784589692502973
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          2,
+          0
+        ]
+      },
+      "success_delta": -3,
+      "zero_delta": -1,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": true
+    },
+    {
+      "case": "vy_+1.00",
+      "parent": {
+        "episodes": 32,
+        "success": 15,
+        "success_fraction": 0.46875,
+        "wilson95_episode_descriptive": [
+          0.30869387108068835,
+          0.6355048288102536
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 15,
+          "command_transition_failure": 17
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 17,
+          "standstill_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 31,
+        "rmse_complete_nonzero_segments_median": [
+          0.04417488910257816,
+          0.14564500004053116,
+          0.09345705434679985
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05005878210067749,
+          0.15717172622680664,
+          0.0982486680150032
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.769287109375,
+        "max_wheel_saturation_fraction": 0.004204545454545455,
+        "max_wheel_saturation_streak_s": 0.035,
+        "min_hard_joint_margin_rad": 0.4098729193210602,
+        "measured_velocity_complete_segments_median": [
+          -0.01912203524261713,
+          0.8681228458881378,
+          -0.016385436058044434
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07918523979690595,
+          0.20387337655443316,
+          0.12344749052151983
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          17,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 15,
+        "success_fraction": 0.46875,
+        "wilson95_episode_descriptive": [
+          0.30869387108068835,
+          0.6355048288102536
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 15,
+          "command_transition_failure": 17
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 17
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05103201046586037,
+          0.14660226553678513,
+          0.07333379238843918
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.06000411882996559,
+          0.1544349640607834,
+          0.0759967714548111
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 27.306331634521484,
+        "max_wheel_saturation_fraction": 0.0055681818181818185,
+        "max_wheel_saturation_streak_s": 0.045,
+        "min_hard_joint_margin_rad": 0.5082074403762817,
+        "measured_velocity_complete_segments_median": [
+          -0.030147187411785126,
+          0.8616466224193573,
+          -0.0016134105389937758
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0865601191443311,
+          0.20164049152618094,
+          0.100282201176599
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          17,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 1,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_-0.30",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 32,
+          "standstill_failure": 9,
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 23,
+        "rmse_complete_nonzero_segments_median": [
+          0.07808537036180496,
+          0.06541648507118225,
+          0.19820808619260788
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.10440091043710709,
+          0.07540275156497955,
+          0.3016461431980133
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 25.48712158203125,
+        "max_wheel_saturation_fraction": 0.0006818181818181819,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.2844425439834595,
+        "measured_velocity_complete_segments_median": [
+          0.049547597765922546,
+          -0.016698045656085014,
+          -0.12497339770197868
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.16855129317633358,
+          0.14116036208365068,
+          0.30177538338881493
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          5,
+          1,
+          32
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32,
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.046713391318917274,
+          0.04009322077035904,
+          0.14745259284973145
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05455614998936653,
+          0.0525989755988121,
+          0.15573041141033173
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 14.854663848876953,
+        "max_wheel_saturation_fraction": 0.0,
+        "max_wheel_saturation_streak_s": 0.0,
+        "min_hard_joint_margin_rad": 0.496747761964798,
+        "measured_velocity_complete_segments_median": [
+          0.01915901619940996,
+          -0.004342561820521951,
+          -0.15900930017232895
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.08313617098648053,
+          0.08430717840961312,
+          0.23761614730977787
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 9,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_+0.30",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 29,
+          "standstill_failure": 7,
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 25,
+        "rmse_complete_nonzero_segments_median": [
+          0.038527535274624825,
+          0.06326702237129211,
+          0.1447349116206169
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.0446833111345768,
+          0.07226993143558502,
+          0.15496240556240082
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.09939193725586,
+        "max_wheel_saturation_fraction": 0.0010227272727272728,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.29500454664230347,
+        "measured_velocity_complete_segments_median": [
+          0.017360538244247437,
+          0.043831344693899155,
+          0.1699204370379448
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07751956527739731,
+          0.11368555842939898,
+          0.2601532334938366
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          29
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32,
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.02647131122648716,
+          0.05242784507572651,
+          0.16408369690179825
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.028330912813544273,
+          0.05878402665257454,
+          0.17380397021770477
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 21.993492126464844,
+        "max_wheel_saturation_fraction": 0.0005681818181818182,
+        "max_wheel_saturation_streak_s": 0.005,
+        "min_hard_joint_margin_rad": 0.504027247428894,
+        "measured_velocity_complete_segments_median": [
+          0.0017677098512649536,
+          0.02215286996215582,
+          0.1431492120027542
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.04294242751415509,
+          0.08995633560245322,
+          0.21286042763322166
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          1
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 7,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_-0.50",
+      "parent": {
+        "episodes": 32,
+        "success": 6,
+        "success_fraction": 0.1875,
+        "wilson95_episode_descriptive": [
+          0.08889544689565954,
+          0.3530915520137596
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 24,
+          "standstill_failure": 2,
+          "success": 6
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 24,
+          "standstill_failure": 7
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 25,
+        "rmse_complete_nonzero_segments_median": [
+          0.0917477197945118,
+          0.13733108341693878,
+          0.09292189031839371
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.10595971345901489,
+          0.15052226185798645,
+          0.10572677850723267
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.07066535949707,
+        "max_wheel_saturation_fraction": 0.0010227272727272728,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.2059043049812317,
+        "measured_velocity_complete_segments_median": [
+          0.05711998790502548,
+          -0.06288764625787735,
+          -0.43182942271232605
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.1586219476974038,
+          0.2041955983550231,
+          0.16478890059691367
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          2,
+          23,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.036901580169796944,
+          0.08316290006041527,
+          0.1484440341591835
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04195476323366165,
+          0.09934189915657043,
+          0.15818676352500916
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 23.981374740600586,
+        "max_wheel_saturation_fraction": 0.0014772727272727272,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.4443509578704834,
+        "measured_velocity_complete_segments_median": [
+          0.005548298824578524,
+          0.012911515776067972,
+          -0.3628281056880951
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0708248419616965,
+          0.15089365192146847,
+          0.19680299572862214
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": -6,
+      "zero_delta": 7,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_+0.50",
+      "parent": {
+        "episodes": 32,
+        "success": 21,
+        "success_fraction": 0.65625,
+        "wilson95_episode_descriptive": [
+          0.4831108797896222,
+          0.7958956207556682
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 21,
+          "standstill_failure": 6,
+          "tracking_failure": 4,
+          "command_transition_failure": 1
+        },
+        "all_failure_flags": {
+          "standstill_failure": 9,
+          "tracking_failure": 4,
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 23,
+        "rmse_complete_nonzero_segments_median": [
+          0.05926567129790783,
+          0.10565399378538132,
+          0.11249314993619919
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.07852651923894882,
+          0.11456707119941711,
+          0.12457884103059769
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.776748657226562,
+        "max_wheel_saturation_fraction": 0.0026136363636363636,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.059160053730010986,
+        "measured_velocity_complete_segments_median": [
+          0.01849153358489275,
+          0.06917667761445045,
+          0.40951915085315704
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 28,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10240854503390837,
+          0.15701353738723373,
+          0.17609895634379236
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          1,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.03338417410850525,
+          0.07018665596842766,
+          0.16380218416452408
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.039010435342788696,
+          0.0796332135796547,
+          0.17063544690608978
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.86907958984375,
+        "max_wheel_saturation_fraction": 0.0010227272727272728,
+        "max_wheel_saturation_streak_s": 0.01,
+        "min_hard_joint_margin_rad": 0.47167566418647766,
+        "measured_velocity_complete_segments_median": [
+          0.00038490663791890256,
+          0.021839709021151066,
+          0.34876491129398346
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.05643907312582838,
+          0.11842492748506561,
+          0.21323987552714763
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": -21,
+      "zero_delta": 9,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_-0.70",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 32,
+          "standstill_failure": 4
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 28,
+        "rmse_complete_nonzero_segments_median": [
+          0.09642531350255013,
+          0.16159183531999588,
+          0.07506907731294632
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.11251779645681381,
+          0.1727914810180664,
+          0.08277393132448196
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 36.43690490722656,
+        "max_wheel_saturation_fraction": 0.001590909090909091,
+        "max_wheel_saturation_streak_s": 0.02,
+        "min_hard_joint_margin_rad": 0.14711666107177734,
+        "measured_velocity_complete_segments_median": [
+          0.05230838060379028,
+          -0.0867094099521637,
+          -0.6713471412658691
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.16716483205662772,
+          0.24360433912011195,
+          0.12827355866402035
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          3,
+          32,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 31,
+        "success_fraction": 0.96875,
+        "wilson95_episode_descriptive": [
+          0.8425573617998744,
+          0.9944621398359969
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 31,
+          "command_transition_failure": 1
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04063333943486214,
+          0.10428682342171669,
+          0.13020775467157364
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04821033030748367,
+          0.11794399470090866,
+          0.1364460438489914
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 31.531538009643555,
+        "max_wheel_saturation_fraction": 0.002159090909090909,
+        "max_wheel_saturation_streak_s": 0.015,
+        "min_hard_joint_margin_rad": 0.40533682703971863,
+        "measured_velocity_complete_segments_median": [
+          -0.00623250612989068,
+          0.01874187495559454,
+          -0.5874058306217194
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06865784129422034,
+          0.1681603054962804,
+          0.17327559631210387
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          1,
+          0
+        ]
+      },
+      "success_delta": 31,
+      "zero_delta": 4,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_+0.70",
+      "parent": {
+        "episodes": 32,
+        "success": 14,
+        "success_fraction": 0.4375,
+        "wilson95_episode_descriptive": [
+          0.2816533111504036,
+          0.6067440886314801
+        ],
+        "unsafe": 1,
+        "outcomes": {
+          "success": 14,
+          "command_transition_failure": 16,
+          "unsafe": 1,
+          "standstill_failure": 1
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 16,
+          "standstill_failure": 4,
+          "tracking_failure": 1,
+          "unsafe": 1
+        },
+        "unsafe_reasons": {
+          "hard_joint_position": 1
+        },
+        "complete_nonzero_segments": 31,
+        "complete_zero_segments": 31,
+        "complete_zero_segments_pass": 27,
+        "rmse_complete_nonzero_segments_median": [
+          0.07311667501926422,
+          0.12946684658527374,
+          0.09981659054756165
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.0954878106713295,
+          0.14320406317710876,
+          0.10838489979505539
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.994136810302734,
+        "max_wheel_saturation_fraction": 0.005113636363636364,
+        "max_wheel_saturation_streak_s": 0.055,
+        "min_hard_joint_margin_rad": -0.0015545487403869629,
+        "measured_velocity_complete_segments_median": [
+          0.022365780547261238,
+          0.09175612032413483,
+          0.6299295425415039
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 31,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.1510364329867316,
+          0.19523221005952518,
+          0.15170702777996817
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          5,
+          12,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 30,
+        "success_fraction": 0.9375,
+        "wilson95_episode_descriptive": [
+          0.7985287685584542,
+          0.982689432968359
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 30,
+          "tracking_failure": 2
+        },
+        "all_failure_flags": {
+          "tracking_failure": 2
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04105510003864765,
+          0.08077692240476608,
+          0.15114258229732513
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.045245733112096786,
+          0.08761885017156601,
+          0.15920884907245636
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.29446029663086,
+        "max_wheel_saturation_fraction": 0.0026136363636363636,
+        "max_wheel_saturation_streak_s": 0.02,
+        "min_hard_joint_margin_rad": 0.4451223611831665,
+        "measured_velocity_complete_segments_median": [
+          -0.004018508829176426,
+          0.02421925961971283,
+          0.5681404769420624
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 30,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06985856612603404,
+          0.14015717459479723,
+          0.19816866643395892
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 16,
+      "zero_delta": 5,
+      "unsafe_delta": -1,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_-1.00",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "command_transition_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 32,
+          "standstill_failure": 4
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 28,
+        "rmse_complete_nonzero_segments_median": [
+          0.11482523754239082,
+          0.17038047313690186,
+          0.09591146558523178
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.12715736031532288,
+          0.18788330256938934,
+          0.1053461879491806
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 38.54602813720703,
+        "max_wheel_saturation_fraction": 0.003977272727272727,
+        "max_wheel_saturation_streak_s": 0.065,
+        "min_hard_joint_margin_rad": 0.02895110845565796,
+        "measured_velocity_complete_segments_median": [
+          0.04970383271574974,
+          -0.12011938914656639,
+          -1.0450515747070312
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.20448941969534207,
+          0.26494409676055886,
+          0.14269686326136688
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          19,
+          32,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05344328470528126,
+          0.09560905024409294,
+          0.10010004416108131
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05840974673628807,
+          0.10506223887205124,
+          0.1046382412314415
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.49058723449707,
+        "max_wheel_saturation_fraction": 0.00840909090909091,
+        "max_wheel_saturation_streak_s": 0.06,
+        "min_hard_joint_margin_rad": 0.35917818546295166,
+        "measured_velocity_complete_segments_median": [
+          -0.010271086357533932,
+          0.00847261818125844,
+          -0.9403928518295288
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0879240881730105,
+          0.1488106536693621,
+          0.13837669122734209
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 32,
+      "zero_delta": 4,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "wz_+1.00",
+      "parent": {
+        "episodes": 32,
+        "success": 1,
+        "success_fraction": 0.03125,
+        "wilson95_episode_descriptive": [
+          0.005537860164003122,
+          0.15744263820012558
+        ],
+        "unsafe": 2,
+        "outcomes": {
+          "command_transition_failure": 29,
+          "unsafe": 2,
+          "success": 1
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 29,
+          "tracking_failure": 2,
+          "unsafe": 2,
+          "standstill_failure": 3
+        },
+        "unsafe_reasons": {
+          "hard_joint_position": 2
+        },
+        "complete_nonzero_segments": 30,
+        "complete_zero_segments": 30,
+        "complete_zero_segments_pass": 27,
+        "rmse_complete_nonzero_segments_median": [
+          0.08887941017746925,
+          0.13911399990320206,
+          0.10102994367480278
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.10757400095462799,
+          0.15877091884613037,
+          0.10741053521633148
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 38.355873107910156,
+        "max_wheel_saturation_fraction": 0.017366136034732273,
+        "max_wheel_saturation_streak_s": 0.065,
+        "min_hard_joint_margin_rad": -0.0011775493621826172,
+        "measured_velocity_complete_segments_median": [
+          0.03832686319947243,
+          0.09762370958924294,
+          0.9461478292942047
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 30,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.18238033811120682,
+          0.22701615114718832,
+          0.14178860154845796
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          10,
+          29,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 30,
+        "success_fraction": 0.9375,
+        "wilson95_episode_descriptive": [
+          0.7985287685584542,
+          0.982689432968359
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 30,
+          "command_transition_failure": 2
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 2
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04987192340195179,
+          0.09796351566910744,
+          0.1238848902285099
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05559264123439789,
+          0.10669249296188354,
+          0.13177870213985443
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 27.833507537841797,
+        "max_wheel_saturation_fraction": 0.004886363636363637,
+        "max_wheel_saturation_streak_s": 0.065,
+        "min_hard_joint_margin_rad": 0.39427146315574646,
+        "measured_velocity_complete_segments_median": [
+          0.0030030880589038134,
+          0.03509371727705002,
+          0.9098383188247681
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.09108014640322437,
+          0.16836258552066496,
+          0.1649512497392
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          2,
+          0
+        ]
+      },
+      "success_delta": 29,
+      "zero_delta": 5,
+      "unsafe_delta": -2,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "diagonal_-1_-1",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04501930810511112,
+          0.08193641901016235,
+          0.08595481142401695
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05165395140647888,
+          0.09040491282939911,
+          0.08782944083213806
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.796676635742188,
+        "max_wheel_saturation_fraction": 0.005909090909090909,
+        "max_wheel_saturation_streak_s": 0.065,
+        "min_hard_joint_margin_rad": 0.5188652276992798,
+        "measured_velocity_complete_segments_median": [
+          -0.4745527356863022,
+          -0.43729908764362335,
+          0.0071088154800236225
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0775794555139672,
+          0.13221271945577312,
+          0.10836237110126211
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04413184896111488,
+          0.089494738727808,
+          0.0799221321940422
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05128095671534538,
+          0.098075732588768,
+          0.0826706811785698
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.20764923095703,
+        "max_wheel_saturation_fraction": 0.010227272727272727,
+        "max_wheel_saturation_streak_s": 0.08,
+        "min_hard_joint_margin_rad": 0.5769896507263184,
+        "measured_velocity_complete_segments_median": [
+          -0.477141410112381,
+          -0.4303397834300995,
+          -0.021792630665004253
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07781654883956439,
+          0.14360005629880132,
+          0.10334095565151676
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "turning_-1_-1",
+      "parent": {
+        "episodes": 32,
+        "success": 27,
+        "success_fraction": 0.84375,
+        "wilson95_episode_descriptive": [
+          0.682458504024696,
+          0.9313557971749429
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 27,
+          "standstill_failure": 3,
+          "command_transition_failure": 2
+        },
+        "all_failure_flags": {
+          "standstill_failure": 4,
+          "command_transition_failure": 2
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 28,
+        "rmse_complete_nonzero_segments_median": [
+          0.06531394273042679,
+          0.11133282631635666,
+          0.07056557387113571
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.07370966672897339,
+          0.1236443892121315,
+          0.08058152347803116
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.655593872070312,
+        "max_wheel_saturation_fraction": 0.015909090909090907,
+        "max_wheel_saturation_streak_s": 0.065,
+        "min_hard_joint_margin_rad": 0.32716238498687744,
+        "measured_velocity_complete_segments_median": [
+          -0.46185778081417084,
+          -0.06446118280291557,
+          -0.4720846861600876
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.11080305745523081,
+          0.17075450732355718,
+          0.12550445586291864
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          2,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 20,
+        "success_fraction": 0.625,
+        "wilson95_episode_descriptive": [
+          0.4525440735307745,
+          0.7706611269054578
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 20,
+          "tracking_failure": 12
+        },
+        "all_failure_flags": {
+          "tracking_failure": 12
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04581665247678757,
+          0.10515838861465454,
+          0.1146341934800148
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.054641108959913254,
+          0.11254590004682541,
+          0.11870995163917542
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 24.267868041992188,
+        "max_wheel_saturation_fraction": 0.03840909090909091,
+        "max_wheel_saturation_streak_s": 0.11,
+        "min_hard_joint_margin_rad": 0.49380165338516235,
+        "measured_velocity_complete_segments_median": [
+          -0.46636857092380524,
+          0.07480819523334503,
+          -0.40041472017765045
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 20,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07403726378318007,
+          0.14782382014899625,
+          0.14161233244716126
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": -7,
+      "zero_delta": 4,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "diagonal_-1_+1",
+      "parent": {
+        "episodes": 32,
+        "success": 31,
+        "success_fraction": 0.96875,
+        "wilson95_episode_descriptive": [
+          0.8425573617998744,
+          0.9944621398359969
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 31,
+          "command_transition_failure": 1
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.06332692503929138,
+          0.0965246818959713,
+          0.08274466544389725
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.0692954882979393,
+          0.10523172467947006,
+          0.08652227371931076
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.703392028808594,
+        "max_wheel_saturation_fraction": 0.017272727272727273,
+        "max_wheel_saturation_streak_s": 0.1,
+        "min_hard_joint_margin_rad": 0.49510708451271057,
+        "measured_velocity_complete_segments_median": [
+          -0.4520817995071411,
+          0.4318644255399704,
+          -0.016827027313411236
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10101018664596707,
+          0.16216432869264302,
+          0.1089793282474577
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 29,
+        "success_fraction": 0.90625,
+        "wilson95_episode_descriptive": [
+          0.7578184527161212,
+          0.9675984487016337
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 29,
+          "command_transition_failure": 3
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 3
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05553348921239376,
+          0.11984719336032867,
+          0.06973819062113762
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.06480607390403748,
+          0.12846267223358154,
+          0.07320792973041534
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 28.12973976135254,
+        "max_wheel_saturation_fraction": 0.02352272727272727,
+        "max_wheel_saturation_streak_s": 0.11,
+        "min_hard_joint_margin_rad": 0.538310706615448,
+        "measured_velocity_complete_segments_median": [
+          -0.4650984853506088,
+          0.40242141485214233,
+          -0.02397105749696493
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.09361543178918413,
+          0.1778701661552966,
+          0.09347729405270203
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          3,
+          0
+        ]
+      },
+      "success_delta": -2,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "turning_-1_+1",
+      "parent": {
+        "episodes": 32,
+        "success": 28,
+        "success_fraction": 0.875,
+        "wilson95_episode_descriptive": [
+          0.7193169451834978,
+          0.9502986561251991
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 28,
+          "standstill_failure": 3,
+          "command_transition_failure": 1
+        },
+        "all_failure_flags": {
+          "standstill_failure": 3,
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 29,
+        "rmse_complete_nonzero_segments_median": [
+          0.07340557500720024,
+          0.10788111016154289,
+          0.0814460963010788
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.08384644985198975,
+          0.11933775991201401,
+          0.08745504170656204
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.360088348388672,
+        "max_wheel_saturation_fraction": 0.07181818181818182,
+        "max_wheel_saturation_streak_s": 0.2,
+        "min_hard_joint_margin_rad": 0.2837662100791931,
+        "measured_velocity_complete_segments_median": [
+          -0.4504556804895401,
+          0.05493380129337311,
+          0.46091988682746887
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.12987169280237953,
+          0.17265885637149042,
+          0.1333208295649423
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 4,
+        "success_fraction": 0.125,
+        "wilson95_episode_descriptive": [
+          0.04970134387480073,
+          0.2806830548165022
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 28,
+          "success": 4
+        },
+        "all_failure_flags": {
+          "tracking_failure": 28
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04134674370288849,
+          0.07421449944376945,
+          0.13642265647649765
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04564463347196579,
+          0.09484312683343887,
+          0.14248575270175934
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 22.335901260375977,
+        "max_wheel_saturation_fraction": 0.04681818181818182,
+        "max_wheel_saturation_streak_s": 0.14,
+        "min_hard_joint_margin_rad": 0.5083468556404114,
+        "measured_velocity_complete_segments_median": [
+          -0.49104803800582886,
+          -0.04566042870283127,
+          0.3796389102935791
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 4,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06857760191473289,
+          0.11233859058877885,
+          0.16433003043937927
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": -24,
+      "zero_delta": 3,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "diagonal_+1_-1",
+      "parent": {
+        "episodes": 32,
+        "success": 31,
+        "success_fraction": 0.96875,
+        "wilson95_episode_descriptive": [
+          0.8425573617998744,
+          0.9944621398359969
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 31,
+          "command_transition_failure": 1
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 1
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.08013450354337692,
+          0.10258857160806656,
+          0.06604006886482239
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.08724706619977951,
+          0.11112778633832932,
+          0.06885942071676254
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 32.11058807373047,
+        "max_wheel_saturation_fraction": 0.001931818181818182,
+        "max_wheel_saturation_streak_s": 0.035,
+        "min_hard_joint_margin_rad": 0.48834285140037537,
+        "measured_velocity_complete_segments_median": [
+          0.4321253001689911,
+          -0.4117890000343323,
+          -0.026408057659864426
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.12227511057225507,
+          0.15564139245131922,
+          0.08779754858082653
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.06832535564899445,
+          0.10107190161943436,
+          0.07008864730596542
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.07293293625116348,
+          0.1123911440372467,
+          0.07375765591859818
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 24.817533493041992,
+        "max_wheel_saturation_fraction": 0.002159090909090909,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.5434877872467041,
+        "measured_velocity_complete_segments_median": [
+          0.4469858556985855,
+          -0.4109763652086258,
+          -0.029828964732587337
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.11100069740429572,
+          0.15028855452799866,
+          0.09081748687808945
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 1,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "turning_+1_-1",
+      "parent": {
+        "episodes": 32,
+        "success": 30,
+        "success_fraction": 0.9375,
+        "wilson95_episode_descriptive": [
+          0.7985287685584542,
+          0.982689432968359
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 30,
+          "standstill_failure": 2
+        },
+        "all_failure_flags": {
+          "standstill_failure": 2
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 30,
+        "rmse_complete_nonzero_segments_median": [
+          0.048812178894877434,
+          0.09599250555038452,
+          0.07010583579540253
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.06303874403238297,
+          0.10934660583734512,
+          0.07574062049388885
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.673770904541016,
+        "max_wheel_saturation_fraction": 0.001590909090909091,
+        "max_wheel_saturation_streak_s": 0.05,
+        "min_hard_joint_margin_rad": 0.2840045094490051,
+        "measured_velocity_complete_segments_median": [
+          0.4811418354511261,
+          0.04028805159032345,
+          -0.47995302081108093
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.09756805601916721,
+          0.14056603068834722,
+          0.10017208686872567
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.05054283142089844,
+          0.08409912511706352,
+          0.08383811265230179
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05579742044210434,
+          0.10524655878543854,
+          0.09090404212474823
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 23.22285270690918,
+        "max_wheel_saturation_fraction": 0.008068181818181818,
+        "max_wheel_saturation_streak_s": 0.105,
+        "min_hard_joint_margin_rad": 0.46994370222091675,
+        "measured_velocity_complete_segments_median": [
+          0.46182000637054443,
+          -0.013400094117969275,
+          -0.4478577524423599
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0808265327803184,
+          0.14328339105597418,
+          0.11128998850045388
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 2,
+      "zero_delta": 2,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "diagonal_+1_+1",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.06287937238812447,
+          0.07495420426130295,
+          0.07849026471376419
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.07144913822412491,
+          0.08865775167942047,
+          0.08190719038248062
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 27.503801345825195,
+        "max_wheel_saturation_fraction": 0.0025,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.5095983743667603,
+        "measured_velocity_complete_segments_median": [
+          0.45159851014614105,
+          0.4475049674510956,
+          0.0030635815346613526
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10817087636896125,
+          0.12929137457022638,
+          0.10379365479859615
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.06547115370631218,
+          0.09978557750582695,
+          0.07189223170280457
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.0732322633266449,
+          0.11492805182933807,
+          0.07644485682249069
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 26.661029815673828,
+        "max_wheel_saturation_fraction": 0.002840909090909091,
+        "max_wheel_saturation_streak_s": 0.06,
+        "min_hard_joint_margin_rad": 0.5297566652297974,
+        "measured_velocity_complete_segments_median": [
+          0.44933122396469116,
+          0.41711604595184326,
+          0.0017156709218397737
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10854397945530353,
+          0.15922552147441033,
+          0.09649612258165412
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "turning_+1_+1",
+      "parent": {
+        "episodes": 32,
+        "success": 29,
+        "success_fraction": 0.90625,
+        "wilson95_episode_descriptive": [
+          0.7578184527161212,
+          0.9675984487016337
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 29,
+          "standstill_failure": 3
+        },
+        "all_failure_flags": {
+          "standstill_failure": 3
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 29,
+        "rmse_complete_nonzero_segments_median": [
+          0.05005805566906929,
+          0.08108716085553169,
+          0.08636175468564034
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.05846907198429108,
+          0.09300826489925385,
+          0.09624513238668442
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 31.041011810302734,
+        "max_wheel_saturation_fraction": 0.006704545454545454,
+        "max_wheel_saturation_streak_s": 0.075,
+        "min_hard_joint_margin_rad": 0.2623916268348694,
+        "measured_velocity_complete_segments_median": [
+          0.4742862582206726,
+          0.03092816285789013,
+          0.4481472969055176
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.08850077126535656,
+          0.142786320475717,
+          0.1300389401759554
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 32,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.06736719235777855,
+          0.05905960500240326,
+          0.10775206238031387
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.0720367282629013,
+          0.06588876992464066,
+          0.11356006562709808
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 24.111242294311523,
+        "max_wheel_saturation_fraction": 0.004772727272727273,
+        "max_wheel_saturation_streak_s": 0.035,
+        "min_hard_joint_margin_rad": 0.4844712018966675,
+        "measured_velocity_complete_segments_median": [
+          0.4433254897594452,
+          0.010332322213798761,
+          0.41688403487205505
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.10183508764731086,
+          0.11120029418033824,
+          0.1435223657330905
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 3,
+      "zero_delta": 3,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "transitions_vx",
+      "parent": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 96,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.025557395070791245,
+          0.009368390776216984,
+          0.02976955659687519
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.060041457414627075,
+          0.01147611252963543,
+          0.04463941231369972
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 21.603271484375,
+        "max_wheel_saturation_fraction": 0.001931818181818182,
+        "max_wheel_saturation_streak_s": 0.04,
+        "min_hard_joint_margin_rad": 0.6410232782363892,
+        "measured_velocity_complete_segments_median": [
+          0.29117733240127563,
+          0.0007741884037386626,
+          0.002511869417503476
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06872413614837972,
+          0.0145992023445799,
+          0.0711802187052791
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 32,
+        "success_fraction": 1.0,
+        "wilson95_episode_descriptive": [
+          0.8928208017449293,
+          1
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "success": 32
+        },
+        "all_failure_flags": {},
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 96,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.03636944852769375,
+          0.011565840803086758,
+          0.03702644631266594
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.0482797771692276,
+          0.02685728669166565,
+          0.041756171733140945
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 24.692516326904297,
+        "max_wheel_saturation_fraction": 0.0014772727272727272,
+        "max_wheel_saturation_streak_s": 0.045,
+        "min_hard_joint_margin_rad": 0.7139490842819214,
+        "measured_velocity_complete_segments_median": [
+          0.26470738649368286,
+          0.00035052337625529617,
+          -0.001466338348109275
+        ],
+        "row_development_pass": true,
+        "steady_tracking_pass_complete_episodes": 32,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.0593604344268209,
+          0.030783918214257376,
+          0.05040974024668435
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "transitions_vy",
+      "parent": {
+        "episodes": 32,
+        "success": 3,
+        "success_fraction": 0.09375,
+        "wilson95_episode_descriptive": [
+          0.032401551298366194,
+          0.24218154728387864
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 29,
+          "success": 3
+        },
+        "all_failure_flags": {
+          "tracking_failure": 29
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 96,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.040890876203775406,
+          0.07820309698581696,
+          0.06722492352128029
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04973650723695755,
+          0.10963781923055649,
+          0.09738220274448395
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 32.669673919677734,
+        "max_wheel_saturation_fraction": 0.0013636363636363637,
+        "max_wheel_saturation_streak_s": 0.03,
+        "min_hard_joint_margin_rad": 0.3800256848335266,
+        "measured_velocity_complete_segments_median": [
+          -0.010724746622145176,
+          0.22713806480169296,
+          -0.008989161811769009
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 3,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06695251067271854,
+          0.14239202268137688,
+          0.111846886880408
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 96,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.04253449849784374,
+          0.08788485080003738,
+          0.0638601966202259
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.06686680763959885,
+          0.1079852283000946,
+          0.07362202554941177
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 29.863811492919922,
+        "max_wheel_saturation_fraction": 0.0023863636363636366,
+        "max_wheel_saturation_streak_s": 0.025,
+        "min_hard_joint_margin_rad": 0.5536705255508423,
+        "measured_velocity_complete_segments_median": [
+          -0.0189528651535511,
+          0.2100730687379837,
+          -0.018356164917349815
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.07696020367009018,
+          0.13905514592058205,
+          0.08702992027825128
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": -3,
+      "zero_delta": 0,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    },
+    {
+      "case": "transitions_wz",
+      "parent": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "command_transition_failure": 31,
+          "tracking_failure": 32,
+          "standstill_failure": 10
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 96,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 22,
+        "rmse_complete_nonzero_segments_median": [
+          0.07172877714037895,
+          0.12153802812099457,
+          0.10401120036840439
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.12792837619781494,
+          0.1575562208890915,
+          0.19704394042491913
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 32.68998336791992,
+        "max_wheel_saturation_fraction": 0.0026136363636363636,
+        "max_wheel_saturation_streak_s": 0.03,
+        "min_hard_joint_margin_rad": -0.0001970529556274414,
+        "measured_velocity_complete_segments_median": [
+          0.02347637340426445,
+          0.03283431567251682,
+          0.13426151126623154
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.14355906616483743,
+          0.19404546755761404,
+          0.2603053192245892
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          6,
+          8,
+          30
+        ]
+      },
+      "candidate": {
+        "episodes": 32,
+        "success": 0,
+        "success_fraction": 0.0,
+        "wilson95_episode_descriptive": [
+          0,
+          0.1071791982550706
+        ],
+        "unsafe": 0,
+        "outcomes": {
+          "tracking_failure": 32
+        },
+        "all_failure_flags": {
+          "tracking_failure": 32
+        },
+        "unsafe_reasons": {},
+        "complete_nonzero_segments": 96,
+        "complete_zero_segments": 32,
+        "complete_zero_segments_pass": 32,
+        "rmse_complete_nonzero_segments_median": [
+          0.032789792865514755,
+          0.07482624053955078,
+          0.15533000975847244
+        ],
+        "rmse_complete_nonzero_segments_max": [
+          0.04711873456835747,
+          0.1140354573726654,
+          0.18467223644256592
+        ],
+        "physical_traversal": 0,
+        "max_wheel_speed_rad_s": 25.450878143310547,
+        "max_wheel_saturation_fraction": 0.00125,
+        "max_wheel_saturation_streak_s": 0.02,
+        "min_hard_joint_margin_rad": 0.4653812646865845,
+        "measured_velocity_complete_segments_median": [
+          0.0004783427284564823,
+          0.024518978781998158,
+          0.1399938315153122
+        ],
+        "row_development_pass": false,
+        "steady_tracking_pass_complete_episodes": 0,
+        "moving_rmse_peak_complete_episodes_median": [
+          0.06376822228512541,
+          0.14243335012464875,
+          0.2064160044398174
+        ],
+        "moving_window_failure_complete_episodes_by_axis": [
+          0,
+          0,
+          0
+        ]
+      },
+      "success_delta": 0,
+      "zero_delta": 10,
+      "unsafe_delta": 0,
+      "lost_previously_perfect_row": false
+    }
+  ],
+  "improved_rows": [
+    "vx_+1.00",
+    "wz_-0.70",
+    "wz_+0.70",
+    "wz_-1.00",
+    "wz_+1.00",
+    "diagonal_+1_-1",
+    "turning_+1_-1",
+    "turning_+1_+1"
+  ],
+  "regressed_rows": [
+    "vy_-1.00",
+    "wz_-0.50",
+    "wz_+0.50",
+    "turning_-1_-1",
+    "diagonal_-1_+1",
+    "turning_-1_+1",
+    "transitions_vy"
+  ],
+  "lost_previously_perfect_rows": [
+    "vy_-1.00"
+  ],
+  "candidate_unsafe_episodes": [],
+  "development_screen_only": true,
+  "independent_validation": false,
+  "hardware_approval": false,
+  "fresh_parent_vs_retained": {
+    "retained_success": 716,
+    "fresh_success": 716,
+    "changed_outcomes": 0,
+    "changed_failure_flags": 0
+  },
+  "provenance": {
+    "parent_json": "logs\\finetune_screen_20500_20260926\\parent.json",
+    "parent_json_sha256": "3c1b80ddabda7942373dbdb5876f630556d4ecd270ee1774efcdd41ce8093b80",
+    "candidate_json": "logs\\finetune_screen_20500_20260926\\candidate.json",
+    "candidate_json_sha256": "41524d2a8a476cda2e2893471e8151349899ddc2c0a7cef386b004aea34aab72",
+    "parent_exports": {
+      "19999": {
+        "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\policies\\server\\upstream_19999\\export\\policy.pt",
+        "sha256": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff"
+      }
+    },
+    "candidate_exports": {
+      "20500": {
+        "path": "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\finetune_screen_20500_20260926\\export_check\\policy-contract-export\\policy.pt",
+        "sha256": "94ce1873b251b4e2bc1b9f9f667d1d18b7bb6eaa1f3e42e62357337e12e7f567"
+      }
+    },
+    "candidate_export_manifest": {
+      "export_validation": {
+        "status": "passed",
+        "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+        "checkpoint": "logs\\rsl_rl\\b2w_19999_commands_stairs_local\\2026-09-26_10-43-45_focus_yaw_zero_stairs\\model_20500.pt",
+        "checkpoint_sha256": "b7ef4838068ebd17ec9bbcb92f725938f4f45a83b136d61e8f1ffd00f7083e7c",
+        "checkpoint_iteration": 20500,
+        "agent_sha256": "4cfb0b2e9aefd0721b2ee29d6dc932cb8abe23dbe931ada2051ca712564a5345",
+        "export": "logs\\finetune_screen_20500_20260926\\export_check\\policy-contract-export\\policy.pt",
+        "export_sha256": "94ce1873b251b4e2bc1b9f9f667d1d18b7bb6eaa1f3e42e62357337e12e7f567",
+        "exporter_sha256": "9f58909058b969923921d1ea052f912eb1ae3f7ecbe3d947164c06b584737e16",
+        "fixture_and_random_count": 295,
+        "random_seed": 20260917,
+        "max_abs_error": 0.0,
+        "tolerance": 1e-05,
+        "normalizer": "Identity",
+        "network_dimensions": {
+          "actor_observations": 57,
+          "actions": 16,
+          "critic_observations": 247,
+          "std_actions": 16
+        },
+        "configured_obs_groups": {},
+        "resolved_obs_groups": {
+          "policy": [
+            "policy"
+          ],
+          "critic": [
+            "critic"
+          ]
+        },
+        "policy_quality_evaluated": false
+      },
+      "contract": {
+        "dt": 0.005,
+        "decimation": 4,
+        "fixed_kp": [
+          200.0,
+          200.0,
+          300.0,
+          200.0,
+          200.0,
+          300.0,
+          200.0,
+          200.0,
+          300.0,
+          200.0,
+          200.0,
+          300.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "fixed_kd": [
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "num_of_dofs": 16,
+        "wheel_indices": [
+          12,
+          13,
+          14,
+          15
+        ],
+        "torque_limits": [
+          200.0,
+          200.0,
+          320.0,
+          200.0,
+          200.0,
+          320.0,
+          200.0,
+          200.0,
+          320.0,
+          200.0,
+          200.0,
+          320.0,
+          20.0,
+          20.0,
+          20.0,
+          20.0
+        ],
+        "default_dof_pos": [
+          0.0,
+          0.8,
+          -1.5,
+          0.0,
+          0.8,
+          -1.5,
+          0.0,
+          0.8,
+          -1.5,
+          0.0,
+          0.8,
+          -1.5,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "joint_names": [
+          "FR_hip_joint",
+          "FR_thigh_joint",
+          "FR_calf_joint",
+          "FL_hip_joint",
+          "FL_thigh_joint",
+          "FL_calf_joint",
+          "RR_hip_joint",
+          "RR_thigh_joint",
+          "RR_calf_joint",
+          "RL_hip_joint",
+          "RL_thigh_joint",
+          "RL_calf_joint",
+          "FR_foot_joint",
+          "FL_foot_joint",
+          "RR_foot_joint",
+          "RL_foot_joint"
+        ],
+        "joint_controller_names": [
+          "FR_hip_controller",
+          "FR_thigh_controller",
+          "FR_calf_controller",
+          "FL_hip_controller",
+          "FL_thigh_controller",
+          "FL_calf_controller",
+          "RR_hip_controller",
+          "RR_thigh_controller",
+          "RR_calf_controller",
+          "RL_hip_controller",
+          "RL_thigh_controller",
+          "RL_calf_controller",
+          "FR_foot_controller",
+          "FL_foot_controller",
+          "RR_foot_controller",
+          "RL_foot_controller"
+        ],
+        "joint_mapping": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "model_name": "policy.pt",
+        "num_observations": 57,
+        "observations": [
+          "ang_vel",
+          "gravity_vec",
+          "commands",
+          "dof_pos",
+          "dof_vel",
+          "actions"
+        ],
+        "observations_history": [],
+        "observations_history_priority": "time",
+        "default_commands": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "clip_obs": 100.0,
+        "clip_actions_lower": [
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0,
+          -100.0
+        ],
+        "clip_actions_upper": [
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0,
+          100.0
+        ],
+        "rl_kp": [
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          160.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "rl_kd": [
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          5.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "action_scale": [
+          0.125,
+          0.25,
+          0.25,
+          0.125,
+          0.25,
+          0.25,
+          0.125,
+          0.25,
+          0.25,
+          0.125,
+          0.25,
+          0.25,
+          5.0,
+          5.0,
+          5.0,
+          5.0
+        ],
+        "lin_vel_scale": 2.0,
+        "ang_vel_scale": 0.25,
+        "dof_pos_scale": 1.0,
+        "dof_vel_scale": 0.05,
+        "commands_scale": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "isaac_velocity_limits": [
+          23.0,
+          23.0,
+          14.0,
+          23.0,
+          23.0,
+          14.0,
+          23.0,
+          23.0,
+          14.0,
+          23.0,
+          23.0,
+          14.0,
+          50.0,
+          50.0,
+          50.0,
+          50.0
+        ],
+        "quaternion_convention": "wxyz; body orientation in world; gravity rotated into body",
+        "joint_sign_multiplier": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "joint_sign_scope": "No sign inversion in these software adapters; hardware signs unvalidated",
+        "processing_order": {
+          "rl_sar_observation": "scale each term, concatenate, clip to [-100, 100]",
+          "isaac_observation_eval": "clip each term to [-100, 100], scale, concatenate; noise disabled for comparison",
+          "isaac_observation_train": "noise then clip then scale; noise not modelled by deterministic fixtures",
+          "rl_sar_action": "clip raw actions to [-100, 100], scale, add default pose for legs",
+          "isaac_action": "scale raw actions, add default pose for legs, clip physical targets to [-100, 100]",
+          "rl_sar_history": "previous clipped raw action",
+          "isaac_history": "previous raw action (runner clipping disabled)"
+        },
+        "observation_slices": {
+          "ang_vel": [
+            0,
+            3
+          ],
+          "gravity": [
+            3,
+            6
+          ],
+          "commands": [
+            6,
+            9
+          ],
+          "joint_pos": [
+            9,
+            25
+          ],
+          "joint_vel": [
+            25,
+            41
+          ],
+          "previous_action": [
+            41,
+            57
+          ]
+        },
+        "policy_dt": 0.02,
+        "sdk_mapping_scope": "rl_sar configured identity; firmware/physical motor mapping unvalidated",
+        "source_sha256": {
+          "vendor/rl_sar/policy/b2w/robot_lab/config.yaml": "d44bb3c36043f7216f7699a23d904fd01b5fc29ab7c35aabe56dc024d3f1cc74",
+          "vendor/rl_sar/policy/b2w/base.yaml": "a883606bdbd5450ed04227b82cde54d9a3fc0eeedb55d61b36bdf43889f8d9f8",
+          "vendor/robot_lab/source/robot_lab/robot_lab/tasks/manager_based/locomotion/velocity/config/wheeled/unitree_b2w/rough_env_cfg.py": "9a9e0c6fb084cccda55f2ac27c427169930f2e9ab29eb34967aaa571dba1cc1b",
+          "vendor/robot_lab/source/robot_lab/robot_lab/tasks/manager_based/locomotion/velocity/velocity_env_cfg.py": "776248b8b9d67eb46283ab5782c8723de54f5049c9bb3f0af6aaef63e538603a",
+          "vendor/robot_lab/source/robot_lab/robot_lab/tasks/manager_based/locomotion/velocity/mdp/observations.py": "8082e4d8588855321b209ab02dbf5be5fec39bb58ed0927252cbe657e8058f88",
+          "vendor/robot_lab/source/robot_lab/robot_lab/assets/unitree.py": "7c0baf0af465681f4decac2427ddc941151caa6dda51f1428ae68dff5382c07d",
+          "vendor/rl_sar/policy/b2w/robot_lab/policy.pt": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+          "vendor/rl_sar/src/rl_sar/library/core/rl_sdk/rl_sdk.cpp": "ddb40f684fcde8086f1211c6da244456cc1280ca7633b1a70138953be613f1b9",
+          "vendor/rl_sar/src/rl_sar/library/core/vector_math/vector_math.hpp": "819c2169ce8c9d7c94b7c4b9d319d41dc2d82367815465b1cf5a5f49f9672c24",
+          "vendor/rl_sar/src/rl_sar/src/rl_sim_mujoco.cpp": "4518d29d3233b7e1e17ce61ab33ea76168aabd84244880971adf5e2f9282db73"
+        }
+      },
+      "contract_scope": "Reference IO settings matched to pinned upstream; clipping differs as documented",
+      "known_gaps": {
+        "observation_clip_order_max_delta_fixture": 5.0,
+        "action_clip_order_max_delta_fixture": 400.0,
+        "hardware_signs_and_sdk_mapping": "not validated",
+        "simulator_mass_inertia_contact_and_torque_curve": "not compared"
+      }
+    },
+    "comparison_script_sha256": "2d1ea21aacc32a127c16e2e71a726ec7473fb62b620d69fd048fd4e7a6a207b7"
+  }
+}

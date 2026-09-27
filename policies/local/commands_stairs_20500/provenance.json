@@ -1,0 +1,19 @@
+{
+  "status": "development_candidate_with_measured_regressions",
+  "accepted": false,
+  "parent_iteration": 19999,
+  "parent_sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+  "checkpoint_iteration": 20500,
+  "additional_updates": 501,
+  "checkpoint_sha256": "b7ef4838068ebd17ec9bbcb92f725938f4f45a83b136d61e8f1ffd00f7083e7c",
+  "export_sha256": "94ce1873b251b4e2bc1b9f9f667d1d18b7bb6eaa1f3e42e62357337e12e7f567",
+  "source_run": "logs\\rsl_rl\\b2w_19999_commands_stairs_local\\2026-09-26_10-43-45_focus_yaw_zero_stairs",
+  "evaluation": "docs/results/2026-09-26-finetune-20500-operating57.md",
+  "files_sha256": {
+    "agent.yaml": "4cfb0b2e9aefd0721b2ee29d6dc932cb8abe23dbe931ada2051ca712564a5345",
+    "env.yaml": "8fd32ca7016c8da60838c8668b20689eb66dd8bcb2368e06dff9054b3ef86bb6",
+    "model_20500.pt": "b7ef4838068ebd17ec9bbcb92f725938f4f45a83b136d61e8f1ffd00f7083e7c",
+    "export\\manifest.json": "a696b78947ed42c624f2071c7c7125064ea3cde919c88e371055c0319435cdff",
+    "export\\policy.pt": "94ce1873b251b4e2bc1b9f9f667d1d18b7bb6eaa1f3e42e62357337e12e7f567"
+  }
+}

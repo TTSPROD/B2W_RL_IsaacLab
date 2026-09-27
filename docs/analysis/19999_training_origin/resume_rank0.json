@@ -1,0 +1,13 @@
+{
+  "rank": 0,
+  "parent_sha256": "9d421439b4e85ca3a37ea64436ceaae3f0c2261c9f33134d5f0096482fe921d0",
+  "saved_iteration": 100,
+  "next_iteration": 101,
+  "additional_iterations": 19899,
+  "total_target_updates": 20000,
+  "model_equal": true,
+  "optimizer_equal": true,
+  "optimizer_state_count": 17,
+  "learning_rate": 0.0005766503906250003,
+  "device": "cuda:0"
+}

@@ -1,0 +1,20 @@
+{
+  "status": "development_candidate_improved_with_remaining_regressions",
+  "accepted": false,
+  "parent_iteration": 20500,
+  "parent_sha256": "b7ef4838068ebd17ec9bbcb92f725938f4f45a83b136d61e8f1ffd00f7083e7c",
+  "checkpoint_iteration": 20600,
+  "additional_updates": 100,
+  "lineage_updates_from_19999": 601,
+  "checkpoint_sha256": "0b41f90fe83404964bb5100ffc117d7609ad98feb556e67e69389dcdccef2a3a",
+  "export_sha256": "8a9c5a65c15c9dd80b7fe2de6055e3f18bf68de05ec564f0d2537185265705cf",
+  "source_run": "logs\\rsl_rl\\b2w_20500_yaw_response_correction100\\2026-09-26_11-29-44_moderate_yaw_reverse_turns",
+  "evaluation": "docs/results/2026-09-26-correction100-20600-operating57.md",
+  "files_sha256": {
+    "agent.yaml": "e2fd545de2e625e0616ab3c8e1f9dfd0134efbcacaed636c72816bf50c2b2330",
+    "env.yaml": "612bb7a403bb9171453abd5e07ac1c5efbd9da8ae14f3fa9d32d1cba75b79329",
+    "model_20600.pt": "0b41f90fe83404964bb5100ffc117d7609ad98feb556e67e69389dcdccef2a3a",
+    "export\\manifest.json": "ef67a5c5d11a60d51a99be0311a25eae72b02ac356422e107352f5ded5733dc5",
+    "export\\policy.pt": "8a9c5a65c15c9dd80b7fe2de6055e3f18bf68de05ec564f0d2537185265705cf"
+  }
+}

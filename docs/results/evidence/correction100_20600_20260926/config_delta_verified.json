@@ -1,0 +1,10 @@
+{
+  "actions": true,
+  "observations": true,
+  "events": true,
+  "robot": true,
+  "terrain": true,
+  "changed_rewards": [
+    "track_ang_vel_z_exp"
+  ]
+}
