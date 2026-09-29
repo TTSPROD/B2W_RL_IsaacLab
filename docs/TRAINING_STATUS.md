@@ -26,6 +26,7 @@
   подтверждённая причина: баланс tracking-reward, не exposure и не приводы
   ([диагностика](results/2026-09-29-stage3-trace-diagnostics.md));
 - longitudinal ±1.0 на rough: 1-s moving-RMSE окна (12–22/30 эпизодов);
+  на rough_10 те же эпизоды теряют нулевые сегменты (4 longitudinal, 1 yaw);
 - лестницы вверх 0.12–0.18 м: медленный подъём 0.3 m/s и удержание на
   ступенях 0.18 м — сатурация момента колёс до 30% / 12.5 s, вопрос
   acceptance-envelope;
