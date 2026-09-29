@@ -19,9 +19,10 @@ python scripts/vendor_materials.py verify
 & .\scripts\run_local.ps1 scripts/verify_project.py
 ```
 
-Локальный dashboard запускается `python dashboard/server.py` и доступен только
-на `127.0.0.1:8765`. Он читает сохранённые TensorBoard-метрики и компактный
-результат policy 24650; simulator/training он не запускает.
+Локальный dashboard доступен только на `127.0.0.1:8765`. Evaluation-runner'ы
+запускают его автоматически; вручную — `python dashboard/launch.py`. Он читает
+TensorBoard-метрики и последний checkpoint-selection, обновляет монитор раз в
+10 секунд; simulator/training он не запускает и API управления не имеет.
 
 ## Артефакты
 

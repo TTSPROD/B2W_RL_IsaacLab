@@ -66,13 +66,13 @@ function renderHeading() {
  $('runStatus').className=`status ${data.status}`;
  $('runStatus').textContent=labels[data.status] || data.status;
  const isSelection=currentView==='selection';
- $('pageTitle').textContent=isSelection?`Выбранная policy ${selection?.parent||'…'}`:`${m.parent_iteration} → ${m.parent_iteration+m.additional_updates}`;
- $('pageEyebrow').textContent=isSelection?'CORE LOCOMOTION · CURRENT':'ЛОКАЛЬНОЕ ДООБУЧЕНИЕ';
- $('pageSubtitle').textContent=isSelection?`Flat / Rough / Stairs · ${integer(selection?.seeds)} paired seeds · ${integer(selection?.episodes_total)} эпизодов`:`${m.gpu.replace('NVIDIA GeForce ','').replace('NVIDIA ','').replace(' GPU','')} · ${integer(m.num_envs)} сред · Seed ${m.seed}`;
- if(isSelection){$('runStatus').className=`status ${selection?.status||'initializing'}`;$('runStatus').textContent=selection?.status==='completed'?'Selection завершён':selection?.status==='running'?'Selection идёт':'Ожидание данных';}
+ $('pageTitle').textContent=isSelection?'Оценка checkpoint’ов':`${m.parent_iteration} → ${m.parent_iteration+m.additional_updates}`;
+ $('pageEyebrow').textContent=isSelection?'CORE LOCOMOTION · LIVE':'ЛОКАЛЬНОЕ ДООБУЧЕНИЕ';
+ $('pageSubtitle').textContent=isSelection?`${selection?.selection_name||'Текущий selection'} · ${integer(selection?.policies?.length)} policy · ${integer(selection?.seeds)} paired seeds · ${integer(selection?.episodes_total)} эпизодов`:`${m.gpu.replace('NVIDIA GeForce ','').replace('NVIDIA ','').replace(' GPU','')} · ${integer(m.num_envs)} сред · Seed ${m.seed}`;
+ if(isSelection){const selectionLabels={completed:'Оценка завершена',running:'Оценка идёт',failed:'Ошибка оценки',stopped:'Остановлено'};$('runStatus').className=`status ${selection?.status||'initializing'}`;$('runStatus').textContent=selectionLabels[selection?.status]||'Ожидание данных';}
  $('runStatus').hidden=false;
  document.querySelector('.toolbar').hidden=isSelection;
- $('lastUpdate').textContent=isSelection?`Результат · ${selection?.updated_utc?date(selection.updated_utc):'—'}`:`Запись в логе · ${date(p.updated_utc || m.created_utc)}`;
+ $('lastUpdate').textContent=isSelection?`Монитор · ${selection?.updated_utc?date(selection.updated_utc):'—'}`:`Запись в логе · ${date(p.updated_utc || m.created_utc)}`;
  $('metricCount').textContent=data.scalar_count;
  $('trainingQueueStatus').hidden=true;
  $('evaluationStatus').hidden=true;
@@ -109,13 +109,17 @@ function renderCheckpoints() {
 function renderSelection() {
  if(!selection?.available){$('selectionNotice').textContent='Selection ещё не подготовлен.';return;}
  const done=selection.completed.length,total=selection.variants_total,percent=100*done/total;
- $('selectionNotice').textContent='Policy 24650 выбрана по компактному core-screen. Это development-кандидат, не hardware approval.';
- $('selectionStats').innerHTML=stat('Условия',`${done} <small>/ ${total}</small>`,`${percent.toFixed(1)}%`, `<div class="progress-track"><span style="width:${percent}%"></span></div>`)+stat('Эпизоды',integer(selection.episodes_recorded),`Success ${integer(selection.overall[selection.parent].success)}`)+stat('Policy',selection.parent,selection.selection_name)+stat('Seeds',selection.seeds,'Paired reset seeds');
+ const running=selection.status==='running', failed=selection.status==='failed', stopped=selection.status==='stopped';
+ $('selectionNotice').className=`alert${failed?' error':''}`;
+ $('selectionNotice').textContent=failed?'Оценка остановлена с ошибкой. Готовые batch сохранены.':stopped?'Оценка остановлена пользователем. Готовые результаты сохранены; незавершённый batch не учитывается.':running?'Оценка выполняется локально. Страница обновляется автоматически; автоматическое продвижение policy отключено.':'Оценка завершена. Рейтинг остаётся selection-only и не даёт hardware approval.';
+ const timeValue=running?(selection.eta_seconds==null?duration(selection.batch_elapsed_seconds):duration(selection.eta_seconds)):duration(selection.elapsed_seconds);
+ const timeDetail=running?(selection.eta_seconds==null?'Текущий batch · ETA после первого завершённого batch':'Расчётный ETA по готовым batch'):'Полная длительность оценки';
+ $('selectionStats').innerHTML=stat('Условия',`${done} <small>/ ${total}</small>`,`${percent.toFixed(1)}%`, `<div class="progress-track"><span style="width:${percent}%"></span></div>`)+stat('Эпизоды',`${integer(selection.episodes_recorded)} <small>/ ${integer(selection.episodes_total)}</small>`,'Атомарно сохранённые результаты')+stat('Policy',integer(selection.policies.length),selection.policies.join(' · '))+stat(running?'Осталось / batch':'Длительность',timeValue,timeDetail);
  const completed=new Set(selection.completed),active=new Map(selection.active.map(item=>[item.terrain,item]));
- $('selectionVariants').innerHTML=selection.variants.map(name=>{const item=active.get(name),state=completed.has(name)?'done':item?'active':'pending',detail=completed.has(name)?'готово':item?`${integer(item.step)}/${integer(item.total)} · alive ${integer(item.alive)}/${integer(item.envs)}`:'ожидание';return `<article class="variant-pill ${state}"><span>${escapeHtml(terrainNames[name]||name)}</span><strong>${detail}</strong></article>`;}).join('');
- $('selectionUpdated').textContent=selection.updated_utc?date(selection.updated_utc):'—';
- $('selectionRanking').innerHTML=selection.ranking.map((policy,index)=>{const value=selection.overall[policy],fraction=value.episodes?100*value.success/value.episodes:0;return `<tr><td>${index+1}</td><td><strong>${policy}</strong><small>selected</small></td><td>${integer(value.episodes)}</td><td>${integer(value.success)}</td><td>${fraction.toFixed(1)}%</td><td class="${value.unsafe?'negative':'neutral'}">${integer(value.unsafe)}</td></tr>`;}).join('');
- const cell=(policy,group)=>{const value=selection.conditions[group][policy];return `${value.success}/${value.episodes}<small>unsafe ${value.unsafe}</small>`;};
+ $('selectionVariants').innerHTML=selection.variants.map(name=>{const item=active.get(name),state=completed.has(name)?'done':item?'active':'pending';let detail='ожидание';if(completed.has(name))detail='готово';else if(item)detail=item.step==null?`идёт · ${duration(item.elapsed_seconds)}`:`${integer(item.step)}/${integer(item.total)} · alive ${integer(item.alive)}/${integer(item.envs)}`;return `<article class="variant-pill ${state}"><span>${escapeHtml(terrainNames[name]||name)}</span><strong>${detail}</strong></article>`;}).join('');
+ $('selectionUpdated').textContent=selection.updated_utc?`Batch начат ${date(selection.updated_utc)}`:'—';
+ $('selectionRanking').innerHTML=selection.ranking.map((policy,index)=>{const value=selection.overall[policy],fraction=value.episodes?100*value.success/value.episodes:0;const note=selection.status==='completed'&&index===0?'лидер':'предварительно';return `<tr><td>${index+1}</td><td><strong>${policy}</strong><small>${note}</small></td><td>${integer(value.episodes)}</td><td>${integer(value.success)}</td><td>${value.episodes?fraction.toFixed(1)+'%':'—'}</td><td class="${value.unsafe?'negative':'neutral'}">${integer(value.unsafe)}</td></tr>`;}).join('');
+ const cell=(policy,group)=>{const value=selection.conditions[group][policy];return value.episodes?`${value.success}/${value.episodes}<small>unsafe ${value.unsafe}</small>`:'—';};
  $('selectionConditions').innerHTML=selection.ranking.map(policy=>`<tr><td><strong>${policy}</strong></td><td>${cell(policy,'flat')}</td><td>${cell(policy,'rough')}</td><td>${cell(policy,'stairs_up')}</td><td>${cell(policy,'stairs_down')}</td></tr>`).join('');
 }
 

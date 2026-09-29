@@ -6,6 +6,8 @@ $ErrorActionPreference = 'Stop'
 if ($Parallel -lt 1 -or $Parallel -gt 3) { throw 'Parallel must be in [1,3]' }
 $rootPath = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 $basePath = (Resolve-Path (Join-Path $rootPath $Base)).Path
+& (Join-Path $PSScriptRoot 'run_local.ps1') dashboard/launch.py --view selection
+if ($LASTEXITCODE -ne 0) { throw 'Evaluation dashboard failed to start' }
 $plan = Get-Content -LiteralPath (Join-Path $basePath 'declared_plan.json') -Raw | ConvertFrom-Json
 if ($plan.schema -ne 'b2w_core_stage2_selection_v1') { throw 'Unexpected selection plan' }
 $jobs = @($plan.variants.psobject.Properties.Name)

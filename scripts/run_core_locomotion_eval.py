@@ -7,6 +7,7 @@ import importlib
 import json
 from pathlib import Path
 import subprocess
+import sys
 import time
 
 from core_locomotion_protocol import ROOT
@@ -26,6 +27,9 @@ def main():
     policy_map = base / "policy_map.json"
     if not policy_map.is_file() or not (base / "declared_plan.json").is_file():
         raise FileNotFoundError("prepare_core_locomotion_eval.py must run first")
+
+    subprocess.run([sys.executable, str(ROOT / "dashboard/launch.py"),
+                    "--view", "selection"], cwd=ROOT, check=True)
 
     plan = json.loads((base / "declared_plan.json").read_text(encoding="utf-8"))
     queue = deque(terrains)
