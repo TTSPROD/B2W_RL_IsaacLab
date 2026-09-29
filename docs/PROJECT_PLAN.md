@@ -29,13 +29,21 @@ unsafe или провал отдельного рабочего режима.
 
 ## Следующая работа
 
-1. Разобрать failures 24650 по четырём типам: tracking, transition, standstill,
-   traversal; не менять reward до подтверждения причины.
-2. Выбрать одну гипотезу с ограниченным бюджетом и независимыми selection seeds.
-3. Сравнить новый кандидат с 24650 тем же компактным протоколом.
-4. После simulation gate выполнить MuJoCo runtime/transport qualification.
-5. Измерить hardware mapping, latency и actuator limits до locomotion на роботе.
-6. Реальный запуск возможен только после отдельного явного допуска и этапов из
+1. Разбор failures 24650 по четырём типам выполнен
+   ([trace diagnostics](results/2026-09-29-stage3-trace-diagnostics.md)):
+   доминирующий дефект — недоход pure-axis команд 0.3, причина подтверждена
+   как reward-баланс; stage-3 exposure-гипотеза опровергнута.
+2. Одна гипотеза с ограниченным бюджетом: сузить kernel трекинга малых
+   величин (lateral + yaw, focused_std ~0.15 в [0.2, 0.6]) от 24650,
+   100 updates, selection seeds 69001–69005.
+3. Сравнить новый кандидат с 24650 тем же компактным протоколом; regression
+   gates: 0.7/1.0, mixed, stand, нулевые окна, лестницы.
+4. Отдельно решить принадлежность медленного подъёма (0.3 m/s на 0.12–0.18 м)
+   и удержания на крутых ступенях acceptance-envelope — там есть физическая
+   сатурация момента колёс.
+5. После simulation gate выполнить MuJoCo runtime/transport qualification.
+6. Измерить hardware mapping, latency и actuator limits до locomotion на роботе.
+7. Реальный запуск возможен только после отдельного явного допуска и этапов из
    [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md).
 
 Raw evidence последней проверки сохраняется локально неизменным; live logs,

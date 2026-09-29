@@ -1,0 +1,39 @@
+{
+  "schema": "b2w_core_stage3_selection_summary_v1",
+  "date": "2026-09-29",
+  "parent_policy": 24650,
+  "checkpoint_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "training": {
+    "run_dir": "logs/rsl_rl/b2w_24650_core_stage3_local/2026-09-29_11-38-54_core_stage3",
+    "seed": 9803,
+    "updates": 100,
+    "learning_rate_cap": 5e-6,
+    "num_envs": 4096,
+    "checkpoints": [24675, 24700, 24725, 24750]
+  },
+  "hypothesis": "Flat/Rough failures stem from insufficient pure lateral/yaw exposure; only command-bank weights change (lateral/yaw 4.0, longitudinal 2.0, mixed/stand 0.5), rewards and everything else unchanged",
+  "hypothesis_verdict": "falsified",
+  "protocol": "b2w_core_stage3_selection_v1",
+  "paired_reset_seeds": [68001, 68002, 68003, 68004, 68005],
+  "episodes_per_policy": 300,
+  "policies": {
+    "24650": {"success": 181, "unsafe": 0, "conditions": {"flat": 37, "rough": 30, "stairs_up": 48, "stairs_down": 66}},
+    "24675": {"success": 178, "unsafe": 0, "conditions": {"flat": 37, "rough": 30, "stairs_up": 43, "stairs_down": 68}},
+    "24700": {"success": 174, "unsafe": 0, "conditions": {"flat": 37, "rough": 29, "stairs_up": 47, "stairs_down": 61}},
+    "24725": {"success": 181, "unsafe": 0, "conditions": {"flat": 39, "rough": 30, "stairs_up": 49, "stairs_down": 63}},
+    "24750": {"success": 167, "unsafe": 1, "conditions": {"flat": 38, "rough": 28, "stairs_up": 42, "stairs_down": 59}}
+  },
+  "unsafe_first_ranking": ["24650", "24725", "24675", "24700", "24750"],
+  "automatic_selection": false,
+  "promoted": false,
+  "retained_candidate": 24650,
+  "dominant_failure_mode": "pure-axis magnitude-0.3 undershoot on flat/rough: yaw response ratio 0.55-0.83 (fails 22-30/30 episodes per sign), lateral 0.36-0.86 (fails 13-27/30); magnitudes 0.7/1.0 track at 0.85-1.05; identical profile across all five checkpoints",
+  "secondary_failure_mode": "longitudinal 1.0 on rough: 1-s moving-window RMSE violations in 12-22/30 episodes; stairs_up 0.12-0.18 slow climb (0.3 m/s) stalls with wheel torque saturation up to 30.5% / 12.5 s continuous",
+  "actuator_summary": "flat/rough: wheel torque saturation <=7%, longest 0.54 s, no sustained saturation; stairs_up: 30.5% max, 12.46 s longest; stairs_down: 25.1%, 11.23 s",
+  "source_raw_summary_sha256": "043754245c94fc2361ba9b9a9f032c3cf41ab0af6ceed1fb7908c0df2b03c2b0",
+  "trace_diagnostics_sha256": "c61d86d8f1b6fde64370ff78247d60dc5ed2ec1665d8dbfd8410dfc9c712b52d",
+  "declared_plan_sha256": "1109ddfad915dc0b234e08300d6e37eee2fc49c8f44eedffe16db2d39357e9ac",
+  "raw_evidence": "logs/core_stage3_selection_20260929",
+  "qualification": false,
+  "hardware_approval": false
+}

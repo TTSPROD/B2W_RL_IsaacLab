@@ -1,0 +1,105 @@
+{
+  "schema": "b2w_core_stage3_v1",
+  "parent_iteration": 24650,
+  "parent_checkpoint": "policies/local/core_24650/model_24650.pt",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "parent_provenance": "policies/local/core_24650/provenance.json",
+  "parent_provenance_sha256": "e64d40fdda09dbbd9a9206872fde17182ab19e9e1501a350038fd27ea37b5389",
+  "parent_env_sha256": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+  "parent_agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+  "additional_updates": 100,
+  "final_iteration": 24750,
+  "seed": 9803,
+  "num_envs": 4096,
+  "lr_cap": 5e-6,
+  "basis_report": "docs/results/2026-09-28-core-selection-24650.md",
+  "basis_report_sha256": "577609c3d6a229b195871aadf5716b20f9fdd156896fed458263b08c268b0d2c",
+  "basis_summary": "docs/results/evidence/core_24650_20260928/summary.json",
+  "basis_summary_sha256": "051e198c9e978f8781eaa9620f3d2a755ba31e588239f4255dcebd005ddbb549",
+  "hypothesis": "The dominant flat/rough failures come from insufficient pure-axis lateral and yaw exposure; increasing only their within-cohort sampling weights should improve held-out tracking without changing rewards or the terrain mix.",
+  "observed_failures": {
+    "flat": {"episodes": 75, "success": 40, "tracking_failure": 25, "command_transition_failure": 10},
+    "rough": {"episodes": 75, "success": 31, "tracking_failure": 34, "command_transition_failure": 10},
+    "stairs_up": {"episodes": 75, "success": 52, "standstill_failure": 11, "traversal_failure": 12},
+    "stairs_down": {"episodes": 75, "success": 71, "standstill_failure": 3, "traversal_failure": 1},
+    "pure_axis_pattern": "Flat/Rough lateral and yaw are the systematic failures; mixed and stand cases already pass almost everywhere."
+  },
+  "declared_changes": [
+    "flat and rough command-bank weights only",
+    "training seed, update budget, checkpoint interval and learning-rate cap"
+  ],
+  "unchanged": [
+    "actor and critic architecture",
+    "57-to-16 ABI and previous-action semantics",
+    "all reward functions, parameters and weights",
+    "actions, actuators, mass, physics, events and observation noise",
+    "PPO loss, entropy, clipping, KL, gamma and lambda",
+    "terrain cohort proportions, geometry and cohort-specific horizons",
+    "stairs-up and stairs-down command banks"
+  ],
+  "terrain_columns": {
+    "retention": [0, 14],
+    "target_flat": [14, 20],
+    "target_rough": [20, 26],
+    "target_stairs_up": [26, 36],
+    "target_stairs_down": [36, 40]
+  },
+  "terrain_proportions": {
+    "retention_pyramid_stairs": 0.075,
+    "retention_pyramid_stairs_inv": 0.075,
+    "retention_boxes": 0.075,
+    "retention_random_rough": 0.075,
+    "retention_slope_up": 0.025,
+    "retention_slope_down": 0.025,
+    "target_flat": 0.15,
+    "target_rough": 0.15,
+    "target_stairs_up": 0.25,
+    "target_stairs_down": 0.10
+  },
+  "target_geometry": {
+    "rough_noise_m": [0.02, 0.10],
+    "rough_noise_step_m": 0.02,
+    "stair_height_m": [0.05, 0.19],
+    "stair_tread_m": 0.30,
+    "stair_platform_m": 1.50
+  },
+  "banks": {
+    "flat": [
+      {"case": "longitudinal", "weight": 2.0, "axis": 0},
+      {"case": "lateral", "weight": 4.0, "axis": 1},
+      {"case": "yaw", "weight": 4.0, "axis": 2},
+      {"case": "mixed", "weight": 0.5},
+      {"case": "stand", "weight": 0.5}
+    ],
+    "rough": [
+      {"case": "longitudinal", "weight": 2.0, "axis": 0},
+      {"case": "lateral", "weight": 4.0, "axis": 1},
+      {"case": "yaw", "weight": 4.0, "axis": 2},
+      {"case": "mixed", "weight": 0.5},
+      {"case": "stand", "weight": 0.5}
+    ],
+    "stairs_up": [
+      {"case": "traverse_0.3", "weight": 3.0},
+      {"case": "traverse_0.5", "weight": 1.0},
+      {"case": "traverse_0.7", "weight": 2.0},
+      {"case": "stop_restart_0.3", "weight": 3.0},
+      {"case": "stop_restart_0.5", "weight": 1.5}
+    ],
+    "stairs_down": [
+      {"case": "traverse_0.3", "weight": 2.0},
+      {"case": "traverse_0.5", "weight": 1.0},
+      {"case": "traverse_0.7", "weight": 1.0},
+      {"case": "stop_restart_0.3", "weight": 2.0},
+      {"case": "stop_restart_0.5", "weight": 2.0}
+    ]
+  },
+  "selection": {
+    "checkpoint_interval": 25,
+    "selection_seeds": [68001, 68002, 68003, 68004, 68005],
+    "final_validation_seed_start": 69001,
+    "unsafe_priority": true,
+    "automatic_final_checkpoint_selection": false
+  },
+  "qualification": false,
+  "hardware_approval": false
+}

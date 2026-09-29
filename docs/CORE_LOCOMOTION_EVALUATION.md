@@ -20,6 +20,10 @@ Policy **24650** выбрана на одинаковых paired reset seeds:
 Это development selection, а не qualification: `qualification=false`,
 `hardware_approval=false`. Отчёт: [core selection 24650](results/2026-09-28-core-selection-24650.md).
 
+Stage-3 paired screen (2026-09-29, seeds 68001–68005, 12 вариантов рельефа)
+дал 181/300 при 0 unsafe и опроверг exposure-гипотезу; candidate не изменился:
+[stage-3 selection](results/2026-09-29-core-stage3-selection.md).
+
 ## Протокол следующей qualification
 
 Перед запуском фиксируются 3 варианта каждого условия, 5 командных программ и
