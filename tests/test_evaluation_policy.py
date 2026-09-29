@@ -15,7 +15,7 @@ class EvaluationIdentityTests(unittest.TestCase):
         self.assertFalse(identity['training_checkpoint_export_parity'])
         self.assertEqual(validate_export('rl_sar',ROOT/identity['source_path'],identity),identity)
         with self.assertRaises(ValueError):
-            validate_export(23999,ROOT/identity['source_path'],identity)
+            validate_export(24650,ROOT/identity['source_path'],identity)
 
     def test_changed_reference_hash_or_origin_is_rejected(self):
         identity = reference_identity()
@@ -24,12 +24,10 @@ class EvaluationIdentityTests(unittest.TestCase):
                 validate_export('rl_sar',ROOT/identity['source_path'],{**identity,field:'changed'})
 
     def test_existing_checkpoint_identity_and_forbidden_policy(self):
-        folder = ROOT/'policies/local/recovery_23999/export'
-        validate_export(23999,folder/'policy.pt',json.loads((folder/'manifest.json').read_text()))
-        self.assertEqual(policy_id('23999'),23999)
+        folder = ROOT/'policies/local/core_24650/export'
+        validate_export(24650,folder/'policy.pt',json.loads((folder/'manifest.json').read_text()))
+        self.assertEqual(policy_id('24650'),24650)
         self.assertEqual(policy_id('rl_sar'),'rl_sar')
-        with self.assertRaises(ValueError):
-            policy_id('10000')
 
 
 if __name__ == '__main__':

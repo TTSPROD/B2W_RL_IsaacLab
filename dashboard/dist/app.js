@@ -5,7 +5,7 @@ const integer = value => Number(value ?? 0).toLocaleString('ru-RU', {maximumFrac
 const numeric = value => value == null || !Number.isFinite(value) ? '—' : Math.abs(value) > 0 && Math.abs(value) < .001 ? value.toExponential(2) : value.toLocaleString('ru-RU', {maximumFractionDigits:Math.abs(value) < 10 ? 3 : 1});
 const duration = seconds => seconds == null ? '—' : `${Math.floor(seconds / 3600)} ч ${Math.floor(seconds % 3600 / 60)} мин`;
 const date = iso => new Date(iso).toLocaleString('ru-RU', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
-let data = null, evaluation = null, currentView = 'overview', selectedRun = '', busy = false, smoothing = .6, followLatest = true;
+let data = null, selection = null, currentView = 'overview', selectedRun = '', busy = false, smoothing = .6, followLatest = true;
 const titles = {
  'Train/mean_reward':'Средняя награда', 'Train/mean_episode_length':'Длина эпизода, шаги',
  'Train/mean_reward/time':'Средняя награда по времени', 'Train/mean_episode_length/time':'Длина эпизода по времени',
@@ -28,12 +28,9 @@ const titles = {
  'Episode_Reward/feet_contact_without_cmd':'Reward · опора при нуле', 'Episode_Reward/upward':'Reward · вертикальная ориентация',
  'Episode_Reward/joint_acc_wheel_l2':'Reward · ускорение колёс'
 };
-const terrainNames = {flat:'Flat',rough_04:'Rough ±4 см',boxes_10:'Блоки 5–10 см',slope_up_10:'Уклон +10°',slope_down_10:'Уклон −10°',stairs_up_06:'Лестница ↑ 6 см',stairs_down_06:'Лестница ↓ 6 см',stairs_up_12:'Лестница ↑ 12 см',stairs_down_12:'Лестница ↓ 12 см',stairs_up_18:'Лестница ↑ 18 см',stairs_down_18:'Лестница ↓ 18 см'};
+const terrainNames = {flat:'Flat',flat_mu_40:'Flat μ 0.4',flat_mu_70:'Flat μ 0.7',flat_mu_100:'Flat μ 1.0',rough_02:'Rough ±2 см',rough_04:'Rough ±4 см',rough_06:'Rough ±6 см',rough_10:'Rough ±10 см',boxes_10:'Блоки 5–10 см',slope_up_10:'Уклон +10°',slope_down_10:'Уклон −10°',stairs_up_06:'Лестница ↑ 6 см',stairs_down_06:'Лестница ↓ 6 см',stairs_up_12:'Лестница ↑ 12 см',stairs_down_12:'Лестница ↓ 12 см',stairs_up_18:'Лестница ↑ 18 см',stairs_down_18:'Лестница ↓ 18 см'};
 const overviewTags = ['Train/mean_reward','Metrics/base_velocity/error_vel_yaw','Train/mean_episode_length','Metrics/base_velocity/error_vel_xy','Loss/value_function','Loss/surrogate','Loss/entropy','Curriculum/terrain_levels'];
 const latest = tag => data?.series[tag]?.at(-1)?.[1];
-const evaluationPair = () => [String($('evaluationReference').value || evaluation?.policies[0] || 19999), String(evaluation?.policies.at(-1) || 21999)];
-const policyLabel = id => evaluation?.policy_labels?.[id] || String(id);
-const retainedReference = id => (evaluation?.retained_reference_policies || [evaluation?.retained_reference_policy]).map(String).includes(String(id));
 function stat(label, value, detail, extra = '') { return `<article class="stat"><div class="stat-label">${label}</div><div class="stat-number">${value}</div>${extra}<div class="stat-detail">${detail}</div></article>`; }
 function row(label, value) { return `<div class="config-row"><span>${escapeHtml(label)}</span><span>${value}</span></div>`; }
 function showError(message) { $('error').textContent = message; $('error').hidden = !message; }
@@ -68,24 +65,17 @@ function renderHeading() {
  const labels={running:'Обучение идёт',completed:'Завершено',failed:'Ошибка запуска',stale:'Нет свежих данных',initializing:'Инициализация'};
  $('runStatus').className=`status ${data.status}`;
  $('runStatus').textContent=labels[data.status] || data.status;
- const [reference,candidate]=evaluationPair();
- $('pageTitle').textContent=currentView==='evaluation'?`${policyLabel(candidate)} vs ${policyLabel(reference)}`:`${m.parent_iteration} → ${m.parent_iteration+m.additional_updates}`;
- $('pageEyebrow').textContent=currentView==='evaluation'?'ПОСЛЕДНЯЯ ПРОВЕРКА · 27 СЕНТЯБРЯ 2026':'ЛОКАЛЬНОЕ ДООБУЧЕНИЕ';
- $('pageSubtitle').textContent=currentView==='evaluation'?'Flat / Rough / блоки / уклоны / лестницы · 14 976 эпизодов':`${m.gpu.replace('NVIDIA GeForce ','').replace('NVIDIA ','').replace(' GPU','')} · ${integer(m.num_envs)} сред · Seed ${m.seed}`;
- $('runStatus').hidden=currentView==='evaluation';
- document.querySelector('.toolbar').hidden=currentView==='evaluation';
- $('lastUpdate').textContent=currentView==='evaluation'?'Данные проверки · 27.09.2026':`Запись в логе · ${date(p.updated_utc || m.created_utc)}`;
+ const isSelection=currentView==='selection';
+ $('pageTitle').textContent=isSelection?`Выбранная policy ${selection?.parent||'…'}`:`${m.parent_iteration} → ${m.parent_iteration+m.additional_updates}`;
+ $('pageEyebrow').textContent=isSelection?'CORE LOCOMOTION · CURRENT':'ЛОКАЛЬНОЕ ДООБУЧЕНИЕ';
+ $('pageSubtitle').textContent=isSelection?`Flat / Rough / Stairs · ${integer(selection?.seeds)} paired seeds · ${integer(selection?.episodes_total)} эпизодов`:`${m.gpu.replace('NVIDIA GeForce ','').replace('NVIDIA ','').replace(' GPU','')} · ${integer(m.num_envs)} сред · Seed ${m.seed}`;
+ if(isSelection){$('runStatus').className=`status ${selection?.status||'initializing'}`;$('runStatus').textContent=selection?.status==='completed'?'Selection завершён':selection?.status==='running'?'Selection идёт':'Ожидание данных';}
+ $('runStatus').hidden=false;
+ document.querySelector('.toolbar').hidden=isSelection;
+ $('lastUpdate').textContent=isSelection?`Результат · ${selection?.updated_utc?date(selection.updated_utc):'—'}`:`Запись в логе · ${date(p.updated_utc || m.created_utc)}`;
  $('metricCount').textContent=data.scalar_count;
- const check=data.evaluation_progress;
- const queue=data.training_queue;
- $('trainingQueueStatus').hidden=!queue || !['waiting_for_gpu','starting','failed'].includes(queue.status);
- if(queue) $('trainingQueueStatus').textContent=queue.status==='waiting_for_gpu'?`В очереди: ${queue.parent} → ${queue.final} · ${queue.target_updates} updates. Автоматический старт после текущего Isaac-теста.`:queue.status==='failed'?'Запуск дообучения остановился с ошибкой. Подробности сохранены в журнале очереди.':`Запускается обучение ${queue.parent} → ${queue.final}…`;
- $('evaluationStatus').hidden=!check;
- if(check) {
-  const phase=check.current?.startsWith('flat_')?`Flat · ${check.current.slice(5)}`:terrainNames[check.current]||check.current;
-  const checked=check.policies?.at(-1)||'checkpoint';
-  $('evaluationStatus').textContent=data.latest_evaluation_ready?`Проверка ${checked} завершена. Результаты доступны в разделе «Последний тест».`:check.status==='completed'?`Все прогоны ${checked} завершены. Выполняется проверка сохранённых трасс.`:check.status==='failed'?`Проверка ${checked} остановилась на ${phase}. Уже полученные результаты сохранены.`:`Проверка ${checked} · завершено ${check.completed.length}/${check.total_jobs} прогонов · сейчас ${phase}`;
- }
+ $('trainingQueueStatus').hidden=true;
+ $('evaluationStatus').hidden=true;
 }
 
 function renderOverview() {
@@ -116,54 +106,25 @@ function renderCheckpoints() {
  $('provenance').innerHTML=row('Parent SHA-256',`<code>${escapeHtml(m.parent_sha256)}</code>`)+row('Веса parent',m.parent_state_exact?'Восстановлены точно':'Нет записи проверки')+row('Начальный индекс',integer(m.first_update_index))+row('Плановый финальный индекс',integer(m.parent_iteration+m.additional_updates))+row('Torch / RSL-RL',`${escapeHtml(m.torch)} / ${escapeHtml(m.rsl_rl)}`)+row('Seed',m.seed)+row('ABI',`${m.actor_observations} → ${m.actions} · ${m.policy_hz} Hz`);
 }
 
-function comparison(name,a,b,denominator) {
- return `<div class="comparison"><span>${escapeHtml(name)}</span><div class="pair-bars">${[a,b].map(value=>`<div class="compare-line"><div class="compare-track"><span style="width:${100*value/denominator}%"></span></div><b>${integer(value)}/${integer(denominator)}</b></div>`).join('')}</div></div>`;
+function renderSelection() {
+ if(!selection?.available){$('selectionNotice').textContent='Selection ещё не подготовлен.';return;}
+ const done=selection.completed.length,total=selection.variants_total,percent=100*done/total;
+ $('selectionNotice').textContent='Policy 24650 выбрана по компактному core-screen. Это development-кандидат, не hardware approval.';
+ $('selectionStats').innerHTML=stat('Условия',`${done} <small>/ ${total}</small>`,`${percent.toFixed(1)}%`, `<div class="progress-track"><span style="width:${percent}%"></span></div>`)+stat('Эпизоды',integer(selection.episodes_recorded),`Success ${integer(selection.overall[selection.parent].success)}`)+stat('Policy',selection.parent,selection.selection_name)+stat('Seeds',selection.seeds,'Paired reset seeds');
+ const completed=new Set(selection.completed),active=new Map(selection.active.map(item=>[item.terrain,item]));
+ $('selectionVariants').innerHTML=selection.variants.map(name=>{const item=active.get(name),state=completed.has(name)?'done':item?'active':'pending',detail=completed.has(name)?'готово':item?`${integer(item.step)}/${integer(item.total)} · alive ${integer(item.alive)}/${integer(item.envs)}`:'ожидание';return `<article class="variant-pill ${state}"><span>${escapeHtml(terrainNames[name]||name)}</span><strong>${detail}</strong></article>`;}).join('');
+ $('selectionUpdated').textContent=selection.updated_utc?date(selection.updated_utc):'—';
+ $('selectionRanking').innerHTML=selection.ranking.map((policy,index)=>{const value=selection.overall[policy],fraction=value.episodes?100*value.success/value.episodes:0;return `<tr><td>${index+1}</td><td><strong>${policy}</strong><small>selected</small></td><td>${integer(value.episodes)}</td><td>${integer(value.success)}</td><td>${fraction.toFixed(1)}%</td><td class="${value.unsafe?'negative':'neutral'}">${integer(value.unsafe)}</td></tr>`;}).join('');
+ const cell=(policy,group)=>{const value=selection.conditions[group][policy];return `${value.success}/${value.episodes}<small>unsafe ${value.unsafe}</small>`;};
+ $('selectionConditions').innerHTML=selection.ranking.map(policy=>`<tr><td><strong>${policy}</strong></td><td>${cell(policy,'flat')}</td><td>${cell(policy,'rough')}</td><td>${cell(policy,'stairs_up')}</td><td>${cell(policy,'stairs_down')}</td></tr>`).join('');
 }
-function renderEvaluation() {
- if (!evaluation) return;
- const [reference,candidate]=evaluationPair(),a=evaluation.overall[reference],b=evaluation.overall[candidate];
- const improved=evaluation.rows.filter(r=>r.policies[candidate].success>r.policies[reference].success).length;
- const regressed=evaluation.rows.filter(r=>r.policies[candidate].success<r.policies[reference].success).length;
- const lost=evaluation.rows.filter(r=>r.policies[reference].success===r.policies[reference].episodes&&r.policies[candidate].success<r.policies[reference].success).length;
- const external=reference==='rl_sar',referenceName=policyLabel(reference),candidateName=policyLabel(candidate);
- $('evaluationNotice').textContent=external?`${candidateName} уступает RL SAR в ${regressed} сценариях; unsafe ${a.unsafe} → ${b.unsafe}. Сравнение разных actors не доказывает потерю навыков при обучении. Общая сумма не компенсирует отказы отдельных сценариев.`:`${candidateName}: ${regressed} строк с регрессом к ${referenceName}, unsafe ${b.unsafe}. Общая сумма не компенсирует отказы отдельных сценариев. Это development screen фиксированного checkpoint.`;
- $('evaluationSource').textContent=retainedReference(reference)?'Контроль — сохранённый тест; кандидат — свежий прогон':'Обе policies проверены свежими прогонами';
- const identity=evaluation.reference_identity,drift=evaluation.control_drift;
- const changed=drift?Object.values(drift).reduce((sum,v)=>sum+v.changed_outcomes,0):0;
- const changedFlags=drift?Object.values(drift).reduce((sum,v)=>sum+v.changed_flags,0):0;
- const restored=evaluation.restoration;
- $('evaluationContext').textContent=(external&&identity?`Внешний TorchScript RL SAR · SHA-256 ${identity.export_sha256.slice(0,12)}. Общий Isaac adapter 57→16, 50 Hz; C++ runtime RL SAR не проверялся. Исходный training checkpoint недоступен. `:'')+(drift?`Повтор ${evaluation.control_drift_policy}: изменились ${changed} исходов и ${changedFlags} наборов причин отказа относительно предыдущего теста. `:'')+(restored?.target_count?`Из ${restored.target_count} целей прежний full + zero уровень (${restored.reference_label || "21999"}) без unsafe восстановлен в ${restored.restored_full_zero}; возвращено ${restored.lost_perfect_restored} из ${restored.lost_perfect_target_count ?? 9} потерянных 32/32.`:'');
- const progress=evaluation.reference_progress;
- $('referenceProgress').hidden=!progress||Boolean(identity);
- if(progress&&!identity) {
-  const phase=progress.current?.startsWith('flat_')?`Flat · ${progress.current.slice(5)==='rl_sar'?'RL SAR':progress.current.slice(5)}`:terrainNames[progress.current]||progress.current;
-  $('referenceProgress').textContent=progress.status==='completed'?'Прогоны RL SAR / 23999 завершены. Проверяются сохранённые traces.':progress.status==='failed'?`Проверка RL SAR остановилась на ${phase}. Предыдущие результаты доступны.`:`Проверка RL SAR / 23999 · ${progress.completed.length}/${progress.total_jobs} прогонов завершено · ${phase}. Референс появится после проверки всех результатов.`;
- }
- $('beforePolicy').textContent=referenceName;$('afterPolicy').textContent=candidateName;$('unsafePolicies').textContent=`Unsafe ${referenceName} → ${candidateName}`;
- document.querySelectorAll('#evaluation .legend .baseline').forEach(el=>el.textContent=referenceName);
- document.querySelectorAll('#evaluation .legend .candidate').forEach(el=>el.textContent=candidateName);
- $('evalStats').innerHTML=stat(`Полный успех / ${integer(b.episodes)}`,`${integer(a.success)} <small>→</small> ${integer(b.success)}`,`${escapeHtml(referenceName)} → ${escapeHtml(candidateName)}`)+stat(external?'Сценариев лучше':'Строк улучшилось',improved,`Из ${evaluation.rows.length} сценариев`)+stat(external?'Сценариев хуже':'Строк ухудшилось',`<span class="negative">${regressed}</span>`,external?`${lost} строк: RL SAR 32/32, ${candidateName} меньше`:`${lost} потерянных строк 32/32`)+stat('Unsafe',`${a.unsafe} <small>→</small> ${b.unsafe}`,'Нарушения критериев safety');
- $('terrainComparison').innerHTML=Object.entries(evaluation.terrains).map(([key,value])=>comparison(terrainNames[key]||key,value[reference].success,value[candidate].success,value[reference].episodes)).join('');
- $('stairComparison').innerHTML=`<div class="legend" style="margin-bottom:18px"><span class="baseline">${escapeHtml(referenceName)}</span><span class="candidate">${escapeHtml(candidateName)}</span></div>`+Object.entries(evaluation.terrains).filter(([key])=>key.startsWith('stairs')).map(([key,value])=>comparison(terrainNames[key],value[reference].exposed_zero_success,value[candidate].exposed_zero_success,value[reference].stair_stop_windows)).join('');
- $('safetySummary').innerHTML=row('Wheel speed peak, rad/s',`${numeric(a.max_wheel_speed_rad_s)} → ${numeric(b.max_wheel_speed_rad_s)}`)+row('Макс. доля torque saturation',`${numeric(a.max_wheel_saturation_fraction*100)}% → ${numeric(b.max_wheel_saturation_fraction*100)}%`)+row('Мин. hard joint margin, rad',`${a.min_hard_joint_margin_rad.toFixed(6)} → ${b.min_hard_joint_margin_rad.toFixed(6)}`);
- renderEvalRows();
- $('resultFilter').querySelector('[value="regressed"]').textContent=external?`${candidateName} хуже`:'Регрессы';
- $('resultFilter').querySelector('[value="improved"]').textContent=external?`${candidateName} лучше`:'Улучшения';
- $('resultFilter').querySelector('[value="lost"]').textContent=external?`RL SAR 32/32, ${candidateName} меньше`:'Потерянные 32/32';
-}
-function renderEvalRows() {
- if (!evaluation) return;
- const [reference,candidate]=evaluationPair();
- const terrain=$('terrainFilter').value,result=$('resultFilter').value,query=$('caseSearch').value.toLowerCase();
- const rows=evaluation.rows.map(item=>{const a=item.policies[reference],b=item.policies[candidate];return {...item,delta:b.success-a.success,lost_perfect:a.success===a.episodes&&b.success<a.success};}).filter(item=>(!terrain||item.terrain===terrain)&&item.case.toLowerCase().includes(query)&&(!result||result==='regressed'&&item.delta<0||result==='improved'&&item.delta>0||result==='lost'&&item.lost_perfect));
- $('evalRows').innerHTML=rows.map(item=>{const a=item.policies[reference],b=item.policies[candidate];return `<tr><td>${escapeHtml(item.case)}<small>${escapeHtml(terrainNames[item.terrain]||item.terrain)}${item.lost_perfect?(reference==='rl_sar'?' · RL SAR 32/32':' · потеря 32/32'):''}</small></td><td>${a.success}/${a.episodes}</td><td>${b.success}/${b.episodes}</td><td class="${item.delta>0?'positive':item.delta<0?'negative':'neutral'}">${item.delta>0?'+':''}${item.delta}</td><td class="${b.unsafe?'negative':'neutral'}">${a.unsafe} → ${b.unsafe}</td></tr>`;}).join('') || '<tr><td colspan="5">Нет сценариев для выбранных фильтров.</td></tr>';
-}
+
 function render() {
  renderHeading();
  if (currentView==='overview') renderOverview();
  if (currentView==='metrics') renderMetrics();
  if (currentView==='checkpoints') renderCheckpoints();
- if (currentView==='evaluation') renderEvaluation();
+ if (currentView==='selection') renderSelection();
 }
 function syncRuns(runs) {
  if (!runs.length) throw Error('No runs');
@@ -181,8 +142,7 @@ async function loadRun() {
   const result=await getJson(`/api/run?id=${encodeURIComponent(requestedRun)}`);
   if (requestedRun!==selectedRun) return;
   data=result;
-  if(currentView==='evaluation') await loadEvaluation();
-  else if(evaluation&&data.evaluation_revision!==evaluation.revision) evaluation=null;
+  if(currentView==='selection') await loadSelection();
   const previous=$('metricGroup').value,groups=[...new Set(Object.keys(data.series).map(tag=>tag.split('/')[0]))];
   $('metricGroup').innerHTML='<option value="">Все группы</option>'+groups.map(group=>`<option>${escapeHtml(group)}</option>`).join('');
   if (groups.includes(previous)) $('metricGroup').value=previous;
@@ -197,21 +157,14 @@ async function changeView(view) {
  document.querySelectorAll('.view').forEach(section=>section.hidden=section.id!==view);
  document.querySelectorAll('.nav').forEach(button=>{button.classList.toggle('active',button.dataset.view===view);button.setAttribute('aria-current',button.dataset.view===view?'page':'false');});
  $('tooltip').hidden=true;
- if (view==='evaluation' && !evaluation) {
-  try { await loadEvaluation(); }
-  catch(error) { showError('Не удалось прочитать результаты последнего теста. Откройте раздел ещё раз.'); }
+ if (view==='selection') {
+  try { await loadSelection(); }
+  catch(error) { showError('Не удалось прочитать checkpoint selection. Evaluation продолжает работать независимо от dashboard.'); }
  }
  if (data) render();
 }
 
-async function loadEvaluation() {
- const previous=$('evaluationReference').value,terrain=$('terrainFilter').value,oldRevision=evaluation?.revision;
- evaluation=await getJson('/api/evaluation');
- $('evaluationReference').innerHTML=evaluation.reference_options.map(p=>`<option value="${escapeHtml(p)}">${escapeHtml(policyLabel(p))}${retainedReference(p)?' · сохранённый контроль':p==='rl_sar'?' · внешний референс':''}</option>`).join('');
- $('evaluationReference').value=oldRevision===evaluation.revision&&evaluation.reference_options.map(String).includes(previous)?previous:String(evaluation.policies[0]);
- $('terrainFilter').innerHTML='<option value="">Все геометрии</option>'+Object.keys(evaluation.terrains).map(key=>`<option value="${escapeHtml(key)}">${escapeHtml(terrainNames[key]||key)}</option>`).join('');
- $('terrainFilter').value=terrain in evaluation.terrains?terrain:'';
-}
+async function loadSelection() { selection=await getJson('/api/selection'); }
 
 document.querySelectorAll('.nav').forEach(button=>button.addEventListener('click',()=>changeView(button.dataset.view)));
 document.querySelector('.brand').addEventListener('click',event=>{event.preventDefault();changeView('overview');});
@@ -219,8 +172,6 @@ $('refresh').addEventListener('click',loadRun);
 $('runSelect').addEventListener('change',()=>{followLatest=false;selectedRun=$('runSelect').value;loadRun();});
 $('smooth').addEventListener('input',()=>{smoothing=Number($('smooth').value);$('smoothValue').textContent=smoothing.toFixed(2);if(data)render();});
 ['metricSearch','metricGroup'].forEach(id=>$(id).addEventListener('input',()=>{if(data)renderMetrics();}));
-['terrainFilter','resultFilter','caseSearch'].forEach(id=>$(id).addEventListener('input',renderEvalRows));
-$('evaluationReference').addEventListener('change',()=>{renderHeading();renderEvaluation();});
 document.addEventListener('pointermove',event=>{
  const svg=event.target.closest('svg.chart');
  if (!svg || !data) { $('tooltip').hidden=true;return; }
@@ -242,7 +193,7 @@ async function init() {
  try {
   const result=await getJson('/api/runs');if(!result.runs.length)throw Error('No runs');
   syncRuns(result.runs);
-  const initial=location.hash.slice(1);if(['overview','metrics','evaluation','checkpoints'].includes(initial))await changeView(initial);
+  const initial=location.hash.slice(1);if(['overview','metrics','selection','checkpoints'].includes(initial))await changeView(initial);
   await loadRun();
  } catch(error) {showError('Не найдены данные обучения или локальный сервер недоступен. Перезагрузите страницу после запуска сервера.');$('connection').textContent='Данные недоступны';$('connectionDot').style.background='var(--amber)';}
 }

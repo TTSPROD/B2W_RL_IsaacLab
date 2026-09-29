@@ -1,0 +1,36 @@
+{
+  "schema": "b2w_selected_policy_summary_v1",
+  "date": "2026-09-28",
+  "policy": 24650,
+  "checkpoint_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+  "protocol": "b2w_core_stage2_selection_v1",
+  "paired_reset_seeds": [66001, 66002, 66003, 66004, 66005],
+  "episodes": 300,
+  "success": 194,
+  "success_fraction": 0.6466666666666666,
+  "wilson95_one_sided_lower": 0.6001460131050106,
+  "unsafe": 0,
+  "outcomes": {
+    "success": 194,
+    "command_transition_failure": 20,
+    "tracking_failure": 59,
+    "standstill_failure": 14,
+    "traversal_failure": 13
+  },
+  "conditions": {
+    "flat": {"episodes": 75, "success": 40, "unsafe": 0},
+    "rough": {"episodes": 75, "success": 31, "unsafe": 0},
+    "stairs_up": {"episodes": 75, "success": 52, "unsafe": 0},
+    "stairs_down": {"episodes": 75, "success": 71, "unsafe": 0}
+  },
+  "selection": {
+    "rank": 1,
+    "candidate_count": 7,
+    "automatic_promotion": false
+  },
+  "source_raw_summary_sha256": "1332a68d3b0aeb0e4a6a41212e1c7892016533f7e5198f4f10cf0a3997ef718b",
+  "raw_evidence": "logs/core_stage2_selection_20260928",
+  "qualification": false,
+  "hardware_approval": false
+}

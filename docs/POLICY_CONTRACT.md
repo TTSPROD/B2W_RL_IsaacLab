@@ -2,7 +2,7 @@
 
 Назначение — исполнять внешние body-frame команды `(vx, vy, omega_z)` с частотой
 50 Hz. Ноль означает остановку и устойчивость. Маршрут и абсолютный курс задаются
-внешним уровнем. Текущий export — [upstream19999](../policies/server/upstream_19999/export/manifest.json).
+внешним уровнем. Текущий export — [core 24650](../policies/local/core_24650/export/manifest.json).
 
 ## Actor и наблюдения
 
@@ -44,7 +44,7 @@ Identity mapping в конфиге rl_sar не является подтверж
 
 `scripts/check_policy_contract.py` проверяет pinned upstream config, каналы,
 scales, quaternion/body-frame transforms, invalid inputs и software export parity.
-Сохранённый экспорт 19999 совпал с checkpoint на 295 inputs: max abs error 0.0,
+Сохранённый экспорт 24650 совпал с checkpoint на 295 inputs: max abs error 0.0,
 допуск 1e-5. Это software parity; качество policy определяется operating57.
 
 Новый SDK2 runtime должен проверять finite/shape, age команды и состояния,

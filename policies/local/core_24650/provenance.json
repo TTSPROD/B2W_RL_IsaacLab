@@ -1,0 +1,35 @@
+{
+  "schema": "b2w_local_candidate_v1",
+  "id": "core_24650",
+  "checkpoint_iteration": 24650,
+  "status": "selected_development_candidate",
+  "hardware_qualified": false,
+  "actor_abi": [57, 16],
+  "policy_hz": 50,
+  "training": {
+    "parent_iteration": 24499,
+    "parent_sha256": "c6c6494780d11ffc822bc08447a759e3a57945e71e6588befd8bc709cd031368",
+    "seed": 9801,
+    "num_envs": 4096,
+    "selected_after_updates": 151,
+    "learning_rate_cap": 1e-05,
+    "runtime": "Isaac Lab 2.3.2 / Isaac Sim 5.1 / RSL-RL 3.1.2",
+    "device": "NVIDIA GeForce RTX 4080 Laptop GPU"
+  },
+  "selection": {
+    "protocol": "docs/CORE_LOCOMOTION_EVALUATION.md",
+    "result": "docs/results/2026-09-28-core-selection-24650.md",
+    "paired_seeds": [66001, 66002, 66003, 66004, 66005],
+    "episodes": 300,
+    "success": 194,
+    "unsafe": 0,
+    "qualification": false
+  },
+  "files_sha256": {
+    "model_24650.pt": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "agent.yaml": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "env.yaml": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+    "export/policy.pt": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "export/manifest.json": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  }
+}

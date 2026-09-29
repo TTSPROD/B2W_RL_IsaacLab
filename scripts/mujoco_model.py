@@ -8,7 +8,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_XML = ROOT / "vendor/unitree_mujoco/unitree_robots/b2w/scene.xml"
-DEFAULT_POLICY = ROOT / "policies/server/upstream_19999/export/policy.pt"
+DEFAULT_POLICY = ROOT / "policies/local/core_24650/export/policy.pt"
 STAIR_RISE_M, STAIR_RUN_M, STAIR_STEPS = 0.14, 0.32, 6
 STAIR_START_X_M = -3.0
 

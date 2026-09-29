@@ -7,8 +7,8 @@
 ## Выбор checkpoint
 
 «Последний» означает `active_candidate` из [registry](../policies/manifest.json),
-сейчас **upstream19999**. Его готовый проверенный export:
-`policies/server/upstream_19999/export/policy.pt`. Сопоставлять checkpoint/export
+сейчас **core 24650**. Его готовый проверенный export:
+`policies/local/core_24650/export/policy.pt`. Сопоставлять checkpoint/export
 по SHA из manifest; номер iteration и время файла не идентифицируют разные runs.
 Для другого checkpoint выполнить export через `check_policy_contract.py` и
 передать результат обоим launcher через `-Policy`. Upstream10000 не запускать.
@@ -30,7 +30,7 @@ ground у движков различается; одинаковое назва
 ## Скорости и управление
 
 Пределы брать из `commands.base_velocity.ranges` выбранного training `env.yaml`.
-Для 19999 обе оси vx/vy — **±1 m/s**, yaw — **±1 rad/s**. Обе оболочки используют
+Для 24650 обе оси vx/vy — **±1 m/s**, yaw — **±1 rad/s**. Обе оболочки используют
 `-MaxForward 1 -MaxLateral 1 -MaxYaw 1`. Это независимые пределы по осям, без
 ограничения длины диагонального вектора. Меньший предел задаётся явно по запросу.
 Успех simulation screen не определяет диапазон команд обучения.

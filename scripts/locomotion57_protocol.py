@@ -7,14 +7,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 DT = 0.02
-CHECKPOINT_SHA = {19999: "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc"}
 REASONS = ("non_finite", "tilt", "base_hip_contact", "hard_joint_position")
-
-
-def export_path(iteration=19999):
-    if iteration != 19999:
-        raise ValueError("The current screen is scoped to upstream19999")
-    return ROOT / "policies/server/upstream_19999/export/policy.pt"
 
 
 def terrain_boxes(name):

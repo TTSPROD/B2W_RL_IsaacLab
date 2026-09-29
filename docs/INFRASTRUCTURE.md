@@ -1,25 +1,17 @@
 # Инфраструктура B2W
 
-Baseline runtime: Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11, RSL-RL 3.1.2.
-Исходники robot_lab и остальных upstream компонентов закреплены в `vendor/manifest.json`.
-Точный [состав vendor](VENDOR_INVENTORY.md) включает докачанные SDK2/MuJoCo bridge
-и ROS2 packages. Их Linux build и DDS qualification пока не выполнены.
-Текущий локальный MuJoCo viewer исполняет policy внутри процесса и не проверяет
-SDK2 transport. Будущий C++/ROS2 runtime собирается отдельно от vendor и Windows
-окружения; выбор MuJoCo engine version фиксируется до сравнения результатов.
+Базовый runtime: Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11, RSL-RL 3.1.2.
+Upstream-исходники закреплены в `vendor/manifest.json`; локальные зависимости —
+в `requirements/`. Наличие SDK2/MuJoCo/ROS2 исходников не означает готовую сборку
+или допуск к реальному роботу.
 
-## Локальное окружение
+## Локальная машина
 
-Проект: `C:\Users\ra.suragin\Documents\ChatGPT\B2W_RL_IsaacLab`.
-Локальный launcher `scripts/run_local.ps1` использует `.venv`, `.runtime/IsaacLab`
-и Sim packages из `D:\isaacsim51`; путь можно задать через `B2W_ISAAC_SIM_ENV`.
-Системный Python и `.venv` без launcher могут не видеть Torch/Isaac dependencies.
-Конфигурация Windows runtime и lock-файлы находятся в `requirements/`.
-`scripts/setup_desktop.ps1` — отдельный installer проектного desktop окружения;
-его не нужно запускать при уже работающем runtime ноутбука.
+Рабочий каталог: `C:\Users\ra.suragin\Documents\ChatGPT\B2W_RL_IsaacLab`.
+Launcher `scripts/run_local.ps1` использует `.venv`, `.runtime/IsaacLab` и Isaac
+Sim из `D:\isaacsim51`; альтернативный путь задаётся `B2W_ISAAC_SIM_ENV`.
 
-Линии RTX4080 Laptop, RTX4070Ti desktop и server сохраняют отдельные runtime
-характеристики. Текущая проверка 19999 выполнена на RTX4080 Laptop, Isaac headless.
+Минимальная проверка:
 
 ```powershell
 python scripts/vendor_materials.py verify
@@ -27,38 +19,27 @@ python scripts/vendor_materials.py verify
 & .\scripts\run_local.ps1 scripts/verify_project.py
 ```
 
-## Evidence и воспроизводимость
+Локальный dashboard запускается `python dashboard/server.py` и доступен только
+на `127.0.0.1:8765`. Он читает сохранённые TensorBoard-метрики и компактный
+результат policy 24650; simulator/training он не запускает.
 
-Постоянные данные последней проверки: `docs/results/evidence/operating57_19999_20260925/`.
-Raw JSON и NPZ перенесены из logs без изменения байтов. Пути внутри raw JSON
-фиксируют место исходного запуска; актуальное расположение задаёт manifest рядом.
-Captured protocol/source hashes относятся к выполненному запуску, current source
-hashes — к коду после рефакторинга. Сравнение по сохранённым traces проверяет
-неизменность всех 1152 оценок без повторной симуляции.
+## Артефакты
 
-Перестроение таблиц и рисунка:
+- Текущий пакет: `policies/local/core_24650/`.
+- Retained ancestor: `policies/server/upstream_19999/`.
+- Компактная сводка: `docs/results/evidence/core_24650_20260928/summary.json`.
+- Неизменённые raw traces последнего отбора: `logs/core_stage2_selection_20260928/`.
 
-```powershell
-& .\scripts\run_local.ps1 scripts/summarize_operating57.py
-& .\scripts\run_local.ps1 scripts/report_operating57.py
-```
-
-Новый запуск screen записывается в отдельный путь и не заменяет retained evidence:
-
-```powershell
-& .\scripts\run_local.ps1 scripts/eval_operating57_isaac.py --terrain flat --output logs/operating57_new/isaac_flat.json
-```
-
-Live logs/outputs/caches игнорируются Git. Единственный текущий report и его
-проверяемые raw данные хранятся в `docs/results/`; веса — в `policies/server/`.
+Live logs, caches и окружения не входят в Git. Raw traces остаются локально;
+проверяемый SHA их summary записан в компактной сводке.
 
 ## Сервер
 
-- Рабочий каталог: `/home/user/projects/B2W_RL_IsaacLab`.
-- Transfer cache: `/home/user/.cache/B2W_RL_IsaacLab-sync`.
-- Завершённые разрешённые runs: `/home/user/B2W_RL_IsaacLab_Server`.
+Основной каталог: `/home/user/projects/B2W_RL_IsaacLab`; transfer cache:
+`/home/user/.cache/B2W_RL_IsaacLab-sync`. Завершённые разрешённые runs доступны
+read-only в `/home/user/B2W_RL_IsaacLab_Server`.
 
-`scripts/sync_server.ps1` переносит committed HEAD через Git bundle и fast-forward.
-Чистка выполнена локально; удалённые jobs и файлы этим действием не изменяются.
-Новые server training jobs требуют отдельного явного решения.
-При сбое GitHub DNS использовать [проектный skill](../skills/github-dns-bypass/SKILL.md).
+Новые server training jobs требуют отдельного явного решения. Локальная чистка
+не удаляет серверные данные. `scripts/sync_server.ps1` переносит committed HEAD
+через Git bundle и fast-forward. При GitHub DNS failure применяется проектный
+skill `skills/github-dns-bypass/SKILL.md`; force push запрещён.

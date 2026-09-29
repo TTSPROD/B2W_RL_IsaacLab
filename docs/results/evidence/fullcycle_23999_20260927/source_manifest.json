@@ -1,9 +1,0 @@
-{
-  "fullcycle_eval_protocol.py": "701dc4fd97a231277eee27ef2107244f2e3f712997e4dec096cf1d1669d37fed",
-  "eval_fullcycle_terrain.py": "f77eaeeee542cdf2d89f4e5f17b523e94a19745aa70169d4e994fb1e934eb290",
-  "eval_candidate_operating57_isaac.py": "7c1196fe3a3af15b345c29d95fd9eb41785d547ae4c1d5f40bc2230a5ad304b1",
-  "operating57_protocol.py": "b5574c434b35ffa63e481ed1f97edc198d21b4068531be830a5ffbab69989371",
-  "locomotion57_protocol.py": "3deba5b552f4c786f4cdb10c2115f27deaaf61cd8b055913f2aac45410568ff6",
-  "local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
-  "run_candidate_fullcycle.ps1": "90df12b589737bf79deefe664ef43bb3393eb57ec74a9dc4469ec0d11e6d2111"
-}

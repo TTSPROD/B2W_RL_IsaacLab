@@ -16,7 +16,7 @@ param(
 )
 $ErrorActionPreference = 'Stop'
 $projectRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
-if (-not $Policy) { $Policy = Join-Path $projectRoot 'policies/server/upstream_19999/export/policy.pt' }
+if (-not $Policy) { $Policy = Join-Path $projectRoot 'policies/local/core_24650/export/policy.pt' }
 $policyPath = (Resolve-Path -LiteralPath $Policy -ErrorAction Stop).Path
 $sceneName = if ($Terrain -like 'stair_*') { 'stair' } else { $Terrain }
 $entrypoint = if ($SmokeSteps) { 'play_b2w_gamepad.py' } else { 'view_b2w_gamepad_3d.py' }

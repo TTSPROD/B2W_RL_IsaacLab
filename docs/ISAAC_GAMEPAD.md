@@ -6,7 +6,7 @@
 & ./scripts/run_isaac_gamepad.ps1 -Terrain rough -TerrainFamily boxes -TerrainLevel 3
 ```
 
-По умолчанию — validated export upstream19999, XInput 0, vx/vy ±1 m/s, yaw ±1 rad/s.
+По умолчанию — validated export core 24650, XInput 0, vx/vy ±1 m/s, yaw ±1 rad/s.
 Выбор checkpoint, карты и общие кнопки описаны в [GAMEPAD_VIEWERS](GAMEPAD_VIEWERS.md).
 `-Policy` принимает путь к выбранному TorchScript; `-Terrain` поддерживает `flat`,
 `rough`, `stair_up`, `stair_down`, `map`. `-GamepadIndex`, `-MaxForward`, `-MaxLateral`,

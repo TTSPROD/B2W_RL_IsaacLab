@@ -7,7 +7,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
 from locomotion57_protocol import Case, Segment, Telemetry, assess, terrain_boxes
-from operating57_protocol import cases_for
+from core_locomotion_protocol import cases_for
 
 
 class LocomotionProtocolTests(unittest.TestCase):
@@ -16,7 +16,7 @@ class LocomotionProtocolTests(unittest.TestCase):
                       {'unsafe_flags': ['tilt'] if unsafe else []}, True, terrain_boxes('flat'))
 
     def test_exact_tracking_and_zero_pass(self):
-        for case in cases_for('flat'):
+        for case in cases_for('flat_mu_100'):
             self.assertEqual(self.score(case, case.schedule()[0])['outcome'], 'success', case.name)
 
     def test_safe_stationary_actor_cannot_pass_translation_or_rotation(self):
@@ -34,7 +34,7 @@ class LocomotionProtocolTests(unittest.TestCase):
             self.assertIn('standstill_failure', self.score(case, measured)['failure_flags'])
 
     def test_initial_settling_never_masks_unsafe(self):
-        case = cases_for('flat')[0]
+        case = cases_for('flat_mu_100')[0]
         self.assertEqual(self.score(case, case.schedule()[0], unsafe=True)['outcome'], 'unsafe')
 
     def test_late_tracking_spike_fails_transition_even_when_mean_rmse_passes(self):
@@ -46,7 +46,7 @@ class LocomotionProtocolTests(unittest.TestCase):
         self.assertIn('command_transition_failure', result['failure_flags'])
 
     def test_displacement_is_not_zero_command_failure(self):
-        case = cases_for('flat')[0]
+        case = cases_for('flat_mu_100')[0]
         result = assess(case, case.schedule()[0], np.full((case.steps, 3), 10.),
                         {'unsafe_flags': []}, True, terrain_boxes('flat'))
         self.assertEqual(result['outcome'], 'success')

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 from dataclasses import asdict
+import importlib
 import json
 import os
 from pathlib import Path
@@ -21,12 +22,18 @@ parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--seeds', type=int, default=32)
 parser.add_argument('--smoke-steps', type=int, default=0)
 parser.add_argument('--policy-map', type=Path, help='JSON mapping two policy IDs to verified export directories')
+parser.add_argument('--protocol-module', default='core_locomotion_protocol',
+                    help='Protocol module implementing the compact locomotion evaluator interface')
 args = parser.parse_args()
 if args.output.exists():
     raise FileExistsError(args.output)
 
-from fullcycle_eval_protocol import (SEED_START, SEEDS, POLICIES, EXPORT_DIRS, cases_for, protocol_manifest,
-                                    geometry, meshes_for, stair_exposure, coverage)
+protocol = importlib.import_module(args.protocol_module)
+SEED_START, SEEDS = protocol.SEED_START, protocol.SEEDS
+POLICIES, EXPORT_DIRS = protocol.POLICIES, protocol.EXPORT_DIRS
+cases_for, protocol_manifest = protocol.cases_for, protocol.protocol_manifest
+geometry, meshes_for = protocol.geometry, protocol.meshes_for
+stair_exposure, coverage = protocol.stair_exposure, protocol.coverage
 if args.policy_map:
     root_path = Path(__file__).resolve().parents[1]
     selection = json.loads(args.policy_map.read_text(encoding='utf-8-sig'))
@@ -80,7 +87,7 @@ class EvaluationTerrainCfg(SubTerrainBaseCfg):
 env = None
 try:
     if args.seeds != SEEDS:
-        raise ValueError("The declared suite requires 32 paired seeds")
+        raise ValueError(f"The declared suite requires {SEEDS} paired seeds")
     cases = cases_for(args.terrain)
     if args.smoke_steps:
         cases = cases[:1]
@@ -94,6 +101,9 @@ try:
         seed=20260927, size=(80., 80.), border_width=0, num_rows=1, num_cols=1,
         curriculum=False, use_cache=False, sub_terrains={'course': EvaluationTerrainCfg()})
     cfg.scene.terrain.max_init_terrain_level = 0
+    if 'friction' in definition:
+        cfg.scene.terrain.physics_material.static_friction = float(definition['friction'])
+        cfg.scene.terrain.physics_material.dynamic_friction = float(definition['friction'])
     cfg.scene.height_scanner = None
     cfg.scene.height_scanner_base = None
     cfg.scene.contact_forces.update_period = cfg.sim.dt
@@ -174,8 +184,10 @@ try:
     action_trace = np.full(((steps+4)//5, n, 16), np.nan, np.float32)
     wheels_trace = np.full((steps, n, 4, 4), np.nan, np.float32) if is_stairs else None
     attitude_trace = np.full(((steps+4)//5, n, 4), np.nan, np.float32)
+    protocol_source = args.protocol_module.replace('.', '/') + '.py'
     source_hashes = {name: sha256(root/'scripts'/name) for name in
-                     ('locomotion57_protocol.py', 'operating57_protocol.py', 'fullcycle_eval_protocol.py', 'eval_fullcycle_terrain.py', 'local_b2w_assets.py', 'evaluation_policy.py')}
+                     ('locomotion57_protocol.py', protocol_source, 'eval_fullcycle_terrain.py',
+                      'local_b2w_assets.py', 'evaluation_policy.py')}
     metadata = {
         'engine': 'Isaac', 'protocol': frozen_plan, 'source_sha256': source_hashes,
         'protocol_role': 'Declared terrain extension; unchanged operating57 assess and Telemetry',
@@ -271,6 +283,8 @@ try:
                        all(w['exposed_zero_success'] for w in terrain_coverage['zero_windows']))
         else:
             covered = True
+        if hasattr(protocol, 'finalize_result'):
+            result, covered = protocol.finalize_result(case, result, terrain_coverage, covered)
         records.append({'policy': policy, 'terrain': args.terrain, 'case': case.name, 'seed': seed,
                         'terrain_exposure': terrain_coverage,
                         'covered_scenario_success': bool(covered and result['outcome'] == 'success'), **result})

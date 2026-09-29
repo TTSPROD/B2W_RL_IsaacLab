@@ -14,13 +14,12 @@ This workflow opens no DDS or real-robot connection.
 ## 1. Choose checkpoint
 
 Use the requested path, run, iteration or SHA. For "latest/current", resolve
-`active_candidate` in `policies/manifest.json`; currently it is server upstream19999.
+`active_candidate` in `policies/manifest.json`; currently it is local core24650.
 Do not choose by file modification time or compare iteration numbers across runs.
-If several distinct artifacts still match, clarify the selection. Do not run
-upstream10000, as required by project instructions.
+If several distinct artifacts still match, clarify the selection.
 
-Both viewers consume the same validated TorchScript export. For 19999 reuse
-`policies/server/upstream_19999/export/policy.pt` after checking its manifest's
+Both viewers consume the same validated TorchScript export. For the current policy reuse
+`policies/local/core_24650/export/policy.pt` after checking its manifest's
 checkpoint/export SHA. For another raw checkpoint, use the existing guarded exporter:
 
 ```powershell
@@ -57,7 +56,7 @@ surface. The viewer draws the exact terrain mesh sent to Isaac physics.
 ## 3. Choose training-relevant commands
 
 Read the selected run's `env.yaml`, `commands.base_velocity.ranges`; do not use
-evaluation pass rates as training limits. For upstream19999 set **MaxForward=1.0,
+evaluation pass rates as training limits. For core24650 set **MaxForward=1.0,
 MaxLateral=1.0, MaxYaw=1.0**: vx/vy ±1 m/s, yaw ±1 rad/s, independently per axis.
 Use lower limits when requested. Do not silently retain the obsolete 0.7/0.4/0.5
 preset, apply a vector-norm cap, or change the 50 Hz policy clock. Training range
@@ -68,7 +67,7 @@ does not imply successful tracking across that range.
 Use one explicit argument set for smoke and interactive launch. Example for current Flat:
 
 ```powershell
-$policy = (Resolve-Path 'policies/server/upstream_19999/export/policy.pt').Path
+$policy = (Resolve-Path 'policies/local/core_24650/export/policy.pt').Path
 $viewerArgs = @{ Terrain='flat'; Policy=$policy; GamepadIndex=0; MaxForward=1.0; MaxLateral=1.0; MaxYaw=1.0; Device='cpu' }
 & ./scripts/run_isaac_gamepad.ps1 @viewerArgs -SmokeSteps 25
 if ($LASTEXITCODE) { throw 'Isaac smoke failed' }

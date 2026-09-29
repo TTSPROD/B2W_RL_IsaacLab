@@ -50,7 +50,7 @@ Upstream scripts остаются эталоном, их наличие не о�
 
 - [rl_sdk.cpp](../vendor/rl_sar/src/rl_sar/library/core/rl_sdk/rl_sdk.cpp): observations/actions, преобразование выходов и общий control framework.
 - [fsm_b2w.hpp](../vendor/rl_sar/src/rl_sar/fsm_robot/fsm_b2w.hpp): Passive/GetUp/GetDown/RLLocomotion и переходы состояний.
-- [B2W config](../vendor/rl_sar/policy/b2w/robot_lab/config.yaml), `policy/b2w/base.yaml` и `policy.pt`: upstream reference 57→16, scales/gains/mapping. Неизменённый vendor actor отдельно [проверен против 23999](results/2026-09-27-rl-sar-vs-23999.md) с общим Isaac adapter. Это внешний референс; C++ runtime RL SAR и hardware deployment этим тестом не проверялись.
+- [B2W config](../vendor/rl_sar/policy/b2w/robot_lab/config.yaml), `policy/b2w/base.yaml` и `policy.pt`: закреплённый upstream reference 57→16 со своими scales/gains/mapping. C++ runtime RL SAR и hardware deployment не квалифицированы.
 - `src/rl_sar/src/rl_sim*.cpp`, `rl_real_*.cpp`, `src/robot_joint_controller/{ros,ros2}/`, `src/robot_msgs/`: simulator interfaces, drivers других моделей, ROS controller plugins и сообщения.
 
 Специализированного `rl_real_b2w.cpp` нет. Submodule declarations сохранены в

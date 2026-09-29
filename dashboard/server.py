@@ -17,32 +17,18 @@ from tensorboard.backend.event_processing.event_accumulator import EventAccumula
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = Path(__file__).parent / "dist"
 LOGS = ROOT / "logs/rsl_rl"
-EVIDENCE = ROOT / "docs/results/evidence/fullcycle_21999_20260927/summary.json"
-LATEST_EVIDENCE = ROOT / "docs/results/evidence/fullcycle_23999_20260927/summary.json"
-EVALUATION_PROGRESS = ROOT / "logs/fullcycle23999_validation_20260927/evaluation_progress.json"
-REFERENCE_EVIDENCE = ROOT / "docs/results/evidence/rl_sar_fullcycle_20260927/summary.json"
-REFERENCE_PROGRESS = ROOT / "logs/rl_sar_fullcycle_20260927/evaluation_progress.json"
-REHEARSAL_EVIDENCE = ROOT / "docs/results/evidence/fullcycle_24499_20260927/summary.json"
-REHEARSAL_PROGRESS = ROOT / "logs/fullcycle24499_validation_20260927/evaluation_progress.json"
-REPAIR_EVIDENCE = ROOT / "docs/results/evidence/fullcycle_25000_20260927/summary.json"
-REPAIR_PROGRESS = ROOT / "logs/fullcycle25000_validation_20260927/evaluation_progress.json"
+SELECTED_EVIDENCE = ROOT / "docs/results/evidence/core_24650_20260928/summary.json"
+SELECTED_ITERATION = 24650
+SELECTED_RUN_NAME = "2026-09-28_19-20-23_core_stage1"
 LOCK = threading.Lock()
 CACHE = {}
 
 
 def evaluation_path():
-    return next(path for path in (REPAIR_EVIDENCE, REHEARSAL_EVIDENCE, REFERENCE_EVIDENCE, LATEST_EVIDENCE, EVIDENCE) if path.is_file())
+    return SELECTED_EVIDENCE
 
 
 def evaluation_state():
-    for progress_path,summary_path in ((REPAIR_PROGRESS,REPAIR_EVIDENCE),
-            (REHEARSAL_PROGRESS,REHEARSAL_EVIDENCE),(EVALUATION_PROGRESS,LATEST_EVIDENCE)):
-        if progress_path.is_file():
-            progress=read_json(progress_path)
-            postprocessing=progress_path.parent/'postprocessing_status.json'
-            if not summary_path.is_file() and postprocessing.is_file() and read_json(postprocessing)['status']=='failed':
-                progress={**progress,'status':'failed','current':'проверка траекторий'}
-            return {'evaluation_progress':progress,'latest_evaluation_ready':summary_path.is_file()}
     return {'evaluation_progress':None,'latest_evaluation_ready':False}
 
 
@@ -60,13 +46,14 @@ def runs():
     result = []
     for manifest_path in LOGS.glob("*/*/continuation_manifest.json"):
         directory = manifest_path.parent
+        if directory.name != SELECTED_RUN_NAME:
+            continue
         if not list(directory.glob("events.out.tfevents.*")):
             continue
         manifest = read_json(manifest_path)
         result.append({"id": directory.relative_to(LOGS).as_posix(),
                        "name": directory.name, "experiment": directory.parent.name,
-                       "parent": manifest["parent_iteration"],
-                       "target": manifest["parent_iteration"] + manifest["additional_updates"],
+                       "parent": manifest["parent_iteration"], "target": SELECTED_ITERATION,
                        "created_utc": manifest["created_utc"]})
     return sorted(result, key=lambda item: item["created_utc"], reverse=True)
 
@@ -77,8 +64,7 @@ def safe_number(value):
 
 
 def training_queue():
-    paths = sorted((ROOT / 'logs').glob('local_rehearsal500_*/queue_status.json'), reverse=True)
-    return read_json(paths[0]) if paths else None
+    return None
 
 
 def run_data(run_id):
@@ -88,6 +74,7 @@ def run_data(run_id):
     directory = (LOGS / run_id).resolve()
     if not directory.is_relative_to(LOGS.resolve()):
         raise KeyError("Unknown run")
+    manifest = read_json(directory / "continuation_manifest.json")
     with LOCK:
         entry = CACHE.setdefault(run_id, {"reader": EventAccumulator(str(directory),
             size_guidance={"scalars": 0}), "updated": 0})
@@ -97,11 +84,14 @@ def run_data(run_id):
             for tag in entry["reader"].Tags().get("scalars", []):
                 events = entry["reader"].Scalars(tag)
                 # Retain every scalar event; no reservoir or chart decimation.
-                series[tag] = [[event.step, safe_number(event.value), event.wall_time] for event in events]
+                series[tag] = [[event.step, safe_number(event.value), event.wall_time]
+                               for event in events if event.step <= SELECTED_ITERATION - manifest["parent_iteration"]]
             entry["series"] = series
             entry["updated"] = time.monotonic()
-        progress = read_json(directory / "progress.json")
-        manifest = read_json(directory / "continuation_manifest.json")
+        progress = {**read_json(directory / "progress.json"),
+                    "status": "completed", "iteration": SELECTED_ITERATION,
+                    "completed_updates": SELECTED_ITERATION - manifest["parent_iteration"],
+                    "target_updates": SELECTED_ITERATION - manifest["parent_iteration"]}
         updated = datetime.fromisoformat(progress.get("updated_utc", manifest["created_utc"]))
         age = max(0, (datetime.now(timezone.utc) - updated).total_seconds())
         recorded_status = progress.get("status", "unknown")
@@ -116,11 +106,14 @@ def run_data(run_id):
             except ValueError:
                 continue
             stat = file.stat()
+            if iteration != SELECTED_ITERATION:
+                continue
             checkpoints.append({"name": file.name, "iteration": iteration, "bytes": stat.st_size,
                 "modified_utc": datetime.fromtimestamp(stat.st_mtime, timezone.utc).isoformat(),
                 "parent": iteration == manifest["parent_iteration"]})
         safe_manifest = {key: value for key, value in manifest.items()
                          if key not in {"parent", "sources_sha256", "upstream_config_audit"}}
+        safe_manifest["additional_updates"] = SELECTED_ITERATION - manifest["parent_iteration"]
         return {"run": available[run_id], "status": status, "age_seconds": age,
                 "training_queue": training_queue(),
                 **evaluation_state(),
@@ -134,32 +127,28 @@ def run_data(run_id):
 
 def evaluation_data():
     summary = read_json(evaluation_path())
-    policies = summary.get("comparison_policies", [19999, 21999])
-    keys = ("episodes", "success", "unsafe", "complete_zero_segments_pass", "exposed_zero_success",
-            "stair_stop_windows", "exposed_stair_stop_windows", "max_wheel_speed_rad_s",
-            "max_wheel_saturation_fraction", "min_hard_joint_margin_rad")
-    compact = lambda data: {key: data.get(key) for key in keys}
-    return {"date": "2026-09-27", "policies": policies,
-            "revision": evaluation_revision(),
-            "reference_options": [p for p in summary["overall"] if p != str(policies[-1])],
-            "retained_reference_policy": summary.get("retained_reference_policy"),
-            "retained_reference_policies": summary.get("retained_reference_policies", [summary.get("retained_reference_policy")]),
-            "policy_labels": summary.get("policy_labels", {}),
-            "reference_identity": summary.get("reference_identity"),
-            "reference_progress": read_json(REFERENCE_PROGRESS) if REFERENCE_PROGRESS.is_file() else None,
-            "control_drift": summary.get("fresh_parent_vs_retained", summary.get("fresh_candidate_vs_retained")),
-            "control_drift_policy": policies[0] if "fresh_parent_vs_retained" in summary else policies[-1],
-            "restoration": {k:v for k,v in summary.get("restoration", {}).items() if k != "targets"},
-            "overall": {key: compact(value) for key, value in summary["overall"].items()},
-            "terrains": {key: {policy: compact(value[policy]) for policy in summary["overall"]}
-                         for key, value in summary["terrains"].items()},
-            "rows": [{"terrain": row["terrain"], "case": row["case"],
-                      "policies": {key: compact(value) for key, value in row["policies"].items()},
-                      "delta": row["full_delta"], "lost_perfect": row["lost_perfect"]}
-                     for row in summary["rows"]],
-            "improved": len(summary["improved_rows"]), "regressed": len(summary["regressed_rows"]),
-            "lost_perfect": len(summary["lost_perfect_rows"]),
-            "qualification": False, "hardware_approval": False}
+    return {**summary, "revision": evaluation_revision()}
+
+
+def selection_data():
+    if not SELECTED_EVIDENCE.is_file():
+        return {"available": False, "status": "not_started"}
+    summary = read_json(SELECTED_EVIDENCE)
+    policy = str(summary["policy"])
+    variants = list(summary["conditions"])
+    return {
+        "available": True, "status": "completed", "schema": summary["schema"],
+        "selection_name": "core_24650", "policies": [policy], "parent": policy,
+        "seeds": len(summary["paired_reset_seeds"]),
+        "episodes_per_policy": summary["episodes"], "episodes_total": summary["episodes"],
+        "episodes_recorded": summary["episodes"], "variants_total": len(variants),
+        "variants": variants, "completed": variants, "active": [],
+        "overall": {policy: {"episodes": summary["episodes"], "success": summary["success"], "unsafe": summary["unsafe"]}},
+        "conditions": {name: {policy: value} for name, value in summary["conditions"].items()},
+        "ranking": [policy],
+        "automatic_selection": False, "qualification": False, "hardware_approval": False,
+        "updated_utc": datetime.fromtimestamp(SELECTED_EVIDENCE.stat().st_mtime, timezone.utc).isoformat(),
+    }
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -187,6 +176,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self.json(run_data(run_id))
             if parsed.path == "/api/evaluation":
                 return self.json(evaluation_data())
+            if parsed.path == "/api/selection":
+                return self.json(selection_data())
             assets = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
             if parsed.path not in assets:
                 return self.json({"error": "Not found"}, 404)

@@ -10,14 +10,10 @@
 Ноль требует остановки и устойчивости, без возврата в прежнюю точку или курс.
 
 Источник очередности — `docs/PROJECT_PLAN.md`; перед training work читать также
-`docs/INFRASTRUCTURE.md`. Текущий кандидат — серверный upstream19999.
-Единственная актуальная проверка: `docs/results/2026-09-25-operating57-19999.md`.
-Это Isaac Flat development screen, не полная qualification и не hardware approval.
+`docs/INFRASTRUCTURE.md`.
 
-По указанию пользователя от 25.09.2026 старые эксперименты, локальные policies,
-оценщики, логи и отчёты удалены из рабочего дерева. Не возвращать их контекст в
-документацию без нового запроса. Серверные checkpoints хранятся в `policies/server/`.
-Не запускать новые evaluations, diagnostics, tuning или обучение upstream10000.
+Текущий development candidate — `policies/local/core_24650/`; сохранённый
+server ancestor — `policies/server/upstream_19999/`.
 
 ## Инженерные правила
 
@@ -28,7 +24,8 @@
 - Сохранять upstream bytes в `vendor/`; адаптации делать снаружи. Явно разрешённое
   изменение состава snapshots фиксировать в `vendor/manifest.json` и
   `docs/VENDOR_INVENTORY.md`, проверять pinned Git blobs и SHA-256.
-- Сохранять байты raw evidence последней проверки и hashes экспортированной 19999.
+- Сохранять байты raw evidence последней проверки и hashes экспортированных
+  24650 и ancestor 19999.
   Изменения implementation hashes отделять от hashes реально выполненного запуска.
 - Конфиги Isaac Lab MDP писать чисто, использовать тензорные операции PyTorch.
   При работе с наградами учитывать массу B2W и нагрузку на 12+4 привода.

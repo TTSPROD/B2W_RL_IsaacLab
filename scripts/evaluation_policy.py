@@ -10,10 +10,7 @@ REFERENCE_ID = 'rl_sar'
 def policy_id(value):
     if str(value) == REFERENCE_ID:
         return REFERENCE_ID
-    result = int(value)
-    if result == 10000:
-        raise ValueError('upstream10000 evaluation is not allowed')
-    return result
+    return int(value)
 
 
 def reference_identity():

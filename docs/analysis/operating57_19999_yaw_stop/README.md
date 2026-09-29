@@ -5,16 +5,9 @@
 Новых эпизодов, inference, обновлений policy и серверных jobs: **0**.
 Это анализ той же проверки, не новая qualification.
 
-Численные результаты: [analysis.json](analysis.json). Воспроизведение:
-
-```powershell
-& .\scripts\run_local.ps1 scripts/analyze_operating57_yaw_stop.py
-```
-
-Скрипт сначала проверяет hashes retained evidence и повторно оценивает все
-1152 эпизодов; все метрики, segments и outcomes совпали с сохранённым JSON.
-Raw JSON/NPZ, checkpoint, export, старый отчёт и его manifest не изменены.
-Hashes нового анализатора отделены от source hashes выполненного screen.
+Численные результаты сохранены в [analysis.json](analysis.json). Это архивный
+offline-разбор baseline 19999; одноразовый анализатор удалён при консолидации
+репозитория. Raw evidence исходного screen и его manifest не изменены.
 
 ## Установленные факты
 
