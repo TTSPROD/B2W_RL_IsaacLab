@@ -8,10 +8,13 @@
       "kind": "local",
       "checkpoint": "policies/local/core_24650/model_24650.pt",
       "sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
-      "actor_abi": [57, 16],
+      "actor_abi": [
+        57,
+        16
+      ],
       "saved_iteration": 24650,
       "status": "selected_development_candidate",
-      "evaluation": "docs/results/2026-09-28-core-selection-24650.md",
+      "evaluation": "docs/results/2026-09-30-locomotion-v2-selection.md",
       "files": {
         "agent.yaml": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
         "env.yaml": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
@@ -26,7 +29,10 @@
       "kind": "server_ancestor",
       "checkpoint": "policies/server/upstream_19999/upstream_model_19999.pt",
       "sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
-      "actor_abi": [57, 16],
+      "actor_abi": [
+        57,
+        16
+      ],
       "saved_iteration": 19999,
       "seed": 44,
       "server_run": "upstream_b2w_20000_4gpu_20260922",
@@ -42,5 +48,6 @@
         "export/policy.pt": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff"
       }
     }
-  ]
+  ],
+  "current_evaluation": "docs/results/evidence/locomotion_v2_20260930/summary.json"
 }

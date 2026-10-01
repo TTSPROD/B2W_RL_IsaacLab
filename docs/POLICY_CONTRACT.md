@@ -45,7 +45,8 @@ Identity mapping в конфиге rl_sar не является подтверж
 `scripts/check_policy_contract.py` проверяет pinned upstream config, каналы,
 scales, quaternion/body-frame transforms, invalid inputs и software export parity.
 Сохранённый экспорт 24650 совпал с checkpoint на 295 inputs: max abs error 0.0,
-допуск 1e-5. Это software parity; качество policy определяется operating57.
+допуск 1e-5. Это software parity; качество policy оценивается по
+[v2 locomotion protocol](CORE_LOCOMOTION_EVALUATION.md).
 
 Новый SDK2 runtime должен проверять finite/shape, age команды и состояния,
 реализовать watchdog и обработку deadline miss. Observation→action p99 должен

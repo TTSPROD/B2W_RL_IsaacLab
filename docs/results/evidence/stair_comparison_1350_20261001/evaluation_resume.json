@@ -1,0 +1,37 @@
+{
+  "origin_job": "a2c89fd6c2a64c3cb8e005982e8249bd",
+  "new_training_updates": 0,
+  "amendment_sha256": "df92541d64ec1666b9ef2c52674d910e1bbee5c56b021df91826d2937571ffef",
+  "input_sha256": {
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\dashboard\\jobs\\a2c89fd6c2a64c3cb8e005982e8249bd\\experiment_manifest.json": "e298dba07bf1ec566cd93e446b8377efc80e8a33b666417257609fedf23539d1",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\policies\\local\\core_24650\\export\\policy.pt": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\policies\\local\\core_24650\\export\\manifest.json": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\dashboard\\jobs\\a2c89fd6c2a64c3cb8e005982e8249bd\\exports\\stairfixed_26000\\policy.pt": "4dce9fb1ee18be703d1e336e15f501f60cd3e9c69ecb3bd8db8e980e842ac158",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\dashboard\\jobs\\a2c89fd6c2a64c3cb8e005982e8249bd\\exports\\stairfixed_26000\\manifest.json": "a211d37ff9c020913ad3010111152558bb00fd08cfe44228014707cec7c3d709",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\b2w_24650_stair_stairfixed_9903\\2026-09-30_20-15-40_pilot\\model_26000.pt": "6dd8cf28c785591b13c3b4ef3d1d8fd459a7a1ea7ad86d58ae4c5eeeeb452551",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\dashboard\\jobs\\a2c89fd6c2a64c3cb8e005982e8249bd\\exports\\stairadaptive_26000\\policy.pt": "e7aee157f6fc2b51a2f0d6de6dd48dc292e085ae835b24fad339f523fd2d1197",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\dashboard\\jobs\\a2c89fd6c2a64c3cb8e005982e8249bd\\exports\\stairadaptive_26000\\manifest.json": "65d479e0cbcaec69c26bd8eb02bfb0dfbda5d747c641b3f537791bddb496c913",
+    "C:\\Users\\ra.suragin\\Documents\\ChatGPT\\B2W_RL_IsaacLab\\logs\\rsl_rl\\b2w_24650_stair_stairadaptive_9903\\2026-09-30_21-53-03_pilot\\model_26000.pt": "688ddce2ab463c41925c3cd98fb21a9925b19e246a764d9c76d5f9d7b1211ee1"
+  },
+  "source_sha256": {
+    "scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+    "scripts/locomotion_v2_validation_protocol.py": "2dbab5f17998754f6df0af51a853498b057a52f6b4f9d3f4642cfe5b854568f7",
+    "scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+    "scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+    "scripts/eval_fullcycle_terrain.py": "ebb1776775e11b7e7ba87024359c28f77db3dbe7929313ddcba0a0e6cd343f41",
+    "scripts/evaluation_policy.py": "b0dd3fa6b9a12514d63273c11fb27608d12b979ce7f89f8b1bfa7deb1ca36964",
+    "scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "scripts/summarize_locomotion.py": "325078747989b0146ac0abff6a4167b108020c67ec02c797978f1ac458ea97ba",
+    "scripts/run_core_locomotion_eval.py": "8cdd238636bd30c6939c8ae3cfafb36e2eb2061fb9ac618b19d9d9f97ee0e9f1",
+    "scripts/run_locomotion.py": "062cb54dc82094ae0eafd3e5f731f4722856a70ee04e249f8b40a82691a4a7ed",
+    "scripts/run_support.py": "6f7332dd7c79c02ae03155be5f58e172d33b6c125f5e643ad54843a5a703f586",
+    "scripts/evaluate_stair_comparison_1350.py": "73cd4a8258cac1caca71b902555b379aee4db9441038cf32508f2503e15402f5",
+    "scripts/stair_comparison_1350.py": "37a329f6399d896f66ddc0ca576902f8553e4ac794dc5308c1a915e7b72c9c14",
+    "scripts/stair_curriculum_decision.py": "c0c4178dd334fea8549caee02bc3070a5a2d76b3c1e7ceb1a162b7a3e3a07740",
+    "scripts/isolated_evaluation.py": "0261e79945ab97acd7b9bf97c7d682006e78f01e3eaf444b88e66de45d104b44",
+    "configs/24650_stair_comparison_1350_20260930.json": "df92541d64ec1666b9ef2c52674d910e1bbee5c56b021df91826d2937571ffef"
+  },
+  "created": "2026-09-30T20:20:44.627012+00:00"
+}

@@ -1,4 +1,4 @@
-"""Read-only local B2W dashboard. No simulator, Torch or training controls."""
+"""Loopback B2W dashboard and local process control API."""
 from __future__ import annotations
 
 import argparse
@@ -7,20 +7,21 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import math
 import mimetypes
+import os
 from pathlib import Path
 import re
+import secrets
+import sys
 import threading
 import time
 from urllib.parse import parse_qs, urlparse
 
-from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+from jobs import list_jobs, job_details
 
 ROOT = Path(__file__).resolve().parents[1]
 STATIC = Path(__file__).parent / "dist"
 LOGS = ROOT / "logs/rsl_rl"
 SELECTED_EVIDENCE = ROOT / "docs/results/evidence/core_24650_20260928/summary.json"
-SELECTED_ITERATION = 24650
-SELECTED_RUN_NAME = "2026-09-28_19-20-23_core_stage1"
 SELECTION_ROOT = ROOT / "logs"
 PROGRESS_PATTERN = re.compile(
     r"PROGRESS\s+(?P<terrain>\S+)\s+step=(?P<step>\d+)/(?P<total>\d+)\s+"
@@ -28,9 +29,15 @@ PROGRESS_PATTERN = re.compile(
 )
 LOCK = threading.Lock()
 CACHE = {}
+TOKEN = secrets.token_urlsafe(32)
 
 
 def evaluation_path():
+    registry = read_json(ROOT / "policies/manifest.json")
+    if registry.get("current_evaluation"):
+        path = (ROOT / registry["current_evaluation"]).resolve()
+        if path.is_relative_to(ROOT / "docs/results/evidence") and path.is_file():
+            return path
     return SELECTED_EVIDENCE
 
 
@@ -50,7 +57,9 @@ def read_json(path):
 
 def latest_selection_directory():
     candidates = []
-    for progress in SELECTION_ROOT.glob("*selection*/evaluation_progress.json"):
+    paths = [*SELECTION_ROOT.glob("*selection*/evaluation_progress.json"),
+             *SELECTION_ROOT.glob("dashboard/jobs/*/evaluation/evaluation_progress.json")]
+    for progress in paths:
         plan = progress.parent / "declared_plan.json"
         if plan.is_file():
             candidates.append((max(progress.stat().st_mtime_ns, plan.stat().st_mtime_ns), progress.parent))
@@ -126,9 +135,12 @@ def live_selection_data(directory):
                              and terrain_condition(record.get("terrain", "")) == group]
             conditions[group][policy] = record_summary(group_records)
     ranking = sorted(policies, key=lambda policy: (
-        overall[policy]["unsafe"], -overall[policy]["success"], int(policy)))
+        overall[policy]["unsafe"], -overall[policy]["success"], policy))
+    summary_path = directory / "analysis/summary.json"
+    if progress.get("status") == "completed" and summary_path.is_file():
+        ranking = [str(policy) for policy in read_json(summary_path)["ranking"]]
 
-    parallel = max(1, len(active_names) or min(3, len(variants)))
+    parallel = 1 if plan.get("schema") == "b2w_locomotion_v2" else max(1, len(active_names) or min(3, len(variants)))
     total_batches = math.ceil(len(variants) / parallel)
     completed_batches = len(completed) // parallel
     completed_ends = []
@@ -163,7 +175,8 @@ def live_selection_data(directory):
         "qualification": plan.get("qualification", False),
         "hardware_approval": plan.get("hardware_approval", False),
         "updated_utc": updated.astimezone(timezone.utc).isoformat(),
-        "elapsed_seconds": max(0, time.time() - plan_path.stat().st_mtime),
+        "elapsed_seconds": progress.get("wall_seconds", max(0,
+            (time.time() if progress.get("status") == "running" else batch_started) - plan_path.stat().st_mtime)),
         "batch_elapsed_seconds": batch_elapsed, "eta_seconds": eta,
         "failures": progress.get("failures", []),
     }
@@ -173,14 +186,13 @@ def runs():
     result = []
     for manifest_path in LOGS.glob("*/*/continuation_manifest.json"):
         directory = manifest_path.parent
-        if directory.name != SELECTED_RUN_NAME:
-            continue
         if not list(directory.glob("events.out.tfevents.*")):
             continue
         manifest = read_json(manifest_path)
         result.append({"id": directory.relative_to(LOGS).as_posix(),
                        "name": directory.name, "experiment": directory.parent.name,
-                       "parent": manifest["parent_iteration"], "target": SELECTED_ITERATION,
+                       "parent": manifest["parent_iteration"],
+                       "target": manifest["parent_iteration"] + manifest["additional_updates"],
                        "created_utc": manifest["created_utc"]})
     return sorted(result, key=lambda item: item["created_utc"], reverse=True)
 
@@ -194,6 +206,17 @@ def training_queue():
     return None
 
 
+def event_accumulator():
+    """Use the project's existing simulator packages even from bare .venv Python."""
+    import importlib.util
+    if importlib.util.find_spec("tensorboard") is None:
+        packages = Path(os.environ.get("B2W_ISAAC_SIM_ENV", "D:/isaacsim51")) / "Lib/site-packages"
+        if packages.is_dir() and str(packages) not in sys.path:
+            sys.path.append(str(packages))
+    from tensorboard.backend.event_processing.event_accumulator import EventAccumulator
+    return EventAccumulator
+
+
 def run_data(run_id):
     available = {item["id"]: item for item in runs()}
     if run_id not in available:
@@ -202,23 +225,29 @@ def run_data(run_id):
     if not directory.is_relative_to(LOGS.resolve()):
         raise KeyError("Unknown run")
     manifest = read_json(directory / "continuation_manifest.json")
+    metrics_warning = None
+    try:
+        EventAccumulator = event_accumulator()
+    except ImportError as error:
+        EventAccumulator = None
+        metrics_warning = f"Графики недоступны: {error}. Проверьте B2W_ISAAC_SIM_ENV. Управление процессами доступно."
     with LOCK:
-        entry = CACHE.setdefault(run_id, {"reader": EventAccumulator(str(directory),
-            size_guidance={"scalars": 0}), "updated": 0})
-        if time.monotonic() - entry["updated"] >= 8:
+        entry = CACHE.get(run_id)
+        if EventAccumulator is not None and (entry is None or "reader" not in entry):
+            entry = {"reader": EventAccumulator(str(directory), size_guidance={"scalars": 0}), "updated": 0}
+            CACHE[run_id] = entry
+        if entry is None:
+            entry = {"series": {}}
+        if EventAccumulator is not None and time.monotonic() - entry["updated"] >= 8:
             entry["reader"].Reload()
             series = {}
             for tag in entry["reader"].Tags().get("scalars", []):
                 events = entry["reader"].Scalars(tag)
                 # Retain every scalar event; no reservoir or chart decimation.
-                series[tag] = [[event.step, safe_number(event.value), event.wall_time]
-                               for event in events if event.step <= SELECTED_ITERATION - manifest["parent_iteration"]]
+                series[tag] = [[event.step, safe_number(event.value), event.wall_time] for event in events]
             entry["series"] = series
             entry["updated"] = time.monotonic()
-        progress = {**read_json(directory / "progress.json"),
-                    "status": "completed", "iteration": SELECTED_ITERATION,
-                    "completed_updates": SELECTED_ITERATION - manifest["parent_iteration"],
-                    "target_updates": SELECTED_ITERATION - manifest["parent_iteration"]}
+        progress = read_json(directory / "progress.json")
         updated = datetime.fromisoformat(progress.get("updated_utc", manifest["created_utc"]))
         age = max(0, (datetime.now(timezone.utc) - updated).total_seconds())
         recorded_status = progress.get("status", "unknown")
@@ -233,19 +262,17 @@ def run_data(run_id):
             except ValueError:
                 continue
             stat = file.stat()
-            if iteration != SELECTED_ITERATION:
-                continue
             checkpoints.append({"name": file.name, "iteration": iteration, "bytes": stat.st_size,
                 "modified_utc": datetime.fromtimestamp(stat.st_mtime, timezone.utc).isoformat(),
                 "parent": iteration == manifest["parent_iteration"]})
         safe_manifest = {key: value for key, value in manifest.items()
                          if key not in {"parent", "sources_sha256", "upstream_config_audit"}}
-        safe_manifest["additional_updates"] = SELECTED_ITERATION - manifest["parent_iteration"]
         return {"run": available[run_id], "status": status, "age_seconds": age,
                 "training_queue": training_queue(),
                 **evaluation_state(),
                 "evaluation_revision": evaluation_revision(),
                 "progress": progress, "manifest": safe_manifest, "series": entry["series"],
+                "metrics_warning": metrics_warning,
                 "scalar_count": len(entry["series"]),
                 "eta_seconds": max(0, total - count) * seconds_per_update if seconds_per_update and status == "running" else None,
                 "checkpoints": sorted(checkpoints, key=lambda item: item["iteration"], reverse=True),
@@ -257,13 +284,95 @@ def evaluation_data():
     return {**summary, "revision": evaluation_revision()}
 
 
-def selection_data():
+def isolated_selection_data():
+    """Observe finished actor/terrain files without waiting for a whole actor summary."""
+    for job in list_jobs():
+        directory=SELECTION_ROOT/'dashboard/jobs'/job['id']/'evaluation'
+        comparison_path=directory/'comparison_plan.json'
+        progress_path=directory/'evaluation_progress.json'
+        if not comparison_path.is_file() or not progress_path.is_file():continue
+        comparison,progress=read_json(comparison_path),read_json(progress_path)
+        policies=list(map(str,comparison['policies']))
+        declared=next((directory/p/'declared_plan.json' for p in policies
+                       if (directory/p/'declared_plan.json').is_file()),None)
+        if declared is None:continue
+        plan=read_json(declared)
+        terrains=list(plan['variants'])
+        variants=[f'{p}/{t}' for p in policies for t in terrains]
+        completed=[v for v in progress.get('completed',[]) if v in variants]
+        active=[v for v in progress.get('active',[]) if v in variants]
+        records=[];published=[]
+        for variant in completed:
+            path=directory/f'{variant}.json'
+            if path.is_file():
+                records.extend(read_json(path).get('records',[]));published.append(variant)
+        overall={p:record_summary([r for r in records if str(r['policy'])==p]) for p in policies}
+        conditions={g:{p:record_summary([r for r in records if str(r['policy'])==p and terrain_condition(r['terrain'])==g])
+                       for p in policies} for g in ('flat','rough','stairs_up','stairs_down')}
+        status=job['status'] if job['status'] in {'failed','cancelled','interrupted'} else progress['status']
+        started=datetime.fromisoformat(job['created']).timestamp()
+        updated=datetime.fromisoformat(progress['updated']).timestamp()
+        labels={p:('Parent 24650' if p=='24650' else 'A +'+str(int(p.rsplit('_',1)[1])-24650)
+                   if p.startswith('stairfixed_') else 'B +'+str(int(p.rsplit('_',1)[1])-24650)
+                   if p.startswith('stairadaptive_') else p) for p in policies}
+        items=[]
+        if status=='running':
+            for v in active:
+                actor,terrain=v.split('/',1)
+                item=active_variant(directory/actor,terrain,updated);item['terrain']=v;items.append(item)
+        decision_path=directory.parent/'pilot_decision.json'
+        return {'available':True,'status':status,'selection_name':job['id'],
+            'selection_title':'Текущее сравнение: '+' / '.join(labels.values()),'source':'current',
+            'policies':policies,'policy_labels':labels,'parent':'24650','seeds':len(plan['reset_seeds']),
+            'episodes_per_policy':comparison['episodes_per_actor'],
+            'episodes_total':comparison['episodes_per_actor']*len(policies),'episodes_recorded':len(records),
+            'variants_total':len(variants),'variants':variants,'completed':published,'active':items,
+            'variant_labels':{f'{p}/{t}':f'{labels[p]} · {t}' for p in policies for t in terrains},
+            'overall':overall,'conditions':conditions,'ranking':policies,'ranking_is_order':True,
+            'partial':len(published)!=len(variants),'automatic_selection':False,'qualification':False,
+            'hardware_approval':False,'updated_utc':progress['updated'],
+            'elapsed_seconds':max(0,(time.time() if status=='running' else updated)-started),
+            'batch_elapsed_seconds':max(0,time.time()-updated) if items else 0,'eta_seconds':None,
+            'failures':progress.get('failures',[]),'decision':read_json(decision_path) if decision_path.is_file() else None}
+    return None
+
+
+def selection_data(source='registry'):
+    if source=='current':
+        current=isolated_selection_data()
+        if current is not None:return current
+    result=registry_selection_data()
+    result.update(source='registry',selection_title='Сохранённое сравнение: 19999 / 24650 / rl_sar')
+    return result
+
+
+def registry_selection_data():
+    # The policy page represents the registry. Diagnostic job probes live in /jobs.
+    selected_path = evaluation_path()
+    if not selected_path.is_file():
+        return {"available": False, "status": "not_started"}
+    summary = read_json(selected_path)
+    if summary.get("schema") == "b2w_locomotion_results_v2":
+        plan = summary["plan"]
+        policies = list(map(str, plan["policies"]))
+        return {
+            "available": True, "status": "completed", "schema": summary["schema"],
+            "selection_name": "locomotion_v2_20260930", "policies": policies,
+            "parent": "24650", "seeds": len(plan["reset_seeds"]),
+            "episodes_per_policy": plan["episodes_per_policy"],
+            "episodes_total": plan["episodes_per_policy"] * len(policies),
+            "episodes_recorded": sum(value["episodes"] for value in summary["overall"].values()),
+            "variants_total": len(plan["variants"]), "variants": list(plan["variants"]),
+            "completed": list(plan["variants"]), "active": [],
+            "overall": summary["overall"], "ranking": summary["ranking"],
+            "conditions": {group: {policy: summary["conditions"][policy][group] for policy in policies}
+                           for group in plan["conditions"]},
+            "automatic_selection": False, "qualification": False, "hardware_approval": False,
+            "updated_utc": datetime.fromtimestamp(selected_path.stat().st_mtime, timezone.utc).isoformat(),
+        }
     live = latest_selection_directory()
     if live is not None:
         return live_selection_data(live)
-    if not SELECTED_EVIDENCE.is_file():
-        return {"available": False, "status": "not_started"}
-    summary = read_json(SELECTED_EVIDENCE)
     policy = str(summary["policy"])
     variants = list(summary["conditions"])
     return {
@@ -282,6 +391,10 @@ def selection_data():
 
 
 class Handler(BaseHTTPRequestHandler):
+    def valid_host(self):
+        return self.headers.get("Host") in {f"127.0.0.1:{self.server.server_port}",
+                                            f"localhost:{self.server.server_port}"}
+
     def send_data(self, body, content_type, status=200):
         self.send_response(status)
         self.send_header("Content-Type", content_type)
@@ -296,9 +409,18 @@ class Handler(BaseHTTPRequestHandler):
                        "application/json; charset=utf-8", status)
 
     def do_GET(self):
+        if not self.valid_host():
+            return self.json({"error": "Loopback Host required"}, 403)
         parsed = urlparse(self.path)
-        # Read-only service on loopback; do not expose project paths or log contents.
         try:
+            if parsed.path == "/api/health":
+                import hashlib
+                return self.json({"service": "b2w-dashboard-v2", "token": TOKEN, "pid": os.getpid(),
+                    "project": hashlib.sha256(str(ROOT).encode()).hexdigest()})
+            if parsed.path == "/api/jobs":
+                return self.json({"jobs": list_jobs()})
+            if parsed.path == "/api/job":
+                return self.json(job_details(parse_qs(parsed.query).get("id", [""])[0]))
             if parsed.path == "/api/runs":
                 return self.json({"runs": runs()})
             if parsed.path == "/api/run":
@@ -307,17 +429,23 @@ class Handler(BaseHTTPRequestHandler):
             if parsed.path == "/api/evaluation":
                 return self.json(evaluation_data())
             if parsed.path == "/api/selection":
-                return self.json(selection_data())
-            assets = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js", "/style.css": "style.css"}
+                source=parse_qs(parsed.query).get('source',['registry'])[0]
+                if source not in {'registry','current'}:return self.json({'error':'Unknown source'},400)
+                return self.json(selection_data(source))
+            assets = {"/": "index.html", "/index.html": "index.html", "/app.js": "app.js",
+                      "/jobs.js": "jobs.js", "/style.css": "style.css"}
             if parsed.path not in assets:
                 return self.json({"error": "Not found"}, 404)
             file = STATIC / assets[parsed.path]
             return self.send_data(file.read_bytes(), (mimetypes.guess_type(file.name)[0] or "text/plain") + "; charset=utf-8")
-        except KeyError:
+        except (KeyError, StopIteration):
             self.json({"error": "Запуск не найден"}, 404)
         except (OSError, ValueError) as error:
             print(f"Read failed: {type(error).__name__}: {error}", flush=True)
             self.json({"error": "Не удалось прочитать данные. Повторите обновление."}, 503)
+
+    def do_POST(self):
+        self.json({"error": "Dashboard is read-only. Use scripts/manage_runs.py."}, 405)
 
     def log_message(self, *_args):
         pass

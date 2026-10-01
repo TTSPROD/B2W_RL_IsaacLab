@@ -1,0 +1,27 @@
+{
+  "checked_utc": "2026-10-01T06:19:35.874722+00:00",
+  "job": "e6f8970e42a54854998f05dfefa718df",
+  "episodes": 180,
+  "decision_recomputed_equal": true,
+  "raw_and_captured_source_hashes_verified": true,
+  "candidate": "core_24650",
+  "files": {
+    "summary.json": {
+      "source": "logs/dashboard/jobs/e6f8970e42a54854998f05dfefa718df/evaluation/analysis/summary.json",
+      "sha256": "c0a16bca77d930055d123d90ca13fdae047ef8570e1b9f3e86bdb0de55f4009e"
+    },
+    "decision.json": {
+      "source": "logs/dashboard/jobs/e6f8970e42a54854998f05dfefa718df/pilot_decision.json",
+      "sha256": "01923fa5b7b0449a65d9bfe1d0cc185a3dc954cc230099ec43d002702ffb7bad"
+    },
+    "evaluation_resume.json": {
+      "source": "logs/dashboard/jobs/e6f8970e42a54854998f05dfefa718df/evaluation_resume.json",
+      "sha256": "d3b8af5434b8ebb21443ae9126f54514aaccd7691df26aae13cf910d7660888e"
+    },
+    "state.json": {
+      "source": "logs/dashboard/jobs/e6f8970e42a54854998f05dfefa718df/state.json",
+      "sha256": "9b8e754fa0fccc7a7154c387fc0d4b9db46ea34723b7b5ec1d06d3c8e796d640"
+    }
+  },
+  "raw_evidence_retained_locally": true
+}

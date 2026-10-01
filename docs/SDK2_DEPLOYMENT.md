@@ -1,9 +1,30 @@
 # Деплой B2W через Unitree SDK2
 
-Актуально на 29 сентября 2026. Готового проектного hardware runtime пока нет.
+Актуально на 30 сентября 2026. Готового проектного hardware runtime пока нет.
 Policy 24650 — development candidate. Этапы S0–S7 и их зависимости определены
 в [плане](PROJECT_PLAN.md). Названия будущих отчётов ниже обозначают планируемые
 результаты; таких hardware/transport проверок в проекте ещё не было.
+
+## Изменения плана после ревизии
+
+1. V2 screen выбирает кандидата разработки; даже успешная nominal validation
+   не закрывает actuator, transport и hardware gates.
+2. Официальный B2W example подтверждает разделение leg slots 0–11 и wheel
+   slots 12–15; порядок внутри групп, знаки, offsets и IMU transform проверяются
+   на целевом B2W. Конфигурация Go2W/G1 не заменяет эту проверку.
+3. Wheel LowCmd использует dq target, kp=0 и damping kd; q/tau и остальные поля
+   формируются согласно проверенному режиму. Gains из stand example не являются
+   согласованными gains нашего actor.
+4. Один policy runtime и один SDK2 mapper проходят offline→DDS MuJoCo→hardware.
+   Прямой Python viewer, обходящий DDS, не закрывает этот этап.
+5. Отдельно сохраняются измеренный operating envelope и открытые hardware поля.
+   [Шаблон deployment manifest](../configs/sdk2_deployment.template.json)
+   является спецификацией с null-полями и hardware_enabled=false, а не готовым
+   исполняемым конфигом. Он не даёт допуска к роботу.
+
+Основание пунктов 2–3: [официальный B2W stand example](https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/b2w/b2w_stand_example.cpp),
+включая цикл wheel slots 12–15. Проектные требования к verification описаны ниже;
+это не заявление о проведённых аппаратных испытаниях.
 
 ## Архитектура
 

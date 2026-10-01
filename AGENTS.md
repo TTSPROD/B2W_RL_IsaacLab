@@ -15,6 +15,14 @@
 Текущий development candidate — `policies/local/core_24650/`; сохранённый
 server ancestor — `policies/server/upstream_19999/`.
 
+Активная методика оценки — `docs/CORE_LOCOMOTION_EVALUATION.md` (v2).
+Обучение, evaluation и сравнение выполняет независимый supervisor
+(`scripts/job_manager.py`, `scripts/job_worker.py`). Запуск/остановка — через
+`scripts/manage_runs.py` или managed CLI entrypoints. Дашборд только читает
+состояние, логи и метрики; HTTP-сервер и браузер не нужны для выполнения jobs.
+`scripts/start_dashboard.ps1` открывает монитор. Закрытие дашборда не завершает run.
+Не восстанавливать закрытую relkernel-ветку как текущий план без нового решения.
+
 ## Инженерные правила
 
 - Сохранять ABI 57→16, порядок каналов, units, scales, previous-action semantics.

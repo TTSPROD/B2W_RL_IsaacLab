@@ -1,0 +1,12 @@
+{
+  "id": "e6f8970e42a54854998f05dfefa718df",
+  "kind": "Evaluate completed A/B 1350",
+  "entrypoint": "scripts/evaluate_stair_comparison_1350.py",
+  "arguments": [],
+  "status": "completed",
+  "created": "2026-09-30T20:20:43.689639+00:00",
+  "updated": "2026-09-30T20:40:25.979965+00:00",
+  "returncode": 0,
+  "worker_pid": 40804,
+  "process_pid": 40900
+}

@@ -43,6 +43,12 @@ New-Item -ItemType Directory -Force -Path $env:TEMP | Out-Null
 
 Push-Location $root
 try {
+    if (-not $env:B2W_JOB_DIR -and $PythonArgs.Count -ge 2 -and
+        $PythonArgs[0] -eq '-m' -and $PythonArgs[1] -eq 'unittest' -and
+        $PythonArgs.Count -eq 6 -and ($PythonArgs -join ' ') -eq '-m unittest discover -s tests -q') {
+        & $python dashboard/submit.py tests
+        exit $LASTEXITCODE
+    }
     & $python @PythonArgs
     exit $LASTEXITCODE
 }

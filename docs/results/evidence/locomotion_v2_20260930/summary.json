@@ -1,0 +1,7133 @@
+{
+  "schema": "b2w_locomotion_results_v2",
+  "plan": {
+    "schema": "b2w_locomotion_v2",
+    "policies": [
+      19999,
+      24650,
+      "rl_sar"
+    ],
+    "reset_seeds": [
+      73001,
+      73002,
+      73003,
+      73004,
+      73005
+    ],
+    "variants": {
+      "flat_mu_40": {
+        "condition": "flat",
+        "geometry": {
+          "name": "flat_mu_40",
+          "condition": "flat",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092801,
+          "start_height": 0.0,
+          "physical_edge_x": null,
+          "kind": "flat",
+          "friction": 0.4
+        },
+        "cases": [
+          {
+            "name": "stand",
+            "terrain": "flat_mu_40",
+            "segments": [
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "longitudinal",
+            "terrain": "flat_mu_40",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "lateral",
+            "terrain": "flat_mu_40",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "yaw",
+            "terrain": "flat_mu_40",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "mixed",
+            "terrain": "flat_mu_40",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.5,
+                  -0.5,
+                  -0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "flat_mu_100": {
+        "condition": "flat",
+        "geometry": {
+          "name": "flat_mu_100",
+          "condition": "flat",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092803,
+          "start_height": 0.0,
+          "physical_edge_x": null,
+          "kind": "flat",
+          "friction": 1.0
+        },
+        "cases": [
+          {
+            "name": "stand",
+            "terrain": "flat_mu_100",
+            "segments": [
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "longitudinal",
+            "terrain": "flat_mu_100",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "lateral",
+            "terrain": "flat_mu_100",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "yaw",
+            "terrain": "flat_mu_100",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "mixed",
+            "terrain": "flat_mu_100",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.5,
+                  -0.5,
+                  -0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "rough_02": {
+        "condition": "rough",
+        "geometry": {
+          "name": "rough_02",
+          "condition": "rough",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092804,
+          "start_height": 0.0,
+          "physical_edge_x": null,
+          "kind": "rough",
+          "friction": 1.0,
+          "cell_m": 0.25,
+          "height_min_m": -0.02,
+          "height_max_m": 0.02
+        },
+        "cases": [
+          {
+            "name": "stand",
+            "terrain": "rough_02",
+            "segments": [
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "longitudinal",
+            "terrain": "rough_02",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "lateral",
+            "terrain": "rough_02",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "yaw",
+            "terrain": "rough_02",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "mixed",
+            "terrain": "rough_02",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.5,
+                  -0.5,
+                  -0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "rough_10": {
+        "condition": "rough",
+        "geometry": {
+          "name": "rough_10",
+          "condition": "rough",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092806,
+          "start_height": 0.0,
+          "physical_edge_x": null,
+          "kind": "rough",
+          "friction": 1.0,
+          "cell_m": 0.25,
+          "height_min_m": -0.1,
+          "height_max_m": 0.1
+        },
+        "cases": [
+          {
+            "name": "stand",
+            "terrain": "rough_10",
+            "segments": [
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "longitudinal",
+            "terrain": "rough_10",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -1.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "lateral",
+            "terrain": "rough_10",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -1.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.7,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  -0.3,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "yaw",
+            "terrain": "rough_10",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -1.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.7
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  -0.3
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "mixed",
+            "terrain": "rough_10",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  0.5,
+                  0.5,
+                  0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 6.0,
+                "command": [
+                  -0.5,
+                  -0.5,
+                  -0.5
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "stairs_up_06": {
+        "condition": "stairs_up",
+        "geometry": {
+          "name": "stairs_up_06",
+          "condition": "stairs_up",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092807,
+          "start_height": 0.0,
+          "physical_edge_x": null,
+          "kind": "stairs",
+          "friction": 1.0,
+          "risers": 12,
+          "first_edge_x": 0.8,
+          "step_width": 0.3,
+          "last_edge_x": 4.1,
+          "step_height": 0.06,
+          "direction": 1
+        },
+        "cases": [
+          {
+            "name": "traverse_0.3",
+            "terrain": "stairs_up_06",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "traverse_0.7",
+            "terrain": "stairs_up_06",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "stop_restart_0.5",
+            "terrain": "stairs_up_06",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 4.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 16.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "stairs_up_18": {
+        "condition": "stairs_up",
+        "geometry": {
+          "name": "stairs_up_18",
+          "condition": "stairs_up",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092809,
+          "start_height": 0.0,
+          "physical_edge_x": null,
+          "kind": "stairs",
+          "friction": 1.0,
+          "risers": 12,
+          "first_edge_x": 0.8,
+          "step_width": 0.3,
+          "last_edge_x": 4.1,
+          "step_height": 0.18,
+          "direction": 1
+        },
+        "cases": [
+          {
+            "name": "traverse_0.3",
+            "terrain": "stairs_up_18",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "traverse_0.7",
+            "terrain": "stairs_up_18",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "stop_restart_0.5",
+            "terrain": "stairs_up_18",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 4.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 16.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "stairs_down_06": {
+        "condition": "stairs_down",
+        "geometry": {
+          "name": "stairs_down_06",
+          "condition": "stairs_down",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092810,
+          "start_height": 0.72,
+          "physical_edge_x": null,
+          "kind": "stairs",
+          "friction": 1.0,
+          "risers": 12,
+          "first_edge_x": 0.8,
+          "step_width": 0.3,
+          "last_edge_x": 4.1,
+          "step_height": 0.06,
+          "direction": -1
+        },
+        "cases": [
+          {
+            "name": "traverse_0.3",
+            "terrain": "stairs_down_06",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "traverse_0.7",
+            "terrain": "stairs_down_06",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "stop_restart_0.5",
+            "terrain": "stairs_down_06",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 4.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 16.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      },
+      "stairs_down_18": {
+        "condition": "stairs_down",
+        "geometry": {
+          "name": "stairs_down_18",
+          "condition": "stairs_down",
+          "size_m": [
+            80.0,
+            80.0
+          ],
+          "geometry_seed": 2026092812,
+          "start_height": 2.16,
+          "physical_edge_x": null,
+          "kind": "stairs",
+          "friction": 1.0,
+          "risers": 12,
+          "first_edge_x": 0.8,
+          "step_width": 0.3,
+          "last_edge_x": 4.1,
+          "step_height": 0.18,
+          "direction": -1
+        },
+        "cases": [
+          {
+            "name": "traverse_0.3",
+            "terrain": "stairs_down_18",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.3,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "traverse_0.7",
+            "terrain": "stairs_down_18",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 20.0,
+                "command": [
+                  0.7,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          },
+          {
+            "name": "stop_restart_0.5",
+            "terrain": "stairs_down_18",
+            "segments": [
+              {
+                "seconds": 2.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "initialization"
+              },
+              {
+                "seconds": 4.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 16.0,
+                "command": [
+                  0.5,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              },
+              {
+                "seconds": 12.0,
+                "command": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "kind": "constant"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "conditions": [
+      "flat",
+      "rough",
+      "stairs_up",
+      "stairs_down"
+    ],
+    "episodes_per_policy_condition": {
+      "flat": 50,
+      "rough": 50,
+      "stairs_up": 30,
+      "stairs_down": 30
+    },
+    "episodes_per_policy": 160,
+    "exports": {
+      "19999": {
+        "status": "passed",
+        "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+        "checkpoint": "policies/server/upstream_19999/upstream_model_19999.pt",
+        "checkpoint_sha256": "e2ff3b7b5543e008e30bd3981b0d639a650eb187ef1412d399ac6c26a9557dcc",
+        "checkpoint_iteration": 19999,
+        "agent_sha256": "3cbed68b68731d64d523e6235e9810135eab65d177640066c9ed0ca3e0c91f18",
+        "export": "policies/server/upstream_19999/export/policy.pt",
+        "export_sha256": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff",
+        "exporter_sha256": "9f58909058b969923921d1ea052f912eb1ae3f7ecbe3d947164c06b584737e16",
+        "fixture_and_random_count": 295,
+        "random_seed": 20260917,
+        "max_abs_error": 0.0,
+        "tolerance": 1e-05,
+        "normalizer": "Identity",
+        "network_dimensions": {
+          "actor_observations": 57,
+          "actions": 16,
+          "critic_observations": 247,
+          "std_actions": 16
+        },
+        "configured_obs_groups": {},
+        "resolved_obs_groups": {
+          "policy": [
+            "policy"
+          ],
+          "critic": [
+            "critic"
+          ]
+        },
+        "policy_quality_evaluated": false
+      },
+      "24650": {
+        "status": "passed",
+        "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+        "checkpoint": "policies/local/core_24650/model_24650.pt",
+        "checkpoint_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+        "checkpoint_iteration": 24650,
+        "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+        "export": "policies/local/core_24650/export/policy.pt",
+        "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+        "exporter_sha256": "9f58909058b969923921d1ea052f912eb1ae3f7ecbe3d947164c06b584737e16",
+        "fixture_and_random_count": 295,
+        "random_seed": 20260917,
+        "max_abs_error": 0.0,
+        "tolerance": 1e-05,
+        "normalizer": "Identity",
+        "network_dimensions": {
+          "actor_observations": 57,
+          "actions": 16,
+          "critic_observations": 247,
+          "std_actions": 16
+        },
+        "configured_obs_groups": {},
+        "resolved_obs_groups": {
+          "policy": [
+            "policy"
+          ],
+          "critic": [
+            "critic"
+          ]
+        },
+        "policy_quality_evaluated": false
+      },
+      "rl_sar": {
+        "policy_id": "rl_sar",
+        "label": "RL SAR · reference",
+        "source_kind": "upstream_torchscript",
+        "repository": "fan-ziqi/rl_sar",
+        "commit": "376d42c9b128f963ab08579762d5a216a976ce39",
+        "source_path": "vendor/rl_sar/policy/b2w/robot_lab/policy.pt",
+        "export_sha256": "38155076408e8eccb22690c6c5be14bd1dcb9149245ca5e493308a9f6ff93b34",
+        "git_blob_sha1": "707ff8638adc63a28a8762a841a94f76e79185f9",
+        "checkpoint_iteration": null,
+        "training_checkpoint_export_parity": false,
+        "evaluation_adapter": "Isaac Robot Lab observations, raw previous action and physical-target clipping; same as latest fullcycle test"
+      }
+    },
+    "gates": {
+      "observed_success_fraction": 0.95,
+      "one_sided_wilson95_lower": 0.9,
+      "unsafe_allowed": 0,
+      "flat_rough_rmse": [
+        0.2,
+        0.2,
+        0.25
+      ],
+      "response_fraction": 0.8,
+      "settling_s": 2.0,
+      "continuous_zero_s": 10.0,
+      "zero_vxy": 0.1,
+      "zero_wz": 0.1,
+      "stair_progress_ratio": 0.8,
+      "transition": "first full 1-s RMSE window within tolerance by 2 s",
+      "cell_screen": "all five trials pass; failures retained, no pooled qualification"
+    },
+    "excluded_from_acceptance": [
+      "blocks",
+      "slopes",
+      "cross_slopes",
+      "curbs",
+      "gaps",
+      "mixed_surface_transitions",
+      "route",
+      "waypoint",
+      "absolute_heading",
+      "lateral_or_yaw_commands_on_stairs"
+    ],
+    "actor_only": true,
+    "qualification": false,
+    "hardware_approval": false,
+    "stage": "screen",
+    "selection_only": true,
+    "automatic_selection": false,
+    "command_bounds": {
+      "vx_m_s": [
+        -1.0,
+        1.0
+      ],
+      "vy_m_s": [
+        -1.0,
+        1.0
+      ],
+      "wz_rad_s": [
+        -1.0,
+        1.0
+      ]
+    },
+    "command_provenance": {
+      "19999": "policies/server/upstream_19999/env.yaml",
+      "24650": "policies/local/core_24650/env.yaml",
+      "rl_sar": "user reports analogous robot_lab/train.py; exact run config unavailable"
+    },
+    "limitations": [
+      "nominal physics, no sensor noise or external pushes",
+      "five reset seeds are not independent training seeds",
+      "stair commands only forward 0.3/0.5/0.7, tread 0.30 m",
+      "sampled cells do not prove the continuous command/terrain envelope"
+    ],
+    "protocol_module": "locomotion_v2_protocol",
+    "source_sha256": {
+      "scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+      "scripts/locomotion_v2_validation_protocol.py": "2dbab5f17998754f6df0af51a853498b057a52f6b4f9d3f4642cfe5b854568f7",
+      "scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+      "scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+      "scripts/eval_fullcycle_terrain.py": "ebb1776775e11b7e7ba87024359c28f77db3dbe7929313ddcba0a0e6cd343f41",
+      "scripts/evaluation_policy.py": "d773de654f92315a24f3113dd5673d1ab4d5c60b201e30d678714032e7f47a6f",
+      "scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+      "scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+      "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+      "scripts/summarize_locomotion.py": "413d9fe56009899487d1da3ab33bfa8fafdff989c9459ccd152182be7f832ed3",
+      "scripts/run_core_locomotion_eval.py": "f4ed0f681ba9f5ac2d0a0b5aca9c901b92fd5b459c7e3b27eb09906b25b4a985",
+      "scripts/run_locomotion.py": "062cb54dc82094ae0eafd3e5f731f4722856a70ee04e249f8b40a82691a4a7ed",
+      "scripts/run_support.py": "a18af00508d280f6827703ce84e5cc186a52322399ec5bc9d6d609cd85d853a1"
+    },
+    "policy_map_sha256": "14deeb13c9a18ecc7efc3167164e461857ad093b13a6a033e2179dde257f26c3"
+  },
+  "runtime": {
+    "torch": "2.7.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU"
+  },
+  "compiled_model": {
+    "body_names": [
+      "base_link",
+      "FL_hip",
+      "FR_hip",
+      "RL_hip",
+      "RR_hip",
+      "FL_thigh",
+      "FR_thigh",
+      "RL_thigh",
+      "RR_thigh",
+      "FL_calf",
+      "FR_calf",
+      "RL_calf",
+      "RR_calf",
+      "FL_foot",
+      "FR_foot",
+      "RL_foot",
+      "RR_foot"
+    ],
+    "mass_kg": [
+      40.08949661254883,
+      2.6730000972747803,
+      2.6730000972747803,
+      2.6730000972747803,
+      2.6730000972747803,
+      4.535999774932861,
+      4.535999774932861,
+      4.535999774932861,
+      4.535999774932861,
+      2.290600061416626,
+      2.2905569076538086,
+      2.290600061416626,
+      2.290600061416626,
+      1.0829999446868896,
+      1.0829999446868896,
+      1.0829999446868896,
+      1.0829999446868896
+    ],
+    "hard_joint_ranges": [
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ]
+    ],
+    "joint_names": [
+      "FR_hip_joint",
+      "FR_thigh_joint",
+      "FR_calf_joint",
+      "FL_hip_joint",
+      "FL_thigh_joint",
+      "FL_calf_joint",
+      "RR_hip_joint",
+      "RR_thigh_joint",
+      "RR_calf_joint",
+      "RL_hip_joint",
+      "RL_thigh_joint",
+      "RL_calf_joint",
+      "FR_foot_joint",
+      "FL_foot_joint",
+      "RR_foot_joint",
+      "RL_foot_joint"
+    ],
+    "torque_semantics": "Isaac applied_torque: explicit legs; estimated implicit wheel PD torque"
+  },
+  "overall": {
+    "19999": {
+      "episodes": 160,
+      "success": 87,
+      "unsafe": 2,
+      "success_fraction": 0.54375,
+      "wilson95_one_sided_lower": 0.47878997700442594,
+      "pass": false,
+      "checks": {
+        "safety": {
+          "passed": 158,
+          "trials": 160
+        },
+        "completed": {
+          "passed": 158,
+          "trials": 160
+        },
+        "tracking": {
+          "passed": 48,
+          "trials": 100
+        },
+        "transitions": {
+          "passed": 84,
+          "trials": 100
+        },
+        "stop": {
+          "passed": 142,
+          "trials": 160
+        },
+        "traversal": {
+          "passed": 44,
+          "trials": 60
+        }
+      },
+      "outcomes": {
+        "success": 87,
+        "tracking_failure": 52,
+        "standstill_failure": 5,
+        "traversal_failure": 14,
+        "unsafe": 2
+      },
+      "response_ratio_min": -0.000658555703315263,
+      "actuators": {
+        "leg_saturation_fraction_max": 0.007119386637458927,
+        "wheel_saturation_fraction_max": 0.4704271631982475,
+        "saturation_streak_s_max": 3.575,
+        "measured_hardware_limits": false
+      }
+    },
+    "24650": {
+      "episodes": 160,
+      "success": 107,
+      "unsafe": 0,
+      "success_fraction": 0.66875,
+      "wilson95_one_sided_lower": 0.6051864886163324,
+      "pass": false,
+      "checks": {
+        "safety": {
+          "passed": 160,
+          "trials": 160
+        },
+        "completed": {
+          "passed": 160,
+          "trials": 160
+        },
+        "tracking": {
+          "passed": 60,
+          "trials": 100
+        },
+        "transitions": {
+          "passed": 97,
+          "trials": 100
+        },
+        "stop": {
+          "passed": 148,
+          "trials": 160
+        },
+        "traversal": {
+          "passed": 48,
+          "trials": 60
+        }
+      },
+      "outcomes": {
+        "success": 107,
+        "tracking_failure": 40,
+        "command_transition_failure": 1,
+        "traversal_failure": 12
+      },
+      "response_ratio_min": 0.04505114940305551,
+      "actuators": {
+        "leg_saturation_fraction_max": 0.0074,
+        "wheel_saturation_fraction_max": 0.13823529411764707,
+        "saturation_streak_s_max": 0.88,
+        "measured_hardware_limits": false
+      }
+    },
+    "rl_sar": {
+      "episodes": 160,
+      "success": 66,
+      "unsafe": 5,
+      "success_fraction": 0.4125,
+      "wilson95_one_sided_lower": 0.3504575766422407,
+      "pass": false,
+      "checks": {
+        "safety": {
+          "passed": 155,
+          "trials": 160
+        },
+        "completed": {
+          "passed": 155,
+          "trials": 160
+        },
+        "tracking": {
+          "passed": 46,
+          "trials": 100
+        },
+        "transitions": {
+          "passed": 73,
+          "trials": 100
+        },
+        "stop": {
+          "passed": 106,
+          "trials": 160
+        },
+        "traversal": {
+          "passed": 43,
+          "trials": 60
+        }
+      },
+      "outcomes": {
+        "success": 66,
+        "command_transition_failure": 3,
+        "tracking_failure": 54,
+        "standstill_failure": 20,
+        "traversal_failure": 12,
+        "unsafe": 5
+      },
+      "response_ratio_min": -0.009529107871154945,
+      "actuators": {
+        "leg_saturation_fraction_max": 0.01664932362122789,
+        "wheel_saturation_fraction_max": 0.5930882352941177,
+        "saturation_streak_s_max": 10.81,
+        "measured_hardware_limits": false
+      }
+    }
+  },
+  "conditions": {
+    "19999": {
+      "flat": {
+        "episodes": 50,
+        "success": 27,
+        "unsafe": 0,
+        "success_fraction": 0.54,
+        "wilson95_one_sided_lower": 0.425006956335285,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 50,
+            "trials": 50
+          },
+          "completed": {
+            "passed": 50,
+            "trials": 50
+          },
+          "tracking": {
+            "passed": 27,
+            "trials": 50
+          },
+          "transitions": {
+            "passed": 42,
+            "trials": 50
+          },
+          "stop": {
+            "passed": 48,
+            "trials": 50
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 27,
+          "tracking_failure": 23
+        },
+        "response_ratio_min": 0.27994178235530853,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0006,
+          "wheel_saturation_fraction_max": 0.0131,
+          "saturation_streak_s_max": 0.35000000000000003,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough": {
+        "episodes": 50,
+        "success": 21,
+        "unsafe": 0,
+        "success_fraction": 0.42,
+        "wilson95_one_sided_lower": 0.31220657143264496,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 50,
+            "trials": 50
+          },
+          "completed": {
+            "passed": 50,
+            "trials": 50
+          },
+          "tracking": {
+            "passed": 21,
+            "trials": 50
+          },
+          "transitions": {
+            "passed": 42,
+            "trials": 50
+          },
+          "stop": {
+            "passed": 47,
+            "trials": 50
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 21,
+          "tracking_failure": 29
+        },
+        "response_ratio_min": -0.000658555703315263,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0048,
+          "wheel_saturation_fraction_max": 0.06557692307692307,
+          "saturation_streak_s_max": 0.47500000000000003,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up": {
+        "episodes": 30,
+        "success": 14,
+        "unsafe": 2,
+        "success_fraction": 0.4666666666666667,
+        "wilson95_one_sided_lower": 0.3259084134126022,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 28,
+            "trials": 30
+          },
+          "completed": {
+            "passed": 28,
+            "trials": 30
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 17,
+            "trials": 30
+          },
+          "traversal": {
+            "passed": 19,
+            "trials": 30
+          }
+        },
+        "outcomes": {
+          "success": 14,
+          "standstill_failure": 5,
+          "traversal_failure": 9,
+          "unsafe": 2
+        },
+        "response_ratio_min": 0.3710248321294784,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.007119386637458927,
+          "wheel_saturation_fraction_max": 0.4704271631982475,
+          "saturation_streak_s_max": 3.575,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down": {
+        "episodes": 30,
+        "success": 25,
+        "unsafe": 0,
+        "success_fraction": 0.8333333333333334,
+        "wilson95_one_sided_lower": 0.6950795002394408,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 30,
+            "trials": 30
+          },
+          "completed": {
+            "passed": 30,
+            "trials": 30
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 30,
+            "trials": 30
+          },
+          "traversal": {
+            "passed": 25,
+            "trials": 30
+          }
+        },
+        "outcomes": {
+          "success": 25,
+          "traversal_failure": 5
+        },
+        "response_ratio_min": 0.7766513029734293,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0013235294117647058,
+          "wheel_saturation_fraction_max": 0.08663043478260869,
+          "saturation_streak_s_max": 0.27,
+          "measured_hardware_limits": false
+        }
+      }
+    },
+    "24650": {
+      "flat": {
+        "episodes": 50,
+        "success": 35,
+        "unsafe": 0,
+        "success_fraction": 0.7,
+        "wilson95_one_sided_lower": 0.5854003725969209,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 50,
+            "trials": 50
+          },
+          "completed": {
+            "passed": 50,
+            "trials": 50
+          },
+          "tracking": {
+            "passed": 35,
+            "trials": 50
+          },
+          "transitions": {
+            "passed": 50,
+            "trials": 50
+          },
+          "stop": {
+            "passed": 50,
+            "trials": 50
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 35,
+          "tracking_failure": 15
+        },
+        "response_ratio_min": 0.5549060801664989,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0015,
+          "wheel_saturation_fraction_max": 0.025576923076923077,
+          "saturation_streak_s_max": 0.395,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough": {
+        "episodes": 50,
+        "success": 24,
+        "unsafe": 0,
+        "success_fraction": 0.48,
+        "wilson95_one_sided_lower": 0.36782853117530667,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 50,
+            "trials": 50
+          },
+          "completed": {
+            "passed": 50,
+            "trials": 50
+          },
+          "tracking": {
+            "passed": 25,
+            "trials": 50
+          },
+          "transitions": {
+            "passed": 47,
+            "trials": 50
+          },
+          "stop": {
+            "passed": 47,
+            "trials": 50
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 24,
+          "tracking_failure": 25,
+          "command_transition_failure": 1
+        },
+        "response_ratio_min": 0.4007117201884588,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0074,
+          "wheel_saturation_fraction_max": 0.0821,
+          "saturation_streak_s_max": 0.8200000000000001,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up": {
+        "episodes": 30,
+        "success": 18,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.45058130794911516,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 30,
+            "trials": 30
+          },
+          "completed": {
+            "passed": 30,
+            "trials": 30
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 21,
+            "trials": 30
+          },
+          "traversal": {
+            "passed": 18,
+            "trials": 30
+          }
+        },
+        "outcomes": {
+          "success": 18,
+          "traversal_failure": 12
+        },
+        "response_ratio_min": 0.04505114940305551,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0022058823529411764,
+          "wheel_saturation_fraction_max": 0.13823529411764707,
+          "saturation_streak_s_max": 0.88,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down": {
+        "episodes": 30,
+        "success": 30,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.9172756918749005,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 30,
+            "trials": 30
+          },
+          "completed": {
+            "passed": 30,
+            "trials": 30
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 30,
+            "trials": 30
+          },
+          "traversal": {
+            "passed": 30,
+            "trials": 30
+          }
+        },
+        "outcomes": {
+          "success": 30
+        },
+        "response_ratio_min": 0.9266158938407898,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.006470588235294118,
+          "wheel_saturation_fraction_max": 0.01161764705882353,
+          "saturation_streak_s_max": 0.1,
+          "measured_hardware_limits": false
+        }
+      }
+    },
+    "rl_sar": {
+      "flat": {
+        "episodes": 50,
+        "success": 19,
+        "unsafe": 0,
+        "success_fraction": 0.38,
+        "wilson95_one_sided_lower": 0.27601442426720374,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 50,
+            "trials": 50
+          },
+          "completed": {
+            "passed": 50,
+            "trials": 50
+          },
+          "tracking": {
+            "passed": 25,
+            "trials": 50
+          },
+          "transitions": {
+            "passed": 34,
+            "trials": 50
+          },
+          "stop": {
+            "passed": 32,
+            "trials": 50
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 19,
+          "command_transition_failure": 3,
+          "tracking_failure": 25,
+          "standstill_failure": 3
+        },
+        "response_ratio_min": 0.155716377000014,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0032,
+          "wheel_saturation_fraction_max": 0.0225,
+          "saturation_streak_s_max": 0.385,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough": {
+        "episodes": 50,
+        "success": 17,
+        "unsafe": 0,
+        "success_fraction": 0.34,
+        "wilson95_one_sided_lower": 0.2405721217581345,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 50,
+            "trials": 50
+          },
+          "completed": {
+            "passed": 50,
+            "trials": 50
+          },
+          "tracking": {
+            "passed": 21,
+            "trials": 50
+          },
+          "transitions": {
+            "passed": 39,
+            "trials": 50
+          },
+          "stop": {
+            "passed": 36,
+            "trials": 50
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 17,
+          "tracking_failure": 29,
+          "standstill_failure": 4
+        },
+        "response_ratio_min": -0.009529107871154945,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0055,
+          "wheel_saturation_fraction_max": 0.169,
+          "saturation_streak_s_max": 7.5600000000000005,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up": {
+        "episodes": 30,
+        "success": 7,
+        "unsafe": 5,
+        "success_fraction": 0.23333333333333334,
+        "wilson95_one_sided_lower": 0.1317602445380376,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 25,
+            "trials": 30
+          },
+          "completed": {
+            "passed": 25,
+            "trials": 30
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 15,
+            "trials": 30
+          },
+          "traversal": {
+            "passed": 13,
+            "trials": 30
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 6,
+          "success": 7,
+          "traversal_failure": 12,
+          "unsafe": 5
+        },
+        "response_ratio_min": 0.13090838279042927,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.01664932362122789,
+          "wheel_saturation_fraction_max": 0.5930882352941177,
+          "saturation_streak_s_max": 10.81,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down": {
+        "episodes": 30,
+        "success": 23,
+        "unsafe": 0,
+        "success_fraction": 0.7666666666666667,
+        "wilson95_one_sided_lower": 0.620973946871318,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 30,
+            "trials": 30
+          },
+          "completed": {
+            "passed": 30,
+            "trials": 30
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 23,
+            "trials": 30
+          },
+          "traversal": {
+            "passed": 30,
+            "trials": 30
+          }
+        },
+        "outcomes": {
+          "success": 23,
+          "standstill_failure": 7
+        },
+        "response_ratio_min": 0.8428584933280945,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0027941176470588237,
+          "wheel_saturation_fraction_max": 0.0072058823529411765,
+          "saturation_streak_s_max": 0.095,
+          "measured_hardware_limits": false
+        }
+      }
+    }
+  },
+  "cells": {
+    "19999": {
+      "flat_mu_40/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/longitudinal": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 0,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 1,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 1,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 4,
+          "success": 1
+        },
+        "response_ratio_min": 0.7924531698226929,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0095,
+          "saturation_streak_s_max": 0.35000000000000003,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/lateral": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 3,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 2,
+          "success": 3
+        },
+        "response_ratio_min": 0.7929267485936483,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0013,
+          "saturation_streak_s_max": 0.015,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.570421467224757,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0003,
+          "wheel_saturation_fraction_max": 0.0019,
+          "saturation_streak_s_max": 0.015,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/mixed": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8973742127418516,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.008653846153846154,
+          "saturation_streak_s_max": 0.045,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/longitudinal": {
+        "episodes": 5,
+        "success": 2,
+        "unsafe": 0,
+        "success_fraction": 0.4,
+        "wilson95_one_sided_lower": 0.14270647201921313,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 2,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 3,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 3,
+          "success": 2
+        },
+        "response_ratio_min": 0.782494068145752,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0002,
+          "wheel_saturation_fraction_max": 0.0131,
+          "saturation_streak_s_max": 0.335,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/lateral": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 0,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 1,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 4,
+          "success": 1
+        },
+        "response_ratio_min": 0.7458493113517761,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0015,
+          "saturation_streak_s_max": 0.01,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 3,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.27994178235530853,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0006,
+          "wheel_saturation_fraction_max": 0.0047,
+          "saturation_streak_s_max": 0.08,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/mixed": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8254244327545166,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.010769230769230769,
+          "saturation_streak_s_max": 0.05,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/longitudinal": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8604872822761536,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0008,
+          "wheel_saturation_fraction_max": 0.0096,
+          "saturation_streak_s_max": 0.245,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.6886167327562968,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.003,
+          "saturation_streak_s_max": 0.04,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.394666666785876,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.001,
+          "wheel_saturation_fraction_max": 0.0026,
+          "saturation_streak_s_max": 0.015,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/mixed": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8492763340473173,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.001153846153846154,
+          "wheel_saturation_fraction_max": 0.014038461538461538,
+          "saturation_streak_s_max": 0.14,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/longitudinal": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 1,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.7525635361671448,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0048,
+          "wheel_saturation_fraction_max": 0.0641,
+          "saturation_streak_s_max": 0.47500000000000003,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 1,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": -0.000658555703315263,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0024,
+          "wheel_saturation_fraction_max": 0.0151,
+          "saturation_streak_s_max": 0.16,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.32478923598925274,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0042,
+          "wheel_saturation_fraction_max": 0.0104,
+          "saturation_streak_s_max": 0.2,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/mixed": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 0,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 1,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 4,
+          "success": 1
+        },
+        "response_ratio_min": 0.7063282430171965,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.003269230769230769,
+          "wheel_saturation_fraction_max": 0.06557692307692307,
+          "saturation_streak_s_max": 0.305,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9950903058052064,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.16397058823529412,
+          "saturation_streak_s_max": 0.715,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/traverse_0.7": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8940013817378454,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.08014705882352942,
+          "saturation_streak_s_max": 0.46,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 0,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 5
+        },
+        "response_ratio_min": 0.8822323083877563,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.2871739130434783,
+          "saturation_streak_s_max": 3.575,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/traverse_0.3": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 0,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "traversal_failure": 5
+        },
+        "response_ratio_min": 0.3710248321294784,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.000588235294117647,
+          "wheel_saturation_fraction_max": 0.38735294117647057,
+          "saturation_streak_s_max": 1.7850000000000001,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/traverse_0.7": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 1,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 4,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 4,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 1,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "unsafe": 1,
+          "success": 1,
+          "traversal_failure": 3
+        },
+        "response_ratio_min": 0.7808566093444825,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.007119386637458927,
+          "wheel_saturation_fraction_max": 0.4704271631982475,
+          "saturation_streak_s_max": 0.64,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 1,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 4,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 4,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 3,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 3,
+          "traversal_failure": 1,
+          "unsafe": 1
+        },
+        "response_ratio_min": 0.855323314666748,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.002173913043478261,
+          "wheel_saturation_fraction_max": 0.1519756838905775,
+          "saturation_streak_s_max": 0.9,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9092982610066731,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0058823529411764705,
+          "saturation_streak_s_max": 0.03,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/traverse_0.7": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9170499018260411,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.001176470588235294,
+          "saturation_streak_s_max": 0.01,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9376692175865173,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0009782608695652175,
+          "saturation_streak_s_max": 0.015,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/traverse_0.3": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "traversal_failure": 5
+        },
+        "response_ratio_min": 0.7766513029734293,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0002941176470588235,
+          "wheel_saturation_fraction_max": 0.008529411764705883,
+          "saturation_streak_s_max": 0.045,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/traverse_0.7": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9122117076601302,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0013235294117647058,
+          "wheel_saturation_fraction_max": 0.0026470588235294116,
+          "saturation_streak_s_max": 0.04,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8900854587554932,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0004347826086956522,
+          "wheel_saturation_fraction_max": 0.08663043478260869,
+          "saturation_streak_s_max": 0.27,
+          "measured_hardware_limits": false
+        }
+      }
+    },
+    "24650": {
+      "flat_mu_40/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/longitudinal": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8127438426017761,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0004,
+          "wheel_saturation_fraction_max": 0.0113,
+          "saturation_streak_s_max": 0.28,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/lateral": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8265135685602824,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0001,
+          "wheel_saturation_fraction_max": 0.0025,
+          "saturation_streak_s_max": 0.025,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.5930816630522411,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0027,
+          "saturation_streak_s_max": 0.015,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/mixed": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9125961065292356,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.015192307692307692,
+          "saturation_streak_s_max": 0.065,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0004166666666666667,
+          "saturation_streak_s_max": 0.005,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/longitudinal": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8227688074111938,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0015,
+          "wheel_saturation_fraction_max": 0.0156,
+          "saturation_streak_s_max": 0.395,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.6711280345916748,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0003,
+          "wheel_saturation_fraction_max": 0.006,
+          "saturation_streak_s_max": 0.055,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.5549060801664989,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0023,
+          "saturation_streak_s_max": 0.02,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/mixed": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8220603764057157,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0001923076923076923,
+          "wheel_saturation_fraction_max": 0.025576923076923077,
+          "saturation_streak_s_max": 0.21,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/longitudinal": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8760126431783041,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0025,
+          "wheel_saturation_fraction_max": 0.0103,
+          "saturation_streak_s_max": 0.39,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.6602274378140767,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0045,
+          "saturation_streak_s_max": 0.065,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.6566177308559418,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.002,
+          "saturation_streak_s_max": 0.03,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/mixed": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8447917997837064,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.012692307692307692,
+          "saturation_streak_s_max": 0.165,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/longitudinal": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 1,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 4,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 4,
+          "command_transition_failure": 1
+        },
+        "response_ratio_min": 0.7838972906271616,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0074,
+          "wheel_saturation_fraction_max": 0.0821,
+          "saturation_streak_s_max": 0.8200000000000001,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 3,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.4007117201884588,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0011,
+          "wheel_saturation_fraction_max": 0.032,
+          "saturation_streak_s_max": 0.225,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.5932153264681499,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0179,
+          "saturation_streak_s_max": 0.275,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/mixed": {
+        "episodes": 5,
+        "success": 4,
+        "unsafe": 0,
+        "success_fraction": 0.8,
+        "wilson95_one_sided_lower": 0.4352925534215433,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 4,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 1,
+          "success": 4
+        },
+        "response_ratio_min": 0.730119615793228,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.003269230769230769,
+          "wheel_saturation_fraction_max": 0.06519230769230769,
+          "saturation_streak_s_max": 0.225,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9004927674929302,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.12338235294117647,
+          "saturation_streak_s_max": 0.585,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/traverse_0.7": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9250413519995554,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.00014705882352941175,
+          "wheel_saturation_fraction_max": 0.03985294117647059,
+          "saturation_streak_s_max": 0.26,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9159201979637146,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.04434782608695652,
+          "saturation_streak_s_max": 0.455,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/traverse_0.3": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 0,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 1,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 1,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "traversal_failure": 4,
+          "success": 1
+        },
+        "response_ratio_min": 0.04505114940305551,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0008823529411764706,
+          "wheel_saturation_fraction_max": 0.13823529411764707,
+          "saturation_streak_s_max": 0.88,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/traverse_0.7": {
+        "episodes": 5,
+        "success": 2,
+        "unsafe": 0,
+        "success_fraction": 0.4,
+        "wilson95_one_sided_lower": 0.14270647201921313,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 2,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 2,
+          "traversal_failure": 3
+        },
+        "response_ratio_min": 0.8885350397654942,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0022058823529411764,
+          "wheel_saturation_fraction_max": 0.11823529411764706,
+          "saturation_streak_s_max": 0.34,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 0,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "traversal_failure": 5
+        },
+        "response_ratio_min": 0.8373429775238037,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0005434782608695652,
+          "wheel_saturation_fraction_max": 0.1108695652173913,
+          "saturation_streak_s_max": 0.365,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.949041247367859,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.008970588235294117,
+          "saturation_streak_s_max": 0.06,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/traverse_0.7": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9341485159737724,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0008823529411764706,
+          "saturation_streak_s_max": 0.005,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9692860245704651,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0017391304347826088,
+          "saturation_streak_s_max": 0.03,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 1.0215299328168235,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.006470588235294118,
+          "wheel_saturation_fraction_max": 0.01161764705882353,
+          "saturation_streak_s_max": 0.1,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/traverse_0.7": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9350005217960904,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.001176470588235294,
+          "wheel_saturation_fraction_max": 0.001176470588235294,
+          "saturation_streak_s_max": 0.025,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9266158938407898,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0008695652173913044,
+          "wheel_saturation_fraction_max": 0.0009782608695652175,
+          "saturation_streak_s_max": 0.025,
+          "measured_hardware_limits": false
+        }
+      }
+    },
+    "rl_sar": {
+      "flat_mu_40/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0004166666666666667,
+          "saturation_streak_s_max": 0.005,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/longitudinal": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 0,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 3,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 1,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 2,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "command_transition_failure": 2,
+          "tracking_failure": 2,
+          "success": 1
+        },
+        "response_ratio_min": 0.791948139667511,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0015,
+          "wheel_saturation_fraction_max": 0.0113,
+          "saturation_streak_s_max": 0.3,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 2,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.7217345635096232,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0006,
+          "wheel_saturation_fraction_max": 0.0077,
+          "saturation_streak_s_max": 0.06,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 1,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.3078206131855647,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0066,
+          "saturation_streak_s_max": 0.045,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_40/mixed": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 2,
+          "success": 3
+        },
+        "response_ratio_min": 0.8596764504909513,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0007692307692307692,
+          "wheel_saturation_fraction_max": 0.019615384615384614,
+          "saturation_streak_s_max": 0.075,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/longitudinal": {
+        "episodes": 5,
+        "success": 2,
+        "unsafe": 0,
+        "success_fraction": 0.4,
+        "wilson95_one_sided_lower": 0.14270647201921313,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 3,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 3,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 2,
+          "command_transition_failure": 1,
+          "success": 2
+        },
+        "response_ratio_min": 0.8042177557945251,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0032,
+          "wheel_saturation_fraction_max": 0.0182,
+          "saturation_streak_s_max": 0.385,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 4,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.5866430699825287,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0021,
+          "wheel_saturation_fraction_max": 0.007,
+          "saturation_streak_s_max": 0.04,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 1,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.155716377000014,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0001,
+          "wheel_saturation_fraction_max": 0.0041,
+          "saturation_streak_s_max": 0.035,
+          "measured_hardware_limits": false
+        }
+      },
+      "flat_mu_100/mixed": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 4,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 4,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 3,
+          "tracking_failure": 1,
+          "standstill_failure": 1
+        },
+        "response_ratio_min": 0.8081795573234556,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0019230769230769232,
+          "wheel_saturation_fraction_max": 0.0225,
+          "saturation_streak_s_max": 0.105,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/stand": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/longitudinal": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8641597628593445,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0043,
+          "wheel_saturation_fraction_max": 0.0122,
+          "saturation_streak_s_max": 0.375,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 4,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.5637051661809285,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0011,
+          "wheel_saturation_fraction_max": 0.0072,
+          "saturation_streak_s_max": 0.035,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.25665491819381714,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0042,
+          "saturation_streak_s_max": 0.05,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_02/mixed": {
+        "episodes": 5,
+        "success": 4,
+        "unsafe": 0,
+        "success_fraction": 0.8,
+        "wilson95_one_sided_lower": 0.4352925534215433,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 4,
+          "standstill_failure": 1
+        },
+        "response_ratio_min": 0.8527977764606474,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.001153846153846154,
+          "wheel_saturation_fraction_max": 0.01423076923076923,
+          "saturation_streak_s_max": 0.105,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/stand": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 5,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "success": 3,
+          "standstill_failure": 2
+        },
+        "response_ratio_min": null,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0,
+          "saturation_streak_s_max": 0.0,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/longitudinal": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 1,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.6688070893287659,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0055,
+          "wheel_saturation_fraction_max": 0.0593,
+          "saturation_streak_s_max": 0.42,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/lateral": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 1,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": -0.009529107871154945,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0028,
+          "wheel_saturation_fraction_max": 0.169,
+          "saturation_streak_s_max": 7.5600000000000005,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/yaw": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 5,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "tracking_failure": 5
+        },
+        "response_ratio_min": 0.28010666370391846,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0074,
+          "saturation_streak_s_max": 0.08,
+          "measured_hardware_limits": false
+        }
+      },
+      "rough_10/mixed": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 1,
+            "trials": 5
+          },
+          "transitions": {
+            "passed": 3,
+            "trials": 5
+          },
+          "stop": {
+            "passed": 1,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 0
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 1,
+          "tracking_failure": 4
+        },
+        "response_ratio_min": 0.6764553934335708,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.004807692307692308,
+          "wheel_saturation_fraction_max": 0.05307692307692308,
+          "saturation_streak_s_max": 0.225,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/traverse_0.3": {
+        "episodes": 5,
+        "success": 4,
+        "unsafe": 0,
+        "success_fraction": 0.8,
+        "wilson95_one_sided_lower": 0.4352925534215433,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 1,
+          "success": 4
+        },
+        "response_ratio_min": 1.0589216152826944,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.18676470588235294,
+          "saturation_streak_s_max": 0.77,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/traverse_0.7": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 3,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 3,
+          "traversal_failure": 2
+        },
+        "response_ratio_min": 0.8703371456691198,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.000588235294117647,
+          "wheel_saturation_fraction_max": 0.06970588235294117,
+          "saturation_streak_s_max": 0.395,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_06/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 0,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 0,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 5
+        },
+        "response_ratio_min": 0.7963749766349792,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0002173913043478261,
+          "wheel_saturation_fraction_max": 0.2597826086956522,
+          "saturation_streak_s_max": 5.215,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/traverse_0.3": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 1,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 4,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 4,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 2,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "traversal_failure": 4,
+          "unsafe": 1
+        },
+        "response_ratio_min": 0.5435459812482198,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0013235294117647058,
+          "wheel_saturation_fraction_max": 0.5930882352941177,
+          "saturation_streak_s_max": 1.455,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/traverse_0.7": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 3,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 2,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 2,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 2,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "unsafe": 3,
+          "traversal_failure": 2
+        },
+        "response_ratio_min": 0.13090838279042927,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.01664932362122789,
+          "wheel_saturation_fraction_max": 0.32830385015608743,
+          "saturation_streak_s_max": 0.405,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_up_18/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 0,
+        "unsafe": 1,
+        "success_fraction": 0.0,
+        "wilson95_one_sided_lower": -3.602027005749625e-17,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 4,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 4,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 2,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 0,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "unsafe": 1,
+          "traversal_failure": 4
+        },
+        "response_ratio_min": 0.5617982149124146,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0014130434782608696,
+          "wheel_saturation_fraction_max": 0.3615217391304348,
+          "saturation_streak_s_max": 10.81,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.9475288788477579,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.000588235294117647,
+          "saturation_streak_s_max": 0.01,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/traverse_0.7": {
+        "episodes": 5,
+        "success": 3,
+        "unsafe": 0,
+        "success_fraction": 0.6,
+        "wilson95_one_sided_lower": 0.2724831718661929,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 3,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 2,
+          "success": 3
+        },
+        "response_ratio_min": 0.8870456048420499,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0008823529411764706,
+          "saturation_streak_s_max": 0.01,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_06/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 0.8428584933280945,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0,
+          "wheel_saturation_fraction_max": 0.0007608695652173913,
+          "saturation_streak_s_max": 0.01,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/traverse_0.3": {
+        "episodes": 5,
+        "success": 5,
+        "unsafe": 0,
+        "success_fraction": 1.0,
+        "wilson95_one_sided_lower": 0.648883499234899,
+        "pass": true,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 5,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 5
+        },
+        "response_ratio_min": 1.0597079992294312,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0027941176470588237,
+          "wheel_saturation_fraction_max": 0.0072058823529411765,
+          "saturation_streak_s_max": 0.065,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/traverse_0.7": {
+        "episodes": 5,
+        "success": 4,
+        "unsafe": 0,
+        "success_fraction": 0.8,
+        "wilson95_one_sided_lower": 0.4352925534215433,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 4,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "success": 4,
+          "standstill_failure": 1
+        },
+        "response_ratio_min": 0.9100745405469622,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0025,
+          "wheel_saturation_fraction_max": 0.002352941176470588,
+          "saturation_streak_s_max": 0.045,
+          "measured_hardware_limits": false
+        }
+      },
+      "stairs_down_18/stop_restart_0.5": {
+        "episodes": 5,
+        "success": 1,
+        "unsafe": 0,
+        "success_fraction": 0.2,
+        "wilson95_one_sided_lower": 0.04596245388060397,
+        "pass": false,
+        "checks": {
+          "safety": {
+            "passed": 5,
+            "trials": 5
+          },
+          "completed": {
+            "passed": 5,
+            "trials": 5
+          },
+          "tracking": {
+            "passed": 0,
+            "trials": 0
+          },
+          "transitions": {
+            "passed": 0,
+            "trials": 0
+          },
+          "stop": {
+            "passed": 1,
+            "trials": 5
+          },
+          "traversal": {
+            "passed": 5,
+            "trials": 5
+          }
+        },
+        "outcomes": {
+          "standstill_failure": 4,
+          "success": 1
+        },
+        "response_ratio_min": 0.9362480044364929,
+        "actuators": {
+          "leg_saturation_fraction_max": 0.0020652173913043477,
+          "wheel_saturation_fraction_max": 0.0033695652173913043,
+          "saturation_streak_s_max": 0.095,
+          "measured_hardware_limits": false
+        }
+      }
+    }
+  },
+  "ranking": [
+    "24650",
+    "19999",
+    "rl_sar"
+  ],
+  "paired_vs_24650": {
+    "19999": {
+      "wins": 5,
+      "losses": 25,
+      "ties": 130
+    },
+    "24650": {
+      "wins": 0,
+      "losses": 0,
+      "ties": 160
+    },
+    "rl_sar": {
+      "wins": 0,
+      "losses": 41,
+      "ties": 119
+    }
+  },
+  "candidate_recommendation": "24650",
+  "all_cells_pass": {
+    "19999": false,
+    "24650": false,
+    "rl_sar": false
+  },
+  "qualification": false,
+  "hardware_approval": false,
+  "input_sha256": {
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/declared_plan.json": "45d904141041736ebbc0fdbe202b8e07030b970d0ddd71d757cb7887238b4295",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/policy_map.json": "14deeb13c9a18ecc7efc3167164e461857ad093b13a6a033e2179dde257f26c3",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/flat_mu_40.json": "2a70da51a23c8b57517566dfb19d206c2b6b1484db80fc7f43e07afde818ba8b",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/flat_mu_40.npz": "609f475365c70a1c829bebab6b99e4e082841eda08f76ba355b19efa16ec6cd5",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/flat_mu_100.json": "b292115a506e8603261571b0296a21d1fc7e3b1126a4727847ac6d04c361bd90",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/flat_mu_100.npz": "74feac4b4c821ce724c27a51b46358db415c32038da214bf8c71246dbc41a681",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/rough_02.json": "64c50e2ae2e8c29633c897d4b905d0e79babbd96b53a9efa273d57d9b7812fae",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/rough_02.npz": "48c01e272f4844d17d6c1d3332340e3be598976f033e0845944697474ea1a55b",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/rough_10.json": "677923459a6b6421f8643b9fc1c25d384dd634debe365f17393b1320c0cac02b",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/rough_10.npz": "e621bd66edaee3a337ad317163af1bae97191cc546edb7fdab9c4194497fe334",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_up_06.json": "3422e5b5f63bcc9e022f34bd6d3918a975dabff58038d485f98ffb450b1307bb",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_up_06.npz": "c97d6bfb766259209c0afc3522ea0992e970e0ed44caee3fa3794995a234f3be",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_up_18.json": "017b31fb4e8959a4b4609e7934368121448afe7b9d116f992a9c5cffe15d606e",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_up_18.npz": "336264ea4ba85772001b0021961a34f6a9e5a84d4d336e37771f80307d129c5a",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_down_06.json": "59e355cb9f2c0ca5641b5689adce916029a22b9494158e37a4a32e6b74d8d96e",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_down_06.npz": "7cf9b5d0c6921eb2b8ba2ff57378b4d4024191f1869c469afc16172b8acc38d7",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_down_18.json": "6124b92287f8ceb802dc6ec67cd6fcbfe2eabb2c69d9986f64570d25bf45f614",
+    "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/stairs_down_18.npz": "c5ed8871c88299faa507236e89e0b7edb528eaab428885771b6003dc72f33897"
+  },
+  "statistical_note": "Intervals describe reset variability within cells, not training-seed uncertainty; pooled intervals are descriptive only.",
+  "publication": {
+    "date": "2026-09-30",
+    "source_raw_summary": "logs/dashboard/jobs/6d5e7918ea824e8893e752976b5b65a0/evaluation/analysis/summary.json",
+    "source_raw_summary_sha256": "bec171f74be0b6fe89b999fa4607a1152a6ed77c27f20a53f0b8ef4f86b92153",
+    "decision": "retain core_24650 as development candidate",
+    "independent_validation_run": false,
+    "reason_no_validation": "All policies fail screen cells; no need to confirm an already failed envelope",
+    "reference_training_origin": "Owner reports rl_sar was trained with analogous robot_lab/train.py; exact run config unavailable"
+  }
+}

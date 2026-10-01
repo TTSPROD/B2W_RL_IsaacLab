@@ -62,14 +62,14 @@ function chart(tag) {
 function renderHeading() {
  if (!data) return;
  const p=data.progress, m=data.manifest;
- const labels={running:'Обучение идёт',completed:'Завершено',failed:'Ошибка запуска',stale:'Нет свежих данных',initializing:'Инициализация'};
+ const labels={running:'Обучение идёт',completed:'Завершено',failed:'Ошибка запуска',cancelled:'Остановлено',stale:'Нет свежих данных',initializing:'Инициализация'};
  $('runStatus').className=`status ${data.status}`;
  $('runStatus').textContent=labels[data.status] || data.status;
  const isSelection=currentView==='selection';
  $('pageTitle').textContent=isSelection?'Оценка checkpoint’ов':`${m.parent_iteration} → ${m.parent_iteration+m.additional_updates}`;
  $('pageEyebrow').textContent=isSelection?'CORE LOCOMOTION · LIVE':'ЛОКАЛЬНОЕ ДООБУЧЕНИЕ';
  $('pageSubtitle').textContent=isSelection?`${selection?.selection_name||'Текущий selection'} · ${integer(selection?.policies?.length)} policy · ${integer(selection?.seeds)} paired seeds · ${integer(selection?.episodes_total)} эпизодов`:`${m.gpu.replace('NVIDIA GeForce ','').replace('NVIDIA ','').replace(' GPU','')} · ${integer(m.num_envs)} сред · Seed ${m.seed}`;
- if(isSelection){const selectionLabels={completed:'Оценка завершена',running:'Оценка идёт',failed:'Ошибка оценки',stopped:'Остановлено'};$('runStatus').className=`status ${selection?.status||'initializing'}`;$('runStatus').textContent=selectionLabels[selection?.status]||'Ожидание данных';}
+ if(isSelection){const selectionLabels={completed:'Оценка завершена',running:'Оценка идёт',failed:'Ошибка оценки',cancelled:'Остановлено',stopped:'Остановлено'};$('runStatus').className=`status ${selection?.status||'initializing'}`;$('runStatus').textContent=selectionLabels[selection?.status]||'Ожидание данных';}
  $('runStatus').hidden=false;
  document.querySelector('.toolbar').hidden=isSelection;
  $('lastUpdate').textContent=isSelection?`Монитор · ${selection?.updated_utc?date(selection.updated_utc):'—'}`:`Запись в логе · ${date(p.updated_utc || m.created_utc)}`;
@@ -108,22 +108,27 @@ function renderCheckpoints() {
 
 function renderSelection() {
  if(!selection?.available){$('selectionNotice').textContent='Selection ещё не подготовлен.';return;}
+ $('selectionTitle').textContent=selection.selection_title||'Оценка policy';
  const done=selection.completed.length,total=selection.variants_total,percent=100*done/total;
- const running=selection.status==='running', failed=selection.status==='failed', stopped=selection.status==='stopped';
+ const running=selection.status==='running', failed=selection.status==='failed', stopped=['stopped','cancelled','interrupted'].includes(selection.status);
  $('selectionNotice').className=`alert${failed?' error':''}`;
- $('selectionNotice').textContent=failed?'Оценка остановлена с ошибкой. Готовые batch сохранены.':stopped?'Оценка остановлена пользователем. Готовые результаты сохранены; незавершённый batch не учитывается.':running?'Оценка выполняется локально. Страница обновляется автоматически; автоматическое продвижение policy отключено.':'Оценка завершена. Рейтинг остаётся selection-only и не даёт hardware approval.';
+ $('selectionNotice').textContent=failed?'Оценка остановлена с ошибкой. Готовые batch сохранены.':stopped?'Оценка прервана. Готовые результаты сохранены; незавершённый прогон не учитывается.':running?'Оценка выполняется. Показаны только завершённые прогоны; пока покрытие policies различается, их общий успех сравнивать рано.':'Оценка завершена. Результаты не меняют кандидата автоматически и не дают допуска к реальному роботу.';
  const timeValue=running?(selection.eta_seconds==null?duration(selection.batch_elapsed_seconds):duration(selection.eta_seconds)):duration(selection.elapsed_seconds);
- const timeDetail=running?(selection.eta_seconds==null?'Текущий batch · ETA после первого завершённого batch':'Расчётный ETA по готовым batch'):'Полная длительность оценки';
- $('selectionStats').innerHTML=stat('Условия',`${done} <small>/ ${total}</small>`,`${percent.toFixed(1)}%`, `<div class="progress-track"><span style="width:${percent}%"></span></div>`)+stat('Эпизоды',`${integer(selection.episodes_recorded)} <small>/ ${integer(selection.episodes_total)}</small>`,'Атомарно сохранённые результаты')+stat('Policy',integer(selection.policies.length),selection.policies.join(' · '))+stat(running?'Осталось / batch':'Длительность',timeValue,timeDetail);
+ const timeDetail=running?(selection.eta_seconds==null?'Длительность текущего прогона':'Расчётный ETA по готовым batch'):'Полная длительность оценки';
+ $('selectionStats').innerHTML=stat('Условия',`${done} <small>/ ${total}</small>`,`${percent.toFixed(1)}%`, `<div class="progress-track"><span style="width:${percent}%"></span></div>`)+stat('Эпизоды',`${integer(selection.episodes_recorded)} <small>/ ${integer(selection.episodes_total)}</small>`,'Атомарно сохранённые результаты')+stat('Policy',integer(selection.policies.length),selection.policies.map(p=>selection.policy_labels?.[p]||p).join(' · '))+stat(running?'Осталось / batch':'Длительность',timeValue,timeDetail);
  const completed=new Set(selection.completed),active=new Map(selection.active.map(item=>[item.terrain,item]));
- $('selectionVariants').innerHTML=selection.variants.map(name=>{const item=active.get(name),state=completed.has(name)?'done':item?'active':'pending';let detail='ожидание';if(completed.has(name))detail='готово';else if(item)detail=item.step==null?`идёт · ${duration(item.elapsed_seconds)}`:`${integer(item.step)}/${integer(item.total)} · alive ${integer(item.alive)}/${integer(item.envs)}`;return `<article class="variant-pill ${state}"><span>${escapeHtml(terrainNames[name]||name)}</span><strong>${detail}</strong></article>`;}).join('');
- $('selectionUpdated').textContent=selection.updated_utc?`Batch начат ${date(selection.updated_utc)}`:'—';
- $('selectionRanking').innerHTML=selection.ranking.map((policy,index)=>{const value=selection.overall[policy],fraction=value.episodes?100*value.success/value.episodes:0;const note=selection.status==='completed'&&index===0?'лидер':'предварительно';return `<tr><td>${index+1}</td><td><strong>${policy}</strong><small>${note}</small></td><td>${integer(value.episodes)}</td><td>${integer(value.success)}</td><td>${value.episodes?fraction.toFixed(1)+'%':'—'}</td><td class="${value.unsafe?'negative':'neutral'}">${integer(value.unsafe)}</td></tr>`;}).join('');
+ $('selectionVariants').innerHTML=selection.variants.map(name=>{const item=active.get(name),state=completed.has(name)?'done':item?'active':'pending';let detail='ожидание';if(completed.has(name))detail='готово';else if(item)detail=item.step==null?`идёт · ${duration(item.elapsed_seconds)}`:`${integer(item.step)}/${integer(item.total)} · alive ${integer(item.alive)}/${integer(item.envs)}`;return `<article class="variant-pill ${state}"><span>${escapeHtml(selection.variant_labels?.[name]||terrainNames[name]||name)}</span><strong>${detail}</strong></article>`;}).join('');
+ $('selectionUpdated').textContent=selection.updated_utc?`Прогресс записан ${date(selection.updated_utc)}`:'—';
+ $('selectionRanking').innerHTML=selection.ranking.map((policy,index)=>{const value=selection.overall[policy],fraction=value.episodes?100*value.success/value.episodes:0;const note=selection.ranking_is_order?(value.episodes===selection.episodes_per_policy?'готово':value.episodes?'неполные данные':'ожидание'):(selection.status==='completed'&&index===0?'лидер':'предварительно');return `<tr><td>${index+1}</td><td><strong>${escapeHtml(selection.policy_labels?.[policy]||policy)}</strong><small>${escapeHtml(policy)} · ${note}</small></td><td>${integer(value.episodes)}</td><td>${integer(value.success)}</td><td>${value.episodes?fraction.toFixed(1)+'%':'—'}</td><td class="${value.unsafe?'negative':'neutral'}">${integer(value.unsafe)}</td></tr>`;}).join('');
  const cell=(policy,group)=>{const value=selection.conditions[group][policy];return value.episodes?`${value.success}/${value.episodes}<small>unsafe ${value.unsafe}</small>`:'—';};
- $('selectionConditions').innerHTML=selection.ranking.map(policy=>`<tr><td><strong>${policy}</strong></td><td>${cell(policy,'flat')}</td><td>${cell(policy,'rough')}</td><td>${cell(policy,'stairs_up')}</td><td>${cell(policy,'stairs_down')}</td></tr>`).join('');
+ const decision=selection.decision;
+ $('selectionDecision').hidden=!decision;
+ if(decision) $('selectionDecision').textContent=decision.selected?`Результат: ${decision.selected} требует дальнейшего подтверждения. Кандидат остаётся core_24650.`:'Критерии продвижения не выполнены. Кандидат остаётся core_24650.';
+ $('selectionConditions').innerHTML=selection.ranking.map(policy=>`<tr><td><strong>${escapeHtml(selection.policy_labels?.[policy]||policy)}</strong></td><td>${cell(policy,'flat')}</td><td>${cell(policy,'rough')}</td><td>${cell(policy,'stairs_up')}</td><td>${cell(policy,'stairs_down')}</td></tr>`).join('');
 }
 
 function render() {
+ if(currentView==='jobs') return;
  renderHeading();
  if (currentView==='overview') renderOverview();
  if (currentView==='metrics') renderMetrics();
@@ -137,6 +142,12 @@ function syncRuns(runs) {
  $('runSelect').value=selectedRun;
 }
 async function loadRun() {
+ if(currentView==='jobs') { if(window.refreshJobs) await window.refreshJobs(); return; }
+ if(currentView==='selection') {
+  try {await loadSelection();renderSelection();showError('');$('connection').textContent='Подключено локально';$('connectionDot').style.background='var(--mint)';}
+  catch(error) {showError('Не удалось прочитать сравнение. Повторите обновление.');}
+  return;
+ }
  if (!selectedRun || busy) return;
  busy=true; $('refresh').disabled=true;
  let requestedRun=selectedRun;
@@ -152,7 +163,7 @@ async function loadRun() {
   if (groups.includes(previous)) $('metricGroup').value=previous;
   $('connection').textContent=data.status==='stale'?'Логи не обновляются':'Подключено локально';
   $('connectionDot').style.background=data.status==='stale'?'var(--amber)':'var(--mint)';
-  showError('');render();
+  showError(data.metrics_warning||'');render();
  } catch(error) { showError('Не удалось обновить данные. Последний полученный снимок сохранён. Проверьте локальный сервер и нажмите «Обновить».'); $('connection').textContent='Нет соединения'; $('connectionDot').style.background='var(--red)'; }
  finally { busy=false; $('refresh').disabled=false; if (requestedRun!==selectedRun) loadRun(); }
 }
@@ -161,18 +172,24 @@ async function changeView(view) {
  document.querySelectorAll('.view').forEach(section=>section.hidden=section.id!==view);
  document.querySelectorAll('.nav').forEach(button=>{button.classList.toggle('active',button.dataset.view===view);button.setAttribute('aria-current',button.dataset.view===view?'page':'false');});
  $('tooltip').hidden=true;
+ document.querySelector('.page-heading').hidden=['jobs','selection'].includes(view);
+ document.querySelector('.toolbar').hidden=['jobs','selection'].includes(view);
+ if(view==='jobs') {showError(''); if(window.refreshJobs) await window.refreshJobs(); return;}
  if (view==='selection') {
   try { await loadSelection(); }
   catch(error) { showError('Не удалось прочитать checkpoint selection. Evaluation продолжает работать независимо от dashboard.'); }
  }
- if (data) render();
+ if(view==='selection') {renderSelection();return;}
+ await loadRun();
 }
 
-async function loadSelection() { selection=await getJson('/api/selection'); }
+async function loadSelection() { selection=await getJson('/api/selection?source='+encodeURIComponent($('selectionSource').value)); }
 
 document.querySelectorAll('.nav').forEach(button=>button.addEventListener('click',()=>changeView(button.dataset.view)));
 document.querySelector('.brand').addEventListener('click',event=>{event.preventDefault();changeView('overview');});
 $('refresh').addEventListener('click',loadRun);
+$('selectionSource').addEventListener('change',loadRun);
+$('refreshSelection').addEventListener('click',loadRun);
 $('runSelect').addEventListener('change',()=>{followLatest=false;selectedRun=$('runSelect').value;loadRun();});
 $('smooth').addEventListener('input',()=>{smoothing=Number($('smooth').value);$('smoothValue').textContent=smoothing.toFixed(2);if(data)render();});
 ['metricSearch','metricGroup'].forEach(id=>$(id).addEventListener('input',()=>{if(data)renderMetrics();}));
@@ -195,9 +212,9 @@ setInterval(()=>{if($('autoRefresh').checked&&!document.hidden)loadRun();},10000
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&$('autoRefresh').checked)loadRun();});
 async function init() {
  try {
-  const result=await getJson('/api/runs');if(!result.runs.length)throw Error('No runs');
-  syncRuns(result.runs);
-  const initial=location.hash.slice(1);if(['overview','metrics','selection','checkpoints'].includes(initial))await changeView(initial);
+  const result=await getJson('/api/runs');
+  if(result.runs.length) syncRuns(result.runs);
+  const initial=location.hash.slice(1);await changeView(['jobs','overview','metrics','selection','checkpoints'].includes(initial)?initial:'jobs');
   await loadRun();
  } catch(error) {showError('Не найдены данные обучения или локальный сервер недоступен. Перезагрузите страницу после запуска сервера.');$('connection').textContent='Данные недоступны';$('connectionDot').style.background='var(--amber)';}
 }

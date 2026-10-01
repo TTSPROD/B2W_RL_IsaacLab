@@ -4,6 +4,7 @@ import hashlib
 import importlib.metadata
 import json
 import math
+import os
 from pathlib import Path
 import shutil
 import time
@@ -13,22 +14,20 @@ import rsl_rl.runners
 from rsl_rl.runners import OnPolicyRunner
 
 from b2w_finetune_sampling import learning_rate_after_resume
-
-
-def write_json(path, data):
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(data, indent=2, allow_nan=False) + "\n", encoding="utf-8")
-    temporary.replace(path)
+from run_support import write_json
 
 
 def install_runner(parent, parent_sha, root, *, expected_iteration=19999, lr_cap=5e-5, max_updates=2000,
-                   extra_sources=(), reward_note="original rewards"):
+                   extra_sources=(), reward_note="original rewards", diagnostics_factory=None):
     class ContinuationRunner(OnPolicyRunner):
         def __init__(self, *args, **kwargs):
             torch.set_num_threads(4)
             super().__init__(*args, **kwargs)
             self.run_path = Path(self.log_dir)
             self.run_path.mkdir(parents=True, exist_ok=True)
+            if os.environ.get("B2W_JOB_DIR"):
+                write_json(Path(os.environ["B2W_JOB_DIR"]) / "training_run.json",
+                           {"path": self.run_path.resolve().relative_to(root.resolve()).as_posix()})
             self.started = time.time()
             self.lr_cap = lr_cap
             self.completed_updates = 0
@@ -48,6 +47,7 @@ def install_runner(parent, parent_sha, root, *, expected_iteration=19999, lr_cap
             if self.is_distributed:
                 raise RuntimeError("Local single-GPU continuation only")
             self.alg.optimizer.register_step_pre_hook(self._before_optimizer_step)
+            self.diagnostics = diagnostics_factory(base) if diagnostics_factory else None
 
         def _before_optimizer_step(self, optimizer, args, kwargs):
             # Upstream adapts LR per minibatch. Cap BOTH fields before every step.
@@ -192,6 +192,12 @@ def install_runner(parent, parent_sha, root, *, expected_iteration=19999, lr_cap
                 "training_stair_tile_zero_passes": int(command.stair_zero_passes.item()),
                 "scheduled_stair_stop_starts": int(command.stair_stop_starts.item()),
             }
+            if self.diagnostics is not None:
+                self.progress['training_coverage'] = self.diagnostics.snapshot()
+                for name, value in self.progress['training_coverage'].items():
+                    self.writer.add_scalar(f'Coverage/{name}/completed_episodes',value['completed_episodes'],locs['it'])
+                    if value['mean_completed_return'] is not None:
+                        self.writer.add_scalar(f'Coverage/{name}/mean_completed_return',value['mean_completed_return'],locs['it'])
             write_json(self.run_path / "progress.json", self.progress)
             for key in ("training_zero_windows", "training_zero_passes", "training_stair_tile_zero_windows",
                         "training_stair_tile_zero_passes", "scheduled_stair_stop_starts"):
@@ -215,4 +221,3 @@ def install_runner(parent, parent_sha, root, *, expected_iteration=19999, lr_cap
                     "additional_updates": checkpoint_updates, "quality_evaluated": False})
 
     rsl_rl.runners.OnPolicyRunner = ContinuationRunner
-

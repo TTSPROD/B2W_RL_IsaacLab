@@ -1,6 +1,7 @@
 # Реестр policies
 
-Текущий registry содержит только рабочий candidate и его upstream-предок.
+Текущий checkpoint registry содержит рабочий candidate и его upstream-предок.
+Сравнительная оценка также включает pinned rl_sar actor.
 
 | ID | Тип | Iteration | SHA-256 | Статус |
 |---|---|---:|---|---|
@@ -12,3 +13,18 @@
 [policies/manifest.json](../policies/manifest.json).
 
 Наличие файла policy не означает simulation qualification или hardware approval.
+
+Внешний actor: [rl_sar policy.pt](../vendor/rl_sar/policy/b2w/robot_lab/policy.pt),
+его commit, Git blob и SHA-256 проверяются по [vendor manifest](../vendor/manifest.json)
+через `reference_identity()`. По сообщению владельца 30.09.2026 он обучен
+аналогичным Robot Lab train.py. Точный run config и optimizer checkpoint
+не сохранены в этом пакете; сравнение actors выполняется, PPO resume из одного
+TorchScript не предполагается.
+
+Текущий подход к выбору: [v2 протокол](CORE_LOCOMOTION_EVALUATION.md).
+Решение: [сравнение 30.09.2026](results/2026-09-30-locomotion-v2-selection.md).
+Исторические hashes экспортов и provenance после рефакторинга не переписываются.
+
+Последующий [stair A/B +1350](results/2026-09-30-stair-comparison-1350.md)
+завершён: parent/A/B 27/23/25 successes из 60, unsafe 0/0/1. Продвижения нет;
+экспериментальные checkpoints остаются в logs и не заменяют retained policies.

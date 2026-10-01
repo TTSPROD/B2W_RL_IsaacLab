@@ -12,6 +12,8 @@ import time
 
 from b2w_runtime import configure_process
 from evaluation_policy import policy_id
+from run_support import managed_entrypoint, read_json
+managed_entrypoint()
 configure_process()
 if os.environ.get('B2W_PAYLOAD_URDF'):
     raise RuntimeError('Nominal test refuses a payload override')
@@ -41,7 +43,19 @@ if args.policy_map:
     if any(not folder.is_relative_to(root_path) for folder in EXPORT_DIRS.values()):
         raise ValueError('Policy exports must remain inside this project')
     POLICIES = tuple(EXPORT_DIRS)
-frozen_plan = protocol_manifest(EXPORT_DIRS)
+frozen_plan = json.loads(json.dumps(protocol_manifest(EXPORT_DIRS)))
+declared_sources = None
+if args.protocol_module.startswith('locomotion_v2'):
+    from run_support import sha256 as file_sha256
+    declared = read_json(args.policy_map.parent / 'declared_plan.json')
+    if any(declared.get(key) != value for key, value in frozen_plan.items()):
+        raise ValueError('Frozen protocol changed before simulation')
+    if file_sha256(args.policy_map) != declared['policy_map_sha256']:
+        raise ValueError('Frozen policy map changed')
+    declared_sources = declared['source_sha256']
+    for name, digest in declared_sources.items():
+        if file_sha256(root_path / name) != digest:
+            raise ValueError(f'Frozen implementation changed: {name}')
 import torch
 import tensordict  # noqa: F401
 from isaaclab.app import AppLauncher
@@ -66,6 +80,7 @@ from locomotion57_protocol import (
     DT, Telemetry, assess,
     reset_sample, sha256, terrain_boxes,
 )
+assess = getattr(protocol, 'assess', assess)
 
 def export_path(iteration):
     return EXPORT_DIRS[iteration]/'policy.pt'
@@ -190,6 +205,7 @@ try:
                       'local_b2w_assets.py', 'evaluation_policy.py')}
     metadata = {
         'engine': 'Isaac', 'protocol': frozen_plan, 'source_sha256': source_hashes,
+        'declared_source_sha256': declared_sources,
         'protocol_role': 'Declared terrain extension; unchanged operating57 assess and Telemetry',
         'evaluated_export_manifests': {p: json.loads((folder/'manifest.json').read_text()) for p, folder in EXPORT_DIRS.items()},
         'geometry': definition,

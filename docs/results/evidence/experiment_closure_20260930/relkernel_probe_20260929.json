@@ -1,0 +1,60 @@
+{
+  "schema": "b2w_relkernel_probe_summary_v1",
+  "date": "2026-09-29",
+  "parent_policy": 24650,
+  "checkpoint_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "training": {
+    "run_dir": "logs/rsl_rl/b2w_24650_relkernel_local/2026-09-29_22-06-13",
+    "seed": 9805,
+    "updates": 500,
+    "learning_rate_cap": 1e-5,
+    "num_envs": 4096,
+    "checkpoints": [24700, 24800, 24900, 25000, 25100, 25150],
+    "checkpoint_note": "RSL-RL saves at iteration % 100 == 0 on the absolute index plus the final checkpoint; the nominal 24750..25150 list in the training plan mispredicted this alignment and was amended before any probe episode",
+    "config_audit": "passed"
+  },
+  "hypothesis": "Command-relative tracking kernels sigma(c)=clip(0.35*|c|, 0.10, 0.50) for lin xy and yaw with a 500-update budget at lr cap 1e-5 and retention 45% should move the magnitude-0.3 undershoot past the declared advance rule",
+  "hypothesis_verdict": "partially falsified: lateral moved, yaw did not reach the rule, advance rule failed for all six children",
+  "protocol": "b2w_relkernel_probe_v1",
+  "paired_reset_seeds": [70001, 70002, 70003, 70004, 70005],
+  "episodes_per_policy": 40,
+  "probe_mean_ratios": {
+    "24650": {"lateral_small": 0.773, "yaw_small": 0.697, "lateral_large": 0.927, "yaw_large": 0.976, "longitudinal_small": 0.926, "longitudinal_large": 0.884, "success": 8, "unsafe": 0},
+    "24700": {"lateral_small": 0.833, "yaw_small": 0.714, "lateral_large": 0.951, "yaw_large": 0.985, "longitudinal_small": 0.920, "longitudinal_large": 0.883, "success": 15, "unsafe": 0},
+    "24800": {"lateral_small": 0.770, "yaw_small": 0.735, "lateral_large": 0.944, "yaw_large": 0.984, "longitudinal_small": 0.922, "longitudinal_large": 0.884, "success": 10, "unsafe": 0},
+    "24900": {"lateral_small": 0.789, "yaw_small": 0.740, "lateral_large": 0.935, "yaw_large": 0.983, "longitudinal_small": 0.924, "longitudinal_large": 0.880, "success": 9, "unsafe": 0},
+    "25000": {"lateral_small": 0.779, "yaw_small": 0.714, "lateral_large": 0.935, "yaw_large": 0.980, "longitudinal_small": 0.936, "longitudinal_large": 0.885, "success": 8, "unsafe": 0},
+    "25100": {"lateral_small": 0.823, "yaw_small": 0.733, "lateral_large": 0.933, "yaw_large": 0.983, "longitudinal_small": 0.935, "longitudinal_large": 0.881, "success": 8, "unsafe": 0},
+    "25150": {"lateral_small": 0.869, "yaw_small": 0.716, "lateral_large": 0.941, "yaw_large": 0.974, "longitudinal_small": 0.930, "longitudinal_large": 0.882, "success": 11, "unsafe": 0}
+  },
+  "advance_verdicts": {
+    "24700": {"advance": false, "reasons": ["yaw_small gain +0.018 < +0.05"]},
+    "24800": {"advance": false, "reasons": ["lateral_small gain -0.004", "yaw_small gain +0.038"]},
+    "24900": {"advance": false, "reasons": ["lateral_small gain +0.016", "yaw_small gain +0.043"]},
+    "25000": {"advance": false, "reasons": ["lateral_small gain +0.006", "yaw_small gain +0.017"]},
+    "25100": {"advance": false, "reasons": ["lateral_small gain +0.049", "yaw_small gain +0.036", "longitudinal episodes 0/10"]},
+    "25150": {"advance": false, "reasons": ["yaw_small gain +0.019", "longitudinal episodes 0/10"]}
+  },
+  "phase_b_launched": false,
+  "promoted": false,
+  "retained_candidate": 24650,
+  "findings": {
+    "lateral": "dose-dependent improvement: lateral_small 0.773 -> 0.833/0.869 (24700/25150); rough_06 +0.3 reaches 0.848 with 1/5 fails at 25100; the kernel mechanism works for lateral",
+    "yaw": "plateaus at 0.71-0.74 mean (gain +0.02..+0.04) with left/right asymmetry (flat -0.3 0.64-0.71 vs +0.3 0.66-0.76); not reachable from the 25k-update prior via 500 more updates",
+    "stairs": "retention 45% protected stairs: traverse_0.5/0.7 crossed 5/5 for every child (focus-kernel children had lost these); wheel torque saturation on stairs_up dropped 12.8% -> 10.4-12.2%",
+    "actuators": "children are smoother than the parent on rough: wheel torque saturation 3.0% -> 1.6-2.6%, wheel rolling residual (slip) 5.13 -> 2.36-2.89 m/s peak",
+    "longitudinal": "1-s moving-window violations on +-1.0 remain 5/5 cells for every policy including the parent; late checkpoints (25100/25150) lose longitudinal episode passes (0/10) via the same windows"
+  },
+  "interpretation": "Continuation from a policy trained 20k updates under the wide kernel cannot reach ratio >= 0.8 on 0.3 commands: the undershoot equilibrium is baked into the actor prior even when the reward no longer tolerates it. The relative kernel is validated as a mechanism (lateral moves, actuators smooth, stairs protected with higher retention), which supports the contingency: a full retrain from upstream_19999 with the relative kernel from the first update",
+  "source_probe_summary_sha256": "324431457053ca002ab0c55dbadc00dd822b975e81701f9dc3ef35643dc08c1e",
+  "trace_diagnostics_sha256": "755290895f876a04958d040e001d9dd67775270a1e20dd6cf3586842ad2b32bc",
+  "declared_plan_sha256": "feaac075af24cc2295d960f93e29c5221ddd5cfd51796ebf6dc0872001cc741a",
+  "policy_map_sha256": "eda7bfa61841c4402ce7f9b3b0870c4796ff43e0854e56f48bace2b94a6642a7",
+  "continuation_manifest_sha256": "9c9a672efd146b8e83c5ab2061244a53d5ff1c79c25d2f5ff514859bbf4ba430",
+  "config_audit_sha256": "69a0943510be3efec6f557b7c80180068bf9de51df74ca5c776ae93ee6b9cd13",
+  "training_progress_sha256": "a7c0d060c42638cc930f5ecd5a8dc30a402b9102820a240c641b60dbcce6ea12",
+  "raw_evidence": "logs/relkernel_probe_20260929",
+  "training_raw_evidence": "logs/rsl_rl/b2w_24650_relkernel_local/2026-09-29_22-06-13",
+  "qualification": false,
+  "hardware_approval": false
+}

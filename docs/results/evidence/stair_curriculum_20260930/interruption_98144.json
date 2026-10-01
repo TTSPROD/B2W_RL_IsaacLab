@@ -1,0 +1,42 @@
+{
+  "checked_utc": "2026-09-30T18:40:48.573872+00:00",
+  "job": "98144fd30b284ac1acc9c90c9f376bbb",
+  "status": "interrupted",
+  "last_heartbeat_utc": "2026-09-30T18:35:53.495920+00:00",
+  "supervisor_and_training_absent": true,
+  "dashboard_responding": true,
+  "cancel_request_present": false,
+  "exception_or_exit_code_recorded": false,
+  "cause": "unknown",
+  "phase": "training_stairfixed",
+  "completed_updates": 1449,
+  "target_updates": 1500,
+  "last_checkpoint": "logs/rsl_rl/b2w_24650_stair_stairfixed_9903/2026-09-30_20-15-40_pilot/model_26000.pt",
+  "checkpoint_iteration": 26000,
+  "checkpoint_additional_updates": 1350,
+  "checkpoint_model_finite": true,
+  "optimizer_present": true,
+  "stairadaptive_started": false,
+  "baseline": {
+    "episodes": 60,
+    "success": 27,
+    "unsafe": 0
+  },
+  "training_resets": {
+    "unsafe": 343882,
+    "total": 416575,
+    "unsafe_fraction": 0.825498409650123
+  },
+  "source_drift": [],
+  "files_sha256": {
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/state.json": "f73efb0979924c6093c080d3aefdbd5e94252af5905e75abfea7801d1b0913a7",
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/pilot_progress.json": "7f16094e6bc47becf2f0c81748eb0156a02994d3070d5a18e7b761a2eb58c754",
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/experiment_manifest.json": "fac388f07a49b8c2f17c627d9e4ebee8f5b4d8209587974ba90577691838a085",
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/pilot_stairfixed_stdout.log": "abf39aea4f8c7038a66261b3231c25c509bec25ff5537b506b35e7ae82f31705",
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/pilot_stairfixed_stderr.log": "451ed97fb2771a8c4a628051144218c15d4c0ca7d516c7eddcd92fd915ac9279",
+    "logs/dashboard/jobs/98144fd30b284ac1acc9c90c9f376bbb/evaluation/analysis/summary.json": "c862ef209da6b663f3a5ed9264c2bc3ed967a031b8aff27382b9f4338f155721",
+    "logs/rsl_rl/b2w_24650_stair_stairfixed_9903/2026-09-30_20-15-40_pilot/progress.json": "e8811bfb4420961172f6d4214a104577b143db39822264e1f0546ba43498ced6",
+    "logs/rsl_rl/b2w_24650_stair_stairfixed_9903/2026-09-30_20-15-40_pilot/model_26000.pt": "6dd8cf28c785591b13c3b4ef3d1d8fd459a7a1ea7ad86d58ae4c5eeeeb452551"
+  }
+}

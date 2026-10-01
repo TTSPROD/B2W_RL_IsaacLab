@@ -19,17 +19,37 @@ python scripts/vendor_materials.py verify
 & .\scripts\run_local.ps1 scripts/verify_project.py
 ```
 
-Локальный dashboard доступен только на `127.0.0.1:8765`. Evaluation-runner'ы
-запускают его автоматически; вручную — `python dashboard/launch.py`. Он читает
-TensorBoard-метрики и последний checkpoint-selection, обновляет монитор раз в
-10 секунд; simulator/training он не запускает и API управления не имеет.
+Локальный [дашборд](../dashboard/README.md) доступен на `127.0.0.1:8765`.
+`scripts/start_dashboard.ps1` открывает монитор. Независимые
+`scripts/job_manager.py` / `scripts/job_worker.py` запускают процессы через CLI;
+сбой или отсутствие HTTP-сервера не влияет на обучение. Дашборд не принимает
+команды запуска/остановки (POST → 405), а только читает состояние и TensorBoard.
+`scripts/manage_runs.py start|stop|status` управляет локальными jobs;
+`--no-monitor` отключает даже попытку открыть монитор. Код выхода клиента означает
+постановку, итоговый exit code — в `logs/dashboard/jobs/<id>/state.json`.
+Имя исторического каталога jobs не означает зависимость от сервера.
+
+Текущая проверка выполняется на RTX4080 Laptop, не на RTX4070Ti desktop;
+runtime/GPU каждого simulation run записаны в raw evidence. Одинаковый seed
+на разных GPU/runtime не является обещанием идентичных траекторий.
 
 ## Артефакты
 
 - Текущий пакет: `policies/local/core_24650/`.
 - Retained ancestor: `policies/server/upstream_19999/`.
-- Компактная сводка: `docs/results/evidence/core_24650_20260928/summary.json`.
-- Неизменённые raw traces последнего отбора: `logs/core_stage2_selection_20260928/`.
+- Текущее сравнение: `docs/results/evidence/locomotion_v2_20260930/summary.json`.
+- Историческая сводка: `docs/results/evidence/core_24650_20260928/summary.json`.
+- Исторические raw: `logs/core_stage2_selection_20260928/` и
+  `logs/core_stage3_selection_20260929/`.
+- Новые v2 runs: `logs/dashboard/jobs/<id>/evaluation/`.
+- Итог A/B +1350: `docs/results/evidence/stair_comparison_1350_20261001/`;
+  180 эпизодов, побайтные копии summary/decision/resume/state и publication hashes.
+  Raw и checkpoints эксперимента остаются локально в `logs/`.
+- [Диагностика лестниц](results/2026-09-30-stair-continuation-diagnosis.md):
+  replays используют обычный evaluation folder, isolated comparison —
+  `evaluation/<actor>/` с отдельными plans/raw и общей диагностической сводкой.
+- [Закрытая экспериментальная ветка](results/2026-09-30-experiment-closure.md):
+  raw сохранены, архив Git находится в `logs/relkernel-500-20260929.bundle`.
 
 Live logs, caches и окружения не входят в Git. Raw traces остаются локально;
 проверяемый SHA их summary записан в компактной сводке.

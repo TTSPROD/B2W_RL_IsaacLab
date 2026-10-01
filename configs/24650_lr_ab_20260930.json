@@ -1,0 +1,224 @@
+{
+  "terrain_columns": {
+    "retention": [
+      0,
+      14
+    ],
+    "target_flat": [
+      14,
+      20
+    ],
+    "target_rough": [
+      20,
+      26
+    ],
+    "target_stairs_up": [
+      26,
+      36
+    ],
+    "target_stairs_down": [
+      36,
+      40
+    ]
+  },
+  "terrain_proportions": {
+    "retention_pyramid_stairs": 0.075,
+    "retention_pyramid_stairs_inv": 0.075,
+    "retention_boxes": 0.075,
+    "retention_random_rough": 0.075,
+    "retention_slope_up": 0.025,
+    "retention_slope_down": 0.025,
+    "target_flat": 0.15,
+    "target_rough": 0.15,
+    "target_stairs_up": 0.25,
+    "target_stairs_down": 0.1
+  },
+  "target_geometry": {
+    "rough_noise_m": [
+      0.02,
+      0.1
+    ],
+    "rough_noise_step_m": 0.02,
+    "stair_height_m": [
+      0.05,
+      0.19
+    ],
+    "stair_tread_m": 0.3,
+    "stair_platform_m": 1.5
+  },
+  "banks": {
+    "flat": [
+      {
+        "case": "longitudinal",
+        "weight": 1.0,
+        "axis": 0
+      },
+      {
+        "case": "lateral",
+        "weight": 2.0,
+        "axis": 1
+      },
+      {
+        "case": "yaw",
+        "weight": 2.0,
+        "axis": 2
+      },
+      {
+        "case": "mixed",
+        "weight": 0.5
+      },
+      {
+        "case": "stand",
+        "weight": 0.5
+      }
+    ],
+    "rough": [
+      {
+        "case": "longitudinal",
+        "weight": 1.5,
+        "axis": 0
+      },
+      {
+        "case": "lateral",
+        "weight": 2.5,
+        "axis": 1
+      },
+      {
+        "case": "yaw",
+        "weight": 2.5,
+        "axis": 2
+      },
+      {
+        "case": "mixed",
+        "weight": 1.0
+      },
+      {
+        "case": "stand",
+        "weight": 0.5
+      }
+    ],
+    "stairs_up": [
+      {
+        "case": "traverse_0.3",
+        "weight": 3.0
+      },
+      {
+        "case": "traverse_0.5",
+        "weight": 1.0
+      },
+      {
+        "case": "traverse_0.7",
+        "weight": 2.0
+      },
+      {
+        "case": "stop_restart_0.3",
+        "weight": 3.0
+      },
+      {
+        "case": "stop_restart_0.5",
+        "weight": 1.5
+      }
+    ],
+    "stairs_down": [
+      {
+        "case": "traverse_0.3",
+        "weight": 2.0
+      },
+      {
+        "case": "traverse_0.5",
+        "weight": 1.0
+      },
+      {
+        "case": "traverse_0.7",
+        "weight": 1.0
+      },
+      {
+        "case": "stop_restart_0.3",
+        "weight": 2.0
+      },
+      {
+        "case": "stop_restart_0.5",
+        "weight": 2.0
+      }
+    ]
+  },
+  "parent_iteration": 24650,
+  "parent_checkpoint": "policies/local/core_24650/model_24650.pt",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "parent_env_sha256": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+  "parent_agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+  "parent_bank_source": "logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json",
+  "parent_bank_source_sha256": "6ca22b0e547b008b5d76c95bb4334ac7a3adc225b9543c6f616fe519d44d1e53",
+  "schema": "b2w_lr_ab_v1",
+  "basis_report": "docs/results/2026-09-30-stair-continuation-diagnosis.md",
+  "basis_summary": "docs/results/evidence/stair_diagnosis_20260930/summary.json",
+  "additional_updates": 300,
+  "num_envs": 4096,
+  "seed": 9901,
+  "checkpoint_interval": 25,
+  "probe_updates": [
+    25,
+    100,
+    300
+  ],
+  "arms": {
+    "lrcontrol": {
+      "lr_cap": 1e-05
+    },
+    "lrlow": {
+      "lr_cap": 1e-06
+    }
+  },
+  "hypothesis": "A tenfold lower PPO learning-rate cap reduces loss of parent skills; this is not a proven explanation of prior failures.",
+  "unchanged": [
+    "actor/critic/std/Adam restoration",
+    "all rewards and command banks",
+    "all other PPO settings",
+    "terrain cohorts, geometry, actuators, mass, noise, randomization",
+    "57->16 ABI at 50 Hz"
+  ],
+  "coverage": {
+    "target_horizon_s": 70,
+    "simulated_seconds_per_env": 144,
+    "required_full_target_episodes_per_env": 2,
+    "measure": "completed returns and lengths by cohort; phase step counts by case; no added RNG draws"
+  },
+  "advancement": {
+    "eligible_updates": [
+      300
+    ],
+    "unsafe_allowed": 0,
+    "target_mean_gain_vs_parent": 0.05,
+    "target_mean_gain_vs_control": 0.02,
+    "targets": [
+      "lateral",
+      "yaw"
+    ],
+    "regression_rule": "success count in EVERY terrain/case cell >= parent and matched control",
+    "wheel_saturation_fraction_extra_max": 0.02,
+    "leg_saturation_fraction_extra_max": 0.01,
+    "stability_only": "report retention separately; parent-equivalent behavior alone does not advance"
+  },
+  "evaluation": {
+    "probe": "locomotion_v2_lr_pilot_protocol",
+    "episodes_per_actor": 60,
+    "layout": "one actor per fresh process, identical case/reset slots and environment count",
+    "reset_seeds": [
+      73001,
+      73002,
+      73003,
+      73004,
+      73005
+    ],
+    "baseline_before_training": true,
+    "checkpoint_probe_timing": "after both arms finish; checkpoints 25/100 are retrospective diagnostics",
+    "final_screen_only_if_advance": true,
+    "full_screen_actors": "one finalist, 160 episodes",
+    "independent_validation": false
+  },
+  "qualification": false,
+  "hardware_approval": false,
+  "automatic_promotion": false,
+  "basis_report_sha256": "994536bfe653d5cb025f766e82c9aa43310a7aa8a0b8912b41722d7661bdc4bf",
+  "basis_summary_sha256": "61934dd6868860db35feed35ee7a576a04f943c2cf52b9293959c4068da284de"
+}

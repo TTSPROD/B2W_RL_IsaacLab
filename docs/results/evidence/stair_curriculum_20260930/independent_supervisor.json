@@ -1,0 +1,26 @@
+{
+  "checked_utc": "2026-09-30T18:54:08.264326+00:00",
+  "job": "a2c89fd6c2a64c3cb8e005982e8249bd",
+  "http_connection_result": 10035,
+  "training_progress": {
+    "status": "running",
+    "iteration": 24662,
+    "completed_updates": 12,
+    "target_updates": 1350
+  },
+  "state": {
+    "id": "a2c89fd6c2a64c3cb8e005982e8249bd",
+    "kind": "stair_comparison_1350",
+    "entrypoint": "scripts/run_stair_comparison_1350.py",
+    "arguments": [],
+    "status": "running",
+    "created": "2026-09-30T18:48:47.408225+00:00",
+    "updated": "2026-09-30T18:54:08.248511+00:00",
+    "returncode": null,
+    "worker_pid": 47172,
+    "process_pid": 38996
+  },
+  "tests_job": "8b32a565d31d4f4d883f8303837684d0",
+  "tests_passed": 85,
+  "A_new_updates": 0
+}

@@ -1,4 +1,4 @@
-"""Validate and summarize the compact 24499 versus RL SAR evaluation."""
+"""Validate and summarize historical core evaluation plans without fixed policy IDs."""
 from __future__ import annotations
 
 import argparse
@@ -39,6 +39,8 @@ def summarize(records):
 
 
 def main():
+    from run_support import managed_entrypoint
+    managed_entrypoint()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
@@ -95,8 +97,8 @@ def main():
         summaries = {policy: summarize(items) for policy, items in values.items()}
         rows.append({"terrain": terrain, "condition": condition(terrain),
                      "case": case, "policies": summaries,
-                     "success_delta_24499_minus_rl_sar":
-                         summaries["24499"]["success"] - summaries["rl_sar"]["success"]})
+                     "success_delta_from_first": {policy: summaries[policy]["success"] -
+                         summaries[policies[0]]["success"] for policy in policies}})
     overall = {policy: summarize([record for record in records
                                   if str(record["policy"]) == policy])
                for policy in policies}

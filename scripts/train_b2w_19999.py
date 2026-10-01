@@ -19,6 +19,8 @@ VENDOR_TRAIN = ROOT / "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/tr
 
 
 def main():
+    from run_support import managed_entrypoint
+    managed_entrypoint()
     configure_process()
     os.environ["HYDRA_FULL_ERROR"] = "1"
     if hashlib.sha256(PARENT.read_bytes()).hexdigest() != PARENT_SHA:
@@ -73,4 +75,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

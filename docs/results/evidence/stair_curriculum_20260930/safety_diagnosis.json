@@ -1,0 +1,189 @@
+{
+  "schema": "b2w_aligned_stair_safety_v1",
+  "samples": [
+    {
+      "event_policy": "lrlow_24750",
+      "policy": "24650",
+      "seed": 73005,
+      "command_start_s": 7.4,
+      "sample_end_s": 7.42,
+      "joint": "RL_calf_joint",
+      "q_rad": -1.2539899349212646,
+      "dq_rad_s": -6.206507205963135,
+      "tau_nm": -19.069461822509766,
+      "target_rad": -1.5362599231302738,
+      "hard_range_rad": [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      "wheel_upforce_n": [
+        0.0,
+        0.0,
+        -2.301348558830796e-06,
+        0.0
+      ],
+      "command": [
+        0.699999988079071,
+        0.0,
+        0.0
+      ],
+      "unsafe": []
+    },
+    {
+      "event_policy": "lrlow_24750",
+      "policy": "lrcontrol_24950",
+      "seed": 73005,
+      "command_start_s": 7.4,
+      "sample_end_s": 7.42,
+      "joint": "RL_calf_joint",
+      "q_rad": -0.7427123188972473,
+      "dq_rad_s": -1.2361873388290405,
+      "tau_nm": 0.4061756134033203,
+      "target_rad": -0.8361791968345642,
+      "hard_range_rad": [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      "wheel_upforce_n": [
+        0.0,
+        243.78530883789062,
+        0.0,
+        0.0005886272992938757
+      ],
+      "command": [
+        0.699999988079071,
+        0.0,
+        0.0
+      ],
+      "unsafe": []
+    },
+    {
+      "event_policy": "lrlow_24750",
+      "policy": "lrlow_24750",
+      "seed": 73005,
+      "command_start_s": 7.4,
+      "sample_end_s": 7.42,
+      "joint": "RL_calf_joint",
+      "q_rad": -0.4839341342449188,
+      "dq_rad_s": -2.224362373352051,
+      "tau_nm": 10.779512405395508,
+      "target_rad": -0.3031851053237915,
+      "hard_range_rad": [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      "wheel_upforce_n": [
+        1251.86669921875,
+        0.0,
+        517.8355712890625,
+        589.5112915039062
+      ],
+      "command": [
+        0.699999988079071,
+        0.0,
+        0.0
+      ],
+      "unsafe": [
+        "hard_joint_position"
+      ]
+    },
+    {
+      "event_policy": "lrlow_24950",
+      "policy": "24650",
+      "seed": 73005,
+      "command_start_s": 4.2,
+      "sample_end_s": 4.22,
+      "joint": "FL_calf_joint",
+      "q_rad": -1.993929386138916,
+      "dq_rad_s": -6.162917137145996,
+      "tau_nm": 15.560882568359375,
+      "target_rad": -2.0787248611450195,
+      "hard_range_rad": [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      "wheel_upforce_n": [
+        150.0738067626953,
+        0.0,
+        744.6016845703125,
+        583.5848999023438
+      ],
+      "command": [
+        0.699999988079071,
+        0.0,
+        0.0
+      ],
+      "unsafe": []
+    },
+    {
+      "event_policy": "lrlow_24950",
+      "policy": "lrcontrol_24950",
+      "seed": 73005,
+      "command_start_s": 4.2,
+      "sample_end_s": 4.22,
+      "joint": "FL_calf_joint",
+      "q_rad": -1.9608086347579956,
+      "dq_rad_s": -3.5110483169555664,
+      "tau_nm": 21.71148109436035,
+      "target_rad": -1.9509553015232086,
+      "hard_range_rad": [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      "wheel_upforce_n": [
+        952.356689453125,
+        0.0,
+        0.0,
+        1486.0101318359375
+      ],
+      "command": [
+        0.699999988079071,
+        0.0,
+        0.0
+      ],
+      "unsafe": []
+    },
+    {
+      "event_policy": "lrlow_24950",
+      "policy": "lrlow_24950",
+      "seed": 73005,
+      "command_start_s": 4.2,
+      "sample_end_s": 4.22,
+      "joint": "FL_calf_joint",
+      "q_rad": -0.6585890054702759,
+      "dq_rad_s": 13.08815860748291,
+      "tau_nm": -43.51826477050781,
+      "target_rad": -0.5810331702232361,
+      "hard_range_rad": [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      "wheel_upforce_n": [
+        2184.46630859375,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "command": [
+        0.699999988079071,
+        0.0,
+        0.0
+      ],
+      "unsafe": [
+        "hard_joint_position"
+      ]
+    }
+  ],
+  "input_sha256": {
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/24650/stairs_up_18.json": "4859682237dda395439a730777330bc86c2d44ae477a47538d9f69a4567c26f4",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/24650/stairs_up_18.npz": "48115293f37556354a2db77f8eece79eb3a5c2221aea7171c6ba6726d9e97b3d",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/lrcontrol_24950/stairs_up_18.json": "34a4954075d3bc45977a208ac09d4fe09e3757adf2191fa3748324c9832846ea",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/lrcontrol_24950/stairs_up_18.npz": "998c3ad798a226153d1fffbcff97607361fa693ddc5805f77dfffe482616fa02",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/lrlow_24750/stairs_up_18.json": "a43d6ad4e61d3a2b2fa5c9f4993db6e0bd7d41c711968413fccc32cb55324026",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/lrlow_24750/stairs_up_18.npz": "a76295899e6350ec945e63b24fbfc453ba767f985bbb1d60a0cb9186d47801cd",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/lrlow_24950/stairs_up_18.json": "3f3ab5e40d613361d6a9e020d446d0eb1a4bc77df1957c9c805736dfe0dd60b4",
+    "logs/dashboard/jobs/72ef5d9d71f04597a9a07585a1cafcc9/evaluation/lrlow_24950/stairs_up_18.npz": "08051b3137c854f87467a00ed84e642a3fd810ad49b227c46c2317bb02b4719c"
+  },
+  "script_sha256": "18ec130735499ea1c62e881452d33e19ac017e9dd03c1f6f507e4d19370695e0",
+  "scope": "Aligned 10 Hz samples; no reconstruction of unrecorded 200 Hz trajectory; descriptive, not causal."
+}

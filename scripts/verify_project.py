@@ -107,12 +107,43 @@ def verify_document_links():
     return checked
 
 
+def verify_current_evaluation():
+    registry = json.loads((ROOT / "policies/manifest.json").read_text(encoding="utf-8"))
+    if not registry.get("current_evaluation"):
+        return None
+    summary = json.loads((ROOT / registry["current_evaluation"]).read_text(encoding="utf-8"))
+    require(summary["schema"] == "b2w_locomotion_results_v2", "Unexpected current evidence")
+    require(not summary["qualification"] and not summary["hardware_approval"], "Unsupported qualification")
+    require(summary["candidate_recommendation"] == "24650", "Current selection mismatch")
+    for entry in registry["checkpoints"]:
+        policy = str(entry["saved_iteration"])
+        require(summary["plan"]["exports"][policy]["export_sha256"] == entry["files"]["export/policy.pt"],
+                "Current evidence export mismatch")
+        conditions = summary["conditions"][policy]
+        overall = summary["overall"][policy]
+        require(sum(item["episodes"] for item in conditions.values()) == overall["episodes"], "Episode total mismatch")
+        require(sum(item["success"] for item in conditions.values()) == overall["success"], "Success total mismatch")
+    for name, digest in summary["input_sha256"].items():
+        path = (ROOT / name).resolve()
+        require(path.is_relative_to(ROOT / "logs"), "Evidence input outside logs")
+        if path.is_file():
+            require(sha256(path) == digest, f"Current raw evidence changed: {name}")
+    publication = summary["publication"]
+    raw = ROOT / publication["source_raw_summary"]
+    if raw.is_file():
+        require(sha256(raw) == publication["source_raw_summary_sha256"], "Raw summary changed")
+    return sum(value["episodes"] for value in summary["overall"].values())
+
+
 def main():
     policies = verify_policies()
     episodes = verify_evidence()
     links = verify_document_links()
+    current = verify_current_evaluation()
     print(f"Verified {policies} retained checkpoints, selected 24650 over {episodes} episodes, "
           f"and {links} local documentation links")
+    if current is not None:
+        print(f"Verified current v2 comparison: {current} episodes; software evidence only")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,43 @@
+{
+  "schema": "b2w_focus_kernel_selection_summary_v1",
+  "date": "2026-09-29",
+  "parent_policy": 24650,
+  "checkpoint_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "training": {
+    "run_dir": "logs/rsl_rl/b2w_24650_focus_kernel_local/2026-09-29_14-50-36_focus_kernel",
+    "seed": 9804,
+    "updates": 100,
+    "learning_rate_cap": 5e-6,
+    "num_envs": 4096,
+    "checkpoints": [24675, 24700, 24725, 24750],
+    "config_audit": "passed"
+  },
+  "hypothesis": "The magnitude-0.3 undershoot is a kernel-width defect: narrowing the focused tracking kernel for lateral and yaw commands in [0.2, 0.6] to 0.15 (adding the lateral focused mode) should close the response-ratio gap; weights, sampling, physics unchanged from the audited stage-3 setup of selected 24650",
+  "hypothesis_verdict": "falsified",
+  "protocol": "b2w_focus_kernel_selection_v1",
+  "paired_reset_seeds": [69001, 69002, 69003, 69004, 69005],
+  "episodes_per_policy": 300,
+  "policies": {
+    "24650": {"success": 185, "unsafe": 0, "conditions": {"flat": 40, "rough": 28, "stairs_up": 49, "stairs_down": 68}},
+    "24675": {"success": 175, "unsafe": 0, "conditions": {"flat": 38, "rough": 30, "stairs_up": 43, "stairs_down": 64}},
+    "24700": {"success": 174, "unsafe": 0, "conditions": {"flat": 38, "rough": 29, "stairs_up": 40, "stairs_down": 67}},
+    "24725": {"success": 178, "unsafe": 0, "conditions": {"flat": 39, "rough": 34, "stairs_up": 43, "stairs_down": 62}},
+    "24750": {"success": 182, "unsafe": 0, "conditions": {"flat": 44, "rough": 32, "stairs_up": 43, "stairs_down": 63}}
+  },
+  "unsafe_first_ranking": ["24650", "24750", "24725", "24675", "24700"],
+  "automatic_selection": false,
+  "promoted": false,
+  "retained_candidate": 24650,
+  "dominant_failure_mode": "yaw magnitude-0.3 response ratio unchanged at 0.60-0.83 across all four children (3-5 fails per 5-episode cell); lateral 0.3 moved only partially and terrain-dependently (flat_mu_70 lateral -0.3: 0.736 -> 0.810 at 24750; rough_02 -0.3: 0.679 -> 0.806; rough_10 -0.3/+0.3: 0.582/0.670 -> 0.632/0.711, still below 0.8)",
+  "secondary_failure_mode": "longitudinal 1.0 moving-window violations unchanged (4-5/5 on rough_06/rough_10); stairs regressions: stairs_up_12 traverse_0.3 mean progress 0.16 (parent) -> 0.00 (24675/24700/24750); stairs_up traverse_0.3 and stop_restart_0.3 drop 20/30 and 16/30 (parent) to 15-18/30 and 9-16/30; worst-episode wheel torque saturation on stairs_up rose to 49.2% at 24675 vs 28.4% parent",
+  "interpretation": "100 updates at lr cap 5e-6 are insufficient to move the policy out of the confirmed reward-balance local optimum for yaw, while already disturbing stair gaits; the lateral-focused kernel shifted lateral ratios where grip is adequate but not on rough_10",
+  "source_raw_summary_sha256": "5c4bbd29c9909296c8164dd66b70a298488677abbec6a77a85068784392b8a6a",
+  "trace_diagnostics_sha256": "ffb1bce25c43288be8b65eef08b4a050afd52a469be40147b61d9a581908a114",
+  "declared_plan_sha256": "c552983cc78d085fe6f9cc56a86bcedec26f508d6eb438f5d2b260134a8de7cb",
+  "policy_map_sha256": "08a9cc81e8796eb084ebce7881f2b187a95cb470378d61b449e12c0fd19f86c4",
+  "continuation_manifest_sha256": "49b65c9d2e3c436ba9fb1594c34d28a30604c22e613a9fd52ffc230e85923ae6",
+  "config_audit_sha256": "d7b169e558e2b8f5c08220978ebbfba6415df2a322831f4758452948f31895e6",
+  "raw_evidence": "logs/focus_kernel_selection_20260929",
+  "qualification": false,
+  "hardware_approval": false
+}

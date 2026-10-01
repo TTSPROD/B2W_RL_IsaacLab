@@ -1,36 +1,165 @@
-# Оценка low-level locomotion
+# Проверка low-level locomotion · v2
 
-Активный screen проверяет actor 57→16 на Flat, Rough, Stairs up и Stairs down
-в диапазоне обучения. Он измеряет tracking, смену команд, непрерывный ноль,
-физическое прохождение лестницы и safety приводов. Маршрут, waypoint и абсолютный
-heading относятся к внешнему уровню и не входят в acceptance.
+Актуально на 30 сентября 2026. Исполняемый протокол —
+[locomotion_v2_protocol.py](../scripts/locomotion_v2_protocol.py).
+Цель отбора — сравнить готовые deterministic actors при одинаковой физике,
+командах и reset seeds. Это не проверка навигации и не разрешение SDK2 actuation.
 
-## Текущий результат
+Первое [завершённое сравнение v2](results/2026-09-30-locomotion-v2-selection.md):
+24650 — 107/160, 0 unsafe; 19999 — 87/160, 2 unsafe; rl_sar — 66/160, 5 unsafe.
+Кандидат оставлен 24650; validation отложена до устранения failures screen.
 
-Policy **24650** выбрана на одинаковых paired reset seeds:
+## Что изменилось
 
-| Условие | Success / episodes | Unsafe |
-|---|---:|---:|
-| Flat | 40 / 75 | 0 |
-| Rough | 31 / 75 | 0 |
-| Stairs up | 52 / 75 | 0 |
-| Stairs down | 71 / 75 | 0 |
-| **Всего** | **194 / 300** | **0** |
+Вместо одного тяжёлого omnibus-теста используется последовательность:
+software contract → короткий сравнительный screen → независимая проверка
+замороженного кандидата → sim2sim/transport и аппаратные проверки.
+Награда обучения не является оценкой качества. Результаты safety, tracking,
+переходов, остановки и traversal выводятся раздельно, включая все отказы.
 
-Это development selection, а не qualification: `qualification=false`,
-`hardware_approval=false`. Отчёт: [core selection 24650](results/2026-09-28-core-selection-24650.md).
+Исторические v1 результаты и scoring сохранены. С v2 нельзя напрямую сравнивать
+их общий success: изменились программы команд, число ячеек и проверка переходов.
+Пороги steady tracking и непрерывного нуля сохранены; исправлен пропуск последней
+остановки на лестнице. Повторный подбор порогов после просмотра результатов запрещён.
 
-Stage-3 paired screen (2026-09-29, seeds 68001–68005, 12 вариантов рельефа)
-дал 181/300 при 0 unsafe и опроверг exposure-гипотезу; candidate не изменился:
-[stage-3 selection](results/2026-09-29-core-stage3-selection.md).
+## Происхождение и рабочий диапазон
 
-## Протокол следующей qualification
+19999 и 24650: сохранённые `env.yaml` задают каждую компоненту команды в
+[−1, 1]: vx/vy в м/с, ωz в рад/с. Это границы команд, а не достигнутые скорости.
+В upstream есть heading-based sampler; actor всё равно получает ωz.
+Продолжение 24650 дополнительно использовало прямые команды и stair banks.
 
-Перед запуском фиксируются 3 варианта каждого условия, 5 командных программ и
-20 новых paired seeds: 300 эпизодов на условие, 1200 на policy. Каждое условие
-проходит отдельно при observed success ≥95%, односторонней Wilson-границе ≥90%
-и нулевом unsafe.
+По сообщению владельца от 30.09.2026, rl_sar обучен аналогичным
+`robot_lab/train.py`. Pinned actor и reference config проверяются по vendor
+manifest; точный run config/seed/checkpoint этого обучения отсутствует.
+Он участвует на равных в измерениях, но один факт использования train.py
+не подтверждает идентичность rewards, sampler, exposure или достигнутого curriculum.
 
-В активный gate не входят blocks, slopes, curbs, gaps, mixed-surface transitions
-и навигационные цели. Расширение рабочего envelope оформляется отдельным заранее
-объявленным тестом, а не добавляется к метрике постфактум.
+## Минимальный screen
+
+| Условия | Варианты | Программы | Reset seeds | Эпизодов / policy |
+|---|---|---|---:|---:|
+| Flat | μ 0.4 и 1.0 | stand; vx; vy; ωz; mixed | 5 | 50 |
+| Rough | амплитуда ±0.02 и ±0.10 м | те же 5 | 5 | 50 |
+| Stairs up | ступень 0.06 и 0.18 м | 0.3; 0.7; stop/restart 0.5 м/с | 5 | 30 |
+| Stairs down | те же высоты | те же 3 | 5 | 30 |
+| Всего | 8 вариантов | 32 ячейки | 73001–73005 | 160 |
+
+Три policy = 480 эпизодов. Один процесс Isaac за раз на локальной GPU.
+Ось: 2 s initialization, по 6 s на +0.3/+0.7/+1/−1/−0.7/−0.3,
+12 s ноль. Прямой +1→−1 проверяет реверс. Mixed: ±(0.5,0.5,0.5),
+затем 12 s ноль. Stand: 12 s. Stair tread 0.30 м, 12 risers;
+три stair-программы оставляют endpoint speeds и остановку на марше.
+Лестничный диапазон здесь уже общего диапазона обучения.
+
+Это минимальный screen для выбора направления разработки, а не доказательство
+работы на каждом значении непрерывного диапазона. Интерполяция геометрии,
+смешанные команды на границах, боковой ход/поворот на лестницах, иные проступи,
+трение/уклоны и payload за его пределами не подтверждены.
+Геометрия теста не тождественна процедурным training tiles.
+
+## Измерения и решения
+
+- **Safety:** finite state/action, наклон, запрещённые base/hip контакты и
+  hard joint ranges на каждом physics tick (200 Hz). Unsafe не компенсируется tracking.
+- **Tracking Flat/Rough:** после 2 s settling RMSE ≤[0.20,0.20,0.25];
+  mean response вдоль ненулевой команды ≥0.8 для величин ≥0.2.
+  В отчёте остаются bias, p95, peak и mean velocity каждого сегмента.
+- **Переход:** измеряется время окончания первого полного 1 s окна, RMSE которого
+  укладывается в те же допуски; deadline 2 s. В отличие от v1, не требуется,
+  чтобы каждое последующее перекрывающееся окно проходило. Steady tracking проверяется отдельно.
+- **Остановка:** после 2 s на установление остаются непрерывные 10 s,
+  |vxy|≤0.10 м/с и |ωz|≤0.10 рад/с на каждом policy tick.
+  Нет возврата в мировую точку/курс. Проверяется каждый zero segment.
+- **Лестница:** завершение программы, реальное crossing последней ступени,
+  ≥1 s физического stair exposure, progress/commanded-distance≥0.8.
+  Для остановки на марше требуется exposure ≥90% измерительного окна.
+  Плоский RMSE на ступенях сохраняется диагностикой, конечный ноль остаётся gate.
+- **Приводы:** RMS/p99/peak момента, скорость, доля/длина saturation,
+  hard joint margin, slew и wheel residual. Ноги и колёса показаны отдельно.
+  Это измерения модели; implicit wheel torque не является измеренным моторным током.
+  Без B2W torque-speed/current/thermal calibration аппаратный gate остаётся открытым.
+
+Пороги — инженерные требования проекта, не стандарт Unitree и не универсальные
+константы из статей. Для screen каждая ячейка проходит только при 5/5 и 0 unsafe.
+Рейтинг разработки: меньше unsafe → лучше худшее из четырёх условий →
+больше полностью пройденных ячеек → больше успехов. Он не повышает статус policy
+автоматически. rl_sar показывается в рейтинге, но без training package не
+становится автоматически новым checkpoint для продолжения PPO.
+
+## Независимая проверка и sim2real
+
+После выбора одного кандидата: те же объявленные 32 ячейки, 20 новых seeds
+74001–74020, 640 эпизодов, ≥19/20 и 0 unsafe **в каждой ячейке**.
+Wilson lower публикуется как оценка неопределённости, а не искусственный повод
+умножать число эпизодов до нужного числа. Эти reset seeds не заменяют независимые
+training runs. Пулы неоднородных условий нельзя интерпретировать как общую
+вероятность успеха на всех поверхностях.
+
+Даже all-cells pass подтверждает только перечисленные nominal cases.
+До аппаратного этапа отдельно нужны measured domain variations, latency и
+DDS fault tests по [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md).
+Если screen выявил дефект, сначала анализ его traces, затем одна обучающая гипотеза;
+многократная qualification каждого промежуточного checkpoint не нужна.
+
+## Воспроизводимость и запуск
+
+[Дашборд](../dashboard/README.md) запускает все три стадии локальных процессов:
+обучение, тестирование и сравнение. CLI остаётся клиентом того же диспетчера:
+
+```powershell
+& .\scripts\start_dashboard.ps1
+& .\scripts\run_local.ps1 scripts/run_locomotion.py --policies '19999,24650,rl_sar'
+& .\scripts\run_local.ps1 scripts/run_locomotion.py --policies 24650 --stage validation
+```
+
+В `logs/dashboard/jobs/<id>/evaluation/` сохраняются declared plan, policy map,
+копии выполненных исходников, их SHA-256, export identity, runtime/GPU, JSON/NPZ
+по рельефу и `analysis/summary.json`. Подмена export, smoke, дубликаты/пропуски
+эпизодов, drift плана/исходников, неверный trace hash и ABI parity блокируют сводку.
+Raw не перезаписывается; новый запуск получает новый каталог.
+Для долгоживущего результата в Git переносится компактная сводка с raw hashes.
+
+Диагностика 30.09 выявила чувствительность лестничных результатов к размещению
+actor в батче: прежний порядок воспроизводится точно, перестановка меняет часть
+исходов при неизменных export и seeds. Поэтому небольшие differences между
+совместными multi-actor runs нельзя считать чистым эффектом весов policy.
+Перед решением о новом continuation сравнивать parent/control в отдельных fresh
+processes с одинаковым числом сред и одинаковым порядком case/reset slots.
+Смена числа сред — отдельная конфигурация запуска; прежние raw и acceptance
+пороги не переписываются. Replays известных seeds не увеличивают число независимых
+reset samples и не заменяют validation. `run_stair_isolation.py` реализует
+ограниченную такую проверку подъёма (3 actor × 10 эпизодов); её рейтинг не выбирает
+кандидата и не считается полным v2 screen.
+
+## Первичные источники и границы переноса
+
+- [Lee et al., Science Robotics 2024](https://arxiv.org/html/2405.01792v1):
+  колёсноногий LLC выдаёт 12 joint positions + 4 wheel velocities при 50 Hz;
+  локомоушн и навигация разделены. Работа подчёркивает actuator modeling,
+  особенно отличие колёс от ног. Их perceptive recurrent policy не равна нашему actor.
+- [Rudin et al., CoRL 2021](https://arxiv.org/abs/2109.11978):
+  массово параллельный RL и curriculum делают velocity-conditioned locomotion
+  воспроизводимой задачей обучения; training return не заменяет отдельную оценку.
+- [Agarwal et al., NeurIPS 2021](https://arxiv.org/abs/2108.13264):
+  малые выборки требуют явного представления разброса и ограничений сравнения.
+  Число 5/20 здесь — бюджет проекта, не предписанный авторами locomotion standard.
+- [Tan et al., RSS 2018](https://arxiv.org/abs/1804.10332):
+  перенос связан с качеством модели приводов, latency и randomization.
+  Численные параметры Minitaur не используются как параметры B2W.
+- [Robot Lab](https://github.com/fan-ziqi/robot_lab) и
+  [rl_sar](https://github.com/fan-ziqi/rl_sar): практический training→export→sim2sim workflow;
+  наличие viewer и actor не заменяет hardware qualification.
+- [Unitree RL Lab](https://github.com/unitreerobotics/unitree_rl_lab):
+  официальный порядок train→sim2sim→sim2real. Поддержка другого Unitree
+  не доказывает B2W mapping.
+- [DreamWaQ Go2W](https://github.com/ShengqianChen/DreamWaQ_Go2W):
+  открытая реализация wheel-leg обучения и deployment-конфигов для Go2W;
+  не источник механических параметров тяжёлого B2W.
+- [ETH SRU B2W simulation](https://github.com/leggedrobotics/sru-robot-deployment/blob/main/b2w_sim/README.md):
+  полезный пример разделения симуляции, контроллера и навигации; сам README
+  исключает hardware integration из состава опубликованного пакета.
+
+Нет единого опубликованного «необходимого и достаточного» теста, доказывающего
+любые Flat/Rough/Stairs. Достаточность утверждается только для явно объявленных
+условий и следующего инженерного решения.
