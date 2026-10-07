@@ -1,0 +1,249 @@
+{
+  "terrain_columns": {
+    "retention": [
+      0,
+      14
+    ],
+    "target_flat": [
+      14,
+      20
+    ],
+    "target_rough": [
+      20,
+      26
+    ],
+    "target_stairs_up": [
+      26,
+      36
+    ],
+    "target_stairs_down": [
+      36,
+      40
+    ]
+  },
+  "terrain_proportions": {
+    "retention_pyramid_stairs": 0.075,
+    "retention_pyramid_stairs_inv": 0.075,
+    "retention_boxes": 0.075,
+    "retention_random_rough": 0.075,
+    "retention_slope_up": 0.025,
+    "retention_slope_down": 0.025,
+    "target_flat": 0.15,
+    "target_rough": 0.15,
+    "target_stairs_up": 0.25,
+    "target_stairs_down": 0.1
+  },
+  "target_geometry": {
+    "rough_noise_m": [
+      0.02,
+      0.1
+    ],
+    "rough_noise_step_m": 0.02,
+    "flight_kind": "straight short flight (марш)",
+    "flight_min_steps": 3,
+    "flight_max_steps": 12,
+    "flight_height_m": [
+      0.05,
+      0.12
+    ],
+    "flight_tread_m": 0.3,
+    "flight_first_edge_m": 0.8,
+    "flight_difficulty_note": "level=terrain_levels in [0,9]; num_steps=3+round(level/9*(12-3)); step_height=0.05+(level/9)*(0.12-0.05); crossing band [first_edge, first_edge+(num_steps-1)*tread]"
+  },
+  "banks": {
+    "flat": [
+      {
+        "case": "longitudinal",
+        "weight": 1.0,
+        "axis": 0
+      },
+      {
+        "case": "lateral",
+        "weight": 2.0,
+        "axis": 1
+      },
+      {
+        "case": "yaw",
+        "weight": 2.0,
+        "axis": 2
+      },
+      {
+        "case": "mixed",
+        "weight": 0.5
+      },
+      {
+        "case": "stand",
+        "weight": 0.5
+      }
+    ],
+    "rough": [
+      {
+        "case": "longitudinal",
+        "weight": 1.5,
+        "axis": 0
+      },
+      {
+        "case": "lateral",
+        "weight": 2.5,
+        "axis": 1
+      },
+      {
+        "case": "yaw",
+        "weight": 2.5,
+        "axis": 2
+      },
+      {
+        "case": "mixed",
+        "weight": 1.0
+      },
+      {
+        "case": "stand",
+        "weight": 0.5
+      }
+    ],
+    "stairs_up": [
+      {
+        "case": "traverse_0.3",
+        "weight": 3.0
+      },
+      {
+        "case": "traverse_0.5",
+        "weight": 1.0
+      },
+      {
+        "case": "traverse_0.7",
+        "weight": 2.0
+      },
+      {
+        "case": "stop_restart_0.3",
+        "weight": 3.0
+      },
+      {
+        "case": "stop_restart_0.5",
+        "weight": 1.5
+      }
+    ],
+    "stairs_down": [
+      {
+        "case": "traverse_0.3",
+        "weight": 2.0
+      },
+      {
+        "case": "traverse_0.5",
+        "weight": 1.0
+      },
+      {
+        "case": "traverse_0.7",
+        "weight": 1.0
+      },
+      {
+        "case": "stop_restart_0.3",
+        "weight": 2.0
+      },
+      {
+        "case": "stop_restart_0.5",
+        "weight": 2.0
+      }
+    ]
+  },
+  "parent_iteration": 24650,
+  "parent_checkpoint": "policies/local/core_24650/model_24650.pt",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "parent_env_sha256": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+  "parent_agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+  "parent_bank_source": "logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json",
+  "parent_bank_source_sha256": "6ca22b0e547b008b5d76c95bb4334ac7a3adc225b9543c6f616fe519d44d1e53",
+  "schema": "b2w_short_flight_v1",
+  "basis_report": "docs/results/2026-10-01-deepseek-stage-D.md",
+  "basis_summary": "docs/results/evidence/deepseek_stageD_20261001/decision.json",
+  "additional_updates": 1500,
+  "num_envs": 4096,
+  "seed": 9904,
+  "checkpoint_interval": 100,
+  "probe_updates": [
+    500,
+    1500
+  ],
+  "arms": {
+    "shortflight": {
+      "lr_cap": 1e-05,
+      "adaptive": true
+    }
+  },
+  "hypothesis": "Straight short stair flight (марш) with promotion by real flight success makes the 'good' window reachable (stair B pyramid gave 82.8% unsafe, 0 promotions) and improves ascent while preserving other skills under common safety terminals.",
+  "unchanged": [
+    "actor/critic/std/Adam exact restore",
+    "all parent rewards, PPO terms and command banks",
+    "ABI 57->16 at 50 Hz",
+    "retention 35%, Flat/Rough command schedule, terrain cohorts and DR",
+    "all non-target terrain geometry, actuators, mass, noise, randomization",
+    "common safety terminals (physics 200 Hz, tilt/base-contact/hard-joint)"
+  ],
+  "single_factor": "target_stairs_* geometry: pyramid (multi-side) is replaced by a straight short flight whose riser count and step height grow with difficulty, and crossing/exposure is measured on that flight band. Only this factor differs from the rejected stair A/B baseline.",
+  "coverage": {
+    "attempts_per_phase_min": 100,
+    "completed_segments_per_phase_min": 50,
+    "highest_level_stair_attempts_min": 100
+  },
+  "advancement": {
+    "eligible_updates": [
+      1500
+    ],
+    "ascent_success_gain": 2,
+    "target_retention_tolerance": 0.02,
+    "wheel_saturation_fraction_extra_max": 0.02,
+    "leg_saturation_fraction_extra_max": 0.01,
+    "targets": [
+      "lateral",
+      "yaw"
+    ]
+  },
+  "evaluation": {
+    "probe": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "layout": "one actor per fresh process, identical case/reset slots and environment count",
+    "reset_seeds": [
+      73001,
+      73002,
+      73003,
+      73004,
+      73005
+    ],
+    "baseline_before_training": true,
+    "checkpoint_probe_timing": "after training finishes; +500 diagnostic, +1500 eligible",
+    "final_screen_only_if_advance": true,
+    "full_screen_actors": "Deferred until matched independent training seeds are reviewed",
+    "independent_validation": false
+  },
+  "qualification": false,
+  "hardware_approval": false,
+  "automatic_promotion": false,
+  "basis_report_sha256": "88f0ab4ae5a39d7d76be228d94397e9bfc7ebadf90b1cc2b6e3f8aa49caae119",
+  "basis_summary_sha256": "da2d614d56c8ac1a48da9f63bf77e2cb2fdadfbaa1de48161de1a6b41d5cb0e8",
+  "experiment": "DeepSeek F1: straight short flight target stairs with real-success promotion, one factor",
+  "safety": {
+    "gravity_z_max": -0.5,
+    "base_hip_force_max_n": 5.0,
+    "hard_joint_margin_min_rad": -0.001,
+    "physics_hz": 200,
+    "terminal_overrides_timeout": true
+  },
+  "curriculum": {
+    "initial_max_level": 2,
+    "window_episodes": 1,
+    "successes_to_promote": 1,
+    "failures_to_demote": 1,
+    "rehearsal_fraction_at_top": 0.2,
+    "progress_ratio_min": 0.8,
+    "moving_stair_exposure_s_min": 1.0,
+    "zero_settle_s": 2.0,
+    "zero_speed_max": 0.1,
+    "zero_yaw_max": 0.1,
+    "stop_stair_exposure_fraction_min": 0.9,
+    "window_rule": "One completed moving episode; real flight success promotes one level, failure demotes one level. Episodes without movement leave levels unchanged. Top-level rehearsal is deterministic 20 percent.",
+    "level_geometry_mapping": "level=terrain_levels in [0,9]; num_steps=3+round(level/9*9); step_height=0.05+(level/9)*0.07; short flight at low levels -> full flight (12 risers) at level 9.",
+    "success_definition": "No unsafe, crossed the flight outer edge (root_x past last riser edge + 0.5 m), >=1 s moving wheel contact on the flight band, integrated body-frame progress >=0.8 of commanded distance, stable completed long zeros, and at least one >=90% exposed stable zero for stop/restart cases."
+  },
+  "revision": 1,
+  "revision_note": "Before any PPO updates: one-episode curriculum windows; single-factor geometry swap vs rejected stair A/B; promotion by real flight success (StairMonitor 'good') reused unchanged."
+}

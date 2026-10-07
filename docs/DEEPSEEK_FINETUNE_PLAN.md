@@ -101,6 +101,33 @@ promotions даже на level 0; целевые лестничные cohorts о
   - tracking малых lateral/yaw и остановка без деградации >0.02;
   - wheel saturation не растёт (симуляционная metrika, отдельно от B2W limits).
 
+#### Статус реализации F1 (2026-10-01)
+
+Собран замороженный F1-эксперимент (зафайзed config, до PPO нет новых обновлений):
+
+- `configs/24650_short_flight_20261001.json` — frozen plan (seed 9904, 4096 envs,
+  LR cap 1e-5, 1500 updates, probe [500,1500], один arm `shortflight`); SHA закреплён
+  в `scripts/short_flight_contract.py` (`PLAN_SHA`), parent/bank/basis checksums
+  проверяются при `load_plan()`.
+- `scripts/b2w_short_flight_terrain.py` — геометрия прямого марша (марш up/down,
+  уровень 0..9 → 3..12 ступеней, высота 0.05..0.12 м, tread 0.30, first edge 0.8 м),
+  тот же band crossing, что и в протоколе v2 (последний край + 0.5 м).
+- `scripts/b2w_short_flight_cfg.py` — команда/бэнки/cohorts идентичны parent;
+  единственный фактор — геометрия target_stairs_up/down (марш вместо пирамиды);
+  `audit()` помечает только этот фактор как declared, остальное обязано совпадать.
+- `scripts/b2w_short_flight_env.py` — exposure/crossed по ленте марша (wheel support
+  на марше, root за последний край); safety-терминалы, StairMonitor, exact restore —
+  без изменений (reuse frozen `CurriculumEnv.preflight`).
+- `scripts/train_short_flight.py` / `run_short_flight.py` / `short_flight_decision.py`
+  — зеркала stair-curriculum workflow, recipe `short_flight[_preflight]` добавлен
+  в `scripts/job_manager.py` allowlist.
+- `tests/test_short_flight.py` — 8 unit-тестов проходят (геометрия, contract,
+  decision, recipe) без Isaac.
+
+**Не выполнено (очередные шаги):** preflight через supervisor (`short_flight_preflight`),
+PPO-прогон 1500 updates (`short_flight`), isolated v2 probes, decision, export parity.
+PPO не запускается до прохождения preflight и подтверждения frozen-contract.
+
 ### 3.3 Этап F2: командное разнообразие (после положительного F1 или отдельно)
 
 Если F1 подтверждает локомоушн-навык на лестницах, следующий отдельный фактор —

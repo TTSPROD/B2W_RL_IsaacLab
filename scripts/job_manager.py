@@ -21,6 +21,8 @@ ENTRYPOINTS = {
     "scripts/run_stair_comparison_1350.py": "Stair comparison at 1350",
     "scripts/run_stair_curriculum.py": "Stair curriculum A/B",
     "scripts/train_stair_curriculum.py": "Stair curriculum arm",
+    "scripts/run_short_flight.py": "DeepSeek F1 short flight",
+    "scripts/train_short_flight.py": "DeepSeek F1 short flight arm",
     "scripts/run_lr_pilot.py": "LR A/B pilot",
     "scripts/train_lr_pilot.py": "LR pilot arm",
     "scripts/run_stair_isolation.py": "same-slot stair comparison",
@@ -68,6 +70,8 @@ def recipe(request):
         return "scripts/run_stair_comparison_1350.py", []
     if kind in {"stair_curriculum", "stair_curriculum_preflight"}:
         return "scripts/run_stair_curriculum.py", ["--preflight-only"] if kind.endswith('preflight') else []
+    if kind in {"short_flight", "short_flight_preflight"}:
+        return "scripts/run_short_flight.py", ["--preflight-only"] if kind == "short_flight_preflight" else []
     if kind in {"lr_pilot", "lr_pilot_preflight"}:
         return "scripts/run_lr_pilot.py", ["--preflight-only"] if kind == "lr_pilot_preflight" else []
     if kind == "stair_isolation":
