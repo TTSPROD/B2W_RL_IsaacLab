@@ -9,7 +9,8 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest='action',required=True)
     start=sub.add_parser('start')
-    start.add_argument('kind',choices=('tests','train','evaluate','compare','stair_curriculum','stair_comparison_1350'))
+    start.add_argument('kind',choices=('tests','train','evaluate','compare','stair_curriculum','stair_comparison_1350',
+                                       'short_flight','short_flight_preflight'))
     start.add_argument('--updates',type=int,default=100)
     start.add_argument('--num-envs',type=int,default=4096)
     start.add_argument('--policy',default='24650')
