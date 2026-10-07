@@ -1,0 +1,14 @@
+{
+  "created": "2026-10-01T09:35:49.771410+00:00",
+  "files_sha256": {
+    "result_review.json": "d7c806502cbe28371b9b2b7d5affead8e73f0f9b32c9aad5dcbae4860393992a",
+    "state.json": "f0cd0da7606058e9b0a19ab18c817b4298454412c91fdc8919a2e4c4363a04ad",
+    "pilot_decision.json": "13a0d05b248a044cd4f1091ab2dc0691756117dc38ebcc7ee483a6ea4c01b43c",
+    "preflight_decision.json": "cd757986c0bc497e11e9830109fdffa9a4b8b8525465b590efcc5ef090f113d5"
+  },
+  "report_sha256": "104f0ddd9d33273a6940a115df36e387f50caf6bdd910021effac3f19d682287",
+  "new_ppo_updates": 0,
+  "new_simulation_episodes": 0,
+  "active_candidate": "core_24650",
+  "review_only": true
+}

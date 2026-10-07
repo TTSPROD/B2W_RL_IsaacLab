@@ -1,0 +1,81 @@
+{
+  "schema": "b2w_factorial_micro_sweep_v1",
+  "experiment": "core_24650_command_order_ppo_intensity_2x2",
+  "status": "frozen_for_stage1_execution",
+  "authorization": "User requested a fast small-budget sweep and allowed the iteration count to be selected from evidence.",
+  "basis": {
+    "gradient_audit": "logs/dashboard/jobs/216011ab5a7e43fcb5d16129b2c2ee55/gradient_audit/result.json",
+    "gradient_audit_sha256": "d4757aaa0fe15316ecc6269a1c128dde85da0217e2035852df411896379c5c85",
+    "first_update_job": "d073afe88e8044b4b4b1b976355317f8",
+    "observations": [
+      "one standard PPO update already fails strict parent retention",
+      "signed command phases are strongly imbalanced",
+      "sampled actor gradients conflict across cohorts and command phases"
+    ]
+  },
+  "parent": {
+    "checkpoint": "policies/local/core_24650/model_24650.pt",
+    "sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "env_sha256": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0"
+  },
+  "stage1": {
+    "seed": 9912,
+    "num_envs": 512,
+    "updates": 25,
+    "steps_per_update": 24,
+    "transitions_per_arm": 307200,
+    "final_iteration": 24674,
+    "evaluation_protocol": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "actors": 5
+  },
+  "common": {
+    "runner": "OnPolicyRunner",
+    "algorithm": "PPO",
+    "schedule": "fixed",
+    "clip_param": 0.1,
+    "gamma": 0.99,
+    "lam": 0.95,
+    "entropy_coef": 0.005,
+    "num_mini_batches": 4,
+    "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+    "standard_train_sha256": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+  },
+  "variants": {
+    "standard_order": {
+      "counterbalanced_sign_order": false,
+      "learning_rate": 0.00001,
+      "num_learning_epochs": 5
+    },
+    "standard_balanced": {
+      "counterbalanced_sign_order": true,
+      "learning_rate": 0.00001,
+      "num_learning_epochs": 5
+    },
+    "conservative_order": {
+      "counterbalanced_sign_order": false,
+      "learning_rate": 0.000001,
+      "num_learning_epochs": 1
+    },
+    "conservative_balanced": {
+      "counterbalanced_sign_order": true,
+      "learning_rate": 0.000001,
+      "num_learning_epochs": 1
+    }
+  },
+  "counterbalance_definition": "At the start of each Flat/Rough command-program cycle, independently choose +first or -first per environment; durations, magnitudes, cases, terrain, rewards and complete-cycle signed distribution are unchanged. Stairs and retention sampling are unchanged.",
+  "stage1_decision": {
+    "diagnostic_only": true,
+    "requires_zero_unsafe": true,
+    "requires_no_parent_cell_regression": true,
+    "lateral_yaw_response_max_drop": 0.02,
+    "automatic_promotion": false,
+    "automatic_stage2": false
+  },
+  "stage2_if_explicitly_selected_after_stage1": {
+    "seed": 9913,
+    "cumulative_updates_range": [75, 150],
+    "only_stage1_retaining_variants": true
+  }
+}

@@ -25,6 +25,11 @@ server ancestor — `policies/server/upstream_19999/`.
 
 ## Инженерные правила
 
+- Для новых моделей использовать стандартный pinned Robot Lab
+  `vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py` как источник
+  training pipeline; upstream bytes не менять. Адаптации task config/MDP делать
+  снаружи и только для участков с подтверждённым отставанием по оценкам.
+  Новый recipe не должен автоматически наследовать весь стек прежних runner hooks.
 - Сохранять ABI 57→16, порядок каналов, units, scales, previous-action semantics.
 - Оценивать tracking, смену команд, непрерывный ноль, устойчивость и приводы.
   Навигационные метрики не являются acceptance gates низкоуровневой policy.

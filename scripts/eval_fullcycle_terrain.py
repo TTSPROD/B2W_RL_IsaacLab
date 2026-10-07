@@ -45,7 +45,9 @@ if args.policy_map:
     POLICIES = tuple(EXPORT_DIRS)
 frozen_plan = json.loads(json.dumps(protocol_manifest(EXPORT_DIRS)))
 declared_sources = None
-if args.protocol_module.startswith('locomotion_v2'):
+if (args.protocol_module.startswith('locomotion_v2') or
+        args.protocol_module in {'lateral_curve_protocol', 'lateral_endpoint_protocol',
+                                 'yaw_endpoint_protocol'}):
     from run_support import sha256 as file_sha256
     declared = read_json(args.policy_map.parent / 'declared_plan.json')
     if any(declared.get(key) != value for key, value in frozen_plan.items()):

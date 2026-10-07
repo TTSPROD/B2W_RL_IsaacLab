@@ -27,8 +27,11 @@ def combine(summaries):
 
 
 class IsolatedEvaluation:
-    def __init__(self, base, module_name, policies, extra_sources=()):
+    def __init__(self, base, module_name, policies, extra_sources=(), max_parallel=1):
         self.base,self.module,self.policies,self.extra=base,module_name,list(map(str,policies)),extra_sources
+        if not 1 <= max_parallel <= 4:
+            raise ValueError('Isolated evaluation parallelism must be in [1, 4]')
+        self.max_parallel=max_parallel
         self.protocol=importlib.import_module(module_name)
         self.summaries={}
         self.base.mkdir(parents=True,exist_ok=False)
@@ -53,7 +56,7 @@ class IsolatedEvaluation:
                 'completed':prior+[f'{p}/{t}' for t in current['completed']],
                 'active':[f'{p}/{t}' for t in current['active']],
                 'failures':current['failures'],'updated':utc_now()})
-        run(folder,self.module,max_parallel=1,on_progress=progress)
+        run(folder,self.module,max_parallel=self.max_parallel,on_progress=progress)
         self.summaries[p]=summarize_run(folder)
         combined=combine(self.summaries)
         combined['partial']=len(self.summaries)!=len(self.policies)

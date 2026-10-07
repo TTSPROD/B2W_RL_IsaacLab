@@ -1,0 +1,12 @@
+{
+  "id": "2eaf04619ca64678a110e6cc9fa96ff9",
+  "kind": "D1.1 native schedule A/B corrected arm mapping",
+  "entrypoint": "scripts/run_schedule_pilot.py",
+  "arguments": [],
+  "status": "completed",
+  "created": "2026-10-01T09:59:29.294528+00:00",
+  "updated": "2026-10-01T11:03:29.341542+00:00",
+  "returncode": 0,
+  "worker_pid": 29996,
+  "process_pid": 14184
+}

@@ -22,6 +22,62 @@ urlopen = build_opener(ProxyHandler({})).open
 
 
 class DashboardTests(unittest.TestCase):
+    def test_training_and_evaluation_open_detached_monitor_after_submission(self):
+        import process_client
+        for payload in ({'kind': 'train'}, {'kind': 'evaluate'}, {'kind': 'tests'},
+                        {'entrypoint': 'scripts/run_reset_pilot.py', 'arguments': []}):
+            with self.subTest(payload=payload), tempfile.TemporaryDirectory() as folder:
+                order = []
+                def start(request):
+                    order.append('job')
+                    return {'id': 'fixture'}
+                def launch(*args, **kwargs):
+                    order.append('monitor')
+                with patch.object(process_client, 'ROOT', Path(folder)), \
+                     patch.object(process_client, 'start_job', side_effect=start), \
+                     patch.object(process_client.subprocess, 'Popen', side_effect=launch) as popen:
+                    self.assertEqual(process_client.submit(payload)['id'], 'fixture')
+                self.assertEqual(order, ['job', 'monitor'])
+                command = popen.call_args.args[0]
+                self.assertEqual(command[-1], '--open')
+                self.assertIn('dashboard', command[1])
+                self.assertTrue(popen.call_args.kwargs['close_fds'])
+                self.assertTrue((Path(folder) / 'logs/dashboard/monitor.log').is_file())
+
+    def test_rejected_submission_does_not_open_monitor(self):
+        import process_client
+        with patch.object(process_client, 'start_job', side_effect=ValueError('active job')), \
+             patch.object(process_client.subprocess, 'Popen') as launch:
+            with self.assertRaises(ValueError):
+                process_client.submit({'kind': 'train'})
+        launch.assert_not_called()
+
+    def test_current_monitor_never_reads_older_evidence(self):
+        latest = {'id': 'latest', 'status': 'queued'}
+        older = {'id': 'older', 'status': 'completed'}
+        with patch.object(server, 'list_jobs', return_value=[latest, older]), \
+             patch.object(server, 'job_details', return_value={'id': 'latest'}) as details:
+            self.assertEqual(server.current_job_data(), {'job': {'id': 'latest'}})
+        details.assert_called_once_with('latest')
+        latest['status'] = 'completed'
+        with patch.object(server, 'list_jobs', return_value=[latest, older]), \
+             patch.object(server, 'job_details', return_value=latest) as details:
+            self.assertEqual(server.current_job_data()['job']['status'], 'completed')
+        details.assert_called_once_with('latest')
+        with patch.object(server, 'list_jobs', return_value=[]), \
+             patch.object(server, 'job_details') as details:
+            self.assertEqual(server.current_job_data(), {'job': None})
+        details.assert_not_called()
+
+    def test_current_monitor_keeps_active_or_interrupted_live_worker_visible(self):
+        latest = {'id': 'failed_submission', 'status': 'failed'}
+        for active in ({'id': 'live', 'status': 'running'},
+                       {'id': 'live', 'status': 'interrupted', 'worker_alive': True}):
+            with patch.object(server, 'list_jobs', return_value=[latest, active]), \
+                 patch.object(server, 'job_details', return_value=active) as details:
+                self.assertEqual(server.current_job_data()['job']['id'], 'live')
+            details.assert_called_once_with('live')
+
     def test_submission_succeeds_when_monitor_launch_fails(self):
         import process_client
         with patch.object(process_client,'start_job',return_value={'id':'independent'}) as start, \
@@ -102,6 +158,9 @@ class DashboardTests(unittest.TestCase):
                 self.assertEqual(caught.exception.code, 405)
             with urlopen(url + "/api/health", timeout=3) as response:
                 self.assertEqual(json.load(response)["service"], "b2w-dashboard-v2")
+            with patch.object(server, 'current_job_data', return_value={'job': None}):
+                with urlopen(url + '/api/current', timeout=3) as response:
+                    self.assertEqual(json.load(response), {'job': None})
         finally:
             http.shutdown()
             http.server_close()

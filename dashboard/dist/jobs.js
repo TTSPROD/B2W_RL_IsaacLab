@@ -1,15 +1,70 @@
 'use strict';
 (() => {
- let selected='', polling=false, followJob=true;
+ let polling=false;
+ const $ = id => document.getElementById(id);
+ const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const duration = seconds => seconds == null ? '—' : `${Math.floor(seconds / 3600)} ч ${Math.floor(seconds % 3600 / 60)} мин`;
+ const date = iso => new Date(iso).toLocaleString('ru-RU', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+ async function getJson(url) {
+  const response = await fetch(url, {cache:'no-store', signal:AbortSignal.timeout(15000)});
+  if (!response.ok) throw Error(`HTTP ${response.status}`);
+  return response.json();
+ }
  const message=(text,error=false)=>{const box=$('jobMessage');box.textContent=text;box.hidden=!text;box.classList.toggle('error',error);};
  const states={queued:'В очереди',running:'Выполняется',stopping:'Останавливается',completed:'Завершён',failed:'Ошибка',cancelled:'Остановлен',interrupted:'Нет связи с процессом'};
- async function detail(id) {
-  selected=id;const job=await getJson(`/api/job?id=${encodeURIComponent(id)}`);
+ function progressBar(job, trainingPhase) {
+  let done, total, label='Выполнение';
+  if(job.training_progress && trainingPhase) {
+   done=job.training_progress.completed_updates;total=job.training_progress.target_updates;
+   label=job.pilot_progress?'Обучение текущего плеча · updates':'Обучение · updates';
+  } else if(job.evaluation_progress) {
+   done=job.evaluation_progress.completed?.length;total=job.evaluation_progress.total_jobs;
+   label='Оценка · завершённые прогоны';
+  }
+  const track=$('jobProgressTrack');
+  $('jobProgressBar').className=`job-progress ${job.status}`;
+  $('jobProgressLabel').textContent=label;
+  track.setAttribute('aria-label',label);
+  if(Number.isFinite(done) && Number.isFinite(total) && total>0) {
+   done=Math.max(0,Math.min(done,total));
+   const percent=100*done/total;
+   track.value=percent;
+   const text=`${done} / ${total} · ${percent.toLocaleString('ru-RU',{maximumFractionDigits:1})}%`;
+   $('jobProgressValue').textContent=text;track.setAttribute('aria-valuetext',text);
+  } else if(job.status==='completed') {
+   track.value=100;$('jobProgressValue').textContent='100%';
+   track.setAttribute('aria-valuetext','Завершён');
+  } else {
+   track.removeAttribute('value');
+   const text=['queued','running','stopping'].includes(job.status)?'Ожидание данных о прогрессе':'Прогресс не измерен';
+   $('jobProgressValue').textContent=text;track.setAttribute('aria-valuetext',text);
+   // A stopped job must not look like an ongoing indeterminate operation.
+   track.hidden=!['queued','running','stopping'].includes(job.status);
+   return;
+  }
+  track.hidden=false;
+ }
+ function detail(job) {
   $('jobDetail').hidden=false;$('jobDetailTitle').textContent=`${job.kind} · ${states[job.status]||job.status}`;
+  $('jobEmpty').hidden=true;
+  $('runStatus').textContent=(states[job.status]||job.status)+(job.returncode==null?'':` · exit ${job.returncode}`);
+  $('runStatus').className=`status ${job.status}`;
+  $('jobIdentity').textContent=`${job.id} · начало ${date(job.created)}`;
+  $('lastUpdate').textContent=`Запись статуса · ${date(job.updated)}`;
+  document.title=`B2W · ${states[job.status]||job.status}`;
   const progress=job.evaluation_progress;
   $('jobProgress').textContent=progress?`${job.entrypoint==='scripts/run_stair_isolation.py'?'Actor':'Рельеф'}: ${progress.completed.length}/${progress.total_jobs}. Сейчас: ${progress.active.join(', ')||'—'}. ${progress.failures.join('; ')}`:'';
-  if(job.training_progress && (!job.pilot_progress||job.pilot_progress.phase.startsWith('training_'))) {const p=job.training_progress;$('jobProgress').textContent=`Обучение: ${p.completed_updates||0}/${p.target_updates||'—'} updates · iteration ${p.iteration||'—'} · ${duration(p.elapsed_seconds)}`;}
+  const phase=job.pilot_progress?.phase||'';
+  // Pilot arms may have arbitrary names (fixed, adaptive, control, ...).
+  // The saved training state identifies a live learner; workflow phases keep
+  // old learner counters from replacing preflight, export or evaluation.
+  const otherPhase=/^(preflight|audit_|probe_|paired_probe|baseline_probe|full_screen|export_parity|completed|failed|cancelled)/.test(phase);
+  const trainingPhase=!job.pilot_progress || phase.startsWith('training_') ||
+   (['running','initializing'].includes(job.training_progress?.status) && !otherPhase);
+  if(job.training_progress && trainingPhase) {const p=job.training_progress;$('jobProgress').textContent=`Обучение: ${p.completed_updates??0}/${p.target_updates??'—'} updates · iteration ${p.iteration??'—'} · ${duration(p.elapsed_seconds)}`;}
+  progressBar(job,trainingPhase);
   if(job.pilot_progress) {const p=job.pilot_progress;$('jobProgress').textContent=`${p.experiment||'A/B'} · ${p.phase} · seed ${p.seed}. `+$('jobProgress').textContent;}
+  if(!['queued','running','stopping'].includes(job.status))$('jobProgress').textContent=`${states[job.status]||job.status}. `+$('jobProgress').textContent;
   $('jobLog').textContent=Object.entries(job.logs).map(([name,text])=>`${name}\n${text}`).join('\n\n');
   $('jobResult').innerHTML='';
   if(job.summary) {
@@ -26,15 +81,21 @@
  window.refreshJobs=async()=>{
   if(polling)return;polling=true;
   try {
-   const {jobs}=await getJson('/api/jobs');
-   $('jobList').innerHTML=jobs.length?jobs.map(j=>`<div class="config-row"><button class="button" data-job="${j.id}">${escapeHtml(j.kind)} · ${escapeHtml(date(j.created))}</button><span>${escapeHtml(states[j.status]||j.status)}${j.returncode==null?'':` · exit ${j.returncode}`}</span></div>`).join(''):'Запусков пока нет.';
-   $('jobList').querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>{followJob=false;detail(b.dataset.job).catch(e=>message(e.message,true));});
-   if((!selected||followJob)&&jobs.length)selected=jobs[0].id;
-   if(selected)await detail(selected);
-   if($('jobMessage').dataset.connectionError==='true'){message('');delete $('jobMessage').dataset.connectionError;}
+   const {job}=await getJson('/api/current');
+   if(job)detail(job);
+   else {
+    $('jobDetail').hidden=true;$('jobEmpty').hidden=false;
+    $('jobProgress').textContent='';$('jobResult').innerHTML='';$('jobLog').textContent='';
+    $('jobIdentity').textContent='Ожидание нового запуска';$('runStatus').textContent='Нет запуска';
+    $('runStatus').className='status';document.title='B2W · Текущий запуск';
+    $('lastUpdate').textContent='Ожидание данных';
+   }
+   message(job?.error||'',Boolean(job?.error));
    $('connection').textContent='Подключено локально';$('connectionDot').style.background='var(--mint)';
-  }catch(e){message(e.message,true);$('jobMessage').dataset.connectionError='true';}finally{polling=false;}
+  }catch(e){message(`Не удалось обновить статус: ${e.message}. Показаны последние полученные данные.`,true);$('connection').textContent='Нет связи';$('connectionDot').style.background='var(--red)';}finally{polling=false;}
  };
- setInterval(()=>{if(!document.hidden&&currentView==='jobs')window.refreshJobs();},3000);
+ $('refresh').onclick=window.refreshJobs;
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)window.refreshJobs();});
+ setInterval(()=>{if(!document.hidden)window.refreshJobs();},3000);
  window.refreshJobs();
 })();

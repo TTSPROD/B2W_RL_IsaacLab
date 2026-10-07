@@ -1,0 +1,88 @@
+{
+  "metrics": {
+    "24650": {
+      "success": 27,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6831165713568529,
+        "yaw": 0.6666150192419689
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1275,
+      "leg_saturation": 0.0074
+    },
+    "resetcontrol_24949": {
+      "success": 21,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 1
+      },
+      "targets": {
+        "lateral": 0.6996538167198499,
+        "yaw": 0.5895968551437061
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.14423913043478262,
+      "leg_saturation": 0.005108695652173913
+    },
+    "resetupright_24949": {
+      "success": 18,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 1,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 2,
+        "stairs_down_18/stop_restart_0.5": 0
+      },
+      "targets": {
+        "lateral": 0.5708250751097997,
+        "yaw": 0.6201557020346324
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.10661764705882353,
+      "leg_saturation": 0.004
+    }
+  },
+  "retention_pass": false,
+  "reasons": [
+    "stairs_up_18/traverse_0.7: regression",
+    "stairs_down_18/traverse_0.7: regression",
+    "stairs_down_18/stop_restart_0.5: regression",
+    "lateral: retention failure",
+    "yaw: retention failure",
+    "lateral: retention failure"
+  ],
+  "automatic_promotion": false,
+  "qualification": false,
+  "hardware_approval": false
+}

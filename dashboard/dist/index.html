@@ -2,44 +2,37 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>B2W · Прогресс обучения</title>
-  <meta name="description" content="Живые графики обучения B2W, checkpoints и результаты проверки policy.">
+  <title>B2W · Текущий запуск</title>
+  <meta name="description" content="Статус текущего обучения или оценки B2W.">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101822'/%3E%3Cpath d='M6 23V9h9l-5 7h11l-5 7h10' fill='none' stroke='%234ce0ba' stroke-width='3'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script><script src="/jobs.js" defer></script>
+  <link rel="stylesheet" href="/style.css"><script src="/jobs.js" defer></script>
 </head>
 <body>
   <aside class="sidebar">
-    <a class="brand" href="#overview"><span class="brand-mark">B<span>2</span>W</span><span class="brand-sub">LOCOMOTION LAB</span></a>
-    <div class="nav-label">РАБОЧАЯ ОБЛАСТЬ</div>
-    <nav aria-label="Разделы">
-      <button data-view="jobs" class="nav"><span>▶</span> Монитор запусков</button>
-      <button data-view="overview" class="nav active"><span>◫</span> Обзор обучения</button>
-      <button data-view="metrics" class="nav"><span>⌁</span> Все графики <b id="metricCount">—</b></button>
-      <button data-view="selection" class="nav"><span>◈</span> Оценка policy</button>
-      <button data-view="checkpoints" class="nav"><span>▧</span> Checkpoints</button>
-    </nav>
+    <a class="brand" href="#jobs"><span class="brand-mark">B<span>2</span>W</span><span class="brand-sub">LOCOMOTION LAB</span></a>
+    <div class="nav-label">МОНИТОР</div>
+    <nav aria-label="Разделы"><a href="#jobs" class="nav active"><span>▶</span> Текущий запуск</a></nav>
     <div class="sidebar-note"><div class="eyebrow">КОНТРАКТ POLICY</div><strong>57 <span>→</span> 16</strong><p>observations → actions</p><div class="contract"><span>12 суставов + 4 колеса</span><span>50 Hz · body frame</span></div></div>
-    <div class="sidebar-footer"><span class="local-icon">◉</span> Локальная машина<p>Статус · метрики · результаты</p></div>
+    <div class="sidebar-footer"><span class="local-icon">◉</span> Локальная машина<p>Статус · прогресс · логи</p></div>
   </aside>
   <main>
-    <header class="topbar"><div class="breadcrumb">B2W <span>/</span> Монитор обучения</div><div class="connection"><span id="connectionDot" class="dot"></span><span id="connection">Подключение…</span></div></header>
+    <header class="topbar"><div class="breadcrumb">B2W <span>/</span> Текущий запуск</div><div class="connection"><span id="connectionDot" class="dot"></span><span id="connection">Подключение…</span></div></header>
     <div class="workspace">
-      <div id="error" class="alert error" role="alert" hidden></div>
-      <section id="jobs" class="view" hidden>
-        <h1>Монитор запусков</h1>
-        <p class="muted">Только наблюдение: состояние, метрики и логи. Независимый supervisor выполняет обучение без дашборда; запуск и остановка — через CLI.</p>
-        <div id="jobMessage" class="alert" role="status" hidden></div>
-        <section class="panel"><h2>Запуски</h2><div id="jobList">Загрузка…</div></section>
-        <section class="panel" id="jobDetail" hidden><h2 id="jobDetailTitle"></h2><div id="jobProgress"></div><div id="jobResult"></div><h3>Журнал процесса</h3><pre id="jobLog" style="white-space:pre-wrap;max-height:420px;overflow:auto"></pre></section>
+      <div class="page-heading"><div><div class="eyebrow">ОБУЧЕНИЕ И ОЦЕНКА</div><h1>Текущий запуск</h1><p>Статус обновляется каждые 3 секунды. Новый запуск появляется автоматически.</p></div><span class="status" id="runStatus">Загрузка</span></div>
+      <div class="toolbar"><span id="jobIdentity" class="muted">Загрузка…</span><button id="refresh" class="button">↻ Обновить</button></div>
+      <div id="jobMessage" class="alert" role="status" hidden></div>
+      <section class="panel" id="jobEmpty" hidden><h2>Запусков пока нет</h2><p class="muted">После запуска обучения или тестирования здесь появится его статус.</p></section>
+      <section class="panel" id="jobDetail" hidden>
+        <h2 id="jobDetailTitle"></h2><p id="jobProgress" role="status"></p>
+        <div id="jobProgressBar" class="job-progress">
+          <div class="job-progress-heading"><span id="jobProgressLabel">Выполнение</span><strong id="jobProgressValue">Ожидание данных</strong></div>
+          <progress id="jobProgressTrack" max="100" aria-label="Прогресс текущего запуска"></progress>
+        </div>
+        <div id="jobResult"></div>
+        <details><summary>Журнал процесса</summary><pre id="jobLog" style="white-space:pre-wrap;max-height:420px;overflow:auto"></pre></details>
       </section>
-      <div class="page-heading"><div><div class="eyebrow" id="pageEyebrow">ЛОКАЛЬНОЕ ДООБУЧЕНИЕ</div><h1 id="pageTitle">Прогресс обучения</h1><p id="pageSubtitle">Загрузка данных запуска…</p></div><span class="status" id="runStatus">Загрузка</span></div>
-      <div class="toolbar"><label class="run-field">Запуск <select id="runSelect" aria-label="Выбрать запуск"><option>Загрузка…</option></select></label><div class="toolbar-end"><label class="auto"><input id="autoRefresh" type="checkbox" checked> Авто · 10 с</label><button id="refresh" class="button" title="Обновить данные">↻ <span>Обновить</span></button></div></div>
-      <div id="trainingQueueStatus" class="alert" hidden></div><div id="evaluationStatus" class="alert" hidden></div><section id="overview" class="view"><div id="stats" class="stats"></div><div class="section-heading"><h2>Динамика обучения</h2><label class="smoothing">Сглаживание <input id="smooth" type="range" min="0" max="0.95" step="0.05" value="0.6"><output id="smoothValue">0.60</output></label></div><div id="overviewCharts" class="chart-grid"></div><div class="bottom-grid"><section class="panel"><div class="panel-heading"><h2>Распределение команд</h2><span class="muted">Выборки генератора</span></div><div id="commands"></div><p class="footnote">Количество выборок, не доля времени. Нулевые команды длятся дольше.</p></section><section class="panel"><div class="panel-heading"><h2>Параметры запуска</h2><span class="tag">PPO</span></div><div id="configuration"></div></section></div><p class="footnote scope">Учебные метрики включают exploration, noise и randomization. Результат выбранной policy показан в отдельном разделе.</p></section>
-      <section id="metrics" class="view" hidden><div class="section-heading wrap"><div><h2>Все скалярные метрики</h2><p class="muted">Все точки из TensorBoard. Наведите на график для точного значения.</p></div><div class="filters"><input id="metricSearch" type="search" placeholder="Найти метрику…" aria-label="Поиск метрики"><select id="metricGroup" aria-label="Группа метрик"><option value="">Все группы</option></select></div></div><div id="allCharts" class="chart-grid"></div><div id="metricsEmpty" class="empty" hidden>Метрики не найдены. Измените фильтр.</div></section>
-      <section id="selection" class="view" hidden><div class="section-heading wrap"><div><h1 id="selectionTitle">Оценка policy</h1><p class="muted">Монитор оценки · обновление каждые 10 секунд · кандидат core_24650</p></div><label>Источник <select id="selectionSource"><option value="current">Текущее сравнение A/B</option><option value="registry">Сохранённое сравнение 19999 / 24650 / rl_sar</option></select></label><button id="refreshSelection" class="button">Обновить оценку</button></div><div id="selectionDecision" class="alert" hidden></div><div id="selectionNotice" class="alert">Загрузка текущей оценки…</div><div id="selectionStats" class="stats"></div><div class="section-heading"><div><h2>Ход оценки</h2><p class="muted">Flat / Rough / Stairs · одинаковые paired reset seeds для всех policy.</p></div><span id="selectionUpdated" class="muted"></span></div><div id="selectionVariants" class="variant-grid"></div><section class="panel table-wrap selection-table"><div class="panel-heading"><h2>Результаты policies</h2><span class="muted">Промежуточные данные · обновляется после каждого прогона</span></div><table><thead><tr><th>№</th><th>Policy</th><th>Episodes</th><th>Success</th><th>Доля</th><th>Unsafe</th></tr></thead><tbody id="selectionRanking"></tbody></table></section><section class="panel table-wrap selection-table"><div class="panel-heading"><h2>Условия</h2><span class="muted">Успех / episodes · unsafe</span></div><table><thead><tr><th>Policy</th><th>Flat</th><th>Rough</th><th>Stairs ↑</th><th>Stairs ↓</th></tr></thead><tbody id="selectionConditions"></tbody></table></section><p class="footnote scope">Оценка служит только для выбора checkpoint. Training, export или промежуточный рейтинг не являются квалификацией для hardware; автоматический выбор отключён.</p></section>
-      <section id="checkpoints" class="view" hidden><section class="panel"><div class="panel-heading"><h2>Сохранённые состояния</h2><span id="checkpointCount" class="muted"></span></div><p class="muted">Checkpoint содержит состояние обучения. Его сохранение не означает прохождение проверки качества.</p><div class="table-wrap"><table><thead><tr><th>Checkpoint</th><th>Дополнительных updates</th><th>Размер</th><th>Сохранён</th><th>Тип</th></tr></thead><tbody id="checkpointRows"></tbody></table></div></section><section class="panel provenance"><h2>Происхождение</h2><div id="provenance"></div></section></section>
       <footer><span>UNITREE B2W <span class="footer-slash">/</span> Isaac Lab · RSL-RL</span><span id="lastUpdate">Ожидание данных</span></footer>
     </div>
-  </main><div id="tooltip" class="tooltip" role="status" hidden></div>
+  </main>
 </body>
 </html>

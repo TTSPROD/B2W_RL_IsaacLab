@@ -1,0 +1,49 @@
+{
+  "schema": "b2w_axis_robust_composite_v1",
+  "status": "frozen_for_execution",
+  "basis": {
+    "endpoint_result": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/result.json",
+    "endpoint_result_sha256": "879b554dfd2cd346ba53f4357dfd12ebab665662c2a30cd25539c3431b659e82",
+    "parent_run": "logs/dashboard/jobs/d24133183f5f4eeeb4a08bf33dae363f/full_screen/24650",
+    "parent_summary": "logs/dashboard/jobs/d24133183f5f4eeeb4a08bf33dae363f/full_screen/24650/analysis/summary.json",
+    "parent_summary_sha256": "17c22676cd0ad009fe3d5859b05b0633ade3c9be09b7c83f3c1dfef33ca240aa",
+    "decision": "Use the only four-condition-retained lateral endpoint (152) and the success-leading retained yaw endpoint (252)."
+  },
+  "core": {
+    "export": "policies/local/core_24650/export/policy.pt",
+    "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "export_manifest": "policies/local/core_24650/export/manifest.json",
+    "export_manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  },
+  "specialists": {
+    "lateral": {
+      "cumulative_updates": 152,
+      "checkpoint_iteration": 24800,
+      "export": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microlateralcurve152_24800/policy.pt",
+      "export_sha256": "d44e8b222537afacd5fc595ef4ce61969b58285a9ef1933abc642220f81ce3bc",
+      "manifest": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microlateralcurve152_24800/manifest.json",
+      "manifest_sha256": "56c67ac3b13edd40f0e6383dd10eb4b7786c85a18c9c80d9b6b3bb30dbf88957"
+    },
+    "yaw": {
+      "cumulative_updates": 252,
+      "checkpoint_iteration": 24900,
+      "export": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microyaw252_24900/policy.pt",
+      "export_sha256": "4e0c75ce74d6a533bee5b5f45812820bae15374abff085854df54c22818c3900",
+      "manifest": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microyaw252_24900/manifest.json",
+      "manifest_sha256": "60b18d5034777561e7756704224127c1a97ce57379708bd7043977dda93c9034"
+    }
+  },
+  "actor": "microaxismixed152y252_24900",
+  "composite": {
+    "zero_tolerance": 0.000001,
+    "routes": {"pure_lateral": "lateral152", "pure_yaw": "yaw252", "all_other": "parent"}
+  },
+  "selection": {
+    "protocol": "locomotion_v2_protocol",
+    "episodes": 160,
+    "wheel_saturation_max_increase": 0.02,
+    "leg_saturation_max_increase": 0.01,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "b2w_balanced_specialist_stage2_v1",
+  "experiment": "continue_standard_balanced_inside_parent_gated_composite",
+  "status": "frozen_for_execution",
+  "authorization": "User explicitly said continue after being told stage 2 required a separate decision.",
+  "basis": {
+    "stage1_spec": "configs/24650_micro_sweep_20261005.json",
+    "stage1_spec_sha256": "484d3ea97b0f5906d804bf65ac3b45e7ac48108ae6809063f6e38571eb0ec032",
+    "composite_result": "logs/dashboard/jobs/605cb4fb65d84a83b1fe2edc67a4d79d/result.json",
+    "composite_result_sha256": "68c163feb114f00cb729b57c863edc5896ddd34ef71dcf2d0aa9cffd33c9ed4f"
+  },
+  "source_specialist": {
+    "cumulative_updates": 25,
+    "checkpoint_iteration": 24674,
+    "checkpoint": "logs/rsl_rl/b2w_micro_sweep_standard_balanced_9912/2026-10-05_16-47-58_a22e1ee2d3e94fd7a8f08bed0410aaf6/model_24674.pt",
+    "checkpoint_sha256": "bde780ffa19ffdfd7353cfabe3a8708851dc1d391b7d69e5eeeceaf0d1cf7fac",
+    "agent": "logs/rsl_rl/b2w_micro_sweep_standard_balanced_9912/2026-10-05_16-47-58_a22e1ee2d3e94fd7a8f08bed0410aaf6/params/agent.yaml",
+    "agent_sha256": "379139990f5cf2594a210fb68f4deb0669c0539647903379d3217dfa27810fe5"
+  },
+  "training": {
+    "seed": 9912,
+    "num_envs": 512,
+    "additional_updates": 125,
+    "steps_per_update": 24,
+    "additional_transitions": 1536000,
+    "save_interval": 25,
+    "runner": "OnPolicyRunner",
+    "algorithm": "PPO",
+    "schedule": "fixed",
+    "learning_rate": 0.00001,
+    "num_learning_epochs": 5,
+    "num_mini_batches": 4,
+    "counterbalanced_sign_order": true,
+    "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+    "standard_train_sha256": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+  },
+  "candidates": {
+    "77": {"checkpoint_iteration": 24725, "additional_updates": 52, "policy_id": "microcompositec77_24725"},
+    "102": {"checkpoint_iteration": 24750, "additional_updates": 77, "policy_id": "microcompositec102_24750"},
+    "150": {"checkpoint_iteration": 24798, "additional_updates": 125, "policy_id": "microcompositec150_24798"}
+  },
+  "composite": {
+    "parent_export": "policies/local/core_24650/export/policy.pt",
+    "parent_export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "parent_manifest": "policies/local/core_24650/export/manifest.json",
+    "parent_manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631",
+    "command_slice": [6, 9],
+    "zero_tolerance": 1e-6,
+    "specialist_routes": ["pure_lateral", "pure_yaw"],
+    "parent_routes": ["zero", "pure_longitudinal", "mixed"]
+  },
+  "selection": {
+    "protocol": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "requires_zero_unsafe": true,
+    "requires_no_parent_cell_regression": true,
+    "requires_success_above_parent": true,
+    "tie_break": ["earliest_cumulative_updates", "higher_mean_lateral_yaw_response"],
+    "conditional_full_screen": true,
+    "full_screen_protocol": "locomotion_v2_protocol",
+    "full_screen_episodes_per_actor": 160,
+    "automatic_promotion": false,
+    "requires_second_training_seed_before_acceptance": true
+  }
+}

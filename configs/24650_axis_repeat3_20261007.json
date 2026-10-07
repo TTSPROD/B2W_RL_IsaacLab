@@ -1,0 +1,26 @@
+{
+  "schema": "b2w_axis_same_slots_repeat3_v1",
+  "status": "frozen_for_execution",
+  "actor": "microaxismixed152y252_24900",
+  "export": "logs/dashboard/jobs/45bef36fbc494066b753dea3d080c05e/export/policy.pt",
+  "export_sha256": "5f2edfc3bce9958da6022bb28dd871f317c8d969592c1ed3d06687892b7b0b4f",
+  "manifest": "logs/dashboard/jobs/45bef36fbc494066b753dea3d080c05e/export/manifest.json",
+  "manifest_sha256": "d80d81d8bf8fc7c2836d73505d5ba45211069583e9a50d4d6a4a0a4961e1e8ce",
+  "prior": {
+    "axis_confirmation": "logs/dashboard/jobs/41f5c69a71d74097aef04964070a5be5/result.json",
+    "axis_confirmation_sha256": "dd8bce16ad2484547de3cee221a7a0fca36ba2da725e07acc087fa4653c5abe3",
+    "full_composite": "logs/dashboard/jobs/45bef36fbc494066b753dea3d080c05e/result.json",
+    "full_composite_sha256": "3e95adf55b2c84456bd8de477a622277a74b27916744375a35f7cc5471fb4e13",
+    "parent_summary": "logs/dashboard/jobs/d24133183f5f4eeeb4a08bf33dae363f/full_screen/24650/analysis/summary.json",
+    "parent_summary_sha256": "17c22676cd0ad009fe3d5859b05b0633ade3c9be09b7c83f3c1dfef33ca240aa"
+  },
+  "evaluation": {
+    "protocols": {"lateral": "lateral_endpoint_protocol", "yaw": "yaw_endpoint_protocol"},
+    "max_parallel": 1,
+    "reset_seeds": 5,
+    "episodes": 40,
+    "response_parent_tolerance": 0.02,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}

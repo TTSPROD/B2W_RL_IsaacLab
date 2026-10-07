@@ -1,0 +1,80 @@
+{
+  "schema": "b2w_axis_specialists_stage2_v1",
+  "experiment": "staged_continuation_of_independent_axis_specialists",
+  "status": "frozen_for_execution",
+  "authorization": "Continuation is the next measured step of the user-requested policy improvement.",
+  "basis": {
+    "stage1_job": "logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5",
+    "stage1_result": "logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5/result.json",
+    "stage1_result_sha256": "5054f4dba35288f4ba0e8407d587ed1add6decaa1db5a9cabb21b0eb5176c9a9",
+    "observation": "Both isolated axes improved their target response with exact outcome retention, but neither crossed the success gate at cumulative 150 updates."
+  },
+  "core": {
+    "agent": "policies/local/core_24650/agent.yaml",
+    "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "export": "policies/local/core_24650/export/policy.pt",
+    "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "export_manifest": "policies/local/core_24650/export/manifest.json",
+    "export_manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  },
+  "parents": {
+    "lateral": {
+      "checkpoint": "logs/rsl_rl/b2w_axis_lateral_9914/2026-10-07_10-26-57_509c0f16fa00462aa5679b2c69f91eb5/model_24799.pt",
+      "checkpoint_sha256": "ec502c46edf099725da8c21ea01d803e2f23ce04935831ba4e938b86c198cf79"
+    },
+    "yaw": {
+      "checkpoint": "logs/rsl_rl/b2w_axis_yaw_9914/2026-10-07_10-32-56_509c0f16fa00462aa5679b2c69f91eb5/model_24799.pt",
+      "checkpoint_sha256": "4285050a12d7ac8c3fab417077e0f89d70e32a96b2f25011906ee28bc94de36e"
+    }
+  },
+  "training": {
+    "seed": 9914,
+    "arms": ["lateral", "yaw"],
+    "num_envs": 512,
+    "additional_updates_per_arm": 150,
+    "cumulative_updates_per_arm": 300,
+    "steps_per_update": 24,
+    "transitions_per_arm": 1843200,
+    "parent_checkpoint_iteration": 24799,
+    "final_checkpoint_iteration": 24949,
+    "save_interval": 150,
+    "runner": "OnPolicyRunner",
+    "algorithm": "PPO",
+    "schedule": "fixed",
+    "learning_rate": 0.00001,
+    "num_learning_epochs": 5,
+    "num_mini_batches": 4,
+    "counterbalanced_sign_order": true,
+    "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+    "standard_train_sha256": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+  },
+  "axis_sampling": {
+    "lateral": {"axis": 1, "case": "lateral"},
+    "yaw": {"axis": 2, "case": "yaw"}
+  },
+  "actors": {
+    "lateral": "microlateral300_24949",
+    "yaw": "microyaw300_24949",
+    "combined": "microaxissplit300_24949"
+  },
+  "composite": {
+    "command_slice": [6, 9],
+    "zero_tolerance": 0.000001,
+    "routes": {"pure_lateral": "lateral", "pure_yaw": "yaw", "all_other": "parent"}
+  },
+  "selection": {
+    "protocol": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "combined_requires_success_above_parent": true,
+    "combined_requires_paired_wins_above_losses": true,
+    "requires_no_parent_cell_regression": true,
+    "requires_zero_unsafe": true,
+    "wheel_saturation_max_increase": 0.02,
+    "leg_saturation_max_increase": 0.01,
+    "conditional_full_screen": true,
+    "full_screen_protocol": "locomotion_v2_protocol",
+    "full_screen_episodes_per_actor": 160,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}

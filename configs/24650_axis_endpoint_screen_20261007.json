@@ -1,0 +1,47 @@
+{
+  "schema": "b2w_axis_endpoint_screen_v1",
+  "status": "frozen_for_execution",
+  "basis": {
+    "full_screen_summary": "logs/dashboard/jobs/d24133183f5f4eeeb4a08bf33dae363f/full_screen/analysis/summary.json",
+    "full_screen_summary_sha256": "4e17f158713b735e3c932990ca211e8994b94957273ef143d0a3da56809c9d48",
+    "parent_actor": "24650",
+    "reference_composite_actor": "microaxismixed177y150_24825",
+    "reuse": {
+      "lateral": 177,
+      "yaw": 150
+    },
+    "reason": "Evaluate every saved independent-axis endpoint on all four full-v2 flat/rough axis cells; reuse byte-identical branches already evaluated by the fresh-process full screen."
+  },
+  "core": {
+    "export": "policies/local/core_24650/export/policy.pt",
+    "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "export_manifest": "policies/local/core_24650/export/manifest.json",
+    "export_manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  },
+  "endpoints": {
+    "lateral": {
+      "150": {"iteration": 24799, "checkpoint": "logs/rsl_rl/b2w_axis_lateral_9914/2026-10-07_10-26-57_509c0f16fa00462aa5679b2c69f91eb5/model_24799.pt", "checkpoint_sha256": "ec502c46edf099725da8c21ea01d803e2f23ce04935831ba4e938b86c198cf79"},
+      "152": {"iteration": 24800, "checkpoint": "logs/rsl_rl/b2w_lateral_curve_9914/2026-10-07_11-48-42_f54a538c6f0b46f4860e4f0066e10b42/model_24800.pt", "checkpoint_sha256": "2008f282bcdfcf1090add2dcd7a6b2d8a6f5acb0f71ef10e8d3888514f0f2865"},
+      "177": {"iteration": 24825, "checkpoint": "logs/rsl_rl/b2w_lateral_curve_9914/2026-10-07_11-48-42_f54a538c6f0b46f4860e4f0066e10b42/model_24825.pt", "checkpoint_sha256": "d1c3e7f5db5d2aa548698b31d2fb2395d1dad56d88d55e11dc9a8230c5ba887a"},
+      "202": {"iteration": 24850, "checkpoint": "logs/rsl_rl/b2w_lateral_curve_9914/2026-10-07_11-48-42_f54a538c6f0b46f4860e4f0066e10b42/model_24850.pt", "checkpoint_sha256": "6d7ff47188aef4a3e7fad2192f5be6d4e75b3bdc8d782a9f6634580098315515"},
+      "226": {"iteration": 24874, "checkpoint": "logs/rsl_rl/b2w_lateral_curve_9914/2026-10-07_11-48-42_f54a538c6f0b46f4860e4f0066e10b42/model_24874.pt", "checkpoint_sha256": "ec86f2e1c28c5bea65f4b5a7f94cd35995181a083d36bc3db2f749f57031673a"},
+      "252": {"iteration": 24900, "checkpoint": "logs/rsl_rl/b2w_axis_stage2_lateral_9914/2026-10-07_11-08-36_3dd78199eb574235ba2f0f4c7e825391/model_24900.pt", "checkpoint_sha256": "c0614c2404b77f21e1a0e362be80728d2d92c8a115a9981117e20f48bcc9caaf"},
+      "300": {"iteration": 24948, "checkpoint": "logs/rsl_rl/b2w_axis_stage2_lateral_9914/2026-10-07_11-08-36_3dd78199eb574235ba2f0f4c7e825391/model_24948.pt", "checkpoint_sha256": "f95c9cffd1c50693150d0f11276b1b0780fce338f6a1edd559af07ffed61c0e9"}
+    },
+    "yaw": {
+      "150": {"iteration": 24799, "checkpoint": "logs/rsl_rl/b2w_axis_yaw_9914/2026-10-07_10-32-56_509c0f16fa00462aa5679b2c69f91eb5/model_24799.pt", "checkpoint_sha256": "4285050a12d7ac8c3fab417077e0f89d70e32a96b2f25011906ee28bc94de36e"},
+      "252": {"iteration": 24900, "checkpoint": "logs/rsl_rl/b2w_axis_stage2_yaw_9914/2026-10-07_11-16-07_30230b40ad754b2e88d824cf28747e14/model_24900.pt", "checkpoint_sha256": "1ceba7c9648c4159cc2766f28b64c72d1e57de3cf89a79c675a188c86acccd77"},
+      "300": {"iteration": 24948, "checkpoint": "logs/rsl_rl/b2w_axis_stage2_yaw_9914/2026-10-07_11-16-07_30230b40ad754b2e88d824cf28747e14/model_24948.pt", "checkpoint_sha256": "5488ec3f1c7ad721e58287c4045c478ae8ffbc3214113dafbe670d5542ef65aa"}
+    }
+  },
+  "evaluation": {
+    "terrains": ["flat_mu_40", "flat_mu_100", "rough_02", "rough_10"],
+    "reset_seeds": 5,
+    "episodes_per_actor": 20,
+    "response_parent_tolerance": 0.02,
+    "requires_no_cell_success_regression": true,
+    "requires_zero_unsafe": true,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}

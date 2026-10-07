@@ -1,0 +1,80 @@
+{
+  "metrics": {
+    "24650": {
+      "success": 27,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6831165713568529,
+        "yaw": 0.6666150192419689
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1275,
+      "leg_saturation": 0.0074,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "standstill_failure": 7,
+        "command_transition_failure": 3,
+        "traversal_failure": 8
+      }
+    },
+    "schedulefixed_24650": {
+      "success": 26,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 4,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 1,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 4
+      },
+      "targets": {
+        "lateral": 0.648113110694491,
+        "yaw": 0.6528631746768951
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.13,
+      "leg_saturation": 0.0077,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "command_transition_failure": 3,
+        "traversal_failure": 8,
+        "standstill_failure": 6
+      }
+    }
+  },
+  "paired_vs_parent": {
+    "schedulefixed_24650": {
+      "wins": 3,
+      "losses": 4,
+      "ties": 53,
+      "diagnostic_parent_retention": false,
+      "reasons": [
+        "flat_mu_100/longitudinal: below parent",
+        "stairs_down_18/stop_restart_0.5: below parent",
+        "lateral: below parent tolerance"
+      ]
+    }
+  },
+  "automatic_promotion": false,
+  "qualification": false,
+  "hardware_approval": false
+}

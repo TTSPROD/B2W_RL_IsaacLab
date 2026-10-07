@@ -1,0 +1,13 @@
+{
+  "verified_utc": "2026-10-01T09:40:18.921745+00:00",
+  "new_training_runs": 0,
+  "new_simulation_episodes": 0,
+  "latest_completed_job": "37198e6459844450a190984e03beef16",
+  "retention_pass": false,
+  "candidate": "core_24650",
+  "review_inputs_verified": 51,
+  "design_specification": "configs/24650_upright_schedule_ab_20261001.json",
+  "design_sha256": "5dc6fa17a5f51eb6b895fc90bd8bd7d7f65fea377e2259d90279508c4ede87b6",
+  "launch_enabled": false,
+  "implementation_ready": false
+}

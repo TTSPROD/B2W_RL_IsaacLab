@@ -30,7 +30,9 @@ def run(base, module_name, max_parallel=1, on_progress=None):
                             "locomotion_v2_validation_protocol", "locomotion_v2_pilot_protocol",
                             "locomotion_v2_stair_replay_protocol", "locomotion_v2_stair_isolation_protocol",
                             "locomotion_v2_lr_pilot_protocol", "locomotion_v2_curriculum_protocol"}:
-        raise ValueError("Unknown protocol")
+        if module_name not in {"lateral_curve_protocol", "lateral_endpoint_protocol",
+                               "yaw_endpoint_protocol"}:
+            raise ValueError("Unknown protocol")
     protocol = importlib.import_module(module_name)
     plan = read_json(base / "declared_plan.json")
     if plan.get("policy_map_sha256") and sha256(base / "policy_map.json") != plan["policy_map_sha256"]:

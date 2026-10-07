@@ -1,0 +1,164 @@
+{
+  "schema": "b2w_training_plan_review_v1",
+  "review_date": "2026-10-01",
+  "scope": "Offline review only; no simulation or PPO updates; event-time causality is not established.",
+  "training_job": "a2c89fd6c2a64c3cb8e005982e8249bd",
+  "updates": 1350,
+  "coverage_matches_preserved_training_completion": true,
+  "executed_monitor_equals_current": true,
+  "executed_environment_equals_current": true,
+  "reset_roll_pitch_range_rad": [
+    -3.14,
+    3.14
+  ],
+  "tilt_terminal_gravity_z_max": -0.5,
+  "safety_policy_tick_counts_global": {
+    "nonfinite": 0,
+    "tilt": 325576,
+    "protected_contact": 65,
+    "hard_joint_position": 523
+  },
+  "tilt_share_of_reason_counts": 0.998197225935419,
+  "counter_scope": "Global counts across all cohorts; reasons can overlap. Stored under retention by snapshot(); not first-event or per-phase counts.",
+  "cohorts": {
+    "retention": {
+      "envs": 1434,
+      "completed_episodes": 255036,
+      "full_horizon_episodes": 45803,
+      "mean_completed_length_s": 3.613545773929955,
+      "reset_counts": {
+        "unsafe": 209212,
+        "timeout": 45824,
+        "total": 255036
+      },
+      "unsafe_reset_fraction": 0.82032340532317
+    },
+    "flat": {
+      "envs": 615,
+      "completed_episodes": 32631,
+      "full_horizon_episodes": 5531,
+      "mean_completed_length_s": 11.88819895191689,
+      "reset_counts": {
+        "unsafe": 27097,
+        "timeout": 5534,
+        "total": 32631
+      },
+      "unsafe_reset_fraction": 0.830406668505409
+    },
+    "rough": {
+      "envs": 614,
+      "completed_episodes": 33041,
+      "full_horizon_episodes": 5510,
+      "mean_completed_length_s": 11.715757997639296,
+      "reset_counts": {
+        "unsafe": 27526,
+        "timeout": 5515,
+        "total": 33041
+      },
+      "unsafe_reset_fraction": 0.8330861656729518
+    },
+    "stairs_up": {
+      "envs": 1024,
+      "completed_episodes": 53626,
+      "full_horizon_episodes": 9073,
+      "mean_completed_length_s": 12.008149405139298,
+      "reset_counts": {
+        "unsafe": 44409,
+        "timeout": 9217,
+        "total": 53626
+      },
+      "unsafe_reset_fraction": 0.8281244172602842,
+      "level_attempts": [
+        8293,
+        624,
+        304,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "current_levels": [
+        1024,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "stairs_down": {
+      "envs": 409,
+      "completed_episodes": 21592,
+      "full_horizon_episodes": 3619,
+      "mean_completed_length_s": 11.920172286031864,
+      "reset_counts": {
+        "unsafe": 17911,
+        "timeout": 3681,
+        "total": 21592
+      },
+      "unsafe_reset_fraction": 0.8295201926639496,
+      "level_attempts": [
+        3314,
+        236,
+        132,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "current_levels": [
+        409,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "promotions": 0,
+  "demotions": 1296,
+  "limitations": [
+    "No timestamp of first violation after reset in saved counters.",
+    "Counters do not separate stochastic exploration from reset and later locomotion events.",
+    "Zero-window diagnostics with exploration do not establish deterministic stop failure.",
+    "No proof that reset correction alone improves stair traversal."
+  ],
+  "input_sha256": {
+    "docs/results/evidence/stair_curriculum_20260930/training_completion.json": "8aceb5a37713c5d9df6a614826e8caf7fdcaa5a5d13e64f9d2f317cae4acf484",
+    "logs/rsl_rl/b2w_24650_stair_stairadaptive_9903/2026-09-30_21-53-03_pilot/progress.json": "c256f13d8706956fba255833bf4bdbafd937b6b7d257d7ef8673e0528e769db5",
+    "logs/rsl_rl/b2w_24650_stair_stairadaptive_9903/2026-09-30_21-53-03_pilot/pilot_environment.yaml": "7e783a5cc3271fb661f8f63e22585adb48128786fece98e8fd20850f0a73eee0",
+    "logs/rsl_rl/b2w_24650_stair_stairadaptive_9903/2026-09-30_21-53-03_pilot/pilot_config_audit.json": "9f32f9844acffd12f0ecbeb95a163ae2de89fb02a9f76568483aeca7dd94c521",
+    "docs/results/evidence/stair_comparison_1350_20261001/decision.json": "01923fa5b7b0449a65d9bfe1d0cc185a3dc954cc230099ec43d002702ffb7bad",
+    "vendor/robot_lab/source/robot_lab/robot_lab/tasks/manager_based/locomotion/velocity/mdp/events.py": "52d3e0417ec114d32c8589a76b71be27fc37a6dd932398fdf30dff69746b4515",
+    "logs/dashboard/jobs/a2c89fd6c2a64c3cb8e005982e8249bd/sources/scripts/stair_curriculum_monitor.py": "423ee1b0dd49341d1c8bc1c2b5c2910a854673d7e9af4aba7d8dcc8c81e351e6",
+    "logs/dashboard/jobs/a2c89fd6c2a64c3cb8e005982e8249bd/sources/scripts/b2w_curriculum_env.py": "06f2727e3cb6ed454a5ca5bd8ec9d1ea47ead09e8ee3924954edd0a73f45bc4b",
+    "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/cli_args.py": "ed19c909ba6df25a0c79854e4888369c540cf056ef4bc32377e7eba1d2dfb7c9",
+    "scripts/train_stair_curriculum.py": "b50d7766cbb0c030dc2f34f9569493e38a1e794ce7541c3c81762d02740316be",
+    "scripts/b2w_finetune_runner.py": "fce6e9dec93a8a4770e33ef09728e9f61bb34e1f506735cc021d5959560bdab3"
+  },
+  "pipeline_review": {
+    "instruction": "Standard pinned Robot Lab train.py; targeted changes only for observed evaluation deficits.",
+    "standard_train_unmodified": true,
+    "new_baseline_implemented": false,
+    "runtime_source_sha256": {
+      "D:/isaacsim51/Lib/site-packages/rsl_rl/runners/on_policy_runner.py": "6ffaee7e154a49ae55eebf53a7b1549f0461a1742d92dd34af5bb4b785d19cf2"
+    },
+    "scope": "Source review only; these hashes describe reviewed implementation, not a new executed training run."
+  }
+}

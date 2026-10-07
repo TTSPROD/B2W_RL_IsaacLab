@@ -1,0 +1,68 @@
+{
+  "schema": "b2w_lateral_checkpoint_curve_v1",
+  "status": "frozen_for_execution",
+  "basis": {
+    "axis_stage1_result": "logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5/result.json",
+    "axis_stage1_result_sha256": "5054f4dba35288f4ba0e8407d587ed1add6decaa1db5a9cabb21b0eb5176c9a9",
+    "axis_stage2_result": "logs/dashboard/jobs/30230b40ad754b2e88d824cf28747e14/result.json",
+    "axis_stage2_result_sha256": "05a325e71f75466564a01faa229eb811cea64ad80336d279c65e045b93cd1816",
+    "observation": "Lateral response improved at cumulative 150 and regressed below parent at cumulative 300; locate the peak with dense checkpoints."
+  },
+  "core": {
+    "agent": "policies/local/core_24650/agent.yaml",
+    "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "export": "policies/local/core_24650/export/policy.pt",
+    "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "export_manifest": "policies/local/core_24650/export/manifest.json",
+    "export_manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  },
+  "parent": {
+    "checkpoint": "logs/rsl_rl/b2w_axis_lateral_9914/2026-10-07_10-26-57_509c0f16fa00462aa5679b2c69f91eb5/model_24799.pt",
+    "checkpoint_sha256": "ec502c46edf099725da8c21ea01d803e2f23ce04935831ba4e938b86c198cf79",
+    "checkpoint_iteration": 24799,
+    "cumulative_updates": 150
+  },
+  "existing": {
+    "24900": {
+      "checkpoint": "logs/rsl_rl/b2w_axis_stage2_lateral_9914/2026-10-07_11-08-36_3dd78199eb574235ba2f0f4c7e825391/model_24900.pt",
+      "checkpoint_sha256": "c0614c2404b77f21e1a0e362be80728d2d92c8a115a9981117e20f48bcc9caaf",
+      "cumulative_updates": 252
+    },
+    "24948": {
+      "checkpoint": "logs/rsl_rl/b2w_axis_stage2_lateral_9914/2026-10-07_11-08-36_3dd78199eb574235ba2f0f4c7e825391/model_24948.pt",
+      "checkpoint_sha256": "f95c9cffd1c50693150d0f11276b1b0780fce338f6a1edd559af07ffed61c0e9",
+      "cumulative_updates": 300
+    }
+  },
+  "training": {
+    "seed": 9914,
+    "arm": "lateral",
+    "num_envs": 512,
+    "additional_updates": 76,
+    "steps_per_update": 24,
+    "transitions": 933888,
+    "save_interval": 25,
+    "expected_iterations": [24799, 24800, 24801, 24802, 24803, 24804, 24805, 24806, 24807, 24808, 24809, 24810, 24811, 24812, 24813, 24814, 24815, 24816, 24817, 24818, 24819, 24820, 24821, 24822, 24823, 24824, 24825, 24826, 24827, 24828, 24829, 24830, 24831, 24832, 24833, 24834, 24835, 24836, 24837, 24838, 24839, 24840, 24841, 24842, 24843, 24844, 24845, 24846, 24847, 24848, 24849, 24850, 24851, 24852, 24853, 24854, 24855, 24856, 24857, 24858, 24859, 24860, 24861, 24862, 24863, 24864, 24865, 24866, 24867, 24868, 24869, 24870, 24871, 24872, 24873, 24874],
+    "checkpoints": {
+      "24800": 152,
+      "24825": 177,
+      "24850": 202,
+      "24874": 226
+    },
+    "schedule": "fixed",
+    "learning_rate": 0.00001,
+    "num_learning_epochs": 5,
+    "num_mini_batches": 4,
+    "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+    "standard_train_sha256": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+  },
+  "evaluation": {
+    "protocol": "lateral_curve_protocol",
+    "terrains": ["flat_mu_100", "rough_10"],
+    "case": "lateral",
+    "reset_seeds": 5,
+    "episodes_per_actor": 10,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}
