@@ -1,0 +1,66 @@
+{
+  "schema": "b2w_deepseek_stage_d_decision_v1",
+  "stage": "D",
+  "date_utc": "2026-10-01T00:00:00Z",
+  "read_only": true,
+  "new_ppo": false,
+  "parent": "core_24650",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "documented_in": "docs/results/2026-10-01-deepseek-stage-D.md",
+  "evidence_inputs": {
+    "stair_b_training_completion": "docs/results/evidence/stair_curriculum_20260930/training_completion.json",
+    "stair_b_summary": "docs/results/evidence/stair_comparison_1350_20261001/summary.json",
+    "stair_b_decision": "docs/results/evidence/stair_comparison_1350_20261001/decision.json",
+    "stair_safety_diagnosis": "docs/results/evidence/stair_curriculum_20260930/safety_diagnosis.json",
+    "stair_diagnosis_summary": "docs/results/evidence/stair_diagnosis_20260930/summary.json",
+    "tracking_diagnosis_summary": "docs/results/evidence/tracking_diagnosis_20260930/summary.json"
+  },
+  "findings": {
+    "stair_b_training_unsafe_fraction": 0.828,
+    "stair_b_unsafe_resets_stairs_up": 44409,
+    "stair_b_total_episodes_stairs_up": 53626,
+    "stair_b_promotions": 0,
+    "stair_b_demotions": 1296,
+    "stair_b_current_levels_stairs_up": "all 1024 envs at level 0",
+    "stair_b_safety_ticks_by_reason": {
+      "non_finite": 0,
+      "tilt": 325576,
+      "base_hip_contact": 65,
+      "hard_joint_position": 523,
+      "note": "dominant reason is tilt (gravity_z > -0.5), not hard joint limits"
+    },
+    "stair_b_fallback_note": "promotion criterion required no unsafe + crossing + exposure + progress>=0.8 + stable zeros; unreachable while 82.8% episodes end unsafe on stairs_up",
+    "small_command_response_ratios": {
+      "flat_mu_40_lateral_0.3": 0.87,
+      "flat_mu_40_yaw_0.3": 0.62,
+      "flat_mu_100_lateral_0.3": 0.72,
+      "flat_mu_100_yaw_0.3": 0.57,
+      "rough_10_lateral_0.3": 0.50,
+      "rough_10_yaw_0.3": 0.65,
+      "threshold": 0.8,
+      "note": "small +-0.3 lateral/yaw consistently below 0.8 response threshold"
+    },
+    "v2_parent_cells_24650": "0/5 lateral and yaw on flat_mu_100 and rough_10; stairs_up traverse 2/5; stairs_down 5/5"
+  },
+  "primary_hypothesis": {
+    "id": "F1",
+    "name": "short stair flight geometry with promotion by real mars success",
+    "claim": "Fine-tuning from core_24650 on SHORT stair flights with promotion measured by real flight crossing success (not tile-displacement) will produce a measurable promotion signal that stair B could not express, improving ascent while retaining other skills.",
+    "single_factor": "stair task geometry/curriculum for target_stairs cohorts only (short flight, flight-success promotion); rewards, ABI 57->16/50 Hz, PPO terms, command banks, retention 35%, DR, all other terrains unchanged.",
+    "expected_signal": "promotions > 0 on short flights, ascent success gain >=2 episodes/10 vs parent, unsafe=0, no cell loses successes vs parent",
+    "budget_updates": 1500,
+    "seed": 9904,
+    "num_envs": 4096,
+    "lr_cap": 0.00001,
+    "checkpoints": "+500 diagnostic, +1500 selection",
+    "secondary_hypotheses_deferred": ["F2 command diversity (+-0.3 lateral/yaw sampling) is a SEPARATE factor after F1"]
+  },
+  "stop_rules": [
+    "new server training requires separate explicit approval",
+    "no reward re-tuning for the success metric",
+    "negative F1 result closes the experiment; next hypothesis is a different one",
+    "checkpoint promoted only if v2 screen greens; no auto-cherry-pick"
+  ],
+  "decision": "Launch F1 as the registered single-factor experiment from exact parent restore (actor+critic+std+Adam), seed 9904, LR cap 1e-5, 4096 envs, <=1500 updates, via independent supervisor, after frozen config + preflight.",
+  "blocked": false
+}
