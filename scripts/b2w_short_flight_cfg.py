@@ -14,7 +14,7 @@ from run_support import ROOT, read_json, write_json
 
 @configclass
 class StairFlightCfg(SubTerrainBaseCfg):
-    function = staticmethod(stair_flight)
+    function = stair_flight
     direction: int = 1
     first_edge_x: float = 0.8
     tread_m: float = 0.3
