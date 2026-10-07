@@ -55,7 +55,8 @@ class ShortFlightEnv(CurriculumEnv):
         # Mirror core_locomotion_protocol.stair_exposure (wheel support on the march).
         start = torch.where(self.command.target_masks["stairs_down"], height * steps, torch.zeros_like(height))
         direction = torch.where(self.command.target_masks["stairs_down"], -1.0, 1.0)
-        riser = ((wheel_x - first[:, None]) / self.plan["target_geometry"]["flight_tread_m"]).floor().clamp(0, steps[:, None] - 1) + 1
+        riser = ((wheel_x - first[:, None]) / self.plan["target_geometry"]["flight_tread_m"]).floor() \
+            .clamp(torch.zeros_like(steps[:, None], dtype=wheel_x.dtype), (steps[:, None] - 1).to(wheel_x.dtype)) + 1
         surface = start[:, None] + direction[:, None] * height[:, None] * riser
         del surface  # band loaded wheels are on the march regardless of z depth; support defined below
         support = loaded & (wheel_x >= first[:, None]) & (wheel_x < last[:, None])
