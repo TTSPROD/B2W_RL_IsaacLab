@@ -1,0 +1,221 @@
+{
+  "terrain_columns": {
+    "retention": [
+      0,
+      14
+    ],
+    "target_flat": [
+      14,
+      20
+    ],
+    "target_rough": [
+      20,
+      26
+    ],
+    "target_stairs_up": [
+      26,
+      36
+    ],
+    "target_stairs_down": [
+      36,
+      40
+    ]
+  },
+  "terrain_proportions": {
+    "retention_pyramid_stairs": 0.075,
+    "retention_pyramid_stairs_inv": 0.075,
+    "retention_boxes": 0.075,
+    "retention_random_rough": 0.075,
+    "retention_slope_up": 0.025,
+    "retention_slope_down": 0.025,
+    "target_flat": 0.15,
+    "target_rough": 0.15,
+    "target_stairs_up": 0.25,
+    "target_stairs_down": 0.1
+  },
+  "target_geometry": {
+    "rough_noise_m": [
+      0.02,
+      0.1
+    ],
+    "rough_noise_step_m": 0.02,
+    "stair_height_m": [
+      0.05,
+      0.19
+    ],
+    "stair_tread_m": 0.3,
+    "stair_platform_m": 1.5
+  },
+  "banks": {
+    "flat": [
+      {
+        "case": "longitudinal",
+        "weight": 1.0,
+        "axis": 0
+      },
+      {
+        "case": "lateral",
+        "weight": 2.0,
+        "axis": 1
+      },
+      {
+        "case": "yaw",
+        "weight": 2.0,
+        "axis": 2
+      },
+      {
+        "case": "mixed",
+        "weight": 0.5
+      },
+      {
+        "case": "stand",
+        "weight": 0.5
+      }
+    ],
+    "rough": [
+      {
+        "case": "longitudinal",
+        "weight": 1.5,
+        "axis": 0
+      },
+      {
+        "case": "lateral",
+        "weight": 2.5,
+        "axis": 1
+      },
+      {
+        "case": "yaw",
+        "weight": 2.5,
+        "axis": 2
+      },
+      {
+        "case": "mixed",
+        "weight": 1.0
+      },
+      {
+        "case": "stand",
+        "weight": 0.5
+      }
+    ],
+    "stairs_up": [
+      {
+        "case": "traverse_0.3",
+        "weight": 3.0
+      },
+      {
+        "case": "traverse_0.5",
+        "weight": 1.0
+      },
+      {
+        "case": "traverse_0.7",
+        "weight": 2.0
+      },
+      {
+        "case": "stop_restart_0.3",
+        "weight": 3.0
+      },
+      {
+        "case": "stop_restart_0.5",
+        "weight": 1.5
+      }
+    ],
+    "stairs_down": [
+      {
+        "case": "traverse_0.3",
+        "weight": 2.0
+      },
+      {
+        "case": "traverse_0.5",
+        "weight": 1.0
+      },
+      {
+        "case": "traverse_0.7",
+        "weight": 1.0
+      },
+      {
+        "case": "stop_restart_0.3",
+        "weight": 2.0
+      },
+      {
+        "case": "stop_restart_0.5",
+        "weight": 2.0
+      }
+    ]
+  },
+  "curriculum": {
+    "initial_max_level": 2,
+    "window_episodes": 1,
+    "successes_to_promote": 1,
+    "failures_to_demote": 1,
+    "rehearsal_fraction_at_top": 0.2,
+    "progress_ratio_min": 0.8,
+    "moving_stair_exposure_s_min": 1.0,
+    "zero_settle_s": 2.0,
+    "zero_speed_max": 0.1,
+    "zero_yaw_max": 0.1,
+    "stop_stair_exposure_fraction_min": 0.9,
+    "window_rule": "One completed moving episode; success promotes one level, failure demotes one level. Episodes without movement leave levels unchanged. Top-level rehearsal is deterministic 20 percent.",
+    "level_height_mapping": "IsaacLab curriculum terrain: difficulty=(row+uniform[0,1))/10; height=0.05+0.14*difficulty; level 9 in [0.176,0.19).",
+    "success_definition": "No unsafe, crossed outer 3m stair edge, moving contact >=1s, integrated body-frame progress >=0.8 of commanded distance, stable completed long zeros, and at least one >=90% exposed stable zero for stop/restart cases."
+  },
+  "parent_checkpoint": "policies/local/core_24650/model_24650.pt",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "schema": "b2w_reset_only_ab_v1",
+  "updates": 300,
+  "num_envs": 4096,
+  "seed": 9910,
+  "preflight_steps": 3600,
+  "arms": {
+    "control": {
+      "adaptive": false,
+      "roll_pitch_rad": [
+        -3.14,
+        3.14
+      ]
+    },
+    "upright": {
+      "adaptive": false,
+      "roll_pitch_rad": [
+        -0.1,
+        0.1
+      ]
+    }
+  },
+  "evaluation_policies": [
+    "24650",
+    "resetcontrol_24949",
+    "resetupright_24949"
+  ],
+  "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+  "standard_runner": true,
+  "custom_lr_cap": false,
+  "init_at_random_ep_len": true,
+  "final_checkpoint_iteration": 24949,
+  "actual_updates_per_arm": 300,
+  "checkpoint_numbering_note": "Standard runner starts at saved iteration 24650; 300 loop iterations end at 24949.",
+  "hypothesis": "Admissible reset orientations reduce immediate tilt terminals and improve phase availability without skill regression.",
+  "preflight_gates": {
+    "upright_initial_invalid": 0,
+    "early_tilt_rate_ratio_max": 0.5,
+    "stale_contact_resets": 0,
+    "long_zero_completion_each_cohort_min": 1
+  },
+  "retention_gates": {
+    "unsafe": 0,
+    "cell_regression": 0,
+    "target_response_tolerance": 0.02,
+    "wheel_saturation_extra_max": 0.02,
+    "leg_saturation_extra_max": 0.01
+  },
+  "qualification": false,
+  "hardware_approval": false,
+  "automatic_promotion": false,
+  "inputs_sha256": {
+    "policies/local/core_24650/model_24650.pt": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "policies/local/core_24650/env.yaml": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+    "policies/local/core_24650/agent.yaml": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json": "6ca22b0e547b008b5d76c95bb4334ac7a3adc225b9543c6f616fe519d44d1e53",
+    "docs/results/evidence/training_plan_review_20261001/summary.json": "cc6c940181052bcd535614d8f80b8fcd3f6c019438b8322c1bdded5ea219f70e"
+  }
+}

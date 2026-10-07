@@ -1,0 +1,42 @@
+{
+  "schema": "b2w_axis_endpoint_sequential_confirmation_v1",
+  "status": "frozen_for_execution",
+  "basis": {
+    "parallel_screen_result": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/result.json",
+    "parallel_screen_result_sha256": "879b554dfd2cd346ba53f4357dfd12ebab665662c2a30cd25539c3431b659e82",
+    "parent_summary": "logs/dashboard/jobs/d24133183f5f4eeeb4a08bf33dae363f/full_screen/24650/analysis/summary.json",
+    "parent_summary_sha256": "17c22676cd0ad009fe3d5859b05b0633ade3c9be09b7c83f3c1dfef33ca240aa",
+    "reason": "Confirm only plausible endpoints with max_parallel=1 after simulator-load sensitivity was observed."
+  },
+  "actors": {
+    "lateral": {
+      "microlateralcurve152_24800": {
+        "export": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microlateralcurve152_24800/policy.pt",
+        "export_sha256": "d44e8b222537afacd5fc595ef4ce61969b58285a9ef1933abc642220f81ce3bc",
+        "manifest": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microlateralcurve152_24800/manifest.json",
+        "manifest_sha256": "56c67ac3b13edd40f0e6383dd10eb4b7786c85a18c9c80d9b6b3bb30dbf88957"
+      },
+      "microlateralcurve226_24874": {
+        "export": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microlateralcurve226_24874/policy.pt",
+        "export_sha256": "b94f5f43bf6560338d1dd6bb3525a40de0767fb6eab66d0d58dcf18b60980d16",
+        "manifest": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microlateralcurve226_24874/manifest.json",
+        "manifest_sha256": "708e091d053abe5f3de6bd6c1181846c204fdd169b02c2b450da7967cfab381c"
+      }
+    },
+    "yaw": {
+      "microyaw252_24900": {
+        "export": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microyaw252_24900/policy.pt",
+        "export_sha256": "4e0c75ce74d6a533bee5b5f45812820bae15374abff085854df54c22818c3900",
+        "manifest": "logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/exports/microyaw252_24900/manifest.json",
+        "manifest_sha256": "60b18d5034777561e7756704224127c1a97ce57379708bd7043977dda93c9034"
+      }
+    }
+  },
+  "evaluation": {
+    "max_parallel": 1,
+    "episodes_per_actor": 20,
+    "response_parent_tolerance": 0.02,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}

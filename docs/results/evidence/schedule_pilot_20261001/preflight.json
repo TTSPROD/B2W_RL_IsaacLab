@@ -1,0 +1,67 @@
+{
+  "created": "2026-10-01T10:07:58.746244+00:00",
+  "job": "2eaf04619ca64678a110e6cc9fa96ff9",
+  "decision": {
+    "train_allowed": true,
+    "reasons": [],
+    "updates": 0,
+    "automatic_promotion": false
+  },
+  "arms": {
+    "adaptive": {
+      "updates": 0,
+      "policy_steps": 3600,
+      "model_exact": true,
+      "adam_exact": true,
+      "terminal_overrides_timeout": true,
+      "initial_invalid": {
+        "nonfinite": 0,
+        "tilt": 0,
+        "hard_joint": 0
+      },
+      "stale_contact_resets": 0,
+      "runtime": {
+        "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "torch": "2.7.0+cu128",
+        "rsl_rl": "3.1.2"
+      },
+      "config_audit": "passed",
+      "raw_sha256": {
+        "result.json": "6a5bb2545e9a95082c2bed2bd54c14e69b3d29e20b316ba5af8d050fe90253ac",
+        "config_audit.json": "9b3cd1ca2caf2b042e3084b60f7b9129e74d09901a576a8e05b6e192e90bf240",
+        "reset_environment.yaml": "82604d34cab6d3b9d3dd90773c32d1be20ff541d7b84a9baf6c1c723fd8a0821",
+        "agent_audit.json": "6f74d491d8870657369ae16705a50d9fc8b59c642c04e9d1a40f3737e416e98d",
+        "runtime_sources.json": "1078466409edb95660410b29fbb7eef2eba8aeac0f5d322c32f7dadddc051161"
+      }
+    },
+    "fixed": {
+      "updates": 0,
+      "policy_steps": 3600,
+      "model_exact": true,
+      "adam_exact": true,
+      "terminal_overrides_timeout": true,
+      "initial_invalid": {
+        "nonfinite": 0,
+        "tilt": 0,
+        "hard_joint": 0
+      },
+      "stale_contact_resets": 0,
+      "runtime": {
+        "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU",
+        "torch": "2.7.0+cu128",
+        "rsl_rl": "3.1.2"
+      },
+      "config_audit": "passed",
+      "raw_sha256": {
+        "result.json": "70e1eaad0236c13380a43138cc30f0eb852c0ff4cae3fcf58379d5769ddb715e",
+        "config_audit.json": "8971eafdee7c62e5477014b6e3dd89b64000cf45619adfc392016c4d6d9f590d",
+        "reset_environment.yaml": "d7d956e3abdb3b5954cfe9a5eb844c851b0d9e6bde4cd10a00c9882d89aabb32",
+        "agent_audit.json": "3bf307df93f4cd57ed1b3c290041ff19d9ab7361b1581d5f42c9a12f19ff9c21",
+        "runtime_sources.json": "1078466409edb95660410b29fbb7eef2eba8aeac0f5d322c32f7dadddc051161"
+      }
+    }
+  },
+  "agent_diff_only_native_schedule": true,
+  "automatic_promotion": false,
+  "qualification": false
+}

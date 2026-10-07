@@ -1,0 +1,258 @@
+{
+  "schema": "b2w_experiment_specification_v1",
+  "experiment": "core_24650_upright_native_schedule_ab",
+  "stage": "D1.1",
+  "status": "frozen_design_pending_implementation",
+  "launch_enabled": false,
+  "scope": "Local simulator; new specification only, no jobs submitted.",
+  "hypothesis": "Native adaptive schedule contributes to tempo/low-command regression after resume; fixed LR may retain parent behavior.",
+  "basis": {
+    "review": "docs/results/evidence/reset_pilot_20261001/final/result_review.json",
+    "review_sha256": "d7c806502cbe28371b9b2b7d5affead8e73f0f9b32c9aad5dcbae4860393992a",
+    "completed_job": "37198e6459844450a190984e03beef16",
+    "observed_parent_probe": {
+      "success": 27,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6831165713568529,
+        "yaw": 0.6666150192419689
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1275,
+      "leg_saturation": 0.0074
+    }
+  },
+  "training": {
+    "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+    "standard_train_sha256": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "runner": "OnPolicyRunner",
+    "algorithm": "PPO",
+    "custom_runner_hooks": false,
+    "seed": 9911,
+    "num_envs": 4096,
+    "steps_per_update": 24,
+    "updates_per_arm": 300,
+    "total_ppo_updates": 600,
+    "transitions_per_arm": 29491200,
+    "policy_seconds_per_environment": 144.0,
+    "parent_iteration": 24650,
+    "final_iteration": 24949,
+    "save_interval": 50,
+    "checkpoint_selection": "final only; intermediate checkpoints diagnostic",
+    "init_at_random_ep_len": true,
+    "automatic_budget_extension": false
+  },
+  "parent": {
+    "checkpoint": "policies/local/core_24650/model_24650.pt",
+    "sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "env_sha256": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+    "restore_exact": [
+      "actor",
+      "critic",
+      "action_std",
+      "Adam"
+    ],
+    "restored_optimizer_lr": 1e-05
+  },
+  "common_mdp": {
+    "basis_recipe": "configs/24650_reset_ab_20261001.json",
+    "basis_recipe_sha256": "0b01ba76c5bbd492740117a0655f596580deeca3ed9202042ea4d363ecb19d5c",
+    "executed_upright_env": "logs\\dashboard\\jobs\\37198e6459844450a190984e03beef16\\training_\\upright\\reset_environment.yaml",
+    "executed_upright_env_sha256": "bce903605727b834fe8ea86971b287a8b5e0f436bf16edfdc21459423a9cf666",
+    "upright_reset_roll_pitch_rad": [
+      -0.1,
+      0.1
+    ],
+    "actor_observations": 57,
+    "actor_actions": 16,
+    "policy_hz": 50,
+    "physics_hz": 200,
+    "unchanged": [
+      "observations/actions ABI and scales",
+      "previous action semantics",
+      "geometry/terrain cohorts",
+      "command banks and weights",
+      "rewards",
+      "physics/actuators",
+      "safety thresholds/true terminal",
+      "target levels/no adaptive target promotion"
+    ],
+    "metadata_diff_allowlist": [
+      "seed",
+      "log_dir",
+      "run/experiment name",
+      "new task/command class identity with equivalent MDP"
+    ]
+  },
+  "arm_differences": {
+    "only_learning_field": "algorithm.schedule",
+    "A_adaptive": {
+      "schedule": "adaptive",
+      "learning_rate": 1e-05
+    },
+    "B_fixed": {
+      "schedule": "fixed",
+      "learning_rate": 1e-05
+    }
+  },
+  "common_policy_config": {
+    "class_name": "ActorCritic",
+    "init_noise_std": 1.0,
+    "noise_std_type": "scalar",
+    "state_dependent_std": false,
+    "actor_obs_normalization": false,
+    "critic_obs_normalization": false,
+    "actor_hidden_dims": [
+      512,
+      256,
+      128
+    ],
+    "critic_hidden_dims": [
+      512,
+      256,
+      128
+    ],
+    "activation": "elu"
+  },
+  "common_algorithm_config": {
+    "class_name": "PPO",
+    "num_learning_epochs": 5,
+    "num_mini_batches": 4,
+    "learning_rate": 1e-05,
+    "schedule": "adaptive",
+    "gamma": 0.99,
+    "lam": 0.95,
+    "entropy_coef": 0.005,
+    "desired_kl": 0.005,
+    "max_grad_norm": 1.0,
+    "value_loss_coef": 1.0,
+    "use_clipped_value_loss": true,
+    "clip_param": 0.1,
+    "normalize_advantage_per_mini_batch": false,
+    "rnd_cfg": null,
+    "symmetry_cfg": null
+  },
+  "preflight": {
+    "ppo_updates": 0,
+    "num_envs": 128,
+    "policy_steps": 3600,
+    "fresh_process_per_arm": true,
+    "requirements": [
+      "Exact parent model/Adam before first inference or update",
+      "Actual agent diff A/B only algorithm.schedule plus run metadata",
+      "Initial tilt/nonfinite/hard_joint invalid = 0; no stale contact reset buffers",
+      "Safety overrides simultaneous timeout; actor ABI 57 to 16 at 50 Hz",
+      "Non-initial command phases and completed >=12 s zero in every target cohort",
+      "Captured standard runner/PPO source hashes and same runtime across arms"
+    ]
+  },
+  "completion_proof": [
+    "child exit 0",
+    "all 300 standard runner iterations",
+    "29 491 200 total environment timesteps",
+    "final checkpoint iter 24949 and finite tensors",
+    "Adam step delta 6000 per parameter",
+    "actual agent matches declared native schedule",
+    "all 300 logged B learning rates and final optimizer LR equal 1e-5 within 1e-10"
+  ],
+  "probe": {
+    "protocol": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "total_episodes": 180,
+    "actors": [
+      "fresh parent 24650",
+      "A_adaptive final",
+      "B_fixed final"
+    ],
+    "reset_seeds": [
+      73001,
+      73002,
+      73003,
+      73004,
+      73005
+    ],
+    "layout": "one actor per fresh process, same environment count/case/reset slots; no old A/B reuse",
+    "unchanged_scoring": true,
+    "automatic_promotion": false,
+    "qualification": false
+  },
+  "retention": {
+    "candidate": "B_fixed",
+    "unsafe": 0,
+    "per_cell_success_minimum": {
+      "flat_mu_100/stand": 5,
+      "flat_mu_100/longitudinal": 5,
+      "flat_mu_100/lateral": 0,
+      "flat_mu_100/yaw": 0,
+      "rough_10/stand": 5,
+      "rough_10/longitudinal": 0,
+      "rough_10/lateral": 0,
+      "rough_10/yaw": 0,
+      "stairs_up_18/traverse_0.7": 2,
+      "stairs_up_18/stop_restart_0.5": 0,
+      "stairs_down_18/traverse_0.7": 5,
+      "stairs_down_18/stop_restart_0.5": 5
+    },
+    "also_no_cell_worse_than_matched_A": true,
+    "response_command_magnitude": 0.3,
+    "response_reference": [
+      "fresh parent",
+      "matched A"
+    ],
+    "response_max_drop": 0.02,
+    "observed_parent_response_floor": {
+      "lateral": 0.6631165713568529,
+      "yaw": 0.6466150192419688
+    },
+    "max_saturation_vs_parent_extra": {
+      "wheel": 0.02,
+      "leg": 0.01
+    }
+  },
+  "hypothesis_support": {
+    "requires_retention": true,
+    "any_of": [
+      {
+        "B_minus_A_descent_successes_min": 2
+      },
+      {
+        "B_minus_A_descent_stop_restart_mean_progress_min": 0.05
+      }
+    ],
+    "both_retain": "Adaptive harm not demonstrated; select next skill factor from traces.",
+    "both_regress": "Schedule alone insufficient; close budget and diagnose command/reward/advantage drift.",
+    "B_retains_without_relative_gain": "Usable retention baseline; causal schedule benefit remains unconfirmed."
+  },
+  "coverage": {
+    "report_attempts_completions_by": [
+      "cohort",
+      "case",
+      "phase",
+      "level",
+      "reset reason"
+    ],
+    "min_two_full_horizons_not_claimed": true,
+    "randomized_initial_horizon_censoring_reported": true
+  },
+  "implementation_requirements": [
+    "Separate task/contract and supervisor recipe for seed 9911; keep old seed 9910 contract immutable",
+    "New policy identities and export provenance distinct from resetcontrol/resetupright 24949",
+    "Completion validator allows declared native schedule diff; old exact-parent check rejects fixed schedule",
+    "No hidden runner/LR-cap hooks; actual B fixed LR proved from logs plus optimizer state",
+    "Before launch: config/preflight/export/decision checks and captured execution source hashes"
+  ]
+}

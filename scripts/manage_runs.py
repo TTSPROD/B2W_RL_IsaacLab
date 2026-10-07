@@ -9,17 +9,26 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest='action',required=True)
     start=sub.add_parser('start')
-    start.add_argument('kind',choices=('tests','train','evaluate','compare','stair_curriculum','stair_comparison_1350',
-                                       'short_flight','short_flight_preflight'))
+    start.add_argument('kind',choices=('tests','train','evaluate','compare','gradient_audit','micro_sweep',
+                                      'composite_probe','specialist_stage2','stair_curriculum',
+                                      'specialist_repeat','axis_specialists','axis_specialists_stage2','lateral_curve',
+                                      'axis_mixed_probe',
+                                      'axis_endpoint_screen',
+                                      'axis_robust_composite',
+                                      'axis_endpoint_confirm',
+                                      'axis_repeat3',
+                                      'stair_comparison_1350','short_flight','short_flight_preflight'))
     start.add_argument('--updates',type=int,default=100)
     start.add_argument('--num-envs',type=int,default=4096)
     start.add_argument('--policy',default='24650')
+    start.add_argument('--source-job')
     start.add_argument('--no-monitor',action='store_true')
     stop=sub.add_parser('stop');stop.add_argument('id')
     sub.add_parser('status')
     args=parser.parse_args()
     if args.action=='start':
-        result=submit({'kind':args.kind,'updates':args.updates,'num_envs':args.num_envs,'policy':args.policy},
+        result=submit({'kind':args.kind,'updates':args.updates,'num_envs':args.num_envs,
+                       'policy':args.policy,'source_job':args.source_job},
                       open_monitor=not args.no_monitor)
     elif args.action=='stop':result=stop_job(args.id)
     else:result=list_jobs()

@@ -1,0 +1,786 @@
+{
+  "schema": "b2w_schedule_checkpoint_diagnosis_review_v1",
+  "verified_utc": "2026-10-05T10:37:25.689442+00:00",
+  "jobs": {
+    "0f2d2a0c50f94b1b960505425b8f009f": {
+      "mode": "intermediate_series",
+      "policies": [
+        "24650",
+        "schedulefixed_24700",
+        "schedulefixed_24750",
+        "schedulefixed_24800"
+      ],
+      "episodes": 240,
+      "decision": {
+        "metrics": {
+          "24650": {
+            "success": 27,
+            "cells": {
+              "flat_mu_100/stand": 5,
+              "flat_mu_100/longitudinal": 5,
+              "flat_mu_100/lateral": 0,
+              "flat_mu_100/yaw": 0,
+              "rough_10/stand": 5,
+              "rough_10/longitudinal": 0,
+              "rough_10/lateral": 0,
+              "rough_10/yaw": 0,
+              "stairs_up_18/traverse_0.7": 2,
+              "stairs_up_18/stop_restart_0.5": 0,
+              "stairs_down_18/traverse_0.7": 5,
+              "stairs_down_18/stop_restart_0.5": 5
+            },
+            "targets": {
+              "lateral": 0.6831165713568529,
+              "yaw": 0.6666150192419689
+            },
+            "unsafe": 0,
+            "wheel_saturation": 0.1275,
+            "leg_saturation": 0.0074,
+            "failure_flags_nonexclusive": {
+              "tracking_failure": 24,
+              "standstill_failure": 7,
+              "command_transition_failure": 3,
+              "traversal_failure": 8
+            }
+          },
+          "schedulefixed_24700": {
+            "success": 23,
+            "cells": {
+              "flat_mu_100/stand": 5,
+              "flat_mu_100/longitudinal": 5,
+              "flat_mu_100/lateral": 0,
+              "flat_mu_100/yaw": 0,
+              "rough_10/stand": 5,
+              "rough_10/longitudinal": 0,
+              "rough_10/lateral": 0,
+              "rough_10/yaw": 0,
+              "stairs_up_18/traverse_0.7": 0,
+              "stairs_up_18/stop_restart_0.5": 0,
+              "stairs_down_18/traverse_0.7": 5,
+              "stairs_down_18/stop_restart_0.5": 3
+            },
+            "targets": {
+              "lateral": 0.7100468873977661,
+              "yaw": 0.6828910708427429
+            },
+            "unsafe": 0,
+            "wheel_saturation": 0.13521739130434782,
+            "leg_saturation": 0.005294117647058823,
+            "failure_flags_nonexclusive": {
+              "tracking_failure": 25,
+              "standstill_failure": 9,
+              "command_transition_failure": 1,
+              "traversal_failure": 10
+            }
+          },
+          "schedulefixed_24750": {
+            "success": 22,
+            "cells": {
+              "flat_mu_100/stand": 5,
+              "flat_mu_100/longitudinal": 4,
+              "flat_mu_100/lateral": 0,
+              "flat_mu_100/yaw": 0,
+              "rough_10/stand": 5,
+              "rough_10/longitudinal": 1,
+              "rough_10/lateral": 0,
+              "rough_10/yaw": 0,
+              "stairs_up_18/traverse_0.7": 0,
+              "stairs_up_18/stop_restart_0.5": 0,
+              "stairs_down_18/traverse_0.7": 5,
+              "stairs_down_18/stop_restart_0.5": 2
+            },
+            "targets": {
+              "lateral": 0.6842765924520791,
+              "yaw": 0.6696022724111875
+            },
+            "unsafe": 0,
+            "wheel_saturation": 0.11695652173913043,
+            "leg_saturation": 0.0038,
+            "failure_flags_nonexclusive": {
+              "tracking_failure": 25,
+              "standstill_failure": 9,
+              "command_transition_failure": 1,
+              "traversal_failure": 10
+            }
+          },
+          "schedulefixed_24800": {
+            "success": 22,
+            "cells": {
+              "flat_mu_100/stand": 5,
+              "flat_mu_100/longitudinal": 3,
+              "flat_mu_100/lateral": 0,
+              "flat_mu_100/yaw": 0,
+              "rough_10/stand": 5,
+              "rough_10/longitudinal": 0,
+              "rough_10/lateral": 0,
+              "rough_10/yaw": 0,
+              "stairs_up_18/traverse_0.7": 1,
+              "stairs_up_18/stop_restart_0.5": 0,
+              "stairs_down_18/traverse_0.7": 5,
+              "stairs_down_18/stop_restart_0.5": 3
+            },
+            "targets": {
+              "lateral": 0.6621401434143385,
+              "yaw": 0.6735901236534119
+            },
+            "unsafe": 0,
+            "wheel_saturation": 0.1916304347826087,
+            "leg_saturation": 0.0047,
+            "failure_flags_nonexclusive": {
+              "tracking_failure": 27,
+              "command_transition_failure": 9,
+              "traversal_failure": 9,
+              "standstill_failure": 7
+            }
+          }
+        },
+        "paired_vs_parent": {
+          "schedulefixed_24700": {
+            "wins": 0,
+            "losses": 4,
+            "ties": 56,
+            "diagnostic_parent_retention": false,
+            "reasons": [
+              "stairs_up_18/traverse_0.7: below parent",
+              "stairs_down_18/stop_restart_0.5: below parent"
+            ]
+          },
+          "schedulefixed_24750": {
+            "wins": 1,
+            "losses": 6,
+            "ties": 53,
+            "diagnostic_parent_retention": false,
+            "reasons": [
+              "flat_mu_100/longitudinal: below parent",
+              "stairs_up_18/traverse_0.7: below parent",
+              "stairs_down_18/stop_restart_0.5: below parent"
+            ]
+          },
+          "schedulefixed_24800": {
+            "wins": 0,
+            "losses": 5,
+            "ties": 55,
+            "diagnostic_parent_retention": false,
+            "reasons": [
+              "flat_mu_100/longitudinal: below parent",
+              "stairs_up_18/traverse_0.7: below parent",
+              "stairs_down_18/stop_restart_0.5: below parent",
+              "lateral: below parent tolerance",
+              "wheel_saturation: above parent tolerance"
+            ]
+          }
+        },
+        "automatic_promotion": false,
+        "qualification": false,
+        "hardware_approval": false
+      },
+      "state_sha256": "82690aaa335e03c1c21b52fd1dc2131bba34484b116763dc8c3d057d37dfeb2c",
+      "manifest_sha256": "31a2facd178861047b45d8c350f44eafc9db0d9a1d6389997e36ef92639f6130"
+    },
+    "d073afe88e8044b4b4b1b976355317f8": {
+      "mode": "first_update",
+      "policies": [
+        "24650",
+        "schedulefixed_24650"
+      ],
+      "episodes": 120,
+      "decision": {
+        "metrics": {
+          "24650": {
+            "success": 27,
+            "cells": {
+              "flat_mu_100/stand": 5,
+              "flat_mu_100/longitudinal": 5,
+              "flat_mu_100/lateral": 0,
+              "flat_mu_100/yaw": 0,
+              "rough_10/stand": 5,
+              "rough_10/longitudinal": 0,
+              "rough_10/lateral": 0,
+              "rough_10/yaw": 0,
+              "stairs_up_18/traverse_0.7": 2,
+              "stairs_up_18/stop_restart_0.5": 0,
+              "stairs_down_18/traverse_0.7": 5,
+              "stairs_down_18/stop_restart_0.5": 5
+            },
+            "targets": {
+              "lateral": 0.6831165713568529,
+              "yaw": 0.6666150192419689
+            },
+            "unsafe": 0,
+            "wheel_saturation": 0.1275,
+            "leg_saturation": 0.0074,
+            "failure_flags_nonexclusive": {
+              "tracking_failure": 24,
+              "standstill_failure": 7,
+              "command_transition_failure": 3,
+              "traversal_failure": 8
+            }
+          },
+          "schedulefixed_24650": {
+            "success": 26,
+            "cells": {
+              "flat_mu_100/stand": 5,
+              "flat_mu_100/longitudinal": 4,
+              "flat_mu_100/lateral": 0,
+              "flat_mu_100/yaw": 0,
+              "rough_10/stand": 5,
+              "rough_10/longitudinal": 1,
+              "rough_10/lateral": 0,
+              "rough_10/yaw": 0,
+              "stairs_up_18/traverse_0.7": 2,
+              "stairs_up_18/stop_restart_0.5": 0,
+              "stairs_down_18/traverse_0.7": 5,
+              "stairs_down_18/stop_restart_0.5": 4
+            },
+            "targets": {
+              "lateral": 0.648113110694491,
+              "yaw": 0.6528631746768951
+            },
+            "unsafe": 0,
+            "wheel_saturation": 0.13,
+            "leg_saturation": 0.0077,
+            "failure_flags_nonexclusive": {
+              "tracking_failure": 24,
+              "command_transition_failure": 3,
+              "traversal_failure": 8,
+              "standstill_failure": 6
+            }
+          }
+        },
+        "paired_vs_parent": {
+          "schedulefixed_24650": {
+            "wins": 3,
+            "losses": 4,
+            "ties": 53,
+            "diagnostic_parent_retention": false,
+            "reasons": [
+              "flat_mu_100/longitudinal: below parent",
+              "stairs_down_18/stop_restart_0.5: below parent",
+              "lateral: below parent tolerance"
+            ]
+          }
+        },
+        "automatic_promotion": false,
+        "qualification": false,
+        "hardware_approval": false
+      },
+      "state_sha256": "1799ada5980775b434db6f69a19918b9b7e5171086214ab6e6afa07ce8e5b7ef",
+      "manifest_sha256": "ee5f153ea1516adb028cdff9c1bd007608e7d6b23980ad76ebfbce0633a7434b"
+    }
+  },
+  "episodes": 360,
+  "runtime": {
+    "torch": "2.7.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU"
+  },
+  "compiled_model": {
+    "body_names": [
+      "base_link",
+      "FL_hip",
+      "FR_hip",
+      "RL_hip",
+      "RR_hip",
+      "FL_thigh",
+      "FR_thigh",
+      "RL_thigh",
+      "RR_thigh",
+      "FL_calf",
+      "FR_calf",
+      "RL_calf",
+      "RR_calf",
+      "FL_foot",
+      "FR_foot",
+      "RL_foot",
+      "RR_foot"
+    ],
+    "mass_kg": [
+      40.08949661254883,
+      2.6730000972747803,
+      2.6730000972747803,
+      2.6730000972747803,
+      2.6730000972747803,
+      4.535999774932861,
+      4.535999774932861,
+      4.535999774932861,
+      4.535999774932861,
+      2.290600061416626,
+      2.2905569076538086,
+      2.290600061416626,
+      2.290600061416626,
+      1.0829999446868896,
+      1.0829999446868896,
+      1.0829999446868896,
+      1.0829999446868896
+    ],
+    "hard_joint_ranges": [
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ],
+      [
+        -0.8699999451637268,
+        0.8699999451637268
+      ],
+      [
+        -0.9399999380111694,
+        4.689999580383301
+      ],
+      [
+        -2.8199996948242188,
+        -0.429999977350235
+      ]
+    ],
+    "joint_names": [
+      "FR_hip_joint",
+      "FR_thigh_joint",
+      "FR_calf_joint",
+      "FL_hip_joint",
+      "FL_thigh_joint",
+      "FL_calf_joint",
+      "RR_hip_joint",
+      "RR_thigh_joint",
+      "RR_calf_joint",
+      "RL_hip_joint",
+      "RL_thigh_joint",
+      "RL_calf_joint",
+      "FR_foot_joint",
+      "FL_foot_joint",
+      "RR_foot_joint",
+      "RL_foot_joint"
+    ],
+    "torque_semantics": "Isaac applied_torque: explicit legs; estimated implicit wheel PD torque"
+  },
+  "metrics": {
+    "24650": {
+      "success": 27,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6831165713568529,
+        "yaw": 0.6666150192419689
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1275,
+      "leg_saturation": 0.0074,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "standstill_failure": 7,
+        "command_transition_failure": 3,
+        "traversal_failure": 8
+      }
+    },
+    "schedulefixed_24700": {
+      "success": 23,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 3
+      },
+      "targets": {
+        "lateral": 0.7100468873977661,
+        "yaw": 0.6828910708427429
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.13521739130434782,
+      "leg_saturation": 0.005294117647058823,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 25,
+        "standstill_failure": 9,
+        "command_transition_failure": 1,
+        "traversal_failure": 10
+      }
+    },
+    "schedulefixed_24750": {
+      "success": 22,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 4,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 1,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 2
+      },
+      "targets": {
+        "lateral": 0.6842765924520791,
+        "yaw": 0.6696022724111875
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.11695652173913043,
+      "leg_saturation": 0.0038,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 25,
+        "standstill_failure": 9,
+        "command_transition_failure": 1,
+        "traversal_failure": 10
+      }
+    },
+    "schedulefixed_24800": {
+      "success": 22,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 3,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 1,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 3
+      },
+      "targets": {
+        "lateral": 0.6621401434143385,
+        "yaw": 0.6735901236534119
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1916304347826087,
+      "leg_saturation": 0.0047,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 27,
+        "command_transition_failure": 9,
+        "traversal_failure": 9,
+        "standstill_failure": 7
+      }
+    },
+    "schedulefixed_24650": {
+      "success": 26,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 4,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 1,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 4
+      },
+      "targets": {
+        "lateral": 0.648113110694491,
+        "yaw": 0.6528631746768951
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.13,
+      "leg_saturation": 0.0077,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "command_transition_failure": 3,
+        "traversal_failure": 8,
+        "standstill_failure": 6
+      }
+    }
+  },
+  "checkpoint_drift": {
+    "schedulefixed_24650": {
+      "actor_delta": {
+        "relative_l2": 0.0001444781677057341,
+        "max_abs": 0.0001939237117767334,
+        "tensors": 8
+      },
+      "critic_delta": {
+        "relative_l2": 0.0002708479092801162,
+        "max_abs": 0.0008283257484436035,
+        "tensors": 8
+      },
+      "mean_action_std": 0.6180078983306885
+    },
+    "schedulefixed_24700": {
+      "actor_delta": {
+        "relative_l2": 0.002430013433908732,
+        "max_abs": 0.0023923516273498535,
+        "tensors": 8
+      },
+      "critic_delta": {
+        "relative_l2": 0.003598241685290928,
+        "max_abs": 0.012981913983821869,
+        "tensors": 8
+      },
+      "mean_action_std": 0.6198636889457703
+    },
+    "schedulefixed_24750": {
+      "actor_delta": {
+        "relative_l2": 0.0036853988680152537,
+        "max_abs": 0.0034950971603393555,
+        "tensors": 8
+      },
+      "critic_delta": {
+        "relative_l2": 0.004975304568203368,
+        "max_abs": 0.013171102851629257,
+        "tensors": 8
+      },
+      "mean_action_std": 0.6222484707832336
+    },
+    "schedulefixed_24800": {
+      "actor_delta": {
+        "relative_l2": 0.004423981562864343,
+        "max_abs": 0.004481881856918335,
+        "tensors": 8
+      },
+      "critic_delta": {
+        "relative_l2": 0.006090405806929468,
+        "max_abs": 0.013933099806308746,
+        "tensors": 8
+      },
+      "mean_action_std": 0.6250179409980774
+    }
+  },
+  "verification": {
+    "all_360_episode_records_validated": true,
+    "fresh_parent_reproduced_across_jobs": true,
+    "case_reset_slots_identical": true,
+    "decisions_recomputed_exact": true,
+    "checkpoint_and_captured_source_hashes_valid": true,
+    "no_ppo_updates_executed_by_diagnostic_jobs": true,
+    "automatic_promotion": false,
+    "qualification": false,
+    "hardware_approval": false
+  },
+  "analysis_source_sha256": "1c6de4a25ce345fd504e9d55f9a19729a5ebf82d3b6077fa954a351ace86ca58",
+  "input_sha256": {
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/state.json": "82690aaa335e03c1c21b52fd1dc2131bba34484b116763dc8c3d057d37dfeb2c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/diagnostic_manifest.json": "31a2facd178861047b45d8c350f44eafc9db0d9a1d6389997e36ef92639f6130",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/diagnostic_decision.json": "6d298404618b944b2890f3806c16cf1ba2c32676cd154f7602e5318f95aa96cf",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/result.json": "f549c675dab2bff98a7268c2033d82ca22cdcd886ecd345bc4f097f2acb06699",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/analysis/summary.json": "ebf79e214c60d0929f2bb0e360d62a156e0584a6d5bbf0c0803156c8773c3777",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_reset_pilot.py": "a93a95b432bee896696bf447f2092adc2d6765767064fb81c6c94bf64d6b8217",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/train_reset_pilot.py": "f3dd12b6b3ea4cd447a0ac2d4fc45d5783709ccf0b614325fb702aee1e50d650",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/reset_pilot_contract.py": "5fa05727fc0a6a238d8f09d0b6980952f0687578e929a8934e9a5c64daed109f",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/reset_diagnostics.py": "5576ed5408918eea6d1e4aea059feeeabcacccbf88dde7f098852a8e4475eb82",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_reset_pilot_cfg.py": "a40b6f148d55bed4a8d318f550032488735685fdc5ebeb06c88ad62181de3cd8",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_reset_pilot_env.py": "d45622fc5d2c9635e99a5130650f20a9655a6ce6f4c0c5fb8da208104b3ae70c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_curriculum_env.py": "06f2727e3cb6ed454a5ca5bd8ec9d1ea47ead09e8ee3924954edd0a73f45bc4b",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/stair_curriculum_monitor.py": "423ee1b0dd49341d1c8bc1c2b5c2910a854673d7e9af4aba7d8dcc8c81e351e6",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/training_coverage.py": "90c22c72ff559ba187384afe982d3d42b9772829d398e9c0743e3dcf719b6650",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_core_stage3_cfg.py": "6491c512c24a06ea6406e55bde510bf997c31c827e20cfc976d681e0263f7369",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_core_stage3_sampling.py": "b3d4546618eb0588734065b9ce979e9f0bcd7a4543a6937225a400fd2979083f",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_retention_cfg.py": "f3e5e39ba79f9e9747dd9f623cf89aefe14adac0e11d2f761b125f1029cf82d5",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_recovery_cfg.py": "03d404dea8def04824561225b6877de80b854f6fe283665e94eac71eb7193977",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_recovery_sampling.py": "6ba2459ac23cd5e243dc9ef05d8fdc834407985fe6229c6dfbce851360a22f1e",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_finetune_cfg.py": "d41516814247a0368fcf4064f5565e8570f7dee97956e432e6ed6d003fb37cf8",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_finetune_sampling.py": "749794082468399c9c37480e7878f069babe9b8bbaf4c55d6af93caaad7d382e",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_regression500_sampling.py": "9460f4eac46b7a122e6deafeec36fefcec76900864ad8abb92bf736968ba1c5b",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_correction_cfg.py": "ff99b4d5b96a08a12bde738f6c997f7584f3a65dd38b58d8f7b3ef19aefceca9",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_training_audit.py": "b082ae46ba753ae611718de610728702e5b3dd4bfb65ce81760004afe9e42d55",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/cli_args.py": "ed19c909ba6df25a0c79854e4888369c540cf056ef4bc32377e7eba1d2dfb7c9",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/configs/24650_reset_ab_20261001.json": "0b01ba76c5bbd492740117a0655f596580deeca3ed9202042ea4d363ecb19d5c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_schedule_pilot.py": "14dada31b9b874432bc3dcf889e36c4cadb22a61058efdfc565c8e6fcb013930",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/train_schedule_pilot.py": "2399ded6de1e88ad106c8baf5619d4ae7f9dcd9ae5d77527d434b5ca9522c62c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/schedule_pilot_contract.py": "f37470f53db6d2bb91a88b51e22932e19a07c9894a1cd007fde19ef52c3c98fa",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/schedule_completion.py": "b437d103b7143c6d9df09c5f4bbabe598d6ee610cdefdc35405afbfad441b4f1",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_schedule_pilot_cfg.py": "e05af9bd52ca63d92d332d84e63357ae7db05109f485424458f67b2abfbc4e2a",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/b2w_schedule_pilot_env.py": "770e4c8b7635e0ab5b7da7a1edae6ee26b9222c2bafc8fdc5e210069a53d69cf",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/configs/24650_upright_schedule_ab_20261001.json": "5dc6fa17a5f51eb6b895fc90bd8bd7d7f65fea377e2259d90279508c4ede87b6",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/locomotion_v2_validation_protocol.py": "2dbab5f17998754f6df0af51a853498b057a52f6b4f9d3f4642cfe5b854568f7",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/eval_fullcycle_terrain.py": "ebb1776775e11b7e7ba87024359c28f77db3dbe7929313ddcba0a0e6cd343f41",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/evaluation_policy.py": "177fdc59eb5cd0016cff4eeb212136da9deafb2dce5d3dbff09c8b88645861a6",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/summarize_locomotion.py": "325078747989b0146ac0abff6a4167b108020c67ec02c797978f1ac458ea97ba",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_core_locomotion_eval.py": "8cdd238636bd30c6939c8ae3cfafb36e2eb2061fb9ac618b19d9d9f97ee0e9f1",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_locomotion.py": "062cb54dc82094ae0eafd3e5f731f4722856a70ee04e249f8b40a82691a4a7ed",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_support.py": "6f7332dd7c79c02ae03155be5f58e172d33b6c125f5e643ad54843a5a703f586",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_schedule_checkpoint_diagnosis.py": "4c9746bd38ab2697b9ff0b01252286ffded43eef0f744367ce8ffba22009f1e1",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/isolated_evaluation.py": "0261e79945ab97acd7b9bf97c7d682006e78f01e3eaf444b88e66de45d104b44",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/run_tracking_pilot.py": "e7ffcaf9ee527f6abfdd4aacc8123f1470750bd4312eac354987826c0ab53ed1",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/locomotion_v2_pilot_protocol.py": "bdf433b0d38bbc942c25ee36c90bd71f864a3ebe137ad078095a0f0014a81142",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/sources/scripts/locomotion_v2_curriculum_protocol.py": "1c951fb53ec3f52b565be8c599226793d91e6aa7958e956a5094074d17a05511",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/declared_plan.json": "e4106cc053ba93fc75a9af0a6f1c0e0e04c88f44f43c9b25ec4dbd49b939d571",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/policy_map.json": "0324c9a3340ef7c030af029e9ab916fd1125b46af6174a0065a225c5720861c8",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/analysis/summary.json": "f108c2290cdd4986e5f2bcb3202d2aebdca441674eee5c0d9d12cc15e1fed008",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/flat_mu_100.json": "4307e5747fac2665fc30101e0342c021cc8c07b7de2df15a77ba610aabb75b84",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/flat_mu_100.npz": "52e8453def597a4f841ce2952b251e663bd2f1e412cf53e44782042c18ae6183",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/rough_10.json": "17a61adf8ea30227f497800987b817706c8d08df54f19339d0ca56b0169ec9df",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/rough_10.npz": "01ff1825178808f41ecb21f8a7166e1bb4840fd193fccd636a4bf48adee1aeb0",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/stairs_up_18.json": "56733d52c9e20c7294e8b8d89467ead760a1fb1d90e4e13f73dddbbca5a1d23c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/stairs_up_18.npz": "48115293f37556354a2db77f8eece79eb3a5c2221aea7171c6ba6726d9e97b3d",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/stairs_down_18.json": "71e7da5f614f621f866d507e0395544b0c7e467e25790f9b31c2f39f08007fc5",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/24650/stairs_down_18.npz": "4f6a31ca6cd81eb40e1a20e1202ffb03c6a7dd0cf8629df40ee8add4325cf950",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/declared_plan.json": "4daee48f3b77e621afda50548a0e07880d8afcd15907c5222c0a8cb850b8e08c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/policy_map.json": "186115184ed15a6cf911c991423af1e682eaa80f00e88633bae6ba6ca981b8fd",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/analysis/summary.json": "830388159b22df234d4fe92fe526bee97bfd80d600fd4c259aed22e7854eb8ab",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/flat_mu_100.json": "b18802895e70bef88fd1b38fec3a0ad5d772fd99a83917b3b13a9db227a8a106",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/flat_mu_100.npz": "98ce468f6ed760ab576f776b18c8831af9d83ab5bbdd7c56d9b8d9e5d088ac17",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/rough_10.json": "a141ea34df32a825f76ec53dbbd37b391ca031838bbc726a5f4663a5951e36f6",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/rough_10.npz": "3e9618267116805fc493fac4b3dd2fa3dfc4b03264d92b2e6b4cd121302a18f4",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/stairs_up_18.json": "35e8cbe84506a075b2678b6c8dfb859380901f7f77da509f06e59087bc84cc4a",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/stairs_up_18.npz": "73ab1117d49f31c8ba89fa2aaf35a895fbf4708042de9d8cd7f815b773f627ab",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/stairs_down_18.json": "349d52bd2079f1aeb2943a771e511ec28d5233fdfb49b244a46ed1434b502d84",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24700/stairs_down_18.npz": "52526c60ff531c64b01ed26d5938ee25d193ace5c42ec69720c4c99fba197c74",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/declared_plan.json": "54a6b4fcbb051168100fe5de7823d37b5617ee51786dbeb9ad10dce33a6a67b6",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/policy_map.json": "7c63e6ba95cab2adcecaac8b026890d19997dd0b029010eec70bec58e9994fe5",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/analysis/summary.json": "4a17a265ae2496790b9d6873710123a85e18830e0ba5a8ac4060ad4bf4ca896b",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/flat_mu_100.json": "56ce5b7d23fbe21f70df6b09d9f8231bcd9ad2a1ab9170c35b9bd7e623c8c097",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/flat_mu_100.npz": "9cda88f911b3ed9e3fab6d2f8b91508d0250cbd3b7bb9c05f4ebd176f253ab1f",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/rough_10.json": "1123738d952c6ffbd5660d3af904034371855791ebd6b6b0d43567b4d422e592",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/rough_10.npz": "0f61fad3ca498c97bebf56a6e2af676456d3ded30bcf59386f9c6335b1c56cbb",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/stairs_up_18.json": "c8115589b592aadc8d4625adec58ce430d25736eb0f059e7459b68548b9753e5",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/stairs_up_18.npz": "eae7404f2056c6419334426fe9868641de4ccd0422b52ca1409debb75cfc7bf9",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/stairs_down_18.json": "4b023d3089a66e1466abfde5102d7ac037cc8d94c9921a9a9f9403f31215074e",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24750/stairs_down_18.npz": "49373053a5b30a55eb08045e90b7f0e518f08337b15804b287133655d898827b",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/declared_plan.json": "0cf5eca761f6e7be0efcdb02e5cd424204abfc3a273093b8ad1d470dc8f548e2",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/policy_map.json": "f91134a6be268e8825fd592d81fdf42601e5e88b2ac40793b2d43cfe4fbcea37",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/analysis/summary.json": "08c60ba16f3e227b92833fee3896a2039ffda3fc83ee85c9bcae5dba5877275b",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/flat_mu_100.json": "2fadd5cc5f1362a8d4a5ecb77d14477dce1c550326af4bfd32949f6c8328973e",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/flat_mu_100.npz": "09b4a658e5ba22607cf61eaf2b2e354e84989ebe3637c9ec218e89a781e50408",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/rough_10.json": "be4f13702a03a4f37817edcd7bb598c5969352daf26d02d717e8c706eb7d0b9c",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/rough_10.npz": "f47a2eae7c01c572d13fc43566aebdc123794493b6bdaa33e81fde024c27967e",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/stairs_up_18.json": "6d5ca57e2c5c156e1a6b1f71d94e4cfc48af0cdfbe5e2cd39480820e14a9a43d",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/stairs_up_18.npz": "58dec2a95b9e7c7e5770120b947b53c5eeae8c08f71c860b0bc0ec1207c0c286",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/stairs_down_18.json": "c7dc31c1628ce3fec968099796751578cac44baf85e56362ea18e37ee06c3fd4",
+    "logs/dashboard/jobs/0f2d2a0c50f94b1b960505425b8f009f/evaluation/schedulefixed_24800/stairs_down_18.npz": "c7c080ab6050a459098ffacc80c8a0682581edbb2af4ce88162b35821e3aa469",
+    "logs/rsl_rl/b2w_24650_schedule_fixed_9911/2026-10-01_13-24-57_2eaf04619ca64678a110e6cc9fa96ff9/model_24700.pt": "719ce0259d47719e3880c7475e2c5be87051b30717a43f718fc820524704365f",
+    "logs/rsl_rl/b2w_24650_schedule_fixed_9911/2026-10-01_13-24-57_2eaf04619ca64678a110e6cc9fa96ff9/model_24750.pt": "3e2773cacb5f707fa29c4f648e0d36d696e78b4e09882ef1342042085fdc5193",
+    "logs/rsl_rl/b2w_24650_schedule_fixed_9911/2026-10-01_13-24-57_2eaf04619ca64678a110e6cc9fa96ff9/model_24800.pt": "f5b00b0fd9106104a31c9ef1dac8b0dcfa81884d6e51b5da3e7cef9207d7f4d2",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/state.json": "1799ada5980775b434db6f69a19918b9b7e5171086214ab6e6afa07ce8e5b7ef",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/diagnostic_manifest.json": "ee5f153ea1516adb028cdff9c1bd007608e7d6b23980ad76ebfbce0633a7434b",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/diagnostic_decision.json": "0514ca6cbda7090d82abc6bbc8e42160e4605416382bc9f9fe3945f49e6d3ccb",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/result.json": "53657382cd3c0088dc333af0acb82db65bb9d94240c3f72b53e2616610f8c7a6",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/analysis/summary.json": "cc4d67e92cd010ca8e3b02ed7fe42459c8acdd194280752e1464686d0a734151",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_reset_pilot.py": "a93a95b432bee896696bf447f2092adc2d6765767064fb81c6c94bf64d6b8217",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/train_reset_pilot.py": "f3dd12b6b3ea4cd447a0ac2d4fc45d5783709ccf0b614325fb702aee1e50d650",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/reset_pilot_contract.py": "5fa05727fc0a6a238d8f09d0b6980952f0687578e929a8934e9a5c64daed109f",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/reset_diagnostics.py": "5576ed5408918eea6d1e4aea059feeeabcacccbf88dde7f098852a8e4475eb82",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_reset_pilot_cfg.py": "a40b6f148d55bed4a8d318f550032488735685fdc5ebeb06c88ad62181de3cd8",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_reset_pilot_env.py": "d45622fc5d2c9635e99a5130650f20a9655a6ce6f4c0c5fb8da208104b3ae70c",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_curriculum_env.py": "06f2727e3cb6ed454a5ca5bd8ec9d1ea47ead09e8ee3924954edd0a73f45bc4b",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/stair_curriculum_monitor.py": "423ee1b0dd49341d1c8bc1c2b5c2910a854673d7e9af4aba7d8dcc8c81e351e6",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/training_coverage.py": "90c22c72ff559ba187384afe982d3d42b9772829d398e9c0743e3dcf719b6650",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_core_stage3_cfg.py": "6491c512c24a06ea6406e55bde510bf997c31c827e20cfc976d681e0263f7369",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_core_stage3_sampling.py": "b3d4546618eb0588734065b9ce979e9f0bcd7a4543a6937225a400fd2979083f",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_retention_cfg.py": "f3e5e39ba79f9e9747dd9f623cf89aefe14adac0e11d2f761b125f1029cf82d5",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_recovery_cfg.py": "03d404dea8def04824561225b6877de80b854f6fe283665e94eac71eb7193977",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_recovery_sampling.py": "6ba2459ac23cd5e243dc9ef05d8fdc834407985fe6229c6dfbce851360a22f1e",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_finetune_cfg.py": "d41516814247a0368fcf4064f5565e8570f7dee97956e432e6ed6d003fb37cf8",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_finetune_sampling.py": "749794082468399c9c37480e7878f069babe9b8bbaf4c55d6af93caaad7d382e",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_regression500_sampling.py": "9460f4eac46b7a122e6deafeec36fefcec76900864ad8abb92bf736968ba1c5b",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_correction_cfg.py": "ff99b4d5b96a08a12bde738f6c997f7584f3a65dd38b58d8f7b3ef19aefceca9",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_training_audit.py": "b082ae46ba753ae611718de610728702e5b3dd4bfb65ce81760004afe9e42d55",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/cli_args.py": "ed19c909ba6df25a0c79854e4888369c540cf056ef4bc32377e7eba1d2dfb7c9",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/configs/24650_reset_ab_20261001.json": "0b01ba76c5bbd492740117a0655f596580deeca3ed9202042ea4d363ecb19d5c",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_schedule_pilot.py": "14dada31b9b874432bc3dcf889e36c4cadb22a61058efdfc565c8e6fcb013930",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/train_schedule_pilot.py": "2399ded6de1e88ad106c8baf5619d4ae7f9dcd9ae5d77527d434b5ca9522c62c",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/schedule_pilot_contract.py": "f37470f53db6d2bb91a88b51e22932e19a07c9894a1cd007fde19ef52c3c98fa",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/schedule_completion.py": "b437d103b7143c6d9df09c5f4bbabe598d6ee610cdefdc35405afbfad441b4f1",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_schedule_pilot_cfg.py": "e05af9bd52ca63d92d332d84e63357ae7db05109f485424458f67b2abfbc4e2a",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/b2w_schedule_pilot_env.py": "770e4c8b7635e0ab5b7da7a1edae6ee26b9222c2bafc8fdc5e210069a53d69cf",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/configs/24650_upright_schedule_ab_20261001.json": "5dc6fa17a5f51eb6b895fc90bd8bd7d7f65fea377e2259d90279508c4ede87b6",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/locomotion_v2_validation_protocol.py": "2dbab5f17998754f6df0af51a853498b057a52f6b4f9d3f4642cfe5b854568f7",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/eval_fullcycle_terrain.py": "ebb1776775e11b7e7ba87024359c28f77db3dbe7929313ddcba0a0e6cd343f41",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/evaluation_policy.py": "177fdc59eb5cd0016cff4eeb212136da9deafb2dce5d3dbff09c8b88645861a6",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/summarize_locomotion.py": "325078747989b0146ac0abff6a4167b108020c67ec02c797978f1ac458ea97ba",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_core_locomotion_eval.py": "8cdd238636bd30c6939c8ae3cfafb36e2eb2061fb9ac618b19d9d9f97ee0e9f1",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_locomotion.py": "062cb54dc82094ae0eafd3e5f731f4722856a70ee04e249f8b40a82691a4a7ed",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_support.py": "6f7332dd7c79c02ae03155be5f58e172d33b6c125f5e643ad54843a5a703f586",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_schedule_checkpoint_diagnosis.py": "8d8978ace8c65dbd69152df99baec1f8ee63df72ea428229adff7e4254b1bb33",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/isolated_evaluation.py": "0261e79945ab97acd7b9bf97c7d682006e78f01e3eaf444b88e66de45d104b44",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/run_tracking_pilot.py": "e7ffcaf9ee527f6abfdd4aacc8123f1470750bd4312eac354987826c0ab53ed1",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/locomotion_v2_pilot_protocol.py": "bdf433b0d38bbc942c25ee36c90bd71f864a3ebe137ad078095a0f0014a81142",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/sources/scripts/locomotion_v2_curriculum_protocol.py": "1c951fb53ec3f52b565be8c599226793d91e6aa7958e956a5094074d17a05511",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/declared_plan.json": "9a6e4e37ef16f4e21ba791c0c3455698cac0b38ff9f93aea5a1212dd1f4177b7",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/policy_map.json": "0324c9a3340ef7c030af029e9ab916fd1125b46af6174a0065a225c5720861c8",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/analysis/summary.json": "0c31460b245ad9406d2a731766347a440fbbd597d820747574ff61932531224a",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/flat_mu_100.json": "23b1ea0dc2406431c6178b498d4a3d7fbfe709d6ddd33f0e97b8c6a673c1249d",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/flat_mu_100.npz": "52e8453def597a4f841ce2952b251e663bd2f1e412cf53e44782042c18ae6183",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/rough_10.json": "71bb9f540f76eca37a3c7bf347442ada58e5dd2685373081e43e913b92406c5a",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/rough_10.npz": "01ff1825178808f41ecb21f8a7166e1bb4840fd193fccd636a4bf48adee1aeb0",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/stairs_up_18.json": "538a934ecc8d822ec3227c5595a016fbd5f1eb385d416f9907316fe244c1db5a",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/stairs_up_18.npz": "48115293f37556354a2db77f8eece79eb3a5c2221aea7171c6ba6726d9e97b3d",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/stairs_down_18.json": "c4f58a20becc0b0b26b418ece38b5aa8310dbc01596f49aca279a64f3182e49b",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/24650/stairs_down_18.npz": "4f6a31ca6cd81eb40e1a20e1202ffb03c6a7dd0cf8629df40ee8add4325cf950",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/declared_plan.json": "d71374e209efa60d229742de6eeef49468c0300367f7b936bdb7e5a7349552e6",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/policy_map.json": "aed51d827fa64d05cd550a2fd16adb092fb0938e7600fa78a0b055bfcb56ce9a",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/analysis/summary.json": "781bdb6be38a6af67a3780a0178076b5e5fb4e77b4cd7661de6fc8b47ae9e7a3",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/flat_mu_100.json": "ade095454705366011617e766076c26ed54f9de8853a65d36f0eb54c21bc73bc",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/flat_mu_100.npz": "5a351b4c28cb8672eae8bd88196229567f56fa12ed466e8e1e016d3b1049ef2f",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/rough_10.json": "80607ccf6f8004c1f29df48ebeb4cbf72497ea3908c64c27bc279b888d6625fb",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/rough_10.npz": "32f84ae4315de2649d3534b5531ca6b4b1d16e01e080594426b9baf4e99a1adc",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/stairs_up_18.json": "6869853360a60bf767ec8e3582d81f839f3e2ed69fdf69e801f981dde99eba9b",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/stairs_up_18.npz": "fea9a1545f26ff2c36d9b6b3f6b985fd95880da537c2bfb26a4dc6eba20f2bad",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/stairs_down_18.json": "820af42bfa64df4602ec4910ca1f6fad888863df06012422d6beb9a91dcdb72f",
+    "logs/dashboard/jobs/d073afe88e8044b4b4b1b976355317f8/evaluation/schedulefixed_24650/stairs_down_18.npz": "369a1ebf61a02ca04c969b406d73e3f308cf98eec44042c50f6483e4a49a1eaf",
+    "logs/rsl_rl/b2w_24650_schedule_fixed_9911/2026-10-01_13-24-57_2eaf04619ca64678a110e6cc9fa96ff9/model_24650.pt": "c1f7f71bd166f5bf2c9e087df4f292e06ca9e194312d0b2aa75bcaccce6d8453",
+    "policies/local/core_24650/model_24650.pt": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123"
+  },
+  "limitations": [
+    "Five reset seeds make individual stair outcomes sensitive to small trajectory changes.",
+    "Intermediate checkpoints are diagnostic and were not selected as candidates.",
+    "The probes locate behavioural drift but do not identify gradient causality by cohort.",
+    "No server training, independent validation or hardware action was performed."
+  ]
+}

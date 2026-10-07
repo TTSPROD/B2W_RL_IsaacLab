@@ -6,6 +6,10 @@
 | [DEEPSEEK_FINETUNE_PLAN](DEEPSEEK_FINETUNE_PLAN.md) | Ветка deepseek: план дообучения 24650, мировые практики, gates |
 | [Мировые практики дообучения](research/2026-10-01-finetune-world-practices.md) | Обзор первичных источников wheeled-legged low-level training/testing |
 | [TRAINING_STRATEGY](TRAINING_STRATEGY.md) | Первичные источники, safety semantics, curriculum A/B, бюджеты и резервные подходы |
+| [Обзор плана 01.10](results/2026-10-01-training-plan-review.md) | Executed reset/terminal mismatch, counters B и ограничения вывода |
+| [Reset-only pilot](results/2026-10-01-reset-pilot-plan.md) | Стандартный train.py, preflight, 2 × 300 updates и 180 probe episodes |
+| [Reset-only: результат](results/2026-10-01-reset-pilot-result.md) | 180 episodes, B отклонён; tempo/LR диагностика и следующая проверка |
+| [D1.1 schedule A/B](results/2026-10-01-schedule-pilot-plan.md) | Fresh preflight и 2 × 300 updates native adaptive/fixed, seed 9911 |
 | [TRAINING_STATUS](TRAINING_STATUS.md) | Текущий кандидат и проверенный результат |
 | [A/B на 1350 updates](results/2026-09-30-stair-comparison-1350.md) | Завершены 180 эпизодов; B отклонён, кандидат 24650 сохранён |
 | [Stair curriculum A/B](results/2026-09-30-stair-curriculum-plan.md) | Реализация, preflight, frozen rules и запуск 2 × 1500 updates |
@@ -23,7 +27,7 @@
 | [INFRASTRUCTURE](INFRASTRUCTURE.md) | Runtime, пути и команды проверки |
 | [VENDOR_INVENTORY](VENDOR_INVENTORY.md) | Закреплённые upstream snapshots |
 | [GAMEPAD_VIEWERS](GAMEPAD_VIEWERS.md) | Ручной просмотр в Isaac Sim и MuJoCo |
-| [Локальный dashboard](../dashboard/README.md) | Управление train/test/compare, stop, progress и результаты |
+| [Локальный dashboard](../dashboard/README.md) | Монитор progress/результатов; процессы выполняет независимый supervisor |
 | [Закрытие relkernel](results/2026-09-30-experiment-closure.md) | Удалённая ветка, сохранённый bundle и raw hashes |
 
 Исторические ветки не входят в актуальный индекс. Минимальная lineage-документация

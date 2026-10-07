@@ -1,0 +1,42 @@
+{
+  "schema": "b2w_command_gated_composite_probe_v1",
+  "experiment": "core_24650_parent_plus_standard_balanced_specialist",
+  "status": "frozen_for_execution",
+  "authorization": "User requested the fastest evidence-driven path to a positive result after the micro sweep.",
+  "basis": {
+    "micro_sweep_result": "logs/dashboard/jobs/10d747f88f7f432896b60eda4a139c32/result.json",
+    "micro_sweep_result_sha256": "47bc94ba8808b05e127b7dca80b7fbe383cea7bd4b3bc37e5aae3fe5c6033858"
+  },
+  "parent": {
+    "policy_id": "24650",
+    "export": "policies/local/core_24650/export/policy.pt",
+    "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "manifest": "policies/local/core_24650/export/manifest.json",
+    "manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  },
+  "specialist": {
+    "policy_id": "microstandardbalanced_24674",
+    "export": "logs/dashboard/jobs/10d747f88f7f432896b60eda4a139c32/exports/microstandardbalanced_24674/policy.pt",
+    "export_sha256": "2f87b6b3e1bc92a54f1e28e8d3ae26705b4fc981d8febc82d944054e08758c89",
+    "manifest": "logs/dashboard/jobs/10d747f88f7f432896b60eda4a139c32/exports/microstandardbalanced_24674/manifest.json",
+    "manifest_sha256": "9d28e27111d992d81750c2ea98691296d36e2706842c90dc63a146e445d5ad4e"
+  },
+  "composite": {
+    "policy_id": "microcomposite_24674",
+    "observation_width": 57,
+    "action_width": 16,
+    "command_slice": [6, 9],
+    "command_scale": [1.0, 1.0, 1.0],
+    "zero_tolerance": 1e-6,
+    "specialist_routes": ["pure_lateral", "pure_yaw"],
+    "parent_routes": ["zero", "pure_longitudinal", "mixed"]
+  },
+  "evaluation": {
+    "protocol": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "actors": ["24650", "microcomposite_24674"],
+    "requires_zero_unsafe": true,
+    "requires_no_parent_cell_regression": true,
+    "automatic_promotion": false
+  }
+}

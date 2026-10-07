@@ -1,0 +1,163 @@
+{
+  "metrics": {
+    "24650": {
+      "success": 27,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6831165713568529,
+        "yaw": 0.6666150192419689
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1275,
+      "leg_saturation": 0.0074,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "standstill_failure": 7,
+        "command_transition_failure": 3,
+        "traversal_failure": 8
+      }
+    },
+    "schedulefixed_24700": {
+      "success": 23,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 3
+      },
+      "targets": {
+        "lateral": 0.7100468873977661,
+        "yaw": 0.6828910708427429
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.13521739130434782,
+      "leg_saturation": 0.005294117647058823,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 25,
+        "standstill_failure": 9,
+        "command_transition_failure": 1,
+        "traversal_failure": 10
+      }
+    },
+    "schedulefixed_24750": {
+      "success": 22,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 4,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 1,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 2
+      },
+      "targets": {
+        "lateral": 0.6842765924520791,
+        "yaw": 0.6696022724111875
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.11695652173913043,
+      "leg_saturation": 0.0038,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 25,
+        "standstill_failure": 9,
+        "command_transition_failure": 1,
+        "traversal_failure": 10
+      }
+    },
+    "schedulefixed_24800": {
+      "success": 22,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 3,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 1,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 3
+      },
+      "targets": {
+        "lateral": 0.6621401434143385,
+        "yaw": 0.6735901236534119
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1916304347826087,
+      "leg_saturation": 0.0047,
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 27,
+        "command_transition_failure": 9,
+        "traversal_failure": 9,
+        "standstill_failure": 7
+      }
+    }
+  },
+  "paired_vs_parent": {
+    "schedulefixed_24700": {
+      "wins": 0,
+      "losses": 4,
+      "ties": 56,
+      "diagnostic_parent_retention": false,
+      "reasons": [
+        "stairs_up_18/traverse_0.7: below parent",
+        "stairs_down_18/stop_restart_0.5: below parent"
+      ]
+    },
+    "schedulefixed_24750": {
+      "wins": 1,
+      "losses": 6,
+      "ties": 53,
+      "diagnostic_parent_retention": false,
+      "reasons": [
+        "flat_mu_100/longitudinal: below parent",
+        "stairs_up_18/traverse_0.7: below parent",
+        "stairs_down_18/stop_restart_0.5: below parent"
+      ]
+    },
+    "schedulefixed_24800": {
+      "wins": 0,
+      "losses": 5,
+      "ties": 55,
+      "diagnostic_parent_retention": false,
+      "reasons": [
+        "flat_mu_100/longitudinal: below parent",
+        "stairs_up_18/traverse_0.7: below parent",
+        "stairs_down_18/stop_restart_0.5: below parent",
+        "lateral: below parent tolerance",
+        "wheel_saturation: above parent tolerance"
+      ]
+    }
+  },
+  "automatic_promotion": false,
+  "qualification": false,
+  "hardware_approval": false
+}

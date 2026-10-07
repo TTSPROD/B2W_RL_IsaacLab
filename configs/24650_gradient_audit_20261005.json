@@ -1,0 +1,54 @@
+{
+  "schema": "b2w_no_update_gradient_audit_v1",
+  "experiment": "core_24650_reward_gae_actor_gradient_audit",
+  "status": "frozen_for_execution",
+  "authorization": "User requested to proceed with the fast factor-screening workflow on 2026-10-05.",
+  "purpose": "Locate reward/advantage imbalance and actor-gradient conflict before any further PPO fine-tuning.",
+  "parent": {
+    "checkpoint": "policies/local/core_24650/model_24650.pt",
+    "sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "agent": "policies/local/core_24650/agent.yaml",
+    "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "env": "policies/local/core_24650/env.yaml",
+    "env_sha256": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0"
+  },
+  "mdp": {
+    "schedule_specification": "configs/24650_upright_schedule_ab_20261001.json",
+    "schedule_specification_sha256": "5dc6fa17a5f51eb6b895fc90bd8bd7d7f65fea377e2259d90279508c4ede87b6",
+    "task": "B2W-Gradient-Audit-v0",
+    "reset_arm": "upright",
+    "algorithm_schedule": "fixed",
+    "seed": 9911,
+    "actor_observations": 57,
+    "actions": 16,
+    "policy_hz": 50
+  },
+  "rollout": {
+    "num_envs": 512,
+    "policy_steps": 3600,
+    "steps_per_batch": 24,
+    "randomize_initial_episode_length": true,
+    "deterministic_policy": false,
+    "ppo_updates": 0,
+    "optimizer_steps": 0
+  },
+  "sampling": {
+    "groups": ["total", "cohort", "semantic_phase"],
+    "samples_per_batch_per_group": 64,
+    "max_samples_per_group": 8192,
+    "gradient_chunk_size": 2048
+  },
+  "outputs": [
+    "environment reward and every weighted reward term by cohort and semantic command phase",
+    "raw GAE and standard globally normalised PPO advantage",
+    "sampled actor PPO surrogate plus entropy gradient norm by group",
+    "actor-gradient cosine matrix between cohorts and semantic command phases",
+    "exact parent model and Adam equality before and after audit"
+  ],
+  "prohibitions": [
+    "no PPO update",
+    "no optimizer.step",
+    "no checkpoint export",
+    "no automatic training launch"
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "metrics": {
+    "24650": {
+      "success": 27,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 5,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 2,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6831165713568529,
+        "yaw": 0.6666150192419689
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.1275,
+      "leg_saturation": 0.0074
+    },
+    "scheduleadaptive_24949": {
+      "success": 24,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 4,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 0,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 5
+      },
+      "targets": {
+        "lateral": 0.6116212979347135,
+        "yaw": 0.5982616518934568
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.16470588235294117,
+      "leg_saturation": 0.0066
+    },
+    "schedulefixed_24949": {
+      "success": 22,
+      "cells": {
+        "flat_mu_100/stand": 5,
+        "flat_mu_100/longitudinal": 3,
+        "flat_mu_100/lateral": 0,
+        "flat_mu_100/yaw": 0,
+        "rough_10/stand": 5,
+        "rough_10/longitudinal": 0,
+        "rough_10/lateral": 0,
+        "rough_10/yaw": 0,
+        "stairs_up_18/traverse_0.7": 0,
+        "stairs_up_18/stop_restart_0.5": 1,
+        "stairs_down_18/traverse_0.7": 5,
+        "stairs_down_18/stop_restart_0.5": 3
+      },
+      "targets": {
+        "lateral": 0.675660834958156,
+        "yaw": 0.7015551924705505
+      },
+      "unsafe": 0,
+      "wheel_saturation": 0.15065217391304347,
+      "leg_saturation": 0.0031
+    }
+  },
+  "retention_pass": false,
+  "reasons": [
+    "flat_mu_100/longitudinal: regression",
+    "stairs_up_18/traverse_0.7: regression",
+    "stairs_down_18/stop_restart_0.5: regression",
+    "wheel_saturation: regression",
+    "flat_mu_100/longitudinal: below frozen parent floor",
+    "stairs_up_18/traverse_0.7: below frozen parent floor",
+    "stairs_down_18/stop_restart_0.5: below frozen parent floor"
+  ],
+  "automatic_promotion": false,
+  "qualification": false,
+  "hardware_approval": false,
+  "hypothesis_supported": false,
+  "descent_success_gain": -2,
+  "descent_stop_restart_progress_gain": -0.03206473135086507,
+  "automatic_budget_extension": false
+}

@@ -62,7 +62,8 @@ class StairMonitor(TrainingCoverage):
             self._add(name,selected,0)
             if name.startswith('stairs'):
                 stop_ids=torch.tensor([case['case'].startswith('stop_restart') for case in self.plan['banks'][name]],device=self.env.device)
-                self.requires_stop |= selected & stop_ids[c]
+                ids=selected.nonzero(as_tuple=False).flatten()
+                self.requires_stop[ids] |= stop_ids[c[ids]]
 
     def _add(self,name,mask,field):
         stat=self.segment_stats[name]
@@ -73,11 +74,19 @@ class StairMonitor(TrainingCoverage):
         for name,cohort in self.command.target_masks.items():
             valid=mask & cohort & (self.old_phase>=0)
             bank=self.banks[name]
-            phase=self.old_phase.clamp(0,bank.durations.shape[1]-1)
-            durations=bank.durations[self.old_case,phase]
+            # Case ids are local to each cohort bank.  Index only members of the
+            # current cohort: other cohorts can legitimately have larger case ids
+            # (for example a one-case axis bank next to multi-case stair banks).
+            ids=valid.nonzero(as_tuple=False).flatten()
+            durations=torch.zeros_like(self.segment_exposure)
+            zero_command=torch.zeros_like(valid)
+            if len(ids):
+                phase=self.old_phase[ids].clamp(0,bank.durations.shape[1]-1)
+                case=self.old_case[ids]
+                durations[ids]=bank.durations[case,phase]
+                zero_command[ids]=bank.commands[case,phase].norm(dim=1)==0
             complete=valid & (self.segment_steps*self.dt >= durations-self.dt/2) & ~self.episode_flags.any(dim=1)
             self._add(name,complete,1)
-            zero_command=bank.commands[self.old_case,phase].norm(dim=1)==0
             zero=complete & zero_command & (durations>=12)
             checked=valid & (durations>=12) & zero_command
             self.zero_good[checked] &= self.segment_zero_good[checked]

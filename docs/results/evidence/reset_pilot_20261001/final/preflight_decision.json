@@ -1,0 +1,7 @@
+{
+  "train_allowed": true,
+  "reasons": [],
+  "early_tilt_rate_control": 0.1808810763888889,
+  "early_tilt_rate_upright": 0.0,
+  "automatic_promotion": false
+}

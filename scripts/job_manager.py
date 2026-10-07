@@ -17,6 +17,28 @@ JOBS = ROOT / "logs/dashboard/jobs"
 LOCK = threading.Lock()
 ACTIVE = {"queued", "running", "stopping"}
 ENTRYPOINTS = {
+    "scripts/run_gradient_audit.py": "No-update reward/GAE/actor-gradient audit",
+    "scripts/run_micro_sweep.py": "25-update command-order/PPO-intensity 2x2 sweep",
+    "scripts/run_composite_probe.py": "Parent plus lateral/yaw specialist composite probe",
+    "scripts/run_specialist_stage2.py": "Balanced specialist continuation and gated composite screen",
+    "scripts/train_specialist_stage2.py": "Balanced specialist stage-2 training",
+    "scripts/run_specialist_repeat.py": "Independent balanced specialist repeat and screen",
+    "scripts/train_specialist_repeat.py": "Independent balanced specialist repeat training",
+    "scripts/run_axis_specialists.py": "Independent lateral/yaw specialists and split-composite screen",
+    "scripts/run_axis_specialists_stage2.py": "Cumulative-300 lateral/yaw specialist continuation",
+    "scripts/run_lateral_curve.py": "Dense lateral checkpoint curve",
+    "scripts/run_axis_mixed_probe.py": "Lateral-177 plus yaw-150 split-composite screen",
+    "scripts/run_axis_endpoint_screen.py": "Saved lateral/yaw endpoint full-condition screen",
+    "scripts/run_axis_robust_composite.py": "Lateral-152 plus yaw-252 robust composite screen",
+    "scripts/run_axis_endpoint_confirm.py": "Sequential confirmation of shortlisted axis endpoints",
+    "scripts/run_axis_repeat3.py": "Third same-slot shortlisted axis evaluation",
+    "scripts/train_axis_specialist.py": "One axis-specialist training arm",
+    "scripts/train_micro_sweep.py": "One micro-sweep training arm",
+    "scripts/run_reset_pilot.py": "Reset-only standard Robot Lab A/B",
+    "scripts/train_reset_pilot.py": "Reset pilot arm",
+    "scripts/run_schedule_pilot.py": "Upright native schedule A/B",
+    "scripts/train_schedule_pilot.py": "Native schedule pilot arm",
+    "scripts/run_schedule_checkpoint_diagnosis.py": "Native schedule intermediate checkpoint diagnosis",
     "scripts/evaluate_stair_comparison_1350.py": "Evaluate completed A/B 1350",
     "scripts/run_stair_comparison_1350.py": "Stair comparison at 1350",
     "scripts/run_stair_curriculum.py": "Stair curriculum A/B",
@@ -66,6 +88,36 @@ def process_running(pid):
 
 def recipe(request):
     kind = request.get("kind")
+    if kind == "gradient_audit":
+        return "scripts/run_gradient_audit.py", []
+    if kind == "micro_sweep":
+        source = request.get("source_job")
+        if source is None:
+            return "scripts/run_micro_sweep.py", []
+        job_path(source)
+        return "scripts/run_micro_sweep.py", ["--training-job", source]
+    if kind == "composite_probe":
+        return "scripts/run_composite_probe.py", []
+    if kind == "specialist_stage2":
+        return "scripts/run_specialist_stage2.py", []
+    if kind == "specialist_repeat":
+        return "scripts/run_specialist_repeat.py", []
+    if kind == "axis_specialists":
+        return "scripts/run_axis_specialists.py", []
+    if kind == "axis_specialists_stage2":
+        return "scripts/run_axis_specialists_stage2.py", []
+    if kind == "lateral_curve":
+        return "scripts/run_lateral_curve.py", []
+    if kind == "axis_mixed_probe":
+        return "scripts/run_axis_mixed_probe.py", []
+    if kind == "axis_endpoint_screen":
+        return "scripts/run_axis_endpoint_screen.py", []
+    if kind == "axis_robust_composite":
+        return "scripts/run_axis_robust_composite.py", []
+    if kind == "axis_endpoint_confirm":
+        return "scripts/run_axis_endpoint_confirm.py", []
+    if kind == "axis_repeat3":
+        return "scripts/run_axis_repeat3.py", []
     if kind == "stair_comparison_1350":
         return "scripts/run_stair_comparison_1350.py", []
     if kind in {"stair_curriculum", "stair_curriculum_preflight"}:

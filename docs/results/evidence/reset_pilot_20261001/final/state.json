@@ -1,0 +1,18 @@
+{
+  "id": "37198e6459844450a190984e03beef16",
+  "kind": "Reset A/B recovery: reuse completed A, train B",
+  "entrypoint": "scripts/run_reset_pilot.py",
+  "arguments": [
+    "--preflight-jobs",
+    "00cdfe392007469888265badecf3bfdf",
+    "2fdee06e32d244bdb321b6b8887142b5",
+    "--completed-control-job",
+    "e7169d2cf7bc4fc0a7d504b62a14c3f7"
+  ],
+  "status": "completed",
+  "created": "2026-10-01T08:27:45.130835+00:00",
+  "updated": "2026-10-01T09:03:59.343435+00:00",
+  "returncode": 0,
+  "worker_pid": 22872,
+  "process_pid": 22852
+}

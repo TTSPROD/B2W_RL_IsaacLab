@@ -1,4 +1,4 @@
-"""Loopback B2W dashboard and local process control API."""
+"""Read-only loopback B2W current-run dashboard."""
 from __future__ import annotations
 
 import argparse
@@ -346,6 +346,17 @@ def selection_data(source='registry'):
     return result
 
 
+def current_job_data():
+    """Observe one supervisor job, never fall back to an older run's evidence."""
+    jobs = list_jobs()
+    if not jobs:
+        return {"job": None}
+    current = next((job for job in jobs
+                    if job["status"] in {"queued", "running", "stopping"}
+                    or job.get("worker_alive")), jobs[0])
+    return {"job": job_details(current["id"])}
+
+
 def registry_selection_data():
     # The policy page represents the registry. Diagnostic job probes live in /jobs.
     selected_path = evaluation_path()
@@ -419,6 +430,8 @@ class Handler(BaseHTTPRequestHandler):
                     "project": hashlib.sha256(str(ROOT).encode()).hexdigest()})
             if parsed.path == "/api/jobs":
                 return self.json({"jobs": list_jobs()})
+            if parsed.path == "/api/current":
+                return self.json(current_job_data())
             if parsed.path == "/api/job":
                 return self.json(job_details(parse_qs(parsed.query).get("id", [""])[0]))
             if parsed.path == "/api/runs":

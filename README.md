@@ -11,8 +11,11 @@
 & .\scripts\start_dashboard.ps1
 ```
 
-[Открыть монитор](http://127.0.0.1:8765/#jobs): статус, progress, логи,
-метрики и результаты. Дашборд только читает файлы; обучение, тесты и сравнение
+[Открыть монитор](http://127.0.0.1:8765/#jobs): статус, progress, логи
+и результаты одного текущего запуска. Он автоматически открывается при новом
+managed запуске обучения, тестов или оценки и переключается на новый job.
+После завершения сохраняет итоговый статус до следующего запуска.
+Дашборд только читает файлы; обучение, тесты и сравнение
 выполняет независимый supervisor без HTTP-сервера и браузера.
 
 ```powershell
@@ -47,10 +50,20 @@ Simulation/hardware qualification отсутствует.
 2 × 300 updates, 420 эпизодов. Критерии улучшения не пройдены;
 на +300 control и low LR дают 25/60, у low LR один unsafe. Кандидат — 24650.
 
-[План обучения](docs/TRAINING_STRATEGY.md): опыт адаптивного curriculum закрыт
-на +1350 без продвижения. Следующий шаг — диагностика частых safety-reset и
-отсутствия promotions на простых лестницах; продление A/B не запланировано.
-Исходный план и критерии сохранены как история эксперимента.
+[План обучения](docs/TRAINING_STRATEGY.md): прежний curriculum закрыт на +1350.
+[Reset-only pilot завершён](docs/results/2026-10-01-reset-pilot-result.md):
+по 300 updates A/B и 180 probe episodes, job `37198e6459844450a190984e03beef16`,
+exit 0. Parent/A/B 27/21/18 successes из 60, unsafe 0/0/0. Upright reset
+устранил initial tilt-invalid, но B потерял stair tempo и малые команды;
+кандидат 24650 сохранён. Следующая проверка — native adaptive против fixed
+LR 1e-5 на одинаковом upright reset. [D1.1 workflow](docs/results/2026-10-01-schedule-pilot-plan.md)
+реализован и запущен через supervisor 01.10 в 12:59 МСК: fresh preflight,
+по 300 updates, seed 9911, 180 episodes. Бюджет закрытого reset пилота
+не продлевается; нового результата пока нет.
+Основой pipeline служит стандартный pinned Robot Lab train.py/OnPolicyRunner/PPO;
+изменения ограничиваются подтверждёнными failures, без старых runner hooks.
+[Исходная карточка](docs/results/2026-10-01-reset-pilot-plan.md) сохраняет
+постановку, preflight и историю восстановления workflow.
 
 V2 отделяет software contract, короткий отбор (160 эпизодов на policy),
 независимую validation выбранного actor и sim2real. Отдельно публикуются tracking,

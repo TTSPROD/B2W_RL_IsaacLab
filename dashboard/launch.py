@@ -1,4 +1,4 @@
-"""Ensure the local dashboard is running and optionally open its control page."""
+"""Ensure the local current-run monitor is running and optionally open it."""
 from __future__ import annotations
 
 import argparse
@@ -35,7 +35,8 @@ def main():
     args = parser.parse_args()
     if not 1024 <= args.port <= 65535:
         raise ValueError("Port must be in [1024, 65535]")
-    url = f"http://127.0.0.1:{args.port}/#{args.view}"
+    # Keep --view compatible with existing scripts; every link opens the current run.
+    url = f"http://127.0.0.1:{args.port}/#jobs"
     if ready(args.port):
         print(f"B2W Dashboard: {url}", flush=True)
         if args.open:

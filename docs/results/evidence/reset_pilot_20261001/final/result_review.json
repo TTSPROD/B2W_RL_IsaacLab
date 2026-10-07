@@ -1,0 +1,3717 @@
+{
+  "schema": "b2w_reset_pilot_review_v1",
+  "verified_utc": "2026-10-01T09:27:45.593012+00:00",
+  "job": "37198e6459844450a190984e03beef16",
+  "state": {
+    "id": "37198e6459844450a190984e03beef16",
+    "kind": "Reset A/B recovery: reuse completed A, train B",
+    "entrypoint": "scripts/run_reset_pilot.py",
+    "arguments": [
+      "--preflight-jobs",
+      "00cdfe392007469888265badecf3bfdf",
+      "2fdee06e32d244bdb321b6b8887142b5",
+      "--completed-control-job",
+      "e7169d2cf7bc4fc0a7d504b62a14c3f7"
+    ],
+    "status": "completed",
+    "created": "2026-10-01T08:27:45.130835+00:00",
+    "updated": "2026-10-01T09:03:59.343435+00:00",
+    "returncode": 0,
+    "worker_pid": 22872,
+    "process_pid": 22852
+  },
+  "episodes": 180,
+  "runtime": {
+    "torch": "2.7.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 4080 Laptop GPU"
+  },
+  "decision": {
+    "metrics": {
+      "24650": {
+        "success": 27,
+        "cells": {
+          "flat_mu_100/stand": 5,
+          "flat_mu_100/longitudinal": 5,
+          "flat_mu_100/lateral": 0,
+          "flat_mu_100/yaw": 0,
+          "rough_10/stand": 5,
+          "rough_10/longitudinal": 0,
+          "rough_10/lateral": 0,
+          "rough_10/yaw": 0,
+          "stairs_up_18/traverse_0.7": 2,
+          "stairs_up_18/stop_restart_0.5": 0,
+          "stairs_down_18/traverse_0.7": 5,
+          "stairs_down_18/stop_restart_0.5": 5
+        },
+        "targets": {
+          "lateral": 0.6831165713568529,
+          "yaw": 0.6666150192419689
+        },
+        "unsafe": 0,
+        "wheel_saturation": 0.1275,
+        "leg_saturation": 0.0074
+      },
+      "resetcontrol_24949": {
+        "success": 21,
+        "cells": {
+          "flat_mu_100/stand": 5,
+          "flat_mu_100/longitudinal": 5,
+          "flat_mu_100/lateral": 0,
+          "flat_mu_100/yaw": 0,
+          "rough_10/stand": 5,
+          "rough_10/longitudinal": 0,
+          "rough_10/lateral": 0,
+          "rough_10/yaw": 0,
+          "stairs_up_18/traverse_0.7": 0,
+          "stairs_up_18/stop_restart_0.5": 0,
+          "stairs_down_18/traverse_0.7": 5,
+          "stairs_down_18/stop_restart_0.5": 1
+        },
+        "targets": {
+          "lateral": 0.6996538167198499,
+          "yaw": 0.5895968551437061
+        },
+        "unsafe": 0,
+        "wheel_saturation": 0.14423913043478262,
+        "leg_saturation": 0.005108695652173913
+      },
+      "resetupright_24949": {
+        "success": 18,
+        "cells": {
+          "flat_mu_100/stand": 5,
+          "flat_mu_100/longitudinal": 5,
+          "flat_mu_100/lateral": 0,
+          "flat_mu_100/yaw": 0,
+          "rough_10/stand": 5,
+          "rough_10/longitudinal": 1,
+          "rough_10/lateral": 0,
+          "rough_10/yaw": 0,
+          "stairs_up_18/traverse_0.7": 0,
+          "stairs_up_18/stop_restart_0.5": 0,
+          "stairs_down_18/traverse_0.7": 2,
+          "stairs_down_18/stop_restart_0.5": 0
+        },
+        "targets": {
+          "lateral": 0.5708250751097997,
+          "yaw": 0.6201557020346324
+        },
+        "unsafe": 0,
+        "wheel_saturation": 0.10661764705882353,
+        "leg_saturation": 0.004
+      }
+    },
+    "retention_pass": false,
+    "reasons": [
+      "stairs_up_18/traverse_0.7: regression",
+      "stairs_down_18/traverse_0.7: regression",
+      "stairs_down_18/stop_restart_0.5: regression",
+      "lateral: retention failure",
+      "yaw: retention failure",
+      "lateral: retention failure"
+    ],
+    "automatic_promotion": false,
+    "qualification": false,
+    "hardware_approval": false
+  },
+  "training": {
+    "control": {
+      "checkpoint": "logs/rsl_rl/b2w_24650_reset_control_9910/2026-10-01_10-58-14_e7169d2cf7bc4fc0a7d504b62a14c3f7/model_24949.pt",
+      "checkpoint_sha256": "1fbd345221b2d975ee23c50ae31d2a39ce3e977cad40049850cb3167b0a40a65",
+      "completed_updates": 300,
+      "adam_updates_per_parameter": 6000,
+      "learning_rate": {
+        "first_logged": 0.00011390625149942935,
+        "last_logged": 0.00017085937724914402,
+        "min_logged": 9.999999747378752e-06,
+        "max_logged": 0.0005766503745689988,
+        "updates": 300,
+        "updates_above_1e5": 282,
+        "final_optimizer_lr": 0.00017085937500000009
+      },
+      "mean_action_std": 0.654455304145813,
+      "initial_resets": 108787,
+      "initial_invalid": {
+        "nonfinite": 0,
+        "tilt": 88926,
+        "hard_joint": 0
+      },
+      "early_tilt_per_env_second": 0.150634765625,
+      "first_events_by_cohort": {
+        "retention": [
+          [
+            0,
+            51688,
+            0,
+            1
+          ],
+          [
+            0,
+            5,
+            15,
+            135
+          ],
+          [
+            0,
+            1,
+            1,
+            29
+          ]
+        ],
+        "flat": [
+          [
+            0,
+            8247,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            9
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "rough": [
+          [
+            0,
+            8758,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            4
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ],
+        "stairs_up": [
+          [
+            0,
+            14530,
+            0,
+            0
+          ],
+          [
+            0,
+            20,
+            38,
+            52
+          ],
+          [
+            0,
+            0,
+            5,
+            52
+          ]
+        ],
+        "stairs_down": [
+          [
+            0,
+            5598,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            10
+          ],
+          [
+            0,
+            0,
+            0,
+            8
+          ]
+        ]
+      },
+      "exposure": {
+        "flat": {
+          "zero_step_fraction": 0.4398353658536585,
+          "envs": 615,
+          "transitions": 4428000,
+          "full_horizon_episodes": 1120,
+          "min_full_episodes_per_env": 1,
+          "reset_counts": {
+            "unsafe": 8258,
+            "timeout": 1234,
+            "total": 9492
+          },
+          "segment_attempts": [
+            [
+              1853,
+              484,
+              254,
+              226,
+              223,
+              216,
+              213,
+              208,
+              200
+            ],
+            [
+              3635,
+              983,
+              508,
+              444,
+              434,
+              415,
+              410,
+              404,
+              396
+            ],
+            [
+              3838,
+              992,
+              500,
+              428,
+              418,
+              406,
+              401,
+              395,
+              384
+            ],
+            [
+              981,
+              269,
+              115,
+              104,
+              104,
+              101,
+              97,
+              0,
+              0
+            ],
+            [
+              936,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "segment_completions": [
+            [
+              484,
+              254,
+              226,
+              223,
+              216,
+              213,
+              208,
+              200,
+              193
+            ],
+            [
+              983,
+              508,
+              444,
+              434,
+              415,
+              410,
+              404,
+              396,
+              389
+            ],
+            [
+              992,
+              500,
+              428,
+              418,
+              406,
+              401,
+              395,
+              384,
+              372
+            ],
+            [
+              269,
+              122,
+              104,
+              104,
+              101,
+              97,
+              96,
+              0,
+              0
+            ],
+            [
+              7,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "rough": {
+          "zero_step_fraction": 0.42862875497647485,
+          "envs": 614,
+          "transitions": 4420800,
+          "full_horizon_episodes": 1103,
+          "min_full_episodes_per_env": 1,
+          "reset_counts": {
+            "unsafe": 8768,
+            "timeout": 1233,
+            "total": 10001
+          },
+          "segment_attempts": [
+            [
+              2168,
+              535,
+              281,
+              245,
+              235,
+              226,
+              221,
+              217,
+              213
+            ],
+            [
+              3682,
+              915,
+              496,
+              414,
+              403,
+              389,
+              377,
+              371,
+              360
+            ],
+            [
+              3662,
+              951,
+              485,
+              416,
+              406,
+              392,
+              383,
+              376,
+              369
+            ],
+            [
+              1475,
+              387,
+              189,
+              166,
+              162,
+              160,
+              157,
+              0,
+              0
+            ],
+            [
+              745,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "segment_completions": [
+            [
+              535,
+              281,
+              245,
+              235,
+              226,
+              221,
+              217,
+              213,
+              200
+            ],
+            [
+              915,
+              496,
+              414,
+              403,
+              389,
+              377,
+              371,
+              360,
+              345
+            ],
+            [
+              951,
+              485,
+              416,
+              406,
+              392,
+              383,
+              376,
+              369,
+              359
+            ],
+            [
+              387,
+              195,
+              166,
+              162,
+              160,
+              157,
+              151,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "stairs_up": {
+          "zero_step_fraction": 0.4468379720052083,
+          "envs": 1024,
+          "transitions": 7372800,
+          "full_horizon_episodes": 1834,
+          "min_full_episodes_per_env": 0,
+          "reset_counts": {
+            "unsafe": 14695,
+            "timeout": 2011,
+            "total": 16706
+          },
+          "segment_attempts": [
+            [
+              5786,
+              1480,
+              1034,
+              0,
+              0
+            ],
+            [
+              1925,
+              488,
+              332,
+              0,
+              0
+            ],
+            [
+              3875,
+              931,
+              644,
+              0,
+              0
+            ],
+            [
+              5931,
+              1492,
+              1244,
+              1044,
+              569
+            ],
+            [
+              2847,
+              707,
+              569,
+              552,
+              424
+            ]
+          ],
+          "segment_completions": [
+            [
+              1480,
+              1034,
+              917,
+              0,
+              0
+            ],
+            [
+              488,
+              332,
+              297,
+              0,
+              0
+            ],
+            [
+              931,
+              644,
+              587,
+              0,
+              0
+            ],
+            [
+              1492,
+              1244,
+              1045,
+              569,
+              550
+            ],
+            [
+              707,
+              569,
+              552,
+              424,
+              283
+            ]
+          ]
+        },
+        "stairs_down": {
+          "zero_step_fraction": 0.4587893914697093,
+          "envs": 409,
+          "transitions": 2944800,
+          "full_horizon_episodes": 741,
+          "min_full_episodes_per_env": 1,
+          "reset_counts": {
+            "unsafe": 5617,
+            "timeout": 816,
+            "total": 6433
+          },
+          "segment_attempts": [
+            [
+              1899,
+              470,
+              330,
+              0,
+              0
+            ],
+            [
+              981,
+              253,
+              176,
+              0,
+              0
+            ],
+            [
+              1025,
+              270,
+              187,
+              0,
+              0
+            ],
+            [
+              1939,
+              501,
+              414,
+              353,
+              197
+            ],
+            [
+              1977,
+              541,
+              457,
+              435,
+              314
+            ]
+          ],
+          "segment_completions": [
+            [
+              470,
+              330,
+              272,
+              0,
+              0
+            ],
+            [
+              253,
+              176,
+              147,
+              0,
+              0
+            ],
+            [
+              270,
+              187,
+              166,
+              0,
+              0
+            ],
+            [
+              501,
+              414,
+              353,
+              197,
+              192
+            ],
+            [
+              541,
+              457,
+              435,
+              314,
+              202
+            ]
+          ]
+        }
+      }
+    },
+    "upright": {
+      "checkpoint": "logs/rsl_rl/b2w_24650_reset_upright_9910/2026-10-01_11-27-53_37198e6459844450a190984e03beef16/model_24949.pt",
+      "checkpoint_sha256": "d86c820b32c3686aa7bfce87081be003cfedc6c901c6b0514a17a08a7ee82771",
+      "completed_updates": 300,
+      "adam_updates_per_parameter": 6000,
+      "learning_rate": {
+        "first_logged": 0.00011390625149942935,
+        "last_logged": 0.0002562890585977584,
+        "min_logged": 9.999999747378752e-06,
+        "max_logged": 0.0005766503745689988,
+        "updates": 300,
+        "updates_above_1e5": 292,
+        "final_optimizer_lr": 0.0002562890625000001
+      },
+      "mean_action_std": 0.7718460559844971,
+      "initial_resets": 21103,
+      "initial_invalid": {
+        "nonfinite": 0,
+        "tilt": 0,
+        "hard_joint": 0
+      },
+      "early_tilt_per_env_second": 0.0,
+      "first_events_by_cohort": {
+        "retention": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            7,
+            39
+          ],
+          [
+            0,
+            3,
+            65,
+            661
+          ]
+        ],
+        "flat": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "rough": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1
+          ]
+        ],
+        "stairs_up": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            8
+          ],
+          [
+            0,
+            0,
+            4,
+            79
+          ]
+        ],
+        "stairs_down": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            9
+          ]
+        ]
+      },
+      "exposure": {
+        "flat": {
+          "zero_step_fraction": 0.4144324751580849,
+          "envs": 615,
+          "transitions": 4428000,
+          "full_horizon_episodes": 651,
+          "min_full_episodes_per_env": 0,
+          "reset_counts": {
+            "unsafe": 0,
+            "timeout": 1267,
+            "total": 1267
+          },
+          "segment_attempts": [
+            [
+              437,
+              423,
+              326,
+              278,
+              256,
+              215,
+              201,
+              174,
+              150
+            ],
+            [
+              858,
+              835,
+              604,
+              531,
+              483,
+              411,
+              378,
+              342,
+              293
+            ],
+            [
+              871,
+              848,
+              627,
+              553,
+              508,
+              435,
+              403,
+              368,
+              316
+            ],
+            [
+              207,
+              202,
+              131,
+              121,
+              104,
+              94,
+              83,
+              0,
+              0
+            ],
+            [
+              236,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "segment_completions": [
+            [
+              423,
+              326,
+              278,
+              256,
+              215,
+              201,
+              174,
+              150,
+              113
+            ],
+            [
+              835,
+              605,
+              531,
+              483,
+              412,
+              378,
+              342,
+              293,
+              232
+            ],
+            [
+              848,
+              627,
+              553,
+              508,
+              435,
+              403,
+              369,
+              316,
+              243
+            ],
+            [
+              202,
+              137,
+              121,
+              104,
+              94,
+              83,
+              62,
+              0,
+              0
+            ],
+            [
+              16,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "rough": {
+          "zero_step_fraction": 0.40199330437929787,
+          "envs": 614,
+          "transitions": 4420800,
+          "full_horizon_episodes": 642,
+          "min_full_episodes_per_env": 0,
+          "reset_counts": {
+            "unsafe": 2,
+            "timeout": 1261,
+            "total": 1263
+          },
+          "segment_attempts": [
+            [
+              496,
+              483,
+              348,
+              306,
+              282,
+              245,
+              229,
+              211,
+              186
+            ],
+            [
+              818,
+              794,
+              587,
+              500,
+              448,
+              391,
+              353,
+              325,
+              282
+            ],
+            [
+              788,
+              762,
+              579,
+              502,
+              462,
+              386,
+              342,
+              313,
+              265
+            ],
+            [
+              334,
+              325,
+              236,
+              210,
+              188,
+              176,
+              159,
+              0,
+              0
+            ],
+            [
+              175,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "segment_completions": [
+            [
+              483,
+              348,
+              306,
+              282,
+              245,
+              229,
+              211,
+              186,
+              133
+            ],
+            [
+              794,
+              587,
+              500,
+              449,
+              391,
+              353,
+              325,
+              282,
+              219
+            ],
+            [
+              762,
+              579,
+              502,
+              462,
+              386,
+              342,
+              313,
+              265,
+              209
+            ],
+            [
+              325,
+              239,
+              210,
+              188,
+              176,
+              159,
+              126,
+              0,
+              0
+            ],
+            [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        "stairs_up": {
+          "zero_step_fraction": 0.43504584418402775,
+          "envs": 1024,
+          "transitions": 7372800,
+          "full_horizon_episodes": 1077,
+          "min_full_episodes_per_env": 0,
+          "reset_counts": {
+            "unsafe": 94,
+            "timeout": 2076,
+            "total": 2170
+          },
+          "segment_attempts": [
+            [
+              1577,
+              1426,
+              1014,
+              0,
+              0
+            ],
+            [
+              537,
+              496,
+              352,
+              0,
+              0
+            ],
+            [
+              998,
+              909,
+              624,
+              0,
+              0
+            ],
+            [
+              1598,
+              1450,
+              1350,
+              1047,
+              553
+            ],
+            [
+              791,
+              712,
+              674,
+              582,
+              413
+            ]
+          ],
+          "segment_completions": [
+            [
+              1426,
+              1015,
+              820,
+              0,
+              0
+            ],
+            [
+              496,
+              352,
+              280,
+              0,
+              0
+            ],
+            [
+              909,
+              624,
+              494,
+              0,
+              0
+            ],
+            [
+              1451,
+              1350,
+              1048,
+              553,
+              454
+            ],
+            [
+              713,
+              674,
+              582,
+              413,
+              259
+            ]
+          ]
+        },
+        "stairs_down": {
+          "zero_step_fraction": 0.44613012768269494,
+          "envs": 409,
+          "transitions": 2944800,
+          "full_horizon_episodes": 433,
+          "min_full_episodes_per_env": 0,
+          "reset_counts": {
+            "unsafe": 11,
+            "timeout": 841,
+            "total": 852
+          },
+          "segment_attempts": [
+            [
+              528,
+              491,
+              341,
+              0,
+              0
+            ],
+            [
+              264,
+              237,
+              154,
+              0,
+              0
+            ],
+            [
+              272,
+              255,
+              163,
+              0,
+              0
+            ],
+            [
+              590,
+              551,
+              531,
+              413,
+              234
+            ],
+            [
+              477,
+              446,
+              425,
+              353,
+              236
+            ]
+          ],
+          "segment_completions": [
+            [
+              491,
+              341,
+              273,
+              0,
+              0
+            ],
+            [
+              237,
+              156,
+              117,
+              0,
+              0
+            ],
+            [
+              255,
+              163,
+              126,
+              0,
+              0
+            ],
+            [
+              551,
+              531,
+              413,
+              234,
+              197
+            ],
+            [
+              446,
+              425,
+              353,
+              236,
+              158
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "diagnosis": {
+    "24650": {
+      "checks": {
+        "safety_passed": 60,
+        "safety_trials": 60,
+        "completed_passed": 60,
+        "completed_trials": 60,
+        "tracking_passed": 16,
+        "tracking_trials": 40,
+        "transitions_passed": 37,
+        "transitions_trials": 40,
+        "stop_passed": 53,
+        "stop_trials": 60,
+        "traversal_passed": 12,
+        "traversal_trials": 20
+      },
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "standstill_failure": 7,
+        "command_transition_failure": 3,
+        "traversal_failure": 8
+      },
+      "paired_vs_parent": {
+        "wins": 0,
+        "losses": 0,
+        "ties": 60
+      },
+      "axis_response_by_sign_speed": [
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8225810130437216
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9214789697102139
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9113980770111084
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9401217103004456
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9439226048333305
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.7154946227868397
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "trials": 5,
+          "mean": 0.6748755375544231
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "trials": 5,
+          "mean": 0.9190428597586496
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "trials": 5,
+          "mean": 0.9662182092666626
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "trials": 5,
+          "mean": 0.9580942630767822
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "trials": 5,
+          "mean": 0.8803542511803764
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "trials": 5,
+          "mean": 0.5705076356728872
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.691463549931844
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.90989237172263
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8720316290855408
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8893278479576111
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8654704434531076
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.502927099665006
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "trials": 5,
+          "mean": 0.7724328339099886
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "trials": 5,
+          "mean": 0.9822533471243723
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "trials": 5,
+          "mean": 1.0147627353668214
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "trials": 5,
+          "mean": 1.0081031560897826
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "trials": 5,
+          "mean": 0.9337071350642614
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "trials": 5,
+          "mean": 0.6486440698305767
+        }
+      ],
+      "stairs": [
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.82,
+            "crossed_final_riser": true,
+            "crossed_step": 501,
+            "progress_ratio": 0.8114886757711617,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.2800000000000002,
+            "crossed_final_riser": true,
+            "crossed_step": 552,
+            "progress_ratio": 0.7239505568665775,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.34,
+            "crossed_final_riser": true,
+            "crossed_step": 503,
+            "progress_ratio": 0.8142718584720805,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.98,
+            "crossed_final_riser": true,
+            "crossed_step": 561,
+            "progress_ratio": 0.7150300861562845,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.08,
+            "crossed_final_riser": true,
+            "crossed_step": 532,
+            "progress_ratio": 0.7646591248806216,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 5.82,
+            "crossed_final_riser": true,
+            "crossed_step": 1380,
+            "progress_ratio": 0.6714007320776909,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.058,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 5.46,
+            "crossed_final_riser": true,
+            "crossed_step": 1394,
+            "progress_ratio": 0.6591183201764985,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.09,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 5.5200000000000005,
+            "crossed_final_riser": true,
+            "crossed_step": 1371,
+            "progress_ratio": 0.6848629345075183,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.094,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 5.24,
+            "crossed_final_riser": true,
+            "crossed_step": 1402,
+            "progress_ratio": 0.6572972377695959,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.062,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 5.36,
+            "crossed_final_riser": true,
+            "crossed_step": 1325,
+            "progress_ratio": 0.7410200482335525,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.242,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.88,
+            "crossed_final_riser": true,
+            "crossed_step": 480,
+            "progress_ratio": 0.8574890821267157,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.3000000000000003,
+            "crossed_final_riser": true,
+            "crossed_step": 485,
+            "progress_ratio": 0.8478228464323304,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.06,
+            "crossed_final_riser": true,
+            "crossed_step": 484,
+            "progress_ratio": 0.854766756316872,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.0,
+            "crossed_final_riser": true,
+            "crossed_step": 486,
+            "progress_ratio": 0.8536307903978982,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.64,
+            "crossed_final_riser": true,
+            "crossed_step": 487,
+            "progress_ratio": 0.8538423447706659,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.88,
+            "crossed_final_riser": true,
+            "crossed_step": 1235,
+            "progress_ratio": 0.852415911547506,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.58,
+            "crossed_final_riser": true,
+            "crossed_step": 1229,
+            "progress_ratio": 0.8653279573147027,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.8,
+            "crossed_final_riser": true,
+            "crossed_step": 1230,
+            "progress_ratio": 0.8660945462557554,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.9,
+            "crossed_final_riser": true,
+            "crossed_step": 1229,
+            "progress_ratio": 0.8710029965512596,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.72,
+            "crossed_final_riser": true,
+            "crossed_step": 1224,
+            "progress_ratio": 0.8835140676015899,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        }
+      ]
+    },
+    "resetcontrol_24949": {
+      "checks": {
+        "safety_passed": 60,
+        "safety_trials": 60,
+        "completed_passed": 60,
+        "completed_trials": 60,
+        "tracking_passed": 15,
+        "tracking_trials": 40,
+        "transitions_passed": 35,
+        "transitions_trials": 40,
+        "stop_passed": 55,
+        "stop_trials": 60,
+        "traversal_passed": 10,
+        "traversal_trials": 20
+      },
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 25,
+        "command_transition_failure": 5,
+        "traversal_failure": 10,
+        "standstill_failure": 5
+      },
+      "paired_vs_parent": {
+        "wins": 0,
+        "losses": 6,
+        "ties": 54
+      },
+      "axis_response_by_sign_speed": [
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8514185349146525
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9259634188243322
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8821979522705078
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9312325477600097
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.961423567363194
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.673297127087911
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "trials": 5,
+          "mean": 0.6870834032694499
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "trials": 5,
+          "mean": 0.9171190091541837
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "trials": 5,
+          "mean": 0.979401171207428
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "trials": 5,
+          "mean": 0.9572442889213562
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "trials": 5,
+          "mean": 0.8565722022737775
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "trials": 5,
+          "mean": 0.42550302545229596
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.6757145623366038
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9034241608210973
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8868634581565857
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8733424067497253
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8548656872340612
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.5981850425402324
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "trials": 5,
+          "mean": 0.7607001165548961
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "trials": 5,
+          "mean": 0.998633486883981
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "trials": 5,
+          "mean": 1.0214651107788086
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "trials": 5,
+          "mean": 1.0035142421722412
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "trials": 5,
+          "mean": 0.9079723017556327
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "trials": 5,
+          "mean": 0.4851008752981822
+        }
+      ],
+      "stairs": [
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.18,
+            "crossed_final_riser": true,
+            "crossed_step": 551,
+            "progress_ratio": 0.7226360601958364,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.42,
+            "crossed_final_riser": true,
+            "crossed_step": 573,
+            "progress_ratio": 0.690307477854003,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.38,
+            "crossed_final_riser": true,
+            "crossed_step": 569,
+            "progress_ratio": 0.7002923651622751,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.76,
+            "crossed_final_riser": true,
+            "crossed_step": 602,
+            "progress_ratio": 0.6569470635956091,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.38,
+            "crossed_final_riser": true,
+            "crossed_step": 577,
+            "progress_ratio": 0.6937403284353582,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 9.3,
+            "crossed_final_riser": true,
+            "crossed_step": 1465,
+            "progress_ratio": 0.595859853507022,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 12.4,
+            "crossed_final_riser": false,
+            "crossed_step": null,
+            "progress_ratio": 0.0,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.188,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 9.14,
+            "crossed_final_riser": true,
+            "crossed_step": 1449,
+            "progress_ratio": 0.6129538054267566,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.54,
+            "crossed_final_riser": true,
+            "crossed_step": 1355,
+            "progress_ratio": 0.7035819912988056,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 8.52,
+            "crossed_final_riser": true,
+            "crossed_step": 1382,
+            "progress_ratio": 0.6784948041747115,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.6,
+            "crossed_final_riser": true,
+            "crossed_step": 461,
+            "progress_ratio": 0.9006117934560447,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.4,
+            "crossed_final_riser": true,
+            "crossed_step": 461,
+            "progress_ratio": 0.905259325143971,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.5,
+            "crossed_final_riser": true,
+            "crossed_step": 461,
+            "progress_ratio": 0.9073658163874602,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.6,
+            "crossed_final_riser": true,
+            "crossed_step": 466,
+            "progress_ratio": 0.8986254202947649,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 2.34,
+            "crossed_final_riser": true,
+            "crossed_step": 464,
+            "progress_ratio": 0.9078095010840881,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.34,
+            "crossed_final_riser": true,
+            "crossed_step": 1087,
+            "progress_ratio": 1.177201754192716,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.846,
+                "exposure_pass": false,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.48,
+            "crossed_final_riser": true,
+            "crossed_step": 1182,
+            "progress_ratio": 0.948464963006677,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.86,
+            "crossed_final_riser": true,
+            "crossed_step": 1165,
+            "progress_ratio": 0.987400286411267,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.98,
+            "crossed_final_riser": true,
+            "crossed_step": 1169,
+            "progress_ratio": 0.9836954332174772,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.996,
+                "exposure_pass": true,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.66,
+            "crossed_final_riser": true,
+            "crossed_step": 1141,
+            "progress_ratio": 1.0487707479271144,
+            "moving_exposure_pass": true,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": true
+          }
+        }
+      ]
+    },
+    "resetupright_24949": {
+      "checks": {
+        "safety_passed": 60,
+        "safety_trials": 60,
+        "completed_passed": 60,
+        "completed_trials": 60,
+        "tracking_passed": 16,
+        "tracking_trials": 40,
+        "transitions_passed": 33,
+        "transitions_trials": 40,
+        "stop_passed": 56,
+        "stop_trials": 60,
+        "traversal_passed": 2,
+        "traversal_trials": 20
+      },
+      "failure_flags_nonexclusive": {
+        "tracking_failure": 24,
+        "command_transition_failure": 7,
+        "standstill_failure": 4,
+        "traversal_failure": 18
+      },
+      "paired_vs_parent": {
+        "wins": 1,
+        "losses": 10,
+        "ties": 49
+      },
+      "axis_response_by_sign_speed": [
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.6769663393497466
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8829220873968943
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8914795160293579
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9327452063560486
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.9488930872508459
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.5720889170964559
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "trials": 5,
+          "mean": 0.6040983001391094
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "trials": 5,
+          "mean": 0.8724569763456073
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "trials": 5,
+          "mean": 0.9327105522155762
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "trials": 5,
+          "mean": 0.9835740566253662
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "trials": 5,
+          "mean": 0.9117907455989294
+        },
+        {
+          "terrain": "flat_mu_100",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "trials": 5,
+          "mean": 0.5714562733968099
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.575663814942042
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8409637723650251
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8754002213478088
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.893000066280365
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.8780628442764284
+        },
+        {
+          "terrain": "rough_10",
+          "case": "lateral",
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "trials": 5,
+          "mean": 0.45858122905095416
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "trials": 5,
+          "mean": 0.6607039173444113
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "trials": 5,
+          "mean": 0.9163811888013569
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "trials": 5,
+          "mean": 0.9925199627876282
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "trials": 5,
+          "mean": 1.0176671743392944
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "trials": 5,
+          "mean": 0.9642121791839602
+        },
+        {
+          "terrain": "rough_10",
+          "case": "yaw",
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "trials": 5,
+          "mean": 0.6443643172581991
+        }
+      ],
+      "stairs": [
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.0200000000000005,
+            "crossed_final_riser": true,
+            "crossed_step": 577,
+            "progress_ratio": 0.6830625058623114,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.32,
+            "crossed_final_riser": true,
+            "crossed_step": 599,
+            "progress_ratio": 0.6555892337238577,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.7800000000000002,
+            "crossed_final_riser": true,
+            "crossed_step": 542,
+            "progress_ratio": 0.743192035780334,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 4.24,
+            "crossed_final_riser": true,
+            "crossed_step": 569,
+            "progress_ratio": 0.7029241995972033,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "traverse_0.7",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.96,
+            "crossed_final_riser": true,
+            "crossed_step": 558,
+            "progress_ratio": 0.721701847401197,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 6.36,
+            "crossed_final_riser": true,
+            "crossed_step": 1293,
+            "progress_ratio": 0.7696164533596247,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.36,
+            "crossed_final_riser": true,
+            "crossed_step": 1353,
+            "progress_ratio": 0.7007726639030724,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.16,
+            "crossed_final_riser": true,
+            "crossed_step": 1355,
+            "progress_ratio": 0.7006639191630954,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 0.998,
+                "exposure_pass": true,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.48,
+            "crossed_final_riser": true,
+            "crossed_step": 1375,
+            "progress_ratio": 0.68398122276185,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": false
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": false,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_up_18",
+          "case": "stop_restart_0.5",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 6.78,
+            "crossed_final_riser": true,
+            "crossed_step": 1334,
+            "progress_ratio": 0.7305044141106718,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.7800000000000002,
+            "crossed_final_riser": true,
+            "crossed_step": 512,
+            "progress_ratio": 0.7894891672304319,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.3000000000000003,
+            "crossed_final_riser": true,
+            "crossed_step": 508,
+            "progress_ratio": 0.8010394304173757,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.0,
+            "crossed_final_riser": true,
+            "crossed_step": 506,
+            "progress_ratio": 0.8074232192716346,
+            "moving_exposure_pass": true,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": true
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.52,
+            "crossed_final_riser": true,
+            "crossed_step": 515,
+            "progress_ratio": 0.7931955016270842,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "traverse_0.7",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 3.74,
+            "crossed_final_riser": true,
+            "crossed_step": 537,
+            "progress_ratio": 0.7567573753010621,
+            "moving_exposure_pass": false,
+            "zero_windows": []
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73001,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.82,
+            "crossed_final_riser": true,
+            "crossed_step": 1403,
+            "progress_ratio": 0.6489675100469454,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73002,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.72,
+            "crossed_final_riser": true,
+            "crossed_step": 1385,
+            "progress_ratio": 0.6681768421854812,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73003,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.1000000000000005,
+            "crossed_final_riser": true,
+            "crossed_step": 1365,
+            "progress_ratio": 0.6908388632173473,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73004,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 6.96,
+            "crossed_final_riser": true,
+            "crossed_step": 1374,
+            "progress_ratio": 0.6841120615049645,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        },
+        {
+          "terrain": "stairs_down_18",
+          "case": "stop_restart_0.5",
+          "seed": 73005,
+          "terrain_exposure": {
+            "moving_stair_exposure_s": 7.26,
+            "crossed_final_riser": true,
+            "crossed_step": 1377,
+            "progress_ratio": 0.6831565322381908,
+            "moving_exposure_pass": false,
+            "zero_windows": [
+              {
+                "segment": 2,
+                "complete": true,
+                "exposure_fraction": 1.0,
+                "exposure_pass": true,
+                "exposed_zero_success": true
+              }
+            ]
+          },
+          "checks": {
+            "safety": true,
+            "completed": true,
+            "tracking": null,
+            "transitions": null,
+            "stop": true,
+            "traversal": false
+          }
+        }
+      ]
+    }
+  },
+  "parent_mean_action_std": 0.617995023727417,
+  "verification": {
+    "all_180_scoring_checks_recomputed": true,
+    "stair_exposure_recomputed": true,
+    "raw_source_trace_export_hashes_valid": true,
+    "retention_decision_recomputed_exact": true,
+    "training_updates_and_adam_verified": true,
+    "retained_policies_verified": true
+  },
+  "executed_source_sha256": {
+    "scripts/run_reset_pilot.py": "a93a95b432bee896696bf447f2092adc2d6765767064fb81c6c94bf64d6b8217",
+    "scripts/train_reset_pilot.py": "f3dd12b6b3ea4cd447a0ac2d4fc45d5783709ccf0b614325fb702aee1e50d650",
+    "scripts/reset_pilot_contract.py": "5fa05727fc0a6a238d8f09d0b6980952f0687578e929a8934e9a5c64daed109f",
+    "scripts/reset_diagnostics.py": "5576ed5408918eea6d1e4aea059feeeabcacccbf88dde7f098852a8e4475eb82",
+    "scripts/b2w_reset_pilot_cfg.py": "a40b6f148d55bed4a8d318f550032488735685fdc5ebeb06c88ad62181de3cd8",
+    "scripts/b2w_reset_pilot_env.py": "d45622fc5d2c9635e99a5130650f20a9655a6ce6f4c0c5fb8da208104b3ae70c",
+    "scripts/b2w_curriculum_env.py": "06f2727e3cb6ed454a5ca5bd8ec9d1ea47ead09e8ee3924954edd0a73f45bc4b",
+    "scripts/stair_curriculum_monitor.py": "423ee1b0dd49341d1c8bc1c2b5c2910a854673d7e9af4aba7d8dcc8c81e351e6",
+    "scripts/training_coverage.py": "90c22c72ff559ba187384afe982d3d42b9772829d398e9c0743e3dcf719b6650",
+    "scripts/b2w_core_stage3_cfg.py": "6491c512c24a06ea6406e55bde510bf997c31c827e20cfc976d681e0263f7369",
+    "scripts/b2w_core_stage3_sampling.py": "b3d4546618eb0588734065b9ce979e9f0bcd7a4543a6937225a400fd2979083f",
+    "scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "scripts/b2w_retention_cfg.py": "f3e5e39ba79f9e9747dd9f623cf89aefe14adac0e11d2f761b125f1029cf82d5",
+    "scripts/b2w_recovery_cfg.py": "03d404dea8def04824561225b6877de80b854f6fe283665e94eac71eb7193977",
+    "scripts/b2w_recovery_sampling.py": "6ba2459ac23cd5e243dc9ef05d8fdc834407985fe6229c6dfbce851360a22f1e",
+    "scripts/b2w_finetune_cfg.py": "d41516814247a0368fcf4064f5565e8570f7dee97956e432e6ed6d003fb37cf8",
+    "scripts/b2w_finetune_sampling.py": "749794082468399c9c37480e7878f069babe9b8bbaf4c55d6af93caaad7d382e",
+    "scripts/b2w_regression500_sampling.py": "9460f4eac46b7a122e6deafeec36fefcec76900864ad8abb92bf736968ba1c5b",
+    "scripts/b2w_correction_cfg.py": "ff99b4d5b96a08a12bde738f6c997f7584f3a65dd38b58d8f7b3ef19aefceca9",
+    "scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "scripts/b2w_training_audit.py": "b082ae46ba753ae611718de610728702e5b3dd4bfb65ce81760004afe9e42d55",
+    "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a",
+    "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/cli_args.py": "ed19c909ba6df25a0c79854e4888369c540cf056ef4bc32377e7eba1d2dfb7c9",
+    "configs/24650_reset_ab_20261001.json": "0b01ba76c5bbd492740117a0655f596580deeca3ed9202042ea4d363ecb19d5c",
+    "scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+    "scripts/locomotion_v2_validation_protocol.py": "2dbab5f17998754f6df0af51a853498b057a52f6b4f9d3f4642cfe5b854568f7",
+    "scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+    "scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+    "scripts/eval_fullcycle_terrain.py": "ebb1776775e11b7e7ba87024359c28f77db3dbe7929313ddcba0a0e6cd343f41",
+    "scripts/evaluation_policy.py": "3d0ef5a170739862e57f017f1ebb1e5814037bfae5131a5c2258d52ef1bfb46c",
+    "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "scripts/summarize_locomotion.py": "325078747989b0146ac0abff6a4167b108020c67ec02c797978f1ac458ea97ba",
+    "scripts/run_core_locomotion_eval.py": "8cdd238636bd30c6939c8ae3cfafb36e2eb2061fb9ac618b19d9d9f97ee0e9f1",
+    "scripts/run_locomotion.py": "062cb54dc82094ae0eafd3e5f731f4722856a70ee04e249f8b40a82691a4a7ed",
+    "scripts/run_support.py": "6f7332dd7c79c02ae03155be5f58e172d33b6c125f5e643ad54843a5a703f586",
+    "scripts/isolated_evaluation.py": "0261e79945ab97acd7b9bf97c7d682006e78f01e3eaf444b88e66de45d104b44",
+    "scripts/run_tracking_pilot.py": "e7ffcaf9ee527f6abfdd4aacc8123f1470750bd4312eac354987826c0ab53ed1",
+    "scripts/locomotion_v2_pilot_protocol.py": "bdf433b0d38bbc942c25ee36c90bd71f864a3ebe137ad078095a0f0014a81142",
+    "scripts/locomotion_v2_curriculum_protocol.py": "1c951fb53ec3f52b565be8c599226793d91e6aa7958e956a5094074d17a05511"
+  },
+  "analysis_source_sha256": "e606bc27208bf1cfdc6e45937423cea4ab1ae9ba92d335c35451b7751795fc8c",
+  "input_sha256": {
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/state.json": "f0cd0da7606058e9b0a19ab18c817b4298454412c91fdc8919a2e4c4363a04ad",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/result.json": "82e2406491fa692c9656abd3f1f828fa7386a6565bc9f0263dd5ec603df5cb97",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/experiment_manifest.json": "e4cbc6ce97f3a52c9a85ee8b5ccf2513d763bd77597328a569e4745eb83e7f03",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/pilot_decision.json": "13a0d05b248a044cd4f1091ab2dc0691756117dc38ebcc7ee483a6ea4c01b43c",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/preflight_decision.json": "cd757986c0bc497e11e9830109fdffa9a4b8b8525465b590efcc5ef090f113d5",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/analysis/summary.json": "f33e52fc0351f5ffae4468a4adc0dbf8844d8e02a687071f589e4305032b8e79",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/declared_plan.json": "3db759f99590a2a6329a0d928cf9e2cb6c1e113df254fa983c43ca069fc08e86",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/policy_map.json": "0324c9a3340ef7c030af029e9ab916fd1125b46af6174a0065a225c5720861c8",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/analysis/summary.json": "7cf11a5720daaa38daadcbf1edf9bcb63ea1059b934661b6de5b4fe5d560189a",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/flat_mu_100.json": "e1664d95f6370e797a4c9757ef3870ac949076e3350d938e3ce5cc435080e2ae",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/flat_mu_100.npz": "52e8453def597a4f841ce2952b251e663bd2f1e412cf53e44782042c18ae6183",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/rough_10.json": "de9fcb4254d4f987937b09e886f8b754f740f715d5894ff34d79c4adf9f4fd17",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/rough_10.npz": "01ff1825178808f41ecb21f8a7166e1bb4840fd193fccd636a4bf48adee1aeb0",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/stairs_up_18.json": "ade9d3eb381958cbd9e1cc8c46e4571dcdaaaf91ef4b46f34262ed083763092b",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/stairs_up_18.npz": "48115293f37556354a2db77f8eece79eb3a5c2221aea7171c6ba6726d9e97b3d",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/stairs_down_18.json": "ae42daf2f7c3e23de121510ad1c6a231df5ad6fc63739f876b73790635c10316",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/24650/stairs_down_18.npz": "4f6a31ca6cd81eb40e1a20e1202ffb03c6a7dd0cf8629df40ee8add4325cf950",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/declared_plan.json": "87f52adcf90870672c6966a9e5e5f550234ddd0a50d334fb6a1f7486ee00296b",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/policy_map.json": "d62f5dc02aaa074bc56e8467f8adc833b02dbebcc2abd8e36f84e92daa52fefb",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/analysis/summary.json": "6c4350ee39c92e8d7a9edd378b6005281bb034f5e21e93578ba64d4fc0a0ecd4",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/flat_mu_100.json": "3d23b652903b65e7ed0d80af8db214712ae51aa9848994e7edba68bcb7b5d4e6",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/flat_mu_100.npz": "7bf617b5abc72a2bbe01457bc2c3f30bda7054f5f671509220d7cd5e4b1756bf",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/rough_10.json": "c5dd3982fbfb151c23c085fdd5d8332e8f7f1bdb52dcbe8b8b57c28f03b354e4",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/rough_10.npz": "b91b89f228ec5d301c6937c7938159543b0c249045de8b1cd9a36b487b0506b2",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/stairs_up_18.json": "f2c1a66a9e1ba4c3d04cb04fd27665fd16465af093a0a2453cfc5d59dcfa23b0",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/stairs_up_18.npz": "a5d6c9fae32f346cf42fb30f198825dc829c6af9c941f355702da05dc7289e23",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/stairs_down_18.json": "2994df017e68ca52eb7efb3a46a959d4370e81f941f30eea126049a15834c12e",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetcontrol_24949/stairs_down_18.npz": "065ac0c07341b6518c554fe53080015f8d87222d596aaa20488d11d498e915ff",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/declared_plan.json": "b0b0bb39655e257cbbb916cba165e885da3eb46576bcb7cf5e499ab514c5da4a",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/policy_map.json": "b7c1745efd4de0f4cf9ed4823cdfcec3b5f40b6993aca9636ccc22eb324c0088",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/analysis/summary.json": "7c9c2f5b2180c69ca8cf3ebed559c731999a4948828538816da27fd4aa71e116",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/flat_mu_100.json": "a779c7c46ff0bca199abd5d638e68afa0ba977ff1382a47b26b2b61e77358e12",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/flat_mu_100.npz": "b5e3937698ec3e8a730853ec4ae435f3191e6d8094e211517891159f8cac16fd",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/rough_10.json": "40a68893bff4bf5a564a59faed120ee7e120416f01e1fcdd3888b41444a18df9",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/rough_10.npz": "b3b90074a1d2981e162c310e281eec8c095cec42664a9f979f2a1470221b8919",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/stairs_up_18.json": "f5abbe9c1c103b4939c4af78011e5caefbe4303b44bb46840a58a9d52f57c8d1",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/stairs_up_18.npz": "328a01715cffff62fae96f55b1903ea88068681aac9003fd37fef92b341d7bba",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/stairs_down_18.json": "485afb0938bea619c547aedf79914e7807e62420ba9b60b0abad746ba2afa61a",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/evaluation/resetupright_24949/stairs_down_18.npz": "3c149ee8fa6b8e5334b94570c217b8df2da8bab78abbbe9814cafabdd63e68b5",
+    "logs/rsl_rl/b2w_24650_reset_control_9910/2026-10-01_10-58-14_e7169d2cf7bc4fc0a7d504b62a14c3f7/model_24949.pt": "1fbd345221b2d975ee23c50ae31d2a39ce3e977cad40049850cb3167b0a40a65",
+    "logs/rsl_rl/b2w_24650_reset_control_9910/2026-10-01_10-58-14_e7169d2cf7bc4fc0a7d504b62a14c3f7/params/agent.yaml": "16565147467d8c127459353c39b16e007bc80b8066596f25d432f6c9e0578e9c",
+    "logs/rsl_rl/b2w_24650_reset_control_9910/2026-10-01_10-58-14_e7169d2cf7bc4fc0a7d504b62a14c3f7/events.out.tfevents.1790841508.NTB48488.26964.0": "1b4c0cb8eb37f00926e20f95586d65e515267ff0261ffd8d4009dc351825a34d",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/exports/resetcontrol_24949/manifest.json": "d63f9769c6d372a65f066704d27346c3fdb9241b32a04fd01f7c4b8830c4dd54",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/exports/resetcontrol_24949/policy.pt": "3bb67b19efa561cc3f696018b8704ac10013cd281a8e80e05fb5506e85e8c9fb",
+    "logs/rsl_rl/b2w_24650_reset_upright_9910/2026-10-01_11-27-53_37198e6459844450a190984e03beef16/model_24949.pt": "d86c820b32c3686aa7bfce87081be003cfedc6c901c6b0514a17a08a7ee82771",
+    "logs/rsl_rl/b2w_24650_reset_upright_9910/2026-10-01_11-27-53_37198e6459844450a190984e03beef16/params/agent.yaml": "f327bb32d662f334cfc51f2d74d4d815ffa865f5cb02b82da35bb7eda002e106",
+    "logs/rsl_rl/b2w_24650_reset_upright_9910/2026-10-01_11-27-53_37198e6459844450a190984e03beef16/events.out.tfevents.1790843287.NTB48488.4460.0": "ceeb1fcbd178025de85d2f7b21e9f8166423116353c401ffb7f4f9aa7ab679ef",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/exports/resetupright_24949/manifest.json": "8d2701ba083fbe493dd1cb411033603bd17e9472f27b0bba9996a046c0326910",
+    "logs/dashboard/jobs/37198e6459844450a190984e03beef16/exports/resetupright_24949/policy.pt": "5e5f30c85ceb675b47efc7308ff6030ae84892ba1e51e655189c25d2e4935fa9",
+    "policies/local/core_24650/model_24650.pt": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py": "e80353fd15aded495c0f6c0bf66dd90cf541f53390dc486c44ef655e70fe927a"
+  },
+  "limitations": [
+    "Physics safety aggregates are verified by provenance; 10 Hz saved joints cannot reproduce every 200 Hz sample.",
+    "One training seed and five reset seeds; no independent qualification.",
+    "Learning-rate drift and action std are diagnostics, not proven causes of regression.",
+    "No raw evidence overwritten; no new simulation episodes or PPO updates."
+  ]
+}

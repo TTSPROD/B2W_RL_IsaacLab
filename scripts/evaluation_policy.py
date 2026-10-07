@@ -6,12 +6,26 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REFERENCE_ID = 'rl_sar'
+TRAINED_PREFIXES = ('control|posture|lrcontrol|lrlow|stairfixed|stairadaptive|resetcontrol|'
+                    'resetupright|scheduleadaptive|schedulefixed|microstandardorder|'
+                    'microstandardbalanced|microconservativeorder|microconservativebalanced|'
+                    'microcomposite|microcompositec77|microcompositec102|microcompositec150')
+TRAINED_PREFIXES += '|microcompositerep150'
+TRAINED_PREFIXES += '|microlateral150|microyaw150|microaxissplit150'
+TRAINED_PREFIXES += '|microlateral300|microyaw300|microaxissplit300'
+TRAINED_PREFIXES += '|microlateralcurve150|microlateralcurve152|microlateralcurve177'
+TRAINED_PREFIXES += '|microlateralcurve202|microlateralcurve226|microlateralcurve252|microlateralcurve300'
+TRAINED_PREFIXES += '|microaxismixed177y150'
+TRAINED_PREFIXES += '|microyaw252'
+TRAINED_PREFIXES += '|microaxismixed152y252'
+TRAINED_PREFIXES += '|shortflight'
+TRAINED_PATTERN = rf'(?:{TRAINED_PREFIXES})_\d+'
 
 
 def policy_id(value):
     if str(value) == REFERENCE_ID:
         return REFERENCE_ID
-    if re.fullmatch(r"(?:control|posture|lrcontrol|lrlow|stairfixed|stairadaptive|shortflight)_\d+", str(value)):
+    if re.fullmatch(TRAINED_PATTERN, str(value)):
         return str(value)
     return int(value)
 
@@ -44,6 +58,6 @@ def validate_export(policy, path, manifest):
         if any(data.get(key) != value for key, value in expected.items()):
             raise ValueError('RL SAR reference provenance mismatch')
     elif data.get('checkpoint_iteration') != (int(policy.rsplit('_', 1)[1])
-            if isinstance(policy, str) and re.fullmatch(r'(?:control|posture|lrcontrol|lrlow|stairfixed|stairadaptive|shortflight)_\d+', policy) else policy):
+            if isinstance(policy, str) and re.fullmatch(TRAINED_PATTERN, policy) else policy):
         raise ValueError('Policy ID does not match checkpoint iteration')
     return data

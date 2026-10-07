@@ -1,0 +1,59 @@
+{
+  "schema": "b2w_axis_mixed_probe_v1",
+  "status": "frozen_for_execution",
+  "basis": {
+    "axis_stage1_result": "logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5/result.json",
+    "axis_stage1_result_sha256": "5054f4dba35288f4ba0e8407d587ed1add6decaa1db5a9cabb21b0eb5176c9a9",
+    "lateral_curve_result": "logs/dashboard/jobs/fb994975e71d4bb08b95193dc0d8d367/result.json",
+    "lateral_curve_result_sha256": "44edf6bad24ace7eb6f449919ed62ceee8e0f5ebfc7d180eb8f37c1e9deed64d",
+    "decision": "Use lateral cumulative 177 selected by the paired curve and retain yaw cumulative 150, its better checked endpoint."
+  },
+  "core": {
+    "export": "policies/local/core_24650/export/policy.pt",
+    "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "export_manifest": "policies/local/core_24650/export/manifest.json",
+    "export_manifest_sha256": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631"
+  },
+  "specialists": {
+    "lateral": {
+      "checkpoint": "logs/rsl_rl/b2w_lateral_curve_9914/2026-10-07_11-48-42_f54a538c6f0b46f4860e4f0066e10b42/model_24825.pt",
+      "checkpoint_sha256": "d1c3e7f5db5d2aa548698b31d2fb2395d1dad56d88d55e11dc9a8230c5ba887a",
+      "checkpoint_iteration": 24825,
+      "cumulative_updates": 177
+    },
+    "yaw": {
+      "checkpoint": "logs/rsl_rl/b2w_axis_yaw_9914/2026-10-07_10-32-56_509c0f16fa00462aa5679b2c69f91eb5/model_24799.pt",
+      "checkpoint_sha256": "4285050a12d7ac8c3fab417077e0f89d70e32a96b2f25011906ee28bc94de36e",
+      "checkpoint_iteration": 24799,
+      "cumulative_updates": 150
+    }
+  },
+  "actors": {
+    "lateral": "microlateral177_24825",
+    "yaw": "microyaw150mix_24799",
+    "combined": "microaxismixed177y150_24825"
+  },
+  "training": {
+    "seed": 9914,
+    "final_checkpoint_iteration": 24825
+  },
+  "composite": {
+    "zero_tolerance": 0.000001,
+    "routes": {"pure_lateral": "lateral", "pure_yaw": "yaw", "all_other": "parent"}
+  },
+  "selection": {
+    "protocol": "locomotion_v2_curriculum_protocol",
+    "episodes_per_actor": 60,
+    "combined_requires_success_above_parent": true,
+    "combined_requires_paired_wins_above_losses": true,
+    "requires_no_parent_cell_regression": true,
+    "requires_zero_unsafe": true,
+    "wheel_saturation_max_increase": 0.02,
+    "leg_saturation_max_increase": 0.01,
+    "conditional_full_screen": true,
+    "full_screen_protocol": "locomotion_v2_protocol",
+    "full_screen_episodes_per_actor": 160,
+    "automatic_promotion": false,
+    "hardware_approval": false
+  }
+}
