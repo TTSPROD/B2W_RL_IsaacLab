@@ -11,7 +11,7 @@ REFERENCE_ID = 'rl_sar'
 def policy_id(value):
     if str(value) == REFERENCE_ID:
         return REFERENCE_ID
-    if re.fullmatch(r"(?:control|posture|lrcontrol|lrlow|stairfixed|stairadaptive)_\d+", str(value)):
+    if re.fullmatch(r"(?:control|posture|lrcontrol|lrlow|stairfixed|stairadaptive|shortflight)_\d+", str(value)):
         return str(value)
     return int(value)
 
@@ -44,6 +44,6 @@ def validate_export(policy, path, manifest):
         if any(data.get(key) != value for key, value in expected.items()):
             raise ValueError('RL SAR reference provenance mismatch')
     elif data.get('checkpoint_iteration') != (int(policy.rsplit('_', 1)[1])
-            if isinstance(policy, str) and re.fullmatch(r'(?:control|posture|lrcontrol|lrlow|stairfixed|stairadaptive)_\d+', policy) else policy):
+            if isinstance(policy, str) and re.fullmatch(r'(?:control|posture|lrcontrol|lrlow|stairfixed|stairadaptive|shortflight)_\d+', policy) else policy):
         raise ValueError('Policy ID does not match checkpoint iteration')
     return data
