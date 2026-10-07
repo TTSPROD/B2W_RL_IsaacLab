@@ -128,6 +128,20 @@ promotions даже на level 0; целевые лестничные cohorts о
 PPO-прогон 1500 updates (`short_flight`), isolated v2 probes, decision, export parity.
 PPO не запускается до прохождения preflight и подтверждения frozen-contract.
 
+Блокер запуска в текущей DSH-сессии: supervisor выполняет `scripts/run_local.ps1` через
+`powershell.exe -File`, а DSH-sandbox отклоняет выполнение любого `.ps1` из рабочего
+каталога (AuthorizationManager UnauthorizedAccess; тривиальный скрипт из `%TEMP%` при этом
+работает). Это известное ограничение окружения, не обходится в обход supervisor и не чинится
+ACL. Не-sandbox запуск (обычная консоль той же машины или canonical desktop checkout):
+
+```
+& .\scripts\run_local.ps1 scripts\run_short_flight.py --preflight-only     # аудит/префлайт
+& .\scripts\run_local.ps1 scripts\run_short_flight.py                      # полный F1 (1500 updates + probes)
+```
+
+Supervisor-вызов эквивалентен:
+`python scripts/manage_runs.py start short_flight_preflight` / `start short_flight`.
+
 ### 3.3 Этап F2: командное разнообразие (после положительного F1 или отдельно)
 
 Если F1 подтверждает локомоушн-навык на лестницах, следующий отдельный фактор —
