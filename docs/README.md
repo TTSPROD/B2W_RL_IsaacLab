@@ -3,6 +3,8 @@
 | Документ | Назначение |
 |---|---|
 | [PROJECT_PLAN](PROJECT_PLAN.md) | Актуальная цель, gates и следующая работа |
+| [DEEPSEEK_FINETUNE_PLAN](DEEPSEEK_FINETUNE_PLAN.md) | Ветка deepseek: план дообучения 24650, мировые практики, gates |
+| [Мировые практики дообучения](research/2026-10-01-finetune-world-practices.md) | Обзор первичных источников wheeled-legged low-level training/testing |
 | [TRAINING_STRATEGY](TRAINING_STRATEGY.md) | Первичные источники, safety semantics, curriculum A/B, бюджеты и резервные подходы |
 | [TRAINING_STATUS](TRAINING_STATUS.md) | Текущий кандидат и проверенный результат |
 | [A/B на 1350 updates](results/2026-09-30-stair-comparison-1350.md) | Завершены 180 эпизодов; B отклонён, кандидат 24650 сохранён |
