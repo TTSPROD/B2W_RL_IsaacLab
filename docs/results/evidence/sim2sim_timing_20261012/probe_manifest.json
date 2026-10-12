@@ -1,0 +1,13 @@
+{
+  "created_utc": "2026-10-12T11:37:21.899693+00:00",
+  "fixture_sha256": "8696b479052485836e32c9d5b5fc61776777672413a39b1613720616c21f77f8",
+  "executed_sha256": {
+    "scripts/run_sim2sim_timing_probe.py": "dd85581c37ba10cd7daff8d4a25ff4329595795ad3fafe369978c2adfc1d4438",
+    "scripts/sdk2_policy_runtime.py": "25728359c5f59b9ca235210e56f6bef260244b544a73f34a18679e49dbd25631",
+    "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00"
+  },
+  "result_sha256": "36c0607e2bbb7366b5c25724d943b8bd1ab1775264cd4ef71e190fd1768c131e",
+  "hardware_enabled": false,
+  "policy_updates": 0,
+  "scope": "timing fixture diagnostic, not physics run or qualification"
+}

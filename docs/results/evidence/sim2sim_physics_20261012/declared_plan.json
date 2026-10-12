@@ -1,0 +1,337 @@
+{
+  "plan": {
+    "schema": "b2w_sim2sim_physics_audit_v1",
+    "frozen_date": "2026-10-12",
+    "scope": "instantaneous actuator/asset audit and one-reset official MuJoCo Flat command-protocol diagnostic",
+    "hardware_enabled": false,
+    "training_updates": 0,
+    "domain": 1,
+    "interface": "lo",
+    "policy": 24650,
+    "terrain": "flat_mu_100",
+    "friction": 1.0,
+    "reset_seed": 73001,
+    "case_order": [
+      "stand",
+      "longitudinal",
+      "lateral",
+      "yaw",
+      "mixed"
+    ],
+    "protocol": "locomotion_v2_protocol",
+    "case_source": "unchanged cases_for(flat_mu_100); complete command prefix and sign reversal",
+    "physics": "unchanged official unitree_mujoco B2W asset and Go2Bridge PD/constant caps; no outcome-based tuning",
+    "reset": "shared locomotion57_protocol.reset_sample applied by joint names; one independent robot per case, not historical Isaac multi-env RNG-slot replay",
+    "measurement": "physics telemetry only for scoring; actor reads DDS LowState only; post-step root linear velocity in body and official IMU gyroscope",
+    "measurement_time": "last physics sample at/before each 50 Hz policy interval end; preserve ages and missing samples",
+    "score": "unchanged locomotion_v2_protocol.assess/finalize_result; one-reset diagnostic, no promotion or qualification",
+    "watchdog_plan": "configs/sim2sim_fault_plan_20261012.json",
+    "load_workers": 0,
+    "audit_gate": "actual bridge PD and compiled MuJoCo caps reproduced; existing DC helper agrees with unchanged upstream DCMotor method <=1e-8 Nm",
+    "expected_physics_parity": "report differences; non-parity is an audit finding, not an execution failure",
+    "infrastructure_gate": "five trials attempted, CRC/finite checks valid, publisher >=450 Hz/max interval <=10ms; transport failures retained and fail diagnostic execution",
+    "open_gates": [
+      "live Isaac/PhysX comparison on this host",
+      "fixed-link mass/inertia conversion",
+      "implicit wheel servo integration",
+      "actuator/passive dynamics reconciliation",
+      "Flat reset repeats and friction variations",
+      "Rough/Stairs matched envelope",
+      "hardware mapping/current/thermal calibration"
+    ]
+  },
+  "cases": [
+    {
+      "name": "stand",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "longitudinal",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "lateral",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "yaw",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "mixed",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    }
+  ],
+  "reset": 0.005885079477853432
+}

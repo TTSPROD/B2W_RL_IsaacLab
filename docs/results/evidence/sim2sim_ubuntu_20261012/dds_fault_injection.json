@@ -1,0 +1,28 @@
+{
+  "live_dds": [
+    {
+      "case": "DDS publisher disconnect",
+      "expected": "stale_state",
+      "observed": "stale_state",
+      "latency_s": 0.04074702699995214,
+      "disabled_command_published": true,
+      "passed": true
+    },
+    {
+      "case": "publisher restart without explicit recovery",
+      "state_received": true,
+      "fault_remains_latched": true,
+      "passed": true
+    }
+  ],
+  "offline_fault_tests": "tests/test_sdk2_policy_runtime.py",
+  "open": [
+    "packet loss/reorder",
+    "native watchdog under load",
+    "inference hangs",
+    "operator stop",
+    "saturation handling",
+    "NaN/Inf over DDS"
+  ],
+  "hardware_enabled": false
+}

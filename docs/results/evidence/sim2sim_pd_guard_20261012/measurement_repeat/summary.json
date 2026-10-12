@@ -1,0 +1,275 @@
+{
+  "result": {
+    "outcome": "tracking_failure",
+    "failure_flags": [
+      "command_transition_failure",
+      "standstill_failure",
+      "tracking_failure"
+    ],
+    "completed": false,
+    "segments": [
+      {
+        "segment": 1,
+        "kind": "constant",
+        "command": [
+          0.0,
+          0.0,
+          0.3
+        ],
+        "complete": false,
+        "rmse": [
+          0.018808343088034085,
+          0.037142589920140044,
+          0.07599734122974033
+        ],
+        "bias": [
+          -0.010370929457625275,
+          0.010334888173312169,
+          -0.040171166300819516
+        ],
+        "absolute_error_p95": [
+          0.03681616573108066,
+          0.06984163588171652,
+          0.13946432415882354
+        ],
+        "absolute_error_peak": [
+          0.04616285841656697,
+          0.07876892274833443,
+          0.16598961138931018
+        ],
+        "mean_velocity": [
+          -0.010370929457625275,
+          0.010334888173312169,
+          0.2598288456201093
+        ],
+        "moving_rmse_max_after_deadline": [
+          0.022535337561654253,
+          0.04327326356162495,
+          0.08800902920345954
+        ],
+        "angular_response_ratio": 0.8660961520670312,
+        "response_time_s": 1.0,
+        "response_within_2s": true
+      },
+      {
+        "segment": 2,
+        "complete": false,
+        "response_time_s": null,
+        "response_within_2s": false
+      },
+      {
+        "segment": 3,
+        "complete": false,
+        "response_time_s": null,
+        "response_within_2s": false
+      },
+      {
+        "segment": 4,
+        "complete": false,
+        "response_time_s": null,
+        "response_within_2s": false
+      },
+      {
+        "segment": 5,
+        "complete": false,
+        "response_time_s": null,
+        "response_within_2s": false
+      },
+      {
+        "segment": 6,
+        "complete": false,
+        "response_time_s": null,
+        "response_within_2s": false
+      },
+      {
+        "segment": 7,
+        "complete": false
+      }
+    ],
+    "physical_traversal": null,
+    "safety": {
+      "physics_samples": 3448,
+      "unsafe_flags": [],
+      "unsafe_time_s": null,
+      "torque_rms_nm": [
+        13.472361447269174,
+        9.871747394781869,
+        45.9566422260445,
+        24.29855148547448,
+        13.527793080890053,
+        55.609873529243075,
+        20.320170339333334,
+        9.30424866920237,
+        50.544909319219585,
+        13.220136820430213,
+        8.947404684012835,
+        50.310085506538655,
+        2.4827707167885857,
+        2.2903319663879786,
+        2.2045489864825476,
+        2.4312151194978684
+      ],
+      "torque_p99_bin_upper_nm": [
+        28.000000000000004,
+        30.0,
+        83.2,
+        57.99999999999999,
+        38.0,
+        99.2,
+        48.0,
+        24.0,
+        102.4,
+        36.0,
+        22.0,
+        89.60000000000001,
+        7.0,
+        6.0,
+        5.8,
+        6.6000000000000005
+      ],
+      "torque_peak_nm": [
+        31.373716435764102,
+        36.76860328441266,
+        115.46095432286923,
+        60.40969419528487,
+        38.730591977230844,
+        115.02433080132762,
+        51.543131098836476,
+        26.139394020945172,
+        105.34738593357294,
+        36.244599827141045,
+        23.66310698705946,
+        98.09357444564053,
+        8.794626293668001,
+        6.190784969117827,
+        7.011639605568229,
+        7.043123676417024
+      ],
+      "torque_saturation_fraction": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "longest_saturation_s": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "speed_peak_rad_s": [
+        2.4727987856185822,
+        2.731418687510011,
+        4.239314810151621,
+        3.3041641884175563,
+        1.5932905480616453,
+        2.9498014020861034,
+        1.7760408166091075,
+        1.5979805255966262,
+        2.6032971188984537,
+        2.225365662087139,
+        1.022860227114172,
+        3.1429769784080084,
+        4.572628497107205,
+        1.5052001934630699,
+        1.666934321277364,
+        3.193124685297471
+      ],
+      "hard_joint_margin_min_rad": [
+        0.7677188483883366,
+        1.7140271620231595,
+        1.0048419376874944,
+        0.7066376197175671,
+        1.7209923934458786,
+        0.9905744038142117,
+        0.7399722279923313,
+        1.7205012365805725,
+        1.0049027345825345,
+        0.7691979463675385,
+        1.7145779603387696,
+        1.0427747093947588
+      ],
+      "base_hip_force_peak_n": 0.0,
+      "tilt_peak_deg": 1.5742570830201847,
+      "physical_target_slew_peak": [
+        4.950518533587456,
+        4.858794808387756,
+        12.009233236312866,
+        6.71479357406497,
+        4.6738505363464355,
+        11.195802688598633,
+        5.183424800634384,
+        2.3694783449172974,
+        9.360146522521973,
+        3.0641596764326096,
+        3.599497675895691,
+        9.348160028457642,
+        141.0795897245407,
+        150.6066620349884,
+        120.27091532945633,
+        95.45954763889313
+      ],
+      "wheel_rolling_residual_peak_m_s": null
+    },
+    "checks": {
+      "safety": true,
+      "completed": false,
+      "tracking": false,
+      "transitions": false,
+      "stop": false,
+      "traversal": null
+    },
+    "case": "yaw",
+    "terrain": "flat_mu_100",
+    "policy": 24650,
+    "bridge_returncode": 0,
+    "transport_fault": "RejectedPolicyTick('TARGET: latched, inference_timeout')",
+    "policy_ticks": 342,
+    "expected_policy_ticks": 2500,
+    "physics_sample_age_max_s": 0.000576917,
+    "measurement_complete": false,
+    "measurement_valid": true,
+    "publisher": {
+      "samples": 4441,
+      "hz": 499.9485872690634,
+      "interval_ns": {
+        "p50": 2087082.0,
+        "p95": 2134266.5500000003,
+        "p99": 2284510.3299999996,
+        "max": 2768372.0
+      },
+      "passed": true
+    },
+    "rejected_policy_tick": 342,
+    "physics_xml_unchanged": true,
+    "force_caps_preserved": true,
+    "repeat_runtime_passed": false
+  },
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "training_updates": 0
+}

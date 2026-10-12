@@ -1,0 +1,134 @@
+{
+  "historical_integrity": {
+    "5ab68628f8664d5d8b0b91c3cfaa64b5": {
+      "raw_files": 75,
+      "source_files": 25,
+      "manifest_sha256": "b2393b1839d4f32fd4222ee2114ed26ec9a8e7e610cc761a8100df070986a4e9",
+      "state": {
+        "id": "5ab68628f8664d5d8b0b91c3cfaa64b5",
+        "kind": "native_continuation",
+        "entrypoint": "scripts/run_native_continuation.py",
+        "arguments": [],
+        "status": "failed",
+        "created": "2026-10-12T12:37:35.119648+00:00",
+        "updated": "2026-10-12T12:54:22.263647+00:00",
+        "returncode": 1,
+        "worker_pid": 65629,
+        "process_pid": 65630
+      }
+    },
+    "d990a3252b764216a5269fe8dbf2d7ad": {
+      "raw_files": 87,
+      "source_files": 25,
+      "manifest_sha256": "0ddeb876adce6a7325eb891c566609fc8ade9f825ac1981fa26045d27267729c",
+      "state": {
+        "id": "d990a3252b764216a5269fe8dbf2d7ad",
+        "kind": "Bounded standard PPO continuation from 24650 and full v2 comparison",
+        "entrypoint": "scripts/run_native_continuation.py",
+        "arguments": [
+          "--training-job",
+          "5ab68628f8664d5d8b0b91c3cfaa64b5"
+        ],
+        "status": "failed",
+        "created": "2026-10-12T12:55:33.051816+00:00",
+        "updated": "2026-10-12T12:55:40.232879+00:00",
+        "returncode": 1,
+        "worker_pid": 68844,
+        "process_pid": 68850
+      }
+    },
+    "f966c981f01b43a3917000b34483e023": {
+      "raw_files": 156,
+      "source_files": 25,
+      "manifest_sha256": "9820ef5dd7bd4a1965266ca6179a961e321d6aa43477c2d2aaadf07c69e6f9b2",
+      "state": {
+        "id": "f966c981f01b43a3917000b34483e023",
+        "kind": "Bounded standard PPO continuation from 24650 and full v2 comparison",
+        "entrypoint": "scripts/run_native_continuation.py",
+        "arguments": [
+          "--training-job",
+          "5ab68628f8664d5d8b0b91c3cfaa64b5"
+        ],
+        "status": "failed",
+        "created": "2026-10-12T12:56:52.269271+00:00",
+        "updated": "2026-10-12T13:04:52.277197+00:00",
+        "returncode": 1,
+        "worker_pid": 69011,
+        "process_pid": 69012
+      }
+    },
+    "710e7cc2749b496bb8fdc7f51ebb323f": {
+      "raw_files": 261,
+      "source_files": 25,
+      "manifest_sha256": "68cbc5c3d41b59480dee39b010f3803f82454ec07bd14ca20856ac7b45297e3d",
+      "state": {
+        "id": "710e7cc2749b496bb8fdc7f51ebb323f",
+        "kind": "Bounded standard PPO continuation from 24650 and full v2 comparison",
+        "entrypoint": "scripts/run_native_continuation.py",
+        "arguments": [
+          "--training-job",
+          "5ab68628f8664d5d8b0b91c3cfaa64b5",
+          "--evaluation-job",
+          "f966c981f01b43a3917000b34483e023"
+        ],
+        "status": "completed",
+        "created": "2026-10-12T13:07:57.425617+00:00",
+        "updated": "2026-10-12T13:23:17.597603+00:00",
+        "returncode": 0,
+        "worker_pid": 73718,
+        "process_pid": 73719
+      }
+    }
+  },
+  "training_receipts": {
+    "control": {
+      "checkpoint_sha256": "9d3bf7def19dae0967893eb196129470c6ef5618d93441148ea0b34c3c4f995d",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "ppo_updates": 150,
+      "adam_steps_delta": 3000,
+      "policy_and_ppo_config_checked": true,
+      "all_finite": true
+    },
+    "focus": {
+      "checkpoint_sha256": "e7f824403e121991ed8696646eb5a6e62dea73d5d5231a31637f3b6e8ac059ec",
+      "actor_abi": [
+        57,
+        16
+      ],
+      "ppo_updates": 150,
+      "adam_steps_delta": 3000,
+      "policy_and_ppo_config_checked": true,
+      "all_finite": true
+    }
+  },
+  "postrun_training_artifacts": {
+    "logs/rsl_rl/b2w_native_standard_control_9930/2026-10-12_15-41-40_5ab68628f8664d5d8b0b91c3cfaa64b5/params/agent.yaml": {
+      "sha256": "86cd4b371133dbb5e2782d1d8cb06199e58d4b4bd41992cfb75b3c8dc10f5c8a",
+      "captured": "postrun_training_artifacts/control/agent.yaml"
+    },
+    "logs/rsl_rl/b2w_native_standard_control_9930/2026-10-12_15-41-40_5ab68628f8664d5d8b0b91c3cfaa64b5/params/env.yaml": {
+      "sha256": "00ff4db95313a9b13bc205471f1a895a12659df0e21c346e43829de4552e751e",
+      "captured": "postrun_training_artifacts/control/env.yaml"
+    },
+    "logs/rsl_rl/b2w_native_standard_focus_9930/2026-10-12_15-48-06_5ab68628f8664d5d8b0b91c3cfaa64b5/params/agent.yaml": {
+      "sha256": "bf3daedd246656b79dd6fec7ca1d4bac326461501258c866d939700429c8d34a",
+      "captured": "postrun_training_artifacts/focus/agent.yaml"
+    },
+    "logs/rsl_rl/b2w_native_standard_focus_9930/2026-10-12_15-48-06_5ab68628f8664d5d8b0b91c3cfaa64b5/params/env.yaml": {
+      "sha256": "af8648720dee703910582ec5c93416ea4b6ffc4c0405c4fd37cd4107bfa90099",
+      "captured": "postrun_training_artifacts/focus/env.yaml"
+    }
+  },
+  "preserved_parent_artifacts": {
+    "policies/local/core_24650/model_24650.pt": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "policies/local/core_24650/agent.yaml": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+    "policies/local/core_24650/env.yaml": "ec49557159f4acd42d7c1627c3136ff1c868e60e1cf7a64fdd9040d8f02677e0",
+    "policies/local/core_24650/export/policy.pt": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "policies/server/upstream_19999/export/policy.pt": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff",
+    "vendor/manifest.json": "d09b6707d4f0873fc741fcdcb260c71a36d4aadd5947858d00d8419eb5ef91af"
+  },
+  "postrun_metrics_analysis_sha256": "da62c1f1b6a984f018dca5fed04936efdecf4d04be6e43154f5bcdca07dddb81"
+}

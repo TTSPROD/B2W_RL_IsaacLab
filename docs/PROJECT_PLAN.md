@@ -1,6 +1,6 @@
 # План B2W
 
-Актуально на 7 октября 2026.
+Актуально на 12 октября 2026.
 
 ## Цель и контракт
 
@@ -17,6 +17,21 @@ Flat/Rough/Stairs принимаются только в измеренном д
 автоматически; переход на стандартную базу отразить в manifest и preflight.
 
 ## Текущее решение
+
+12.10 пользователь разрешил новое **локальное дообучение** от 24650 и до4000env.
+Объявлен bounded native standard PPO A/B: по150updates, seed9930, только
+изменение частоты осевых command programs между плечами, затем полный matched v2
+в свежих процессах. Это новая task/runtime-линия с явно объявленными common
+adaptations; не восстановление закрытой relkernel-ветки и не server authorization.
+[План и gates](results/2026-10-12-native-continuation-plan.md).
+До решения по результатам development candidate остаётся24650.
+**Пилот завершён и отклонён:** по150updates при4000env, native full v2
+parent/control/focus103/100/104 из160, unsafe0/1/1. Focus5wins/4losses противparent,
+axis success cells не улучшились; wheel saturation выросла иlongest streak6.90s.
+Candidate24650 сохранён; seed9930/budget закрыты. Следующий training recipe —
+после анализа unsafe/phase/saturation traces, без extension поaggregate+1.
+Software recovery переиспользовала weights/baseline без дополнительных PPO.
+[Результат и source/raw integrity](results/2026-10-12-native-continuation.md).
 
 Сохранены исходный upstream_19999 и development candidate core_24650;
 rl_sar участвует как внешний actor из той же Robot Lab линии по сообщению владельца.
@@ -173,6 +188,72 @@ Simulation qualification и hardware-approved policy пока нет.
    в каждой. Не использовать validation для повторного выбора checkpoints.
 12. S0–S2 software/DDS готовить параллельно; S3–S4 требуют данных целевого B2W
    и отдельного допуска к аппаратным действиям. Перенос параметров Go2-W недопустим.
+   **Native Ubuntu bounded diagnostic выполнен:** общий offline/DDS actor/mapper,
+   native SDK2 fields/CRC parity, 20 с MuJoCo через официальный C++ bridge,
+   1000 policy ticks, live disconnect/restart с latch. 31 тест пройден, 2 skipped.
+   Полный S2 gate и simulation qualification остаются открытыми; 24650 сохраняется.
+   [Результат и hashes](results/2026-10-12-sim2sim-ubuntu.md).
+   **Продолжение S2 выполнено:** независимый C++ watchdog, frozen deadlines,
+   16 DDS fault cases × 3 повтора под четырьмя CPU load processes; все 48 пройдены.
+   Проверены GIL hang/actor exit, packet loss/reorder, CRC/NaN/Inf, stop,
+   wheel target limit, explicit recovery с новым epoch и сбросом raw history.
+   Nominal — ещё 1000 ticks; acceptance policy и полный S2 остаются открытыми.
+   [Отчёт и executed evidence](results/2026-10-12-sim2sim-native-watchdog.md).
+   **Actuator/asset audit и bounded Flat v2 command diagnostic выполнены:**
+   1232 native law samples; DC helper совпал с pinned Isaac method, но official
+   MuJoCo leg law и source asset parameters отличаются. Все пять programs
+   одного seed проверены: stand завершён, четыре motion programs остановлены
+   target guard при реверсе; полный runtime gate не пройден. Limits и actor
+   не менялись. Следующий шаг — resolved live Isaac/PhysX audit в изолированном
+   local runtime, затем один объявленный physics reconciliation factor.
+   [Отчёт и raw hashes](results/2026-10-12-sim2sim-physics-audit.md).
+   **Live native Isaac/PhysX audit выполнен:** отдельная local CUDA среда,
+   5 полных Flat programs одного seed — 3/5 success, 0 unsafe. Resolved mass
+   82.41985 кг, armature0; leg DC и implicit wheel parameters сохранены.
+   Desired calf q нарушает strict deployment guard также в Isaac: lateral
+   3 ticks, yaw 1 tick, actual q безопасен. Это target-contract gap, guard
+   не ослабляется. Следующий ограниченный factor — actuator-law reconciliation
+   MuJoCo без одновременного изменения масс/геометрии; полный S2 открыт.
+   [Отчёт и executed hashes](results/2026-10-12-sim2sim-live-isaac.md).
+   **Отдельный leg actuator-law factor выполнен:** DC executable совпал с
+   pinned Isaac методом на 1232 points; wheels unchanged, 240 disabled cases
+   дают torque0. Fresh baseline и DC — success1/5 каждый, unsafe0; DC yaw
+   полный, tracking fail/stop pass, остальные motion DC остановлены guard.
+   Source XML и 398 compiled arrays подтверждают отсутствие других physics
+   изменений. Следующий bounded factor — armature0 по live PhysX при прежних
+   DC law/damping/массах/геометрии/guard; target-contract gap и full S2 открыты.
+   [Результат и raw hashes](results/2026-10-12-sim2sim-actuator-factor.md).
+   **Armature0 factor выполнен:** один и тот же DC binary, изменены только
+   16 joint armature attributes и derived generalized inertia. Success1/5
+   в обоих arms, unsafe0; guard gap сохраняется. Armature0 longitudinal tilt
+   вырос с10.97° до43.22°, variant не принят как runtime baseline. Следующий
+   отдельный physics factor — passive damping0 с заранее объявленным armature
+   baseline и прежними actor/guard/массами/геометрией; desired-target contract
+   и full S2 остаются открытыми.
+   [Результат и immutable evidence](results/2026-10-12-sim2sim-armature-factor.md).
+   **Проверка published limits:** q ranges совпали с official B2-W URDF/MuJoCo,
+   wheel50 подтверждён Unitree product page. Но reject desired q по mechanical
+   range — project guard choice, не найденное SDK2 requirement. Перед выводом
+   об ошибке policy и изменением limits уточнить desired-target semantics,
+   actual-state/torque safety; guard и frozen evidence пока сохраняются.
+   [Источники и различие model/hardware/target limits](SDK2_DEPLOYMENT.md#происхождение-limits-проверка-официальных-источников-1210).
+   **Actual-state / PD guard разделён:** новый simulator-only profile принимает
+   прежний Isaac target envelope±100 и отдельно контролирует actual q/dq/tilt.
+   Native checks39+48 passed, actor/physics/caps прежние. Все5 Flat programs
+   выполнены (9400ticks), success2/5, stop5/5, unsafe0. Runtime gate failed:
+   yaw sample age18.47ms; single declared yaw repeat получил inference38.87ms
+   приdeadline20ms. Следующий bounded шаг — runtime timing/measurement
+   diagnosis при прежних thresholds, до дальнейших physics factors.
+   [Guard change, результаты и immutable evidence](results/2026-10-12-sim2sim-pd-guard.md).
+   **Timing fix и full replay выполнены:** GC pauses воспроизведены47/61ms,
+   common trial теперь scoped GC-disabled; physics CSV deferred до остановки
+   loop, per-job actor/physics/watchdog размещены на разных physical cores.
+   Controlled IO A/B подтвердил отсутствие IO stalls вfixed physics loop.
+   Все9400ticks/5 programs, measurementvalid5/5, maxinference1.10ms/sampleage1.38ms,
+   runtime gate passed без увеличения20/10ms budgets. Stop5/5, unsafe0,
+   tracking success2/5. Следующий scope — matched physics/passive dynamics
+   иосевой tracking; qualification/full S2 envelope остаются открытыми.
+   [Причины, fix, timings иimmutable hashes](results/2026-10-12-sim2sim-timing-fix.md).
 13. Расширять принятый envelope по одному фактору. Не объявлять всё множество
    скоростей/поверхностей принятым по небольшому числу samples.
 
@@ -185,9 +266,9 @@ Training, тесты и сравнение выполняет независим
 
 | Этап | Проверяемый результат | Сейчас |
 |---|---|---|
-| S0 | Frozen policy/export/runtime/deployment manifest | Software ABI есть; hardware поля открыты |
-| S1 | Offline observations/actions/LowCmd parity, reset/stop | Export parity есть; SDK2 adapter отсутствует |
-| S2 | Тот же executable через официальный MuJoCo DDS bridge; timing/fault tests | Не выполнен |
+| S0 | Frozen policy/export/runtime/deployment manifest | Diagnostic manifest с export/source/binary SHA есть; hardware поля открыты |
+| S1 | Offline observations/actions/LowCmd parity, reset/stop | Native SDK2 software parity пройдена на Ubuntu; physical mapping не проверен |
+| S2 | Тот же executable через официальный MuJoCo DDS bridge; timing/fault tests | State/PD guard иbounded timing gate passed,87 native checks; 5 full programs/2 successes, physics/tracking/envelope открыты |
 | S3 | B2W motor order/signs/units/IMU, firmware, read-only telemetry | Не выполнен |
 | S4 | Actuator/latency identification и nominal/variation validation | Не выполнен |
 | S5 | Стенд с поддержкой корпуса, ownership/stop, zero policy | Только после отдельного допуска |

@@ -1,0 +1,12 @@
+{
+  "id": "73b05a84f13743a081c3a763950d5aa7",
+  "kind": "sim2sim_armature",
+  "entrypoint": "scripts/run_sim2sim_armature.py",
+  "arguments": [],
+  "status": "completed",
+  "created": "2026-10-12T10:35:08.995779+00:00",
+  "updated": "2026-10-12T10:39:17.084608+00:00",
+  "returncode": 0,
+  "worker_pid": 50149,
+  "process_pid": 50150
+}

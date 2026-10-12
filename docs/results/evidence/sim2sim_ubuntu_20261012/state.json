@@ -1,0 +1,12 @@
+{
+  "id": "90c58d0566eb4e0b97e40190e75f8b97",
+  "kind": "sim2sim",
+  "entrypoint": "scripts/run_sim2sim.py",
+  "arguments": [],
+  "status": "completed",
+  "created": "2026-10-12T06:57:35.817072+00:00",
+  "updated": "2026-10-12T06:58:05.788945+00:00",
+  "returncode": 0,
+  "worker_pid": 25019,
+  "process_pid": 25020
+}

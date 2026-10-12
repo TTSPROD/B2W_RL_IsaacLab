@@ -1,0 +1,118 @@
+{
+  "job_id": "96a9b399099b4e8d85b9180c516959ec",
+  "executed_manifest_sha256": "31781d39eb62da2ca05069a6c4395f6fe865abb2d360140881c76ef5dcd1dd49",
+  "raw_verified_count": 43,
+  "isaaclab_verified_source_count": 981,
+  "project_executed_source_count": 22,
+  "implementation_changes_after_run": {
+    "scripts/setup_isaac_ubuntu.sh": {
+      "executed": "6571ed68c904a87c4ea05f9f53b704e95afa94da68c7591f9c27ba39d50caa80",
+      "current": "f1549107af70126828fbe7376f2c7077c41b032b645d6fc394a2eac2f2626966"
+    }
+  },
+  "live_physx_mass_kg": 82.41985297203064,
+  "mujoco_source_mass_kg": 87.170292,
+  "armature_all_zero": true,
+  "case_outcomes": [
+    {
+      "case": "stand",
+      "outcome": "success",
+      "completed": true
+    },
+    {
+      "case": "longitudinal",
+      "outcome": "success",
+      "completed": true
+    },
+    {
+      "case": "lateral",
+      "outcome": "tracking_failure",
+      "completed": true
+    },
+    {
+      "case": "yaw",
+      "outcome": "tracking_failure",
+      "completed": true
+    },
+    {
+      "case": "mixed",
+      "outcome": "success",
+      "completed": true
+    }
+  ],
+  "unsafe_count": 0,
+  "counterfactual_target_guard": [
+    {
+      "entry": 0,
+      "case": "stand",
+      "violation_ticks": 0,
+      "first": null
+    },
+    {
+      "entry": 1,
+      "case": "longitudinal",
+      "violation_ticks": 0,
+      "first": null
+    },
+    {
+      "entry": 2,
+      "case": "lateral",
+      "violation_ticks": 3,
+      "first": {
+        "entry": 2,
+        "policy": 24650,
+        "case": "lateral",
+        "seed": 73001,
+        "policy_tick": 1046,
+        "time_s": 20.92,
+        "violations": [
+          {
+            "slot": 5,
+            "target": -0.3720349073410034,
+            "limits": [
+              -2.8199996948242188,
+              -0.429999977350235
+            ],
+            "measured_q": -1.6071134805679321,
+            "measured_dq": -2.815538167953491
+          }
+        ]
+      }
+    },
+    {
+      "entry": 3,
+      "case": "yaw",
+      "violation_ticks": 1,
+      "first": {
+        "entry": 3,
+        "policy": 24650,
+        "case": "yaw",
+        "seed": 73001,
+        "policy_tick": 1001,
+        "time_s": 20.02,
+        "violations": [
+          {
+            "slot": 5,
+            "target": -0.4038407802581787,
+            "limits": [
+              -2.8199996948242188,
+              -0.429999977350235
+            ],
+            "measured_q": -1.5459742546081543,
+            "measured_dq": -0.024308502674102783
+          }
+        ]
+      }
+    },
+    {
+      "entry": 4,
+      "case": "mixed",
+      "violation_ticks": 0,
+      "first": null
+    }
+  ],
+  "observations_parity_max_abs": 0.0,
+  "commands_parity_max_abs": 0.0,
+  "simulation_qualified": false,
+  "hardware_enabled": false
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "b2w_trace_based_recipe_proposal_v1",
+  "status": "proposal_not_executed",
+  "launch_enabled": false,
+  "parent": "policies/local/core_24650/model_24650.pt",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "rejected_checkpoints_are_not_parents": true,
+  "pipeline": "unmodified pinned vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py; standard RSL-RL 3.1.2 OnPolicyRunner/PPO",
+  "invariants": {
+    "actor_abi": [57, 16], "critic_observations": 247, "policy_hz": 50,
+    "raw_previous_action": true, "physical_target_clip": [-100, 100],
+    "actual_joint_margin_tolerance_rad": 0.001, "tilt_limit_deg": 60,
+    "v2_contact_threshold_n": 5,
+    "mechanical_limits_actuator_caps_and_sdk2_deadlines": "unchanged from frozen accepted diagnostic profiles",
+    "desired_targets_are_not_mechanical_state_limits": true,
+    "navigation_feedback": false
+  },
+  "common_base_repair": {
+    "terrain": "clean external reconstruction of parent saved terrain geometry/proportions: 10x40, target stair platform1.5m, no imports of historical task/runner chains",
+    "terrain_reference": "policies/local/core_24650/env.yaml",
+    "commands": "direct body-frame; staircase banks traverse0.3/traverse0.7/stop_restart0.5 at equal episode weights, full20s traverse and12s zero phases",
+    "axis_bank": "both signs and command magnitudes retained; include dedicated small-axis programs alongside full v2 rehearsal, same sampler in both arms",
+    "small_axis_program": "2s zero,8s +/-0.3,8s opposite0.3,12s zero; random first sign; alternate0.5 rehearsal; phase exposure must be measured",
+    "reset": "upright roll/pitch [-0.1,0.1], other declared randomization retained",
+    "geometry_changes": "only restore documented parent training distribution; no actuator/mass/armature/damping changes"
+  },
+  "stage0_no_update_audit": {
+    "num_envs": 128, "steps": 7000, "ppo_updates": 0,
+    "required_evidence": [
+      "cohort/case/phase/sign/magnitude attempted and completed steps",
+      "initial and first unsafe state200Hz, including q/dq/torque/targets/contact loads and exact monotonic timestamps",
+      "actor observations57 and raw previous actions50Hz for selected episodes",
+      "per-term rewards, standard returns/advantages and cohort gradients from a separate no-optimizer diagnostic rollout",
+      "zero wheel target/estimated torque saturation streaks",
+      "parent and Adam exact before/after; unsafe overrides timeout"
+    ],
+    "gate": "verify coverage, initial states and safety semantics before freezing coefficients; do not infer gradients from aggregate rewards"
+  },
+  "stage1_drive_safety_pilot": {
+    "parent": "24650",
+    "seed_proposed": 9931,
+    "num_envs": 4000, "updates_per_arm": 100,
+    "num_steps_per_env": 24, "learning_rate": 0.00001, "schedule": "fixed",
+    "algorithm_other_fields": "exact parent PPO configuration, no new runner hooks",
+    "control": "repaired common base, unchanged rewards",
+    "variant": "same base plus bounded actual-state predictive margin cost and zero-command physical wheel-target cost",
+    "predictive_margin_cost": {
+      "horizon_s_proposed": 0.1, "reserve_rad_proposed": 0.05, "weight_proposed": -2.0,
+      "definition": "q_pred=q+T*dq; margin=min(q_pred-lower,upper-q_pred) for12legs; max_j clip(relu(1-margin/reserve),0,1)^2; accumulate over200Hz physics steps, use average in standard reward term",
+      "scope": "soft reward only; actual hard limits and PD target acceptance unchanged"
+    },
+    "zero_wheel_target_cost": {
+      "velocity_reference_rad_s": 50.0, "weight_proposed": -5.0,
+      "definition": "on exact zero body command, sum_i (physical wheel dq_des_i/50)^2 for4wheels",
+      "scope": "no action clipping; zero reference permits existing damping to brake; estimated motor torque remains separate diagnostic"
+    },
+    "causality": "pilot tests the combined drive-safety reward package; it does not isolate the two costs from each other",
+    "evaluation": "parent/control/variant,160 full v2 episodes each, isolated fresh processes, same complete case/reset order",
+    "gate": "unsafe0, no paired covered-success losses or old successful-cell regressions, zero/transition gates unchanged, no worsening max wheel saturation or longest streak; positive state-margin/zero-wheel diagnostic required",
+    "coefficient_status": "engineering hypotheses; verify range/sparsity on stage0 then freeze before PPO, no tuning on acceptance traces",
+    "extension": false
+  },
+  "stage2_small_axis_kernel_pilot": {
+    "launch_condition": "separate decision after stage1 passes retention/safety; otherwise do not run",
+    "parent": "only a checkpoint that passed stage1 gates; never the rejected9930 arms",
+    "seed_proposed": 9932, "num_envs": 4000, "updates_per_arm": 100,
+    "control": "stage1 accepted base/rewards",
+    "variant": "only narrower relative-error kernel for pure small lateral/yaw commands",
+    "kernel": "for pure axis command magnitude0.25..0.5 use sigma=0.25*abs(command); lateral orthogonal x-error keeps sigma0.5; existing weights/max reward retained; all zero/vx/mixed/large-command kernels unchanged",
+    "preserved": "stage1 safety costs, sampler, robot/physics, PPO, ABI and every acceptance threshold",
+    "evaluation": "480 complete matched v2 episodes, final checkpoints only",
+    "gate": "unsafe0, no paired losses or successful-cell regressions, at least2 new paired target-axis successes against parent and positive effect versus control, no wheel saturation/streak increase",
+    "extension": false
+  },
+  "hardware_enabled": false,
+  "server_training": false,
+  "automatic_promotion": false
+}

@@ -1,0 +1,446 @@
+{
+  "schema": "b2w_sim2sim_isaac_audit_v1",
+  "policies": [
+    24650
+  ],
+  "reset_seeds": [
+    73001
+  ],
+  "variants": {
+    "flat_mu_100": {
+      "condition": "flat",
+      "geometry": {
+        "name": "flat_mu_100",
+        "condition": "flat",
+        "size_m": [
+          80.0,
+          80.0
+        ],
+        "geometry_seed": 2026092803,
+        "start_height": 0.0,
+        "physical_edge_x": null,
+        "kind": "flat",
+        "friction": 1.0
+      },
+      "cases": [
+        {
+          "name": "stand",
+          "terrain": "flat_mu_100",
+          "segments": [
+            {
+              "seconds": 12.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            }
+          ]
+        },
+        {
+          "name": "longitudinal",
+          "terrain": "flat_mu_100",
+          "segments": [
+            {
+              "seconds": 2.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "initialization"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.3,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.7,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                -1.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                -0.7,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                -0.3,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 12.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            }
+          ]
+        },
+        {
+          "name": "lateral",
+          "terrain": "flat_mu_100",
+          "segments": [
+            {
+              "seconds": 2.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "initialization"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.3,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.7,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                1.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                -1.0,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                -0.7,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                -0.3,
+                0.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 12.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            }
+          ]
+        },
+        {
+          "name": "yaw",
+          "terrain": "flat_mu_100",
+          "segments": [
+            {
+              "seconds": 2.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "initialization"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.0,
+                0.3
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.0,
+                0.7
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.0,
+                1.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.0,
+                -0.7
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.0,
+                0.0,
+                -0.3
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 12.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            }
+          ]
+        },
+        {
+          "name": "mixed",
+          "terrain": "flat_mu_100",
+          "segments": [
+            {
+              "seconds": 2.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "initialization"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 6.0,
+              "command": [
+                -0.5,
+                -0.5,
+                -0.5
+              ],
+              "kind": "constant"
+            },
+            {
+              "seconds": 12.0,
+              "command": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "kind": "constant"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "conditions": [
+    "flat"
+  ],
+  "episodes_per_policy_condition": {
+    "flat": 5
+  },
+  "episodes_per_policy": 5,
+  "exports": {
+    "24650": {
+      "status": "passed",
+      "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+      "checkpoint": "policies/local/core_24650/model_24650.pt",
+      "checkpoint_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+      "checkpoint_iteration": 24650,
+      "agent_sha256": "6ceb8229412f5483197335134711a8761419b1616081aed2e13d6ffcafd0253b",
+      "export": "policies/local/core_24650/export/policy.pt",
+      "export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+      "exporter_sha256": "9f58909058b969923921d1ea052f912eb1ae3f7ecbe3d947164c06b584737e16",
+      "fixture_and_random_count": 295,
+      "random_seed": 20260917,
+      "max_abs_error": 0.0,
+      "tolerance": 1e-05,
+      "normalizer": "Identity",
+      "network_dimensions": {
+        "actor_observations": 57,
+        "actions": 16,
+        "critic_observations": 247,
+        "std_actions": 16
+      },
+      "configured_obs_groups": {},
+      "resolved_obs_groups": {
+        "policy": [
+          "policy"
+        ],
+        "critic": [
+          "critic"
+        ]
+      },
+      "policy_quality_evaluated": false
+    }
+  },
+  "gates": {
+    "observed_success_fraction": 0.95,
+    "one_sided_wilson95_lower": 0.9,
+    "unsafe_allowed": 0,
+    "flat_rough_rmse": [
+      0.2,
+      0.2,
+      0.25
+    ],
+    "response_fraction": 0.8,
+    "settling_s": 2.0,
+    "continuous_zero_s": 10.0,
+    "zero_vxy": 0.1,
+    "zero_wz": 0.1,
+    "stair_progress_ratio": 0.8,
+    "transition": "first full 1-s RMSE window within tolerance by 2 s",
+    "cell_screen": "all five trials pass; failures retained, no pooled qualification"
+  },
+  "excluded_from_acceptance": [
+    "blocks",
+    "slopes",
+    "cross_slopes",
+    "curbs",
+    "gaps",
+    "mixed_surface_transitions",
+    "route",
+    "waypoint",
+    "absolute_heading",
+    "lateral_or_yaw_commands_on_stairs"
+  ],
+  "actor_only": true,
+  "qualification": false,
+  "hardware_approval": false,
+  "stage": "one_reset_diagnostic",
+  "selection_only": false,
+  "automatic_selection": false,
+  "command_bounds": {
+    "vx_m_s": [
+      -1.0,
+      1.0
+    ],
+    "vy_m_s": [
+      -1.0,
+      1.0
+    ],
+    "wz_rad_s": [
+      -1.0,
+      1.0
+    ]
+  },
+  "command_provenance": {
+    "19999": "policies/server/upstream_19999/env.yaml",
+    "24650": "policies/local/core_24650/env.yaml",
+    "rl_sar": "user reports analogous robot_lab/train.py; exact run config unavailable"
+  },
+  "limitations": [
+    "One seed, five envs, native RTX4070 Ti; not historical Isaac multi-actor RNG-slot replay",
+    "No DDS bridge in this live PhysX audit; target guard counted without changing actor targets",
+    "No training, hardware actuation or policy promotion"
+  ],
+  "source_sha256": {
+    "scripts/run_sim2sim_isaac_audit.py": "839ca84d225620f7607e99f1a55de721d0fa674f5d86c0fb0daf869cbdefc9e6",
+    "scripts/run_isaac_audit_child.py": "b3233cc1b6248f35edde5535700cd2a5ca9503af8a427d269e1513cd403f8952",
+    "scripts/sim2sim_isaac_protocol.py": "42afeb3449290ddc559de0fe7bb656f198fe81eb99ef31777438d4296210533b",
+    "scripts/isaac_physics_snapshot.py": "a627ec30cb42ba8c9f6978ad82dedc21780da6dde70c662f8eaeaef9af277a53",
+    "scripts/eval_fullcycle_terrain.py": "d476bfac0e3dc633544d8fd32b1a1f7aa9f21f6ee8d945c00d4708225b0d02e1",
+    "scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+    "scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+    "scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+    "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "scripts/evaluation_policy.py": "9f3dc66e6ad346d1b41bfaa205affa33610b2a78d25da655b003b0619c11c098",
+    "scripts/b2w_runtime.py": "26978bec017fce037551335cba5cc4abf2ac119803651a8e5db9be68a219d17e",
+    "scripts/local_b2w_assets.py": "23efa58618d67f999b828e6c0f0e3c362bd9808faaf4db3c911aabb895357da7",
+    "scripts/run_support.py": "260a897fcd9ca2c9bb16b000e1e076b380a76afd1f0fdd13f610e0b818ff1f6d",
+    "scripts/job_manager.py": "4c9c7ae4f2af491759a98236570a34974b7d4a39a17f61bf01c637f90ef4669f",
+    "scripts/job_worker.py": "6407599349ca9b6c98cc44b0b5c930222166d560589350e26abe759d5ad9452c",
+    "scripts/manage_runs.py": "9404644f12347479c8fc75b57bcc659b1baee22f5483251b580c5025a6135aed",
+    "scripts/setup_isaac_ubuntu.sh": "6571ed68c904a87c4ea05f9f53b704e95afa94da68c7591f9c27ba39d50caa80",
+    "requirements/isaac-ubuntu-constraints.txt": "da39048fea3d45a626731c04f8adef6a12da42e55e2b30bdfe4a75a4a0b9568b",
+    "scripts/prepare_isaac_native_libs.py": "c63c68a135001208d55dbd8beb2d895b80d1ee431b05c7618e0682540f85d8e0",
+    "requirements/isaaclab-sim51-metadata.patch": "fe824b0ab82085ebf311bda96047fd54f9f7a54e17583a8a27375a7682865999",
+    "configs/sim2sim_isaac_plan_20261012.json": "0765673e0cdbc06d8c952f57168f8aae3367d2e6493295326558fef6483925d2",
+    "tests/test_isaac_physics_audit.py": "b29eb3014d52bcb283387dab0fa72975cb66ea717cdad03b4ad5b368d460b15a"
+  },
+  "policy_map_sha256": "0324c9a3340ef7c030af029e9ab916fd1125b46af6174a0065a225c5720861c8"
+}

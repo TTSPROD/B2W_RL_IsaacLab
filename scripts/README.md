@@ -64,3 +64,103 @@ runtime. Механическая чистка этих зависимостей
 `run_mujoco_gamepad.ps1` и связанные model/telemetry helpers используются по
 [GAMEPAD_VIEWERS](../docs/GAMEPAD_VIEWERS.md). Viewer даёт ручную диагностику;
 qualification выполняется описанным выше протоколом.
+
+## Нативный Ubuntu sim2sim
+
+`bash scripts/setup_sim2sim_ubuntu.sh` подготавливает локальное окружение и
+собирает `sim2sim/`. Запуск: `.venv/bin/python scripts/manage_runs.py start sim2sim --no-monitor`.
+`run_sim2sim.py` выполняет offline parity и bounded DDS diagnostic через
+официальный MuJoCo bridge; actor/mapper общие в `sdk2_policy_runtime.py`.
+Raw и executable/source/export hashes сохраняются в managed job directory.
+Это software/transport diagnostic, без policy promotion или hardware mode.
+
+Продолжение S2: `.venv/bin/python scripts/manage_runs.py start sim2sim_faults --no-monitor`.
+`run_sim2sim_faults.py` запускает C++ watchdog/publisher независимо от Python/GIL,
+20 с nominal через официальный bridge и frozen DDS fault matrix 16 × 3 под CPU
+нагрузкой. `sdk2_watchdog_client.py` передаёт epoch/command/inference tokens через
+локальный Unix socket. Raw, snapshots исходников, frozen plan и SHA actual
+checkpoint/export/contract/native binaries сохраняются в `sim2sim_faults/`
+каталога managed job. Hardware mode отсутствует; полный physics/envelope gate открыт.
+
+Actuator/asset audit: `.venv/bin/python scripts/manage_runs.py start sim2sim_physics --no-monitor`.
+`sim2sim_physics_audit.py` извлекает pinned Robot Lab settings без Isaac imports,
+сравнивает actual `Go2Bridge::run`/MuJoCo torque с unchanged Isaac DC method.
+`cache_sim2sim_reference.py` сохраняет SHA-checked reference по exact commit в
+`.runtime`; его вызывает Ubuntu bootstrap. `run_sim2sim_physics.py` использует
+полный Flat v2 command prefix одного seed и записывает physics telemetry,
+accepted/rejected targets, NPZ и executed hashes. Failure evidence сохраняется;
+guard rejection приводит к failed runtime gate и exit 2. Actor/limits/vendor
+не корректируются по outcome, live PhysX этим не запускается.
+
+Live PhysX: `setup_isaac_ubuntu.sh --accept-eula` создаёт отдельную
+`.runtime/isaaclab-ubuntu-venv`, проверяет pinned Lab revision и package lock;
+согласие на NVIDIA EULA обязательно. `prepare_isaac_native_libs.py` извлекает
+недостающие ABI libraries локально с проверкой signed index/deb SHA.
+Managed запуск — `.venv/bin/python scripts/manage_runs.py start sim2sim_isaac --no-monitor`.
+`run_sim2sim_isaac_audit.py` сохраняет provenance и запускает allowlisted
+`run_isaac_audit_child.py`; только этот child использует CUDA runtime.
+Existing evaluator дополнен optional resolved-physics snapshot и counterfactual
+target monitor; default v2 scoring/targets/history не менялись. Raw включают
+полные 50 Hz observations/actions/targets, 200 Hz safety, PhysX properties и
+guard events. Hardware mode/PPO отсутствуют; policy failures сохраняются.
+
+Парный leg actuator factor:
+`.venv/bin/python scripts/manage_runs.py start sim2sim_actuator --no-monitor`.
+`run_sim2sim_actuator.py` повторяет пять Flat v2 cases для official baseline и
+отдельного `b2w_mujoco_dc_bridge`. `sim2sim_actuator_factor.py` берёт leg DC
+parameters по joint names из SHA-checked live PhysX snapshot; изменение XML
+ограничено leg ctrl caps и тремя numeric tables. Массы, инерция, контакты,
+passive damping/armature, wheel PD и strict target guard сохраняются.
+Native probe проверяет DC во всех квадрантах, unchanged wheel law и нулевое
+усилие disabled/invalid modes даже при overspeed. Каждый job сохраняет и
+исполняет собственные копии binaries, frozen sources/plan и raw evidence.
+Exit 0 означает выполнение диагностического плана: target_limit разрешён как
+наблюдаемый endpoint, но такой motion trial остаётся incomplete/failure.
+Это не full runtime acceptance, qualification или promotion policy.
+
+Armature-only factor:
+`.venv/bin/python scripts/manage_runs.py start sim2sim_armature --no-monitor`.
+`run_sim2sim_armature.py` повторяет пять cases для DC baseline с armature0.1
+и того же DC executable с armature0 по saved live PhysX. В XML меняются только
+16 joint armature attributes; остальные compiled arrays равны, кроме
+производных от generalized inertia. Изменение diagonal inertia отдельно
+проверяется против изменения armature. Damping, массы, геометрия, actor и guard
+прежние. В каждом arm повторяются native DC/disabled probes. Raw и frozen
+binaries/sources сохраняются в `sim2sim_armature/` managed job; diagnostic
+execution и locomotion acceptance остаются отдельными результатами.
+
+Разделение actual-state / PD-reference limits:
+`.venv/bin/python scripts/manage_runs.py start sim2sim_pd_guard --no-monitor`.
+Отдельный `b2w_sdk2_pd_watchdog` проверяет mechanical actual q, actual dq и
+tilt из DDS LowState; для q_des/dq_des использует существующий Isaac physical
+target envelope ±100 с прежними gains и без новых clips. Torque caps применяет
+неизменённая DC/MuJoCo модель; noisy tau_est проверяется на finite, не считается
+точным actuator force. Profile только domain1/lo/hardware_enabled=false.
+Managed runner сохраняет frozen binaries/sources/plan и проверяет39 native
+guard cases +48 transport faults под CPU load, затем повторяет5 Flat programs
+с DC law, armature0.1/damping1. XML должен совпасть с previous DC baseline.
+Legacy guard/plan и их evidence сохраняются; новый profile не является
+hardware target contract или квалифицированным runtime.
+
+Текущий replay сисправлением timings:
+`.venv/bin/python scripts/manage_runs.py start sim2sim_timing --no-monitor`.
+`bounded_gc` применяется непосредственно вshared trial иrestore выполняется
+послеnative cleanup; standalone repeat больше не пропускает GC protection.
+`b2w_mujoco_timed_bridge` сохраняет samples сreal monotonic timestamps
+вpreallocated buffer иserializes CSV послеостановкиphysics/DDS; silent drops
+илиtimestamp interpolation нет. Всеphysical gates/actor/PD guard/deadlines прежние.
+Per-job role affinity иwall/thread-CPU counters помогают локализовать stalls;
+global scheduler/governor/чужие процессы не меняются. Managed job выполняет
+controlled IO A/B, native regression и5-case replay; legacy/raw evidence сохранены.
+`run_sim2sim_timing_probe.py` — CPU-only GC/stage diagnostic, неphysics qualification.
+
+Native standard continuation от24650:
+`manage_runs.py start native_continuation --no-monitor` использует frozen
+`configs/24650_native_continuation_20261012.json`, отдельную CUDA среду иpinned
+Robot Lab train.py без прежних runner hooks. Бюджет4000env/150updates наarm,
+полный isolated v2 comparison. Пилот seed9930 завершён иотклонён; budget закрыт.
+`run_native_continuation.py --training-job ID --evaluation-job ID` может через
+supervisor переиспользовать полностью проверенные weights/parent baseline для
+исправления orchestration без дополнительных PPO updates. Actual source
+manifests разных стадий сохраняются раздельно. Новый training recipe/budget
+требует нового решения; [результат](../docs/results/2026-10-12-native-continuation.md).

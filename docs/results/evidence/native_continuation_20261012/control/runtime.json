@@ -1,0 +1,10 @@
+{
+  "torch": "2.7.0+cu128",
+  "gpu": "NVIDIA GeForce RTX 4070 Ti",
+  "standard_runner": true,
+  "custom_runner_hooks": false,
+  "sources": {
+    "/home/roman/Work/02_Git/B2W_RL_IsaacLab/.runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/rsl_rl/runners/on_policy_runner.py": "6ffaee7e154a49ae55eebf53a7b1549f0461a1742d92dd34af5bb4b785d19cf2",
+    "/home/roman/Work/02_Git/B2W_RL_IsaacLab/.runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/rsl_rl/algorithms/ppo.py": "4373ac1b2f9fdf14d9da57516968fc95d8f605d2967fee01dc61bf0d09423478"
+  }
+}

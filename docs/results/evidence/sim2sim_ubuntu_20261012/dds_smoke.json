@@ -1,0 +1,127 @@
+{
+  "status": "transport_smoke_passed",
+  "policy_steps": 1000,
+  "publish_count": 11796,
+  "fault": null,
+  "fault_events": [
+    {
+      "reason": "stale_state",
+      "detected_monotonic": 1708.856986569
+    }
+  ],
+  "bridge_returncode": 0,
+  "model_contract": {
+    "nq": 23,
+    "nv": 22,
+    "nu": 16,
+    "physics_dt_s": 0.002,
+    "policy_dt_s": 0.02,
+    "physics_steps_per_policy_step": 10,
+    "actuator_names": [
+      "FR_hip",
+      "FR_thigh",
+      "FR_calf",
+      "FL_hip",
+      "FL_thigh",
+      "FL_calf",
+      "RR_hip",
+      "RR_thigh",
+      "RR_calf",
+      "RL_hip",
+      "RL_thigh",
+      "RL_calf",
+      "FR_wheel",
+      "FL_wheel",
+      "RR_wheel",
+      "RL_wheel"
+    ],
+    "joint_position_sensors": [
+      "FR_hip_pos",
+      "FR_thigh_pos",
+      "FR_calf_pos",
+      "FL_hip_pos",
+      "FL_thigh_pos",
+      "FL_calf_pos",
+      "RR_hip_pos",
+      "RR_thigh_pos",
+      "RR_calf_pos",
+      "RL_hip_pos",
+      "RL_thigh_pos",
+      "RL_calf_pos",
+      "FR_wheel_pos",
+      "FL_wheel_pos",
+      "RR_wheel_pos",
+      "RL_wheel_pos"
+    ],
+    "joint_velocity_sensors": [
+      "FR_hip_vel",
+      "FR_thigh_vel",
+      "FR_calf_vel",
+      "FL_hip_vel",
+      "FL_thigh_vel",
+      "FL_calf_vel",
+      "RR_hip_vel",
+      "RR_thigh_vel",
+      "RR_calf_vel",
+      "RL_hip_vel",
+      "RL_thigh_vel",
+      "RL_calf_vel",
+      "FR_wheel_vel",
+      "FL_wheel_vel",
+      "RR_wheel_vel",
+      "RL_wheel_vel"
+    ]
+  },
+  "fault_tests": [
+    {
+      "case": "DDS publisher disconnect",
+      "expected": "stale_state",
+      "observed": "stale_state",
+      "latency_s": 0.04074702699995214,
+      "disabled_command_published": true,
+      "passed": true
+    },
+    {
+      "case": "publisher restart without explicit recovery",
+      "state_received": true,
+      "fault_remains_latched": true,
+      "passed": true
+    }
+  ],
+  "fault_after_injection": "stale_state",
+  "failed_steps": [],
+  "cyclic_gc_disabled_in_bounded_loop": true,
+  "inference_s": {
+    "p50": 0.0004812610000044515,
+    "p95": 0.0005415744999254457,
+    "p99": 0.0007955961700577062,
+    "max": 0.0010568610000518674
+  },
+  "state_age_s": {
+    "p50": 0.001113969,
+    "p95": 0.0015779925,
+    "p99": 0.00161643094,
+    "max": 0.002709751
+  },
+  "publish_interval_s": {
+    "p50": 0.0019995359998574713,
+    "p95": 0.002015308299951357,
+    "p99": 0.00204047805996197,
+    "max": 0.0025183579998611094
+  },
+  "max_tilt_rad": 0.04056424530633763,
+  "min_height_m": 0.5998104564511568,
+  "physics_samples": 10007,
+  "forbidden_contact_peak_n": 0.0,
+  "min_joint_margin_rad": 0.7791119614501925,
+  "velocity_util_peak": 0.21019371094340183,
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "open_gates": [
+    "full-rate safety and joint/drive gates",
+    "fault injection DDS matrix",
+    "nominal/variation envelope",
+    "Isaac comparison on this host",
+    "actuator physics parity"
+  ]
+}

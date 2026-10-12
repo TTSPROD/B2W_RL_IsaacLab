@@ -1,0 +1,164 @@
+{
+  "gc_on": {
+    "ticks": 6000,
+    "wall_max_ms": 61.317023,
+    "worst_records": [
+      {
+        "tick": 5852,
+        "start_ns": 18465575394077,
+        "wall_ns": 61317023,
+        "cpu_ns": 61316149,
+        "phases": {
+          "make_observation": {
+            "wall_ns": 60989153,
+            "cpu_ns": 60988325
+          },
+          "actor_forward": {
+            "wall_ns": 115088,
+            "cpu_ns": 115316
+          },
+          "action_targets": {
+            "wall_ns": 43432,
+            "cpu_ns": 43502
+          },
+          "lowcmd_motors": {
+            "wall_ns": 53702,
+            "cpu_ns": 53931
+          }
+        }
+      },
+      {
+        "tick": 2926,
+        "start_ns": 18464546785407,
+        "wall_ns": 47083845,
+        "cpu_ns": 47074246,
+        "phases": {
+          "make_observation": {
+            "wall_ns": 46753089,
+            "cpu_ns": 46743685
+          },
+          "actor_forward": {
+            "wall_ns": 115138,
+            "cpu_ns": 115376
+          },
+          "action_targets": {
+            "wall_ns": 44605,
+            "cpu_ns": 44714
+          },
+          "lowcmd_motors": {
+            "wall_ns": 52549,
+            "cpu_ns": 52769
+          }
+        }
+      },
+      {
+        "tick": 4246,
+        "start_ns": 18465040085599,
+        "wall_ns": 1018037,
+        "cpu_ns": 1018190,
+        "phases": {
+          "make_observation": {
+            "wall_ns": 806377,
+            "cpu_ns": 806323
+          },
+          "actor_forward": {
+            "wall_ns": 42640,
+            "cpu_ns": 42821
+          },
+          "action_targets": {
+            "wall_ns": 43723,
+            "cpu_ns": 43862
+          },
+          "lowcmd_motors": {
+            "wall_ns": 57389,
+            "cpu_ns": 57738
+          }
+        }
+      }
+    ],
+    "gc_generation_max_ms": {
+      "0": 0.059443,
+      "1": 0.630493,
+      "2": 60.749589
+    }
+  },
+  "gc_off": {
+    "ticks": 6000,
+    "wall_max_ms": 0.581802,
+    "worst_records": [
+      {
+        "tick": 0,
+        "start_ns": 18465729485232,
+        "wall_ns": 581802,
+        "cpu_ns": 581781,
+        "phases": {
+          "make_observation": {
+            "wall_ns": 245695,
+            "cpu_ns": 246392
+          },
+          "actor_forward": {
+            "wall_ns": 106181,
+            "cpu_ns": 106350
+          },
+          "action_targets": {
+            "wall_ns": 37991,
+            "cpu_ns": 38072
+          },
+          "lowcmd_motors": {
+            "wall_ns": 39905,
+            "cpu_ns": 40106
+          }
+        }
+      },
+      {
+        "tick": 5888,
+        "start_ns": 18467643226103,
+        "wall_ns": 540143,
+        "cpu_ns": 540444,
+        "phases": {
+          "make_observation": {
+            "wall_ns": 281393,
+            "cpu_ns": 281788
+          },
+          "actor_forward": {
+            "wall_ns": 48352,
+            "cpu_ns": 48511
+          },
+          "action_targets": {
+            "wall_ns": 46588,
+            "cpu_ns": 46848
+          },
+          "lowcmd_motors": {
+            "wall_ns": 66486,
+            "cpu_ns": 66976
+          }
+        }
+      },
+      {
+        "tick": 41,
+        "start_ns": 18465742989871,
+        "wall_ns": 493324,
+        "cpu_ns": 493405,
+        "phases": {
+          "make_observation": {
+            "wall_ns": 307191,
+            "cpu_ns": 307527
+          },
+          "actor_forward": {
+            "wall_ns": 42821,
+            "cpu_ns": 42950
+          },
+          "action_targets": {
+            "wall_ns": 27011,
+            "cpu_ns": 27111
+          },
+          "lowcmd_motors": {
+            "wall_ns": 35247,
+            "cpu_ns": 35386
+          }
+        }
+      }
+    ],
+    "gc_generation_max_ms": {}
+  }
+}

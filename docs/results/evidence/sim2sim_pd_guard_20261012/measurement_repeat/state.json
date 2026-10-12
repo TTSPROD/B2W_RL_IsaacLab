@@ -1,0 +1,12 @@
+{
+  "id": "c664e4d135394e3594c2bc9d81df0cc1",
+  "kind": "Declared yaw telemetry-validation repeat",
+  "entrypoint": "scripts/run_sim2sim_pd_measurement.py",
+  "arguments": [],
+  "status": "failed",
+  "created": "2026-10-12T11:21:50.290363+00:00",
+  "updated": "2026-10-12T11:22:03.001611+00:00",
+  "returncode": 2,
+  "worker_pid": 56798,
+  "process_pid": 56799
+}

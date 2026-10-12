@@ -1,0 +1,12 @@
+{
+  "id": "b9fe3802eb4244d48a020a166b4680c1",
+  "kind": "sim2sim_physics",
+  "entrypoint": "scripts/run_sim2sim_physics.py",
+  "arguments": [],
+  "status": "failed",
+  "created": "2026-10-12T08:27:36.951758+00:00",
+  "updated": "2026-10-12T08:29:25.530921+00:00",
+  "returncode": 2,
+  "worker_pid": 37582,
+  "process_pid": 37583
+}

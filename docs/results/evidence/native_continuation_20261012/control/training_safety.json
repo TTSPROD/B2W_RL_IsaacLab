@@ -1,0 +1,41 @@
+{
+  "reason_counts": [
+    0,
+    1,
+    15,
+    242
+  ],
+  "initial_tilt_invalid": 0,
+  "initial_states": 8247,
+  "command_cycles": [
+    1826,
+    1763,
+    1868,
+    1845,
+    1767
+  ],
+  "command_steps": [
+    2859390,
+    4819512,
+    2513066,
+    2534970,
+    1673062
+  ],
+  "signed_steps": [
+    [
+      3834088,
+      1407982
+    ],
+    [
+      1458222,
+      1453330
+    ],
+    [
+      1469862,
+      1467872
+    ]
+  ],
+  "physics_dt_s": 0.005,
+  "standard_runner": true,
+  "custom_runner_hooks": false
+}

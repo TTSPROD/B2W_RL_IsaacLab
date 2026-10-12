@@ -1,0 +1,631 @@
+{
+  "plan": {
+    "schema": "b2w_sim2sim_timing_fix_v1",
+    "frozen_date": "2026-10-12",
+    "hardware_enabled": false,
+    "training_updates": 0,
+    "domain": 1,
+    "interface": "lo",
+    "policy": 24650,
+    "terrain": "flat_mu_100",
+    "friction": 1.0,
+    "reset_seed": 73001,
+    "case_order": [
+      "stand",
+      "longitudinal",
+      "lateral",
+      "yaw",
+      "mixed"
+    ],
+    "arm_order": [
+      "dc_pd_guard"
+    ],
+    "repeats": 1,
+    "load_workers": 0,
+    "physx_snapshot": "docs/results/evidence/sim2sim_live_isaac_20261012/resolved_physx.json",
+    "physx_snapshot_sha256": "303d02c88b628e10734a183e75ff79d2151193e4db8107c57ff403215575a66e",
+    "physx_job": "96a9b399099b4e8d85b9180c516959ec",
+    "watchdog_plan": "configs/sim2sim_pd_guard_plan_20261012.json",
+    "factor": "bounded GC at trial boundary, no disk IO in physics loop, per-job distinct-core placement and wall/CPU stage timings; identical policy/model/guard/deadlines",
+    "unchanged": [
+      "policy ABI/scales/raw history",
+      "watchdog timing budgets and recovery",
+      "DC leg and explicit wheel torque caps/gains",
+      "mass/inertia/contact geometry",
+      "passive damping1 and armature.1",
+      "physicsdt.002 and policy dt.02",
+      "shared reset73001"
+    ],
+    "disabled": "mode !=1 or all gains/feedforward zero produces ctrl=0, including beyond no-load speed",
+    "numerical_gate": "unchanged native DC law vs pinned Isaac on1232 points and disabled240points",
+    "motion_gate": "all five complete v2 programs attempted; report tracking/zero/physical safety failures separately; new guard cases39 + unchanged transport fault matrix48",
+    "qualification": false,
+    "selection": "No outcome-based tuning or policy promotion; retain previous strict guard and raw evidence",
+    "baseline_job": "040549c8e4174c8288112a8d2eeea858",
+    "gc_probe_job": "7e06c0fced81463c9396957ab22b64cc",
+    "replay_repeats": 1,
+    "io_fault_probe": {
+      "arms": [
+        "legacy_sync_csv",
+        "deferred_csv"
+      ],
+      "case": "stand",
+      "repeats": 1,
+      "write_stall_ns": 25000000,
+      "qualification": false
+    },
+    "scope": "One controlled IO mechanism A/B and one complete five-case timing replay, no budget/threshold increases or policy selection"
+  },
+  "guard": {
+    "schema": "b2w_sim2sim_pd_reference_guard_v1",
+    "frozen_date": "2026-10-12",
+    "scope": "simulator-only separate actual-state and Isaac PD-reference guard",
+    "hardware_enabled": false,
+    "domain": 1,
+    "interface": "lo",
+    "policy_period_ns": 20000000,
+    "publish_period_ns": 2000000,
+    "deadlines_ns": {
+      "inference": 20000000,
+      "state": 40000000,
+      "target": 60000000,
+      "command": 100000000
+    },
+    "detection_slack_ns": 10000000,
+    "max_publish_interval_ns": 10000000,
+    "minimum_publish_hz": 450,
+    "repeats": 3,
+    "nominal_duration_s": 20,
+    "fault_behavior": "Latch first reason; publish CRC-valid disabled LowCmd at 500 Hz; reject late targets",
+    "recovery": "Explicit RECOVER requires three advancing valid states and fresh state. Increment epoch, clear command/target/inference; reset actor raw history; ARM separately. Old epoch packets rejected without changing new epoch.",
+    "state_validation": "CRC, finite q/dq/tau_est/IMU, unit quaternion, advancing state, mechanical actual q/speed/tilt bounds; tau_est is noisy and not an authoritative force cap signal",
+    "target_behavior": "Accept finite Isaac PD references within +/-100 independently of mechanical actual-state limits. No additional target clipping. Reject actual joint position/velocity/tilt violations; model applies DC/motor torque caps.",
+    "leg_kp": 160.0,
+    "leg_kd": 5.0,
+    "wheel_kd": 1.0,
+    "nominal_joint_pos": [
+      0,
+      0.8,
+      -1.5,
+      0,
+      0.8,
+      -1.5,
+      0,
+      0.8,
+      -1.5,
+      0,
+      0.8,
+      -1.5,
+      0,
+      0,
+      0,
+      0
+    ],
+    "cases": [
+      {
+        "id": "sparse_packet_loss",
+        "expected": "no fault; progressing DDS ticks survive 25% controlled drops"
+      },
+      {
+        "id": "state_disconnect",
+        "expected": "stale_state",
+        "deadline": "state"
+      },
+      {
+        "id": "duplicate_tick",
+        "expected": "stale_state",
+        "deadline": "state"
+      },
+      {
+        "id": "state_reorder",
+        "expected": "state_reordered",
+        "deadline": "immediate"
+      },
+      {
+        "id": "bad_crc",
+        "expected": "invalid_state_crc",
+        "deadline": "immediate"
+      },
+      {
+        "id": "nan_state",
+        "expected": "nonfinite_state",
+        "deadline": "immediate"
+      },
+      {
+        "id": "inf_state",
+        "expected": "nonfinite_state",
+        "deadline": "immediate"
+      },
+      {
+        "id": "bad_quaternion",
+        "expected": "invalid_quaternion",
+        "deadline": "immediate"
+      },
+      {
+        "id": "stale_command",
+        "expected": "stale_command",
+        "deadline": "command"
+      },
+      {
+        "id": "expired_target",
+        "expected": "expired_target",
+        "deadline": "target"
+      },
+      {
+        "id": "gil_inference_hang",
+        "expected": "inference_timeout",
+        "deadline": "inference"
+      },
+      {
+        "id": "actor_process_exit",
+        "expected": "expired_target",
+        "deadline": "target"
+      },
+      {
+        "id": "operator_stop",
+        "expected": "operator_stop",
+        "deadline": "immediate"
+      },
+      {
+        "id": "target_saturation",
+        "expected": "pd_target_limit",
+        "deadline": "immediate"
+      },
+      {
+        "id": "late_target",
+        "expected": "inference_timeout; late target not accepted",
+        "deadline": "inference"
+      },
+      {
+        "id": "state_restart_recovery",
+        "expected": "state_reordered; no automatic recovery; explicit fresh-state recovery increments epoch; old packets rejected",
+        "deadline": "immediate"
+      }
+    ],
+    "load": {
+      "workers": 4,
+      "profile": "unprivileged CPU arithmetic processes; retain host scheduler and report affinity; native publisher not pinned or realtime-promoted"
+    },
+    "open_after_this_plan": [
+      "physical DDS/network latency beyond loopback",
+      "watchdog-process failure mitigation",
+      "actuator physics parity",
+      "matched Isaac/MuJoCo envelope",
+      "hardware mapping/calibration/authorization"
+    ],
+    "actual_joint_ranges_rad": [
+      [
+        -0.87,
+        0.87
+      ],
+      [
+        -0.94,
+        4.69
+      ],
+      [
+        -2.82,
+        -0.43
+      ],
+      [
+        -0.87,
+        0.87
+      ],
+      [
+        -0.94,
+        4.69
+      ],
+      [
+        -2.82,
+        -0.43
+      ],
+      [
+        -0.87,
+        0.87
+      ],
+      [
+        -0.94,
+        4.69
+      ],
+      [
+        -2.82,
+        -0.43
+      ],
+      [
+        -0.87,
+        0.87
+      ],
+      [
+        -0.94,
+        4.69
+      ],
+      [
+        -2.82,
+        -0.43
+      ]
+    ],
+    "actual_velocity_limits_rad_s": [
+      23,
+      23,
+      14,
+      23,
+      23,
+      14,
+      23,
+      23,
+      14,
+      23,
+      23,
+      14,
+      50,
+      50,
+      50,
+      50
+    ],
+    "actual_position_tolerance_rad": 0.001,
+    "actual_velocity_relative_tolerance": 0.001,
+    "actual_tilt_limit_rad": 1.0471975511965976,
+    "pd_joint_target_ranges_rad": [
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ]
+    ],
+    "pd_wheel_target_ranges_rad_s": [
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ],
+      [
+        -100,
+        100
+      ]
+    ],
+    "target_saturation_probe_rad_s": 101.0,
+    "profile_hardware_validated": false
+  },
+  "cases": [
+    {
+      "name": "stand",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "longitudinal",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -0.7,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -0.3,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "lateral",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            -0.7,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            -0.3,
+            0.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "yaw",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    },
+    {
+      "name": "mixed",
+      "terrain": "flat_mu_100",
+      "segments": [
+        {
+          "seconds": 2.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "initialization"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 6.0,
+          "command": [
+            -0.5,
+            -0.5,
+            -0.5
+          ],
+          "kind": "constant"
+        },
+        {
+          "seconds": 12.0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "kind": "constant"
+        }
+      ]
+    }
+  ]
+}

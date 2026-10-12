@@ -1,0 +1,17 @@
+{
+  "id": "710e7cc2749b496bb8fdc7f51ebb323f",
+  "kind": "Bounded standard PPO continuation from 24650 and full v2 comparison",
+  "entrypoint": "scripts/run_native_continuation.py",
+  "arguments": [
+    "--training-job",
+    "5ab68628f8664d5d8b0b91c3cfaa64b5",
+    "--evaluation-job",
+    "f966c981f01b43a3917000b34483e023"
+  ],
+  "status": "completed",
+  "created": "2026-10-12T13:07:57.425617+00:00",
+  "updated": "2026-10-12T13:23:17.597603+00:00",
+  "returncode": 0,
+  "worker_pid": 73718,
+  "process_pid": 73719
+}

@@ -1,0 +1,12 @@
+{
+  "id": "e650aac1da80452cb4094f836bb5b0ca",
+  "kind": "sim2sim_isaac",
+  "entrypoint": "scripts/run_sim2sim_isaac_audit.py",
+  "arguments": [],
+  "status": "failed",
+  "created": "2026-10-12T09:34:42.961531+00:00",
+  "updated": "2026-10-12T09:35:38.804564+00:00",
+  "returncode": 1,
+  "worker_pid": 45238,
+  "process_pid": 45239
+}

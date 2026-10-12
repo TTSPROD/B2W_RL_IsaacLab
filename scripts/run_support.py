@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
+import signal
 from pathlib import Path
 import subprocess
 import sys
@@ -56,7 +57,11 @@ def sha256(path):
 
 def local_command(script, arguments=()):
     if sys.platform != "win32":
-        raise RuntimeError("This local runtime is Windows; server jobs are not enabled")
+        python = ROOT / (".runtime/isaaclab-ubuntu-venv/bin/python"
+            if script in {"scripts/run_isaac_audit_child.py", "scripts/run_isaac_continuation_child.py", "scripts/run_native_trace_diagnosis.py"} else ".venv/bin/python")
+        if not python.is_file():
+            raise RuntimeError("Missing project-local Ubuntu runtime: .venv/bin/python")
+        return [str(python), script, *map(str, arguments)]
     return ["powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File",
             str(ROOT / "scripts/run_local.ps1"), script, *map(str, arguments)]
 
@@ -68,11 +73,17 @@ def stop_process_tree(process):
             subprocess.run(["taskkill.exe", "/PID", str(process.pid), "/T", "/F"],
                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
         else:
-            process.terminate()
+            if os.getpgid(process.pid) == process.pid:
+                os.killpg(process.pid, signal.SIGTERM)
+            else:
+                process.terminate()
         try:
             process.wait(timeout=10)
         except subprocess.TimeoutExpired:
-            process.kill()
+            if sys.platform != "win32" and os.getpgid(process.pid) == process.pid:
+                os.killpg(process.pid, signal.SIGKILL)
+            else:
+                process.kill()
             process.wait(timeout=10)
 
 

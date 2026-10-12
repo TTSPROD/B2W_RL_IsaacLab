@@ -1,0 +1,127 @@
+{
+  "job_id": "b9fe3802eb4244d48a020a166b4680c1",
+  "executed_manifest_sha256": "7302bf2450ebdfd185711e9f6b77c489203e0535adfe706d6432f9a3192eceb7",
+  "frozen_plan_sha256": "77e16c84a0360fef5f1ddaf9344b894d188682e5446179022755740377446ff5",
+  "raw_count": 113,
+  "executed_source_count": 26,
+  "artifact_count": 8,
+  "transport_timing_passed": true,
+  "runtime_gate_passed": false,
+  "rejected_targets": [
+    {
+      "case": "longitudinal",
+      "policy_tick": 1013,
+      "scheduled_time_s": 20.26,
+      "command": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "native_fault": "target_limit",
+      "violations": [
+        {
+          "slot": 12,
+          "joint": "FR_foot_joint",
+          "target": -50.961669921875,
+          "limits": [
+            -50,
+            50
+          ],
+          "measured_position_rad": 126.21463012695312,
+          "measured_velocity_rad_s": -0.5457151532173157,
+          "raw_action": -10.192334175109863
+        }
+      ],
+      "target_generation_after_rejection": 1013,
+      "last_accepted_target_generation": 1013
+    },
+    {
+      "case": "lateral",
+      "policy_tick": 1002,
+      "scheduled_time_s": 20.04,
+      "command": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "native_fault": "target_limit",
+      "violations": [
+        {
+          "slot": 5,
+          "joint": "FL_calf_joint",
+          "target": -0.42492520809173584,
+          "limits": [
+            -2.82,
+            -0.43
+          ],
+          "measured_position_rad": -1.6284210681915283,
+          "measured_velocity_rad_s": 0.10184556245803833,
+          "raw_action": 4.300299167633057
+        }
+      ],
+      "target_generation_after_rejection": 1002,
+      "last_accepted_target_generation": 1002
+    },
+    {
+      "case": "yaw",
+      "policy_tick": 1001,
+      "scheduled_time_s": 20.02,
+      "command": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "native_fault": "target_limit",
+      "violations": [
+        {
+          "slot": 5,
+          "joint": "FL_calf_joint",
+          "target": -0.3084162473678589,
+          "limits": [
+            -2.82,
+            -0.43
+          ],
+          "measured_position_rad": -1.5661301612854004,
+          "measured_velocity_rad_s": 0.8414677977561951,
+          "raw_action": 4.7663350105285645
+        }
+      ],
+      "target_generation_after_rejection": 1001,
+      "last_accepted_target_generation": 1001
+    },
+    {
+      "case": "mixed",
+      "policy_tick": 400,
+      "scheduled_time_s": 8.0,
+      "command": [
+        -0.5,
+        -0.5,
+        -0.5
+      ],
+      "native_fault": "target_limit",
+      "violations": [
+        {
+          "slot": 5,
+          "joint": "FL_calf_joint",
+          "target": -0.41689062118530273,
+          "limits": [
+            -2.82,
+            -0.43
+          ],
+          "measured_position_rad": -1.7302377223968506,
+          "measured_velocity_rad_s": 0.13502943515777588,
+          "raw_action": 4.332437515258789
+        }
+      ],
+      "target_generation_after_rejection": 400,
+      "last_accepted_target_generation": 400
+    }
+  ],
+  "total_accepted_policy_ticks": 4016,
+  "previous_jobs": [
+    "4e8112e4f17347ed809583415301a186",
+    "8a9aeed68d6b45f185642db7745a5347"
+  ],
+  "hardware_enabled": false,
+  "simulation_qualified": false
+}

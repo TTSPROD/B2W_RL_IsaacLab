@@ -1,0 +1,22 @@
+{
+  "schema": "b2w_sim2sim_live_isaac_audit_plan_v1",
+  "frozen_date": "2026-10-12",
+  "hardware_enabled": false,
+  "training_updates": 0,
+  "isaaclab_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+  "isaacsim_version": "5.1.0",
+  "torch_version": "2.7.0+cu128",
+  "device": "cuda:0",
+  "policy": 24650,
+  "protocol": "sim2sim_isaac_protocol",
+  "terrain": "flat_mu_100",
+  "reset_seed": 73001,
+  "num_envs": 5,
+  "case_order": ["stand", "longitudinal", "lateral", "yaw", "mixed"],
+  "commands": "unchanged complete locomotion_v2_protocol cases; same command prefix as frozen MuJoCo diagnostic",
+  "physics": "pinned Robot Lab asset/task with existing evaluator's nominal overrides; no dynamics/gain/target changes",
+  "target_guard": "counterfactual monitor only: desired leg q vs hard ranges and wheel dq vs +/-50; no stop or clipping in Isaac diagnostic",
+  "measure": "resolved PhysX masses/COM/inertia/dof properties/actuator classes, full observations/raw actions/targets/guard events, unchanged v2 assessment and 200 Hz safety",
+  "runtime_gate": "live resolved snapshot, five records, unchanged 57->16 ABI and no PPO/optimizer updates; policy outcome failures are retained",
+  "open": ["full independent Isaac/MuJoCo reset/envelope comparison", "DDS/guard-compatible target semantics", "physics reconciliation validation", "hardware mapping/calibration/authorization"]
+}

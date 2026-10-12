@@ -1,0 +1,12 @@
+{
+  "run": "logs/rsl_rl/b2w_native_standard_focus_9930/2026-10-12_15-48-06_5ab68628f8664d5d8b0b91c3cfaa64b5",
+  "checkpoint": "logs/rsl_rl/b2w_native_standard_focus_9930/2026-10-12_15-48-06_5ab68628f8664d5d8b0b91c3cfaa64b5/model_24799.pt",
+  "checkpoint_sha256": "e7f824403e121991ed8696646eb5a6e62dea73d5d5231a31637f3b6e8ac059ec",
+  "ppo_updates": 150,
+  "num_envs": 4000,
+  "num_steps_per_env": 24,
+  "seed": 9930,
+  "final_iteration": 24799,
+  "standard_runner": true,
+  "custom_runner_hooks": false
+}
