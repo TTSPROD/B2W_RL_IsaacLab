@@ -7,6 +7,14 @@ Policy 24650 — development candidate. Этапы S0–S7 и их зависи�
 `scripts/run_sim2sim.py`; его запуск и ограничения описаны в
 [INFRASTRUCTURE](INFRASTRUCTURE.md). Hardware-проверок в проекте ещё не было.
 
+**Текущий метод S2:** по опубликованному [Unitree RL Lab](https://github.com/unitreerobotics/unitree_rl_lab#deploy)
+после Isaac Lab проверять policy через MuJoCo/SDK2, затем переходить к sim2real.
+RL Lab не содержит готового B2W recipe; [Unitree MuJoCo](https://github.com/unitreerobotics/unitree_mujoco)
+содержит B2W asset и bridge. Для нашего S2 baseline закреплены исходные
+B2W MJCF и C++ bridge без изменения их физики. Выравнивание параметров
+PhysX/MuJoCo не опубликовано Unitree как обязательный этап.
+Проектное обоснование и протокол — [UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md).
+
 Offline и DDS используют один `PolicyRuntime` и один native SDK2 encoder.
 Семантика соответствует Isaac evaluation: previous **raw** action,
 clip каждого observation term до scale и clip физических targets после scale.
@@ -18,7 +26,8 @@ S2 diagnostic использует официальный `Go2Bridge` для B2W
 `run()` вместе с physics на одном потоке. Actor получает только DDS LowState;
 прямой MuJoCo state используется отдельно для physics telemetry/abort.
 Короткая nominal программа и live disconnect/restart не закрывают полный
-S2 gate: actuator physics и matched nominal/variation envelope остаются открыты.
+S2 gate: полный command/zero protocol, tracking и matched nominal/variation
+envelope на исходной модели остаются открыты.
 В продолжении `scripts/run_sim2sim_faults.py` DDS publisher/watchdog вынесен в
 отдельный C++ process. [Frozen plan](../configs/sim2sim_fault_plan_20261012.json)
 прошёл 48 DDS fault tests под четырьмя CPU load processes, включая GIL hang,
@@ -31,8 +40,8 @@ hard realtime гарантии или защиты от отказа самог�
 подтвердило leg-law/source-asset non-parity. Один seed полного Flat v2 command
 prefix: stand завершён, четыре motion programs остановлены target guard при
 реверсе. Training/export clips и guard для desired q/dq имеют разные границы;
-silent clipping или ослабление guard не вводились. Нужны physics reconciliation
-и отдельное решение по допустимым target semantics до повторного envelope.
+silent clipping или ослабление guard не вводились. Нужны полный replay на
+исходной модели и отдельное решение по допустимым target semantics.
 **Live PhysX audit выполнен** в отдельном native runtime: [результат](results/2026-10-12-sim2sim-live-isaac.md),
 5 полных programs, 3/5 success, unsafe0. Resolved массы/armature/actuators
 подтвердили model differences; desired calf target выходит за hard range также
@@ -44,13 +53,15 @@ targets и аппаратные constraints этим не подтвержден
 закрыл numeric DC gap на1232 points в новом MuJoCo executable, сохранив
 original bridge и strict guard. Stand pass в обоих вариантах; DC yaw полный,
 tracking fail/stop pass, остальные motion cases остановлены target_limit.
-Physical unsafe0; masses/passive dynamics/implicit wheels и target contract
-остаются открытыми. Diagnostic exit0 не закрывает full S2 runtime acceptance.
+Physical unsafe0; влияние различий движков и target contract остаются
+открытыми. Это контрфактическая диагностика, не Unitree baseline.
+Diagnostic exit0 не закрывает full S2 runtime acceptance.
 
 [Armature0 factor](results/2026-10-12-sim2sim-armature-factor.md) не устранил
 guard gap: success1/5 в обоих arms, longitudinal tilt10.97°→43.22°.
 Variant не принят как runtime baseline; unsafe0 при threshold60° не заменяет
 проверку устойчивости, tracking и полного continuous-zero envelope.
+Плановый passive damping0 factor снят с очереди S2.
 
 ## Происхождение limits: проверка официальных источников 12.10
 
@@ -106,8 +117,9 @@ Legacy guard/plan иих raw evidence сохранены, current replay исп�
 `scripts/run_sim2sim_timing.py`, physics bridge — `b2w_mujoco_timed_bridge`;
 PD watchdog иего deadlines unchanged. Все5 programs/9400ticks, measurement
 valid5/5, maxinference1.10ms/sampleage1.38ms; runtime gate passed, stop5/5,
-unsafe0. Tracking2/5, remaining physics/envelope/hardware gates открыты;
-это не hard realtime guarantee или hardware authorization.
+unsafe0. Tracking2/5, исходный Unitree baseline, envelope и hardware gates открыты;
+это не hard realtime guarantee или hardware authorization. Replay использовал
+DC actuator law; его 2/5 не переносятся на исходный Unitree bridge.
 
 ## Изменения плана после ревизии
 
@@ -195,7 +207,7 @@ service, хотя симулятор продолжает его выдават�
 нужен независимый проверенный estimator/внешнее измерение; actor 57 не получает
 base linear velocity. [Ограничение Unitree MuJoCo](https://github.com/unitreerobotics/unitree_mujoco).
 
-## S3–S4: измерить B2W и проверить перенос физики
+## S3–S4: проверить целевой B2W и его рабочий диапазон
 
 Сначала получить разрешённую read-only запись: IMU orientation/gyro, q/dq,
 timestamps, доступные status/current/temperature и документированные limits.
@@ -203,26 +215,19 @@ timestamps, доступные status/current/temperature и документи�
 разрешённые стендовые воздействия по одному приводу/группе с поддержкой корпуса:
 амплитуды, длительности и abort limits фиксируются по возможностям целевого B2W.
 
-Сопоставить command→q/dq/current response ног и колёс, delay, saturation, friction
-и зависимость от нагрузки/питания. Проверить массы, COM/inertia, контактную геометрию.
-Одинаковые ограниченные step/sine-профили воспроизвести на стенде и в симуляции,
-разделить calibration и validation записи. Методика actuator/latency identification
-подтверждена на реальном Minitaur у [Tan et al., 2018](https://arxiv.org/html/1804.10332);
-их численные параметры не относятся к B2W.
-
-У [Lee et al., Science Robotics, 2024](https://arxiv.org/html/2405.01792v1)
-физически проверен LLC 12+4 при 50 Hz; модели leg/wheel actuators различны,
-wheel torque оценивается через модель тока. Для нашего B2W отдельно измерить
-velocity servo и калибровку current→torque. Нельзя считать ток точным моментом
-или заменять реальную динамику идеальным velocity actuator. Их recurrent/perceptive
-policy и hardware не являются готовой заменой 57-input actor.
-
-В simulation manifest записать источник каждого параметра и неопределённость.
-При необходимости обучения DR покрывает обоснованные интервалы массы/COM,
-трения, приводов, delay/jitter и IMU errors. Проверить frozen candidate на nominal
-и variation cases, включая transitions и непрерывный ноль. Параметры не подбирать
-под pass rate. Isaac/MuJoCo оцениваются по контракту движения, без требования
-совпадения мировых координат. Новое обучение остаётся отдельным решением.
+Это проектные проверки перед разрешением аппаратного управления, а не
+опубликованный Unitree критерий равенства PhysX и MuJoCo. Зафиксировать
+измеренные command→LowState q/dq, задержки, доступные status/current/temperature,
+ограничения и версии firmware. Сопоставить их с ранее объявленным диапазоном
+команд, fault/stop поведением и опубликованными
+[B2W SDK2 примером](https://github.com/unitreerobotics/unitree_sdk2/blob/main/example/b2w/b2w_stand_example.cpp),
+[B2W MuJoCo моделью](https://github.com/unitreerobotics/unitree_mujoco/blob/main/unitree_robots/b2w/b2w.xml)
+и [B2W описанием](https://github.com/unitreerobotics/unitree_ros/blob/master/robots/b2w_description/urdf/b2w_description.urdf).
+Различия модели и целевого робота записывать как открытые ограничения
+переноса; менять параметры симулятора только по отдельной гипотезе и
+повторной проверке, не для подгонки pass rate. Проверить frozen candidate
+на заранее заданных nominal/variation случаях, включая переходы и
+непрерывный ноль. Новое обучение остаётся отдельным решением.
 
 ## S5–S7: последовательность на роботе
 

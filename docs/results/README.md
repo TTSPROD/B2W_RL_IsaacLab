@@ -3,6 +3,11 @@
 Текущий результат: [сравнение трёх policy по v2](2026-09-30-locomotion-v2-selection.md),
 [машиночитаемая сводка](evidence/locomotion_v2_20260930/summary.json).
 Кандидат core_24650; все nominal cells пока не пройдены, hardware approval отсутствует.
+Действующая очередность — [PROJECT_PLAN](../PROJECT_PLAN.md), S2 baseline —
+[UNITREE_SIM2SIM_METHOD](../UNITREE_SIM2SIM_METHOD.md). Предложения
+«следующего physics factor» в датированных отчётах ниже исторические;
+`damping=0` снят с очереди. DC/armature варианты не заменяют исходную
+модель Unitree.
 
 История:
 
@@ -49,16 +54,19 @@ Git history не переписывался.
   explicit recovery/epoch и независимость от Python/GIL проверены, physics/envelope открыт.
 - [Actuator/asset audit и Flat command protocol 12.10](2026-10-12-sim2sim-physics-audit.md) —
   1232 native law samples; source physics non-parity, stand pass, четыре programs
-  остановлены target guard на реверсе. Full runtime gate не пройден, live PhysX audit впереди.
+  остановлены target guard на реверсе. Full runtime gate не пройден;
+  последующий live PhysX audit выполнен отдельно.
 - [Live native Isaac/PhysX audit 12.10](2026-10-12-sim2sim-live-isaac.md) — отдельный
   CUDA runtime, 5 полных Flat programs: 3/5 success, unsafe0; массы/armature
   подтверждены, desired-target guard gap присутствует также в PhysX. Full S2 открыт.
 - [Отдельный leg actuator-law factor 12.10](2026-10-12-sim2sim-actuator-factor.md) —
   DC numeric parity1232/1232, disabled240/240; fresh baseline/DC success1/5 каждый,
   unsafe0. DC yaw полный с tracking fail/stop pass; guard gap и full S2 открыты.
+  DC variant — только диагностика.
 - [Armature0 factor 12.10](2026-10-12-sim2sim-armature-factor.md) — same DC binary,
   success1/5 в обоих arms, guard gap не устранён; longitudinal tilt10.97°→43.22°.
-  Variant experimental, полный S2 открыт.
+  Variant experimental, полный S2 открыт; предложенный тогда damping0
+  больше не является очередным S2 gate.
 - [Actual-state / PD guard 12.10](2026-10-12-sim2sim-pd-guard.md) — actor/physics
   прежние, native checks87/87; все5 programs выполнены, success2/5, stop5/5,
   unsafe0. Runtime gate failed из-за yaw telemetry gap иinference timeout
@@ -66,4 +74,5 @@ Git history не переписывался.
 - [GC/deferred telemetry timing fix 12.10](2026-10-12-sim2sim-timing-fix.md) —
   IO/GC mechanisms воспроизведены, все9400ticks/5 programs, timing/measurement
   gate passed без увеличенияlimits; maxinference1.10ms/sampleage1.38ms.
-  Stop5/5, unsafe0, tracking2/5; полныйS2/qualification открыт.
+  Stop5/5, unsafe0, tracking2/5 на DC variant; полный S2 на исходном
+  bridge Unitree и qualification открыты.

@@ -1,6 +1,10 @@
 # План B2W
 
 Актуально на 12 октября 2026.
+Решение по S2 основано на [опубликованном процессе Unitree и его B2W MuJoCo
+модели](UNITREE_SIM2SIM_METHOD.md). Ниже в истории опытов предложения
+`next/следующий` описывают состояние **на дату отчёта**; действующую
+очередность задают «Текущее решение» и раздел S2 ниже.
 
 ## Цель и контракт
 
@@ -17,6 +21,14 @@ Flat/Rough/Stairs принимаются только в измеренном д
 автоматически; переход на стандартную базу отразить в manifest и preflight.
 
 ## Текущее решение
+
+Для S2 основной независимый sim2sim baseline — неизменённые pinned B2W MJCF
+и C++ SDK2 bridge Unitree с тем же actor/mapper/runtime. Проверять полный
+command/zero protocol и DDS fault/timing на этой базе. DC law и armature0
+остаются диагностическими вариантами; ранее предложенный passive damping0
+снят с очереди. Unitree описывает переход Isaac Lab→MuJoCo→sim2real, но не
+предписывает выравнивать параметры PhysX и MuJoCo. S2 на исходной модели
+ещё не принят. [Основание и следующий протокол](UNITREE_SIM2SIM_METHOD.md).
 
 12.10 пользователь разрешил новое **локальное дообучение** от 24650 и до4000env.
 Объявлен bounded native standard PPO A/B: по150updates, seed9930, только
@@ -204,31 +216,30 @@ Simulation qualification и hardware-approved policy пока нет.
    MuJoCo leg law и source asset parameters отличаются. Все пять programs
    одного seed проверены: stand завершён, четыре motion programs остановлены
    target guard при реверсе; полный runtime gate не пройден. Limits и actor
-   не менялись. Следующий шаг — resolved live Isaac/PhysX audit в изолированном
-   local runtime, затем один объявленный physics reconciliation factor.
+   не менялись. Тогда был предложен resolved live Isaac/PhysX audit; он выполнен
+   ниже. Совмещение параметров физики больше не является обязательным S2 gate.
    [Отчёт и raw hashes](results/2026-10-12-sim2sim-physics-audit.md).
    **Live native Isaac/PhysX audit выполнен:** отдельная local CUDA среда,
    5 полных Flat programs одного seed — 3/5 success, 0 unsafe. Resolved mass
    82.41985 кг, armature0; leg DC и implicit wheel parameters сохранены.
    Desired calf q нарушает strict deployment guard также в Isaac: lateral
    3 ticks, yaw 1 tick, actual q безопасен. Это target-contract gap, guard
-   не ослабляется. Следующий ограниченный factor — actuator-law reconciliation
-   MuJoCo без одновременного изменения масс/геометрии; полный S2 открыт.
+   не ослабляется. Тогда был предложен отдельный actuator-law factor;
+   он выполнен как диагностика, а не замена исходной модели Unitree.
    [Отчёт и executed hashes](results/2026-10-12-sim2sim-live-isaac.md).
    **Отдельный leg actuator-law factor выполнен:** DC executable совпал с
    pinned Isaac методом на 1232 points; wheels unchanged, 240 disabled cases
    дают torque0. Fresh baseline и DC — success1/5 каждый, unsafe0; DC yaw
    полный, tracking fail/stop pass, остальные motion DC остановлены guard.
    Source XML и 398 compiled arrays подтверждают отсутствие других physics
-   изменений. Следующий bounded factor — armature0 по live PhysX при прежних
-   DC law/damping/массах/геометрии/guard; target-contract gap и full S2 открыты.
+   изменений. Следующий на тот момент armature0 factor ниже выполнен
+   как диагностика; target-contract gap и full S2 открыты.
    [Результат и raw hashes](results/2026-10-12-sim2sim-actuator-factor.md).
    **Armature0 factor выполнен:** один и тот же DC binary, изменены только
    16 joint armature attributes и derived generalized inertia. Success1/5
    в обоих arms, unsafe0; guard gap сохраняется. Armature0 longitudinal tilt
-   вырос с10.97° до43.22°, variant не принят как runtime baseline. Следующий
-   отдельный physics factor — passive damping0 с заранее объявленным armature
-   baseline и прежними actor/guard/массами/геометрией; desired-target contract
+   вырос с10.97° до43.22°, variant не принят как runtime baseline. Предложение
+   продолжить passive damping0 отозвано как этап S2; desired-target contract
    и full S2 остаются открытыми.
    [Результат и immutable evidence](results/2026-10-12-sim2sim-armature-factor.md).
    **Проверка published limits:** q ranges совпали с official B2-W URDF/MuJoCo,
@@ -251,8 +262,8 @@ Simulation qualification и hardware-approved policy пока нет.
    Controlled IO A/B подтвердил отсутствие IO stalls вfixed physics loop.
    Все9400ticks/5 programs, measurementvalid5/5, maxinference1.10ms/sampleage1.38ms,
    runtime gate passed без увеличения20/10ms budgets. Stop5/5, unsafe0,
-   tracking success2/5. Следующий scope — matched physics/passive dynamics
-   иосевой tracking; qualification/full S2 envelope остаются открытыми.
+   tracking success2/5 на DC variant. Следующий S2 шаг — полный replay на
+   исходной модели/bridge Unitree; осевой tracking и полный envelope открыты.
    [Причины, fix, timings иimmutable hashes](results/2026-10-12-sim2sim-timing-fix.md).
 13. Расширять принятый envelope по одному фактору. Не объявлять всё множество
    скоростей/поверхностей принятым по небольшому числу samples.
@@ -268,7 +279,7 @@ Training, тесты и сравнение выполняет независим
 |---|---|---|
 | S0 | Frozen policy/export/runtime/deployment manifest | Diagnostic manifest с export/source/binary SHA есть; hardware поля открыты |
 | S1 | Offline observations/actions/LowCmd parity, reset/stop | Native SDK2 software parity пройдена на Ubuntu; physical mapping не проверен |
-| S2 | Тот же executable через официальный MuJoCo DDS bridge; timing/fault tests | State/PD guard иbounded timing gate passed,87 native checks; 5 full programs/2 successes, physics/tracking/envelope открыты |
+| S2 | Тот же executable через исходные B2W MJCF и официальный MuJoCo DDS bridge; полный command/zero, timing/fault protocol | Software/DDS/fault checks пройдены; 5 full programs/2 successes и timing pass относятся к DC variant. На исходной модели полный replay, tracking и envelope открыты |
 | S3 | B2W motor order/signs/units/IMU, firmware, read-only telemetry | Не выполнен |
 | S4 | Actuator/latency identification и nominal/variation validation | Не выполнен |
 | S5 | Стенд с поддержкой корпуса, ownership/stop, zero policy | Только после отдельного допуска |

@@ -11,6 +11,11 @@
 
 Источник очередности — `docs/PROJECT_PLAN.md`; перед training work читать также
 `docs/INFRASTRUCTURE.md`.
+Для S2 читать `docs/UNITREE_SIM2SIM_METHOD.md`: основной baseline —
+исходные pinned B2W MJCF и C++ SDK2 bridge Unitree. Изменения DC law,
+armature и damping — только отдельная диагностика; их результаты не
+засчитывать как acceptance исходной модели. Не считать выравнивание
+PhysX/MuJoCo предписанием Unitree.
 
 Текущий development candidate — `policies/local/core_24650/`; сохранённый
 server ancestor — `policies/server/upstream_19999/`.

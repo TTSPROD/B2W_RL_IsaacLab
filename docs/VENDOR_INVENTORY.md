@@ -80,6 +80,10 @@ CycloneDDS. ROS2 интеграция B2W policy и round-trip SDK2↔ROS2 ещ�
 
 ## unitree_mujoco: модель и simulator bridge
 
+Исходные pinned B2W MJCF и C++ bridge являются основой текущего S2
+[по решению проекта](UNITREE_SIM2SIM_METHOD.md). Их bytes не меняются;
+варианты actuator/armature/damping собираются и учитываются отдельно.
+
 - [b2w.xml](../vendor/unitree_mujoco/unitree_robots/b2w/b2w.xml), `scene.xml`, `scene_terrain.xml`, heightmaps и meshes: B2W model assets.
 - [unitree_sdk2_bridge.h](../vendor/unitree_mujoco/simulate/src/unitree_sdk2_bridge.h), `main.cc`, [CMake](../vendor/unitree_mujoco/simulate/CMakeLists.txt), [config](../vendor/unitree_mujoco/simulate/config.yaml): C++ simulator и DDS bridge; также joystick/lodepng sources с licenses.
 - [unitree_sdk2py_bridge.py](../vendor/unitree_mujoco/simulate_python/unitree_sdk2py_bridge.py), `unitree_mujoco.py`, `config.py`: Python-вариант.
@@ -92,7 +96,9 @@ Boost, yaml-cpp, fmt и установленный SDK2. Это не автом�
 локальному Python MuJoCo 3.14.0. Для Python bridge отдельно нужен `unitree_sdk2_python`.
 Engine binaries и middleware не докачивались в source snapshot. По умолчанию
 upstream config выбирает Go2: B2W/domain/interface задавать проектной конфигурацией
-вне vendor. Сборка и DDS smoke test остаются этапом S2.
+вне vendor. Native сборка и ограниченный DDS smoke test выполнены 12.10;
+полный S2 на исходной модели открыт, см.
+[UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md).
 
 ## Проверка и дальнейшее использование
 

@@ -1,7 +1,11 @@
 # План обучения низкоуровневой политики B2W
 
-Актуализировано 5 октября 2026 после [результата D1.1](results/2026-10-01-schedule-pilot-result.md).
-Очередность задаёт [PROJECT_PLAN](PROJECT_PLAN.md). Development candidate —
+Историческая постановка, актуализирована 5 октября 2026 после
+[результата D1.1](results/2026-10-01-schedule-pilot-result.md).
+Предложения «следующего шага» ниже не являются текущим запуском:
+последующие specialist и native continuation завершены. Очередность задаёт
+[PROJECT_PLAN](PROJECT_PLAN.md), актуальные итоги — [TRAINING_STATUS](TRAINING_STATUS.md).
+Development candidate —
 core_24650; ancestor upstream_19999 сохранён. Simulation/hardware qualification нет.
 D1.1 job `2eaf04619ca64678a110e6cc9fa96ff9` завершён, exit 0:
 300 updates/плечо и 180 probe episodes. Parent/adaptive/fixed 27/24/22,

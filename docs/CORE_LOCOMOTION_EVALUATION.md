@@ -2,6 +2,9 @@
 
 Актуально на 30 сентября 2026. Исполняемый протокол —
 [locomotion_v2_protocol.py](../scripts/locomotion_v2_protocol.py).
+Протокол v2 остаётся действующим для отбора policy; текущий независимый
+S2 baseline и порядок Unitree описаны в
+[UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md).
 Цель отбора — сравнить готовые deterministic actors при одинаковой физике,
 командах и reset seeds. Это не проверка навигации и не разрешение SDK2 actuation.
 
@@ -144,9 +147,6 @@ reset samples и не заменяют validation. `run_stair_isolation.py` ре
 - [Agarwal et al., NeurIPS 2021](https://arxiv.org/abs/2108.13264):
   малые выборки требуют явного представления разброса и ограничений сравнения.
   Число 5/20 здесь — бюджет проекта, не предписанный авторами locomotion standard.
-- [Tan et al., RSS 2018](https://arxiv.org/abs/1804.10332):
-  перенос связан с качеством модели приводов, latency и randomization.
-  Численные параметры Minitaur не используются как параметры B2W.
 - [Robot Lab](https://github.com/fan-ziqi/robot_lab) и
   [rl_sar](https://github.com/fan-ziqi/rl_sar): практический training→export→sim2sim workflow;
   наличие viewer и actor не заменяет hardware qualification.

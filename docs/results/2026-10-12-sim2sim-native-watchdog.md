@@ -105,7 +105,8 @@ disarmed, сбрасывает raw action history. Старый epoch отвер
 ## Сохранение попыток и происхождения
 
 Предыдущие три попытки также завершились exit 0; их raw и отдельные
-[manifest/summary/state](evidence/sim2sim_native_watchdog_20261012/attempts/)
+[manifest](evidence/sim2sim_native_watchdog_20261012/attempts/14d8e0933f684329969c5fd8ef00681a/manifest.json)
+и отдельные summary/state каждой попытки в `evidence/sim2sim_native_watchdog_20261012/attempts/`
 сохранены. Первая (`14d8e093…`) имела ошибку evidence: snapshot fault читался
 до disabled publish, поэтому publish latency мог быть отрицательным при уже
 успешном independent observer gate. После observer теперь берётся новый native

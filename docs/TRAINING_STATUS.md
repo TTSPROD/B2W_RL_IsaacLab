@@ -1,6 +1,19 @@
 # Текущий статус B2W
 
-Дата актуализации: 5 октября 2026.
+Дата актуализации: 12 октября 2026.
+
+Последний local native standard PPO A/B от 24650 завершён: 150 updates
+на плечо при 4000 env, полный matched v2 parent/control/focus
+103/100/104 из 160, unsafe 0/1/1. Оба continuation отклонены, seed 9930
+и бюджет закрыты. Это новая runtime/task-линия, поэтому её parent 103/160
+не подменяет исторический 107/160 screen ниже.
+[Результат, raw integrity и limitations](results/2026-10-12-native-continuation.md).
+
+Sim2sim software/DDS diagnostics не приняли policy: последний replay
+2/5 tracking использовал изменённую DC law. Действующий S2 baseline и
+следующая проверка — [UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md).
+Все «следующие шаги» в хронологии ниже относятся к состоянию на дату
+соответствующего опыта. Текущую очередность задаёт [PROJECT_PLAN](PROJECT_PLAN.md).
 
 ## Кандидат и результат
 
@@ -24,7 +37,7 @@
 - Исторический v1 stage-2: 194/300, 0 unsafe; stage-3: 181/300, 0 unsafe.
   Эти результаты не сравниваются напрямую с v2 из-за изменения программ и scoring.
 
-## Открытые задачи
+## История закрытых пилотов и диагностик
 
 **D1.1 завершён и отклонён:** job `2eaf04619ca64678a110e6cc9fa96ff9`,
 exit 0, 01.10 14:03:29 МСК. Fresh preflights прошли; adaptive/fixed выполнили

@@ -54,7 +54,7 @@ lateral 0.50, yaw 0.65); RMSE yaw до 0.12–0.13. Это отдельная п
 
 24650 (v2 screen, 160 эпизодов): lateral/yaw на flat_mu_100 и rough_10 = 0/5;
 stairs_up_18 traverse_0.7 = 2/5; success 27/60 (в stair comparison). parent на
-подъёме 2/10, спуске 10/10. [Evidence](stair_comparison_1350_20261001/decision.json).
+подъёме 2/10, спуске 10/10. [Evidence](evidence/stair_comparison_1350_20261001/decision.json).
 
 ## 4. Зафиксированная гипотеза F1
 

@@ -7,6 +7,13 @@ Upstream-исходники закреплены в `vendor/manifest.json`; ло
 
 ## Нативная Ubuntu — sim2sim, 12 октября 2026
 
+Действующий S2 baseline и очередность — [UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md).
+Команды `sim2sim_actuator`, `sim2sim_armature`, `sim2sim_pd_guard` и
+`sim2sim_timing` ниже воспроизводят исторические диагностические variants
+с DC actuator law. Их 2/5 tracking и timing pass нельзя переносить на
+исходную B2W модель/bridge Unitree. Новую проверку baseline запускать с
+отдельным frozen plan и сохранять её собственные executed hashes.
+
 Текущий checkout: `/home/roman/Work/02_Git/B2W_RL_IsaacLab`.
 На этом host доступны RTX4070 Ti и driver 595.99.02; DDS diagnostic использует
 CPU, Python 3.11.16, PyTorch 2.8.0+cpu, MuJoCo 3.3.6. Это отдельная runtime-линия,
@@ -63,7 +70,7 @@ motion case остаётся failed; это не qualification. Original binarie
 `logs/dashboard/jobs/<id>/sim2sim_armature/`; [результат](results/2026-10-12-sim2sim-armature-factor.md).
 Guard gap не устранён, longitudinal tilt вырос; variant остаётся experimental.
 
-Текущий отдельный actual-state / PD guard replay — `sim2sim_pd_guard`.
+Исторический отдельный actual-state / PD guard replay — `sim2sim_pd_guard`.
 Новый native executable и frozen profile разделяют actual q/dq/tilt bounds и
 Isaac desired-target envelope; DC physics/armature0.1/damping1 прежние.
 Raw — `logs/dashboard/jobs/<id>/sim2sim_pd_guard/`; [результат](results/2026-10-12-sim2sim-pd-guard.md).
@@ -72,12 +79,12 @@ checks все5 programs выполнены, но yaw telemetry/deadline failures
 runtime acceptance открытым. Single validation-repeat raw сохранён отдельно
 в `sim2sim_pd_measurement/`, без изменения threshold или hidden retries.
 
-Текущий replay сtiming fix — `sim2sim_timing`: scoped GC наtrial boundary,
+Последний диагностический replay с timing fix — `sim2sim_timing`: scoped GC на trial boundary,
 preallocated physics capture/deferred CSV, per-job role affinity наразных
 physical cores иwall/CPU stage diagnostics. Guard/actor/physics/deadlines прежние.
 Raw — `logs/dashboard/jobs/<id>/sim2sim_timing/`; [результат](results/2026-10-12-sim2sim-timing-fix.md).
 Bounded timing/measurement runtime gate passed, все5 programs/9400ticks;
-tracking2/5, qualification нет. Global scheduler/governor/чужие процессы не менялись.
+tracking2/5 на DC variant, qualification нет. Global scheduler/governor/чужие процессы не менялись.
 
 ## Native Ubuntu Isaac/PhysX audit
 

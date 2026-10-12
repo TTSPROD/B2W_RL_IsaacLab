@@ -1,5 +1,8 @@
 # MuJoCo: отдельный armature0 factor, 12 октября 2026
 
+Исторический диагностический опыт. Действующая очередь S2 —
+[исходная модель и bridge Unitree](../UNITREE_SIM2SIM_METHOD.md).
+
 **Armature0 не устранил target-contract gap и не повысил число successes.**
 Stand прошёл в обоих вариантах; armature0 yaw полный, tracking fail/stop pass;
 остальные motion programs остановлены strict guard. В longitudinal максимальный
@@ -115,9 +118,8 @@ executed source snapshots**, policy artifacts и native binaries.
 
 Частичное приближение physics не решает desired-target contract автоматически.
 Armature0 сохранён как experimental factor; original/ DC armature0.1 baseline
-сохранён. До runtime acceptance нужны согласованные semantics desired targets,
-remaining physics parity и full matched command/zero envelope.
-Следующий отдельный physics factor — passive damping0 по live PhysX, с
-объявленным armature baseline, прежним actor/guard и без simultaneous mass/
-geometry/implicit-wheel changes. Нельзя объявлять все PhysX dynamics равными
-после изменения одного числа. Hardware actions/training не выполнялись.
+сохранён. До runtime acceptance нужны согласованные semantics desired targets
+и полный matched command/zero envelope на исходной модели Unitree.
+Предложенный на дату опыта passive damping0 factor снят с очереди S2:
+Unitree не предписывает PhysX/MuJoCo parameter matching. Следующий gate —
+полный replay на исходной модели и bridge; hardware actions/training не выполнялись.

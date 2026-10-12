@@ -1,5 +1,9 @@
 # S2: actuator/asset audit и Flat command protocol
 
+Исторический source/diagnostic audit; различие PhysX и MuJoCo здесь
+не является требованием выравнивания параметров. Действующее решение —
+[UNITREE_SIM2SIM_METHOD](../UNITREE_SIM2SIM_METHOD.md).
+
 12 октября 2026. **Полный DDS/runtime gate не пройден:** stand завершён,
 четыре motion-программы остановлены `target_limit` при реверсе. Численный audit
 выполнен и подтвердил различия моделей. Core_24650 остаётся development candidate;
@@ -137,7 +141,8 @@ Exports сохранены неизменными:
 - 24650: `6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36`.
 - Ancestor 19999: `f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff`.
 
-Предыдущие [attempts](evidence/sim2sim_physics_20261012/attempts/) сохранены:
+Предыдущие attempts сохранены: [manifest первой попытки](evidence/sim2sim_physics_20261012/attempts/4e8112e4f17347ed809583415301a186/manifest.json),
+остальные файлы — в `evidence/sim2sim_physics_20261012/attempts/`.
 `4e8112e4…` остановлен preflight test до physics из-за округления MjSpec XML
 keyframe; запись qpos/qvel исправлена до 17 significant digits без изменения
 допусков. `8a9aeed6…` выполнил audit и все пять programs, exit 2, те же четыре
@@ -145,12 +150,12 @@ guard failures; после него добавлено логирование re
 plan, thresholds и physics между этими попытками не менялись. Скрипты/binary
 текущей implementation не подменяют hashes прежних выполненных запусков.
 
-Следующий шаг — отдельный managed live Isaac/PhysX audit в изолированном local
-runtime: resolved mass/inertia/armature/passive dynamics, actuator response и
-target traces при таком же command prefix. Текущий Ubuntu `.venv` содержит
-CPU Torch/MuJoCo, не Isaac runtime. После этого можно объявить один отдельный
-physics reconciliation factor и повторить bounded DDS protocol. Guard/target
-semantics требуют явного проектного решения; не заменять это silent clipping.
+Предложенный тогда отдельный managed live Isaac/PhysX audit выполнен
+позднее; он измерил resolved свойства и target traces, но не сделал
+выравнивание параметров обязательным S2 gate. Текущий следующий шаг —
+полный DDS replay на исходной B2W модели/bridge Unitree с объявленным
+guard profile. Guard/target semantics требуют явного проектного решения;
+не заменять это silent clipping.
 Полные reset/friction variations, Rough/Stairs, hardware mapping/current/thermal
 и hardware authorization остаются открытыми.
 

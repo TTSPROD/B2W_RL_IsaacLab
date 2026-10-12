@@ -1,5 +1,12 @@
 # Скрипты B2W
 
+Текущая очередность — [PROJECT_PLAN](../docs/PROJECT_PLAN.md);
+[метод S2](../docs/UNITREE_SIM2SIM_METHOD.md) использует исходные B2W MJCF
+и C++ SDK2 bridge Unitree. Описанные ниже `sim2sim_actuator`,
+`sim2sim_armature`, `sim2sim_pd_guard`, `sim2sim_timing` — выполненные
+диагностические варианты с изменённой DC actuator law. Их результат не
+является acceptance исходной модели Unitree.
+
 ## Рабочие entrypoints
 
 | Скрипт | Назначение |
@@ -80,7 +87,8 @@ Raw и executable/source/export hashes сохраняются в managed job dir
 нагрузкой. `sdk2_watchdog_client.py` передаёт epoch/command/inference tokens через
 локальный Unix socket. Raw, snapshots исходников, frozen plan и SHA actual
 checkpoint/export/contract/native binaries сохраняются в `sim2sim_faults/`
-каталога managed job. Hardware mode отсутствует; полный physics/envelope gate открыт.
+каталога managed job. Hardware mode отсутствует; полный S2 command/zero
+envelope на исходной модели открыт.
 
 Actuator/asset audit: `.venv/bin/python scripts/manage_runs.py start sim2sim_physics --no-monitor`.
 `sim2sim_physics_audit.py` извлекает pinned Robot Lab settings без Isaac imports,
@@ -142,7 +150,7 @@ guard cases +48 transport faults под CPU load, затем повторяет5
 Legacy guard/plan и их evidence сохраняются; новый profile не является
 hardware target contract или квалифицированным runtime.
 
-Текущий replay сисправлением timings:
+Последний диагностический replay с исправлением timing:
 `.venv/bin/python scripts/manage_runs.py start sim2sim_timing --no-monitor`.
 `bounded_gc` применяется непосредственно вshared trial иrestore выполняется
 послеnative cleanup; standalone repeat больше не пропускает GC protection.

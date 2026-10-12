@@ -1,6 +1,10 @@
 # План дообучения B2W low-level policy (ветка deepseek)
 
-Статус: рабочий документ на ветке `deepseek`, 1 октября 2026.
+Статус: **исторический план закрытой ветки `deepseek`**, 1 октября 2026.
+Ветка удалена после сохранения восстановимого Git bundle; этот документ
+не задаёт действующий recipe или разрешение запуска. Актуальная очередность —
+[PROJECT_PLAN](PROJECT_PLAN.md), итог stage D —
+[результат 01.10](results/2026-10-01-deepseek-stage-D.md).
 Базируется на первичных источниках [обзор мировых практик](research/2026-10-01-finetune-world-practices.md)
 и на текущем состоянии проекта ([PROJECT_PLAN](PROJECT_PLAN.md),
 [TRAINING_STRATEGY](TRAINING_STRATEGY.md), [v2 evaluation](CORE_LOCOMOTION_EVALUATION.md)).

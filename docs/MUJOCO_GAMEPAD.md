@@ -19,7 +19,9 @@
 `-Terrain stair_up`, `stair_down` и `scene -Xml <path>` доступны для ручного осмотра.
 Viewer использует pinned vendor MuJoCo model и собственный safety recorder;
 его telemetry и abort criteria не являются operating57 qualification.
-Согласование физики с Isaac и hardware остаётся отдельной работой.
+Viewer не выполняет официальный SDK2 DDS sim2sim protocol и не закрывает S2.
+Текущий порядок S2 задан в [UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md);
+выравнивание параметров PhysX/MuJoCo не является его обязательным gate.
 
 Записи ручных сеансов создаются в `logs/mujoco_gamepad/`, вне Git.
 DDS и транспорт робота viewer не открывает.

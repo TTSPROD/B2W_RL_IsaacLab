@@ -130,6 +130,7 @@ packages/caches/vendor и24650/ancestor bytes сохранены. Server/hardwar
 Гипотеза дополнительной осевой экспозиции для цельной policy на этом recipe не
 подтверждена. Бюджет не продлевать ине выбирать intermediate checkpoints
 постфактум. Перед следующим training recipe разобрать сохранённые unsafe/saturation
-иphase tracking traces; отдельно продолжить physics reconciliation sim2sim.
+и phase tracking traces; отдельно проверить исходный Unitree MuJoCo/DDS
+baseline по [действующему S2 методу](../UNITREE_SIM2SIM_METHOD.md).
 Результат не доказывает невозможность дальнейшего улучшения PPO или
 необходимость retrain с нуля.

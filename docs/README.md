@@ -1,34 +1,40 @@
 # Документация B2W
 
+Актуально на 12 октября 2026. Очередность работ задаёт
+[PROJECT_PLAN](PROJECT_PLAN.md); датированные планы и отчёты сохраняют
+условия и выводы на момент эксперимента.
+
+## Действующие документы
+
 | Документ | Назначение |
 |---|---|
-| [PROJECT_PLAN](PROJECT_PLAN.md) | Актуальная цель, gates и следующая работа |
-| [DEEPSEEK_FINETUNE_PLAN](DEEPSEEK_FINETUNE_PLAN.md) | Ветка deepseek: план дообучения 24650, мировые практики, gates |
-| [Мировые практики дообучения](research/2026-10-01-finetune-world-practices.md) | Обзор первичных источников wheeled-legged low-level training/testing |
-| [TRAINING_STRATEGY](TRAINING_STRATEGY.md) | Первичные источники, safety semantics, reset/schedule retention A/B, поднавыки/команды и acceptance |
-| [Обзор плана 01.10](results/2026-10-01-training-plan-review.md) | Executed reset/terminal mismatch, counters B и ограничения вывода |
-| [Reset-only pilot](results/2026-10-01-reset-pilot-plan.md) | Стандартный train.py, preflight, 2 × 300 updates и 180 probe episodes |
-| [Reset-only: результат](results/2026-10-01-reset-pilot-result.md) | 180 episodes, B отклонён; tempo/LR диагностика и следующая проверка |
-| [D1.1 schedule A/B](results/2026-10-01-schedule-pilot-plan.md) | Fresh preflight и 2 × 300 updates native adaptive/fixed, seed 9911 |
-| [TRAINING_STATUS](TRAINING_STATUS.md) | Текущий кандидат и проверенный результат |
-| [A/B на 1350 updates](results/2026-09-30-stair-comparison-1350.md) | Завершены 180 эпизодов; B отклонён, кандидат 24650 сохранён |
-| [Stair curriculum A/B](results/2026-09-30-stair-curriculum-plan.md) | Реализация, preflight, frozen rules и запуск 2 × 1500 updates |
-| [V2 выбор кандидата](results/2026-09-30-locomotion-v2-selection.md) | 19999 / 24650 / rl_sar, 480 эпизодов |
-| [Диагностика tracking и A/B](results/2026-09-30-tracking-diagnosis.md) | Малые команды, проверяемая гипотеза, фиксированный бюджет |
-| [Результат A/B пилота](results/2026-09-30-tracking-posture-pilot.md) | 2 × 100 updates, 420 probe episodes, без продвижения |
-| [Диагностика control и воспроизводимости](results/2026-09-30-stair-continuation-diagnosis.md) | 310 новых эпизодов, порядок actor и сравнение в одинаковых слотах |
-| [LR-пилот: зафиксированный план](results/2026-09-30-lr-pilot-plan.md) | LR cap 1e-5/1e-6, 2 × 300 updates, одинаковые evaluation slots |
-| [LR-пилот: результат](results/2026-09-30-lr-pilot-result.md) | 420 эпизодов, критерии не пройдены, кандидат 24650 сохранён |
-| [Исторический результат 24650](results/2026-09-28-core-selection-24650.md) | 300 v1 paired эпизодов, сохранённое provenance |
-| [CORE_LOCOMOTION_EVALUATION](CORE_LOCOMOTION_EVALUATION.md) | V2: источники, 160-episode screen, независимая validation |
-| [POLICY_CONTRACT](POLICY_CONTRACT.md) | ABI 57→16, scales, targets и 50 Hz |
-| [POLICY_REGISTRY](POLICY_REGISTRY.md) | Сохранённые веса и SHA-256 |
-| [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md) | Этапы безопасного sim2real |
-| [INFRASTRUCTURE](INFRASTRUCTURE.md) | Runtime, пути и команды проверки |
+| [PROJECT_PLAN](PROJECT_PLAN.md) | Цель, текущее решение, очередность и S0–S7 |
+| [UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md) | Официальный порядок Unitree, B2W baseline и следующий S2 protocol |
+| [TRAINING_STATUS](TRAINING_STATUS.md) | Текущий кандидат и последние результаты PPO |
+| [CORE_LOCOMOTION_EVALUATION](CORE_LOCOMOTION_EVALUATION.md) | V2 screen, validation и gates low-level policy |
+| [POLICY_CONTRACT](POLICY_CONTRACT.md) | ABI 57→16, scales, targets, previous action и 50 Hz |
+| [POLICY_REGISTRY](POLICY_REGISTRY.md) | Сохранённые checkpoints и SHA-256 |
+| [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md) | Этапы S0–S7 и аппаратные ограничения |
+| [INFRASTRUCTURE](INFRASTRUCTURE.md) | Машины, runtime, команды и raw evidence |
 | [VENDOR_INVENTORY](VENDOR_INVENTORY.md) | Закреплённые upstream snapshots |
 | [GAMEPAD_VIEWERS](GAMEPAD_VIEWERS.md) | Ручной просмотр в Isaac Sim и MuJoCo |
-| [Локальный dashboard](../dashboard/README.md) | Монитор progress/результатов; процессы выполняет независимый supervisor |
-| [Закрытие relkernel](results/2026-09-30-experiment-closure.md) | Удалённая ветка, сохранённый bundle и raw hashes |
+| [Результаты](results/README.md) | Датированные отчёты, evidence и история решений |
+| [Проверка документации 12.10](DOCUMENTATION_AUDIT_20261012.md) | Найденные неактуальные указания и внесённые исправления |
 
-Исторические ветки не входят в актуальный индекс. Минимальная lineage-документация
-ancestor→24650 сохранена для provenance; Git history не переписывался.
+## Исторические планы и анализ
+
+- [TRAINING_STRATEGY](TRAINING_STRATEGY.md) — постановка reset/schedule
+  пилотов 1–5 октября. Выполненные результаты и позднейшие решения находятся
+  в PROJECT_PLAN и TRAINING_STATUS.
+- [DEEPSEEK_FINETUNE_PLAN](DEEPSEEK_FINETUNE_PLAN.md) — план закрытой ветки
+  `deepseek`; не является действующим recipe или разрешением запуска.
+- [Обзор литературы 01.10](research/2026-10-01-finetune-world-practices.md) —
+  исторический исследовательский материал. Решение по **физике sim2sim**
+  опирается только на официальные материалы Unitree, приведённые в
+  UNITREE_SIM2SIM_METHOD.
+- [Закрытие relkernel](results/2026-09-30-experiment-closure.md) и
+  [результат DeepSeek stage D](results/2026-10-01-deepseek-stage-D.md) —
+  происхождение закрытых веток и экспериментов.
+
+[Скрипты](../scripts/README.md) · [Дашборд](../dashboard/README.md) ·
+[Политики](../policies/README.md) · [Vendor](../vendor/README.md).

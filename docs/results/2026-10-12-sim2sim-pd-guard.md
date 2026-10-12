@@ -1,5 +1,9 @@
 # Sim2sim: actual-state и PD-reference guard, 12 октября 2026
 
+Этот профиль проверен с DC actuator variant. Его guard/timing findings
+нужно отдельно воспроизвести на
+[исходном Unitree S2 baseline](../UNITREE_SIM2SIM_METHOD.md).
+
 **Guard исправлен для отдельного текущего sim2sim profile:** mechanical limits
 проверяются по actual DDS state, q_des/dq_des — по существующему Isaac target
 contract. Native checks87/87 passed. Полный Flat replay выполнил все5 programs,

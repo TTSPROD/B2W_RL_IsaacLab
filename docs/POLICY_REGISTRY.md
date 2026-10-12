@@ -2,6 +2,9 @@
 
 Текущий checkpoint registry содержит рабочий candidate и его upstream-предок.
 Сравнительная оценка также включает pinned rl_sar actor.
+Native continuation 12.10 отклонён (parent/control/focus 103/100/104,
+unsafe 0/1/1); registry и hashes ниже не менялись.
+[Результат](results/2026-10-12-native-continuation.md).
 
 | ID | Тип | Iteration | SHA-256 | Статус |
 |---|---|---:|---|---|

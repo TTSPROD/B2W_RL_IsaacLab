@@ -1,5 +1,9 @@
 # S2: resolved live Isaac/PhysX audit на native Ubuntu
 
+Этот PhysX run — диагностика исходного training engine. Его 3/5 нельзя
+переносить на MuJoCo; действующий S2 baseline описан в
+[UNITREE_SIM2SIM_METHOD](../UNITREE_SIM2SIM_METHOD.md).
+
 12 октября 2026. Live audit выполнен: пять полных Flat programs, **3/5 success,
 0 unsafe**. Stand/longitudinal/mixed прошли, lateral/yaw не прошли tracking.
 Desired calf targets выходят за deployment guard и в исходном PhysX;

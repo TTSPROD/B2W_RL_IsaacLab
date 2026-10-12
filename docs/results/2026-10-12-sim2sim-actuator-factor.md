@@ -1,5 +1,8 @@
 # MuJoCo: отдельный leg actuator-law factor, 12 октября 2026
 
+Исторический диагностический опыт. Его предложение следующего factor ниже
+заменено текущим [S2 baseline на исходной модели Unitree](../UNITREE_SIM2SIM_METHOD.md).
+
 DC-кривая ног согласована с pinned Isaac методом численно: **1232/1232 points,
 max error 0 Н·м**. Парный Flat diagnostic выполнен, но motion acceptance не
 пройдена. Stand успешен в обоих вариантах; DC yaw завершил всю программу,
@@ -134,6 +137,6 @@ Leg instantaneous torque law gap закрыт только в этом отде�
 Integrated PhysX equivalence, implicit wheel servo, passive dynamics,
 массы/инерции/contact conversion, target contract и matched envelope остаются
 открытыми. Candidate24650 и исходный baseline сохраняются.
-Следующий bounded physics factor — **armature0** по live PhysX, с прежними
-DC law, damping, массами/геометрией и guard; target-contract gap требует
-отдельного решения до runtime acceptance. Hardware approval отсутствует.
+На момент опыта следующим bounded physics factor был **armature0** по live
+PhysX; он выполнен и не улучшил acceptance. Сейчас требуется полный replay
+на исходном Unitree bridge; target-contract gap и hardware approval открыты.

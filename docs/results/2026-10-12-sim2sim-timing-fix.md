@@ -1,5 +1,9 @@
 # Sim2sim timing: GC и deferred telemetry, 12 октября 2026
 
+Timing результат получен на DC actuator variant. Следующий S2 gate —
+[полный replay исходной модели/bridge Unitree](../UNITREE_SIM2SIM_METHOD.md);
+ниже сохранены executed hashes и измерения именно этого запуска.
+
 **Timing/measurement failures устранены в bounded replay без увеличения
 лимитов.** Все5 programs/9400 ticks выполнены, measurement valid5/5,
 transport faults0, capture drops0, stop5/5, unsafe0. Runtime gate passed.
@@ -135,7 +139,7 @@ preflight. Эти implementation hashes отдельно записаны вanal
 source metadata не выдаются за executed source hashes основного job.
 
 Requested timing diagnosis/fix/replay выполнены. Следующий development scope:
-matched physics/passive dynamics иосевой tracking, не увеличение timing
-budgets. Single-seed bounded success не закрывает весь S2 envelope,
+полный исходный Unitree baseline и осевой tracking при прежних timing budgets.
+Single-seed bounded success не закрывает весь S2 envelope,
 watchdog-process failure mitigation, hardware calibration илиqualification.
 PPO/hardware actions не выполнялись, candidate24650 остаётся прежним.
