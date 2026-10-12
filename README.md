@@ -1,58 +1,96 @@
-# B2W RL · Isaac Lab
+# B2W RL — обучение политики движения Unitree B2W
 
-Низкоуровневая policy Unitree B2W: 57 observations → 16 actions
-(12 leg position targets и 4 wheel velocity targets), 50 Hz. Команды
-`(vx, vy, ωz)` задаёт внешний уровень в body frame. Ноль означает остановку
-и устойчивость; маршрут, waypoint и абсолютный heading относятся к внешнему уровню.
+Репозиторий для обучения, оценки и подготовки к развёртыванию низкоуровневой
+RL-политики колёсно-шагающего робота Unitree B2W. Обучение строится на
+[Isaac Lab](https://github.com/isaac-sim/IsaacLab) и закреплённой версии
+[Robot Lab](https://github.com/fan-ziqi/robot_lab); проверка переноса в другой
+симулятор использует опубликованные модель B2W и SDK2 bridge из
+[Unitree MuJoCo](https://github.com/unitreerobotics/unitree_mujoco).
 
-## Статус на 12 октября 2026
+Рабочая последовательность следует опубликованному подходу
+[Unitree RL Lab](https://github.com/unitreerobotics/unitree_rl_lab#deploy):
+обучение в Isaac Lab → sim2sim в MuJoCo → отдельная проверка перед sim2real.
+Готового B2W training/deploy recipe в Unitree RL Lab нет: B2W task и исходный
+training pipeline взяты из Robot Lab, а контракт, оценка и SDK2-интеграция
+разрабатываются в этом проекте. Подробно источники и принятое решение описаны
+в [методе sim2sim2real](docs/UNITREE_SIM2SIM_METHOD.md).
 
-`core_24650` остаётся development candidate: сравнительный v2 screen дал
-107/160, 0 unsafe, но все 32 ячейки не пройдены. Последний локальный
-native standard PPO A/B от этого parent завершён: parent/control/focus
-103/100/104 из 160, unsafe 0/1/1; оба новых checkpoints отклонены, seed и
-бюджет закрыты. [Результат](docs/results/2026-10-12-native-continuation.md).
+## Задача политики
 
-На Ubuntu пройдены ограниченные software/DDS и fault проверки sim2sim.
-Исправленный timing replay выполнил пять Flat программ, но tracking прошёл
-2/5; replay использовал изменённую DC actuator law. Полного S2 на исходных
-B2W MJCF и bridge Unitree, simulation qualification и аппаратного допуска нет.
-[Метод Unitree и решение проекта](docs/UNITREE_SIM2SIM_METHOD.md) ·
-[История S2](docs/results/README.md).
+Actor получает **57 observations** и с частотой **50 Гц** выдаёт **16 actions**:
+12 целевых положений суставов ног и 4 целевые скорости колёс. Команду скорости
+`(vx, vy, omega_z)` задаёт внешний уровень в системе координат корпуса. При
+нулевой команде робот должен остановиться и сохранять устойчивость. Маршрут,
+waypoints и абсолютный курс не входят в задачу этой политики.
 
-Текущую очередность задаёт [PROJECT_PLAN](docs/PROJECT_PLAN.md).
-[TRAINING_STATUS](docs/TRAINING_STATUS.md) хранит сводку экспериментов,
-[POLICY_REGISTRY](docs/POLICY_REGISTRY.md) — checkpoints и SHA-256,
-[CORE_LOCOMOTION_EVALUATION](docs/CORE_LOCOMOTION_EVALUATION.md) — v2 gates,
-[SDK2_DEPLOYMENT](docs/SDK2_DEPLOYMENT.md) — S0–S7. Полный
-[индекс документации](docs/README.md) отмечает исторические планы.
+Оцениваются следование команде, переходы между командами, длительная остановка,
+устойчивость и нагрузка на приводы на Flat/Rough/Stairs. Точный порядок каналов,
+масштабы и семантика предыдущего action закреплены в
+[контракте 57→16](docs/POLICY_CONTRACT.md), критерии отбора — в
+[протоколе оценки v2](docs/CORE_LOCOMOTION_EVALUATION.md).
 
-## Запуски и монитор
+## Как устроена работа
 
-Обучение, оценку и сравнение выполняет независимый supervisor
-(`scripts/job_manager.py`, `scripts/job_worker.py`). Управление — через
-`scripts/manage_runs.py` и managed CLI entrypoints; дашборд только читает
-состояние, логи и метрики. Его закрытие не останавливает job.
+1. **Обучение.** Базой новых моделей служит закреплённый
+   [Robot Lab `train.py`](vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py)
+   со штатным RSL-RL PPO. Изменения task config и MDP находятся вне `vendor/`
+   и вводятся по результатам измерений. Импортируемый пакет `rsl_rl` — отдельная
+   зависимость `rsl-rl-lib==3.1.2`, а не исходники в `vendor/robot_lab`.
+2. **Отбор.** Checkpoint экспортируется с проверкой ABI и численного совпадения;
+   затем проходит сравнение по протоколу v2. Независимая validation использует
+   новые reset seeds и запускается только после положительного screen.
+3. **Sim2sim.** Один actor и mapper проверяются через исходные закреплённые
+   B2W MJCF и C++ SDK2 bridge Unitree. Варианты с изменёнными DC law,
+   `armature` или `damping` учитываются отдельно как диагностика и не
+   подтверждают исходную модель.
+4. **Sim2real.** Порядок сигналов, ограничения приводов, задержки и поведение
+   при остановке должны пройти отдельные этапы
+   [SDK2 deployment](docs/SDK2_DEPLOYMENT.md) до работы на роботе.
 
-```powershell
-& .\scripts\start_dashboard.ps1
-& .\scripts\run_local.ps1 scripts/manage_runs.py status
-```
+Обучением, оценкой и сравнениями управляет независимый supervisor в
+`scripts/job_manager.py` и `scripts/job_worker.py`. Дашборд читает состояние
+запусков; закрытие окна не останавливает job. Runtime, checkpoints, планы и
+результаты сохраняются с provenance и SHA-256.
 
-[Инфраструктура и локальные runtime](docs/INFRASTRUCTURE.md) ·
-[Описание дашборда](dashboard/README.md) ·
-[Команды скриптов](scripts/README.md).
-Новое серверное обучение и реальное управление B2W требуют отдельных решений,
-описанных в [плане](docs/PROJECT_PLAN.md) и
-[деплое](docs/SDK2_DEPLOYMENT.md).
+## Текущее состояние
 
-## Проверка репозитория
+На 12 октября 2026 основной development candidate —
+[`core_24650`](policies/local/core_24650/export/manifest.json); сохранён его
+[`upstream_19999`](policies/server/upstream_19999/export/manifest.json). В сравнительном v2 screen
+24650 получил 107/160, 0 unsafe и прошёл 20/32 ячеек. Независимая validation
+не выполнена. Полный S2 replay на исходной модели Unitree также остаётся
+открытым; квалифицированной для робота политики пока нет.
+
+Текущую очередность задаёт [план проекта](docs/PROJECT_PLAN.md), итоги
+экспериментов — [статус обучения](docs/TRAINING_STATUS.md) и
+[датированные отчёты](docs/results/README.md). Checkpoints и их хеши
+приведены в [реестре политик](docs/POLICY_REGISTRY.md).
+
+## Структура репозитория
+
+| Каталог | Содержимое |
+|---|---|
+| [`vendor/`](vendor/README.md) | Закреплённые upstream snapshots Robot Lab, Unitree SDK2/MuJoCo и другие исходные материалы |
+| [`scripts/`](scripts/README.md) | Training, evaluation, sim2sim, supervisor и проверки |
+| [`configs/`](configs/README.md) | Frozen планы запусков, предложение нового recipe и шаблон deployment |
+| [`policies/`](policies/README.md) | Сохранённые checkpoints, exports и provenance |
+| [`docs/`](docs/README.md) | Контракт, методики, инфраструктура, результаты и решения |
+| `sim2sim/` | Проектная нативная обвязка проверки через SDK2/MuJoCo |
+| `tests/` | Поведенческие и интеграционные проверки |
+| [`dashboard/`](dashboard/README.md) | Монитор состояния managed jobs |
+
+## Локальная проверка
+
+Подготовка окружений Isaac Lab и MuJoCo описана в
+[INFRASTRUCTURE](docs/INFRASTRUCTURE.md). После подготовки CPU `.venv` из корня
+репозитория можно проверить тесты, закреплённые upstream-файлы и ссылки:
 
 ```bash
 .venv/bin/python -m unittest discover -s tests -q
 python3 scripts/vendor_materials.py verify
 .venv/bin/python scripts/verify_project.py
+.venv/bin/python scripts/manage_runs.py status
 ```
 
-Команды подготовки и проверки конкретного runtime приведены в
-[INFRASTRUCTURE](docs/INFRASTRUCTURE.md).
+Запуск нового обучения и работа с реальным B2W требуют отдельных решений по
+[плану](docs/PROJECT_PLAN.md) и [этапам deployment](docs/SDK2_DEPLOYMENT.md).

@@ -1,9 +1,18 @@
 # B2W: правила работы
 
-## Цель и текущий scope
+## Назначение, источники и текущий scope
 
-Разрабатываем низкоуровневую политику движения Unitree B2W для последующего
-деплоя через Unitree SDK2. Actor принимает ровно 57 observations и выдаёт 16 actions:
+Это проект обучения, оценки и подготовки к развёртыванию RL-политик Unitree B2W.
+Опубликованный workflow Unitree RL Lab задаёт последовательность
+Isaac Lab → MuJoCo sim2sim → sim2real, но не содержит готового B2W
+training/deploy recipe. B2W task, robot asset и стандартный training pipeline
+берём из pinned Robot Lab; SDK2/MuJoCo модель и bridge — из Unitree.
+Проектный контракт, оценка и интеграция описаны в `docs/`.
+Корневой `README.md` — краткое публичное описание, а не источник разрешений
+или очередности; при изменении фактического статуса обновлять его сводку.
+
+Разрабатываем низкоуровневую политику движения B2W для последующего деплоя
+через Unitree SDK2. Actor принимает ровно 57 observations и выдаёт 16 actions:
 12 leg position targets + 4 wheel velocity targets, 50 Hz.
 Команды `(vx, vy, omega_z)` приходят извне в body frame.
 Маршрут, waypoint, абсолютный heading и момент смены команды принадлежат внешнему уровню.
@@ -35,6 +44,8 @@ server ancestor — `policies/server/upstream_19999/`.
   training pipeline; upstream bytes не менять. Адаптации task config/MDP делать
   снаружи и только для участков с подтверждённым отставанием по оценкам.
   Новый recipe не должен автоматически наследовать весь стек прежних runner hooks.
+  Импортируемый `rsl_rl` — отдельный пакет `rsl-rl-lib==3.1.2` в Isaac runtime;
+  `vendor/robot_lab` содержит upstream scripts/configs, а не байты этого пакета.
 - Сохранять ABI 57→16, порядок каналов, units, scales, previous-action semantics.
 - Оценивать tracking, смену команд, непрерывный ноль, устойчивость и приводы.
   Навигационные метрики не являются acceptance gates низкоуровневой policy.
