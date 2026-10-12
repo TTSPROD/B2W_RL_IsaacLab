@@ -355,24 +355,27 @@ def current_job_data():
                     if job["status"] in {"queued", "running", "stopping"}
                     or job.get("worker_alive")), jobs[0])
     detail = job_details(current["id"])
-    if detail and detail.get("entrypoint") == "scripts/run_upstream_continuation.py":
-        detail["upstream_progress"] = upstream_continuation_progress(detail)
+    if detail:
+        recipe = managed_recipe_progress(detail)
+        if recipe is not None:
+            detail["recipe_progress"] = recipe
     return {"job": detail}
 
 
-def upstream_continuation_progress(job):
-    """Read only this job's frozen plan and output; the learner stays independent."""
+def managed_recipe_progress(job):
+    """Read a job-local frozen plan and output, regardless of recipe name."""
     job_id = job.get("id", "")
     if not re.fullmatch(r"[0-9a-f]{32}", job_id):
         return None
-    output = ROOT / "logs/dashboard/jobs" / job_id / "upstream_continuation"
+    job_dir = ROOT / "logs/dashboard/jobs" / job_id
+    manifests = list(job_dir.glob("*/preflight_manifest.json"))
+    if len(manifests) != 1:
+        return None
+    output = manifests[0].parent
     pilot = job.get("pilot_progress") or {}
     result = {"phase": pilot.get("phase", ""), "completed_updates": pilot.get("ppo_updates", 0)}
-    manifest_path = output / "preflight_manifest.json"
-    if not manifest_path.is_file():
-        return result
     try:
-        plan = read_json(manifest_path)["plan"]
+        plan = read_json(manifests[0])["plan"]
         training = plan["training"]
         result.update(seed=training["seed"], target_updates=training["updates"])
     except (OSError, ValueError, KeyError, TypeError):

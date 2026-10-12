@@ -76,19 +76,27 @@ const job = (id, extra = {}) => ({id, kind: id, status: 'running',
 
   responseJob = job('upstream', {entrypoint: 'scripts/run_upstream_continuation.py',
     pilot_progress: {phase: 'training', ppo_updates: 0},
-    upstream_progress: {phase: 'training', seed: 9931, completed_updates: 43, target_updates: 200}});
+    recipe_progress: {phase: 'training', seed: 9931, completed_updates: 43, target_updates: 200}});
   await context.window.refreshJobs();
   assert.match(element('jobProgress').textContent, /Обучение · seed 9931 · PPO updates 43\/200/);
   assert.equal(element('jobProgressTrack').value, 21.5);
   assert.doesNotMatch(element('jobProgress').textContent, /undefined|A\/B/);
   responseJob.pilot_progress = {phase: 'evaluate_19999_rough', ppo_updates: 200};
-  responseJob.upstream_progress = {phase: 'evaluate_19999_rough', seed: 9931,
+  responseJob.recipe_progress = {phase: 'evaluate_19999_rough', seed: 9931,
     completed_updates: 200, target_updates: 200, completed_evaluations: 1, total_evaluations: 24};
   await context.window.refreshJobs();
   assert.match(element('jobProgress').textContent, /Оценка v2 · 19999_rough/);
   assert.match(element('jobProgress').textContent, /варианты 1\/24/);
   assert.equal(element('jobProgressTrack').value, 100/24);
   assert.match(element('jobProgressLabel').textContent, /Оценка v2/);
+
+  responseJob = job('upstream_vendor_5000', {entrypoint: 'scripts/run_upstream_5000.py',
+    pilot_progress: {phase: 'training', ppo_updates: 0},
+    recipe_progress: {phase: 'training', seed: 44, completed_updates: 102, target_updates: 5000}});
+  await context.window.refreshJobs();
+  assert.match(element('jobProgress').textContent, /Обучение · seed 44 · PPO updates 102\/5000/);
+  assert.equal(element('jobProgressTrack').value, 2.04);
+  assert.doesNotMatch(element('jobProgress').textContent, /undefined|A\/B/);
 
   responseJob = job('evaluation', {evaluation_progress: {completed: ['flat'], total_jobs: 4, active: ['rough'], failures: []}});
   await context.window.refreshJobs();
@@ -141,7 +149,7 @@ const job = (id, extra = {}) => ({id, kind: id, status: 'running',
   assert.ok(requested.every(url => url === '/api/current'));
   if (process.argv.includes('--live')) {
     responseJob = (await (await fetch('http://127.0.0.1:8765/api/current')).json()).job;
-    assert.ok(responseJob.training_progress || responseJob.upstream_progress,
+    assert.ok(responseJob.training_progress || responseJob.recipe_progress,
       'Current run progress must be available');
     await context.window.refreshJobs();
     assert.equal(element('jobMessage').hidden, true, element('jobMessage').textContent);
