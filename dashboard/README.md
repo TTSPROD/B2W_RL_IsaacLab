@@ -1,8 +1,10 @@
 # Монитор текущего запуска B2W
 
-При запуске нового обучения, тестов или оценки через `scripts/manage_runs.py`
-или managed training/evaluation entrypoint дашборд автоматически запускается
-и открывается в браузере. Уже работающий HTTP-сервер используется повторно.
+При каждом managed запуске обучения, тестов, оценки или диагностики через
+`scripts/manage_runs.py` либо managed entrypoint дашборд автоматически
+запускается и открывается во внешнем браузере. Уже работающий HTTP-сервер
+используется повторно. Worker и сервер монитора запускаются отдельными
+процессами и продолжают работу после закрытия CLI или чата.
 
 [Локальный монитор](http://127.0.0.1:8765/#jobs) показывает **один текущий job**:
 статус supervisor, фазу, прогресс обучения или оценки, exit code, результаты
@@ -21,21 +23,29 @@
 & .\scripts\start_dashboard.ps1
 ```
 
+На Ubuntu монитор открывается командой
+`.venv/bin/python dashboard/launch.py --open`. Windows launcher использует
+проектный `.venv` и не требует запущенного Isaac Sim.
+
 Прежние ссылки `#overview`, `#selection` и остальные также открывают единый экран.
 
 ## Независимое выполнение
 
 ```powershell
 & .\scripts\run_local.ps1 scripts/manage_runs.py start evaluate --policy 24650
-& .\scripts\run_local.ps1 scripts/manage_runs.py start tests --no-monitor
+& .\scripts\run_local.ps1 scripts/manage_runs.py start tests
 & .\scripts\run_local.ps1 scripts/manage_runs.py status
 & .\scripts\run_local.ps1 scripts/manage_runs.py stop <job-id>
 ```
 
 `start` создаёт новый job. Один локальный job занимает слот; файловая блокировка
-сериализует разные CLI. `--no-monitor` отключает автоматическое открытие.
+сериализует разные CLI. Исторический флаг `--no-monitor` принимается для
+совместимости, но монитор всё равно открывается.
 Клиент сначала создаёт job, затем отдельно запускает монитор без ожидания;
-сбой монитора не отменяет выполнение. Диагностика открытия — `logs/dashboard/monitor.log`.
+сбой монитора не отменяет выполнение. URL возвращается в ответе CLI, диагностика
+открытия — `logs/dashboard/monitor.log`. Без графической сессии браузер не
+открывается; HTTP-сервер остаётся доступен на loopback, в том числе через
+локальный вход или SSH-туннель.
 `dashboard/submit.py` сохранён как совместимый CLI без обращений к HTTP API.
 
 Supervisor в `scripts/job_manager.py` / `scripts/job_worker.py` управляет процессами.

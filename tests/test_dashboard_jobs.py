@@ -36,12 +36,15 @@ class DashboardTests(unittest.TestCase):
                 with patch.object(process_client, 'ROOT', Path(folder)), \
                      patch.object(process_client, 'start_job', side_effect=start), \
                      patch.object(process_client.subprocess, 'Popen', side_effect=launch) as popen:
-                    self.assertEqual(process_client.submit(payload)['id'], 'fixture')
+                    result = process_client.submit(payload)
+                    self.assertEqual(result['id'], 'fixture')
+                    self.assertEqual(result['monitor_url'], process_client.MONITOR_URL)
                 self.assertEqual(order, ['job', 'monitor'])
                 command = popen.call_args.args[0]
                 self.assertEqual(command[-1], '--open')
                 self.assertIn('dashboard', command[1])
                 self.assertTrue(popen.call_args.kwargs['close_fds'])
+                self.assertEqual(popen.call_args.kwargs['start_new_session'], sys.platform != 'win32')
                 self.assertTrue((Path(folder) / 'logs/dashboard/monitor.log').is_file())
 
     def test_rejected_submission_does_not_open_monitor(self):
@@ -86,12 +89,38 @@ class DashboardTests(unittest.TestCase):
         start.assert_called_once_with({'kind':'tests'})
         self.assertEqual(result['id'],'independent')
 
-    def test_headless_submission_does_not_launch_or_contact_monitor(self):
-        import process_client
-        with patch.object(process_client,'start_job',return_value={'id':'independent'}), \
-             patch.object(process_client.subprocess,'Popen') as launch:
-            process_client.submit({'kind':'tests'},open_monitor=False)
-        launch.assert_not_called()
+    def test_legacy_no_monitor_flag_still_submits_with_monitor(self):
+        import manage_runs
+        with patch.object(sys, 'argv', ['manage_runs.py', 'start', 'tests', '--no-monitor']), \
+             patch.object(manage_runs, 'submit', return_value={'id': 'fixture'}) as submit, \
+             patch('builtins.print'):
+            manage_runs.main()
+        submit.assert_called_once()
+        self.assertEqual(submit.call_args.args[0]['kind'], 'tests')
+        self.assertEqual(submit.call_args.kwargs, {})
+
+    def test_monitor_server_and_browser_are_started_independently(self):
+        import launch as monitor_launch
+        with tempfile.TemporaryDirectory() as folder, \
+             patch.object(monitor_launch, 'ROOT', Path(folder)), \
+             patch.object(monitor_launch, 'ready', side_effect=[False, True]), \
+             patch.object(monitor_launch.subprocess, 'Popen') as spawn, \
+             patch.object(monitor_launch.webbrowser, 'open_new_tab', return_value=True) as browser, \
+             patch.object(sys, 'argv', ['launch.py', '--open']):
+            monitor_launch.main()
+        self.assertEqual(spawn.call_args.kwargs['start_new_session'], sys.platform != 'win32')
+        self.assertTrue(spawn.call_args.kwargs['close_fds'])
+        browser.assert_called_once_with('http://127.0.0.1:8765/#jobs')
+
+    def test_worker_is_detached_from_submission_client(self):
+        with tempfile.TemporaryDirectory() as folder, \
+             patch.object(jobs, 'JOBS', Path(folder)), \
+             patch.object(jobs, 'list_jobs', return_value=[]), \
+             patch.object(jobs.subprocess, 'Popen') as spawn:
+            state = jobs.start_job({'kind': 'tests'})
+        self.assertEqual(state['status'], 'queued')
+        self.assertEqual(spawn.call_args.kwargs['start_new_session'], sys.platform != 'win32')
+        self.assertTrue(spawn.call_args.kwargs['close_fds'])
 
     def test_missing_metrics_dependency_preserves_run_metadata(self):
         with tempfile.TemporaryDirectory() as folder:

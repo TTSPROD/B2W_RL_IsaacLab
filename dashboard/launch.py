@@ -40,7 +40,8 @@ def main():
     if ready(args.port):
         print(f"B2W Dashboard: {url}", flush=True)
         if args.open:
-            webbrowser.open(url)
+            if not webbrowser.open_new_tab(url):
+                print(f"Browser did not open; monitor remains available at {url}", file=sys.stderr)
         return
 
     logs = ROOT / "logs/dashboard"
@@ -55,7 +56,7 @@ def main():
         subprocess.Popen(
             [sys.executable, str(Path(__file__).with_name("server.py")), "--port", str(args.port)],
             cwd=ROOT, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
-            close_fds=True, creationflags=flags,
+            close_fds=True, creationflags=flags, start_new_session=sys.platform != "win32",
         )
     finally:
         stdout.close()
@@ -64,7 +65,8 @@ def main():
         if ready(args.port):
             print(f"B2W Dashboard: {url}", flush=True)
             if args.open:
-                webbrowser.open(url)
+                if not webbrowser.open_new_tab(url):
+                    print(f"Browser did not open; monitor remains available at {url}", file=sys.stderr)
             return
         time.sleep(0.1)
     raise RuntimeError("Dashboard did not become ready; see logs/dashboard/stderr.log")

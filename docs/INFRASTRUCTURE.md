@@ -24,7 +24,7 @@ CPU, Python 3.11.16, PyTorch 2.8.0+cpu, MuJoCo 3.3.6. Это отдельная 
 ```bash
 bash scripts/setup_sim2sim_ubuntu.sh
 .venv/bin/python scripts/manage_runs.py status
-.venv/bin/python -m unittest discover -s tests -q
+.venv/bin/python scripts/manage_runs.py start tests
 .venv/bin/python scripts/verify_project.py
 ```
 
@@ -114,7 +114,7 @@ Ubuntu26 не предоставляет legacy libxml2 ABI, требуемый 
 packages. `LD_LIBRARY_PATH` меняется только у audit child. Глобальные пакеты,
 драйверы и CPU governor не менялись.
 
-`.venv/bin/python scripts/manage_runs.py start sim2sim_isaac --no-monitor`
+`.venv/bin/python scripts/manage_runs.py start sim2sim_isaac`
 запускает CPU supervisor, затем allowlisted Isaac child. Raw —
 `logs/dashboard/jobs/<id>/isaac_audit/`; Kit/cache/USD остаются в проекте.
 [Результат](results/2026-10-12-sim2sim-live-isaac.md): 5 полных programs,
@@ -136,15 +136,17 @@ python scripts/vendor_materials.py verify
 ```
 
 Локальный [дашборд](../dashboard/README.md) доступен на `127.0.0.1:8765`.
-При новом managed запуске обучения, тестов или оценки монитор открывается автоматически;
-`scripts/start_dashboard.ps1` открывает его вручную. Он показывает один текущий job,
+При каждом managed запуске обучения, тестов или оценки монитор открывается
+автоматически во внешнем браузере. `scripts/start_dashboard.ps1` открывает его
+вручную через проектный Python без запуска Isaac Sim. Он показывает один текущий job,
 автоматически переключается на новый и сохраняет итоговый статус до следующего запуска.
 Независимые
 `scripts/job_manager.py` / `scripts/job_worker.py` запускают процессы через CLI;
 сбой или отсутствие HTTP-сервера не влияет на обучение. Дашборд не принимает
 команды запуска/остановки (POST → 405), а только читает состояние, progress и логи текущего job.
 `scripts/manage_runs.py start|stop|status` управляет локальными jobs;
-`--no-monitor` отключает даже попытку открыть монитор. Код выхода клиента означает
+исторический `--no-monitor` принимается CLI, но больше не отключает монитор.
+Код выхода клиента означает
 постановку, итоговый exit code — в `logs/dashboard/jobs/<id>/state.json`.
 Имя исторического каталога jobs не означает зависимость от сервера.
 

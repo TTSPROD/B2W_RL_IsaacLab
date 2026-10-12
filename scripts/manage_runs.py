@@ -1,4 +1,4 @@
-"""Independent local job CLI. The HTTP dashboard is an optional reader."""
+"""Independent local job CLI; every submitted run opens the external monitor."""
 import argparse
 import json
 from job_manager import list_jobs, stop_job
@@ -22,14 +22,14 @@ def main():
     start.add_argument('--num-envs',type=int,default=4096)
     start.add_argument('--policy',default='24650')
     start.add_argument('--source-job')
-    start.add_argument('--no-monitor',action='store_true')
+    # Keep old command lines valid; this flag no longer suppresses monitoring.
+    start.add_argument('--no-monitor',action='store_true',help=argparse.SUPPRESS)
     stop=sub.add_parser('stop');stop.add_argument('id')
     sub.add_parser('status')
     args=parser.parse_args()
     if args.action=='start':
         result=submit({'kind':args.kind,'updates':args.updates,'num_envs':args.num_envs,
-                       'policy':args.policy,'source_job':args.source_job},
-                      open_monitor=not args.no_monitor)
+                       'policy':args.policy,'source_job':args.source_job})
     elif args.action=='stop':result=stop_job(args.id)
     else:result=list_jobs()
     print(json.dumps(result,ensure_ascii=False,indent=2))

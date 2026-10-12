@@ -22,6 +22,9 @@ Frozen [конфиги](../configs/README.md), raw и executed hashes сохра
 отдельного frozen плана. Метод и отличие от изменённых физических вариантов
 описаны в [UNITREE_SIM2SIM_METHOD](../docs/UNITREE_SIM2SIM_METHOD.md).
 Реальное управление роботом этим каталогом не разрешено.
+Каждый managed запуск открывает внешний монитор; сервер и worker отделены от
+клиентского процесса. При отсутствии графической сессии URL остаётся в ответе
+CLI, а монитор доступен через loopback после локального входа или туннеля.
 
 ## Исторические реализации
 
@@ -50,7 +53,7 @@ runner hooks.
 ## Проверка
 
 ```bash
-.venv/bin/python -m unittest discover -s tests -q
+.venv/bin/python scripts/manage_runs.py start tests
 .venv/bin/python scripts/verify_project.py
 python3 scripts/vendor_materials.py verify
 ```
@@ -62,3 +65,5 @@ CPU suite использует committed config fixtures и временные �
 [INFRASTRUCTURE](../docs/INFRASTRUCTURE.md).
 Сохранённое raw evidence проверяется отдельно по hashes, а не имитируется
 unit-тестами.
+`start tests` возвращает ID до завершения проверки; итоговый status и exit code
+появляются в мониторе и `logs/dashboard/jobs/<id>/state.json`.

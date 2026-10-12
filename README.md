@@ -48,9 +48,11 @@ waypoints и абсолютный курс не входят в задачу э�
    [SDK2 deployment](docs/SDK2_DEPLOYMENT.md) до работы на роботе.
 
 Обучением, оценкой и сравнениями управляет независимый supervisor в
-`scripts/job_manager.py` и `scripts/job_worker.py`. Дашборд читает состояние
-запусков; закрытие окна не останавливает job. Runtime, checkpoints, планы и
-результаты сохраняются с provenance и SHA-256.
+`scripts/job_manager.py` и `scripts/job_worker.py`. Каждый managed запуск
+автоматически открывает [монитор](dashboard/README.md) во внешнем браузере;
+его сервер и worker живут отдельно от CLI и чата. Закрытие браузера не
+останавливает job. Runtime, checkpoints, планы и результаты сохраняются с
+provenance и SHA-256.
 
 ## Текущее состояние
 
@@ -83,14 +85,18 @@ waypoints и абсолютный курс не входят в задачу э�
 
 Подготовка окружений Isaac Lab и MuJoCo описана в
 [INFRASTRUCTURE](docs/INFRASTRUCTURE.md). После подготовки CPU `.venv` из корня
-репозитория можно проверить тесты, закреплённые upstream-файлы и ссылки:
+репозитория можно запустить тесты через supervisor и проверить закреплённые
+upstream-файлы и ссылки:
 
 ```bash
-.venv/bin/python -m unittest discover -s tests -q
+.venv/bin/python scripts/manage_runs.py start tests
 python3 scripts/vendor_materials.py verify
 .venv/bin/python scripts/verify_project.py
 .venv/bin/python scripts/manage_runs.py status
 ```
+
+Итог тестового job отображается в мониторе и в его `state.json`; команда `start`
+завершается после постановки job, не после выполнения тестов.
 
 Запуск нового обучения и работа с реальным B2W требуют отдельных решений по
 [плану](docs/PROJECT_PLAN.md) и [этапам deployment](docs/SDK2_DEPLOYMENT.md).

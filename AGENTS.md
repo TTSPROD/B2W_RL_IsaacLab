@@ -34,7 +34,10 @@ server ancestor — `policies/server/upstream_19999/`.
 (`scripts/job_manager.py`, `scripts/job_worker.py`). Запуск/остановка — через
 `scripts/manage_runs.py` или managed CLI entrypoints. Дашборд только читает
 состояние, логи и метрики; HTTP-сервер и браузер не нужны для выполнения jobs.
-`scripts/start_dashboard.ps1` открывает монитор. Закрытие дашборда не завершает run.
+Каждый managed запуск автоматически поднимает отдельный сервер монитора и
+открывает его во внешнем браузере, если доступна графическая сессия.
+`scripts/start_dashboard.ps1` открывает монитор вручную без Isaac Sim runtime.
+Закрытие чата, CLI или браузера не завершает worker и не удаляет состояние job.
 Не восстанавливать закрытую relkernel-ветку как текущий план без нового решения.
 
 ## Инженерные правила
