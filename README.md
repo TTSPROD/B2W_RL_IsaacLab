@@ -50,7 +50,7 @@ B2W MJCF и bridge Unitree, simulation qualification и аппаратного �
 
 ```bash
 python3 scripts/vendor_materials.py verify
-python3 scripts/verify_project.py
+.venv/bin/python scripts/verify_project.py
 ```
 
 Команды подготовки и проверки конкретного runtime приведены в
