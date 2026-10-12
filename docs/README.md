@@ -3,7 +3,9 @@
 | Документ | Назначение |
 |---|---|
 | [PROJECT_PLAN](PROJECT_PLAN.md) | Актуальная цель, gates и следующая работа |
-| [TRAINING_STRATEGY](TRAINING_STRATEGY.md) | Reset audit/pilot → schedule retention A/B → поднавыки/команды → acceptance |
+| [DEEPSEEK_FINETUNE_PLAN](DEEPSEEK_FINETUNE_PLAN.md) | Ветка deepseek: план дообучения 24650, мировые практики, gates |
+| [Мировые практики дообучения](research/2026-10-01-finetune-world-practices.md) | Обзор первичных источников wheeled-legged low-level training/testing |
+| [TRAINING_STRATEGY](TRAINING_STRATEGY.md) | Первичные источники, safety semantics, reset/schedule retention A/B, поднавыки/команды и acceptance |
 | [Обзор плана 01.10](results/2026-10-01-training-plan-review.md) | Executed reset/terminal mismatch, counters B и ограничения вывода |
 | [Reset-only pilot](results/2026-10-01-reset-pilot-plan.md) | Стандартный train.py, preflight, 2 × 300 updates и 180 probe episodes |
 | [Reset-only: результат](results/2026-10-01-reset-pilot-result.md) | 180 episodes, B отклонён; tempo/LR диагностика и следующая проверка |

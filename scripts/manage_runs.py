@@ -17,7 +17,7 @@ def main():
                                       'axis_robust_composite',
                                       'axis_endpoint_confirm',
                                       'axis_repeat3',
-                                      'stair_comparison_1350'))
+                                      'stair_comparison_1350','short_flight','short_flight_preflight'))
     start.add_argument('--updates',type=int,default=100)
     start.add_argument('--num-envs',type=int,default=4096)
     start.add_argument('--policy',default='24650')
