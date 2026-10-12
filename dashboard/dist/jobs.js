@@ -17,7 +17,7 @@
   if(job.recipe_progress?.phase==='training') {
    done=job.recipe_progress.completed_updates;total=job.recipe_progress.target_updates;
    label='Обучение · PPO updates';
-  } else if(job.recipe_progress?.phase?.startsWith('evaluate_')) {
+  } else if(/^(evaluate_|reuse_)/.test(job.recipe_progress?.phase||'')) {
    done=job.recipe_progress.completed_evaluations;total=job.recipe_progress.total_evaluations;
    label='Оценка v2 · варианты';
   } else if(job.training_progress && trainingPhase) {
@@ -72,8 +72,8 @@
   if(job.recipe_progress) {
    const p=job.recipe_progress;
    const stage={preflight:'Предварительная проверка',training:'Обучение',export:'Экспорт',full_v2_screen:'Полная оценка v2',completed:'Завершено',failed:'Ошибка'}[p.phase]||
-    (p.phase.startsWith('evaluate_')?'Оценка v2':'Подготовка');
-   const active=p.phase.startsWith('evaluate_')?p.phase.slice('evaluate_'.length):'';
+    (p.phase.startsWith('reuse_')?'Оценка v2 · повторное использование':p.phase.startsWith('evaluate_')?'Оценка v2':'Подготовка');
+   const active=p.phase.startsWith('evaluate_')?p.phase.slice('evaluate_'.length):p.phase.startsWith('reuse_')?p.phase.slice('reuse_'.length):'';
    const updates=p.target_updates==null?'':` · PPO updates ${p.completed_updates}/${p.target_updates}`;
    const evaluations=p.total_evaluations==null?'':` · варианты ${p.completed_evaluations}/${p.total_evaluations}`;
    $('jobProgress').textContent=`${stage}${active?' · '+active:''}${p.seed==null?'':' · seed '+p.seed}${updates}${evaluations}`;

@@ -376,11 +376,12 @@ def managed_recipe_progress(job):
     result = {"phase": pilot.get("phase", ""), "completed_updates": pilot.get("ppo_updates", 0)}
     try:
         plan = read_json(manifests[0])["plan"]
-        training = plan["training"]
-        result.update(seed=training["seed"], target_updates=training["updates"])
     except (OSError, ValueError, KeyError, TypeError):
         return result
-    if result["phase"] == "training":
+    training = plan.get("training")
+    if isinstance(training, dict):
+        result.update(seed=training.get("seed"), target_updates=training.get("updates"))
+    if result["phase"] == "training" and isinstance(training, dict):
         stdout = output / "train.stdout.log"
         try:
             with stdout.open("rb") as stream:
@@ -393,18 +394,30 @@ def managed_recipe_progress(job):
                                                   min(training["updates"], completed))
         except OSError:
             pass
-    if result["phase"].startswith("evaluate_") or result["phase"] == "completed":
-        actors = plan.get("evaluation", {}).get("actors", [])
-        declared = output / "evaluation" / str(actors[0]) / "declared_plan.json" if actors else None
-        if declared and declared.is_file():
+    actors = plan.get("actors") or plan.get("evaluation", {}).get("actors", [])
+    if actors and (result["phase"].startswith(("evaluate_", "reuse_"))
+                   or result["phase"] == "completed"):
+        declared = [path for path in output.glob("**/evaluation/*/declared_plan.json")
+                    if path.parent.name in actors]
+        if declared:
+            evaluation_root = max(declared, key=lambda path: sum(
+                (path.parent.parent / str(actor) / "declared_plan.json").is_file()
+                for actor in actors)).parent.parent
             try:
-                variants = list(read_json(declared)["variants"])
-                completed = [f"{actor}/{terrain}" for actor in actors for terrain in variants
-                             if (output / "evaluation" / str(actor) / f"{terrain}.json").is_file()]
-                result.update(completed_evaluations=len(completed),
-                              total_evaluations=len(actors) * len(variants))
+                variants = list(read_json(evaluation_root / str(actors[0]) /
+                                          "declared_plan.json")["variants"])
             except (OSError, ValueError, KeyError, TypeError):
-                pass
+                try:
+                    variants = list(read_json(declared[0])["variants"])
+                except (OSError, ValueError, KeyError, TypeError):
+                    variants = []
+            if variants:
+                completed = sum(
+                    (evaluation_root / str(actor) / f"{terrain}.json").is_file()
+                    or (output / f"reused_{actor}" / f"{terrain}.json").is_file()
+                    for actor in actors for terrain in variants)
+                result.update(completed_evaluations=completed,
+                              total_evaluations=len(actors) * len(variants))
     return result
 
 
