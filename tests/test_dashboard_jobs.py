@@ -81,6 +81,34 @@ class DashboardTests(unittest.TestCase):
                 self.assertEqual(server.current_job_data()['job']['id'], 'live')
             details.assert_called_once_with('live')
 
+    def test_upstream_continuation_progress_uses_own_saved_plan_and_outputs(self):
+        job_id = 'a' * 32
+        with tempfile.TemporaryDirectory() as folder, patch.object(server, 'ROOT', Path(folder)):
+            output = Path(folder) / 'logs/dashboard/jobs' / job_id / 'upstream_continuation'
+            output.mkdir(parents=True)
+            (output / 'preflight_manifest.json').write_text(json.dumps({'plan': {
+                'training': {'seed': 9931, 'updates': 200, 'parent_iteration': 19999},
+                'evaluation': {'actors': ['19999', 'candidate']}}}))
+            (output / 'train.stdout.log').write_text(
+                'Learning iteration 19999/20199\nLearning iteration 20042/20199\n')
+            job = {'id': job_id, 'entrypoint': 'scripts/run_upstream_continuation.py',
+                   'pilot_progress': {'phase': 'training', 'ppo_updates': 0}}
+            with patch.object(server, 'list_jobs', return_value=[{'id': job_id, 'status': 'running'}]), \
+                 patch.object(server, 'job_details', return_value=job):
+                current = server.current_job_data()['job']
+            self.assertEqual(current['upstream_progress']['completed_updates'], 43)
+            self.assertEqual(current['upstream_progress']['target_updates'], 200)
+            self.assertEqual(current['upstream_progress']['seed'], 9931)
+            declared = output / 'evaluation/19999/declared_plan.json'
+            declared.parent.mkdir(parents=True)
+            declared.write_text(json.dumps({'variants': {'flat': {}, 'rough': {}}}))
+            (declared.parent / 'flat.json').write_text('{}')
+            job['pilot_progress'] = {'phase': 'evaluate_19999_rough', 'ppo_updates': 200}
+            evaluation = server.upstream_continuation_progress(job)
+            self.assertEqual(evaluation['completed_evaluations'], 1)
+            self.assertEqual(evaluation['total_evaluations'], 4)
+            self.assertEqual(evaluation['completed_updates'], 200)
+
     def test_submission_succeeds_when_monitor_launch_fails(self):
         import process_client
         with patch.object(process_client,'start_job',return_value={'id':'independent'}) as start, \

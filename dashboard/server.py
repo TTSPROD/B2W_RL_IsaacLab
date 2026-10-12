@@ -354,7 +354,55 @@ def current_job_data():
     current = next((job for job in jobs
                     if job["status"] in {"queued", "running", "stopping"}
                     or job.get("worker_alive")), jobs[0])
-    return {"job": job_details(current["id"])}
+    detail = job_details(current["id"])
+    if detail and detail.get("entrypoint") == "scripts/run_upstream_continuation.py":
+        detail["upstream_progress"] = upstream_continuation_progress(detail)
+    return {"job": detail}
+
+
+def upstream_continuation_progress(job):
+    """Read only this job's frozen plan and output; the learner stays independent."""
+    job_id = job.get("id", "")
+    if not re.fullmatch(r"[0-9a-f]{32}", job_id):
+        return None
+    output = ROOT / "logs/dashboard/jobs" / job_id / "upstream_continuation"
+    pilot = job.get("pilot_progress") or {}
+    result = {"phase": pilot.get("phase", ""), "completed_updates": pilot.get("ppo_updates", 0)}
+    manifest_path = output / "preflight_manifest.json"
+    if not manifest_path.is_file():
+        return result
+    try:
+        plan = read_json(manifest_path)["plan"]
+        training = plan["training"]
+        result.update(seed=training["seed"], target_updates=training["updates"])
+    except (OSError, ValueError, KeyError, TypeError):
+        return result
+    if result["phase"] == "training":
+        stdout = output / "train.stdout.log"
+        try:
+            with stdout.open("rb") as stream:
+                stream.seek(max(0, stream.seek(0, os.SEEK_END) - 65536))
+                tail = stream.read().decode("utf-8", errors="replace")
+            iterations = re.findall(r"Learning iteration\s+(\d+)/\d+", tail)
+            if iterations:
+                completed = int(iterations[-1]) - int(training["parent_iteration"])
+                result["completed_updates"] = max(result["completed_updates"],
+                                                  min(training["updates"], completed))
+        except OSError:
+            pass
+    if result["phase"].startswith("evaluate_") or result["phase"] == "completed":
+        actors = plan.get("evaluation", {}).get("actors", [])
+        declared = output / "evaluation" / str(actors[0]) / "declared_plan.json" if actors else None
+        if declared and declared.is_file():
+            try:
+                variants = list(read_json(declared)["variants"])
+                completed = [f"{actor}/{terrain}" for actor in actors for terrain in variants
+                             if (output / "evaluation" / str(actor) / f"{terrain}.json").is_file()]
+                result.update(completed_evaluations=len(completed),
+                              total_evaluations=len(actors) * len(variants))
+            except (OSError, ValueError, KeyError, TypeError):
+                pass
+    return result
 
 
 def registry_selection_data():
