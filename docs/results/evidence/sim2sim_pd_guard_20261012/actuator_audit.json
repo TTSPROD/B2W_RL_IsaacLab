@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "grid_samples": 1232,
+  "disabled_samples": 240,
+  "checks": {
+    "leg_ctrl_vs_upstream_max_error_nm": 0.0,
+    "leg_force_vs_upstream_max_error_nm": 0.0,
+    "wheel_raw_pd_vs_baseline_max_error_nm": 0.0,
+    "wheel_force_vs_baseline_max_error_nm": 0.0,
+    "disabled_max_abs_ctrl_nm": 0.0,
+    "disabled_max_abs_force_nm": 0.0
+  },
+  "physx_wheel_integration_parity": null
+}

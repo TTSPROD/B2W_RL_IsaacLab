@@ -1,0 +1,171 @@
+{
+  "selected": null,
+  "focus_vs_parent": {
+    "wins": 5,
+    "losses": 4,
+    "ties": 151
+  },
+  "focus_vs_control": {
+    "wins": 7,
+    "losses": 3,
+    "ties": 150
+  },
+  "unsafe": 1,
+  "wheel_saturation_max": {
+    "24650": 0.16014705882352942,
+    "stdcontrol_24799": 0.26705653021442494,
+    "stdfocus_24799": 0.16619565217391305
+  },
+  "automatic_promotion": false,
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "budget_extension": false,
+  "gate_passed": false,
+  "overall": {
+    "24650": {
+      "episodes": 160,
+      "success": 103,
+      "unsafe": 0,
+      "success_fraction": 0.64375,
+      "wilson95_one_sided_lower": 0.5795598331263044,
+      "pass": false,
+      "checks": {
+        "safety": {
+          "passed": 160,
+          "trials": 160
+        },
+        "completed": {
+          "passed": 160,
+          "trials": 160
+        },
+        "tracking": {
+          "passed": 59,
+          "trials": 100
+        },
+        "transitions": {
+          "passed": 96,
+          "trials": 100
+        },
+        "stop": {
+          "passed": 148,
+          "trials": 160
+        },
+        "traversal": {
+          "passed": 48,
+          "trials": 60
+        }
+      },
+      "outcomes": {
+        "success": 103,
+        "tracking_failure": 41,
+        "command_transition_failure": 1,
+        "standstill_failure": 3,
+        "traversal_failure": 12
+      },
+      "response_ratio_min": 0.10814574857552846,
+      "actuators": {
+        "leg_saturation_fraction_max": 0.006911764705882353,
+        "wheel_saturation_fraction_max": 0.16014705882352942,
+        "saturation_streak_s_max": 1.3800000000000001,
+        "measured_hardware_limits": false
+      }
+    },
+    "stdcontrol_24799": {
+      "episodes": 160,
+      "success": 100,
+      "unsafe": 1,
+      "success_fraction": 0.625,
+      "wilson95_one_sided_lower": 0.5604585175260688,
+      "pass": false,
+      "checks": {
+        "safety": {
+          "passed": 159,
+          "trials": 160
+        },
+        "completed": {
+          "passed": 159,
+          "trials": 160
+        },
+        "tracking": {
+          "passed": 58,
+          "trials": 100
+        },
+        "transitions": {
+          "passed": 92,
+          "trials": 100
+        },
+        "stop": {
+          "passed": 148,
+          "trials": 160
+        },
+        "traversal": {
+          "passed": 46,
+          "trials": 60
+        }
+      },
+      "outcomes": {
+        "success": 100,
+        "tracking_failure": 42,
+        "command_transition_failure": 1,
+        "standstill_failure": 3,
+        "traversal_failure": 13,
+        "unsafe": 1
+      },
+      "response_ratio_min": 0.034193070605397224,
+      "actuators": {
+        "leg_saturation_fraction_max": 0.007307692307692308,
+        "wheel_saturation_fraction_max": 0.26705653021442494,
+        "saturation_streak_s_max": 0.6,
+        "measured_hardware_limits": false
+      }
+    },
+    "stdfocus_24799": {
+      "episodes": 160,
+      "success": 104,
+      "unsafe": 1,
+      "success_fraction": 0.65,
+      "wilson95_one_sided_lower": 0.5859492748728579,
+      "pass": false,
+      "checks": {
+        "safety": {
+          "passed": 159,
+          "trials": 160
+        },
+        "completed": {
+          "passed": 159,
+          "trials": 160
+        },
+        "tracking": {
+          "passed": 57,
+          "trials": 100
+        },
+        "transitions": {
+          "passed": 97,
+          "trials": 100
+        },
+        "stop": {
+          "passed": 147,
+          "trials": 160
+        },
+        "traversal": {
+          "passed": 48,
+          "trials": 60
+        }
+      },
+      "outcomes": {
+        "success": 104,
+        "tracking_failure": 43,
+        "traversal_failure": 11,
+        "unsafe": 1,
+        "standstill_failure": 1
+      },
+      "response_ratio_min": -0.00018996295693796128,
+      "actuators": {
+        "leg_saturation_fraction_max": 0.009117647058823529,
+        "wheel_saturation_fraction_max": 0.16619565217391305,
+        "saturation_streak_s_max": 6.9,
+        "measured_hardware_limits": false
+      }
+    }
+  }
+}

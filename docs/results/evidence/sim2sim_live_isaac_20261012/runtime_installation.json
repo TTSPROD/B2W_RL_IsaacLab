@@ -1,0 +1,13 @@
+{
+  "isaaclab_commit": "37ddf626871758333d6ed89cf64ad702aef127d0",
+  "python": ".runtime/isaaclab-ubuntu-venv/bin/python",
+  "metadata_patch": "requirements/isaaclab-sim51-metadata.patch",
+  "runtime_setup_sha256": "0fa0c130e9fcaf093e06ca30de67e631da99dc40082715246b19c38b67161be8",
+  "constraints_sha256": "da39048fea3d45a626731c04f8adef6a12da42e55e2b30bdfe4a75a4a0b9568b",
+  "freeze_sha256": "8d56daa0ff11387d8c92b6a746ee09b7c6b19890120617a22f32deac7f93daa7",
+  "eula_accepted": true,
+  "eula_authorization": "Explicit --accept-eula by operator",
+  "installed_utc": "2026-10-12T09:29:10.755970+00:00",
+  "simulation_tested": false,
+  "hardware_enabled": false
+}

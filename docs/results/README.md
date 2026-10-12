@@ -6,6 +6,9 @@
 
 История:
 
+- [Native standard PPO continuation от24650](2026-10-12-native-continuation.md) — по150updates/4000env, 480 fresh v2 episodes: parent/control/focus103/100/104 successes из160, unsafe0/1/1. Оба новых checkpoints отклонены; budget закрыт, raw/weights сохранены.
+- [Frozen план native continuation](2026-10-12-native-continuation-plan.md) — control/focus sampling, standard runner, preflight иfull matched v2 gates.
+
 - [Раздельные lateral/yaw specialists, endpoint screen и composites](2026-10-07-axis-specialists.md) — mixed-177/150 дал `112/160`, но ухудшил rough_10 response; lateral-152/yaw-252 дал `108/160`, paired 1/0, unsafe 0. Третий repeat доказал, что axis-only screen меняет RNG/reset slots из-за сокращённого case order; он остаётся только prefilter, promotion нет.
 - [Independent balanced-specialist repeat](2026-10-07-specialist-repeat.md) — seed 9913, 150 updates: 27/60, unsafe 0, lateral −0.0206 и yaw +0.0318; repeat gate не пройден, full screen не запускался.
 - [Balanced specialist stage 2](2026-10-05-specialist-stage2.md) — cumulative 77/102/150; +150 дал 28/60 против 27/60 и full screen 109/160 против 107/160, unsafe 0, paired 2 wins/0 losses; finalist требует независимый training seed.
@@ -36,3 +39,31 @@ reference hashes сохраняются. Актуальную очереднос
 Raw JSON/NPZ последней проверки сохраняются локально неизменными в `logs/` и
 не добавляются в Git. Старые сравнительные отчёты не входят в актуальный индекс;
 Git history не переписывался.
+
+## Native Ubuntu sim2sim
+
+- [S1/S2 diagnostic 12.10](2026-10-12-sim2sim-ubuntu.md) — native SDK2 parity,
+  1000 DDS policy ticks и live disconnect/restart; полный S2 gate открыт.
+- [Native watchdog и DDS fault matrix 12.10](2026-10-12-sim2sim-native-watchdog.md) —
+  1000 ticks через официальный bridge, 48/48 fault tests под CPU нагрузкой;
+  explicit recovery/epoch и независимость от Python/GIL проверены, physics/envelope открыт.
+- [Actuator/asset audit и Flat command protocol 12.10](2026-10-12-sim2sim-physics-audit.md) —
+  1232 native law samples; source physics non-parity, stand pass, четыре programs
+  остановлены target guard на реверсе. Full runtime gate не пройден, live PhysX audit впереди.
+- [Live native Isaac/PhysX audit 12.10](2026-10-12-sim2sim-live-isaac.md) — отдельный
+  CUDA runtime, 5 полных Flat programs: 3/5 success, unsafe0; массы/armature
+  подтверждены, desired-target guard gap присутствует также в PhysX. Full S2 открыт.
+- [Отдельный leg actuator-law factor 12.10](2026-10-12-sim2sim-actuator-factor.md) —
+  DC numeric parity1232/1232, disabled240/240; fresh baseline/DC success1/5 каждый,
+  unsafe0. DC yaw полный с tracking fail/stop pass; guard gap и full S2 открыты.
+- [Armature0 factor 12.10](2026-10-12-sim2sim-armature-factor.md) — same DC binary,
+  success1/5 в обоих arms, guard gap не устранён; longitudinal tilt10.97°→43.22°.
+  Variant experimental, полный S2 открыт.
+- [Actual-state / PD guard 12.10](2026-10-12-sim2sim-pd-guard.md) — actor/physics
+  прежние, native checks87/87; все5 programs выполнены, success2/5, stop5/5,
+  unsafe0. Runtime gate failed из-за yaw telemetry gap иinference timeout
+  в единственном объявленном validation repeat.
+- [GC/deferred telemetry timing fix 12.10](2026-10-12-sim2sim-timing-fix.md) —
+  IO/GC mechanisms воспроизведены, все9400ticks/5 programs, timing/measurement
+  gate passed без увеличенияlimits; maxinference1.10ms/sampleage1.38ms.
+  Stop5/5, unsafe0, tracking2/5; полныйS2/qualification открыт.

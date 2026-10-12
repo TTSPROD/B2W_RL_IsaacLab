@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "ppo_updates": 0,
+  "steps": 3600,
+  "parent_weights_exact": true,
+  "adam_exact": true,
+  "terminal_overrides_timeout": true,
+  "coverage": {
+    "reason_counts": [
+      0,
+      0,
+      1,
+      7
+    ],
+    "initial_tilt_invalid": 0,
+    "initial_states": 258,
+    "command_cycles": [
+      63,
+      68,
+      63,
+      53,
+      65
+    ],
+    "command_steps": [
+      94673,
+      171920,
+      77240,
+      67940,
+      49027
+    ],
+    "signed_steps": [
+      [
+        125872,
+        45236
+      ],
+      [
+        40005,
+        41336
+      ],
+      [
+        39582,
+        36550
+      ]
+    ],
+    "physics_dt_s": 0.005,
+    "standard_runner": true,
+    "custom_runner_hooks": false
+  }
+}

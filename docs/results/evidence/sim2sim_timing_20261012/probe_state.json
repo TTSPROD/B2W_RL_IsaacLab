@@ -1,0 +1,12 @@
+{
+  "id": "7e06c0fced81463c9396957ab22b64cc",
+  "kind": "CPU stage/GC timing diagnosis",
+  "entrypoint": "scripts/run_sim2sim_timing_probe.py",
+  "arguments": [],
+  "status": "completed",
+  "created": "2026-10-12T11:37:16.742783+00:00",
+  "updated": "2026-10-12T11:37:22.364507+00:00",
+  "returncode": 0,
+  "worker_pid": 58828,
+  "process_pid": 58829
+}

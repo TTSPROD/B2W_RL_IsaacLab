@@ -1,9 +1,113 @@
 # Деплой B2W через Unitree SDK2
 
-Актуально на 30 сентября 2026. Готового проектного hardware runtime пока нет.
+Актуально на 12 октября 2026. Готового проектного hardware runtime пока нет.
 Policy 24650 — development candidate. Этапы S0–S7 и их зависимости определены
 в [плане](PROJECT_PLAN.md). Названия будущих отчётов ниже обозначают планируемые
-результаты; таких hardware/transport проверок в проекте ещё не было.
+результаты. Native Ubuntu software/DDS diagnostic добавлен в
+`scripts/run_sim2sim.py`; его запуск и ограничения описаны в
+[INFRASTRUCTURE](INFRASTRUCTURE.md). Hardware-проверок в проекте ещё не было.
+
+Offline и DDS используют один `PolicyRuntime` и один native SDK2 encoder.
+Семантика соответствует Isaac evaluation: previous **raw** action,
+clip каждого observation term до scale и clip физических targets после scale.
+Чистый Python MuJoCo viewer сохраняет прежнюю rl_sar семантику; он не является
+этим transport runtime. На CPU проверяются реальные веса checkpoint 24650,
+unchanged export, LowCmd поля и независимый CRC расчёт.
+
+S2 diagnostic использует официальный `Go2Bridge` для B2W/unitree_go, вызывая
+`run()` вместе с physics на одном потоке. Actor получает только DDS LowState;
+прямой MuJoCo state используется отдельно для physics telemetry/abort.
+Короткая nominal программа и live disconnect/restart не закрывают полный
+S2 gate: actuator physics и matched nominal/variation envelope остаются открыты.
+В продолжении `scripts/run_sim2sim_faults.py` DDS publisher/watchdog вынесен в
+отдельный C++ process. [Frozen plan](../configs/sim2sim_fault_plan_20261012.json)
+прошёл 48 DDS fault tests под четырьмя CPU load processes, включая GIL hang,
+actor exit и explicit epoch recovery. Проверен reject wheel target 51 рад/с
+при simulator limit 50; это не полная проверка динамики saturation приводов.
+[Executed evidence](results/2026-10-12-sim2sim-native-watchdog.md).
+Scheduler не переводился в realtime; измерения bounded loopback tests не дают
+hard realtime гарантии или защиты от отказа самого watchdog process.
+Продолжение [actuator/asset audit](results/2026-10-12-sim2sim-physics-audit.md)
+подтвердило leg-law/source-asset non-parity. Один seed полного Flat v2 command
+prefix: stand завершён, четыре motion programs остановлены target guard при
+реверсе. Training/export clips и guard для desired q/dq имеют разные границы;
+silent clipping или ослабление guard не вводились. Нужны physics reconciliation
+и отдельное решение по допустимым target semantics до повторного envelope.
+**Live PhysX audit выполнен** в отдельном native runtime: [результат](results/2026-10-12-sim2sim-live-isaac.md),
+5 полных programs, 3/5 success, unsafe0. Resolved массы/armature/actuators
+подтвердили model differences; desired calf target выходит за hard range также
+в исходном PhysX при безопасном actual q. Counterfactual monitor не изменял
+simulation targets. Strict DDS guard сохраняется; допустимые SDK2 desired
+targets и аппаратные constraints этим не подтверждены.
+
+[Отдельный leg actuator-law factor](results/2026-10-12-sim2sim-actuator-factor.md)
+закрыл numeric DC gap на1232 points в новом MuJoCo executable, сохранив
+original bridge и strict guard. Stand pass в обоих вариантах; DC yaw полный,
+tracking fail/stop pass, остальные motion cases остановлены target_limit.
+Physical unsafe0; masses/passive dynamics/implicit wheels и target contract
+остаются открытыми. Diagnostic exit0 не закрывает full S2 runtime acceptance.
+
+[Armature0 factor](results/2026-10-12-sim2sim-armature-factor.md) не устранил
+guard gap: success1/5 в обоих arms, longitudinal tilt10.97°→43.22°.
+Variant не принят как runtime baseline; unsafe0 при threshold60° не заменяет
+проверку устойчивости, tracking и полного continuous-zero envelope.
+
+## Происхождение limits: проверка официальных источников 12.10
+
+Текущий `target_joint_ranges_rad` в frozen fault plan численно совпадает
+с pinned official B2-W URDF и с опубликованными сейчас Unitree моделями:
+
+| Сустав | Model q range, рад | Model velocity, рад/с | URDF effort, Н·м |
+|---|---|---|---|
+| Hip | −0.87…+0.87 | 23 | 200 |
+| Thigh | −0.94…+4.69 | 23 | 200 |
+| Calf | −2.82…−0.43 | 14 | 320 |
+| Wheel, continuous | Не ограничен по углу | 50 | 20 |
+
+Источник — [official Unitree B2-W URDF](https://github.com/unitreerobotics/unitree_ros/blob/master/robots/b2w_description/urdf/b2w_description.urdf).
+Диапазоны q также совпадают с [official MuJoCo asset](https://github.com/unitreerobotics/unitree_mujoco/blob/main/unitree_robots/b2w/b2w.xml).
+Это параметры mechanical/model state, не опубликованная спецификация
+допустимого SDK2 desired-target envelope. На [странице B2-W](https://www.unitree.com/b2-w/)
+Unitree отдельно подтверждает maximum wheel speed50 рад/с и maximum wheel
+torque40 Н·м. Последнее отличается от model cap20, а calf MuJoCo cap300
+от URDF320: model/training caps нельзя объявлять verified hardware limits.
+
+Правило немедленно reject/latch `LowCmd.q` вне mechanical q range добавлено
+проектом в diagnostic watchdog. В просмотренных официальных открытых SDK2
+example/bridge не найдено требование именно такого reject/latch. Official
+[bridge](https://github.com/unitreerobotics/unitree_mujoco/blob/main/simulate/src/unitree_sdk2_bridge.h)
+использует q/dq как PD references для вычисления torque; joint constraints
+отдельно находятся в модели. Это не доказывает безопасность произвольного
+out-of-range target на физическом B2-W или отсутствие firmware constraints.
+Содержимое динамического B2 developer portal не удалось прочитать этим
+web fetch; полный firmware target envelope остаётся неизвестным.
+
+Поэтому `target_limit` подтверждает конфликт policy output с выбранным
+project guard, но сам по себе не доказывает нарушение SDK2 specification
+или выход actual joint state за mechanical limit. Следует отдельно
+обосновать actual-state safety, torque/current constraints и desired-target
+contract; простое расширение q bounds или silent clipping не обосновано.
+Порог tilt60° и watchdog timing budgets также являются project diagnostic
+choices. Existing frozen plans/guards и executed evidence не менялись.
+
+По явному решению пользователя последующий [sim2sim profile](results/2026-10-12-sim2sim-pd-guard.md)
+разделяет actual-state иPD-reference bounds: actual mechanical q/speed/tilt
+контролируются отдельно, desired references принимаются в прежнем Isaac
+physical target envelope±100 без дополнительных clips. Torque caps применяет
+неизменённая actuator model, noisy DDS tau_est проверяется наfinite.
+Native checks87/87 passed; все5 programs выполнены, success2/5, stop5/5,
+unsafe0. Timing/measurement gate failed ив original yaw, ив single declared
+repeat. Profile только domain1/lo; hardware target envelope этим не подтверждён.
+Legacy guard/plan иих raw evidence сохранены, current replay использует
+`scripts/run_sim2sim_pd_guard.py` /`b2w_sdk2_pd_watchdog`.
+
+[Timing fix](results/2026-10-12-sim2sim-timing-fix.md) воспроизвёл GC pause
+иIO stall mechanisms иубрал их изbounded loops. Новый replay entrypoint —
+`scripts/run_sim2sim_timing.py`, physics bridge — `b2w_mujoco_timed_bridge`;
+PD watchdog иего deadlines unchanged. Все5 programs/9400ticks, measurement
+valid5/5, maxinference1.10ms/sampleage1.38ms; runtime gate passed, stop5/5,
+unsafe0. Tracking2/5, remaining physics/envelope/hardware gates открыты;
+это не hard realtime guarantee или hardware authorization.
 
 ## Изменения плана после ревизии
 

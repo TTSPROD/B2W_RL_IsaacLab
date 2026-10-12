@@ -23,6 +23,8 @@ parser.add_argument('--terrain', required=True)
 parser.add_argument('--output', type=Path, required=True)
 parser.add_argument('--seeds', type=int, default=32)
 parser.add_argument('--smoke-steps', type=int, default=0)
+parser.add_argument('--resolved-physics-output',type=Path)
+parser.add_argument('--audit-target-guards',action='store_true')
 parser.add_argument('--policy-map', type=Path, help='JSON mapping two policy IDs to verified export directories')
 parser.add_argument('--protocol-module', default='core_locomotion_protocol',
                     help='Protocol module implementing the compact locomotion evaluator interface')
@@ -46,7 +48,7 @@ if args.policy_map:
 frozen_plan = json.loads(json.dumps(protocol_manifest(EXPORT_DIRS)))
 declared_sources = None
 if (args.protocol_module.startswith('locomotion_v2') or
-        args.protocol_module in {'lateral_curve_protocol', 'lateral_endpoint_protocol',
+        args.protocol_module in {'sim2sim_isaac_protocol', 'lateral_curve_protocol', 'lateral_endpoint_protocol',
                                  'yaw_endpoint_protocol'}):
     from run_support import sha256 as file_sha256
     declared = read_json(args.policy_map.parent / 'declared_plan.json')
@@ -188,6 +190,20 @@ try:
     observed = env.observation_manager.compute()['policy']
     torch.testing.assert_close(observation(), observed, rtol=0, atol=1e-5)
     ranges = robot.data.joint_pos_limits[0, joint_ids[:12]].cpu().numpy()
+    if args.resolved_physics_output:
+        from isaac_physics_snapshot import resolved_snapshot
+        from run_support import write_json
+        write_json(args.resolved_physics_output,resolved_snapshot(robot,joint_ids,cfg))
+    guard_counts=np.zeros(n,np.int64)
+    guard_first=[None]*n
+    guard_stream=None
+    if args.audit_target_guards:
+        from isaac_physics_snapshot import target_guard_events
+        guard_stream=args.output.with_suffix('.guard.jsonl').open('w',encoding='utf-8')
+        audit_steps=int(max(case.steps for _,case,_ in entries))
+        audit_obs=np.full((audit_steps,n,57),np.nan,np.float32)
+        audit_actions=np.full((len(audit_obs),n,16),np.nan,np.float32)
+        audit_targets=np.full_like(audit_actions,np.nan)
     telemetry = Telemetry(n, contract['torque_limits'], ranges, cfg.sim.dt)
     schedules = [case.schedule()[0] for _, case, _ in entries]
     lengths = np.array([len(schedule) for schedule in schedules])
@@ -247,6 +263,17 @@ try:
             actions[torch.as_tensor(~alive, device=device)] = 0
             env.action_manager.process_action(actions)
             targets = (actions*scales+default).clamp(-100, 100)
+            if args.audit_target_guards:
+                audit_obs[step]=obs.cpu().numpy()
+                audit_actions[step]=actions.cpu().numpy()
+                audit_targets[step]=targets.cpu().numpy()
+                events=target_guard_events(audit_targets[step],robot.data.joint_pos[:,joint_ids].cpu().numpy(),
+                    robot.data.joint_vel[:,joint_ids].cpu().numpy(),step,entries,ranges)
+                for event in events:
+                    if step>=lengths[event['entry']] or not alive[event['entry']]:continue
+                    guard_stream.write(json.dumps(event,allow_nan=False)+'\n')
+                    guard_counts[event['entry']]+=1
+                    if guard_first[event['entry']] is None:guard_first[event['entry']]=event
             telemetry.slew_peak = np.maximum(telemetry.slew_peak,
                 ((targets-previous_targets).abs()/DT).cpu().numpy()*alive[:, None])
             previous_targets.copy_(targets)
@@ -311,6 +338,11 @@ try:
     extra_traces = {'joints_10hz': joint_trace, 'raw_actions_10hz': action_trace, 'quaternion_wxyz_10hz': attitude_trace, 'stair_exposure': exposure}
     if wheels_trace is not None:
         extra_traces['wheels_xyz_upforce_50hz'] = wheels_trace
+    if args.audit_target_guards:
+        guard_stream.close()
+        extra_traces.update(observations_50hz=audit_obs,raw_actions_50hz=audit_actions,physical_targets_50hz=audit_targets)
+        metadata['counterfactual_target_guard']=[{'entry':i,'case':entries[i][1].name,
+            'violation_ticks':int(guard_counts[i]),'first':guard_first[i]} for i in range(n)]
     np.savez_compressed(trace_path, trace=trace, lengths=lengths, **extra_traces,
                         commands=np.stack([np.pad(s, ((0, int(lengths.max())-len(s)), (0, 0)), constant_values=np.nan)
                                            for s in schedules]))
@@ -323,6 +355,8 @@ except BaseException:
     traceback.print_exc()
     raise
 finally:
+    if 'guard_stream' in locals() and guard_stream is not None:
+        guard_stream.close()
     if env is not None:
         env.close()
     app.close()

@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-10-12T09:39:50.315836+00:00",
+  "system_packages_modified": false,
+  "signed_release_sha256": "15a677fd274e2dc95a89d82d40c4e5608454e3f195f56a03e2cf16a8ee2b784d",
+  "packages": [
+    {
+      "package": "libicu74",
+      "version": "74.2-1ubuntu3.1",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu74_74.2-1ubuntu3.1_amd64.deb",
+      "sha256": "c9a70989678660eed9a1e904c74fa043da8bec8e2036856fc16e31ced79b04f8"
+    },
+    {
+      "package": "libxml2",
+      "version": "2.9.14+dfsg-1.3ubuntu3.10",
+      "url": "https://archive.ubuntu.com/ubuntu/pool/main/libx/libxml2/libxml2_2.9.14+dfsg-1.3ubuntu3.10_amd64.deb",
+      "sha256": "c5a065f85c1e6f605741e365e40cad71c3ceb0e85e2791400bd35b8896e12ad1"
+    },
+    {
+      "package": "libglu1-mesa",
+      "sha256": "0559dbb28c2e34e01243fdaf19797165fbf577e613c420d207e31246152f24f0",
+      "source": "host signed APT catalog"
+    }
+  ],
+  "library_sha256": {
+    "usr/lib/x86_64-linux-gnu/libGLU.so.1": "98da3fcdee12f3226add37fe9fb6a6883e2d4065addc064c31f560b2cf0ccd0b",
+    "usr/lib/x86_64-linux-gnu/libxml2.so.2": "209e941be9eb2eb9ab36caaa0b81d1c6b36c8f5d7268c24f19e81039137e6485",
+    "usr/lib/x86_64-linux-gnu/libicuuc.so.74": "7560aadde38e5f4237a47a1ddd5891f9b36768a77a60faae30beee003ac01901",
+    "usr/lib/x86_64-linux-gnu/libxml2.so.2.9.14": "209e941be9eb2eb9ab36caaa0b81d1c6b36c8f5d7268c24f19e81039137e6485",
+    "usr/lib/x86_64-linux-gnu/libicui18n.so.74": "3550b194eb2cf2e6f798f033eb9ca279d498c21296b4a18790ce158d2023e47b",
+    "usr/lib/x86_64-linux-gnu/libicudata.so.74.2": "ddbb3718b8bd9cbd780e5ab08b4503c30a6c4fa0706ebe5d074ed6b596c1714e",
+    "usr/lib/x86_64-linux-gnu/libicutu.so.74.2": "a93f8890099fe32aa569d5fe22e0537d632b144069da8b03a67d50401434b753",
+    "usr/lib/x86_64-linux-gnu/libicutest.so.74": "549175dea22826a6d4c1a145d4e5796a6d38ccfd3b07f55be8e6250b5033c6e5",
+    "usr/lib/x86_64-linux-gnu/libicui18n.so.74.2": "3550b194eb2cf2e6f798f033eb9ca279d498c21296b4a18790ce158d2023e47b",
+    "usr/lib/x86_64-linux-gnu/libicuio.so.74.2": "750b18b8bd63c4b60dd346de67fee24d08cc8da3dfc4cc3f709e514dc57a8493",
+    "usr/lib/x86_64-linux-gnu/libGLU.so.1.3.1": "98da3fcdee12f3226add37fe9fb6a6883e2d4065addc064c31f560b2cf0ccd0b",
+    "usr/lib/x86_64-linux-gnu/libicutu.so.74": "a93f8890099fe32aa569d5fe22e0537d632b144069da8b03a67d50401434b753",
+    "usr/lib/x86_64-linux-gnu/libicutest.so.74.2": "549175dea22826a6d4c1a145d4e5796a6d38ccfd3b07f55be8e6250b5033c6e5",
+    "usr/lib/x86_64-linux-gnu/libicudata.so.74": "ddbb3718b8bd9cbd780e5ab08b4503c30a6c4fa0706ebe5d074ed6b596c1714e",
+    "usr/lib/x86_64-linux-gnu/libicuuc.so.74.2": "7560aadde38e5f4237a47a1ddd5891f9b36768a77a60faae30beee003ac01901",
+    "usr/lib/x86_64-linux-gnu/libicuio.so.74": "750b18b8bd63c4b60dd346de67fee24d08cc8da3dfc4cc3f709e514dc57a8493"
+  }
+}

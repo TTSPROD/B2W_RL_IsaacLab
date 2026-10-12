@@ -1,0 +1,42 @@
+{
+  "schema": "b2w_native_standard_continuation_v1",
+  "parent": "policies/local/core_24650/model_24650.pt",
+  "parent_sha256": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+  "parent_export_sha256": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+  "standard_train": "vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py",
+  "arms": {
+    "control": [0.2, 0.2, 0.2, 0.2, 0.2],
+    "focus": [0.1, 0.1, 0.35, 0.35, 0.1]
+  },
+  "modes": ["zero", "longitudinal", "lateral", "yaw", "mixed"],
+  "intervention": "Only Flat/Rough cycle sampling probabilities; stair programs identical",
+  "training": {
+    "seed": 9930, "num_envs": 4000, "updates_per_arm": 150,
+    "num_steps_per_env": 24, "learning_rate": 0.00001,
+    "schedule": "fixed", "save_interval": 25,
+    "final_iteration": 24799,
+    "max_seconds_per_child": 3600
+  },
+  "common_mdp": {
+    "base": "pinned UnitreeB2WRoughEnvCfg, no historical runner/task inheritance",
+    "rewards": "upstream weights and kernels, with retained parent moderate-yaw kernel",
+    "terrain": "all upstream families at 75 percent plus 25 percent flat; 10x20 stratified levels, fixed during episodes",
+    "commands": "direct body-frame complete v2 programs, random initial sign per cycle; stairs alternate 12s vx=0.5 and 14s zero",
+    "reset": "upstream domain randomization, roll/pitch restricted to [-0.1,0.1]",
+    "safety": "v2 true terminal at every physics step; unsafe overrides timeouts; no grace",
+    "episode_length_s": 70,
+    "actor_abi": [57, 16], "critic_observations": 247, "policy_hz": 50
+  },
+  "preflight": {"num_envs": 128, "steps": 3600, "ppo_updates": 0},
+  "evaluation": {
+    "protocol": "locomotion_v2_protocol",
+    "layout": "one actor per fresh process with same complete case/reset slots",
+    "episodes_per_actor": 160,
+    "actors": ["24650", "stdcontrol_24799", "stdfocus_24799"],
+    "selection": "final checkpoints only; no intermediate selection or budget extension",
+    "gate": "zero unsafe, no paired success losses against parent or control, at least 2 paired wins versus parent and 1 versus control; no success-cell or wheel-saturation regression"
+  },
+  "hardware_enabled": false,
+  "server_training": false,
+  "automatic_promotion": false
+}

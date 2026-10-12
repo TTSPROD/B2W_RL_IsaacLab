@@ -1,0 +1,10 @@
+{
+  "source_job": "5ab68628f8664d5d8b0b91c3cfaa64b5",
+  "source_manifest_sha256": "b2393b1839d4f32fd4222ee2114ed26ec9a8e7e610cc761a8100df070986a4e9",
+  "reused_ppo_updates": 300,
+  "additional_ppo_updates": 0,
+  "implementation_changes": [
+    "scripts/run_native_continuation.py"
+  ],
+  "reason": "Remove unsupported diagnostic_only metadata before full v2 validation; training bytes unchanged"
+}

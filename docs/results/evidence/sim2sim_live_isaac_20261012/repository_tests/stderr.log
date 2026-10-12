@@ -1,0 +1,495 @@
+Monitor unavailable; job independent continues: monitor unavailable
+======================================================================
+ERROR: test_axis_endpoint_frozen_contract (test_axis_specialists.AxisSpecialistsTests.test_axis_endpoint_frozen_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_axis_specialists.py", line 70, in test_axis_endpoint_frozen_contract
+    spec = load_endpoint_spec()
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/axis_endpoint_screen_contract.py", line 21, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/d24133183f5f4eeeb4a08bf33dae363f/full_screen/analysis/summary.json'
+
+======================================================================
+ERROR: test_axis_mixed_frozen_contract (test_axis_specialists.AxisSpecialistsTests.test_axis_mixed_frozen_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_axis_specialists.py", line 64, in test_axis_mixed_frozen_contract
+    spec = load_mixed_spec()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/axis_mixed_probe_contract.py", line 21, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5/result.json'
+
+======================================================================
+ERROR: test_axis_robust_composite_contract (test_axis_specialists.AxisSpecialistsTests.test_axis_robust_composite_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_axis_specialists.py", line 77, in test_axis_robust_composite_contract
+    spec = load_robust_spec()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/axis_robust_composite_contract.py", line 22, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/8fd3bdf17e2a49c19b92f865f2fd362f/result.json'
+
+======================================================================
+ERROR: test_frozen_contract (test_axis_specialists.AxisSpecialistsTests.test_frozen_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_axis_specialists.py", line 34, in test_frozen_contract
+    spec = load_spec()
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/axis_specialists_contract.py", line 23, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/3499b81d1d99477bb90c3b3ca5dcc162/result.json'
+
+======================================================================
+ERROR: test_lateral_curve_frozen_contract (test_axis_specialists.AxisSpecialistsTests.test_lateral_curve_frozen_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_axis_specialists.py", line 57, in test_lateral_curve_frozen_contract
+    spec = load_curve_spec()
+           ^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/lateral_curve_contract.py", line 24, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5/result.json'
+
+======================================================================
+ERROR: test_stage2_frozen_contract (test_axis_specialists.AxisSpecialistsTests.test_stage2_frozen_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_axis_specialists.py", line 50, in test_stage2_frozen_contract
+    spec = load_stage2_spec()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/axis_specialists_stage2_contract.py", line 26, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/509c0f16fa00462aa5679b2c69f91eb5/result.json'
+
+======================================================================
+ERROR: test_frozen_contract (test_composite_policy.CompositePolicyTest.test_frozen_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_composite_policy.py", line 26, in test_frozen_contract
+    self.assertEqual(load_spec()["composite"]["policy_id"], "microcomposite_24674")
+                     ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/composite_probe_contract.py", line 12, in load_spec
+    if sha256(ROOT / spec["basis"]["micro_sweep_result"]) != spec["basis"]["micro_sweep_result_sha256"]:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/10d747f88f7f432896b60eda4a139c32/result.json'
+
+======================================================================
+ERROR: test_cell_loss_cannot_hide_in_aggregate_or_retention_only (test_lr_pilot.LRPilotTests.test_cell_loss_cannot_hide_in_aggregate_or_retention_only)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_lr_pilot.py", line 107, in test_cell_loss_cannot_hide_in_aggregate_or_retention_only
+    rows,plan,coverage=self.fixture()
+                       ^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_lr_pilot.py", line 76, in fixture
+    plan=load_plan();rows=[]
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/lr_pilot_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_decision_requires_complete_coverage_and_target_gain (test_lr_pilot.LRPilotTests.test_decision_requires_complete_coverage_and_target_gain)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_lr_pilot.py", line 97, in test_decision_requires_complete_coverage_and_target_gain
+    rows,plan,coverage=self.fixture()
+                       ^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_lr_pilot.py", line 76, in fixture
+    plan=load_plan();rows=[]
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/lr_pilot_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_plan_and_single_actor_boundary (test_lr_pilot.LRPilotTests.test_plan_and_single_actor_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_lr_pilot.py", line 21, in test_plan_and_single_actor_boundary
+    plan=load_plan()
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/lr_pilot_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_frozen_factorial_grid_and_budget (test_micro_sweep.MicroSweepContractTests.test_frozen_factorial_grid_and_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_micro_sweep.py", line 11, in test_frozen_factorial_grid_and_budget
+    spec = load_spec()
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/micro_sweep_contract.py", line 21, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/216011ab5a7e43fcb5d16129b2c2ee55/gradient_audit/result.json'
+
+======================================================================
+ERROR: test_no_automatic_promotion_or_stage2 (test_micro_sweep.MicroSweepContractTests.test_no_automatic_promotion_or_stage2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_micro_sweep.py", line 23, in test_no_automatic_promotion_or_stage2
+    spec = load_spec()
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/micro_sweep_contract.py", line 21, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/216011ab5a7e43fcb5d16129b2c2ee55/gradient_audit/result.json'
+
+======================================================================
+ERROR: test_new_actor_identity_and_managed_recipe (test_reset_pilot.ResetPilotTests.test_new_actor_identity_and_managed_recipe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_reset_pilot.py", line 55, in test_new_actor_identity_and_managed_recipe
+    plan=load_plan()
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/reset_pilot_contract.py", line 13, in load_plan
+    if sha256(ROOT/name) != digest:
+       ^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_preflight_blocks_invalid_or_inaccessible_long_zero (test_reset_pilot.ResetPilotTests.test_preflight_blocks_invalid_or_inaccessible_long_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_reset_pilot.py", line 36, in test_preflight_blocks_invalid_or_inaccessible_long_zero
+    plan=load_plan();coverage={}
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/reset_pilot_contract.py", line 13, in load_plan
+    if sha256(ROOT/name) != digest:
+       ^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_completion_rejects_drift_in_logged_fixed_learning_rate (test_schedule_pilot.SchedulePilotTests.test_completion_rejects_drift_in_logged_fixed_learning_rate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_schedule_pilot.py", line 102, in test_completion_rejects_drift_in_logged_fixed_learning_rate
+    from torch.utils.tensorboard import SummaryWriter
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/.venv/lib/python3.11/site-packages/torch/utils/tensorboard/__init__.py", line 1, in <module>
+    import tensorboard
+ModuleNotFoundError: No module named 'tensorboard'
+
+======================================================================
+ERROR: test_only_native_schedule_diff_is_allowed (test_schedule_pilot.SchedulePilotTests.test_only_native_schedule_diff_is_allowed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_schedule_pilot.py", line 44, in test_only_native_schedule_diff_is_allowed
+    audit_agent(agent,'fixed')
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/schedule_pilot_contract.py", line 43, in audit_agent
+    spec=load_spec();expected=deepcopy(spec['common_algorithm_config']);expected['schedule']=arm
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/schedule_pilot_contract.py", line 20, in load_spec
+    if sha256(ROOT/d[path_key])!=d[hash_key]:raise ValueError('Schedule input changed: '+path_key)
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs\\dashboard\\jobs\\37198e6459844450a190984e03beef16\\training_\\upright\\reset_environment.yaml'
+
+======================================================================
+ERROR: test_preflight_rejects_invalid_reset_and_missing_zero (test_schedule_pilot.SchedulePilotTests.test_preflight_rejects_invalid_reset_and_missing_zero)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_schedule_pilot.py", line 61, in test_preflight_rejects_invalid_reset_and_missing_zero
+    for n,bank in build_banks(load_plan()).items()}
+                              ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/schedule_pilot_contract.py", line 31, in load_plan
+    spec=load_spec();plan=deepcopy(reset_plan());t=spec['training']
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/schedule_pilot_contract.py", line 20, in load_spec
+    if sha256(ROOT/d[path_key])!=d[hash_key]:raise ValueError('Schedule input changed: '+path_key)
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs\\dashboard\\jobs\\37198e6459844450a190984e03beef16\\training_\\upright\\reset_environment.yaml'
+
+======================================================================
+ERROR: test_schedule_gain_cannot_override_parent_retention_floor (test_schedule_pilot.SchedulePilotTests.test_schedule_gain_cannot_override_parent_retention_floor)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_schedule_pilot.py", line 17, in test_schedule_gain_cannot_override_parent_retention_floor
+    floors=load_spec()['retention']['per_cell_success_minimum'];rows=[]
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/schedule_pilot_contract.py", line 20, in load_spec
+    if sha256(ROOT/d[path_key])!=d[hash_key]:raise ValueError('Schedule input changed: '+path_key)
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs\\dashboard\\jobs\\37198e6459844450a190984e03beef16\\training_\\upright\\reset_environment.yaml'
+
+======================================================================
+ERROR: test_standard_ppo_fixed_schedule_updates_weights_without_lr_change (test_schedule_pilot.SchedulePilotTests.test_standard_ppo_fixed_schedule_updates_weights_without_lr_change)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_schedule_pilot.py", line 76, in test_standard_ppo_fixed_schedule_updates_weights_without_lr_change
+    from tensordict import TensorDict
+ModuleNotFoundError: No module named 'tensordict'
+
+======================================================================
+ERROR: test_frozen_repeat (test_specialist_repeat.SpecialistRepeatTests.test_frozen_repeat)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_specialist_repeat.py", line 15, in test_frozen_repeat
+    spec = load_spec()
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/specialist_repeat_contract.py", line 22, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/ade3807809c94923878b53a669e6d8a2/result.json'
+
+======================================================================
+ERROR: test_frozen_budget_and_checkpoints (test_specialist_stage2.SpecialistStage2Tests.test_frozen_budget_and_checkpoints)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_specialist_stage2.py", line 14, in test_frozen_budget_and_checkpoints
+    spec = load_spec()
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/specialist_stage2_contract.py", line 23, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/605cb4fb65d84a83b1fe2edc67a4d79d/result.json'
+
+======================================================================
+ERROR: test_selection_is_not_promotion (test_specialist_stage2.SpecialistStage2Tests.test_selection_is_not_promotion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_specialist_stage2.py", line 26, in test_selection_is_not_promotion
+    spec = load_spec()
+           ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/specialist_stage2_contract.py", line 23, in load_spec
+    if sha256(ROOT / relative) != expected:
+       ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/dashboard/jobs/605cb4fb65d84a83b1fe2edc67a4d79d/result.json'
+
+======================================================================
+ERROR: test_1350_amendment_retains_checkpoint_aligned_coverage (test_stair_curriculum.SafetyTests.test_1350_amendment_retains_checkpoint_aligned_coverage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_stair_curriculum.py", line 98, in test_1350_amendment_retains_checkpoint_aligned_coverage
+    plan,amendment=load_comparison()
+                   ^^^^^^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/stair_comparison_1350.py", line 11, in load_comparison
+    original=load_plan()
+             ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/stair_curriculum_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_coverage_does_not_accept_missing_or_padded_phases (test_stair_curriculum.SafetyTests.test_coverage_does_not_accept_missing_or_padded_phases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_stair_curriculum.py", line 66, in test_coverage_does_not_accept_missing_or_padded_phases
+    plan=load_plan();self.assertFalse(coverage_ok({},plan))
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/stair_curriculum_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_curriculum_ignores_stand_and_rejects_unsafe_success (test_stair_curriculum.SafetyTests.test_curriculum_ignores_stand_and_rejects_unsafe_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_stair_curriculum.py", line 76, in test_curriculum_ignores_stand_and_rejects_unsafe_success
+    plan=load_plan();n=5;ids=torch.arange(n)
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/stair_curriculum_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_decision_requires_safe_final_gain_and_complete_matrix (test_stair_curriculum.SafetyTests.test_decision_requires_safe_final_gain_and_complete_matrix)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_stair_curriculum.py", line 107, in test_decision_requires_safe_final_gain_and_complete_matrix
+    plan=load_plan()
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/stair_curriculum_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_mixed_bank_phase_coverage_and_no_duplicate_completion (test_stair_curriculum.SafetyTests.test_mixed_bank_phase_coverage_and_no_duplicate_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_stair_curriculum.py", line 50, in test_mixed_bank_phase_coverage_and_no_duplicate_completion
+    plan=load_plan();n=5;ids=torch.arange(n)
+         ^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/stair_curriculum_contract.py", line 19, in load_plan
+    if sha256(path) != digest:
+       ^^^^^^^^^^^^
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/scripts/run_support.py", line 52, in sha256
+    with Path(path).open("rb") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/roman/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/roman/Work/02_Git/B2W_RL_IsaacLab/logs/rsl_rl/b2w_24499_core_stage1_local/2026-09-28_19-20-23_core_stage1/sources/24499_core_stage1_20260928.json'
+
+======================================================================
+ERROR: test_timeout_bootstrap_excludes_safety (test_stair_curriculum.SafetyTests.test_timeout_bootstrap_excludes_safety)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/roman/Work/02_Git/B2W_RL_IsaacLab/tests/test_stair_curriculum.py", line 36, in test_timeout_bootstrap_excludes_safety
+    from rsl_rl.algorithms.ppo import PPO
+ModuleNotFoundError: No module named 'rsl_rl'
+
+----------------------------------------------------------------------
+Ran 144 tests in 3.153s
+
+FAILED (errors=28, skipped=2)

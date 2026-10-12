@@ -1,0 +1,10 @@
+{
+  "audit": null,
+  "records": [],
+  "error": "CalledProcessError(1, ['/home/roman/Work/02_Git/B2W_RL_IsaacLab/.venv/bin/python', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_sim2sim_physics.py', '-q'])",
+  "infrastructure_passed": false,
+  "successes": 0,
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "live_isaac_comparison": false
+}

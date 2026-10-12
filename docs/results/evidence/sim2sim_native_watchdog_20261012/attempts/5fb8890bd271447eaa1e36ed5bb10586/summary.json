@@ -1,0 +1,181 @@
+{
+  "nominal": {
+    "status": "passed",
+    "policy_ticks": 1000,
+    "native_status": {
+      "id": 4872,
+      "ok": true,
+      "error": "",
+      "fault": "",
+      "epoch": 0,
+      "armed": true,
+      "count": 10003,
+      "receipts": 10003,
+      "command_seq": 1000,
+      "inference_seq": 1000,
+      "target_generation": 1000,
+      "pending": false,
+      "fault_ns": 0,
+      "inference_ns": 3675595354807,
+      "target_ns": 3675596011511,
+      "command_ns": 3675595176690,
+      "publish_count": 11714,
+      "max_publish_interval_ns": 2847261,
+      "first_disabled_ns": 0,
+      "last_disabled": false,
+      "tick": 20004,
+      "age_s": 0.000703041,
+      "crc_valid": true,
+      "quat_wxyz": [
+        0.9999726414680481,
+        0.002013804391026497,
+        0.0022064780350774527,
+        0.006764654070138931
+      ],
+      "omega_body": [
+        -0.0004377425357233733,
+        0.011743159033358097,
+        0.0036300483625382185
+      ],
+      "joint_pos": [
+        -0.08377797156572342,
+        0.8144092559814453,
+        -1.488398790359497,
+        0.07862122356891632,
+        0.8008419871330261,
+        -1.5012998580932617,
+        -0.06702790409326553,
+        0.7818364500999451,
+        -1.4964911937713623,
+        0.07232699543237686,
+        0.7905184030532837,
+        -1.4954781532287598,
+        2.4040348529815674,
+        1.2709877490997314,
+        1.7694560289382935,
+        2.222691297531128
+      ],
+      "joint_vel": [
+        -0.004700663965195417,
+        -0.05805906280875206,
+        -0.010981505736708641,
+        -0.0027448355685919523,
+        0.025731056928634644,
+        0.00918751023709774,
+        -0.0010039976332336664,
+        -0.033020321279764175,
+        0.012493985705077648,
+        -0.001493079587817192,
+        -0.0028562252409756184,
+        0.016183312982320786,
+        0.12957218289375305,
+        -0.4751755893230438,
+        -0.0812510997056961,
+        -0.2636338770389557
+      ]
+    },
+    "fault": "",
+    "bridge_returncode": 0,
+    "model_contract": {
+      "nq": 23,
+      "nv": 22,
+      "nu": 16,
+      "physics_dt_s": 0.002,
+      "policy_dt_s": 0.02,
+      "physics_steps_per_policy_step": 10,
+      "actuator_names": [
+        "FR_hip",
+        "FR_thigh",
+        "FR_calf",
+        "FL_hip",
+        "FL_thigh",
+        "FL_calf",
+        "RR_hip",
+        "RR_thigh",
+        "RR_calf",
+        "RL_hip",
+        "RL_thigh",
+        "RL_calf",
+        "FR_wheel",
+        "FL_wheel",
+        "RR_wheel",
+        "RL_wheel"
+      ],
+      "joint_position_sensors": [
+        "FR_hip_pos",
+        "FR_thigh_pos",
+        "FR_calf_pos",
+        "FL_hip_pos",
+        "FL_thigh_pos",
+        "FL_calf_pos",
+        "RR_hip_pos",
+        "RR_thigh_pos",
+        "RR_calf_pos",
+        "RL_hip_pos",
+        "RL_thigh_pos",
+        "RL_calf_pos",
+        "FR_wheel_pos",
+        "FL_wheel_pos",
+        "RR_wheel_pos",
+        "RL_wheel_pos"
+      ],
+      "joint_velocity_sensors": [
+        "FR_hip_vel",
+        "FR_thigh_vel",
+        "FR_calf_vel",
+        "FL_hip_vel",
+        "FL_thigh_vel",
+        "FL_calf_vel",
+        "RR_hip_vel",
+        "RR_thigh_vel",
+        "RR_calf_vel",
+        "RL_hip_vel",
+        "RL_thigh_vel",
+        "RL_calf_vel",
+        "FR_wheel_vel",
+        "FL_wheel_vel",
+        "RR_wheel_vel",
+        "RL_wheel_vel"
+      ]
+    },
+    "physics_samples": 10008,
+    "inference_s": {
+      "p50": 0.0004731805,
+      "p95": 0.00054083905,
+      "p99": 0.0007355492199999999,
+      "max": 0.000838558
+    },
+    "max_tilt_rad": 0.040075838152232715,
+    "simulation_qualified": false
+  },
+  "fault_matrix_count": 48,
+  "fault_matrix_passed": true,
+  "publication_gates": {
+    "nominal": {
+      "samples": 11902,
+      "hz": 499.9966389815041,
+      "interval_ns": {
+        "p50": 2081370.0,
+        "p95": 2097051.0,
+        "p99": 2113732.0,
+        "max": 2847261.0
+      },
+      "passed": true
+    },
+    "faults": {
+      "samples": 3391,
+      "hz": 499.9312498674408,
+      "interval_ns": {
+        "p50": 2086195.5,
+        "p95": 2163713.5999999996,
+        "p99": 2627591.3600000003,
+        "max": 5032378.0
+      },
+      "passed": true
+    }
+  },
+  "error": null,
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "passed": true
+}

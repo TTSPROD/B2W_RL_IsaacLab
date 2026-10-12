@@ -17,6 +17,21 @@ JOBS = ROOT / "logs/dashboard/jobs"
 LOCK = threading.Lock()
 ACTIVE = {"queued", "running", "stopping"}
 ENTRYPOINTS = {
+    "scripts/run_native_trace_diagnosis.py": "Offline continuation phase/unsafe/drive trace diagnosis, zero PPO",
+    "scripts/run_native_continuation.py": "Bounded standard PPO continuation from 24650 and full v2 comparison",
+    "scripts/run_isaac_continuation_child.py": "Isolated local Isaac continuation child",
+    "scripts/run_sim2sim_timing_tests.py": "Focused GC/numeric-parity verification",
+    "scripts/run_sim2sim_timing.py": "Deferred telemetry / bounded GC timing fix replay",
+    "scripts/run_sim2sim_timing_probe.py": "CPU stage/GC timing diagnosis",
+    "scripts/run_sim2sim_pd_measurement.py": "Declared yaw telemetry-validation repeat",
+    "scripts/run_sim2sim_pd_guard.py": "Separate actual-state/PD guard and Flat replay",
+    "scripts/run_sim2sim_armature.py": "Paired MuJoCo armature-only factor",
+    "scripts/run_sim2sim_actuator.py": "Paired MuJoCo leg actuator-law factor",
+    "scripts/run_sim2sim_isaac_audit.py": "Resolved native Isaac/PhysX asset and target audit",
+    "scripts/run_isaac_audit_child.py": "Isolated Isaac child for frozen sim2sim audit",
+    "scripts/run_sim2sim_physics.py": "Native actuator physics audit and Flat command protocol",
+    "scripts/run_sim2sim_faults.py": "Frozen native SDK2 watchdog and DDS fault matrix",
+    "scripts/run_sim2sim.py": "Native Ubuntu SDK2 parity and MuJoCo DDS diagnostic",
     "scripts/run_gradient_audit.py": "No-update reward/GAE/actor-gradient audit",
     "scripts/run_micro_sweep.py": "25-update command-order/PPO-intensity 2x2 sweep",
     "scripts/run_composite_probe.py": "Parent plus lateral/yaw specialist composite probe",
@@ -88,6 +103,24 @@ def process_running(pid):
 
 def recipe(request):
     kind = request.get("kind")
+    if kind == "native_continuation":
+        return "scripts/run_native_continuation.py", []
+    if kind == "sim2sim_timing":
+        return "scripts/run_sim2sim_timing.py", []
+    if kind == "sim2sim_pd_guard":
+        return "scripts/run_sim2sim_pd_guard.py", []
+    if kind == "sim2sim_armature":
+        return "scripts/run_sim2sim_armature.py", []
+    if kind == "sim2sim_actuator":
+        return "scripts/run_sim2sim_actuator.py", []
+    if kind == "sim2sim_isaac":
+        return "scripts/run_sim2sim_isaac_audit.py", []
+    if kind == "sim2sim_physics":
+        return "scripts/run_sim2sim_physics.py", []
+    if kind == "sim2sim":
+        return "scripts/run_sim2sim.py", []
+    if kind == "sim2sim_faults":
+        return "scripts/run_sim2sim_faults.py", []
     if kind == "gradient_audit":
         return "scripts/run_gradient_audit.py", []
     if kind == "micro_sweep":

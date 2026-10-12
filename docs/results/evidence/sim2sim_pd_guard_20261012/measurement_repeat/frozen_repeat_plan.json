@@ -1,0 +1,11 @@
+{
+  "schema": "b2w_sim2sim_pd_measurement_repeat_v1",
+  "source_job": "040549c8e4174c8288112a8d2eeea858",
+  "case": "yaw",
+  "repeats": 1,
+  "hardware_enabled": false,
+  "training_updates": 0,
+  "reason": "One physics sample availability gap exceeds unchanged10ms measurement gate; no tuning, interpolation, outcome selection or threshold change",
+  "frozen_motion_plan_sha256": "4091eab90a63b409e38e1ee468435932ab1fd7dece8726953f1378d89690b432",
+  "selection": "A single predeclared validation repeat, all outcomes retained; not qualification"
+}

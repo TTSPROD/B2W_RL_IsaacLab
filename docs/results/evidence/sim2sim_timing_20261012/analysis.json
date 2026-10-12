@@ -1,0 +1,234 @@
+{
+  "job": "0e574426bf7b4b94a56c0e5ef2595990",
+  "manifest_sha256": "d5c5a35703caa9ddd8db54109ff18b6df4436268c926841ac374f8f349494281",
+  "raw_files_verified": 229,
+  "executed_source_files_verified": 45,
+  "records": [
+    {
+      "case": "stand",
+      "outcome": "success",
+      "ticks": 600,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": true,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "measurement_valid": true,
+      "sample_age_max_ms": 0.261229,
+      "inference_wall_max_ms": 0.748116,
+      "inference_cpu_max_ms": 0.747622,
+      "forward_wall_max_ms": 0.171685,
+      "physics_sample_gap_max_ms": 2.284495,
+      "publisher_interval_max_ms": 3.020979,
+      "capture": {
+        "captured": 6010,
+        "capacity": 8516,
+        "drops": 0,
+        "disk_io_in_physics_loop": false,
+        "result": 0
+      },
+      "force_caps_preserved": true,
+      "physics_xml_unchanged": true,
+      "tilt_peak_deg": 1.108444319699788,
+      "actual_joint_margin_min_rad": 0.7797359968039911,
+      "bridge_wall_max_ms": 0.003356,
+      "step_wall_max_ms": 0.13199,
+      "capture_wall_max_ms": 0.070935
+    },
+    {
+      "case": "longitudinal",
+      "outcome": "tracking_failure",
+      "ticks": 2500,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": false,
+        "transitions": false,
+        "stop": true,
+        "traversal": null
+      },
+      "measurement_valid": true,
+      "sample_age_max_ms": 0.912255,
+      "inference_wall_max_ms": 1.101495,
+      "inference_cpu_max_ms": 1.100854,
+      "forward_wall_max_ms": 0.271153,
+      "physics_sample_gap_max_ms": 5.194305,
+      "publisher_interval_max_ms": 4.533634,
+      "capture": {
+        "captured": 25008,
+        "capacity": 27516,
+        "drops": 0,
+        "disk_io_in_physics_loop": false,
+        "result": 0
+      },
+      "force_caps_preserved": true,
+      "physics_xml_unchanged": true,
+      "tilt_peak_deg": 15.073877328911761,
+      "actual_joint_margin_min_rad": 0.4458782741774545,
+      "bridge_wall_max_ms": 0.005771,
+      "step_wall_max_ms": 0.196081,
+      "capture_wall_max_ms": 0.056427
+    },
+    {
+      "case": "lateral",
+      "outcome": "tracking_failure",
+      "ticks": 2500,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": false,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "measurement_valid": true,
+      "sample_age_max_ms": 0.8995789999999999,
+      "inference_wall_max_ms": 0.872352,
+      "inference_cpu_max_ms": 0.871916,
+      "forward_wall_max_ms": 0.170212,
+      "physics_sample_gap_max_ms": 2.295877,
+      "publisher_interval_max_ms": 3.846914,
+      "capture": {
+        "captured": 25009,
+        "capacity": 27516,
+        "drops": 0,
+        "disk_io_in_physics_loop": false,
+        "result": 0
+      },
+      "force_caps_preserved": true,
+      "physics_xml_unchanged": true,
+      "tilt_peak_deg": 15.417600674623172,
+      "actual_joint_margin_min_rad": 0.4188450149093123,
+      "bridge_wall_max_ms": 0.005931,
+      "step_wall_max_ms": 0.140466,
+      "capture_wall_max_ms": 0.072638
+    },
+    {
+      "case": "yaw",
+      "outcome": "tracking_failure",
+      "ticks": 2500,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": false,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "measurement_valid": true,
+      "sample_age_max_ms": 1.150949,
+      "inference_wall_max_ms": 1.055969,
+      "inference_cpu_max_ms": 0.868289,
+      "forward_wall_max_ms": 0.193076,
+      "physics_sample_gap_max_ms": 3.153831,
+      "publisher_interval_max_ms": 4.921599,
+      "capture": {
+        "captured": 25009,
+        "capacity": 27516,
+        "drops": 0,
+        "disk_io_in_physics_loop": false,
+        "result": 0
+      },
+      "force_caps_preserved": true,
+      "physics_xml_unchanged": true,
+      "tilt_peak_deg": 3.3178832291030385,
+      "actual_joint_margin_min_rad": 0.5681130574296098,
+      "bridge_wall_max_ms": 0.00492,
+      "step_wall_max_ms": 0.159562,
+      "capture_wall_max_ms": 0.075904
+    },
+    {
+      "case": "mixed",
+      "outcome": "success",
+      "ticks": 1300,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": true,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "measurement_valid": true,
+      "sample_age_max_ms": 1.383178,
+      "inference_wall_max_ms": 0.832787,
+      "inference_cpu_max_ms": 0.832362,
+      "forward_wall_max_ms": 0.222852,
+      "physics_sample_gap_max_ms": 3.810795,
+      "publisher_interval_max_ms": 3.856623,
+      "capture": {
+        "captured": 13009,
+        "capacity": 15516,
+        "drops": 0,
+        "disk_io_in_physics_loop": false,
+        "result": 0
+      },
+      "force_caps_preserved": true,
+      "physics_xml_unchanged": true,
+      "tilt_peak_deg": 4.775007147668188,
+      "actual_joint_margin_min_rad": 0.5480345977010928,
+      "bridge_wall_max_ms": 0.00519,
+      "step_wall_max_ms": 0.168619,
+      "capture_wall_max_ms": 0.066647
+    }
+  ],
+  "accepted_ticks": 9400,
+  "successes": 2,
+  "full_programs": 5,
+  "regression_passed": true,
+  "motion_runtime_passed": true,
+  "cpu_roles": {
+    "actor": [
+      9
+    ],
+    "physics": [
+      10
+    ],
+    "watchdog": [
+      11
+    ],
+    "reserved_siblings": [
+      9,
+      10,
+      11,
+      21,
+      22,
+      23
+    ]
+  },
+  "tests": {
+    "main_discovered": 46,
+    "main_passed": 44,
+    "main_skipped": 2,
+    "additional_focused": 3,
+    "additional_focused_passed": 3,
+    "additional_job": "d445c6a03d2f4703803969abf206c50b"
+  },
+  "gc_probe_job": "7e06c0fced81463c9396957ab22b64cc",
+  "gc_probe_result_sha256": "36c0607e2bbb7366b5c25724d943b8bd1ab1775264cd4ef71e190fd1768c131e",
+  "old_evidence_analysis": {
+    "original_physics_gap_ms": 24.149784,
+    "old_inference_ms": 38.870064,
+    "historical_cpu_stage_trace_available": false,
+    "gc_enabled_in_failed_repeat": true,
+    "causal_limit": "Controlled tests reproduce GC and IO mechanisms; original physics syscall vs scheduling stall cannot be assigned exactly from historical timestamps alone."
+  },
+  "implementation_changes_after_run": {
+    "scripts/run_sim2sim_timing.py": {
+      "executed_sha256": "25d99ca1a81d553488c50540d2eac9bafd9f64fa87a2b0d7b765442910ce22ce",
+      "current_sha256": "fad3ff914b00d8aeea479d69307bbfd7d2ed57ada0b63bbf9c0c839d131ba58b",
+      "reason": "Post-run added focused test entrypoint and include its pattern in future preflight; runtime unchanged"
+    },
+    "scripts/job_manager.py": {
+      "executed_sha256": "4189e898132696dc0498608abbf40c9e2b8d3fa8a427b01dc27184e9276c4c89",
+      "current_sha256": "f3a82ba1e3af5138472a467d7f35accf9f991ec931bb7d6acb3b745053ec8ff0",
+      "reason": "Post-run added focused test entrypoint and include its pattern in future preflight; runtime unchanged"
+    }
+  },
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "training_updates": 0
+}

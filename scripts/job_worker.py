@@ -58,6 +58,7 @@ def main():
                 return
             process = subprocess.Popen(local_command(state["entrypoint"], state["arguments"]),
                 cwd=ROOT, env=env, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
+                start_new_session=sys.platform != "win32",
                 creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0)
             state.update(status="running", worker_pid=os.getpid(), process_pid=process.pid)
             while process.poll() is None:

@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-10-12T11:21:51.317086+00:00",
+  "source_job": "040549c8e4174c8288112a8d2eeea858",
+  "original_manifest_sha256": "57de26982120643e3dc9828d9c7e9a6b9df6509aac3ee15233afcfe8c81ee811",
+  "executed_sha256": {
+    "scripts/run_sim2sim_pd_measurement.py": "ba3ac4e16000c7bd98d0084f080eb7c76653d1d6b0ba695c013b24bb808dfbef",
+    "scripts/run_sim2sim_physics.py": "1a5047f1ac9b1df0c0760c12f36ce0f63c017881fd28d70a6d89007cb42e4581",
+    "scripts/run_sim2sim_faults.py": "7226d3d934782e9e5ca64256263bb769897422e50b21eb385d8e04211978eaf8",
+    "scripts/sim2sim_actuator_factor.py": "2b2777ad2f9d2136d9136087bdfb2ff012eae7dcf5ce6dde1312c3a334134368",
+    "scripts/sim2sim_physics_audit.py": "8439516bcc4ff98f980fe5c0061fa9516df630c9c2790b6d023933f6b2f5ce5a",
+    "scripts/sdk2_policy_runtime.py": "25728359c5f59b9ca235210e56f6bef260244b544a73f34a18679e49dbd25631",
+    "scripts/sdk2_watchdog_client.py": "b8ce689a6331a25de319c6a4eba4b1cdf855afcfdb71b1ba4a8143a3532f7127",
+    "scripts/check_policy_contract.py": "9cd225645a8aa08aaf2ce1ed400546e6690a10bb093d039dc2623a91ef7a4d00",
+    "scripts/evaluation_policy.py": "9f3dc66e6ad346d1b41bfaa205affa33610b2a78d25da655b003b0619c11c098",
+    "scripts/mujoco_model.py": "583ded15a7f09963b28b0e830e934ff0283824ca88414cde2e6e17940ecb7553",
+    "scripts/locomotion57_protocol.py": "63d78f1903c156cdd717787e2c8f450d557ef0a27b94f81ade21b7f9496e9ead",
+    "scripts/locomotion_v2_protocol.py": "c2dcbbd53dd39a98e77ec51891b3b5f677779999aeb9443f70a29dfb17662ef5",
+    "scripts/core_locomotion_protocol.py": "fddfed0814596e0e8307d3c5d637a0f13ddf8be4a966603041c0518198669b17",
+    "scripts/run_support.py": "260a897fcd9ca2c9bb16b000e1e076b380a76afd1f0fdd13f610e0b818ff1f6d",
+    "configs/sim2sim_pd_measurement_repeat_20261012.json": "ee499d8dd4455cd67720fc31394becab67ec5ee5be46ef59ea050c1249acf027"
+  },
+  "artifact_sha256": {
+    "policies/local/core_24650/export/policy.pt": "6d2b67e477d8c51f3d4260694f616dd2dcd93f0a961abca48a866012bc596d36",
+    "policies/local/core_24650/export/manifest.json": "4a8eb6a72e42fb21b1cfafbd407dbc6404a45fc86fb2f09488cafacd681ea631",
+    "policies/local/core_24650/model_24650.pt": "458f08260f310e0d29d30d7aef3235df5d9c1c8b31d9e0f9637b1dc7f7466123",
+    "policies/server/upstream_19999/export/policy.pt": "f2ce3266dac64d44f06dcb8e336470da4b33e33bb38cdd21b73b9b200d809bff"
+  },
+  "binary_sha256": {
+    "b2w_sdk2_pd_watchdog": "00667de1f9d10ee92cf6d6f436e3302ebe01ca5baa35dd180f8b0bf4b21c8a5f",
+    "b2w_mujoco_dc_bridge": "8fed1bc5846bcbf54daac6d451722634659653fdcd4d1473725b7bdca8e1982a"
+  },
+  "hardware_enabled": false
+}

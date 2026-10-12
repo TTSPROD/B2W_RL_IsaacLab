@@ -9,7 +9,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     sub=parser.add_subparsers(dest='action',required=True)
     start=sub.add_parser('start')
-    start.add_argument('kind',choices=('tests','train','evaluate','compare','gradient_audit','micro_sweep',
+    start.add_argument('kind',choices=('native_continuation','sim2sim_timing','sim2sim_pd_guard','sim2sim_armature','sim2sim_actuator','sim2sim_isaac','sim2sim_physics','sim2sim_faults','sim2sim','tests','train','evaluate','compare','gradient_audit','micro_sweep',
                                       'composite_probe','specialist_stage2','stair_curriculum',
                                       'specialist_repeat','axis_specialists','axis_specialists_stage2','lateral_curve',
                                       'axis_mixed_probe',

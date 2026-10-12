@@ -1,0 +1,1017 @@
+{
+  "job": "73b05a84f13743a081c3a763950d5aa7",
+  "manifest_sha256": "20f98957baa48f9c909d9e2391f4198745e18586bb0fc91942d27eb9d37ba317",
+  "verified_raw_files": 227,
+  "verified_executed_source_files": 35,
+  "tests": {
+    "discovered": 46,
+    "passed": 44,
+    "skipped": 2
+  },
+  "records": [
+    {
+      "arm": "dc_baseline",
+      "case": "stand",
+      "outcome": "success",
+      "accepted_ticks": 600,
+      "expected_ticks": 600,
+      "completed": true,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": true,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 0.7971730762555922,
+      "minimum_actual_joint_margin_rad": 0.7848093477102922,
+      "publisher_max_interval_ms": 2.831111,
+      "measurement_age_max_ms": 1.398323,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.01122457958901218,
+            -0.0005529724772192318,
+            -0.0005383650653195296
+          ],
+          "continuous_zero_pass": true,
+          "zero_speed_peak": 0.023372082164647413
+        }
+      ]
+    },
+    {
+      "arm": "dc_baseline",
+      "case": "longitudinal",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 1014,
+      "expected_ticks": 2500,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 10.972568835119342,
+      "minimum_actual_joint_margin_rad": 0.7186944221617798,
+      "publisher_max_interval_ms": 4.107918,
+      "measurement_age_max_ms": 1.870364,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.3028416928414699,
+            -0.0004581731223598682,
+            0.0009963743101018354
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.8278312853278961,
+            -0.0010271138866924726,
+            -0.0006843586616932295
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            1.2693008417556528,
+            0.03778932098795447,
+            0.029915964953494897
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 4,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 5,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 6,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 7,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 1014,
+        "command_time_s": 20.28,
+        "violations": [
+          {
+            "slot": 12,
+            "joint_name": "FR_foot_joint",
+            "desired_target": -50.48009490966797,
+            "lower": -50.0,
+            "upper": 50.0,
+            "actual_q": 126.14753723144531,
+            "actual_dq": -1.754249095916748
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 0.12711,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 10.481937530724625
+      }
+    },
+    {
+      "arm": "dc_baseline",
+      "case": "lateral",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 853,
+      "expected_ticks": 2500,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 3.637068118018179,
+      "minimum_actual_joint_margin_rad": 0.5428782757921422,
+      "publisher_max_interval_ms": 2.979651,
+      "measurement_age_max_ms": 0.397754,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.02406241116866509,
+            0.3717598781975532,
+            -0.0383401964670236
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.02001251704244367,
+            0.7917012444638408,
+            -0.01959271366870074
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "complete": false,
+          "mean_velocity": [
+            -0.00015119702063146108,
+            1.1130369379739058,
+            0.007022126999722717
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 4,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 5,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 6,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 7,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 853,
+        "command_time_s": 17.06,
+        "violations": [
+          {
+            "slot": 5,
+            "joint_name": "FL_calf_joint",
+            "desired_target": -0.39828360080718994,
+            "lower": -2.82,
+            "upper": -0.43,
+            "actual_q": -1.7396395206451416,
+            "actual_dq": 0.055845003575086594
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 1.18811,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 2.2762494988790323
+      }
+    },
+    {
+      "arm": "dc_baseline",
+      "case": "yaw",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 1000,
+      "expected_ticks": 2500,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 2.984546365303627,
+      "minimum_actual_joint_margin_rad": 0.6162247209000329,
+      "publisher_max_interval_ms": 2.705062,
+      "measurement_age_max_ms": 0.542535,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.009177228976055902,
+            0.01370657171953135,
+            0.25851879267039485
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.024487343075237356,
+            0.009710357043865346,
+            0.7582337132986879
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.03707461384749036,
+            -0.007667606065518718,
+            1.0774393818062242
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 4,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 5,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 6,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 7,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 1000,
+        "command_time_s": 20.0,
+        "violations": [
+          {
+            "slot": 5,
+            "joint_name": "FL_calf_joint",
+            "desired_target": -0.4292597770690918,
+            "lower": -2.82,
+            "upper": -0.43,
+            "actual_q": -1.5823768377304077,
+            "actual_dq": 0.1639789193868637
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 1.175967,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 0.5378864738477058
+      }
+    },
+    {
+      "arm": "dc_baseline",
+      "case": "mixed",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 400,
+      "expected_ticks": 1300,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 3.622439048002202,
+      "minimum_actual_joint_margin_rad": 0.6385158342493216,
+      "publisher_max_interval_ms": 3.034304,
+      "measurement_age_max_ms": 0.524011,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.5645932411193083,
+            0.5189141038440663,
+            0.6052242681248206
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 400,
+        "command_time_s": 8.0,
+        "violations": [
+          {
+            "slot": 5,
+            "joint_name": "FL_calf_joint",
+            "desired_target": -0.27203667163848877,
+            "lower": -2.82,
+            "upper": -0.43,
+            "actual_q": -1.6510413885116577,
+            "actual_dq": -0.4112882912158966
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 2.182953,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 3.461491940832765
+      }
+    },
+    {
+      "arm": "armature_zero",
+      "case": "stand",
+      "outcome": "success",
+      "accepted_ticks": 600,
+      "expected_ticks": 600,
+      "completed": true,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": true,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 0.7726697637710137,
+      "minimum_actual_joint_margin_rad": 0.7848798279995914,
+      "publisher_max_interval_ms": 3.032041,
+      "measurement_age_max_ms": 0.20038,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 0,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.01281226014377564,
+            -0.0005062336643832439,
+            -0.0007533647120165148
+          ],
+          "continuous_zero_pass": true,
+          "zero_speed_peak": 0.027261182484413237
+        }
+      ]
+    },
+    {
+      "arm": "armature_zero",
+      "case": "longitudinal",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 1058,
+      "expected_ticks": 2500,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 43.22268660220135,
+      "minimum_actual_joint_margin_rad": 0.6375473887771941,
+      "publisher_max_interval_ms": 2.888318,
+      "measurement_age_max_ms": 1.8828,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.3,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.30327355101798525,
+            -0.000493041999099244,
+            0.001307563646485956
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": [
+            0.7,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.8093970762974688,
+            0.0012906242516936848,
+            -0.0011318666516713823
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            1.2346562833415595,
+            -0.0045057404671038186,
+            0.009852534831024362
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 4,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 5,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 6,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 7,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 1058,
+        "command_time_s": 21.16,
+        "violations": [
+          {
+            "slot": 4,
+            "joint_name": "FL_thigh_joint",
+            "desired_target": -1.0452966690063477,
+            "lower": -0.94,
+            "upper": 4.69,
+            "actual_q": 0.25834921002388,
+            "actual_dq": 0.2694258689880371
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 0.129085,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 42.23010381834205
+      }
+    },
+    {
+      "arm": "armature_zero",
+      "case": "lateral",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 1002,
+      "expected_ticks": 2500,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 3.6627371033597593,
+      "minimum_actual_joint_margin_rad": 0.5351210070637948,
+      "publisher_max_interval_ms": 2.710281,
+      "measurement_age_max_ms": 0.27214900000000003,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.0,
+            0.3,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.007544775114580237,
+            0.344830564864922,
+            -0.05022221355110767
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": [
+            0.0,
+            0.7,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.0023021759374135474,
+            0.7566971406147276,
+            -0.023546474585177554
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.009558111082511343,
+            1.0747371967641082,
+            -0.00982699543253649
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 4,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 5,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 6,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 7,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 1002,
+        "command_time_s": 20.04,
+        "violations": [
+          {
+            "slot": 5,
+            "joint_name": "FL_calf_joint",
+            "desired_target": -0.40934908390045166,
+            "lower": -2.82,
+            "upper": -0.43,
+            "actual_q": -1.5485845804214478,
+            "actual_dq": -1.0284677743911743
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 1.15686,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 1.8418087847525693
+      }
+    },
+    {
+      "arm": "armature_zero",
+      "case": "yaw",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 2500,
+      "expected_ticks": 2500,
+      "completed": true,
+      "checks": {
+        "safety": true,
+        "completed": true,
+        "tracking": false,
+        "transitions": true,
+        "stop": true,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 3.101486733555198,
+      "minimum_actual_joint_margin_rad": 0.5841637440432753,
+      "publisher_max_interval_ms": 2.44524,
+      "measurement_age_max_ms": 1.102273,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.0,
+            0.0,
+            0.3
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.005706630368771979,
+            0.015728124244795846,
+            0.24246248864675848
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": [
+            0.0,
+            0.0,
+            0.7
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.020888855835008956,
+            -0.0012425844981130906,
+            0.754190608229155
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.02856163476444405,
+            -0.011714923746986976,
+            1.0714929547226046
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 4,
+          "command": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.026702708379555504,
+            0.06582200871932872,
+            -1.0475569553332371
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 5,
+          "command": [
+            0.0,
+            0.0,
+            -0.7
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.010236275563547836,
+            0.09356919132507219,
+            -0.7049374459406755
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 6,
+          "command": [
+            0.0,
+            0.0,
+            -0.3
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.013686395071969799,
+            0.046511059344068774,
+            -0.1913384829223137
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 7,
+          "command": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "complete": true,
+          "mean_velocity": [
+            -0.006255804309149218,
+            -0.0010291688221272263,
+            -0.0005806191169835988
+          ],
+          "continuous_zero_pass": true,
+          "zero_speed_peak": 0.024414249192395907
+        }
+      ]
+    },
+    {
+      "arm": "armature_zero",
+      "case": "mixed",
+      "outcome": "tracking_failure",
+      "accepted_ticks": 400,
+      "expected_ticks": 1300,
+      "completed": false,
+      "checks": {
+        "safety": true,
+        "completed": false,
+        "tracking": false,
+        "transitions": false,
+        "stop": false,
+        "traversal": null
+      },
+      "unsafe_flags": [],
+      "tilt_peak_deg": 3.9259404953423234,
+      "minimum_actual_joint_margin_rad": 0.6297815749525011,
+      "publisher_max_interval_ms": 2.488101,
+      "measurement_age_max_ms": 1.01524,
+      "diagnostic_execution_passed": true,
+      "segments": [
+        {
+          "segment": 1,
+          "command": [
+            0.5,
+            0.5,
+            0.5
+          ],
+          "complete": true,
+          "mean_velocity": [
+            0.5589102625604909,
+            0.5313844125758714,
+            0.5422887730581296
+          ],
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 2,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        },
+        {
+          "segment": 3,
+          "command": null,
+          "complete": false,
+          "mean_velocity": null,
+          "continuous_zero_pass": null,
+          "zero_speed_peak": null
+        }
+      ],
+      "rejection": {
+        "policy_tick": 400,
+        "command_time_s": 8.0,
+        "violations": [
+          {
+            "slot": 5,
+            "joint_name": "FL_calf_joint",
+            "desired_target": -0.14449894428253174,
+            "lower": -2.82,
+            "upper": -0.43,
+            "actual_q": -1.5965780019760132,
+            "actual_dq": -0.6772895455360413
+          }
+        ],
+        "first_disabled_start_after_fault_ms": 1.194802,
+        "rejected_generation_unchanged": true,
+        "generation_remained_unchanged_after_latch": true,
+        "tilt_in_rejected_lowstate_deg": 2.8281232494583044
+      }
+    }
+  ],
+  "accepted_ticks_by_arm": {
+    "dc_baseline": 3867,
+    "armature_zero": 5560
+  },
+  "expected_ticks_per_arm": 9400,
+  "all_motion_programs_complete": false,
+  "physical_unsafe_trials": 0,
+  "qualification": false,
+  "actor_or_guard_changed": false,
+  "PPO_updates": 0,
+  "hardware_enabled": false,
+  "limits": "One reset per case, no deterministic DDS replay, no causal success improvement established. Armature0 is isolated; DC numeric law is unchanged, and complete integrated PhysX parity remains open.",
+  "both_arms_use_same_frozen_DC_binary": true,
+  "baseline_binary_unchanged_since_actuator_factor": true,
+  "attempts": [
+    {
+      "job": "2ff0470629e843379cc81c4a43d4dc6e",
+      "stage": "preflight before physics",
+      "reason": "dof_M0 is compiled diagonal generalized inertia; added it to derived fields and independently checked its delta equals armature delta <=1e-12"
+    }
+  ],
+  "conclusion": "Armature0 alone did not resolve the target-contract gap or increase successes; longitudinal tilt grew in this one paired repeat. Variant remains experimental.",
+  "supervisor_stderr_sha256": "c3107f44db6079eec4788472bc20687e7ed74c60b7e799f7ad415dd979283970"
+}

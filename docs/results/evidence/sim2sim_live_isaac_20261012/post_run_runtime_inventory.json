@@ -1,0 +1,21 @@
+{
+  "scope": "selected runtime library hashes collected after completed run; not a replacement for executed manifest",
+  "library_sha256": {
+    ".runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/isaacsim/extscache/omni.physx.tensors-107.3.26+107.3.3.lx64.r.cp311.u353/bin/libomni.physx.tensors.plugin.so": "8c9b7160c63b66e94c407dcd6bd550079e84c502796415f3658afd11b564f1a6",
+    ".runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/isaacsim/extscache/omni.physx.foundation-107.3.26+107.3.3.lx64.r.cp311.u353/bin/libPhysXGpu_64.so": "c79411ebb67351828aeb1c48d5ebdcc9fbb5dc9f7dc8c96f8178999a59b9c6a9",
+    ".runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/isaacsim/extscache/omni.kit.asset_converter-5.0.17+107.3.1.lx64.r.cp311.u353/asset_converter_native_bindings/libs/libomniverse_asset_converter.so": "50198e72009df46355e1e53178ac726a96be1f7364659b67dbb9f64bf906d8f0",
+    ".runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/isaacsim/extscache/omni.physx-107.3.26+107.3.3.lx64.r.cp311.u353/bin/libomni.physx.plugin.so": "03fbf17e6f0dc3f9006c8c00aa0ca572a72fd69498874df6dd900dac726c9909",
+    ".runtime/isaaclab-ubuntu-venv/lib/python3.11/site-packages/isaacsim/exts/isaacsim.asset.importer.urdf/bin/libisaacsim.asset.importer.urdf.plugin.so": "bbebf695896957eef3798037b7bf497c1b12da2ff826c981dc2eeb1d5f027b02",
+    ".cache/isaac-kit-data/exts/v2/isaacsim.asset.importer.urdf-2.4.31+107.3.3.lx64.r.cp311/bin/libisaacsim.asset.importer.urdf.plugin.so": "625c5d377af8d3c572cf1cb0147cf657bdcbc361d5abe159679cb04c0ba449f3"
+  },
+  "cpu_runtime_torch": "2.8.0+cpu",
+  "isaac_runtime_torch": "2.7.0+cu128",
+  "converted_asset_sha256": {
+    ".cache/usd/b2w/config.yaml": "9cc6d3d697d6d2a1e4f0280aee2888bc726423810fe99ddcf1033970798895a6",
+    ".cache/usd/b2w/b2w_description.usd": "e2ccf8fceef98feb3d9edfd947bc404f599d6099d1b8b54ed158523524ba7eea",
+    ".cache/usd/b2w/configuration/b2w_description_robot.usd": "3c0578855306c726d00d0b29d8eb9c333095e77d3efee377c2b72b3d6ac14a9b",
+    ".cache/usd/b2w/configuration/b2w_description_physics.usd": "a68e41a45b2a5c85882dfc9eb85d10d58c87303c0f9639b9988ff403a74c6dc0",
+    ".cache/usd/b2w/configuration/b2w_description_sensor.usd": "2165af7e431d7998299e89e63e805aee86929289da40837284f8fe65845f7993",
+    ".cache/usd/b2w/configuration/b2w_description_base.usd": "9a5e53a73f4cd6003f32b076b65136fd6ef2ab72dfbfd2ee9ba5061b7877db42"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "scope": "actual_checkpoint_act_inference_vs_actual_isaaclab_exporter_cpu",
+  "checkpoint": "logs/rsl_rl/b2w_native_standard_control_9930/2026-10-12_15-41-40_5ab68628f8664d5d8b0b91c3cfaa64b5/model_24799.pt",
+  "checkpoint_sha256": "9d3bf7def19dae0967893eb196129470c6ef5618d93441148ea0b34c3c4f995d",
+  "checkpoint_iteration": 24799,
+  "agent_sha256": "86cd4b371133dbb5e2782d1d8cb06199e58d4b4bd41992cfb75b3c8dc10f5c8a",
+  "export": "logs/dashboard/jobs/710e7cc2749b496bb8fdc7f51ebb323f/native_continuation/exports/stdcontrol_24799/policy.pt",
+  "export_sha256": "caf2c824d67562ba40adb160c522e712eaf9e05a9837165728463cd29bbd8261",
+  "exporter_sha256": "9f58909058b969923921d1ea052f912eb1ae3f7ecbe3d947164c06b584737e16",
+  "fixture_and_random_count": 295,
+  "random_seed": 20260917,
+  "max_abs_error": 0.0,
+  "tolerance": 1e-05,
+  "normalizer": "Identity",
+  "network_dimensions": {
+    "actor_observations": 57,
+    "actions": 16,
+    "critic_observations": 247,
+    "std_actions": 16
+  },
+  "configured_obs_groups": {
+    "policy": [
+      "policy"
+    ],
+    "critic": [
+      "critic"
+    ]
+  },
+  "resolved_obs_groups": {
+    "policy": [
+      "policy"
+    ],
+    "critic": [
+      "critic"
+    ]
+  },
+  "policy_quality_evaluated": false
+}

@@ -1,0 +1,646 @@
+{
+  "model": {
+    "source_only_isaac_asset": true,
+    "physx_runtime_inspected": false,
+    "urdf_total_mass_kg": 82.41985700000421,
+    "mujoco_total_mass_kg": 87.170292,
+    "urdf_merged_base_mass_kg": 40.08950000000422,
+    "mujoco_base_mass_kg": 40.8426,
+    "urdf_base_inertial": {
+      "origin": {
+        "xyz": "0.000458 0.005261 0.000665",
+        "rpy": "0 0 0"
+      },
+      "mass": {
+        "value": "35.606"
+      },
+      "inertia": {
+        "ixx": "0.27466",
+        "ixy": "-0.000622",
+        "ixz": "0.00315",
+        "iyy": "1.0618",
+        "iyz": "-0.00139",
+        "izz": "1.1825"
+      }
+    },
+    "mujoco_base_inertial": {
+      "position": [
+        0.0212868,
+        0.0045819,
+        0.0106169
+      ],
+      "quaternion_wxyz": [
+        0.0017811105209267358,
+        0.6754121975398311,
+        -0.0002628940768894191,
+        0.7374382156807666
+      ],
+      "principal_inertia": [
+        1.73786,
+        1.66448,
+        0.343734
+      ]
+    },
+    "note": "URDF base inertia is before fixed-link merge; cannot compare it directly with compiled MuJoCo base inertia",
+    "joints": [
+      {
+        "slot": 0,
+        "isaac_joint": "FR_hip_joint",
+        "mujoco_joint": "FR_hip_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_hip_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.87",
+          "upper": "0.87",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.673,
+        "mujoco_child_mass_kg": 2.5294,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 1,
+        "isaac_joint": "FR_thigh_joint",
+        "mujoco_joint": "FR_thigh_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_thigh_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.94",
+          "upper": "4.69",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 4.536,
+        "mujoco_child_mass_kg": 7.4554,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 2,
+        "isaac_joint": "FR_calf_joint",
+        "mujoco_joint": "FR_calf_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_calf_joint"
+          ],
+          "effort_limit": 320.0,
+          "saturation_effort": 320.0,
+          "velocity_limit": 14.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-2.82",
+          "upper": "-0.43",
+          "effort": "320",
+          "velocity": "14"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -300.0,
+          300.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.290557,
+        "mujoco_child_mass_kg": 0.679123,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 3,
+        "isaac_joint": "FL_hip_joint",
+        "mujoco_joint": "FL_hip_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_hip_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.87",
+          "upper": "0.87",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.673,
+        "mujoco_child_mass_kg": 2.5294,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 4,
+        "isaac_joint": "FL_thigh_joint",
+        "mujoco_joint": "FL_thigh_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_thigh_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.94",
+          "upper": "4.69",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 4.536,
+        "mujoco_child_mass_kg": 7.4554,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 5,
+        "isaac_joint": "FL_calf_joint",
+        "mujoco_joint": "FL_calf_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_calf_joint"
+          ],
+          "effort_limit": 320.0,
+          "saturation_effort": 320.0,
+          "velocity_limit": 14.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-2.82",
+          "upper": "-0.43",
+          "effort": "320",
+          "velocity": "14"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -300.0,
+          300.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.2906,
+        "mujoco_child_mass_kg": 0.679123,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 6,
+        "isaac_joint": "RR_hip_joint",
+        "mujoco_joint": "RR_hip_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_hip_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.87",
+          "upper": "0.87",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.673,
+        "mujoco_child_mass_kg": 2.5294,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 7,
+        "isaac_joint": "RR_thigh_joint",
+        "mujoco_joint": "RR_thigh_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_thigh_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.94",
+          "upper": "4.69",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 4.536,
+        "mujoco_child_mass_kg": 7.4554,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 8,
+        "isaac_joint": "RR_calf_joint",
+        "mujoco_joint": "RR_calf_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_calf_joint"
+          ],
+          "effort_limit": 320.0,
+          "saturation_effort": 320.0,
+          "velocity_limit": 14.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-2.82",
+          "upper": "-0.43",
+          "effort": "320",
+          "velocity": "14"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -300.0,
+          300.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.2906,
+        "mujoco_child_mass_kg": 0.679123,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 9,
+        "isaac_joint": "RL_hip_joint",
+        "mujoco_joint": "RL_hip_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_hip_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.87",
+          "upper": "0.87",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.673,
+        "mujoco_child_mass_kg": 2.5294,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 10,
+        "isaac_joint": "RL_thigh_joint",
+        "mujoco_joint": "RL_thigh_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_thigh_joint"
+          ],
+          "effort_limit": 200.0,
+          "saturation_effort": 200.0,
+          "velocity_limit": 23.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-0.94",
+          "upper": "4.69",
+          "effort": "200",
+          "velocity": "23"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -200.0,
+          200.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 4.536,
+        "mujoco_child_mass_kg": 7.4554,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 11,
+        "isaac_joint": "RL_calf_joint",
+        "mujoco_joint": "RL_calf_joint",
+        "isaac_config": {
+          "class": "DCMotorCfg",
+          "joint_names_expr": [
+            ".*_calf_joint"
+          ],
+          "effort_limit": 320.0,
+          "saturation_effort": 320.0,
+          "velocity_limit": 14.0,
+          "stiffness": 160.0,
+          "damping": 5.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "lower": "-2.82",
+          "upper": "-0.43",
+          "effort": "320",
+          "velocity": "14"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -300.0,
+          300.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 2.2906,
+        "mujoco_child_mass_kg": 0.679123,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 12,
+        "isaac_joint": "FR_foot_joint",
+        "mujoco_joint": "FR_wheel_joint",
+        "isaac_config": {
+          "class": "ImplicitActuatorCfg",
+          "joint_names_expr": [
+            ".*_foot_joint"
+          ],
+          "effort_limit_sim": 20.0,
+          "velocity_limit_sim": 50.0,
+          "stiffness": 0.0,
+          "damping": 1.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "effort": "20",
+          "velocity": "50"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -20.0,
+          20.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 1.083,
+        "mujoco_child_mass_kg": 0.918,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 13,
+        "isaac_joint": "FL_foot_joint",
+        "mujoco_joint": "FL_wheel_joint",
+        "isaac_config": {
+          "class": "ImplicitActuatorCfg",
+          "joint_names_expr": [
+            ".*_foot_joint"
+          ],
+          "effort_limit_sim": 20.0,
+          "velocity_limit_sim": 50.0,
+          "stiffness": 0.0,
+          "damping": 1.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "effort": "20",
+          "velocity": "50"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -20.0,
+          20.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 1.083,
+        "mujoco_child_mass_kg": 0.918,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 14,
+        "isaac_joint": "RR_foot_joint",
+        "mujoco_joint": "RR_wheel_joint",
+        "isaac_config": {
+          "class": "ImplicitActuatorCfg",
+          "joint_names_expr": [
+            ".*_foot_joint"
+          ],
+          "effort_limit_sim": 20.0,
+          "velocity_limit_sim": 50.0,
+          "stiffness": 0.0,
+          "damping": 1.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "effort": "20",
+          "velocity": "50"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -20.0,
+          20.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 1.083,
+        "mujoco_child_mass_kg": 0.918,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      },
+      {
+        "slot": 15,
+        "isaac_joint": "RL_foot_joint",
+        "mujoco_joint": "RL_wheel_joint",
+        "isaac_config": {
+          "class": "ImplicitActuatorCfg",
+          "joint_names_expr": [
+            ".*_foot_joint"
+          ],
+          "effort_limit_sim": 20.0,
+          "velocity_limit_sim": 50.0,
+          "stiffness": 0.0,
+          "damping": 1.0,
+          "friction": 0.0
+        },
+        "urdf_limit": {
+          "effort": "20",
+          "velocity": "50"
+        },
+        "mujoco_ctrl_limited": true,
+        "mujoco_ctrl_range_nm": [
+          -20.0,
+          20.0
+        ],
+        "mujoco_force_limited": false,
+        "mujoco_damping_nm_s_rad": 1.0,
+        "mujoco_armature_kg_m2": 0.1,
+        "mujoco_frictionloss": 0.0,
+        "urdf_merged_child_mass_kg": 1.083,
+        "mujoco_child_mass_kg": 0.918,
+        "isaac_armature_configured": false,
+        "isaac_passive_damping_urdf": null
+      }
+    ]
+  },
+  "actuator_law": {
+    "probe_samples": 1232,
+    "samples_per_slot": 77,
+    "scope": "actual Go2Bridge::run + mj_fwdActuation, no integration; upstream DCMotor method only, no PhysX wheel servo",
+    "checks": {
+      "bridge_pd_max_error_nm": 0.0,
+      "mujoco_cap_max_error_nm": 0.0,
+      "project_dc_helper_vs_upstream_max_error_nm": 0.0
+    },
+    "audit_passed": true,
+    "native_leg_law_parity": false,
+    "native_wheel_explicit_pd_cap_parity": true,
+    "physx_wheel_integration_parity": null,
+    "leg_max_difference_nm": 620.0,
+    "wheel_max_difference_nm": 0.0,
+    "per_slot_max_difference_nm": [
+      400.0,
+      400.0,
+      620.0,
+      400.0,
+      400.0,
+      620.0,
+      400.0,
+      400.0,
+      620.0,
+      400.0,
+      400.0,
+      620.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}

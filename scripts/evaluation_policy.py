@@ -19,6 +19,7 @@ TRAINED_PREFIXES += '|microaxismixed177y150'
 TRAINED_PREFIXES += '|microyaw252'
 TRAINED_PREFIXES += '|microaxismixed152y252'
 TRAINED_PREFIXES += '|shortflight'
+TRAINED_PREFIXES += '|stdcontrol|stdfocus'
 TRAINED_PATTERN = rf'(?:{TRAINED_PREFIXES})_\d+'
 
 

@@ -1,0 +1,57 @@
+{
+  "schema": "b2w_sim2sim_timing_fix_v1",
+  "frozen_date": "2026-10-12",
+  "hardware_enabled": false,
+  "training_updates": 0,
+  "domain": 1,
+  "interface": "lo",
+  "policy": 24650,
+  "terrain": "flat_mu_100",
+  "friction": 1.0,
+  "reset_seed": 73001,
+  "case_order": [
+    "stand",
+    "longitudinal",
+    "lateral",
+    "yaw",
+    "mixed"
+  ],
+  "arm_order": [
+    "dc_pd_guard"
+  ],
+  "repeats": 1,
+  "load_workers": 0,
+  "physx_snapshot": "docs/results/evidence/sim2sim_live_isaac_20261012/resolved_physx.json",
+  "physx_snapshot_sha256": "303d02c88b628e10734a183e75ff79d2151193e4db8107c57ff403215575a66e",
+  "physx_job": "96a9b399099b4e8d85b9180c516959ec",
+  "watchdog_plan": "configs/sim2sim_pd_guard_plan_20261012.json",
+  "factor": "bounded GC at trial boundary, no disk IO in physics loop, per-job distinct-core placement and wall/CPU stage timings; identical policy/model/guard/deadlines",
+  "unchanged": [
+    "policy ABI/scales/raw history",
+    "watchdog timing budgets and recovery",
+    "DC leg and explicit wheel torque caps/gains",
+    "mass/inertia/contact geometry",
+    "passive damping1 and armature.1",
+    "physicsdt.002 and policy dt.02",
+    "shared reset73001"
+  ],
+  "disabled": "mode !=1 or all gains/feedforward zero produces ctrl=0, including beyond no-load speed",
+  "numerical_gate": "unchanged native DC law vs pinned Isaac on1232 points and disabled240points",
+  "motion_gate": "all five complete v2 programs attempted; report tracking/zero/physical safety failures separately; new guard cases39 + unchanged transport fault matrix48",
+  "qualification": false,
+  "selection": "No outcome-based tuning or policy promotion; retain previous strict guard and raw evidence",
+  "baseline_job": "040549c8e4174c8288112a8d2eeea858",
+  "gc_probe_job": "7e06c0fced81463c9396957ab22b64cc",
+  "replay_repeats": 1,
+  "io_fault_probe": {
+    "arms": [
+      "legacy_sync_csv",
+      "deferred_csv"
+    ],
+    "case": "stand",
+    "repeats": 1,
+    "write_stall_ns": 25000000,
+    "qualification": false
+  },
+  "scope": "One controlled IO mechanism A/B and one complete five-case timing replay, no budget/threshold increases or policy selection"
+}

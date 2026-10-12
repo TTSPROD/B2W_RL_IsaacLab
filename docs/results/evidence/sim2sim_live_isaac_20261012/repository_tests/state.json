@@ -1,0 +1,18 @@
+{
+  "id": "0a6bf323f30f49f5a3a910d56de9024a",
+  "kind": "tests",
+  "entrypoint": "-m",
+  "arguments": [
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-q"
+  ],
+  "status": "failed",
+  "created": "2026-10-12T09:23:14.663928+00:00",
+  "updated": "2026-10-12T09:23:19.259662+00:00",
+  "returncode": 1,
+  "worker_pid": 40734,
+  "process_pid": 40736
+}

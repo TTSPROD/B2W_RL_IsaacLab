@@ -1,0 +1,12 @@
+{
+  "id": "5ab68628f8664d5d8b0b91c3cfaa64b5",
+  "kind": "native_continuation",
+  "entrypoint": "scripts/run_native_continuation.py",
+  "arguments": [],
+  "status": "failed",
+  "created": "2026-10-12T12:37:35.119648+00:00",
+  "updated": "2026-10-12T12:54:22.263647+00:00",
+  "returncode": 1,
+  "worker_pid": 65629,
+  "process_pid": 65630
+}

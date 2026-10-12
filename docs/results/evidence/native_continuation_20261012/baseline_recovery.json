@@ -1,0 +1,10 @@
+{
+  "source_job": "f966c981f01b43a3917000b34483e023",
+  "original_declared_plan_sha256": "42407622bab8220893450cbf826543aa565948b745d7980ebc0fe93bb55687f2",
+  "original_summary_sha256": "29f8c08c9f97621bf6bf9dc0eac25b10427b19982547c1fec45a98ac40b49741",
+  "reused_episodes": 160,
+  "implementation_changes": [
+    "scripts/run_native_continuation.py"
+  ],
+  "reason": "Canonical JSON plan for record validation; evaluator/scoring/actor bytes unchanged"
+}

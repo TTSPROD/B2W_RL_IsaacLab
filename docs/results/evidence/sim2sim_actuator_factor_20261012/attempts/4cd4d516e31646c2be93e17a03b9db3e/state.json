@@ -1,0 +1,12 @@
+{
+  "id": "4cd4d516e31646c2be93e17a03b9db3e",
+  "kind": "sim2sim_actuator",
+  "entrypoint": "scripts/run_sim2sim_actuator.py",
+  "arguments": [],
+  "status": "failed",
+  "created": "2026-10-12T10:11:05.504605+00:00",
+  "updated": "2026-10-12T10:11:10.102883+00:00",
+  "returncode": 1,
+  "worker_pid": 47561,
+  "process_pid": 47562
+}

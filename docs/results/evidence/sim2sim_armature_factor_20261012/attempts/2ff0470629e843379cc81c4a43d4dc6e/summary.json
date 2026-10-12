@@ -1,0 +1,14 @@
+{
+  "audit": null,
+  "records": [],
+  "error": "CalledProcessError(1, ['/home/roman/Work/02_Git/B2W_RL_IsaacLab/.venv/bin/python', '-m', 'unittest', 'discover', '-s', 'tests', '-p', 'test_sim2sim_armature.py', '-q'])",
+  "diagnostic_execution_passed": false,
+  "all_motion_programs_complete": false,
+  "successes_by_arm": {
+    "dc_baseline": 0,
+    "armature_zero": 0
+  },
+  "simulation_qualified": false,
+  "hardware_enabled": false,
+  "training_updates": 0
+}

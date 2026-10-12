@@ -1,0 +1,170 @@
+{
+  "schema": "b2w_sim2sim_fault_evidence_analysis_v1",
+  "job_id": "a55e37f3d3cd4f1188f5f078c30d9bbc",
+  "raw_directory": "logs/dashboard/jobs/a55e37f3d3cd4f1188f5f078c30d9bbc/sim2sim_faults",
+  "executed_manifest_sha256": "0ede5f93ad8e26b76cb7d7c70eee6bac4276eca75cb79362b8692a61d9dfadf7",
+  "verified_raw_count": 49,
+  "verified_source_count": 19,
+  "verified_artifact_count": 9,
+  "previous_jobs": [
+    "14d8e0933f684329969c5fd8ef00681a",
+    "8d73f7b2469e42419e29da9529e0d50c",
+    "5fb8890bd271447eaa1e36ed5bb10586"
+  ],
+  "case_summary": [
+    {
+      "case": "sparse_packet_loss",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": null,
+      "max_disabled_publish_ms": null,
+      "max_disabled_observer_ms": null
+    },
+    {
+      "case": "state_disconnect",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 40.396574,
+      "max_disabled_publish_ms": 41.317217,
+      "max_disabled_observer_ms": 41.346583
+    },
+    {
+      "case": "duplicate_tick",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 40.414438,
+      "max_disabled_publish_ms": 40.456277,
+      "max_disabled_observer_ms": 40.475093
+    },
+    {
+      "case": "state_reorder",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 1.160036,
+      "max_disabled_publish_ms": 3.267196,
+      "max_disabled_observer_ms": 3.297193
+    },
+    {
+      "case": "bad_crc",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 2.180438,
+      "max_disabled_publish_ms": 4.265576,
+      "max_disabled_observer_ms": 4.290083
+    },
+    {
+      "case": "nan_state",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 2.143288,
+      "max_disabled_publish_ms": 4.274794,
+      "max_disabled_observer_ms": 4.293008
+    },
+    {
+      "case": "inf_state",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 2.170019,
+      "max_disabled_publish_ms": 4.276327,
+      "max_disabled_observer_ms": 4.294882
+    },
+    {
+      "case": "bad_quaternion",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 1.14609,
+      "max_disabled_publish_ms": 3.267466,
+      "max_disabled_observer_ms": 3.297092
+    },
+    {
+      "case": "stale_command",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 100.793686,
+      "max_disabled_publish_ms": 100.830746,
+      "max_disabled_observer_ms": 100.84884
+    },
+    {
+      "case": "expired_target",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 61.759863,
+      "max_disabled_publish_ms": 61.809186,
+      "max_disabled_observer_ms": 61.829214
+    },
+    {
+      "case": "gil_inference_hang",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 21.871119,
+      "max_disabled_publish_ms": 21.910294,
+      "max_disabled_observer_ms": 21.931774
+    },
+    {
+      "case": "actor_process_exit",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 60.789555,
+      "max_disabled_publish_ms": 60.831424,
+      "max_disabled_observer_ms": 60.851432
+    },
+    {
+      "case": "operator_stop",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 0.021902,
+      "max_disabled_publish_ms": 2.164238,
+      "max_disabled_observer_ms": 2.187332
+    },
+    {
+      "case": "target_saturation",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 0.045947,
+      "max_disabled_publish_ms": 2.309423,
+      "max_disabled_observer_ms": 2.329551
+    },
+    {
+      "case": "late_target",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 21.939709,
+      "max_disabled_publish_ms": 21.986928,
+      "max_disabled_observer_ms": 22.01446
+    },
+    {
+      "case": "state_restart_recovery",
+      "passed": 3,
+      "total": 3,
+      "max_detection_ms": 2.143739,
+      "max_disabled_publish_ms": 4.280935,
+      "max_disabled_observer_ms": 4.30426
+    }
+  ],
+  "zero_diagnostic": {
+    "scope": "one reset, final command zero after 2 s settle; physics linear velocity rotated world to body; yaw at DDS policy ticks",
+    "policy_ticks": 500,
+    "physics_samples": 5000,
+    "physics_window_s": [
+      10.006,
+      20.004
+    ],
+    "max_body_vxy_m_s": 0.024713529727167595,
+    "max_body_omega_z_rad_s": 0.03403868153691292,
+    "v2_thresholds": [
+      0.1,
+      0.1
+    ],
+    "passed": true
+  },
+  "physics_diagnostic": {
+    "samples": 10009,
+    "max_tilt_deg": 2.328334502876506,
+    "minimum_height_m": 0.5998092553601575,
+    "forbidden_contact_peak_n": 0.0,
+    "min_joint_margin_rad": 0.7794788072625862,
+    "velocity_util_peak": 0.20258621914058814
+  },
+  "simulation_qualified": false,
+  "hardware_enabled": false
+}
