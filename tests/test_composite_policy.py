@@ -8,7 +8,6 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from composite_policy import CommandGatedComposite
-from composite_probe_contract import load_spec
 
 
 class Branch(torch.nn.Module):
@@ -22,9 +21,6 @@ class Branch(torch.nn.Module):
 
 
 class CompositePolicyTest(unittest.TestCase):
-    def test_frozen_contract(self):
-        self.assertEqual(load_spec()["composite"]["policy_id"], "microcomposite_24674")
-
     def test_exact_routes_and_tolerance(self):
         actor = torch.jit.script(CommandGatedComposite(Branch(1.0), Branch(2.0), 1e-6))
         observations = torch.zeros(7, 57)

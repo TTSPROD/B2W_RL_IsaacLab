@@ -7,7 +7,8 @@ import torch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 sys.path.insert(0,str(ROOT/'dashboard'))
-from lr_pilot_contract import load_plan,assert_exact_state
+from lr_pilot_contract import assert_exact_state
+from plan_fixtures import plan as fixture_plan
 from training_coverage import TrainingCoverage,install_coverage
 from lr_pilot_decision import decide
 import locomotion_v2_lr_pilot_protocol as protocol
@@ -18,7 +19,7 @@ import jobs
 
 class LRPilotTests(unittest.TestCase):
     def test_plan_and_single_actor_boundary(self):
-        plan=load_plan()
+        plan=fixture_plan('24650_lr_ab_20260930.json')
         self.assertEqual(plan['additional_updates'],300)
         self.assertEqual(plan['arms'],{'lrcontrol':{'lr_cap':1e-5},'lrlow':{'lr_cap':1e-6}})
         self.assertEqual(jobs.recipe({'kind':'lr_pilot'}),('scripts/run_lr_pilot.py',[]))
@@ -73,7 +74,7 @@ class LRPilotTests(unittest.TestCase):
         self.assertEqual(c.snapshot()['flat']['mean_completed_return'],2.)
 
     def fixture(self):
-        plan=load_plan();rows=[]
+        plan=fixture_plan('24650_lr_ab_20260930.json');rows=[]
         policies=['24650']+[f'{arm}_{24650+n}' for arm in plan['arms'] for n in plan['probe_updates']]
         for policy in policies:
             ratio=.9 if policy.startswith('lrlow') else .78 if policy.startswith('lrcontrol') else .7

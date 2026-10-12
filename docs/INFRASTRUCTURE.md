@@ -1,6 +1,8 @@
 # Инфраструктура B2W
 
-Базовый runtime: Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11, RSL-RL 3.1.2.
+Базовый runtime: Isaac Lab 2.3.2, Isaac Sim 5.1, Python 3.11,
+`rsl-rl-lib==3.1.2` в отдельной Isaac среде. В `vendor/robot_lab`
+закреплены training scripts и configs, не импортируемый пакет `rsl_rl`.
 Upstream-исходники закреплены в `vendor/manifest.json`; локальные зависимости —
 в `requirements/`. Наличие SDK2/MuJoCo/ROS2 исходников не означает готовую сборку
 или допуск к реальному роботу.
@@ -9,7 +11,7 @@ Upstream-исходники закреплены в `vendor/manifest.json`; ло
 
 Действующий S2 baseline и очередность — [UNITREE_SIM2SIM_METHOD](UNITREE_SIM2SIM_METHOD.md).
 Команды `sim2sim_actuator`, `sim2sim_armature`, `sim2sim_pd_guard` и
-`sim2sim_timing` ниже воспроизводят исторические диагностические variants
+`sim2sim_timing` в сохранённых reports воспроизводят исторические варианты
 с DC actuator law. Их 2/5 tracking и timing pass нельзя переносить на
 исходную B2W модель/bridge Unitree. Новую проверку baseline запускать с
 отдельным frozen plan и сохранять её собственные executed hashes.
@@ -21,15 +23,14 @@ CPU, Python 3.11.16, PyTorch 2.8.0+cpu, MuJoCo 3.3.6. Это отдельная 
 
 ```bash
 bash scripts/setup_sim2sim_ubuntu.sh
-.venv/bin/python scripts/manage_runs.py start sim2sim --no-monitor
-.venv/bin/python scripts/manage_runs.py start sim2sim_faults --no-monitor
-.venv/bin/python scripts/manage_runs.py start sim2sim_physics --no-monitor
-.venv/bin/python scripts/manage_runs.py start sim2sim_actuator --no-monitor
-.venv/bin/python scripts/manage_runs.py start sim2sim_armature --no-monitor
-.venv/bin/python scripts/manage_runs.py start sim2sim_pd_guard --no-monitor
-.venv/bin/python scripts/manage_runs.py start sim2sim_timing --no-monitor
 .venv/bin/python scripts/manage_runs.py status
+.venv/bin/python -m unittest discover -s tests -q
+.venv/bin/python scripts/verify_project.py
 ```
+
+Команды выполненных диагностических recipes и frozen plans приведены в
+[индексе результатов](results/README.md) и [каталоге конфигов](../configs/README.md);
+эта последовательность не является планом повторного запуска.
 
 Нужны доступные `uv`, CMake, Ninja, C++17 compiler и development libraries
 Boost program_options / yaml-cpp. Bootstrap ставит Python packages только в
@@ -88,8 +89,8 @@ tracking2/5 на DC variant, qualification нет. Global scheduler/governor/ч�
 
 ## Native Ubuntu Isaac/PhysX audit
 
-Новый локальный training recipe: `.venv/bin/python scripts/manage_runs.py start
-native_continuation --no-monitor`. CPU supervisor запускает allowlisted
+Исторический локальный training recipe `native_continuation` запускался
+через supervisor. CPU supervisor запускал allowlisted
 `run_isaac_continuation_child.py` в той же отдельной CUDA среде; legacy `train`
 recipe от19999 остаётся историческим и для нового опыта не используется.
 Frozen budget: 4000env,150updates на плечо, full v2 comparison;

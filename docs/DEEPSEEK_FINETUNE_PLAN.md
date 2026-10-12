@@ -5,8 +5,11 @@
 не задаёт действующий recipe или разрешение запуска. Актуальная очередность —
 [PROJECT_PLAN](PROJECT_PLAN.md), итог stage D —
 [результат 01.10](results/2026-10-01-deepseek-stage-D.md).
-Базируется на первичных источниках [обзор мировых практик](research/2026-10-01-finetune-world-practices.md)
-и на текущем состоянии проекта ([PROJECT_PLAN](PROJECT_PLAN.md),
+Упомянутый ниже `tests/test_short_flight.py` относился к той ветке;
+он удалён из текущего default suite при рефакторинге тестов, исходная
+версия доступна в Git history.
+Базировался на первичных источниках [обзор мировых практик](research/2026-10-01-finetune-world-practices.md)
+и состоянии проекта на дату составления ([PROJECT_PLAN](PROJECT_PLAN.md),
 [TRAINING_STRATEGY](TRAINING_STRATEGY.md), [v2 evaluation](CORE_LOCOMOTION_EVALUATION.md)).
 
 ## 0. Цель и границы

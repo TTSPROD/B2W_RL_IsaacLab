@@ -7,12 +7,6 @@ import torch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from axis_specialists_contract import ARMS, load_spec
-from axis_specialists_stage2_contract import load_spec as load_stage2_spec
-from lateral_curve_contract import load_spec as load_curve_spec
-from axis_mixed_probe_contract import load_spec as load_mixed_spec
-from axis_endpoint_screen_contract import load_spec as load_endpoint_spec
-from axis_robust_composite_contract import load_spec as load_robust_spec
 from axis_split_policy import AxisSplitComposite, SingleAxisComposite
 from evaluation_policy import policy_id
 from job_manager import recipe
@@ -30,13 +24,6 @@ class Branch(torch.nn.Module):
 
 
 class AxisSpecialistsTests(unittest.TestCase):
-    def test_frozen_contract(self):
-        spec = load_spec()
-        self.assertEqual(ARMS, ("lateral", "yaw"))
-        self.assertEqual(spec["training"]["updates_per_arm"], 150)
-        self.assertEqual(spec["training"]["seed"], 9914)
-        self.assertFalse(spec["selection"]["automatic_promotion"])
-
     def test_exact_routes(self):
         observations = torch.zeros(6, 57)
         observations[:, 6:9] = torch.tensor([
@@ -45,38 +32,6 @@ class AxisSpecialistsTests(unittest.TestCase):
         split = torch.jit.script(AxisSplitComposite(Branch(1.), Branch(2.), Branch(3.)))
         self.assertEqual(single(observations)[:, 0].tolist(), [1, 1, 2, 1, 1, 1])
         self.assertEqual(split(observations)[:, 0].tolist(), [1, 1, 2, 3, 1, 1])
-
-    def test_stage2_frozen_contract(self):
-        spec = load_stage2_spec()
-        self.assertEqual(spec["training"]["additional_updates_per_arm"], 150)
-        self.assertEqual(spec["training"]["cumulative_updates_per_arm"], 300)
-        self.assertEqual(spec["training"]["final_checkpoint_iteration"], 24948)
-        self.assertFalse(spec["selection"]["automatic_promotion"])
-
-    def test_lateral_curve_frozen_contract(self):
-        spec = load_curve_spec()
-        self.assertEqual(spec["training"]["additional_updates"], 76)
-        self.assertEqual(spec["training"]["checkpoints"], {
-            "24800": 152, "24825": 177, "24850": 202, "24874": 226})
-        self.assertEqual(spec["evaluation"]["episodes_per_actor"], 10)
-
-    def test_axis_mixed_frozen_contract(self):
-        spec = load_mixed_spec()
-        self.assertEqual(spec["specialists"]["lateral"]["cumulative_updates"], 177)
-        self.assertEqual(spec["specialists"]["yaw"]["cumulative_updates"], 150)
-        self.assertFalse(spec["selection"]["automatic_promotion"])
-
-    def test_axis_endpoint_frozen_contract(self):
-        spec = load_endpoint_spec()
-        self.assertEqual(set(spec["endpoints"]["lateral"]),
-                         {"150", "152", "177", "202", "226", "252", "300"})
-        self.assertEqual(set(spec["endpoints"]["yaw"]), {"150", "252", "300"})
-        self.assertEqual(spec["evaluation"]["episodes_per_actor"], 20)
-
-    def test_axis_robust_composite_contract(self):
-        spec = load_robust_spec()
-        self.assertEqual(spec["specialists"]["lateral"]["cumulative_updates"], 152)
-        self.assertEqual(spec["specialists"]["yaw"]["cumulative_updates"], 252)
 
     def test_managed_recipe_and_ids(self):
         self.assertEqual(recipe({"kind": "axis_specialists"}),

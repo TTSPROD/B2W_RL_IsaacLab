@@ -19,7 +19,8 @@
 | [VENDOR_INVENTORY](VENDOR_INVENTORY.md) | Закреплённые upstream snapshots |
 | [GAMEPAD_VIEWERS](GAMEPAD_VIEWERS.md) | Ручной просмотр в Isaac Sim и MuJoCo |
 | [Результаты](results/README.md) | Датированные отчёты, evidence и история решений |
-| [Проверка документации 12.10](DOCUMENTATION_AUDIT_20261012.md) | Найденные неактуальные указания и внесённые исправления |
+| [Аудит и рефакторинг 12.10](DOCUMENTATION_AUDIT_20261012.md) | Неактуальные указания, дубли и проверка тестов |
+| [Конфигурации](../configs/README.md) | Frozen планы, предложение и deployment template |
 
 ## Исторические планы и анализ
 

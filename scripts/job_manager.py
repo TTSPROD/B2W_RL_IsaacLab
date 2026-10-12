@@ -20,7 +20,7 @@ ENTRYPOINTS = {
     "scripts/run_native_trace_diagnosis.py": "Offline continuation phase/unsafe/drive trace diagnosis, zero PPO",
     "scripts/run_native_continuation.py": "Bounded standard PPO continuation from 24650 and full v2 comparison",
     "scripts/run_isaac_continuation_child.py": "Isolated local Isaac continuation child",
-    "scripts/run_sim2sim_timing_tests.py": "Focused GC/numeric-parity verification",
+    "scripts/run_sim2sim_timing_tests.py": "Focused GC/timing-instrumentation verification",
     "scripts/run_sim2sim_timing.py": "Deferred telemetry / bounded GC timing fix replay",
     "scripts/run_sim2sim_timing_probe.py": "CPU stage/GC timing diagnosis",
     "scripts/run_sim2sim_pd_measurement.py": "Declared yaw telemetry-validation repeat",
@@ -74,6 +74,32 @@ ENTRYPOINTS = {
     "scripts/summarize_core_locomotion.py": "comparison summary",
 }
 
+SIMPLE_RECIPES = {
+    "native_continuation": "scripts/run_native_continuation.py",
+    "sim2sim_timing": "scripts/run_sim2sim_timing.py",
+    "sim2sim_pd_guard": "scripts/run_sim2sim_pd_guard.py",
+    "sim2sim_armature": "scripts/run_sim2sim_armature.py",
+    "sim2sim_actuator": "scripts/run_sim2sim_actuator.py",
+    "sim2sim_isaac": "scripts/run_sim2sim_isaac_audit.py",
+    "sim2sim_physics": "scripts/run_sim2sim_physics.py",
+    "sim2sim": "scripts/run_sim2sim.py",
+    "sim2sim_faults": "scripts/run_sim2sim_faults.py",
+    "gradient_audit": "scripts/run_gradient_audit.py",
+    "composite_probe": "scripts/run_composite_probe.py",
+    "specialist_stage2": "scripts/run_specialist_stage2.py",
+    "specialist_repeat": "scripts/run_specialist_repeat.py",
+    "axis_specialists": "scripts/run_axis_specialists.py",
+    "axis_specialists_stage2": "scripts/run_axis_specialists_stage2.py",
+    "lateral_curve": "scripts/run_lateral_curve.py",
+    "axis_mixed_probe": "scripts/run_axis_mixed_probe.py",
+    "axis_endpoint_screen": "scripts/run_axis_endpoint_screen.py",
+    "axis_robust_composite": "scripts/run_axis_robust_composite.py",
+    "axis_endpoint_confirm": "scripts/run_axis_endpoint_confirm.py",
+    "axis_repeat3": "scripts/run_axis_repeat3.py",
+    "stair_comparison_1350": "scripts/run_stair_comparison_1350.py",
+    "stair_isolation": "scripts/run_stair_isolation.py",
+}
+
 
 def process_running(pid):
     if not pid:
@@ -103,64 +129,20 @@ def process_running(pid):
 
 def recipe(request):
     kind = request.get("kind")
-    if kind == "native_continuation":
-        return "scripts/run_native_continuation.py", []
-    if kind == "sim2sim_timing":
-        return "scripts/run_sim2sim_timing.py", []
-    if kind == "sim2sim_pd_guard":
-        return "scripts/run_sim2sim_pd_guard.py", []
-    if kind == "sim2sim_armature":
-        return "scripts/run_sim2sim_armature.py", []
-    if kind == "sim2sim_actuator":
-        return "scripts/run_sim2sim_actuator.py", []
-    if kind == "sim2sim_isaac":
-        return "scripts/run_sim2sim_isaac_audit.py", []
-    if kind == "sim2sim_physics":
-        return "scripts/run_sim2sim_physics.py", []
-    if kind == "sim2sim":
-        return "scripts/run_sim2sim.py", []
-    if kind == "sim2sim_faults":
-        return "scripts/run_sim2sim_faults.py", []
-    if kind == "gradient_audit":
-        return "scripts/run_gradient_audit.py", []
+    if kind in SIMPLE_RECIPES:
+        return SIMPLE_RECIPES[kind], []
     if kind == "micro_sweep":
         source = request.get("source_job")
         if source is None:
             return "scripts/run_micro_sweep.py", []
         job_path(source)
         return "scripts/run_micro_sweep.py", ["--training-job", source]
-    if kind == "composite_probe":
-        return "scripts/run_composite_probe.py", []
-    if kind == "specialist_stage2":
-        return "scripts/run_specialist_stage2.py", []
-    if kind == "specialist_repeat":
-        return "scripts/run_specialist_repeat.py", []
-    if kind == "axis_specialists":
-        return "scripts/run_axis_specialists.py", []
-    if kind == "axis_specialists_stage2":
-        return "scripts/run_axis_specialists_stage2.py", []
-    if kind == "lateral_curve":
-        return "scripts/run_lateral_curve.py", []
-    if kind == "axis_mixed_probe":
-        return "scripts/run_axis_mixed_probe.py", []
-    if kind == "axis_endpoint_screen":
-        return "scripts/run_axis_endpoint_screen.py", []
-    if kind == "axis_robust_composite":
-        return "scripts/run_axis_robust_composite.py", []
-    if kind == "axis_endpoint_confirm":
-        return "scripts/run_axis_endpoint_confirm.py", []
-    if kind == "axis_repeat3":
-        return "scripts/run_axis_repeat3.py", []
-    if kind == "stair_comparison_1350":
-        return "scripts/run_stair_comparison_1350.py", []
     if kind in {"stair_curriculum", "stair_curriculum_preflight"}:
         return "scripts/run_stair_curriculum.py", ["--preflight-only"] if kind.endswith('preflight') else []
     if kind in {"short_flight", "short_flight_preflight"}:
         return "scripts/run_short_flight.py", ["--preflight-only"] if kind == "short_flight_preflight" else []
     if kind in {"lr_pilot", "lr_pilot_preflight"}:
         return "scripts/run_lr_pilot.py", ["--preflight-only"] if kind == "lr_pilot_preflight" else []
-    if kind == "stair_isolation":
-        return "scripts/run_stair_isolation.py", []
     if kind == "stair_replay":
         order = request.get("order", "same")
         if order not in ("same", "reverse"):

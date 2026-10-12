@@ -7,7 +7,9 @@ from types import SimpleNamespace
 import torch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from reset_diagnostics import ResetDiagnostics
-from reset_pilot_contract import load_plan,preflight_decision
+import reset_pilot_contract
+from reset_pilot_contract import preflight_decision
+from plan_fixtures import plan as fixture_plan
 from b2w_core_stage3_sampling import build_banks
 from evaluation_policy import policy_id,validate_export
 
@@ -33,26 +35,27 @@ class ResetPilotTests(unittest.TestCase):
         self.assertEqual(m.snapshot()['first_events_by_cohort']['all'][0][1],2)
 
     def test_preflight_blocks_invalid_or_inaccessible_long_zero(self):
-        plan=load_plan();coverage={}
+        plan=fixture_plan('24650_reset_ab_20261001.json');coverage={}
         for name,bank in build_banks(plan).items():
             coverage[name]={'segment_attempts':[[1]*len(c['segments']) for c in bank],
                             'segment_completions':[[1]*len(c['segments']) for c in bank]}
         a={'reset_diagnostics':{'initial_invalid':{'tilt':20},'early_tilt_per_env_second':.2}}
         b={'reset_diagnostics':{'initial_invalid':{'tilt':0,'nonfinite':0,'hard_joint':0},
             'early_tilt_per_env_second':.01,'stale_contact_resets':0},'coverage':coverage}
-        self.assertTrue(preflight_decision(a,b)['train_allowed'])
-        b['reset_diagnostics']['initial_invalid']['tilt']=1
-        self.assertFalse(preflight_decision(a,b)['train_allowed'])
-        b['reset_diagnostics']['initial_invalid']['tilt']=0
-        b['coverage']['stairs_up']['segment_completions']=[[0]*len(c['segments']) for c in build_banks(plan)['stairs_up']]
-        self.assertFalse(preflight_decision(a,b)['train_allowed'])
+        with patch.object(reset_pilot_contract, 'load_plan', return_value=plan):
+            self.assertTrue(preflight_decision(a,b)['train_allowed'])
+            b['reset_diagnostics']['initial_invalid']['tilt']=1
+            self.assertFalse(preflight_decision(a,b)['train_allowed'])
+            b['reset_diagnostics']['initial_invalid']['tilt']=0
+            b['coverage']['stairs_up']['segment_completions']=[[0]*len(c['segments']) for c in build_banks(plan)['stairs_up']]
+            self.assertFalse(preflight_decision(a,b)['train_allowed'])
 
     def test_new_actor_identity_and_managed_recipe(self):
         from job_manager import recipe
         self.assertEqual(policy_id('resetupright_24949'),'resetupright_24949')
         self.assertEqual(recipe({'entrypoint':'scripts/run_reset_pilot.py','arguments':[]}),
                          ('scripts/run_reset_pilot.py',[]))
-        plan=load_plan()
+        plan=fixture_plan('24650_reset_ab_20261001.json')
         self.assertEqual(plan['final_checkpoint_iteration'],24650+plan['updates']-1)
         self.assertFalse(plan['custom_lr_cap'])
 

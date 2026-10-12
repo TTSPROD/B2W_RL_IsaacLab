@@ -1,291 +1,76 @@
 # План B2W
 
-Актуально на 12 октября 2026.
-Решение по S2 основано на [опубликованном процессе Unitree и его B2W MuJoCo
-модели](UNITREE_SIM2SIM_METHOD.md). Ниже в истории опытов предложения
-`next/следующий` описывают состояние **на дату отчёта**; действующую
-очередность задают «Текущее решение» и раздел S2 ниже.
+Актуально на 12 октября 2026. Это источник очередности проекта.
+Хронология выполненных опытов и их frozen решения находятся в
+[индексе результатов](results/README.md).
 
-## Цель и контракт
+## Цель и действующий контракт
 
-Обучить низкоуровневую velocity-conditioned policy для Unitree B2W:
-57 observations → 12 leg position + 4 wheel velocity actions, 50 Hz.
-Внешний уровень задаёт body-frame (vx, vy, ωz), маршрут и момент смены команды.
-Ноль требует остановки и устойчивости, без возврата в мировую точку/курс.
-Flat/Rough/Stairs принимаются только в измеренном диапазоне условий.
+Низкоуровневая policy Unitree B2W принимает ровно 57 observations и выдаёт
+12 leg position targets + 4 wheel velocity targets с частотой 50 Hz.
+Команды `(vx, vy, omega_z)` приходят извне в body frame. Маршрут, waypoint,
+абсолютный heading и момент смены команды принадлежат внешнему уровню.
+Ноль требует остановки и устойчивости без возврата в прежнюю точку или курс.
+Приёмка касается tracking, переходов, непрерывного нуля, устойчивости и
+нагрузки приводов; навигационные метрики не являются gates этой policy.
 
-Основа новых training runs — стандартный pinned
-[Robot Lab train.py](../vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py)
-и его штатный RSL-RL runner/PPO. Внешние task/MDP адаптации ограничить участками
-с подтверждённым отставанием по оценкам. Старые runner hooks не наследовать
-автоматически; переход на стандартную базу отразить в manifest и preflight.
+Основной development candidate — `core_24650`, сохранённый ancestor —
+`upstream_19999`. В сравнительном v2 screen 24650 получил 107/160,
+0 unsafe и 20/32 полностью пройденных ячеек. Все ячейки не пройдены,
+независимая validation не запускалась, simulation qualification и допуска
+к роботу нет. [Статус](TRAINING_STATUS.md) · [реестр и SHA](POLICY_REGISTRY.md) ·
+[методика v2](CORE_LOCOMOTION_EVALUATION.md).
 
-## Текущее решение
+## Следующие шаги
 
-Для S2 основной независимый sim2sim baseline — неизменённые pinned B2W MJCF
-и C++ SDK2 bridge Unitree с тем же actor/mapper/runtime. Проверять полный
-command/zero protocol и DDS fault/timing на этой базе. DC law и armature0
-остаются диагностическими вариантами; ранее предложенный passive damping0
-снят с очереди. Unitree описывает переход Isaac Lab→MuJoCo→sim2real, но не
-предписывает выравнивать параметры PhysX и MuJoCo. S2 на исходной модели
-ещё не принят. [Основание и следующий протокол](UNITREE_SIM2SIM_METHOD.md).
+1. **S2 на исходной модели Unitree.** Заморозить actor/export, один
+   `PolicyRuntime`/SDK2 mapper, профиль actual-state/PD-reference guard,
+   B2W MJCF и C++ bridge Unitree. Выполнить полный согласованный Flat
+   command/zero protocol, DDS fault/recovery и timing checks на этой базе,
+   записать raw evidence и executed hashes. Исходные MJCF/bridge не менять.
+   [Основание и подробный протокол](UNITREE_SIM2SIM_METHOD.md).
+2. **Разобрать failures исходного S2.** Отдельно оценить tracking малых
+   lateral/yaw команд, реверсы, непрерывный ноль, actual safety и приводные
+   ограничения. Успех 2/5 последнего timing replay относится к изменённой
+   DC actuator law; `armature=0` также был диагностическим фактором.
+   Эти результаты не являются acceptance исходной модели. Плановый
+   `damping=0` снят с очереди. Из опубликованного Unitree workflow
+   не следует обязательное выравнивание параметров PhysX/MuJoCo.
+3. **Training decision после разбора traces.** Последний локальный native
+   standard PPO A/B от 24650 завершён и отклонён: parent/control/focus
+   103/100/104 из 160, unsafe 0/1/1; seed 9930 и бюджет 150 updates/плечо
+   закрыты. Разобрать сохранённые unsafe/phase/saturation traces до нового
+   recipe. [Результат](results/2026-10-12-native-continuation.md).
+   [Trace-based proposal](../configs/24650_trace_based_recipe_proposal_20261012.json)
+   остаётся предложением, не запуском. Основа новых моделей — стандартный
+   pinned [Robot Lab train.py](../vendor/robot_lab/scripts/reinforcement_learning/rsl_rl/train.py)
+   и штатный RSL-RL PPO; внешние MDP/task адаптации ограничивать измеренным
+   дефицитом. Старые runner hooks автоматически не наследовать.
+4. **После положительного screen.** Заморозить actor и выполнить независимую
+   validation: 20 новых reset seeds на каждую из 32 ячеек, всего 640
+   эпизодов, порог ≥19/20 и 0 unsafe в каждой. Не подбирать checkpoints
+   повторно по validation. Принятый диапазон скоростей/поверхностей
+   расширять по одному фактору.
 
-12.10 пользователь разрешил новое **локальное дообучение** от 24650 и до4000env.
-Объявлен bounded native standard PPO A/B: по150updates, seed9930, только
-изменение частоты осевых command programs между плечами, затем полный matched v2
-в свежих процессах. Это новая task/runtime-линия с явно объявленными common
-adaptations; не восстановление закрытой relkernel-ветки и не server authorization.
-[План и gates](results/2026-10-12-native-continuation-plan.md).
-До решения по результатам development candidate остаётся24650.
-**Пилот завершён и отклонён:** по150updates при4000env, native full v2
-parent/control/focus103/100/104 из160, unsafe0/1/1. Focus5wins/4losses противparent,
-axis success cells не улучшились; wheel saturation выросла иlongest streak6.90s.
-Candidate24650 сохранён; seed9930/budget закрыты. Следующий training recipe —
-после анализа unsafe/phase/saturation traces, без extension поaggregate+1.
-Software recovery переиспользовала weights/baseline без дополнительных PPO.
-[Результат и source/raw integrity](results/2026-10-12-native-continuation.md).
-
-Сохранены исходный upstream_19999 и development candidate core_24650;
-rl_sar участвует как внешний actor из той же Robot Lab линии по сообщению владельца.
-Simulation qualification и hardware-approved policy пока нет.
-[Реестр](POLICY_REGISTRY.md) · [Статус](TRAINING_STATUS.md).
-
-Ветка relkernel-500-20260929 закрыта и удалена локально; её raw evidence,
-компактные сводки и восстановимый Git bundle сохранены.
-Ни stage-3, ни focus/relative-kernel continuation не дали подтверждённого
-основания автоматически заменить 24650. Из этих опытов **не следует**
-доказанная невозможность улучшения PPO или необходимость полного переобучения.
-
-## Очередность
-
-1. **Выполнено:** [v2 сравнение трёх actor](results/2026-09-30-locomotion-v2-selection.md),
-   480 эпизодов. Оставлен 24650: 107/160, 0 unsafe, 20/32 ячеек.
-2. **Выполнено:** [диагностика сохранённых traces](results/2026-09-30-tracking-diagnosis.md),
-   выделен недобор малых lateral/yaw команд. Проверка pose regularization
-   не подтвердила достаточного выигрыша; значения reward причинность не доказывают.
-3. **Выполнен и отклонён [первый A/B пилот](results/2026-09-30-tracking-posture-pilot.md):**
-   parent 24650, seed 9901, 100 updates × 2 плеча, 420 probe episodes.
-   Ослабление pose penalty не дало достаточного преимущества перед control;
-   подъём ухудшился у обоих плеч, у части checkpoints появились unsafe.
-   [Зафиксированный конфиг](../configs/24650_tracking_posture_ab_20260930.json)
-   сохранён для воспроизведения; бюджет не продлевается, seed 9902 пока не запускается.
-   **Диагностика выполнена:** [310 новых эпизодов](results/2026-09-30-stair-continuation-diagnosis.md).
-   Same-order replay точен; перестановка actor меняет 7/140 success. В одинаковых
-   слотах parent/control+25/control+100 дают 2/10, 1/10, 2/10 без unsafe, но
-   разные успешные stair cases. Общая потеря навыка или её единственная причина
-   не доказана; малые multi-actor differences не являются чистым эффектом weights.
-   **Выполнен и отклонён [LR-пилот 1e-5 против 1e-6](results/2026-09-30-lr-pilot-result.md):**
-   300 updates на плечо, 420 эпизодов, одинаковые case/reset slots.
-   Job `72ef5d9d71f04597a9a07585a1cafcc9` завершён с exit 0.
-   На +300 оба плеча дают 25/60 против parent 27/60; low LR имеет один unsafe
-   и не достигает требуемого tracking gain. Строгий full-cycle gate также не пройден.
-   [Frozen plan](results/2026-09-30-lr-pilot-plan.md) сохранён; бюджет не продлевается.
-4. **Выполнена подготовка прежнего stair A/B:**
-   разобраны hard-limit traces; training safety согласован с evaluator,
-   проверены terminal/timeout bootstrap и учёт violations на 200 Hz.
-   Это общая постановка обоих плеч; её самостоятельная польза не установлена.
-5. **Закрыт stair A/B:** оба от 24650 с одинаковой обработкой safety, LR cap 1e-5,
-   4096 envs, до 1500 updates на плечо, seed 9903. A — прежнее распределение
-   сложности, B — адаптивный curriculum только целевых лестничных cohorts.
-   В A target levels остаются случайными; в B они меняются по исходу эпизода.
-   Не менять rewards/ABI/geometry одновременно. Frozen rules promotion/demotion,
-   coverage закреплены в revision 2; обе ветки прошли simulation preflight.
-   [Карточка запуска и evidence](results/2026-09-30-stair-curriculum-plan.md).
-   **Текущее указание пользователя:** A не продолжать, использовать +1350;
-   **выполнено:** B от 24650 обучен 1350 updates, parent/A/B проверены в 180 эпизодах.
-   Результаты: 27/60, 23/60, 25/60; unsafe 0/0/1. B отклонён: coverage,
-   ascent, yaw retention и wheel saturation gates не пройдены.
-   [Итог и evidence](results/2026-09-30-stair-comparison-1350.md).
-6. **Выполнен [offline обзор 01.10](results/2026-10-01-training-plan-review.md):**
-   в executed environment reset roll/pitch остаются ±3.14 рад, тогда как tilt
-   terminal разрешает наклон только до 60°. У B около 83% target эпизодов
-   завершились unsafe; tilt — 99.82% суммы глобальных reason counts.
-   Время первого нарушения не записано: причинность ещё не подтверждена.
-7. **D0 выполнен — reset/terminal audit без обучения.** Добавлен учёт initial
-   state и первого violation по cohort/phase/возрасту эпизода. Полные preflights
-   parent с прежним и upright reset: 128 сред × 72 с, 0 PPO updates.
-   Initial tilt-invalid 1673/2019 → 0/354; early tilt rate 0.180881 → 0;
-   stale contact buffers нет, длинные zero phases доступны. Отменённая зависшая
-   попытка сохранена отдельно. Подробные gates — [TRAINING_STRATEGY](TRAINING_STRATEGY.md).
-   Safety evaluator и его thresholds сохраняются; grace period для unsafe нет.
-8. **Reset-only pilot завершён и отклонён:** по 300 updates на плечо,
-   180 probe episodes, job `37198e6459844450a190984e03beef16`, exit 0,
-   01.10 12:03 МСК. Parent/A/B: 27/21/18 successes из 60; unsafe 0/0/0.
-   Upright reset устранил initial tilt-invalid (88 926/108 787 → 0/21 103),
-   но B потерял stair tempo и малые lateral/yaw. Кандидат 24650 сохранён;
-   A/B24949 не использовать как новые PPO parents, seed 9910 и бюджет закрыты.
-   [Результат и проверка raw](results/2026-10-01-reset-pilot-result.md).
-9. **D1.1 завершён и отклонён — native adaptive/fixed schedule.**
-   Job `2eaf04619ca64678a110e6cc9fa96ff9`, exit 0: по 300 updates и
-   180 fresh probe episodes. Parent/adaptive/fixed — 27/24/22 successes,
-   unsafe 0/0/0. Fixed сохранил малые оси лучше adaptive, но потерял Flat
-   longitudinal, ascent traversal, descent stop/restart и увеличил wheel
-   saturation. Retention и schedule-hypothesis gates не пройдены; оба final
-   checkpoints отклонены, бюджет закрыт. [Результат и raw-проверка](results/2026-10-01-schedule-pilot-result.md).
-   Read-only анализ подтвердил поздние hard-joint события и 1.6–1.8× signed
-   phase imbalance из-за фиксированного порядка `+` перед `−`; причинность
-   ещё не доказана.
-   **Диагностика без PPO завершена:** первая попытка
-   `d7d0b2d7a07e42428ea500e0a27fda81` завершилась до episodes из-за передачи
-   numeric parent ID как строки; исправленный job
-   `0f2d2a0c50f94b1b960505425b8f009f` и first-update job
-   `d073afe88e8044b4b4b1b976355317f8` завершены с exit 0, всего 360 episodes.
-   Parent/+1/+51/+101/+151: 27/26/23/22/22 successes, unsafe везде 0.
-   Уже +1 не проходит strict retention; intermediate actors отклонены.
-   [Итог](results/2026-10-05-schedule-checkpoint-diagnosis.md).
-   **No-update cohort reward/GAE/gradient audit выполнен:** job
-   `216011ab5a7e43fcb5d16129b2c2ee55`, 512 × 3600 steps, 1 843 200 transitions,
-   model/Adam exact до и после, PPO/optimizer steps 0. Подтверждены сильный
-   signed phase imbalance и конфликт sampled actor-gradient между cohort/phase;
-   общего NaN/exploding GAE нет. [Итог](results/2026-10-05-gradient-audit.md).
-   **2×2 screen выполнен:** четыре ветви по 25 updates при 512 envs,
-   300 fresh evaluation episodes. Ни одна цельная policy не сохранила retention.
-   Counterbalanced standard PPO улучшил lateral response, но ухудшил лестницы;
-   conservative PPO конфликт не устранил. Stage 2 не запускался.
-   **Command-gated composite выполнен без новых PPO updates:** ещё 120 fresh
-   episodes, parent/composite оба 27/60, unsafe 0, 60/60 outcomes совпали;
-   lateral response `0.6831→0.7243`, yaw `0.6666→0.6909`, saturation без изменений.
-   Это первый диагностически положительный результат, но не acceptance: целевые
-   lateral/yaw cells остаются 0/5. [Итог и raw hashes](results/2026-10-05-micro-sweep-and-composite.md).
-   **Продолжение specialist выполнено:** cumulative 77/102/150. На +150 probe
-   вырос `27/60→28/60`, unsafe 0, paired 1 win/0 losses. Условный полный v2
-   screen также положителен: `107/160→109/160`, unsafe 0, paired 2 wins/0 losses;
-   gains в `flat_mu_100/lateral` и `rough_02/lateral`, mixed/stairs сохранены.
-   All-cells gate не пройден; composite-150 — finalist, не новая candidate policy.
-   [Итог и raw hashes](results/2026-10-05-specialist-stage2.md).
-   **Независимый repeat seed 9913 выполнен и отрицателен:** 150 updates заново
-   от 24650, probe `27/60→27/60`, unsafe 0, 0 wins/0 losses. Yaw response вырос
-   `0.6666→0.6984`, но lateral снизился `0.6831→0.6625` и вышел за retention
-   tolerance; условный full screen не запускался. Эффект seed 9912 не воспроизведён,
-   composite-150 не продвигается. [Итог](results/2026-10-07-specialist-repeat.md).
-   **Раздельные lateral-only и yaw-only specialists выполнены:** seed 9914,
-   по 150 updates от неизменённого 24650. Оба эффекта направленные и локальные:
-   lateral response `0.6831→0.7628`, yaw `0.6666→0.6969`; остальные cells,
-   saturation и unsafe сохранены. Но success остался `27/60`, paired
-   0 wins/0 losses, поэтому full screen не запускался и promotion нет.
-   **Продление до cumulative 300 выполнено и отклонено:** lateral response
-   деградировал до `0.6463`, в rough почти схлопнулся; yaw остался `0.6946`.
-   Dense curve локализовала полезное lateral-окно на cumulative 152–177 и выбрала
-   iteration 24825. **Mixed lateral-177/yaw-150 прошёл оба сравнительных gate:**
-   probe `27/60→30/60`, paired 3/0; full v2 `107/160→112/160`, paired 5/0,
-   unsafe 0, success-cell regressions отсутствуют, saturation не вырос. Выигрыш
-   узкий: +2 flat_mu_100/lateral и +3 rough_02/lateral; rough_10/lateral response
-   ухудшился, yaw cells всё ещё 0/5. Это первый
-   подтверждённый положительный результат независимых осевых specialists.
-   All-cells gate всё ещё не пройден, поэтому parent остаётся development
-   candidate, а mixed — finalist без promotion/hardware approval.
-   [Итог, endpoints и raw hashes](results/2026-10-07-axis-specialists.md).
-   Следующий ограниченный шаг: короткий осевой checkpoint search вокруг найденного
-   окна для всё ещё слабых lateral/yaw cells; не продолжать до 300 и не менять
-   одновременно reward/MDP/PPO. Parent сохранять для нуля, `vx` и mixed-команд.
-   **Endpoint search выполнен без PPO:** последовательный shortlist выбрал
-   lateral-152 и yaw-252. Их composite дал `108/160` против `107/160`, paired
-   1/0, unsafe 0, но `rough_10/lateral` response заметно различается между
-   axis-only и full protocol при exact branch parity. Третий axis-only repeat
-   точно воспроизвёл первый: причина — другой case order/RNG-reset slot, а не
-   случайная межзапусковая variance. Endpoint screen оставлять только prefilter;
-   следующий отбор выполнять с полным prefix/order cases или full v2. Новые
-   updates и promotion по axis-only метрикам не выполнять.
-10. **После сохранения retention — отдельные навыки.** B физически пересекает
-   последний riser в 20/20 stair episodes; главный отказ — tempo, а на ascent
-   stop/restart также stop/exposure. Не начинать geometry/promotion curriculum
-   только по низкому общему success. Следующий фактор — command order/duration
-   для малых осей либо stair skill sampling/geometry при подтверждённом дефиците.
-   Late hard-joint события разобрать отдельно; constraints/PPO redesign,
-   history и retrain с нуля пока резерв. Proposed длинные бюджеты 1500/3000
-   не являются текущим заданием: coverage и gates замораживать перед новым опытом.
-11. После положительного probe и повторов — полный matched v2 screen.
-   После 5/5 и 0 unsafe во всех 32 ячейках заморозить actor и выполнить
-   20 независимых reset seeds на ячейку: 640 эпизодов, ≥19/20 и 0 unsafe
-   в каждой. Не использовать validation для повторного выбора checkpoints.
-12. S0–S2 software/DDS готовить параллельно; S3–S4 требуют данных целевого B2W
-   и отдельного допуска к аппаратным действиям. Перенос параметров Go2-W недопустим.
-   **Native Ubuntu bounded diagnostic выполнен:** общий offline/DDS actor/mapper,
-   native SDK2 fields/CRC parity, 20 с MuJoCo через официальный C++ bridge,
-   1000 policy ticks, live disconnect/restart с latch. 31 тест пройден, 2 skipped.
-   Полный S2 gate и simulation qualification остаются открытыми; 24650 сохраняется.
-   [Результат и hashes](results/2026-10-12-sim2sim-ubuntu.md).
-   **Продолжение S2 выполнено:** независимый C++ watchdog, frozen deadlines,
-   16 DDS fault cases × 3 повтора под четырьмя CPU load processes; все 48 пройдены.
-   Проверены GIL hang/actor exit, packet loss/reorder, CRC/NaN/Inf, stop,
-   wheel target limit, explicit recovery с новым epoch и сбросом raw history.
-   Nominal — ещё 1000 ticks; acceptance policy и полный S2 остаются открытыми.
-   [Отчёт и executed evidence](results/2026-10-12-sim2sim-native-watchdog.md).
-   **Actuator/asset audit и bounded Flat v2 command diagnostic выполнены:**
-   1232 native law samples; DC helper совпал с pinned Isaac method, но official
-   MuJoCo leg law и source asset parameters отличаются. Все пять programs
-   одного seed проверены: stand завершён, четыре motion programs остановлены
-   target guard при реверсе; полный runtime gate не пройден. Limits и actor
-   не менялись. Тогда был предложен resolved live Isaac/PhysX audit; он выполнен
-   ниже. Совмещение параметров физики больше не является обязательным S2 gate.
-   [Отчёт и raw hashes](results/2026-10-12-sim2sim-physics-audit.md).
-   **Live native Isaac/PhysX audit выполнен:** отдельная local CUDA среда,
-   5 полных Flat programs одного seed — 3/5 success, 0 unsafe. Resolved mass
-   82.41985 кг, armature0; leg DC и implicit wheel parameters сохранены.
-   Desired calf q нарушает strict deployment guard также в Isaac: lateral
-   3 ticks, yaw 1 tick, actual q безопасен. Это target-contract gap, guard
-   не ослабляется. Тогда был предложен отдельный actuator-law factor;
-   он выполнен как диагностика, а не замена исходной модели Unitree.
-   [Отчёт и executed hashes](results/2026-10-12-sim2sim-live-isaac.md).
-   **Отдельный leg actuator-law factor выполнен:** DC executable совпал с
-   pinned Isaac методом на 1232 points; wheels unchanged, 240 disabled cases
-   дают torque0. Fresh baseline и DC — success1/5 каждый, unsafe0; DC yaw
-   полный, tracking fail/stop pass, остальные motion DC остановлены guard.
-   Source XML и 398 compiled arrays подтверждают отсутствие других physics
-   изменений. Следующий на тот момент armature0 factor ниже выполнен
-   как диагностика; target-contract gap и full S2 открыты.
-   [Результат и raw hashes](results/2026-10-12-sim2sim-actuator-factor.md).
-   **Armature0 factor выполнен:** один и тот же DC binary, изменены только
-   16 joint armature attributes и derived generalized inertia. Success1/5
-   в обоих arms, unsafe0; guard gap сохраняется. Armature0 longitudinal tilt
-   вырос с10.97° до43.22°, variant не принят как runtime baseline. Предложение
-   продолжить passive damping0 отозвано как этап S2; desired-target contract
-   и full S2 остаются открытыми.
-   [Результат и immutable evidence](results/2026-10-12-sim2sim-armature-factor.md).
-   **Проверка published limits:** q ranges совпали с official B2-W URDF/MuJoCo,
-   wheel50 подтверждён Unitree product page. Но reject desired q по mechanical
-   range — project guard choice, не найденное SDK2 requirement. Перед выводом
-   об ошибке policy и изменением limits уточнить desired-target semantics,
-   actual-state/torque safety; guard и frozen evidence пока сохраняются.
-   [Источники и различие model/hardware/target limits](SDK2_DEPLOYMENT.md#происхождение-limits-проверка-официальных-источников-1210).
-   **Actual-state / PD guard разделён:** новый simulator-only profile принимает
-   прежний Isaac target envelope±100 и отдельно контролирует actual q/dq/tilt.
-   Native checks39+48 passed, actor/physics/caps прежние. Все5 Flat programs
-   выполнены (9400ticks), success2/5, stop5/5, unsafe0. Runtime gate failed:
-   yaw sample age18.47ms; single declared yaw repeat получил inference38.87ms
-   приdeadline20ms. Следующий bounded шаг — runtime timing/measurement
-   diagnosis при прежних thresholds, до дальнейших physics factors.
-   [Guard change, результаты и immutable evidence](results/2026-10-12-sim2sim-pd-guard.md).
-   **Timing fix и full replay выполнены:** GC pauses воспроизведены47/61ms,
-   common trial теперь scoped GC-disabled; physics CSV deferred до остановки
-   loop, per-job actor/physics/watchdog размещены на разных physical cores.
-   Controlled IO A/B подтвердил отсутствие IO stalls вfixed physics loop.
-   Все9400ticks/5 programs, measurementvalid5/5, maxinference1.10ms/sampleage1.38ms,
-   runtime gate passed без увеличения20/10ms budgets. Stop5/5, unsafe0,
-   tracking success2/5 на DC variant. Следующий S2 шаг — полный replay на
-   исходной модели/bridge Unitree; осевой tracking и полный envelope открыты.
-   [Причины, fix, timings иimmutable hashes](results/2026-10-12-sim2sim-timing-fix.md).
-13. Расширять принятый envelope по одному фактору. Не объявлять всё множество
-   скоростей/поверхностей принятым по небольшому числу samples.
-
-Training, тесты и сравнение выполняет независимый supervisor;
-[дашборд](../dashboard/README.md) только показывает процесс.
-Не подбирать reward коэффициенты по общему success и не продлевать бюджет
-по итогам неудачного отбора. Новое серверное обучение требует отдельного решения.
+Обучение, evaluation и сравнение выполняет независимый supervisor;
+[дашборд](../dashboard/README.md) только читает состояние. Новое серверное
+обучение требует отдельного решения. Реальное управление B2W требует
+отдельного явного допуска и этапов ниже. Старые разрешения и frozen планы
+не являются разрешением повторного запуска.
 
 ## Sim2real milestones
 
-| Этап | Проверяемый результат | Сейчас |
+| Этап | Проверяемый результат | Состояние |
 |---|---|---|
-| S0 | Frozen policy/export/runtime/deployment manifest | Diagnostic manifest с export/source/binary SHA есть; hardware поля открыты |
-| S1 | Offline observations/actions/LowCmd parity, reset/stop | Native SDK2 software parity пройдена на Ubuntu; physical mapping не проверен |
-| S2 | Тот же executable через исходные B2W MJCF и официальный MuJoCo DDS bridge; полный command/zero, timing/fault protocol | Software/DDS/fault checks пройдены; 5 full programs/2 successes и timing pass относятся к DC variant. На исходной модели полный replay, tracking и envelope открыты |
-| S3 | B2W motor order/signs/units/IMU, firmware, read-only telemetry | Не выполнен |
-| S4 | Actuator/latency identification и nominal/variation validation | Не выполнен |
+| S0 | Замороженные policy/export/runtime/manifest и SHA | Диагностические manifests есть; аппаратные поля открыты |
+| S1 | Offline observations/actions/LowCmd parity, reset/stop | Native SDK2 software parity выполнена; physical mapping открыт |
+| S2 | Тот же runtime через исходные B2W MJCF и официальный MuJoCo DDS bridge; полный command/zero, fault/timing envelope | Ограниченные software/DDS/fault checks выполнены; полный replay исходного baseline открыт |
+| S3 | Motor order/signs/units/IMU, firmware, read-only telemetry целевого B2W | Не выполнен |
+| S4 | Ограничения приводов, задержки и nominal/variation validation | Не выполнен |
 | S5 | Стенд с поддержкой корпуса, ownership/stop, zero policy | Только после отдельного допуска |
 | S6 | Ограниченный Flat hardware envelope | После S1–S5 и допуска |
-| S7 | Rough/Stairs, затем длительность/payload | После проверки конкретных условий |
+| S7 | Rough/Stairs, длительность и payload | После проверки конкретных условий |
 
-Подробности и Unitree sources — [SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md).
-Runtime, cache, vendor и raw последней проверки сохраняются; implementation hashes
-после рефакторинга не подменяют hashes реально выполненных запусков.
+[SDK2_DEPLOYMENT](SDK2_DEPLOYMENT.md) описывает аппаратные зависимости.
+Runtime, vendor, raw evidence и hashes 24650/19999 сохранять.
+Implementation hashes после рефакторинга не подменяют hashes выполненных runs.

@@ -49,6 +49,7 @@ B2W MJCF и bridge Unitree, simulation qualification и аппаратного �
 ## Проверка репозитория
 
 ```bash
+.venv/bin/python -m unittest discover -s tests -q
 python3 scripts/vendor_materials.py verify
 .venv/bin/python scripts/verify_project.py
 ```
